@@ -1,8 +1,8 @@
 ---
 layout: post
-title: a post with typograms
+title: QE+phono3py: Thermal conductivity calculation
 date: 2024-04-29 23:36:10
-description: this is what included typograms code could look like
+description: Phono3py is a software for calculating phonon-phonon interactions and related properties using supercell methods.
 tags: formatting diagrams
 categories: sample-posts
 typograms: true
@@ -16,7 +16,11 @@ typograms: true
 phono3py --qe -d --dim="4 4 1" -c graphene.in
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/cf4fbb40-5534-4655-a1f2-a4f143834851/8cb20b73-4152-4248-98b8-7faa958e7ac4/Untitled.png)
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/phono3py_1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 The `**supercell-xxx.in**` file obtained here only contains the lattice structure of the supercell, which needs to be combined with the `**header.in**` file in the next step to form a new input file.
 
@@ -34,7 +38,11 @@ do
 done
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/cf4fbb40-5534-4655-a1f2-a4f143834851/624b0521-1755-41e9-a7bd-8ad42bc277ce/Untitled.png)
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/phono3py_2.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 #### 3. Use **phono3py** to collect forces on atoms in **QE** calculation results 'FORCE_FC3'
 
@@ -42,7 +50,11 @@ done
 phono3py --qe --cf3 output/graphene-{00001..00170}.out
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/cf4fbb40-5534-4655-a1f2-a4f143834851/fdddd9af-d83a-4773-8f5e-f7129bcc5b64/Untitled.png)
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/phono3py_3.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 #### 4. Calculate third-order and second-order force constants
 
@@ -50,7 +62,11 @@ phono3py --qe --cf3 output/graphene-{00001..00170}.out
 phono3py --sym-fc
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/cf4fbb40-5534-4655-a1f2-a4f143834851/5a8b378c-6e6c-47d2-87af-980f493d2bc9/Untitled.png)
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/phono3py_4.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 #### 5. Calculate lattice thermal conductivity
 
@@ -58,7 +74,11 @@ phono3py --sym-fc
 phono3py --mesh="11 11 1" --fc3 --fc2 --br
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/cf4fbb40-5534-4655-a1f2-a4f143834851/84f9d768-e766-4902-8a0a-f3af75f9b86e/Untitled.png)
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/phono3py_5.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 ```python
 In [1]: import h5py
