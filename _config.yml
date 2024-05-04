@@ -172,9 +172,9 @@ collections:
       layout: post
     output: true
     permalink: /news/:path/
-  talks:
+  projects:
     output: true
-    permalink: /talks/:path/
+    permalink: /projects/:path/
 
 announcements:
   enabled: true
