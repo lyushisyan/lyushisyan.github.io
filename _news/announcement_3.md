@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-A simple inline announcement with Markdown emoji! :sparkles: :smile:
+Started my PhD research on the topic "Determination of the thermophysical properties of nanostructures taking into account the quantum mechanical properties of phonons and electrons"
