@@ -3,8 +3,8 @@ layout: post
 title: Phonon dispersion calculation for Graphene using QE
 date: 2024-05-01 00:32:13
 description: This method is based on Density Functional Perturbation Theory.
-tags: formatting code
-categories: sample-posts
+tags: DFT code
+categories: study
 tabs: true
 ---
 
