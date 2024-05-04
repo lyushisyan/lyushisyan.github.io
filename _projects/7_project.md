@@ -5,7 +5,6 @@ description: with background image
 img: assets/img/12.jpg
 importance: 1
 category: work
-thumbnail: assets/img/9.jpg
 images:
   compare: true
   slider: true
