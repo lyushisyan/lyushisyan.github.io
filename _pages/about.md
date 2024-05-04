@@ -6,7 +6,7 @@ subtitle: <a href='#'>Bauman Moscow State Technical University</a>
 
 profile:
   align: right
-  image: liusx.jpg
+  image: liusx2.jpg
   image_circular: false # crops the image to make it circular
 
 news: true # includes a list of news items
