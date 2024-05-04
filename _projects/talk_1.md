@@ -1,6 +1,6 @@
 ---
 layout: page
-title: project 7
+title: talk_1
 description: with background image
 img: assets/img/12.jpg
 importance: 1
