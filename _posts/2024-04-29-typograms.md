@@ -1,6 +1,6 @@
 ---
 layout: post
-title: QE+phono3py: Thermal conductivity calculation
+title: Thermal conductivity calculation using QE+phono3py 
 date: 2024-04-29 23:36:10
 description: Phono3py is a software for calculating phonon-phonon interactions and related properties using supercell methods.
 tags: formatting diagrams
