@@ -5,6 +5,9 @@ description: Определение гармонических свойств ф
 img: assets/img/3.jpg
 importance: 2
 category: in Russian
+images:
+  compare: true
+  slider: true
 ---
 
 ## ОПРЕДЕЛЕНИЕ ГАРМОНИЧЕСКИХ СВОЙСТВ ФОНОНОВ В ГРАФЕНЕ НА ОСНОВЕ МЕТОДА ДИНАМИКИ РЕШЕТКИ
