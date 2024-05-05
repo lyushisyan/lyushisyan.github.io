@@ -1,7 +1,7 @@
 ---
 layout: page
 title: MMMSEC-2023
-description: Математическое моделирование теплопроводности нанонитей – перспективных компонентов полупроводниковой промышленности
+description: Математическое моделирование теплопроводности нанонитей
 img: assets/img/12.jpg
 importance: 1
 category: conference
