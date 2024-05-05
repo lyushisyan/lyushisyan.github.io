@@ -13,7 +13,7 @@
   contents:
     - title: Ph.D. in Thermal physics and theoretical thermal engineering
       institution: Bauman Moscow State Technical University, Moscow, Russia
-      year: 2023-present
+      year: 2023-now
     - title: M.S. in Nuclear Energy and Thermophysics
       institution: Bauman Moscow State Technical University, Moscow, Russia
       year: 2021-2023
@@ -34,9 +34,8 @@
 - title: Honors and Awards
   type: time_table
   contents:
-    - year: 2023
-      items:
-        - Outstanding Graduate Award
+    - title: Outstanding Graduate Award
+      year: 2023
 
 - title: Academic Interests
   type: nested_list
