@@ -133,6 +133,6 @@ Then, visualize the results using the generated `graphene.freq.gp` file.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/disp_grap.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.liquid loading="eager" path="assets/img/blog/disp_grap.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
