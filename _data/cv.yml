@@ -27,34 +27,25 @@
 - title: Projects
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: Russian Science Foundation 22-19-00793
+      year: 2022-2024
+      description: Investigation of the hydrodynamics of two-phase flows in a horizontal steam generator in order to optimize its design
 
 - title: Honors and Awards
   type: time_table
   contents:
-    - year: 1921
+    - year: 2023
       items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
-      items:
-        - Max Planck Medal
+        - Outstanding Graduate Award
 
 - title: Academic Interests
   type: nested_list
   contents:
-    - title: Topic 1.
+    - title: Micro-nanoscale heat transfer
       items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
+        - Density Functional Theory
+        - Monte Carlo simulation
+    - title: Phase change thermal process
       items:
-        - Description 1.
-        - Description 2.
+        - Water Vapor Separation Model
 
-- title: Other Interests
-  type: list
-  contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
