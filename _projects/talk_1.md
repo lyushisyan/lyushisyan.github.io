@@ -1,9 +1,7 @@
 ---
 layout: page
 title: MMMSEC-2023
-description: 
-  Математическое моделирование теплопроводности нанонитей
-  Mathematical modeling of thermal conductivity in nanowires
+description: Математическое моделирование теплопроводности нанонитей
 img: assets/img/talk1/MMMSEC_Page1.png
 importance: 1
 category: in Russian
