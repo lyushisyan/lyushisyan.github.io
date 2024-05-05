@@ -2,7 +2,7 @@
 layout: page
 title: MIPT-66
 description: Определение гармонических свойств фононов в графене на основе метода динамики решетки
-img: assets/img/3.jpg
+img: assets/img/talk2/MIPT_Page1.png
 importance: 2
 category: in Russian
 images:
