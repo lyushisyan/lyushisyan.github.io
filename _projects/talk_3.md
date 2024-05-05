@@ -1,7 +1,7 @@
 ---
 layout: page
 title: BMSTU-2024
-description: Calculation of the thermophysical properties of graphene from first principles
+description: Calculation of the thermophysical properties of graphene from first principles (in Russian)
 img:
 importance: 4
 category: in Russian
