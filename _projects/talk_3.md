@@ -5,6 +5,9 @@ description: Calculation of the thermophysical properties of graphene from first
 img:
 importance: 4
 category: in Russian
+images:
+  compare: true
+  slider: true
 ---
 
 ## <center> РАСЧЕТ ТЕПЛОФИЗИЧЕСКИХ СВОЙСТВ ГРАФЕНА ИЗ ПЕРВЫХ ПРИНЦИПОВ </center>
