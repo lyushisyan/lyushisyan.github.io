@@ -5,7 +5,7 @@ permalink: /talks/
 description: A growing collection of your cool projects.
 nav: true
 nav_order: 3
-display_categories: [conference, fun]
+display_categories: [in Russian, fun]
 horizontal: false
 ---
 
