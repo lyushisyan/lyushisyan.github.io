@@ -29,3 +29,19 @@ images:
 This paper examines the thermophysical properties of graphene based on first principles. The Boltzmann equation (BTE) is solved iteratively based on ab initio phonon calculations of harmonic and anharmonic interatomic force constants (IFCs), and the resulting thermal conductivities are compared with experimental data and results at the relaxation time approximation. The results show that at room temperature the thermal conductivity is approximately 2800 W/(mK). This is consistent with experimental results.
 
 Keywords: first principles, density functional theory, phonons, graphene, thermal conductivity
+
+## Slides
+
+<swiper-container keyboard="true" navigation="true" pagination="true" pagination-clickable="true" pagination-dynamic-bullets="true" rewind="true">
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/talk3/BMSTU_Page1.png" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/talk3/BMSTU_Page2.png" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/talk3/BMSTU_Page3.png" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/talk3/BMSTU_Page4.png" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/talk3/BMSTU_Page5.png" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/talk3/BMSTU_Page6.png" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/talk3/BMSTU_Page7.png" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/talk3/BMSTU_Page8.png" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/talk3/BMSTU_Page9.png" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/talk3/BMSTU_Page10.png" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/talk3/BMSTU_Page11.png" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+</swiper-container>
