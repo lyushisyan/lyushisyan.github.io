@@ -1,7 +1,7 @@
 ---
 layout: page
 title: MIPT-66
-description: Определение гармонических свойств фононов в графене на основе метода динамики решетки
+description: Determination of harmonic properties of phonons in graphene based on the lattice dynamics method (in Russian)
 img: assets/img/talk2/MIPT_Page1.png
 importance: 2
 category: in Russian
