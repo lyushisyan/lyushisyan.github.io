@@ -1,81 +1,33 @@
 ---
 layout: page
-title: project 2
+title: MIPT-66
 description: a project with a background image and giscus comments
 img: assets/img/3.jpg
 importance: 2
-category: work
-giscus_comments: true
+category: conference
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+## МАТЕМАТИЧЕСКОЕ МОДЕЛИРОВАНИЕ ТЕПЛОПРОВОДНОСТИ НАНОНИТЕЙ – ПЕРСПЕКТИВНЫХ КОМПОНЕНТОВ ПОЛУПРОВОДНИКОВОЙ ПРОМЫШЛЕННОСТИ
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+<center>Лю Шисян, Баринов Александр Алексеевич
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+<center> МГТУ им. Н.Э. Баумана, г. Москва
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
+**Аннотация.** В работе рассматривается теплопроводность перспективных компонентов полупроводниковой промышленности – нанонитей. Предложена математическая модель, учитывающая влияние диаметра, шероховатости поверхности, а также температуры на теплопроводность нанонитей. Верификация модели проведена на основе сравнения с известными экспериментальными данными.
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+**Ключевые слова:** теплопроводность, размерный эффект, плотность состояний, нанонить, шероховатость.
 
-{% raw %}
+## MATHEMATICAL MODELING OF THERMAL CONDUCTIVITY IN NANOWIRES – PROSPECTIVE COMPONENTS OF THE SEMICONDUCTOR INDUSTRY
 
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
+<center> S. Liu, A. A. Barinov
 
-{% endraw %}
+
+**Abstract.** The paper considers the thermal conductivity of prospective components of the semiconductor industry – nanowires. We introduce a mathematical model that takes into account the influence of diameter, surface roughness, and temperature on the thermal conductivity of nanowires. Verification of the model was carried out due to comparison with known experimental data.
+
+**Key words:** thermal conductivity, size effect, density of states, nanowires, roughness.
+
+### Введение
+
+Нанонити являются широко распространенным объектом научных исследований и опытных разработок в области полупроводниковой промышленности, оптоэлектроники и пр. в связи с их уникальными свойствами. Так экспериментальные исследования показали, что теплопроводность кремниевых (Si) нанонитей примерно на два порядка ниже, чем у массивных образцов [1]. Выделим следующие факторы, определяющие уникальные свойства нанонитей. Во-первых, влияние квантового размерного эффекта на дисперсию фононов, которое определяет набор возможных состояний фононного газа в низкоразмерных структурах, качественно отличающееся от массивного твердого тела. Во-вторых, наличие размерного эффекта, когда диффузию фононов определяет именно рассеяние на границе образца, а не внутренние процессы взаимодействия. В-третьих, это морфология поверхности нанонитей, т.е. учет шероховатости границ реального образца.
