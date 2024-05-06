@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Invited to participate in the International Forum Atomic Exhibition-2024
+Invited to participate in the International Forum ATOMEXPO-2024
