@@ -18,7 +18,7 @@ Since the ions are much heavier than electrons, their motion can be treated sepa
 
 **Harmonic Approximation**
 
-The total potential energy of a crystal is considered based on the interatomic potential. The shape of the potential energy $ U(\boldsymbol R) $ between a pair of atoms is complex. However, $ U(\boldsymbol R) $ can be expanded in a Taylor series around its minimum at $ \boldsymbol R_0 $ with small displacement $ \boldsymbol x = \boldsymbol R - \boldsymbol R_0 $:
+The total potential energy of a crystal is considered based on the interatomic potential. The shape of the potential energy $ U(\boldsymbol R) $ between a pair of atoms is complex. However, $$U(\boldsymbol R)$$ can be expanded in a Taylor series around its minimum at $$\boldsymbol R_0$$ with small displacement $$\boldsymbol x = \boldsymbol R - \boldsymbol R_0$$:
 
 $$
 U=U(\boldsymbol R_0)+\left(\frac{\partial U}{\partial R}\right)_0\cdot \boldsymbol x+\frac{1}{2}\left(\frac{\partial^2 U}{\partial R^2}\right)_0\cdot x^2+... \tag{1}
