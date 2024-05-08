@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Lattice dynamics
-date: 2024-05-08 23:36:10
+date: 2024-05-01 23:36:10
 description: From one-dimensional atomic chain to three-dimensional lattice
 tags: theory
 categories: study
