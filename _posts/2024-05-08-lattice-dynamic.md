@@ -102,7 +102,7 @@ $$
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/LattDyn_1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.liquid loading="eager" path="assets/img/blog/LattDyn_1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 <div class="caption">
@@ -111,7 +111,7 @@ $$
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/LattDyn_2.png" class="img-fluid rounded z-depth-1" zoomable=true style="max-width: 50%; height: auto;" %}
+        {% include figure.liquid loading="eager" path="assets/img/blog/LattDyn_2.png" class="img-fluid rounded z-depth-1" zoomable=true style="max-width: 50%; height: auto;" %}
     </div>
 </div>
 <div class="caption">
