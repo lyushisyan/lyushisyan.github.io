@@ -18,13 +18,13 @@ Since the ions are much heavier than electrons, their motion can be treated sepa
 
 **Harmonic Approximation**
 
-The total potential energy of a crystal is considered based on the interatomic potential. The shape of the potential energy $U(\boldsymbol R)$ between a pair of atoms is complex. However, $U(\boldsymbol R)$ can be expanded in a Taylor series around its minimum at $\boldsymbol R_0$ with small displacement $\boldsymbol x = \boldsymbol R - \boldsymbol R_0$:
+The total potential energy of a crystal is considered based on the interatomic potential. The shape of the potential energy $ U(\boldsymbol R) $ between a pair of atoms is complex. However, $ U(\boldsymbol R) $ can be expanded in a Taylor series around its minimum at $ \boldsymbol R_0 $ with small displacement $ \boldsymbol x = \boldsymbol R - \boldsymbol R_0 $:
 
 $$
 U=U(\boldsymbol R_0)+\left(\frac{\partial U}{\partial R}\right)_0\cdot \boldsymbol x+\frac{1}{2}\left(\frac{\partial^2 U}{\partial R^2}\right)_0\cdot x^2+... \tag{1}
 $$
 
-The first term is a constant and is not important for dynamical problems. The second term generates a force that must be balanced at equilibrium. Therefore, the first significant term in the above expansion is the quadratic term in displacement $\boldsymbol x$. Considering only the quadratic term in Equation (2.1) is called the **harmonic approximation**.
+The first term is a constant and is not important for dynamical problems. The second term generates a force that must be balanced at equilibrium. Therefore, the first significant term in the above expansion is the quadratic term in displacement $ \boldsymbol x $. Considering only the quadratic term in Equation (2.1) is called the **harmonic approximation**.
 
 In this approximation, the atoms in the crystal can be described as three-dimensional harmonic oscillators, and $(\partial^2 U/\partial R^2)_0$ term represents the interatomic force constant.
 
@@ -32,7 +32,7 @@ In this approximation, the atoms in the crystal can be described as three-dimens
 
 In the theory of harmonic approximation, the $N$ atoms of a crystal are visualized as connected by harmonic springs, and the crystal dynamics are analyzed based on linear combinations of $3N$ normal vibrational modes.
 
-Normal vibrational modes are represented by traveling waves of the form $A\exp[\text i(\boldsymbol q\cdot\boldsymbol r − \omega t)]$, where $\boldsymbol q$ represents the direction of wave propagation, $\omega$ is the angular frequency of the wave, and $A$ is the amplitude.
+Normal vibrational modes are represented by traveling waves of the form $ A\exp[\text i(\boldsymbol q\cdot\boldsymbol r − \omega t)] $, where $\boldsymbol q$ represents the direction of wave propagation, $ \omega $ is the angular frequency of the wave, and $A$ is the amplitude.
 
 The energy of normal modes of a crystal is quantized: for the $\boldsymbol q$ mode, the energy is $(n_{\boldsymbol q} + 1/2)\hbar\omega(\boldsymbol q)$, where $n_{\boldsymbol q} = 0,1,2,...$.
 
