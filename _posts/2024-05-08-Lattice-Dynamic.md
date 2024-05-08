@@ -60,7 +60,7 @@ At low temperatures $\hbar\omega\gg k_BT,~\overline n\sim\exp(-\hbar\omega/k_BT)
 
 At high temperatures $\hbar\omega\ll k_BT,~\overline n\sim\hbar\omega/k_BT$, the number of phonons increases linearly with temperature.
 
-## 2 Lattice Dynamics of Linear Chains
+## 2 Lattice Dynamics of Linear Chain
 
 ### 2.1 Single-Atom Linear Chain
 
@@ -141,3 +141,5 @@ Here, $\omega_{max}=2\sqrt{\Lambda/m}$ is the maximum frequency of normal modes 
 💡 Note:
 (i) When $q=\pm\pi/a$, $c_g\to 0$. This means at the Brillouin zone boundary, lattice waves become standing waves.
 (ii) In the long-wavelength limit ($qa \ll 1$), $c_p = c_g = v$ = speed of sound. The chain behaves like a continuum, and lattice waves become sound waves.
+
+
