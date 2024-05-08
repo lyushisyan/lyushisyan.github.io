@@ -142,4 +142,193 @@ Here, $\omega_{max}=2\sqrt{\Lambda/m}$ is the maximum frequency of normal modes 
 (i) When $q=\pm\pi/a$, $c_g\to 0$. This means at the Brillouin zone boundary, lattice waves become standing waves.
 (ii) In the long-wavelength limit ($qa \ll 1$), $c_p = c_g = v$ = speed of sound. The chain behaves like a continuum, and lattice waves become sound waves.
 
+### 2.2 Two-Atom Linear Chain
 
+Consider a long chain consisting of $2N$ atoms, with $N$ unit cells, each of length $2a$​, as shown in Figure 2.4. Suppose it is a closed chain, allowing for the application of periodic boundary conditions.
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/LattDyn_3.png" class="img-fluid rounded z-depth-1" zoomable=true style="max-width: 50%; height: auto;" %}
+    </div>
+</div>
+<div class="caption">
+    Figure 3 Two-atom linear chain with alternating masses m and M.
+</div>
+
+Let the masses be $m$ and $M (m < M)$, and consider only nearest-neighbor forces. Furthermore, for simplicity, assume that both types of atoms have the same force constant.
+
+Then, the equations of motion for the two types of atoms are given by:
+
+$$
+m\frac{d^2u_{2n}}{dt^2}=\Lambda[u'_{2n+1}+u'_{2n-1}-2u_{2n}] \tag{9}
+$$
+
+$$
+M\frac{d^2u'_{2n+1}}{dt^2}=\Lambda[u_{2n+2}+u_{2n}-2u'_{2n+1}] \tag{10}
+$$
+
+The solutions are:
+
+$$
+u_{2n}=A_1\exp[\text i(2nqa-\omega t)] \tag{11}
+$$
+
+$$
+u'_{2n+1}=A_2\exp\{\text i[(2n+1)qa-\omega t]\} \tag{12}
+$$
+
+Substituting equations (11) and (12) into equations (13) and (14), they become a coupled eigenvalue equation:
+
+$$
+-\omega^2mA_1=\Lambda[A_2e^{\text iqa}+A_2e^{-\text iqa}-2A_1] \tag{13}
+$$
+
+$$
+-\omega^2MA_2=\Lambda[A_1e^{-\text iqa}+A_1e^{\text iqa}-2A_2] \tag{14}
+$$
+
+Combining equations (13) and (14), we get:
+
+$$
+\omega^2A_i=\sum_{j=1}^2D_{ij}A_j~~~i=1,2 \tag{15}
+$$
+
+where $D$ is the (2×2) dynamic matrix given by:
+
+$$
+D=\begin{pmatrix}
+\frac{2\Lambda}{m} & -\frac{2\Lambda}{m}\cos qa \\
+-\frac{2\Lambda}{m}\cos qa & \frac{2\Lambda}{m}
+\end{pmatrix}
+\tag{16}
+$$
+
+The solutions to equation (15) are:
+
+$$
+\omega^2=\Lambda\left(\frac{1}{m}+\frac{1}{M}\right)\pm\Lambda\left[\left(\frac{1}{m}+\frac{1}{M}\right)^2-\frac{4}{mM}\sin^2qa\right]^{1/2} \tag{17}
+$$
+
+The two branches of the phonon dispersion curve for the two-atom linear chain correspond to the two signs in equation (17).
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/LattDyn_4.png" class="img-fluid rounded z-depth-1" zoomable=true style="max-width: 50%; height: auto;" %}
+    </div>
+</div>
+<div class="caption">
+    Figure 4 Phonon dispersion curve of the two-atom linear chain.
+</div>
+
+## 3. Lattice Dynamics of Single-Atom Two-Dimensional Grids
+
+We will consider two types of single-atom two-dimensional grids: square lattice and hexagonal lattice.
+
+Consider the interaction between atom $0$ with displacement $\boldsymbol u_0$ and atom $n$ with displacement $\boldsymbol u_n$.
+
+Let $\boldsymbol R_n$ be the vector from atom $0$ to atom $n$, and $\boldsymbol\varepsilon_n = \boldsymbol R_n/R_n$ be the unit vector parallel to $\boldsymbol R_n$. Atom $0$ experiences a central force from atom $n$ given by
+
+$$
+\boldsymbol F_n=\Lambda_n[\boldsymbol \varepsilon_n\cdot(\boldsymbol u_n-\boldsymbol u_0)]\boldsymbol\varepsilon_n \tag{18}
+$$
+
+where $\Lambda_n$ is the force constant between the two atoms. The equation of motion for atom $0$ is
+
+$$
+m\frac{d^2\boldsymbol u_0}{dt^2}=\sum_n\boldsymbol F_n \tag{19}
+$$
+
+where the sum over $n$ includes neighboring atoms under consideration.
+
+### 3.1 Single-Atom Square Lattice
+
+Figure 5 depicts a ball-and-spring model of the single-atom two-dimensional square lattice, where $m$ is the atomic mass, $a$ is the nearest-neighbor distance, $\Lambda_1$ is the nearest-neighbor force constant, and $\Lambda_2$ is the second-nearest-neighbor force constant.
+
+The unit cell is determined by the primitive translation vectors $\boldsymbol a_1$ and $\boldsymbol a_2$​.
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/LattDyn_5.png" class="img-fluid rounded z-depth-1" zoomable=true style="max-width: 50%; height: auto;" %}
+    </div>
+</div>
+<div class="caption">
+    Figure 5 Two-dimensional single-atom square ball and spring model.
+</div>
+
+According to equations (2.18) and (2.19), we can write the equation of motion for atom $0$ as
+
+$$
+m\frac{d^2\boldsymbol u_0}{dt^2}=\Lambda_1\sum_{n=1}^4(\boldsymbol u_n-\boldsymbol u_0)+ \Lambda_2\sum_{n=5}^8(\boldsymbol u_n-\boldsymbol u_0)\tag{20}
+$$
+
+Expressing the displacement vector of the $n$th atom as
+
+$$
+\boldsymbol u_n=\boldsymbol A\exp(\text i\boldsymbol R_n\cdot\boldsymbol q-\omega t) \tag{21}
+$$
+
+where $\boldsymbol A$ is the amplitude vector, $\boldsymbol q$ is the phonon wave vector. Note that $\boldsymbol R_n = (x_n, y_n)$, $\boldsymbol A = (A_x, A_y)$, and $\boldsymbol q = (q_x, q_y)$ are two-dimensional vectors.
+
+Substituting equation (2.21) into equation (2.20), we obtain the matrix eigenvalue equation
+
+$$
+\omega^2A_\alpha=\sum_\beta D_{\alpha\beta}A_\beta,~~\alpha,\beta=x,y \tag{22}
+$$
+
+For a specific wave vector $\boldsymbol q$, phonon frequencies $\omega(\boldsymbol qs), s = 1, 2$ can be obtained by solving the following characteristic equation:
+
+$$
+|\boldsymbol D_{ij}-\boldsymbol\omega^2\boldsymbol\delta_{ij}|=0
+$$
+
+where the elements of the two-dimensional dynamic matrix $\boldsymbol D$ are given by
+
+$$
+D_{xx}=\frac{2}{m}[\Lambda_1(1-\cos q_xa)+\Lambda_2(1-\cos q_xa\cos q_ya)]\\
+D_{xy}=\frac{2\Lambda_2}{m}\sin q_xa\sin q_ya\\
+D_{yx}=D_{xy}\\
+D_{yy}=\frac{2}{m}[\Lambda_1(1-\cos q_ya)+\Lambda_2(1-\cos q_xa\cos q_ya)] \tag{23}
+$$
+
+Phonon dispersion curves along the $\Delta$ and $\Sigma$​ symmetric directions in the Brillouin zone are plotted in Figure 2.8.
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/LattDyn_6.png" class="img-fluid rounded z-depth-1" zoomable=true style="max-width: 50%; height: auto;" %}
+    </div>
+</div>
+<div class="caption">
+    Figure 6 Phonon dispersion curves of the single-atom square lattice.
+</div>
+
+**$\Delta$ Direction:** Choose $q_x = q$ and $q_y = 0$ such that $D_{xy} = D_{yx} = 0$. Then, the eigenvalues are
+$$
+\omega^2(\text{TA})=\frac{2}{m}\Lambda_2(1-\cos qa) \tag{24}
+$$
+
+$$
+\omega^2(\text{LA})=\frac{2}{m}(\Lambda_1+\Lambda_2)(1-\cos qa) \tag{25}
+$$
+
+Normalized eigenvectors $ \boldsymbol e = \boldsymbol A/A $ are
+
+$$
+\boldsymbol e (\text{TA}) = (0,1)\\
+\boldsymbol e (\text{LA}) = (1,0) \tag{26}
+$$
+
+**$\Sigma$ Direction:** Along $ q_x = q_y = q/\sqrt 2 $, the eigenvalues are
+$$
+\omega^2(\text{TA})=\frac{2}{m}\Lambda_1(1-\cos qa/\sqrt 2) \tag{27}
+$$
+
+$$
+\omega^2(\text{LA})=\frac{2}{m}[\Lambda_1(1-\cos qa/\sqrt 2)+\Lambda_2(1-\cos \sqrt 2qa)] \tag{28}
+$$
+
+Normalized eigenvectors $\boldsymbol e = \boldsymbol A/A$ are
+
+$$
+\boldsymbol e (\text{TA}) = (-\frac{1}{\sqrt 2},\frac{1}{\sqrt 2})\\
+\boldsymbol e (\text{LA}) = (\frac{1}{\sqrt 2},\frac{1}{\sqrt 2}) \tag{29}
+$$
