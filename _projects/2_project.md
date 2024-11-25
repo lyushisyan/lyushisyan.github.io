@@ -2,7 +2,7 @@
 layout: page
 title: НЭБ-2023
 description: 6‑ая Межвузовсквая конференция аспирантов, соискателей и молодых ученых "Science, Engineering and Business"
-img: assets/img/talk2/SEB-2023.png
+img: assets/img/talk2/SEB-2024.png
 importance: 4
 category: talks
 ---
