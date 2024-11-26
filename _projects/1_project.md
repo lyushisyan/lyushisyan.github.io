@@ -1,7 +1,7 @@
 ---
 layout: page
 title: MMMSEC-2023
-description: VI International Conference
+description: Mathematical modeling of thermal conductivity of nanowires – prospective components of the semiconductor industry
 img: assets/img/talk1/MMMSEC-2023.png
 importance: 1
 category: talks
@@ -17,7 +17,7 @@ category: talks
 
 **Ключевые слова:** теплопроводность, размерный эффект, плотность состояний, нанонить, шероховатость.
 
-## <center> MATHEMATICAL MODELING OF THERMAL CONDUCTIVITY IN NANOWIRES – PROSPECTIVE COMPONENTS OF THE SEMICONDUCTOR INDUSTRY </center>
+## <center> Mathematical modeling of thermal conductivity of nanowires – prospective components of the semiconductor industry </center>
 
 <center> S. Liu, A. A. Barinov </center>
 
