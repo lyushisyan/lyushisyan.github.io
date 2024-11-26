@@ -1,7 +1,7 @@
 ---
 layout: page
-title: SEB-2023
-description: Science, Engineering and Business
+title: SEB-2024
+description: Calculation of the thermophysical properties of graphene from first principles
 img: assets/img/talk2/SEB-2024.png
 importance: 4
 category: travel
