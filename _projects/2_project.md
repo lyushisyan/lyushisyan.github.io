@@ -4,7 +4,7 @@ title: SEB-2024
 description: Calculation of the thermophysical properties of graphene from first principles
 img: assets/img/talk2/SEB-2024.png
 importance: 4
-category: travel
+category: talks
 ---
 
 ## <center> РАСЧЕТ ТЕПЛОФИЗИЧЕСКИХ СВОЙСТВ ГРАФЕНА ИЗ ПЕРВЫХ ПРИНЦИПОВ </center>
