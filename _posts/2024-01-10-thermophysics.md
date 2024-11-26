@@ -1,8 +1,16 @@
-# Microscopic Description of Thermal Physics
+---
+layout: post
+title: Microscopic Description of Thermal Physics
+date: 2024-01-01 00:32:13
+description: This method is based on Density Functional Perturbation Theory.
+tags: Physics Theory
+categories: study
+tabs: true
+---
 
 The macroscopic energy conservation equation in heat transfer describes the storage, transfer (thermal conduction $$k$$, thermal convection $$u$$, and thermal radiation $$r$$), and conversion of thermal energy with other forms of energy.
 
-## 1. Energy Conservation
+## Energy Conservation
 
 $$
 \nabla\cdot \boldsymbol q=-\rho c_p\frac{\partial T}{\partial t}+\sum_{i,j}\dot s_{i-j},
@@ -11,7 +19,7 @@ $$
 
 Here, $$\rho c_p\frac{\partial T}{\partial t}$$ is referred to as sensible heat storage, and $$\dot s_{i-j}$$ is the energy conversion rate of thermal energy determined by the nature and frequency of interactions between energy carriers $$i$$ and $$j$$.
 
-## 2. Heat Flux Vector
+## Heat Flux Vector
 
 $$
 \boldsymbol q = \boldsymbol q_k + \boldsymbol q_u + \boldsymbol q_r
