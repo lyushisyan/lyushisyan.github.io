@@ -5,7 +5,7 @@ title: CV
 nav: true
 nav_order: 5
 cv_pdf: CV_LIU_CN.pdf
-description: This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.
+description: You can download the Chinese version of the resume by clicking the button on the right.
 toc:
   sidebar: left
 ---
