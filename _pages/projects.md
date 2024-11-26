@@ -2,7 +2,7 @@
 layout: page
 title: Moments
 permalink: /projects/
-description: A growing collection of your cool projects.
+description: Some academic conferences and important events.
 nav: true
 nav_order: 3
 display_categories: [talks, travel]
