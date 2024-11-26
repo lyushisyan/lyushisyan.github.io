@@ -1,7 +1,7 @@
 ---
 layout: page
-title: МММЭК-2023
-description: VI Международная конференция "Математическое моделирование в материаловедении электронных компонентов"
+title: MMMSEC-2023
+description: VI International Conference "Mathematical Modeling in Materials Science of Electronic Components"
 img: assets/img/talk1/MMMSEC-2023.png
 importance: 1
 category: talks
