@@ -1,7 +1,7 @@
 ---
 layout: page
 title: MMMSEC-2023
-description: VI International Conference "Mathematical Modeling in Materials Science of Electronic Components"
+description: VI International Conference
 img: assets/img/talk1/MMMSEC-2023.png
 importance: 1
 category: talks
