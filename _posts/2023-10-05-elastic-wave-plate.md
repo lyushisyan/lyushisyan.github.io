@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Microscopic Description of Thermal Physics
-date: 2024-01-01 00:32:13
-description: This method is based on Density Functional Perturbation Theory.
+title: Dispersion relation of elastic waves in a plate
+date: 2023-10-05 00:32:13
+description: Wave propagation is analyzed based on solving the elastic equation of the continuum medium.
 tags: Physics Theory
 categories: study
 tabs: true
