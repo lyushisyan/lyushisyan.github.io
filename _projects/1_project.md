@@ -27,8 +27,8 @@ category: talks
 
 ### Download presentation
 
-[Download PDF](https://github.com/lyushisyan/lyushisyan.github.io/tree/main/assets/pdf/talks/MMMSEC-2023-PPT.pdf)
+[Download PDF](https://lyushisyan.github.io/assets/pdf/talks/MMMSEC-2023-PPT.pdf)
 
 ### View presentation online
 
-<iframe src="https://github.com/lyushisyan/lyushisyan.github.io/tree/main/assets/pdf/talks/MMMSEC-2023-PPT.pdf" width="100%" height="600px" style="border:none;"></iframe>
+<iframe src="https://lyushisyan.github.io/assets/pdf/talks/MMMSEC-2023-PPT.pdf" width="100%" height="600px" style="border:none;"></iframe>
