@@ -7,14 +7,11 @@ importance: 1
 category: talks
 ---
 
-### Download presentation
-
-[Download PDF](https://lyushisyan.github.io/assets/pdf/talks/MMMSEC-2023-PPT.pdf)
-
 ### View presentation online
 
 <iframe src="https://lyushisyan.github.io/assets/pdf/talks/MMMSEC-2023-PPT.pdf" width="100%" height="600px" style="border:none;"></iframe>
 
+---
 
 ### Mathematical modeling of thermal conductivity of nanowires – prospective components of the semiconductor industry
 
