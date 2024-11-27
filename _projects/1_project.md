@@ -1,7 +1,7 @@
 ---
 layout: page
 title: MMMSEC-2023
-description: Mathematical modeling of thermal conductivity of nanowires – prospective components of the semiconductor industry
+description: V International сonference "Mathematical modeling in materials science of electronic components"
 img: assets/img/talk1/MMMSEC-2023.png
 importance: 1
 category: talks
@@ -16,6 +16,6 @@ category: talks
 <iframe src="https://lyushisyan.github.io/assets/pdf/talks/MMMSEC-2023-PPT.pdf" width="100%" height="600px" style="border:none;"></iframe>
 
 
-### V International сonference "Mathematical modeling in materials science of electronic components"
+### Mathematical modeling of thermal conductivity of nanowires – prospective components of the semiconductor industry
 
 **Abstract.** The paper considers the thermal conductivity of prospective components of the semiconductor industry – nanowires. We introduce a mathematical model that takes into account the influence of diameter, surface roughness, and temperature on the thermal conductivity of nanowires. Verification of the model was carried out due to comparison with known experimental data.
