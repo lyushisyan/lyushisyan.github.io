@@ -1,8 +1,21 @@
-The paper studies wave propagation based on solving the **elastic equations for a continuous medium**.
+---
+layout: post
+title: Microscopic Description of Thermal Physics
+date: 2024-01-01 00:32:13
+description: This method is based on Density Functional Perturbation Theory.
+tags: Physics Theory
+categories: study
+tabs: true
+---
+
 
 In a plate, waves can be classified into longitudinal waves ($$ \text{P waves} $$) and shear waves ($$ \text{S waves} $$). $$ \text{S waves} $$ are further divided into $$ \text{SH waves} $$ and $$ \text{SV waves} $$.
 
-![Plate](plate.png)
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/elsplate_1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 Assuming that the propagation direction of the wave is along the $$ x $$-axis, a particle vibrating along the $$ x $$-axis is called a $$ \text{P wave} $$, along the $$ y $$-axis is an $$ \text{SH wave} $$, and along the $$ z $$-axis is an $$ \text{SV wave} $$.
 
@@ -80,7 +93,11 @@ $$
 \omega^2=c_t^2\left[\xi^2+\left(n\pi/2b\right)^2\right]
 $$
 
-![SH Wave Dispersion](DS_SH.png)
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/els-DS-SH.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 ---
 
@@ -154,7 +171,11 @@ $$
 \frac{\tan\beta b}{\tan\alpha b} = -\frac{4\alpha\beta \xi^2}{(\xi^2-\beta^2)^2}
 $$
 
-![Symmetric Wave Dispersion](DS_L.png)
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/els-DS-L.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 ---
 
@@ -182,7 +203,11 @@ $$
 \frac{\tan\beta b}{\tan\alpha b} = -\frac{(\xi^2-\beta^2)^2}{4\alpha\beta \xi^2}
 $$
 
-![Antisymmetric Wave Dispersion](DS_F.png)
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/els-DS-F.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 ---
 
@@ -236,7 +261,11 @@ $$
 v_p=\frac{\omega}{k}
 $$
 
-![Phase Velocity](vp_wave.png)
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/els-vp.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 **Group velocity** is the velocity at which energy is transmitted through the medium:
 
@@ -244,4 +273,8 @@ $$
 v_g=\frac{\partial\omega}{\partial k}
 $$
 
-![Group Velocity](vg_wave.png)
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/els-vg.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
