@@ -24,3 +24,11 @@ category: talks
 **Abstract.** The paper considers the thermal conductivity of prospective components of the semiconductor industry – nanowires. We introduce a mathematical model that takes into account the influence of diameter, surface roughness, and temperature on the thermal conductivity of nanowires. Verification of the model was carried out due to comparison with known experimental data.
 
 **Key words:** thermal conductivity, size effect, density of states, nanowires, roughness.
+
+### Download presentation
+
+[Download PDF](assets/pdf/talks/MMMSEC-2023-PPT.pdf)
+
+### View presentation online
+
+<iframe src="assets/pdf/talks/MMMSEC-2023-PPT.pdf" width="100%" height="600px" style="border:none;"></iframe>
