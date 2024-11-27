@@ -7,7 +7,6 @@ importance: 4
 category: talks
 ---
 
-
 ### Calculation of the thermophysical properties of graphene from first principles
 
 This work examines the thermophysical properties of graphene based on first principles. The Boltzmann equation (BTE) is solved iteratively based on ab initio phonon calculations of harmonic and anharmonic interatomic force constants (IFCs), and the resulting thermal conductivities are compared with experimental data and results at the relaxation time approximation. The results show that at room temperature the thermal conductivity is approximately 2800 W/(mK). This is consistent with experimental results.
