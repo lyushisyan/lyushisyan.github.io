@@ -7,9 +7,6 @@ importance: 4
 category: talks
 ---
 
-### Download presentation(https://lyushisyan.github.io/assets/pdf/talks/MIPT-2024-PPT.pdf)
-
----
 
 ### View presentation online
 
