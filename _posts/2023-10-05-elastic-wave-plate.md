@@ -3,7 +3,7 @@ layout: post
 title: Dispersion relation of elastic waves in a plate
 date: 2023-10-05 00:32:13
 description: Wave propagation is analyzed based on solving the elastic equation of the continuum medium.
-tags: Physics Theory
+tags: physics theory
 categories: study
 tabs: true
 ---
