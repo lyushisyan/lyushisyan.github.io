@@ -138,4 +138,15 @@
       </div>
     </progress>
   {% endif %}
+  <ul class="navbar-nav ml-auto">
+    {% if page.url contains '/zh' %}
+      <li class="nav-item">
+        <a href="/en{{ page.url | remove: '/zh' }}" class="nav-link">English</a>
+      </li>
+    {% else %}
+      <li class="nav-item">
+        <a href="/zh{{ page.url }}" class="nav-link">中文</a>
+      </li>
+    {% endif %}
+  </ul>
 </header>
