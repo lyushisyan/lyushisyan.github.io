@@ -3,7 +3,7 @@ layout: post
 title: Microscopic Description of Thermal Physics
 date: 2024-01-01 00:32:13
 description: Looking at thermal physics from the perspective of microscopic charge carriers.
-tags: Physics Theory
+tags: physics theory
 categories: study
 tabs: true
 ---
