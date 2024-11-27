@@ -7,13 +7,15 @@ importance: 4
 category: talks
 ---
 
-### Download presentation
+### Download presentation(https://lyushisyan.github.io/assets/pdf/talks/BMSTU-2024-PPT.pdf)
 
-[Download PDF](https://lyushisyan.github.io/assets/pdf/talks/BMSTU-2024-PPT.pdf)
+---
 
 ### View presentation online
 
 <iframe src="https://lyushisyan.github.io/assets/pdf/talks/BMSTU-2024-PPT.pdf" width="100%" height="600px" style="border:none;"></iframe>
+
+--- 
 
 ### Calculation of the thermophysical properties of graphene from first principles
 
