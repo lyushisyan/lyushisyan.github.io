@@ -7,11 +7,19 @@ importance: 4
 category: talks
 ---
 
+### Download presentation(https://lyushisyan.github.io/assets/pdf/talks/MIPT-2024-PPT.pdf)
 
+---
+
+### View presentation online
+
+<iframe src="https://lyushisyan.github.io/assets/pdf/talks/MIPT-2024-PPT.pdf" width="100%" height="600px" style="border:none;"></iframe>
+
+--- 
 
 
 ### Determination of harmonic properties of phonons in graphene based on the lattice dynamics method
 
-**Аннотация.** В работе проводится расчет дисперсионных кривых и функции плотности состояний фононов графеновых нанолент типа «зигзаг» и «кресло» с использованием модели силовых постоянных четырех ближайших соседей. На основе численного моделирования динамики решетки проведен расчет теплоемкости графеновых нанолент при варьировании ширины и температуры.
+The paper calculates the dispersion curves and the density of states function of phonons of of graphene, Zigzag GNRs and Armchair GNRs using the force constant model. Based on numerical modeling of the lattice dynamics, the heat capacity of graphene and GNRs is calculated with varying width and temperature.
 
 
