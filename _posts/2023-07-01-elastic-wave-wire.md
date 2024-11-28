@@ -43,16 +43,24 @@ where $$ c_l=\sqrt{(\lambda+2\mu)/\rho} $$ is the speed of longitudinal waves, a
 In cylindrical coordinates, the displacement components are:
 
 $$
-u_r=\frac{\partial\varphi}{\partial r}+\frac{1}{r}\frac{\partial\psi_z}{\partial\theta}-\frac{\partial\psi_\theta}{\partial z} \\
-u_\theta=\frac{1}{r}\frac{\partial\varphi}{\partial\theta}+\frac{\partial\psi_r}{\partial z}-\frac{\partial\psi_z}{\partial r} \\
+u_r=\frac{\partial\varphi}{\partial r}+\frac{1}{r}\frac{\partial\psi_z}{\partial\theta}-\frac{\partial\psi_\theta}{\partial z} 
+$$
+$$
+u_\theta=\frac{1}{r}\frac{\partial\varphi}{\partial\theta}+\frac{\partial\psi_r}{\partial z}-\frac{\partial\psi_z}{\partial r}
+$$
+$$
 u_z=\frac{\partial\varphi}{\partial z}+\frac{1}{r}\frac{\partial(\psi_\theta r)}{\partial r}-\frac{1}{r}\frac{\partial\psi_r}{\partial\theta}
 $$
 
 The stresses are:
 
 $$
-\tau_{rr}=\lambda\left(\frac{\partial u_r}{\partial r}+\frac{u_r}{r}+\frac{1}{r}\frac{\partial u_\theta}{\partial\theta}+\frac{\partial u_z}{\partial z}\right)+2\mu\frac{\partial u_r}{\partial r}\\
-\tau_{r\theta}=\mu\left(\frac{\partial u_\theta}{\partial r}-\frac{u_\theta}{r}+\frac{1}{r}\frac{\partial u_r}{\partial\theta}\right)  \\
+\tau_{rr}=\lambda\left(\frac{\partial u_r}{\partial r}+\frac{u_r}{r}+\frac{1}{r}\frac{\partial u_\theta}{\partial\theta}+\frac{\partial u_z}{\partial z}\right)+2\mu\frac{\partial u_r}{\partial r}
+$$
+$$
+\tau_{r\theta}=\mu\left(\frac{\partial u_\theta}{\partial r}-\frac{u_\theta}{r}+\frac{1}{r}\frac{\partial u_r}{\partial\theta}\right)
+$$
+$$
 \tau_{rz}=\mu\left(\frac{\partial u_r}{\partial z}+\frac{\partial u_z}{\partial r}\right)
 $$
 
@@ -115,7 +123,9 @@ $$
 Longitudinal waves are axisymmetric and involve radial displacement $$ u_r $$ and axial displacement $$ u_z $$:
 
 $$
-u_r=[-\alpha AJ_1(\alpha r)-ikCJ_1(\beta r)]\exp[i(\xi z-\omega t)] \\
+u_r=[-\alpha AJ_1(\alpha r)-ikCJ_1(\beta r)]\exp[i(\xi z-\omega t)]
+$$
+$$
 u_z=[ikAJ_0(\alpha r)+\beta CJ_0(\beta r)]\exp[i(\xi z-\omega t)]
 $$
 
@@ -156,8 +166,12 @@ $$
 For flexural waves, all three displacement components must be considered:
 
 $$
-u_r=\left[A\frac{\partial}{\partial r}J_1(\alpha r)+\frac{B}{r}J_1(\beta r)+ikCJ_2(\beta r)\right]\cos(\theta)\exp[i(\xi z-\omega t)] \\
-u_\theta=\left[-\frac{A}{r}J_1(\alpha r)+ikCJ_2(\beta r)-B\frac{\partial}{\partial r}J_1(\beta r)\right]\cos(\theta)\exp[i(\xi z-\omega t)]\\
+u_r=\left[A\frac{\partial}{\partial r}J_1(\alpha r)+\frac{B}{r}J_1(\beta r)+ikCJ_2(\beta r)\right]\cos(\theta)\exp[i(\xi z-\omega t)]
+$$
+$$
+u_\theta=\left[-\frac{A}{r}J_1(\alpha r)+ikCJ_2(\beta r)-B\frac{\partial}{\partial r}J_1(\beta r)\right]\cos(\theta)\exp[i(\xi z-\omega t)]
+$$
+$$
 u_z=\left[ikAJ_1(\alpha r)-\frac{C}{r}\frac{\partial}{\partial r}[rJ_2(\beta r)]-\frac{C}{r}J_2(\beta r)\right]\cos(\theta)\exp[i(\xi z-\omega t)]
 $$
 
@@ -174,7 +188,9 @@ J_1(\overline\alpha)J_1^2(\overline\beta)
 $$
 
 $$
-\Psi_\alpha = \overline\alpha J_0(\overline\alpha)/J_1(\overline\alpha)\\
+\Psi_\alpha = \overline\alpha J_0(\overline\alpha)/J_1(\overline\alpha)
+$$
+$$
 \Psi_\beta = \overline\beta J_0(\overline\beta)/J_1(\overline\beta)
 $$
 
