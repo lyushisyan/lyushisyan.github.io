@@ -7,6 +7,9 @@ importance: 4
 category: talks
 ---
 
+[Download presentation](https://lyushisyan.github.io/assets/pdf/talks/WTT-2024-PPT.pdf)
+
+---
 
 ### View presentation online
 
