@@ -1,3 +1,12 @@
+---
+layout: post
+title: Dispersion relation of elastic waves in a wire
+date: 2023-07-01 00:32:13
+description: Wave propagation is analyzed based on solving the elastic equation of the continuum medium.
+tags: physics theory
+categories: study
+tabs: true
+---
 
 
 ## Elastic Equations in a Circular Rod
@@ -25,7 +34,11 @@ $$
 
 where $$ c_l=\sqrt{(\lambda+2\mu)/\rho} $$ is the speed of longitudinal waves, and $$ c_t=\sqrt{\mu/\rho} $$ is the speed of shear waves.
 
-![Wire](wire.png)
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/elsplate_1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 In cylindrical coordinates, the displacement components are:
 
