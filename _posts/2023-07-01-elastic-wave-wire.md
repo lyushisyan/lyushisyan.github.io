@@ -36,7 +36,7 @@ where $$ c_l=\sqrt{(\lambda+2\mu)/\rho} $$ is the speed of longitudinal waves, a
 
 <div class="row mt-3">
     <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/blog/elsplate_1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.liquid loading="eager" path="assets/img/blog/wire.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
@@ -66,7 +66,11 @@ $$
 
 ## Torsional Waves
 
-![Torsional Wave](T_wave.png)
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/wire-T.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 Torsional waves have only the tangential displacement component $$ u_\theta $$:
 
@@ -92,13 +96,21 @@ $$
 \Omega^2=\overline\xi^2+\overline\beta^2
 $$
 
-![Torsional Wave Dispersion](DS_T_wire.png)
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/DS-wire-T.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 ---
 
 ## Longitudinal Waves
 
-![Longitudinal Wave](L_wave.png)
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/wire-L.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 Longitudinal waves are axisymmetric and involve radial displacement $$ u_r $$ and axial displacement $$ u_z $$:
 
@@ -125,13 +137,21 @@ $$
 \Omega^2=\overline\xi^2+\overline\beta^2 = (c_l/c_t)^2(\overline\xi^2+\overline\alpha^2)
 $$
 
-![Longitudinal Wave Dispersion](DS_L_wire.png)
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/DS-wire-L.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 ---
 
 ## Flexural Waves
 
-![Flexural Wave](F_wave.png)
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/wire-F.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 For flexural waves, all three displacement components must be considered:
 
@@ -166,7 +186,11 @@ $$
 
 where $$ \overline\alpha=\alpha a $$, $$ \overline\beta=\beta a $$, $$ \overline\xi=\xi a $$, and $$ \Omega=\omega a/c_t $$.
 
-![Flexural Wave Dispersion](DS_F_wire.png)
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/DS-wire-F.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 ---
 
@@ -183,7 +207,11 @@ For different regions, the root-finding method is used as follows:
 1. In the first step, determine two sets of roots by traversing the smallest value of the wave vector.
 2. In the second step, solve the equation adaptively layer-by-layer based on the first two sets of roots.
 
-![Numerical Method](mathmethod.png)
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/mathmethod.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 ---
 
