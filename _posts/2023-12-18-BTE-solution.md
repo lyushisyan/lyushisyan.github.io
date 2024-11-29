@@ -92,5 +92,125 @@ $$
 
 This equation is quite general and applies to both electrons and phonons in solids. All details of particle interactions are encapsulated in the parameters, and the exact forms of these parameters do not affect the solution methods discussed in the next section.
 
+## Iterative Solution
+
+The iterative solution applies only to the BTE for three-phonon processes:
+
+$$
+-\frac{E_\lambda}{k_BT^2}f_\lambda^0(1+f_\lambda^0)\boldsymbol v \cdot\nabla T = \frac{1}{k_BT}\left\{ \sum_{\lambda_1\lambda_2}\left[(\Phi_\lambda+\Phi_{\lambda_1}-\Phi_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\Phi_\lambda-\Phi_{\lambda_1}-\Phi_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\right] \right\}
+$$
+
+Representing the perturbation to the distribution function as $$\Phi_\lambda = \boldsymbol F_\lambda \cdot \nabla T$$ and substituting it into the equation gives:
+
+$$
+-f_\lambda^0(1+f_\lambda^0) E_\lambda \boldsymbol v_\lambda - T \sum_{\lambda_1\lambda_2}\left[(\boldsymbol F_\lambda+\boldsymbol F_{\lambda_1}-\boldsymbol F_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\boldsymbol F_\lambda-\boldsymbol F_{\lambda_1}-\boldsymbol F_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\right] = 0
+$$
+
+Rearranging terms for $$\boldsymbol F_\lambda$$, we obtain:
+
+$$
+-f_\lambda^0(1+f_\lambda^0) E_\lambda \boldsymbol v_\lambda - T \sum_{\lambda_1\lambda_2}\left[(\boldsymbol F_{\lambda_1}-\boldsymbol F_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(-\boldsymbol F_{\lambda_1}-\boldsymbol F_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\right] = T \boldsymbol F_\lambda \sum_{\lambda_1\lambda_2}\left[\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}\Lambda_{\lambda}^{\lambda_1\lambda_2}\right]
+$$
+
+Introducing a new variable:
+
+$$
+Q_\lambda = \sum_{\lambda_1\lambda_2}\left[\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}\Lambda_{\lambda}^{\lambda_1\lambda_2}\right]
+$$
+
+Rearranging terms leads to the self-consistent equation:
+
+$$
+\boldsymbol F_\lambda = -\frac{f_\lambda^0(1+f_\lambda^0) E_\lambda \boldsymbol v_\lambda}{TQ_\lambda} + \frac{1}{Q_\lambda}\sum_{\lambda_1\lambda_2}\left[(\boldsymbol F_{\lambda_2}-\boldsymbol F_{\lambda_1})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\boldsymbol F_{\lambda_1}+\boldsymbol F_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\right]
+$$
+
+The numerical solution to this equation can be obtained iteratively:
+
+$$
+\boldsymbol F_\lambda^{i+1} = \boldsymbol F_\lambda^0 + \frac{1}{Q_\lambda}\sum_{\lambda_1\lambda_2}\left[(\boldsymbol F_{\lambda_2}^i-\boldsymbol F_{\lambda_1}^i)\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\boldsymbol F_{\lambda_1}^i+\boldsymbol F_{\lambda_2}^i)\Lambda_{\lambda}^{\lambda_1\lambda_2}\right], \quad i=1,2,3,\dots
+$$
+
+### Initial Conditions
+
+The initial conditions are:
+
+$$
+\boldsymbol F_\lambda^0 = -\frac{f_\lambda^0(1+f_\lambda^0) E_\lambda \boldsymbol v_\lambda}{TQ_\lambda}, \quad \boldsymbol F_\lambda^1 = 0
+$$
+
+Once $$\boldsymbol F_\lambda^{i+1} \approx \boldsymbol F_\lambda^i$$ within a specified tolerance, the solution is considered self-consistent, and the iteration terminates.
+
+### Thermal Conductivity
+
+Using Fourier's law:
+
+$$
+\boldsymbol q = -\kappa \nabla T
+$$
+
+The heat flux $$\boldsymbol q$$ can be expressed in terms of the distribution function:
+
+$$
+\boldsymbol q = \sum_\lambda E_\lambda \boldsymbol v_\lambda f_\lambda = \sum_\lambda E_\lambda \boldsymbol v_\lambda \left(f_\lambda^0-\Phi_\lambda\frac{\partial f_\lambda^0}{\partial E_\lambda}\right) \\
+= \sum_\lambda E_\lambda \boldsymbol v_\lambda \frac{f_\lambda^0(1+f_\lambda^0)}{k_BT}\boldsymbol F_\lambda\cdot\nabla T
+$$
+
+The thermal conductivity tensor is then:
+
+$$
+\hat{\boldsymbol \kappa} = \sum_\lambda E_\lambda \frac{f_\lambda^0(1+f_\lambda^0)}{k_BT}\boldsymbol v_\lambda \otimes \boldsymbol F_\lambda
+$$
+
+## Variational Method
+
+The linearized BTE in its canonical form is:
+
+$$
+\boldsymbol v_\lambda \cdot \frac{\partial f_\lambda^0}{\partial T}\nabla T = \frac{1}{k_BT}\left\{\sum_{\lambda_1}(\Phi_\lambda-\Phi_{\lambda_1})\Lambda_\lambda^{\lambda_1} + \sum_{\lambda_1\lambda_2}\left[(\Phi_\lambda+\Phi_{\lambda_1}-\Phi_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\Phi_\lambda-\Phi_{\lambda_1}-\Phi_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\right] \right\}
+$$
+
+Rewriting it in operator form:
+
+$$
+X = P\Phi
+$$
+
+Here, $$P$$ is a linear operator that satisfies the conditions of symmetry and positive definiteness:
+
+$$
+\langle \Psi, P\Phi \rangle = \langle \Phi, P\Psi \rangle
+$$
+
+$$
+\langle \Phi, P\Phi \rangle > 0, \quad \text{for any } \Phi
+$$
+
+where $$\langle \cdot, \cdot \rangle$$ represents the scalar product between two functions.
+
+### Variational Principle
+
+The variational principle states that the function $$\Phi$$ (the exact solution to the BTE) maximizes $$\langle \Phi, P\Phi \rangle$$. This can be shown using another function $$\Psi$$ that satisfies $$\langle \Psi, X \rangle = \langle \Psi, P\Psi \rangle$$ (not the solution of BTE itself):
+
+$$
+0 \leq \langle (\Phi-\Psi), P(\Phi-\Psi) \rangle = \langle \Phi, P\Phi \rangle - \langle \Psi, P\Psi \rangle
+$$
+
+In the context of thermal conductivity, the variational principle is commonly expressed as:
+
+$$
+\frac{\langle \Phi, P\Phi \rangle}{\langle \Phi, X \rangle^2} = \min
+$$
+
+Multiplying the left-hand side of the BTE by $$\Phi$$, we obtain:
+
+$$
+-\left\langle \Phi_\lambda, \boldsymbol v_\lambda \frac{\partial f_\lambda^0}{\partial T}\nabla T \right\rangle = \frac{\nabla T}{T}\sum_\lambda \Phi_\lambda \boldsymbol v_\lambda E_\lambda \frac{\partial f_\lambda^0}{\partial E_\lambda} \\
+= \frac{\boldsymbol q}{\kappa T}\sum_\lambda \Phi_\lambda \boldsymbol v_\lambda E_\lambda \frac{\partial f_\lambda^0}{\partial E_\lambda} \\
+= \frac{1}{\kappa T} \left(\sum_\lambda \Phi_\lambda \boldsymbol v_\lambda E_\lambda \frac{\partial f_\lambda^0}{\partial E_\lambda} \right)^2 \\
+= \frac{T}{\kappa} \left(\sum_\lambda \Phi_\lambda \boldsymbol v_\lambda \frac{\partial f_\lambda^0}{\partial T}\right)^2 \\
+= \frac{T}{\kappa} \langle \Phi, X \rangle^2 \big|_{\nabla T=1}
+$$
+
+Thus, when $$\Phi$$ is the solution of the BTE under a unit temperature gradient, the inverse of the thermal conductivity $$\kappa$$ reaches its minimum.
 
 
