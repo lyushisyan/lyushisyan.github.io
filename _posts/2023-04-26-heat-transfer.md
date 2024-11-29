@@ -1,5 +1,12 @@
-
-
+---
+layout: post
+title: Classical Kinetic Theory of Heat Transfer
+date: 2023-04-26 00:32:13
+description: The heat transfer properties of an object are related to the characteristic length and characteristic time.
+tags: physics theory
+categories: study
+tabs: true
+---
 
 Assume the total path traveled by a molecule is $$L$$. The total volume occupied during energy transfer is $$\pi d^2L$$ ($$d$$ is the molecule diameter), and the total number of molecules in this volume is $$\pi nd^2L$$ ($$n$$ is the molecular density). Therefore, the number of collisions for the molecule is $$\pi nd^2L$$.
 
