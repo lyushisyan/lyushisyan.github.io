@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Approximate Solutions of the Boltzmann Transport Equation (BTE)
-date: 2023-10-05 00:32:13
+date: 2023-12-18 00:32:13
 description: The BTE can be approximately solved using three methods: the iterative method, the variational method, and the relaxation time approximation.
 tags: physics theory
 categories: study
