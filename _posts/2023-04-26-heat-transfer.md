@@ -16,7 +16,11 @@ $$
 $$
 where $$\sigma$$ is the collision cross-section.
 
-![Mean Free Path](meanlength.png)
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/meanlength.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 Substituting the molecular density of an ideal gas $$n = p/(k_BT)$$:
 $$
@@ -67,8 +71,16 @@ $$
 
 The figure below illustrates the impact of different scattering mechanisms on the mean free path and thermal conductivity across various temperature ranges.
 
-![Thermal Conductivity](lambda.png)
-
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/classic1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/blog/classic2.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 ## Heat Transfer in Metals: Thermal Conductivity of Electron Gas
 
