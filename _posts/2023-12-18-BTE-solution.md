@@ -213,4 +213,57 @@ $$
 
 Thus, when $$\Phi$$ is the solution of the BTE under a unit temperature gradient, the inverse of the thermal conductivity $$\kappa$$ reaches its minimum.
 
+---
+
+## Relaxation Time Approximation
+
+In this method, the scattering term in the Boltzmann equation is approximated as:
+
+$$
+-\dot f_\lambda(\boldsymbol r)_\text{scatt} = \frac{f_\lambda - f_\lambda^0}{\tau_\lambda}
+$$
+
+This effectively encapsulates all interaction details for each mode into a single, state-dependent relaxation time.
+
+From the perspective of many-body theory, a small perturbation to the Hamiltonian results in two effects:
+
+- A change in the eigenvalues of the unperturbed Hamiltonian.
+- A finite lifetime for these states.
+
+The finite lifetime is typically described by the linewidth of the states under perturbation.
+
+Maradudin and Fein conducted a detailed analysis of many-body perturbation theory for phonons, deriving the following expression for the linewidth:
+
+$$
+\Gamma_\lambda = \frac{\pi \hbar}{16N} \sum_{\lambda'\lambda''} |\Gamma_{\lambda\lambda'\lambda''}|^2 \left\{ [f_{\lambda'}^0 + f_{\lambda''}^0 + 1][\delta(E_\lambda - E_{\lambda'} - E_{\lambda''})] \right. \\
+\left. + [f_{\lambda'}^0 - f_{\lambda''}^0][\delta(E_\lambda + E_{\lambda'} - E_{\lambda''}) - \delta(E_\lambda - E_{\lambda'} + E_{\lambda''})] \right\}
+$$
+
+Here, $$\Gamma_{\lambda\lambda'\lambda''}$$ represents the Fourier transform of the third-order terms in the total energy expansion.
+
+The relaxation time is inversely proportional to the linewidth:
+
+$$
+\tau_\lambda = \frac{1}{2\Gamma_\lambda}
+$$
+
+Combining this with the previously linearized BTE, the deviation in the distribution function becomes:
+
+$$
+f_\lambda - f_\lambda^0 = \boldsymbol v_\lambda \cdot \frac{\partial f_\lambda^0}{\partial T}\nabla T \tau_\lambda
+$$
+
+Substituting this into the expression for heat flux and applying Fourier's law, we obtain the thermal conductivity tensor:
+
+$$
+\hat{\boldsymbol \kappa} = \sum_\lambda E_\lambda^2 \frac{f_\lambda^0(1+f_\lambda^0)}{k_BT^2} \boldsymbol v_\lambda \otimes \boldsymbol v_\lambda \tau_\lambda
+$$
+
+By introducing the modal heat capacity, the expression is rewritten in a more common form:
+
+$$
+\hat{\kappa}_{ij} = \sum_\lambda C_{v,\lambda} v_{\lambda,i}v_{\lambda,j} \tau_\lambda
+$$
+
+The thermal conductivity obtained using the relaxation time approximation is equivalent to the thermal conductivity obtained from the first iteration of the iterative method. Therefore, the relaxation time approximation is also referred to as the zeroth-order approximation.
 
