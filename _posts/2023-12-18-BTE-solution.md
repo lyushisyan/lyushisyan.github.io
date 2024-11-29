@@ -218,7 +218,6 @@ $$
 
 Thus, when $$\Phi$$ is the solution of the BTE under a unit temperature gradient, the inverse of the thermal conductivity $$\kappa$$ reaches its minimum.
 
----
 
 ## Relaxation Time Approximation
 
