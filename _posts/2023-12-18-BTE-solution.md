@@ -240,9 +240,10 @@ The finite lifetime is typically described by the linewidth of the states under 
 Maradudin and Fein conducted a detailed analysis of many-body perturbation theory for phonons, deriving the following expression for the linewidth:
 
 $$
-\Gamma_\lambda = \frac{\pi \hbar}{16N} \sum_{\lambda'\lambda''} |\Gamma_{\lambda\lambda'\lambda''}|^2 \left\{ [f_{\lambda'}^0 + f_{\lambda''}^0 + 1][\delta(E_\lambda - E_{\lambda'} - E_{\lambda''})] \right. \\
-\left. + [f_{\lambda'}^0 - f_{\lambda''}^0][\delta(E_\lambda + E_{\lambda'} - E_{\lambda''}) - \delta(E_\lambda - E_{\lambda'} + E_{\lambda''})] \right\}
+\Gamma_\lambda = \frac{\pi \hbar}{16N} \sum_{\lambda'\lambda''} |\Gamma_{\lambda\lambda'\lambda''}|^2 \Bigg\{ [f_{\lambda'}^0 + f_{\lambda''}^0 + 1]\delta(E_\lambda - E_{\lambda'} - E_{\lambda''}) \\
++ \Big[ f_{\lambda'}^0 - f_{\lambda''}^0 \Big] \Big[ \delta(E_\lambda + E_{\lambda'} - E_{\lambda''}) - \delta(E_\lambda - E_{\lambda'} + E_{\lambda''}) \Big] \Bigg\}
 $$
+
 
 Here, $$\Gamma_{\lambda\lambda'\lambda''}$$ represents the Fourier transform of the third-order terms in the total energy expansion.
 
