@@ -87,7 +87,9 @@ $$
 Substituting the linearized BTE into the expressions for $$P$$ yields the generalized form:
 
 $$
--\boldsymbol v_\lambda \cdot \frac{\partial f_\lambda^0}{\partial T}\nabla T = \frac{1}{k_BT}\left\{\sum_{\lambda_1}(\Phi_\lambda - \Phi_{\lambda_1})\Lambda_\lambda^{\lambda_1} + \sum_{\lambda_1\lambda_2}\left[(\Phi_\lambda + \Phi_{\lambda_1} - \Phi_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2} + \frac{1}{2}(\Phi_\lambda - \Phi_{\lambda_1} - \Phi_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\right] \right\}
+-\boldsymbol v_\lambda \cdot \frac{\partial f_\lambda^0}{\partial T}\nabla T = \frac{1}{k_BT} \Bigg\{ \sum_{\lambda_1} (\Phi_\lambda - \Phi_{\lambda_1})\Lambda_\lambda^{\lambda_1} 
++ \sum_{\lambda_1\lambda_2} \Big[ (\Phi_\lambda + \Phi_{\lambda_1} - \Phi_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2} 
++ \frac{1}{2} (\Phi_\lambda - \Phi_{\lambda_1} - \Phi_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2} \Big] \Bigg\}
 $$
 
 This equation is quite general and applies to both electrons and phonons in solids. All details of particle interactions are encapsulated in the parameters, and the exact forms of these parameters do not affect the solution methods discussed in the next section.
