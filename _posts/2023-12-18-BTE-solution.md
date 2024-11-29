@@ -99,7 +99,8 @@ This equation is quite general and applies to both electrons and phonons in soli
 The iterative solution applies only to the BTE for three-phonon processes:
 
 $$
--\frac{E_\lambda}{k_BT^2}f_\lambda^0(1+f_\lambda^0)\boldsymbol v \cdot\nabla T = \frac{1}{k_BT}\left\{ \sum_{\lambda_1\lambda_2}\left[(\Phi_\lambda+\Phi_{\lambda_1}-\Phi_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\Phi_\lambda-\Phi_{\lambda_1}-\Phi_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\right] \right\}
+-\frac{E_\lambda}{k_BT^2}f_\lambda^0(1+f_\lambda^0)\boldsymbol v \cdot\nabla T = \frac{1}{k_BT} \Bigg\{ \sum_{\lambda_1\lambda_2} \Big[ (\Phi_\lambda + \Phi_{\lambda_1} - \Phi_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2} 
++ \frac{1}{2} (\Phi_\lambda - \Phi_{\lambda_1} - \Phi_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2} \Big] \Bigg\}
 $$
 
 Representing the perturbation to the distribution function as $$\Phi_\lambda = \boldsymbol F_\lambda \cdot \nabla T$$ and substituting it into the equation gives:
@@ -168,7 +169,9 @@ $$
 The linearized BTE in its canonical form is:
 
 $$
-\boldsymbol v_\lambda \cdot \frac{\partial f_\lambda^0}{\partial T}\nabla T = \frac{1}{k_BT}\left\{\sum_{\lambda_1}(\Phi_\lambda-\Phi_{\lambda_1})\Lambda_\lambda^{\lambda_1} + \sum_{\lambda_1\lambda_2}\left[(\Phi_\lambda+\Phi_{\lambda_1}-\Phi_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\Phi_\lambda-\Phi_{\lambda_1}-\Phi_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\right] \right\}
+\boldsymbol v_\lambda \cdot \frac{\partial f_\lambda^0}{\partial T}\nabla T = \frac{1}{k_BT} \Bigg\{ \sum_{\lambda_1} (\Phi_\lambda - \Phi_{\lambda_1}) \Lambda_\lambda^{\lambda_1} 
++ \sum_{\lambda_1\lambda_2} \Big[ (\Phi_\lambda + \Phi_{\lambda_1} - \Phi_{\lambda_2}) \Lambda_{\lambda\lambda_1}^{\lambda_2} 
++ \frac{1}{2} (\Phi_\lambda - \Phi_{\lambda_1} - \Phi_{\lambda_2}) \Lambda_{\lambda}^{\lambda_1\lambda_2} \Big] \Bigg\}
 $$
 
 Rewriting it in operator form:
