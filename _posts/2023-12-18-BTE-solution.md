@@ -1,12 +1,15 @@
+---
+layout: post
+title: Approximate Solutions of the Boltzmann Transport Equation (BTE)
+date: 2023-10-05 00:32:13
+description: The BTE can be approximately solved using three methods: the iterative method, the variational method, and the relaxation time approximation.
+tags: physics theory
+categories: study
+tabs: true
+---
 
-
-
-
-Approximate Solutions of the Boltzmann Transport Equation (BTE)
 
 The Boltzmann Transport Equation (BTE) can be approximately solved using three methods: the iterative method, the variational method, and the relaxation time approximation.
-
----
 
 ## Linearized BTE
 
@@ -23,17 +26,14 @@ $$
 \dot f_\lambda(\boldsymbol r) = \dot f_\lambda(\boldsymbol r)_\text{diff} + \dot f_\lambda(\boldsymbol r)_\text{ext} + \dot f_\lambda(\boldsymbol r)_\text{scatt} = 0
 $$
 
-### Diffusion Term
 The diffusion term can be understood in a reference frame moving with the particles. Due to particle motion, the distribution $$f_\lambda(\boldsymbol r)$$ at time $$t$$ evolves to $$f_\lambda(\boldsymbol r+\boldsymbol v t)$$:
 
 $$
 \dot f_\lambda(\boldsymbol r)_\text{diff} = -\boldsymbol v_\lambda \cdot \frac{\partial f_\lambda(\boldsymbol r)}{\partial \boldsymbol r}
 $$
 
-### External Force Term
 The external force term $$\dot f_\lambda(\boldsymbol r)_\text{ext}$$ depends on the type of particle considered. For example, electrons may be affected by forces arising from electric or magnetic fields. Since we are interested in phonons, this external force term can be considered zero.
 
-### Scattering Term
 The scattering term describes the effects of interactions between particles or between particles and lattice defects, which can change the states of the particles. This term modifies the particle states and can be divided into the following probabilities:  
 - $$P_{\lambda\lambda_1}$$: A single phonon changes state, e.g., due to scattering by lattice defects.  
 - $$P_{\lambda\lambda_1\lambda_2}$$: Three-phonon processes.  
@@ -57,7 +57,6 @@ For fermions, transitions are prohibited if the initial state is unoccupied or t
 
 In fact, the transition probability increases if particles are already present in the final state—a phenomenon called stimulated emission. Mathematically, this results from the normalization conditions of the creation and annihilation operators for bosons.
 
-### Three-Phonon Processes
 Similarly, the three-phonon scattering probability can be expressed as:
 
 $$
@@ -69,14 +68,8 @@ The factor $$\frac{1}{2}$$ accounts for indistinguishable interactions between s
 
 Expressions for four-particle processes can also be written similarly.
 
----
-
-### Phonons in Periodic Solids
 Phonons in an infinite periodic solid are described by two variables: the reciprocal lattice vector $$\boldsymbol q$$ and the phonon branch index $$s$$. Thus, the summations over all states in the above equations involve integration over the Brillouin zone and summation over branch indices.
 
----
-
-### Linearization of the BTE
 The BTE is a nonlinear integro-differential equation, and analytical solutions are essentially impossible. The first step in simplification is to linearize the BTE:
 
 $$
@@ -91,7 +84,6 @@ $$
 -\boldsymbol v_\lambda \cdot \frac{\partial f_\lambda(\boldsymbol r)}{\partial \boldsymbol r} \approx -\boldsymbol v_\lambda \cdot \frac{\partial f_\lambda^0}{\partial T}\nabla T
 $$
 
-### Generalized Linearized BTE
 Substituting the linearized BTE into the expressions for $$P$$ yields the generalized form:
 
 $$
@@ -99,5 +91,6 @@ $$
 $$
 
 This equation is quite general and applies to both electrons and phonons in solids. All details of particle interactions are encapsulated in the parameters, and the exact forms of these parameters do not affect the solution methods discussed in the next section.
+
 
 
