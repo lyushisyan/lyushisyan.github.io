@@ -32,8 +32,8 @@ $$
 
 其中 $c_l=\sqrt{(\lambda+2\mu)/\rho}$ 是膨胀波的速度，$c_t=\sqrt{\mu/\rho}$ 是剪切波的速度。
 
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
+<div class="row">
+    <div class="col-md-12 text-center">
         {% include figure.liquid loading="eager" path="assets/img/blog/wire.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
@@ -62,6 +62,12 @@ $$
 
 ## 扭转波
 
+<div class="row">
+    <div class="col-md-12 text-center">
+        {% include figure.liquid loading="eager" path="assets/img/blog/wire-T.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
+
 扭转波仅存在周向位移分量 $u_\theta$ ：
 
 $$
@@ -86,7 +92,19 @@ $$
 \Omega^2=\overline\xi^2+\overline\beta^2
 $$
 
+<div class="row">
+    <div class="col-md-12 text-center">
+        {% include figure.liquid loading="eager" path="assets/img/blog/DS-wire-T.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
+
 ## 纵波
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        {% include figure.liquid loading="eager" path="assets/img/blog/wire-L.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 纵波是轴对称波，存在径向位移分量 $u_r$ 和轴向位移分量 $u_z$ ：
 
@@ -113,7 +131,19 @@ $$
 \Omega^2=\overline\xi^2+\overline\beta^2 = (c_l/c_t)^2(\overline\xi^2+\overline\alpha^2)
 $$
 
+<div class="row">
+    <div class="col-md-12 text-center">
+        {% include figure.liquid loading="eager" path="assets/img/blog/DS-wire-L.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
+
 ## 弯曲波
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        {% include figure.liquid loading="eager" path="assets/img/blog/wire-F.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
 
 对于弯曲波，必须考虑所有三个位移分量：
 
@@ -146,6 +176,12 @@ $$
 \Omega^2=\overline\xi^2+\overline\beta^2 = (c_l/c_t)^2(\overline\xi^2+\overline\alpha^2)
 $$
 
+<div class="row">
+    <div class="col-md-12 text-center">
+        {% include figure.liquid loading="eager" path="assets/img/blog/DS-wire-F.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
+
 ## 数值求解
 
 根据 $\alpha$ 是实数还是虚数，可以分为两个区域：
@@ -160,52 +196,13 @@ $$
 
 第二步，根据前两组根逐层自适应对方程进行求解。
 
-
-
-
-
-
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/blog/DS-wire-T.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/blog/wire-L.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/blog/DS-wire-L.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/blog/wire-F.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-
-
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/blog/DS-wire-F.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-
-
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
+<div class="row">
+    <div class="col-md-12 text-center">
         {% include figure.liquid loading="eager" path="assets/img/blog/mathmethod.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
----
-
-**Matlab Code for Adaptive Root Finding in Region I**
+区域 I 的自适应逐层求根 Matlab 代码
 
 ```matlab
 function [alphaX] = FindrealrootsL(Fun_real,XiX,alpha01,alpha02)
@@ -260,7 +257,7 @@ end
 end
 ```
 
-**Matlab Code for Adaptive Root Finding in Region II**
+区域 II 的自适应逐层求根 Matlab 代码
 
 ```matlab
 function [NUMi,alphaiX] = FindimagerootsL(Fun_image,alphai0,XiX,XiXX)
