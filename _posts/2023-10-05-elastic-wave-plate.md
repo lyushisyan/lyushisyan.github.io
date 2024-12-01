@@ -1,10 +1,9 @@
 ---
 layout: post
-title: Dispersion relation of elastic waves in a plate
+title: 平板中的弹性波色散关系
 date: 2023-10-05 00:32:13
-description: Wave propagation is analyzed based on solving the elastic equation of the continuum medium.
-tags: physics theory
-categories: study
+tags: 弹性波
+categories: 理论
 tabs: true
 ---
 
