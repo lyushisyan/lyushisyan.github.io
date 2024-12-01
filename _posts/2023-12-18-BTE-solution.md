@@ -1,274 +1,274 @@
 ---
 layout: post
-title: Approximate Solutions of the Boltzmann Transport Equation (BTE)
+title: 玻尔兹曼输运方程（BTE）的近似求解
 date: 2023-12-18 00:32:13
-description: The BTE can be approximately solved using the iterative method, the variational method, and the relaxation time approximation.
-tags: physics theory
-categories: study
+tags: BTE
+categories: 理论
 tabs: true
 ---
 
+玻尔兹曼输运方程（BTE）的近似求解有三种方法：迭代法、变分法和弛豫时间近似法。
 
-The Boltzmann Transport Equation (BTE) can be approximately solved using three methods: the iterative method, the variational method, and the relaxation time approximation.
+## 线性化 BTE
 
-## Linearized BTE
+概率密度分布函数 $f_\lambda(\boldsymbol r)$ 描述了在点 $\boldsymbol r$ 周围的区域中找到处于某种状态的粒子的概率。
 
-The probability density distribution function, $$f_\lambda(\boldsymbol r)$$, describes the likelihood of finding particles in a particular state around the position $$\boldsymbol r$$.
+$$f_\lambda(\boldsymbol r)$$ 的值变化的原因： i）如果分布函数具有非零梯度，则该区域中的粒子数量将以正比于梯度和粒子速度  $$\boldsymbol v$$ 的速率变化，称为扩散项； ii）如果系统有外力作用，粒子会移动；iii）粒子可以彼此相互作用，称为相互作用项或散射项。
 
-The value of $$f_\lambda(\boldsymbol r)$$ changes due to three factors:  
-i) If the distribution function has a nonzero gradient, the number of particles in the region changes proportionally to the gradient and the particle velocity $$\boldsymbol v$$. This is called the diffusion term.  
-ii) If an external force acts on the system, particles move accordingly.  
-iii) Particle interactions, such as scattering, modify the distribution. This is called the interaction term or scattering term.
-
-In equilibrium (or steady-state conditions), the value of the distribution function is constant at every point. Thus, the rate of change of the distribution due to all three terms must sum to zero:
+在平衡（或稳态条件）下，分布函数的值在任何点都是恒定的；因此，所有三项产生的概率分布的变化率必须为零
 
 $$
 \dot f_\lambda(\boldsymbol r) = \dot f_\lambda(\boldsymbol r)_\text{diff} + \dot f_\lambda(\boldsymbol r)_\text{ext} + \dot f_\lambda(\boldsymbol r)_\text{scatt} = 0
 $$
 
-The diffusion term can be understood in a reference frame moving with the particles. Due to particle motion, the distribution $$f_\lambda(\boldsymbol r)$$ at time $$t$$ evolves to $$f_\lambda(\boldsymbol r+\boldsymbol v t)$$:
+扩散项可以在随粒子移动的参考系中理解。由于粒子运动，分布 $$f_\lambda(\boldsymbol r)$$ 在经过时间 $$t$$ 后变为 $$f_\lambda(\boldsymbol r+\boldsymbol v t)$$
 
 $$
 \dot f_\lambda(\boldsymbol r)_\text{diff} = -\boldsymbol v_\lambda \cdot \frac{\partial f_\lambda(\boldsymbol r)}{\partial \boldsymbol r}
 $$
 
-The external force term $$\dot f_\lambda(\boldsymbol r)_\text{ext}$$ depends on the type of particle considered. For example, electrons may be affected by forces arising from electric or magnetic fields. Since we are interested in phonons, this external force term can be considered zero.
+外力项 $$\dot f_\lambda(\boldsymbol r)_\text{ext}$$ 取决于所考虑的粒子类型。例如，电子可能受到电场或磁场产生的力的作用。由于我们对声子感兴趣，因此该外力项可以视为零。
 
-The scattering term describes the effects of interactions between particles or between particles and lattice defects, which can change the states of the particles. This term modifies the particle states and can be divided into the following probabilities:  
-- $$P_{\lambda\lambda_1}$$: A single phonon changes state, e.g., due to scattering by lattice defects.  
-- $$P_{\lambda\lambda_1\lambda_2}$$: Three-phonon processes.  
-- Higher-order terms (e.g., four-phonon interactions $$P_{\lambda\lambda_1\lambda_2\lambda_3}$$).
+散射项描述了粒子之间或粒子与晶格缺陷之间相互作用的影响。该项具有改变粒子状态的作用。
 
-The scattering term can be expressed as:
+我们将这一项分成以下概率：$$P_{\lambda\lambda_1}$$ （单个声子改变其状态，例如晶格缺陷的散射），$$P_{\lambda\lambda_1\lambda_2}$$（三声子过程）和 高阶项（例如电子-电子碰撞和声子-声子相互作用中的四阶项，$$P_{\lambda\lambda_1\lambda_2\lambda_3}$$）
 
 $$
--\dot f_\lambda(\boldsymbol r)_\text{scatt} = \sum_{\lambda_1}P_{\lambda\lambda_1} + \sum_{\lambda_1\lambda_2}P_{\lambda\lambda_1\lambda_2} + \sum_{\lambda_1\lambda_2\lambda_3}P_{\lambda\lambda_1\lambda_2\lambda_3} + \dots
+-\dot f_\lambda(\boldsymbol r)_\text{scatt}=\sum_{\lambda_1}P_{\lambda\lambda_1}+\sum_{\lambda_1\lambda_2}P_{\lambda\lambda_1\lambda_2}+\sum_{\lambda_1\lambda_2\lambda_3}P_{\lambda\lambda_1\lambda_2\lambda_3}+...
 $$
 
-Each process's net probability represents the difference between the rates of particles leaving a state and entering it:
+每个过程的净概率是粒子离开状态的过程与粒子进入状态的过程之间的差异，因此我们有
 
 $$
-P_{\lambda\lambda_1} = f_\lambda(1 \pm f_{\lambda_1})L_\lambda^{\lambda_1} - (1 \pm f_\lambda)f_{\lambda_1}L^\lambda_{\lambda_1}
+P_{\lambda\lambda_1}=f_\lambda(1\pm f_{\lambda_1})L_\lambda^{\lambda_1}-(1\pm f_{\lambda})f_{\lambda_1}L^\lambda_{\lambda_1}
 $$
 
-Here, $$L$$ is the intrinsic transition probability, and the $$\pm$$ sign corresponds to bosons and fermions, respectively.
+$$L$$ 称为转移的内在概率。括号中的加（减）号对应于玻色子（费米子）的情况。
 
-For fermions, transitions are prohibited if the initial state is unoccupied or the final state is already occupied, reflecting the Pauli exclusion principle. In contrast, bosons impose no such limitation on the number of particles in the final state. 
+对于费米子，如果初始态没有粒子，或者最终态被占据，则禁止跃迁，这反映了泡利原理。
 
-In fact, the transition probability increases if particles are already present in the final state—a phenomenon called stimulated emission. Mathematically, this results from the normalization conditions of the creation and annihilation operators for bosons.
+对于玻色子，最终状态的粒子数量没有限制。
 
-Similarly, the three-phonon scattering probability can be expressed as:
+事实上，如果最终状态存在粒子，则跃迁概率会增加：这称为受激发射现象。
 
-$$
-P_{\lambda\lambda_1\lambda_2} = f_\lambda f_{\lambda_1}(1 \pm f_{\lambda_2})L_{\lambda\lambda_1}^{\lambda_2} - (1 \pm f_\lambda)(1 \pm f_{\lambda_1})f_{\lambda_2}L^{\lambda\lambda_1}_{\lambda_2} \\
-+ \frac{1}{2}[f_\lambda(1 \pm f_{\lambda_1})(1 \pm f_{\lambda_2})L^{\lambda_1\lambda_2}_{\lambda} - (1 \pm f_\lambda)f_{\lambda_1}f_{\lambda_2}L_{\lambda_1\lambda_2}^{\lambda}]
-$$
+从数学上讲，这种受激发射来自于玻色子的产生和湮灭算符的矩阵元素的归一化条件。
 
-The factor $$\frac{1}{2}$$ accounts for indistinguishable interactions between states $$\lambda_1$$ and $$\lambda_2$$, as their exchange represents the same process.
-
-Expressions for four-particle processes can also be written similarly.
-
-Phonons in an infinite periodic solid are described by two variables: the reciprocal lattice vector $$\boldsymbol q$$ and the phonon branch index $$s$$. Thus, the summations over all states in the above equations involve integration over the Brillouin zone and summation over branch indices.
-
-The BTE is a nonlinear integro-differential equation, and analytical solutions are essentially impossible. The first step in simplification is to linearize the BTE:
+类似地，三粒子概率可以写为
 
 $$
-f_\lambda = f_\lambda^0 - \Phi_\lambda \frac{\partial f_\lambda^0}{\partial E_\lambda}
+P_{\lambda\lambda_1\lambda_2}=f_\lambda f_{\lambda_1}(1\pm f_{\lambda_2})L_{\lambda\lambda_1}^{\lambda_2}-(1\pm f_{\lambda})(1\pm f_{\lambda_1})f_{\lambda_2}L^{\lambda\lambda_1}_{\lambda_2} \\ +\frac{1}{2}[f_\lambda(1\pm f_{\lambda_1})(1\pm f_{\lambda_2})L^{\lambda_1\lambda_2}_{\lambda} - (1\pm f_\lambda)f_{\lambda_1}f_{\lambda_2}L_{\lambda_1\lambda_2}^{\lambda}]
 $$
 
-Here, $$f_\lambda^0$$ is the equilibrium Bose-Einstein distribution function, whose derivative is easy to calculate. $$E_\lambda$$ represents the energy of the state, and $$\Phi_\lambda$$ is a perturbation to the distribution function, assumed to be small.
+最后两项前面的二分之一是因为两个处于状态 $$\lambda_1$$ 和 $$\lambda_2$$ 的粒子相互作用而产生处于状态 $$\lambda$$ 的粒子，其中 $$\lambda_1$$ 和 $$\lambda_2$$ 互换表示相同的过程。
 
-Additionally, we assume that every point in space $$\boldsymbol r$$ maintains local equilibrium, but the temperature may vary spatially. This means $$\Phi_\lambda$$ depends on the position $$\boldsymbol r$$ only through temperature. Consequently, the diffusion term can be rewritten as:
+对于四粒子过程，也可以写出相应的表达式。
+
+无限大的周期性固体中的声子由两个变量描述：倒晶格向量 $$\boldsymbol q$$ 和声子分支指数 $$s$$ 。因此，上述方程中所有状态的求和涉及布里渊区的积分和分支指数的求和。
+
+BTE 是一个非线性积分微分方程，本质上不可能通过解析求解。
+
+第一个简化步骤是对 BTE 进行线性化：
+
+$$
+f_\lambda=f_\lambda^0-\Phi_\lambda\frac{\partial f_\lambda^0}{\partial E_\lambda}
+$$
+
+其中 $$f_0$$ 是平衡玻色-爱因斯坦分布函数，其导数很容易计算。 $$E_\lambda$$ 是状态能量。$$\Phi_\lambda$$ 是分布函数的扰动，假设它很小。
+
+进一步假设空间 $$\boldsymbol r$$ 中的每一点都保持局部平衡，但温度可能会因点而异。这意味着 $$\Phi_\lambda$$ 仅通过温度取决于位置 $$\boldsymbol r$$ 。因此，扩散项可以写为
 
 $$
 -\boldsymbol v_\lambda \cdot \frac{\partial f_\lambda(\boldsymbol r)}{\partial \boldsymbol r} \approx -\boldsymbol v_\lambda \cdot \frac{\partial f_\lambda^0}{\partial T}\nabla T
 $$
 
-Substituting the linearized BTE into the expressions for $$P$$ yields the generalized form:
+将线性化 BTE 代入 $$P$$ 的表达式中，得到
 
 $$
--\boldsymbol v_\lambda \cdot \frac{\partial f_\lambda^0}{\partial T}\nabla T = \frac{1}{k_BT} \Bigg\{ \sum_{\lambda_1} (\Phi_\lambda - \Phi_{\lambda_1})\Lambda_\lambda^{\lambda_1} 
-+ \sum_{\lambda_1\lambda_2} \Big[ (\Phi_\lambda + \Phi_{\lambda_1} - \Phi_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2} 
-+ \frac{1}{2} (\Phi_\lambda - \Phi_{\lambda_1} - \Phi_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2} \Big] \Bigg\}
-$$
-
-This equation is quite general and applies to both electrons and phonons in solids. All details of particle interactions are encapsulated in the parameters, and the exact forms of these parameters do not affect the solution methods discussed in the next section.
-
-## Iterative Solution
-
-The iterative solution applies only to the BTE for three-phonon processes:
-
-$$
--\frac{E_\lambda}{k_BT^2}f_\lambda^0(1+f_\lambda^0)\boldsymbol v \cdot\nabla T = \frac{1}{k_BT} \Bigg\{ \sum_{\lambda_1\lambda_2} \Big[ (\Phi_\lambda + \Phi_{\lambda_1} - \Phi_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2} 
-+ \frac{1}{2} (\Phi_\lambda - \Phi_{\lambda_1} - \Phi_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2} \Big] \Bigg\}
-$$
-
-Representing the perturbation to the distribution function as $$\Phi_\lambda = \boldsymbol F_\lambda \cdot \nabla T$$ and substituting it into the equation gives:
-
-$$
--f_\lambda^0(1+f_\lambda^0) E_\lambda \boldsymbol v_\lambda - T \sum_{\lambda_1\lambda_2}\left[(\boldsymbol F_\lambda+\boldsymbol F_{\lambda_1}-\boldsymbol F_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\boldsymbol F_\lambda-\boldsymbol F_{\lambda_1}-\boldsymbol F_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\right] = 0
-$$
-
-Rearranging terms for $$\boldsymbol F_\lambda$$, we obtain:
-
-$$
--f_\lambda^0(1+f_\lambda^0) E_\lambda \boldsymbol v_\lambda - T \sum_{\lambda_1\lambda_2}\left[(\boldsymbol F_{\lambda_1}-\boldsymbol F_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(-\boldsymbol F_{\lambda_1}-\boldsymbol F_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\right] = T \boldsymbol F_\lambda \sum_{\lambda_1\lambda_2}\left[\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}\Lambda_{\lambda}^{\lambda_1\lambda_2}\right]
-$$
-
-Introducing a new variable:
-
-$$
-Q_\lambda = \sum_{\lambda_1\lambda_2}\left[\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}\Lambda_{\lambda}^{\lambda_1\lambda_2}\right]
-$$
-
-Rearranging terms leads to the self-consistent equation:
-
-$$
-\boldsymbol F_\lambda = -\frac{f_\lambda^0(1+f_\lambda^0) E_\lambda \boldsymbol v_\lambda}{TQ_\lambda} + \frac{1}{Q_\lambda}\sum_{\lambda_1\lambda_2}\left[(\boldsymbol F_{\lambda_2}-\boldsymbol F_{\lambda_1})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\boldsymbol F_{\lambda_1}+\boldsymbol F_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\right]
-$$
-
-The numerical solution to this equation can be obtained iteratively:
-
-$$
-\boldsymbol F_\lambda^{i+1} = \boldsymbol F_\lambda^0 + \frac{1}{Q_\lambda}\sum_{\lambda_1\lambda_2}\left[(\boldsymbol F_{\lambda_2}^i-\boldsymbol F_{\lambda_1}^i)\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\boldsymbol F_{\lambda_1}^i+\boldsymbol F_{\lambda_2}^i)\Lambda_{\lambda}^{\lambda_1\lambda_2}\right], \quad i=1,2,3,\dots
-$$
-
-### Initial Conditions
-
-The initial conditions are:
-
-$$
-\boldsymbol F_\lambda^0 = -\frac{f_\lambda^0(1+f_\lambda^0) E_\lambda \boldsymbol v_\lambda}{TQ_\lambda}, \quad \boldsymbol F_\lambda^1 = 0
-$$
-
-Once $$\boldsymbol F_\lambda^{i+1} \approx \boldsymbol F_\lambda^i$$ within a specified tolerance, the solution is considered self-consistent, and the iteration terminates.
-
-### Thermal Conductivity
-
-Using Fourier's law:
-
-$$
-\boldsymbol q = -\kappa \nabla T
-$$
-
-The heat flux $$\boldsymbol q$$ can be expressed in terms of the distribution function:
-
-$$
-\boldsymbol q = \sum_\lambda E_\lambda \boldsymbol v_\lambda f_\lambda = \sum_\lambda E_\lambda \boldsymbol v_\lambda \left(f_\lambda^0-\Phi_\lambda\frac{\partial f_\lambda^0}{\partial E_\lambda}\right) \\
-= \sum_\lambda E_\lambda \boldsymbol v_\lambda \frac{f_\lambda^0(1+f_\lambda^0)}{k_BT}\boldsymbol F_\lambda\cdot\nabla T
-$$
-
-The thermal conductivity tensor is then:
-
-$$
-\hat{\boldsymbol \kappa} = \sum_\lambda E_\lambda \frac{f_\lambda^0(1+f_\lambda^0)}{k_BT}\boldsymbol v_\lambda \otimes \boldsymbol F_\lambda
-$$
-
-## Variational Method
-
-The linearized BTE in its canonical form is:
-
-$$
-\boldsymbol v_\lambda \cdot \frac{\partial f_\lambda^0}{\partial T}\nabla T = \frac{1}{k_BT} \Bigg\{ \sum_{\lambda_1} (\Phi_\lambda - \Phi_{\lambda_1}) \Lambda_\lambda^{\lambda_1} 
-+ \sum_{\lambda_1\lambda_2} \Big[ (\Phi_\lambda + \Phi_{\lambda_1} - \Phi_{\lambda_2}) \Lambda_{\lambda\lambda_1}^{\lambda_2} 
-+ \frac{1}{2} (\Phi_\lambda - \Phi_{\lambda_1} - \Phi_{\lambda_2}) \Lambda_{\lambda}^{\lambda_1\lambda_2} \Big] \Bigg\}
-$$
-
-Rewriting it in operator form:
-
-$$
-X = P\Phi
-$$
-
-Here, $$P$$ is a linear operator that satisfies the conditions of symmetry and positive definiteness:
-
-$$
-\langle \Psi, P\Phi \rangle = \langle \Phi, P\Psi \rangle
+P_{\lambda\lambda_1}=\frac{1}{k_BT}(\Phi_\lambda-\Phi_{\lambda_1})f_\lambda^0(1\pm f_{\lambda_1}^0)L_\lambda^{\lambda_1} = \frac{1}{k_BT}(\Phi_\lambda-\Phi_{\lambda_1})\Lambda_\lambda^{\lambda_1}
 $$
 
 $$
-\langle \Phi, P\Phi \rangle > 0, \quad \text{for any } \Phi
+P_{\lambda\lambda_1\lambda_2}=\frac{1}{k_BT}(\Phi_\lambda+\Phi_{\lambda_1}-\Phi_{\lambda_2})f_\lambda^0f_{\lambda_1}^0(1\pm f_{\lambda_2}^0)L_{\lambda\lambda_1}^{\lambda_2}  + \frac{1}{2}\frac{1}{k_BT}(\Phi_\lambda-\Phi_{\lambda_1}-\Phi_{\lambda_2})f_\lambda^0(1\pm f_{\lambda_1}^0)(1\pm f_{\lambda_2}^0)L_{\lambda\lambda_1}^{\lambda_2} \\
+= \frac{1}{k_BT}\bigg[(\Phi_\lambda+\Phi_{\lambda_1}-\Phi_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\Phi_\lambda-\Phi_{\lambda_1}-\Phi_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\bigg]
 $$
 
-where $$\langle \cdot, \cdot \rangle$$ represents the scalar product between two functions.
+$$\Lambda$$ 是由其下标和上标定义的状态之间的平衡转变率，定义为系统处于热力学平衡时每单位时间的转变数。
 
-### Variational Principle
-
-The variational principle states that the function $$\Phi$$ (the exact solution to the BTE) maximizes $$\langle \Phi, P\Phi \rangle$$. This can be shown using another function $$\Psi$$ that satisfies $$\langle \Psi, X \rangle = \langle \Psi, P\Psi \rangle$$ (not the solution of BTE itself):
+综上所述，我们得到以下线性化 BTE，有时也称为 BTE 的规范形式
 
 $$
-0 \leq \langle (\Phi-\Psi), P(\Phi-\Psi) \rangle = \langle \Phi, P\Phi \rangle - \langle \Psi, P\Psi \rangle
+-\boldsymbol v_\lambda \cdot \frac{\partial f_\lambda^0}{\partial T}\nabla T = \frac{1}{k_BT}\bigg\{\sum_{\lambda_1}(\Phi_\lambda-\Phi_{\lambda_1})\Lambda_\lambda^{\lambda_1} + \sum_{\lambda_1\lambda_2}\bigg[(\Phi_\lambda+\Phi_{\lambda_1}-\Phi_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\Phi_\lambda-\Phi_{\lambda_1}-\Phi_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\bigg] \bigg\}
 $$
 
-In the context of thermal conductivity, the variational principle is commonly expressed as:
+该方程相当通用，可适用于固体中的电子或声子。粒子之间相互作用的所有细节都封装在参数中；这些参数的确切形式不会影响我们在下一节中讨论的求解方法。
+
+## 迭代求解
+
+仅适用于三声子过程的 BTE：
 
 $$
-\frac{\langle \Phi, P\Phi \rangle}{\langle \Phi, X \rangle^2} = \min
+-\frac{E_\lambda}{k_BT^2}f_\lambda^0(1+f_\lambda^0)\boldsymbol v \cdot\nabla T = \frac{1}{k_BT}\bigg\{ \sum_{\lambda_1\lambda_2}\bigg[(\Phi_\lambda+\Phi_{\lambda_1}-\Phi_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\Phi_\lambda-\Phi_{\lambda_1}-\Phi_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\bigg] \bigg\}
 $$
 
-Multiplying the left-hand side of the BTE by $$\Phi$$, we obtain:
+将分布函数的扰动表示为 $$\Phi_\lambda=\boldsymbol F_\lambda \cdot \nabla T$$，并代入上式，得到：
 
 $$
--\left\langle \Phi_\lambda, \boldsymbol v_\lambda \frac{\partial f_\lambda^0}{\partial T}\nabla T \right\rangle = \frac{\nabla T}{T}\sum_\lambda \Phi_\lambda \boldsymbol v_\lambda E_\lambda \frac{\partial f_\lambda^0}{\partial E_\lambda} \\
-= \frac{\boldsymbol q}{\kappa T}\sum_\lambda \Phi_\lambda \boldsymbol v_\lambda E_\lambda \frac{\partial f_\lambda^0}{\partial E_\lambda} \\
-= \frac{1}{\kappa T} \left(\sum_\lambda \Phi_\lambda \boldsymbol v_\lambda E_\lambda \frac{\partial f_\lambda^0}{\partial E_\lambda} \right)^2 \\
-= \frac{T}{\kappa} \left(\sum_\lambda \Phi_\lambda \boldsymbol v_\lambda \frac{\partial f_\lambda^0}{\partial T}\right)^2 \\
-= \frac{T}{\kappa} \langle \Phi, X \rangle^2 \big|_{\nabla T=1}
+-f_\lambda^0(1+f_\lambda^0) E_\lambda \boldsymbol v_\lambda -  T \sum_{\lambda _1\lambda_2}\bigg[(\boldsymbol F_\lambda+\boldsymbol F_{\lambda_1}-\boldsymbol F_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\boldsymbol F_\lambda-\boldsymbol F_{\lambda_1}-\boldsymbol F_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\bigg]=0 
 $$
 
-Thus, when $$\Phi$$ is the solution of the BTE under a unit temperature gradient, the inverse of the thermal conductivity $$\kappa$$ reaches its minimum.
-
-
-## Relaxation Time Approximation
-
-In this method, the scattering term in the Boltzmann equation is approximated as:
+从中提出 $$\boldsymbol F_\lambda$$，得到：
 
 $$
--\dot f_\lambda(\boldsymbol r)_\text{scatt} = \frac{f_\lambda - f_\lambda^0}{\tau_\lambda}
+-f_\lambda^0(1+f_\lambda^0) E_\lambda \boldsymbol v_\lambda -  T \sum_{\lambda _1\lambda_2}\bigg[(\boldsymbol F_{\lambda_1}-\boldsymbol F_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(-\boldsymbol F_{\lambda_1}-\boldsymbol F_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\bigg]=T \boldsymbol F_\lambda \sum_{\lambda _1\lambda_2}\bigg[\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}\Lambda_{\lambda}^{\lambda_1\lambda_2}\bigg]
 $$
 
-This effectively encapsulates all interaction details for each mode into a single, state-dependent relaxation time.
-
-From the perspective of many-body theory, a small perturbation to the Hamiltonian results in two effects:
-
-- A change in the eigenvalues of the unperturbed Hamiltonian.
-- A finite lifetime for these states.
-
-The finite lifetime is typically described by the linewidth of the states under perturbation.
-
-Maradudin and Fein conducted a detailed analysis of many-body perturbation theory for phonons, deriving the following expression for the linewidth:
+引入新变量
 
 $$
-\Gamma_\lambda = \frac{\pi \hbar}{16N} \sum_{\lambda'\lambda''} |\Gamma_{\lambda\lambda'\lambda''}|^2 \Bigg\{ [f_{\lambda'}^0 + f_{\lambda''}^0 + 1]\delta(E_\lambda - E_{\lambda'} - E_{\lambda''}) \\
-+ \Big[ f_{\lambda'}^0 - f_{\lambda''}^0 \Big] \Big[ \delta(E_\lambda + E_{\lambda'} - E_{\lambda''}) - \delta(E_\lambda - E_{\lambda'} + E_{\lambda''}) \Big] \Bigg\}
+Q_\lambda = \sum_{\lambda_1\lambda_2}\bigg[\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}\Lambda_{\lambda}^{\lambda_1\lambda_2}\bigg]
 $$
 
+重新排列各项即可得出自洽方程
 
-Here, $$\Gamma_{\lambda\lambda'\lambda''}$$ represents the Fourier transform of the third-order terms in the total energy expansion.
+$$
+\boldsymbol F_\lambda =-\frac{f_\lambda^0(1+f_\lambda^0) E_\lambda \boldsymbol v_\lambda}{TQ_\lambda} + \frac{1}{Q_\lambda}\sum_{\lambda _1\lambda_2}\bigg[(\boldsymbol F_{\lambda_2}-\boldsymbol F_{\lambda_1})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\boldsymbol F_{\lambda_1}+\boldsymbol F_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\bigg]
+$$
 
-The relaxation time is inversely proportional to the linewidth:
+该方程的数值解可以通过迭代找到：
+
+$$
+\boldsymbol F_\lambda^{i+1} =\boldsymbol F_\lambda^0 + \frac{1}{Q_\lambda}\sum_{\lambda _1\lambda_2}\bigg[(\boldsymbol F_{\lambda_2}^i-\boldsymbol F_{\lambda_1}^i)\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\boldsymbol F_{\lambda_1}^i+\boldsymbol F_{\lambda_2}^i)\Lambda_{\lambda}^{\lambda_1\lambda_2}\bigg], \\i=1,2,3,...
+$$
+
+初始条件为：
+
+$$
+\boldsymbol F_\lambda^0 = -\frac{f_\lambda^0(1+f_\lambda^0) E_\lambda \boldsymbol v_\lambda}{TQ_\lambda}，~~\boldsymbol F_\lambda^1 =0
+$$
+
+一旦 $$\boldsymbol F_\lambda^{i+1} = \boldsymbol F_\lambda^{i}$$ 在某个公差范围内，解就是自洽的，并且迭代过程终止。
+
+### 热导率
+
+傅里叶定律：
+
+$$
+⁍ 
+$$
+
+热流 $$\boldsymbol q$$ 的分布函数表达式：
+
+$$
+\boldsymbol q = \sum_\lambda E_\lambda \boldsymbol v_\lambda f_\lambda = \sum_\lambda E_\lambda \boldsymbol v_\lambda \left(f_\lambda^0-\Phi_\lambda\frac{\partial f_\lambda^0}{\partial E_\lambda}\right) \\= \sum_\lambda E_\lambda \boldsymbol v_\lambda \frac{f_\lambda^0(1+f_\lambda^0)}{k_BT}\boldsymbol F_\lambda\cdot\nabla T
+$$
+
+热导率张量表达式：
+
+$$
+\hat{\boldsymbol \kappa} = = \sum_\lambda E_\lambda  \frac{f_\lambda^0(1+f_\lambda^0)}{k_BT}\boldsymbol v_\lambda\boldsymbol \otimes F_\lambda
+$$
+
+## 变分法
+
+线性化 BTE 的规范形式为：
+
+$$
+\boldsymbol v_\lambda \cdot \frac{\partial f_\lambda^0}{\partial T}\nabla T = \frac{1}{k_BT}\bigg\{\sum_{\lambda_1}(\Phi_\lambda-\Phi_{\lambda_1})\Lambda_\lambda^{\lambda_1} + \sum_{\lambda_1\lambda_2}\bigg[(\Phi_\lambda+\Phi_{\lambda_1}-\Phi_{\lambda_2})\Lambda_{\lambda\lambda_1}^{\lambda_2}+\frac{1}{2}(\Phi_\lambda-\Phi_{\lambda_1}-\Phi_{\lambda_2})\Lambda_{\lambda}^{\lambda_1\lambda_2}\bigg] \bigg\}
+$$
+
+BTE 可以重写为：
+
+$$
+X=P\Phi
+$$
+
+其中 $$P$$ 是线性算子，遵循对称性和正定性条件：
+
+$$
+\lange\Psi,P\Phi\range=\lang\Phi,P\Psi\rang
+$$
+
+$$
+\lang\Phi,P\Phi\rang>0,~~\text{for any }\Phi
+$$
+
+其中符号 $$\lang\rang$$ 表示两个函数之间的标量积。
+
+将 BTE 代入 对称性条件，得到：
+
+$$
+\lang\Phi,X\rang=\lang\Phi,P\Phi\rang
+$$
+
+变分原理指出，函数 $$\Phi$$（BTE 的精确解）使 $$\lang\Phi,P\Phi\rang$$ 的值最大化。
+
+这可以通过另一个满足 $$\lang\Psi,X\rang=\lang\Psi,P\Psi\rang$$ 的函数 $$\Psi$$（不是 BTE 本身的解）来证明：
+
+$$
+0\le \lang(\Phi-\Psi),P(\Phi-\Psi)\rang=\lang\Phi,P\Phi\rang-\lang\Psi,P\Psi\rang
+$$
+
+在计算热导率时，变分原理的更常见的表达是：
+
+$$
+\frac{\lang\Phi,P\Phi\rang}{\lang\Phi,X\rang^2} = \min
+$$
+
+在 BTE 的左边乘 $$\Phi$$，得到
+
+$$
+-\left\lang\Phi_\lambda,\boldsymbol v_\lambda \frac{\partial f_\lambda^0}{\partial T}\nabla T\right\rang = \frac{\nabla T}{T}\sum_\lambda\Phi_\lambda\boldsymbol v_\lambda  E_\lambda\frac{\partial f_\lambda^0}{\partial E_\lambda}\\=\frac{\boldsymbol q}{\kappa T}\sum_\lambda\Phi_\lambda\boldsymbol v_\lambda  E_\lambda\frac{\partial f_\lambda^0}{\partial E_\lambda}\\=\frac{1}{\kappa T}\left(\sum_\lambda\Phi_\lambda\boldsymbol v_\lambda  E_\lambda\frac{\partial f_\lambda^0}{\partial E_\lambda}\right)^2\\ =\frac{T}{\kappa}\bigg(\sum_\lambda\Phi_\lambda\boldsymbol v_\lambda  \frac{\partial f_\lambda^0}{\partial T}\bigg)^2 \\=\frac{T}{k}\lang\Phi,X\rang^2|_{\nabla T=1}
+$$
+
+## 弛豫时间近似
+
+在该方法中，玻尔兹曼方程中的散射积分近似为
+
+$$
+-\dot f_\lambda(\boldsymbol r)_\text{scatt}=\frac{f_\lambda-f_\lambda^0}{\tau_\lambda}
+$$
+
+有效地将每种模式的所有交互细节吸收到单个状态相关的弛豫时间中。
+
+从多体理论的角度来看，对哈密顿量的小扰动可以看作产生两种效果：
+
+- 改变未扰动哈密顿量的特征值
+- 给这些状态提供有限的寿命。
+
+有限寿命通常由存在扰动时状态的线宽来描述。
+
+Maradudin 和 Fein 对声子的多体微扰理论进行了详细分析，他们推导出以下线宽表达式：
+
+$$
+\Gamma_\lambda=\frac{\pi \hbar}{16N}\sum_{\lambda'\lambda''}|\Gamma_{\lambda\lambda'\lambda''}|^2\bigg\{[f_{\lambda'}^0+f_{\lambda''}^0+1][\delta(E_\lambda-E_{\lambda'}-E_{\lambda''})] \bigg. \\ \bigg. +[f_{\lambda'}^0-f_{\lambda''}^0][\delta(E_\lambda+E_{\lambda'}-E_{\lambda''})-\delta(E_\lambda-E_{\lambda'}+E_{\lambda''})] \bigg\}
+$$
+
+这里，$$\Gamma_{\lambda\lambda'\lambda''}$$ 是总能量展开式中三次项的傅里叶变换。
+
+弛豫时间与线宽成反比：
 
 $$
 \tau_\lambda = \frac{1}{2\Gamma_\lambda}
 $$
 
-Combining this with the previously linearized BTE, the deviation in the distribution function becomes:
+结合之前的线性 BTE，我们得到分布函数的偏差
 
 $$
-f_\lambda - f_\lambda^0 = \boldsymbol v_\lambda \cdot \frac{\partial f_\lambda^0}{\partial T}\nabla T \tau_\lambda
+f_\lambda-f_\lambda^0 = \boldsymbol v_\lambda \cdot \frac{\partial f_\lambda^0}{\partial T}\nabla T \tau_\lambda
 $$
 
-Substituting this into the expression for heat flux and applying Fourier's law, we obtain the thermal conductivity tensor:
+将其代入热流表达式中，应用傅里叶定律我们得到热导率张量的表达式
 
 $$
-\hat{\boldsymbol \kappa} = \sum_\lambda E_\lambda^2 \frac{f_\lambda^0(1+f_\lambda^0)}{k_BT^2} \boldsymbol v_\lambda \otimes \boldsymbol v_\lambda \tau_\lambda
+\hat{\boldsymbol \kappa} = \sum_\lambda E_\lambda^2 \frac{f_\lambda^0(1+f_\lambda^0)}{k_BT^2}\boldsymbol v_\lambda \otimes \boldsymbol v_\lambda \tau_\lambda
 $$
 
-By introducing the modal heat capacity, the expression is rewritten in a more common form:
+通过引入模态热容，转化为更常见的表达式：
 
 $$
-\hat{\kappa}_{ij} = \sum_\lambda C_{v,\lambda} v_{\lambda,i}v_{\lambda,j} \tau_\lambda
+\hat{\kappa}_{ij} = \sum_\lambda  C_{v,\lambda} v_{\lambda,i}v_{\lambda,j}\tau_\lambda
 $$
 
-The thermal conductivity obtained using the relaxation time approximation is equivalent to the thermal conductivity obtained from the first iteration of the iterative method. Therefore, the relaxation time approximation is also referred to as the zeroth-order approximation.
+弛豫时间近似的热导率与迭代法第一步获得的热导率相同，所以弛豫时间近似也称为零阶近似。
+
 
