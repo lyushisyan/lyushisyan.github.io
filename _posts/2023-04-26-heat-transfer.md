@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Classical Kinetic Theory of Heat Transfer
+title: 传热的经典动力学理论
 date: 2023-04-26 00:32:13
 description: The heat transfer properties of an object are related to the characteristic length and characteristic time.
 tags: physics theory
