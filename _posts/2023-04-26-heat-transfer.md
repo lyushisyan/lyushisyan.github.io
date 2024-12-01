@@ -2,138 +2,136 @@
 layout: post
 title: 传热的经典动力学理论
 date: 2023-04-26 00:32:13
-description: The heat transfer properties of an object are related to the characteristic length and characteristic time.
-tags: physics theory
-categories: study
+tags: 热物理
+categories: 理论
 tabs: true
 ---
 
-Assume the total path traveled by a molecule is $$L$$. The total volume occupied during energy transfer is $$\pi d^2L$$ ($$d$$ is the molecule diameter), and the total number of molecules in this volume is $$\pi nd^2L$$ ($$n$$ is the molecular density). Therefore, the number of collisions for the molecule is $$\pi nd^2L$$.
+## 气体分子的平均自由程和热导率
 
-The average distance $$\Lambda$$ between two collisions equals the ratio of the total path $$L$$ to the number of collisions:
-$$
-\Lambda = \frac{L}{n\pi d^2L} = \frac{1}{n\sigma}
-$$
-where $$\sigma$$ is the collision cross-section.
+假设一个分子移动的总路径为 $$L$$，那么它在能量转移过程中占据的总体积为 $$\pi d^2L$$（$$d$$ 为分子的直径），该体积中的分子总数为 $$\pi n d^2 L$$（$$n$$ 为分子密度），所以该分子的碰撞次数为 $$\pi n d^2 L$$。
 
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
+两次碰撞之间的平均距离 $$\Lambda$$ 等于总路径 $$L$$ 与碰撞次数的比率：
+$$
+\Lambda = \frac{L}{n \pi d^2 L} = \frac{1}{n \sigma}
+$$
+
+其中 $$\sigma$$ 是碰撞截面。
+
+<div class="row">
+    <div class="col-md-12 text-center">
         {% include figure.liquid loading="eager" path="assets/img/blog/meanlength.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
-Substituting the molecular density of an ideal gas $$n = p/(k_BT)$$:
+代入理想气体分子的密度 $$n = \frac{p}{k_B T}$$：
 $$
-\Lambda = \frac{k_BT}{p\sigma}
-$$
-
-Based on kinetic theory, the heat flux in an ideal gas can be calculated. Let $$\varepsilon$$ be the internal energy of the gas. The heat flux of a single molecule is:
-$$
-q_x = \frac{1}{2}v_x[\varepsilon(x-\Lambda_x) - \varepsilon(x+\Lambda_x)]
-$$
-where $$x$$ is the coordinate and $$v_x$$ is the $$x$$-component of velocity.
-
-Expanding into a Taylor series, we get:
-$$
-q_x = -v_x\Lambda_x\frac{\text{d}\varepsilon}{\text{dx}} \approx -(\cos^2\theta)v\Lambda\frac{\text{d}\varepsilon}{\text{dx}}
+\Lambda = \frac{k_B T}{p \sigma}
 $$
 
-Integrating over all angles gives the total heat flux:
+基于动力学理论，计算理想气体中的热流。设 $$\varepsilon$$ 为气体的内能，则一个分子的热流为：
 $$
-q_x = -\frac{1}{2\pi}v\Lambda\frac{\text{d}\varepsilon}{\text{dx}}
-\left[\int_{\varphi=0}^{2\pi}\int_{\theta=0}^{\pi/2}\cos^2\theta\sin\theta\text{d}\theta\text{d}\varphi\right]\frac{\text{d}\varepsilon}{\text{dT}}\frac{\text{dT}}{\text{dx}}
-\approx -\frac{1}{3}Cv\Lambda\frac{\text{dT}}{\text{dx}}
+q_x = \frac{1}{2} v_x [\varepsilon(x - \Lambda_x) - \varepsilon(x + \Lambda_x)]
 $$
 
-Thus, the expression for the thermal conductivity of a gas is:
-$$
-\lambda \approx \frac{1}{3}Cv\Lambda
-$$
-It is proportional to the heat capacity $$C$$, molecular velocity $$v$$, and mean free path $$\Lambda$$.
+其中 $$x$$ 是坐标；$$v_x$$ 是速度的 $$x$$-分量。
 
-
-## Heat Transfer in Dielectrics: Thermal Conductivity of Phonon Gas
-
-In dielectrics, heat transfer is carried out by phonons, which are quantized vibrational energies $$\hbar\omega$$. The thermal conductivity of a phonon gas can be calculated using the same relation:
+展开为泰勒级数，我们得到：
 $$
-\lambda_{ph} = \frac{1}{3}C_{ph}v_s\Lambda_{\Sigma}
+q_x = -v_x \Lambda_x \frac{\text{d}\varepsilon}{\text{dx}} \approx -(\cos^2\theta) v \Lambda \frac{\text{d}\varepsilon}{\text{dx}}
 $$
 
-The primary mechanisms of phonon scattering include:
-- Phonon-boundary scattering ($$b$$),
-- Phonon-impurity scattering ($$imp$$),
-- Phonon-phonon scattering ($$ph$$).
-
-According to Matthiessen's rule:
+通过全角度积分，得到总热流：
 $$
-\Lambda_\Sigma^{-1} = \Lambda_{ph}^{-1} + \Lambda_{imp}^{-1} + \Lambda_b^{-1}
+q_x = -\frac{1}{2\pi} v \Lambda \frac{\text{d}\varepsilon}{\text{dx}}
+\left[\int_{\varphi=0}^{2\pi}\int_{\theta=0}^{\pi/2}\cos^2\theta\sin\theta\text{d}\theta\text{d}\varphi\right] \frac{\text{d}\varepsilon}{\text{dT}} \frac{\text{dT}}{\text{dx}}
+\approx -\frac{1}{3} C v \Lambda \frac{\text{dT}}{\text{dx}}
 $$
 
-The figure below illustrates the impact of different scattering mechanisms on the mean free path and thermal conductivity across various temperature ranges.
+由此得到气体热导率的表达式：
+$$
+\lambda \approx \frac{1}{3} C v \Lambda
+$$
 
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
+它与热容量 $$C$$、分子速度 $$v$$ 和平均自由程 $$\Lambda$$ 成正比。
+
+## 电介质中的传热：声子气体热导率
+
+电介质中的热量传递由声子负责，声子是振动能量量子 $$\hbar \omega$$。
+声子气体的热导率可以使用上述关系式计算：
+$$
+\lambda_{ph} = \frac{1}{3} C_{ph} v_s \Lambda_{\Sigma}
+$$
+
+声子散射的主要机制：
+- 声子-边界散射（$$b$$）；
+- 声子-杂质散射（$$imp$$）；
+- 声子-声子散射（$$ph$$）。
+
+根据马蒂森规则，我们有：
+$$
+\Lambda_{\Sigma}^{-1} = \Lambda_{ph}^{-1} + \Lambda_{imp}^{-1} + \Lambda_{b}^{-1}
+$$
+
+<div class="row text-center">
+    <div class="col-md-6">
         {% include figure.liquid loading="eager" path="assets/img/blog/classic1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
-</div>
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
+    <div class="col-md-6">
         {% include figure.liquid loading="eager" path="assets/img/blog/classic2.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
-## Heat Transfer in Metals: Thermal Conductivity of Electron Gas
+## 金属中的传热：电子气体热导率
 
-Consider the thermal conductivity of an electron gas (metals). Similar to phonons, based on kinetic theory:
+考虑电子气体（金属）的热导率。根据动力学理论，像对于声子一样：
 $$
-\lambda_{e} = \frac{1}{3}C_{e}v_F\Lambda_{e}
+\lambda_{e} = \frac{1}{3} C_{e} v_F \Lambda_{e}
 $$
 
-In metals, electrons are scattered by phonons, defects, and boundaries. According to Matthiessen's rule:
+金属中的电子被声子、缺陷和边界散射。根据 Matthiessen 规则：
 $$
 \frac{1}{\Lambda_e} = \frac{1}{\Lambda_{ph}} + \frac{1}{\Lambda_d} + \frac{1}{\Lambda_b}
 $$
 
+## 玻尔兹曼方程
 
-## Boltzmann Equation
+热力学平衡状态可以通过平衡分布函数 $$f(\varepsilon, T)$$（麦克斯韦-玻尔兹曼、玻色-爱因斯坦、费米-狄拉克）来描述，它取决于能量、温度和化学势。
 
-The thermodynamic equilibrium state can be described by the equilibrium distribution function $$f(\varepsilon,T)$$ (Maxwell-Boltzmann, Bose-Einstein, or Fermi-Dirac), which depends on energy, temperature, and chemical potential.
+如果系统中的热力学平衡被破坏，则系统的状态由非平衡分布函数描述，除了能量、温度和化学势，它还可能取决于各个载流子的坐标和动量。
 
-If thermodynamic equilibrium is disrupted, the state of the system is described by a nonequilibrium distribution function, which may depend not only on energy, temperature, and chemical potential but also on the positions and momenta of individual carriers.
+在封闭系统中，由于内部弛豫过程，非平衡分布会向趋于平衡分布的方向变化。玻尔兹曼方程描述这种非平衡分布函数的变化：
 
-In a closed system, the nonequilibrium distribution evolves toward equilibrium due to internal relaxation processes. The Boltzmann equation describes the evolution of this nonequilibrium distribution:
 $$
-\frac{\partial f}{\partial t} + \vec{v} \cdot \nabla_{\vec{r}}f + \vec{F} \cdot \nabla_{\vec{p}}f = \left(\frac{\partial f}{\partial t}\right)_{\text{st}}
-$$
-
-The equation is meaningful if the collision term $$\left(\frac{\partial f}{\partial t}\right)_{\text{st}}$$ is known.
-
-
-## Thermal Conductivity: Fourier's Law
-
-In macroscopic systems, Fourier's law governs heat transfer in the absence of macroscopic motion:
-$$
-\vec{q} = -\lambda \nabla T
+\frac{\partial f}{\partial t} + \vec v \cdot \nabla_{\vec r} f + \vec F \cdot \nabla_{\vec p} f = \left(\frac{\partial f}{\partial t}\right)_\text{st}
 $$
 
-The heat transfer equation is:
+如果碰撞项 $$(\partial f/\partial t)_\text{st}$$ 已知，则该方程有意义。
+
+## 导热系数：傅里叶方程
+
+在宏观系统中，傅里叶定律决定了在没有宏观运动的情况下的传热，其形式为：
 $$
-\rho C_p \frac{\partial T}{\partial t} = -\nabla \vec{q}
+\vec q = -\lambda \nabla T
 $$
 
-Substituting Fourier's law:
+传热方程为：
+$$
+\rho C_p \frac{\partial T}{\partial t} = -\nabla \vec q
+$$
+
+代入傅里叶定律，得到：
 $$
 \rho C_p \frac{\partial T}{\partial t} = \lambda \nabla^2 T
 $$
 
-Introducing the thermal diffusivity:
+引入热扩散系数，得到：
 $$
 \frac{1}{a} \frac{\partial T}{\partial t} = \nabla^2 T
 $$
 
+## 总结
 
-## Summary
-
-- The heat transfer properties of macroscopic objects depend on characteristic lengths and timescales, which are compared to the mean free path and relaxation time, respectively.
-- The Boltzmann equation is valid for dilute systems.
-- For systems with characteristic dimensions comparable to the carrier wavelength, wave-like properties must be considered.
+- 宏观物体传热性质与特征长度和特征时间相关，分别与平均自由程和弛豫时间相比较。
+- 玻尔兹曼方程适用于稀薄系统。
+- 对于特征尺寸与载流子的波长相当的系统，需要采用波动性质的分析方法。
