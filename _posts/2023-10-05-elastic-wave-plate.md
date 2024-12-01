@@ -7,106 +7,103 @@ categories: 理论
 tabs: true
 ---
 
+本文基于求解**连续介质的弹性方程**来研究波动过程。
 
-In a plate, waves can be classified into longitudinal waves ($$ \text{P waves} $$) and shear waves ($$ \text{S waves} $$). $$ \text{S waves} $$ are further divided into $$ \text{SH waves} $$ and $$ \text{SV waves} $$.
+在平板中，波可以分为 纵波（**P**波）与 横波（**S**波），**S** 波又分为 **SH** 波 和 **SV** 波。
 
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/blog/elsplate_1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+<div class="row">
+    <div class="col-md-12 text-center">
+        {% include figure.liquid loading="eager" path="assets/img/blog/plate.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
-Assuming that the propagation direction of the wave is along the $$ x $$-axis, a particle vibrating along the $$ x $$-axis is called a $$ \text{P wave} $$, along the $$ y $$-axis is an $$ \text{SH wave} $$, and along the $$ z $$-axis is an $$ \text{SV wave} $$.
+假设波的传播方向为 $x$ 轴。质点振动发生在 $x$ 轴方向的为 **P 波**，质点振动发生在 $y$ 轴方向的为 **SH 波**，质点振动发生在 $z$ 轴方向的为 **SV 波**。
 
-$$ \text{SV waves} $$ and $$ \text{P waves} $$ couple into $$ \text{Rayleigh-Lamb waves} $$ under stress-free boundary conditions on the plate surface.
+SV 波和 P 波在平板表面无应力的条件下耦合为 **Rayleigh-Lamb 波**。
 
-## Elastic Wave Equation
+## 弹性波动方程
 
-In the approximation of a continuous medium, considering the elastic wave propagating in the plate along the $$ x $$-direction, the wave equation is:
+在连续介质近似中，考虑在平板中沿 $x$ 方向传播的弹性波，波动方程为：
 
 $$
 \mu\Delta\vec u+(\lambda+\mu)\nabla(\nabla\vec u) = \rho \frac{\partial^2 \vec u}{\partial t^2}
 $$
 
-where $$ \vec u $$ is the displacement vector; $$ \lambda + \mu $$ are the Lame constants, which depend on the elastic properties of the medium; $$ \rho $$ is the density of the medium.
+其中 $\vec u$ 是位移矢量； $\lambda + \mu$ 是 Lame 常数，取决于介质的弹性特性；$\rho$ 为介质密度。
 
-All solutions to the wave equation can be expressed as a combination of a scalar potential $$ \varphi $$ and a vector potential $$ \vec\psi $$:
+波动方程的所有解都可以表示为标量势 $\varphi$ 和向量势 $\vec\psi$ 的组合：
 
 $$
 \vec u =\text{grad }\varphi + \text{rot }\vec\psi
 $$
 
----
+## SH 波的色散关系
 
-## Dispersion Relation of SH Waves
+SH 波中原子的位移发生在 $y$ 轴方向，即位移矢量为 $\vec u = (0,u_y,0)$。
 
-In $$ \text{SH waves} $$, atomic displacement occurs along the $$ y $$-axis, meaning the displacement vector is $$ \vec u = (0,u_y,0) $$.
-
-Thus, the wave equation for $$ \text{SH waves} $$ is:
+因此，SH 波的波动方程为：
 
 $$
 \frac{\partial^2 u_y}{\partial x^2}+\frac{\partial^2 u_y}{\partial z^2} = \frac{1}{c_t^2}\frac{\partial^2 u_y}{\partial t^2}
 $$
 
-where $$ c_t=\sqrt{\mu/\rho} $$ is the velocity of shear waves.
+其中 $c_t=\sqrt{\mu/\rho}$ 为剪切波的速度。
 
-The solution is:
+解为：
 
 $$
 u_y=(A_1\sin\beta z + A_2\cos\beta z)e^{i(\xi x-\omega t)}
 $$
 
-where $$ \xi $$ is the projection of the wave vector along the $$ x $$-axis; $$ \omega $$ is the frequency; $$ \beta $$ is the projection of the wave vector along the $$ z $$-axis, which satisfies:
+其中 $\xi$ 为波矢在 $x$ 轴上的投影； $\omega$ 为频率；$\beta$ 是波矢在 $z$ 轴上的投影，满足关系式：
 
 $$
 \beta^2+\xi^2=\frac{\omega^2}{c_t^2}
 $$
 
-We consider a stress-free surface on the plate, so the boundary condition is:
+我们考虑平板表面无应力，所以边界条件为：
 
 $$
 \tau_{zy} =\mu\frac{\partial u_y}{\partial z}=0,~~y=\pm b
 $$
 
-Substituting the solution of the wave equation into the boundary conditions, we get:
+将波动方程的解代入边界条件中，得到
 
 $$
-A_1\cos\beta b - A_2\sin\beta b =0 \\ A_1\cos\beta b + A_2\sin\beta b =0
+A_1\cos\beta b-A_2\sin\beta b =0 \\ A_1\cos\beta b+A_2\sin\beta b =0
 $$
 
-From this, we obtain the frequency equation:
+由此，得到频率方程：
 
 $$
 \cos\beta b\sin \beta b=0
 $$
 
-This equation is satisfied when:
+该方程满足：
 
 $$
 \beta b = n\pi/2~~~(n=0,1,2,3,...)
 $$
 
-The dispersion relation of $$ \text{SH waves} $$ is:
+最终得出 SH 波的色散关系：
 
 $$
 \omega^2=c_t^2\left[\xi^2+\left(n\pi/2b\right)^2\right]
 $$
 
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
+<div class="row">
+    <div class="col-md-12 text-center">
         {% include figure.liquid loading="eager" path="assets/img/blog/els-DS-SH.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
----
+## Rayleigh-Lamb 波的色散关系
 
-## Dispersion Relation of Rayleigh-Lamb Waves
+考虑在具有无应力边界的厚度为 2b 的板中同时存在 P 波和 SV 波。
 
-Consider the coexistence of $$ \text{P waves} $$ and $$ \text{SV waves} $$ in a plate of thickness $$ 2b $$ with stress-free boundaries.
+由于原子运动不依赖于 $y$ 坐标，位移矢量为 $\vec u = (u_x,0,u_z)$，标量势为 $\psi$，向量势为 $\vec\psi=(0,\psi_y,0)$ 。
 
-Since atomic motion is independent of the $$ y $$-coordinate, the displacement vector is $$ \vec u = (u_x, 0, u_z) $$, with the scalar potential $$ \varphi $$ and vector potential $$ \vec\psi = (0,\psi_y,0) $$.
-
-The wave equations for $$ \text{Rayleigh-Lamb waves} $$ are:
+Rayleigh-Lamb 波的波动方程为：
 
 $$
 \frac{\partial^2 \varphi}{\partial x^2}+\frac{\partial^2 \varphi}{\partial y^2}=\frac{1}{c_l^2}\frac{\partial \varphi}{\partial t^2}
@@ -116,9 +113,9 @@ $$
 \frac{\partial^2 \psi_y}{\partial x^2}+\frac{\partial^2 \psi_y}{\partial y^2}=\frac{1}{c_t^2}\frac{\partial \psi_y}{\partial t^2}
 $$
 
-where $$ c_l=\sqrt{(\lambda+2\mu)/\rho} $$ is the velocity of compressional waves; $$ c_t=\sqrt{\mu/\rho} $$ is the velocity of shear waves.
+其中 $c_l=\sqrt{(\lambda+2\mu)/\rho}$  是膨胀波的速度；$c_t=\sqrt{\mu/\rho}$ 为剪切波的速度。
 
-The solutions to the wave equations are:
+考虑波动方程的解为：
 
 $$
 \varphi=(A\sin\alpha z+B\cos\alpha z)e^{i(\xi x-\omega t)}
@@ -133,147 +130,140 @@ u_x=i\{\xi(A\sin\alpha z+B\cos\alpha z)+\beta(C\cos\beta z-D\sin\beta z)\}e^{i(\
 $$
 
 $$
-u_z=\{\alpha(A\cos\alpha z-B\sin\alpha z)+\xi(C\sin\beta z+ D\cos\beta z)\}e^{i(\xi x-\omega t)}
+u_z=\{\alpha(A\cos\alpha z-B\sin\alpha z)+k(C\sin\beta z+ D\cos\beta z)\}e^{i(\xi x-\omega t)}
 $$
 
-Boundary conditions are:
+边界条件为：
 
 $$
 \tau_{zz} = \tau_{xz} =0,~~~z=\pm b
 $$
 
-We now consider both symmetric and antisymmetric cases.
+现在，我们将分别考虑对称波和非对称波的情况。
 
----
+### **对称波**
 
-### **Symmetric Waves**
-
-Apply $$ A=D=0 $$, then the displacements are:
+应用 $A=D=0$，位移为：
 
 $$
-u_x=i(B\xi\cos\alpha z+ C\beta\cos\beta z)e^{i(\xi x-\omega t)}
+u_x=i(Bk\cos\alpha z+ C\beta\cos\beta z)e^{i(\xi x-\omega t)}
 $$
 
 $$
-u_z=(-B\alpha\sin\alpha z + C\xi\sin\beta z)e^{i(\xi x-\omega t)}
+u_z=(-B\alpha\sin\alpha z)+Ck\sin\beta z)e^{i(\xi x-\omega t)}
 $$
 
-The boundary conditions for $$ \tau_{zz} $$ and $$ \tau_{xz} $$ are:
+此时 $\tau_{zz}$ 和 $\tau_{xz}$ 的边界条件为：
 
 $$
 (\xi^2-\beta^2)B\cos\alpha b+2\xi\beta C\cos\beta b=0 \\ \pm i\left[-2\alpha \xi B\sin\alpha b+(\xi^2-\beta^2)C\sin\beta b\right]=0
 $$
 
-The frequency equation for symmetric waves propagating in the plate is:
+得到对称波在平板中传播的 Rayleigh-Lamb 频率方程：
 
 $$
 \frac{\tan\beta b}{\tan\alpha b} = -\frac{4\alpha\beta \xi^2}{(\xi^2-\beta^2)^2}
 $$
 
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
+<div class="row">
+    <div class="col-md-12 text-center">
         {% include figure.liquid loading="eager" path="assets/img/blog/els-DS-L.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
----
+### **反对称波**
 
-### **Antisymmetric Waves**
-
-Apply $$ B=C=0 $$, then the displacements are:
+应用 $B=C=0$，位移为：
 
 $$
 u_x=i(\xi A\sin\alpha z-\beta D\sin\beta z) e^{i(\xi x-\omega t)}
 $$
 
 $$
-u_z=(\alpha A\cos\alpha z + \xi D\cos\beta z)e^{i(\xi x-\omega t)}
+u_z=(\alpha A\cos\alpha z + \xi D\cos\beta z)\}e^{i(\xi x-\omega t)}
 $$
 
-The boundary conditions for $$ \tau_{zz} $$ and $$ \tau_{xz} $$ simplify to:
+此时 $\tau_{zz}$ 和 $\tau_{xz}$ 的边界条件简化为：
 
 $$
 \pm \left[(\xi^2-\beta^2)A\sin\alpha b -2\beta \xi D \sin\beta b\right]=0 \\ 2\alpha \xi A\cos\alpha b-(\beta^2-\xi^2) D\cos\beta b = 0
 $$
 
-The frequency equation for antisymmetric waves propagating in the plate is:
+得到反对称波在平板中传播的 Rayleigh-Lamb 频率方程：
 
 $$
 \frac{\tan\beta b}{\tan\alpha b} = -\frac{(\xi^2-\beta^2)^2}{4\alpha\beta \xi^2}
 $$
 
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
+<div class="row">
+    <div class="col-md-12 text-center">
         {% include figure.liquid loading="eager" path="assets/img/blog/els-DS-F.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
----
+### Rayleigh-Lamb 频率方程
 
-### Rayleigh-Lamb Frequency Equation
-
-Combining the frequency equations for symmetric and antisymmetric waves, we get:
+将对称波和非对称波的频率方程组合成一个方程，如下所示
 
 $$
 F(\alpha,\beta,\xi)=\frac{\tan\beta b}{\tan\alpha b} +\left\{\frac{4\alpha\beta \xi^2}{(\xi^2-\beta^2)^2}\right\}^{\pm 1}=0
 $$
 
-We know:
+我们知道
 
 $$
 \alpha^2=\omega^2/c_l^2-\xi^2=\xi^2(c^2/c_l^2 - 1) \\ \beta^2=\omega^2/c_t^2-\xi^2=\xi^2(c^2/c_t^2 - 1)
 $$
 
-It can be seen that $$ \alpha $$ and $$ \beta $$ can be real, zero, or imaginary. The frequency equation changes accordingly:
+可以看出，$\alpha$、$\beta$ 可能为实数、零或虚数。然后频率方程也相应地改变：
 
-**Region I:** $$ \xi>\omega/c_t $$ (also expressed as: $$ c<c_l,c_t $$)
+**区域 I：** $\xi>\omega/c_t$ （也可以表示为：$c<c_l,c_t$）
 
-Replace $$ \alpha $$, $$ \beta $$ in the frequency equation with $$ i\alpha' $$, $$ i\beta' $$ (where $$ \alpha'^2=-\alpha^2,~\beta'^2=-\beta^2 $$):
+我们用 $i\alpha'$, $i\beta'$ 代替频率方程中的 $\alpha$, $\beta$ （其中，$\alpha'^2=-\alpha^2,~\beta'^2=-\beta^2$），得到：
 
 $$
 \frac{\tan\beta' b}{\tan\alpha' b} =-\left\{\frac{4\alpha'\beta' \xi^2}{(\xi^2-\beta'^2)^2}\right\}^{\pm 1}
 $$
 
-**Region II:** $$ \omega/c_t>\xi>\omega/c_l $$ (also expressed as: $$ c_t<c<c_l $$)
+**区域 II：** $\omega/c_t>\xi>\omega/c_l$ （也可以表示为：$c_t<c<c_l$）
 
-Replace $$ \alpha $$ in the frequency equation with $$ i\alpha' $$ (where $$ \alpha'^2=-\alpha^2 $$):
+我们用 $i\alpha'$代替频率方程中的 $\alpha$（其中，$\alpha'^2=-\alpha^2$），得到：
 
 $$
 \frac{\tan\beta b}{\tan\alpha' b} =-\left\{\frac{4\alpha'\beta \xi^2}{(\xi^2-\beta^2)^2}\right\}^{\pm 1}
 $$
 
-**Region III:** $$ \xi<\omega/c_l $$ (also expressed as: $$ c>c_l $$)
+**区域 III：** $\xi<\omega/c_l$ （也可以表示为：$c>c_l$）
 
-The frequency equation matches Equation (37):
+频率方程和之前一致：
 
 $$
 \frac{\tan\beta b}{\tan\alpha b} =-\left\{\frac{4\alpha\beta \xi^2}{(\xi^2-\beta^2)^2}\right\}^{\pm 1}
 $$
 
----
+## 群速度与相速度
 
-## Group Velocity and Phase Velocity
-
-**Phase velocity** is the velocity at which the phase of the wave propagates in a given direction:
+相速度是波相在给定方向上的传播速度：
 
 $$
 v_p=\frac{\omega}{k}
 $$
 
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
+<div class="row">
+    <div class="col-md-12 text-center">
         {% include figure.liquid loading="eager" path="assets/img/blog/els-vp.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
-**Group velocity** is the velocity at which energy is transmitted through the medium:
+群速度是介质中能量传递的速度：
 
 $$
 v_g=\frac{\partial\omega}{\partial k}
 $$
 
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
+<div class="row">
+    <div class="col-md-12 text-center">
         {% include figure.liquid loading="eager" path="assets/img/blog/els-vg.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
+
