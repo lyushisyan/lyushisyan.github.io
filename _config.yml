@@ -11,7 +11,7 @@ description: > # the ">" symbol means to ignore newlines until "footer_text:"
 footer_text: >
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
 keywords: thermophysics, phonon, heat transfer # add your own keywords or leave empty
-lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
+lang: en, cn, ru # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: sheng.png # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
 url: lyushisyan.github.io # the base hostname & protocol for your site
