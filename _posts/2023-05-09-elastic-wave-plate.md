@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 平板中的弹性波色散关系
-date: 2023-10-05 00:32:13
+date: 2023-05-09 00:32:13
 tags: 弹性波
 categories: 理论
 tabs: true
