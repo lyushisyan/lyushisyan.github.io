@@ -8,11 +8,12 @@ categories: study
 tabs: true
 ---
 
-In **Quantum Espresso**, phonon dispersion is computed using the `ph.x` program, which is based on **Density Functional Perturbation Theory**.
 
-#### (1) Perform SCF calculation to obtain the self-consistent electronic ground state energy using `pw.x`.
+在 Quantum Espresso 中，声子色散是使用 `ph.x` 程序计算的，该程序基于密度泛函微扰理论 (DFPT) 。本文以单晶硅 (Si) 为例展开计算。
 
-- **SCF input file (`scf.graphene.in`)**
+### (1) 使用 `pw.x` 进行SCF计算
+
+- **SCF 输入文件 (`pw.scf.Si.in`)**
 
 ```bash
 &control
@@ -20,119 +21,118 @@ In **Quantum Espresso**, phonon dispersion is computed using the `ph.x` program,
   restart_mode = 'from_scratch'
   pseudo_dir = './pseudos/'
   outdir = './out/'
-  prefix = 'graphene'
+  prefix = 'Si'
 /
 &system
-  ibrav = 4
-  celldm(1) = 4.654
-  celldm(3) = 6.0
+  ibrav = 2
+  celldm(1) = 10.20
   nat = 2
   ntyp = 1
-  ecutwfc = 60.0
-  ecutrho = 600.0
-  assume_isolated = '2D'
+  ecutwfc = 16
 /
 &electrons
+  mixing_mode = 'plain'
+  mixing_beta = 0.7
   conv_thr = 1.0e-8
 /
 ATOMIC_SPECIES
-  C 12.0107 C.pbe-n-kjpaw_psl.1.0.0.UPF
-ATOMIC_POSITIONS alat
-  C 0.00000 0.00000 0.00000
-  C 0.00000 0.57735 0.00000
+  Si 28.0855 Si.vbc.UPF
+ATOMIC_POSITIONS
+  Si 0.00 0.00 0.00
+  Si 0.25 0.25 0.25
 K_POINTS {automatic}
-  8 8 1 0 0 0
+  8 8 8 0 0 0
 ```
 
-- **Execute SCF calculation**
+- **执行 SCF 计算**
 
 ```bash
-mpirun -np 4 pw.x -i scf.grap.in > scf.grap.out
+mpirun -np 4 pw.x -i pw.scf.Si.in > pw.scf.Si.out
 ```
 
-#### (2) Compute the dynamical matrix on a uniform grid of q-points using `ph.x`.
+### (2) 使用 `ph.x` 计算 q 点均匀网格上的动力学矩阵
 
-- **Input file (`ph.graphene.in`)**
+- **输入文件 (`ph.Si.in`)**
 
 ```bash
 &INPUTPH
-  tr2_ph = 1.0d-15
-  amass(1) = 12.0107
+  tr2_ph = 1d-14
+  amass(1) = 28.0855
   ldisp = .true.
-  nq1 = 6
-  nq2 = 6
-  nq3 = 1
+  nq1 = 4
+  nq2 = 4
+  nq3 = 4
   outdir = './out/'
-  prefix = 'graphene'
-  fildyn = 'graphene.dyn'
+  prefix = 'Si'
+  fildyn = 'Si.dyn'
 /
 ```
 
-- **Perform the computation**
+- **执行计算**
 
 ```bash
-mpirun -np 4 ph.x -i ph.graphene.in > ph.graphene.out
+mpirun -np 4 ph.x -i ph.Si.in > ph.Si.out
 ```
 
-- **Output files**
+- **输出文件**
 
-`graphene.dyn0` contains coordinates of the q-point grid.
+**`Si.dyn0`** 包含有关 q 点网格的坐标
 
-`graphene.dyn1-N` contains the force constants in $\boldsymbol q$-space.
+**`Si.dyn1-N`** 包含力常数 C(q_n)，其中 n = 1,...N，其中 N 是不可约布里渊区中 **q** 点数量
 
-#### (3) Perform inverse Fourier transform of the dynamical matrix to obtain the real-space force constants using `q2r.x`.
+### (3) 使用 `q2r.x` 对 q 空间的力常数进行逆傅里叶变换以获得实空间中的力常数。
 
-- **Input file (`q2r.graphene.in`)**
+- **输入文件 (`q2r.graphene.in`)**
 
 ```bash
 &INPUT
-  fildyn = 'graphene.dyn'
-  zasr = 'simple'
-  flfrc = 'graphene661.fc'
+  fildyn = 'Si.dyn'
+  zasr = 'simple' 
+  flfrc = 'Si444.fc'
 /
 ```
 
-- **Execute the calculation**
+- **执行计算**
 
 ```bash
-mpirun -np 4 q2r.x -i q2r.graphene.in > q2r.graphene.out
+mpirun -np 4 q2r.x -i q2r.Si.in > q2r.Si.out
 ```
 
-- **Output file**
+- **输出文件**
 
-`Si661.fc` contains the interatomic force constants in real space for a 6*6*1 supercell.
+**`Si444.fc`** 包含实空间 **4*4*4** 超胞的原子间力常数
 
-#### (4) Perform Fourier transform of the real-space components using `matdyn.x` to obtain the dynamical matrix at any q-point.
+### (4) 使用 **`matdyn.x`** 对实空间分量进行傅里叶变换，得到任意 q 处的动力学矩阵，进而得到任意 q 处的特征值（频率）。
 
-- **Input file (`matdyn.graphene.in`)**
+- **输入文件 (`matdyn.Si.in`)**
 
 ```bash
 &INPUT
-  asr = 'simple'
-  flfrc = 'graphene661.fc'
-  flfrq = 'graphene.freq'
+  asr = 'simple'  
+  flfrc = 'Si444.fc'
+  flfrq = 'Si.freq'  
+  flvec = 'Si.modes' 
   q_in_band_form = .true.
-  loto_2d = .true.
 /
-4
-0.00000000 0.00000000 0.0   80
-0.00000000 0.57735027 0.0   40
-0.33333333 0.577
-
-35027 0.0   60
-0.00000000 0.00000000 0.0   1
+6
+0.000 0.000 0.000   50
+0.500 0.000 0.500   50
+0.625 0.250 0.625   1
+0.375 0.375 0.750   50
+0.000 0.000 0.000   50
+0.500 0.500 0.500    1
 ```
 
-- **Execute the calculation**
+- **执行计算**
 
 ```bash
-mpirun -np 4 matdyn.x -i matdyn.graphene.in > matdyn.graphene.out
+mpirun -np 4 matdyn.x -i matdyn.Si.in > matdyn.Si.out
 ```
 
-Then, visualize the results using the generated `graphene.freq.gp` file.
+然后根据得到的 `Si.freq.gp` 文件进行绘图：
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/blog/disp_grap.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.liquid loading="eager" path="assets/img/blog/disp_Si.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
