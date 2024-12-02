@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> <html><body> <p>pw.x 处理的计算包括以下7种类型，在输入文件中用 <code class="language-plaintext highlighter-rouge">calculation</code> 设置：</p> <p><code class="language-plaintext highlighter-rouge">'scf'</code>：自洽计算，self-consistent field，通过迭代的方式数值求解微分-积分方程（Kohn-Sham方程），迭代收敛以电荷的变化足够小为准，最终得到自洽电荷。</p> <p><code class="language-plaintext highlighter-rouge">'nscf'</code>：非自洽计算，nscf 计算常在k空间的网格上进行，网格要足够密以完成 k 空间上的积分，在DOS等计算需要更密的 k 点，这时在自洽电荷基础上，计算这些更多的 k 点，nscf计算保持自洽电荷不变。</p> <p><code class="language-plaintext highlighter-rouge">'bands'</code>：也是一种 nscf 计算，k 点按照三维 k 空间中的特殊路径选取。</p> <p><code class="language-plaintext highlighter-rouge">'relax'</code>：一系列 scf 计算，通过 Hellman-Feynman 力计算离子坐标驰豫（通过优化算法找到受力为零的结构），relax计算时固定cell不变。</p> <p><code class="language-plaintext highlighter-rouge">'vc-relax'</code>: 允许cell变化的relax，通过应力的计算改变cell。</p> <p><code class="language-plaintext highlighter-rouge">'md'</code>：分子动力学，将电子对离子的作用看成离子感受到的势，根据势能和离子初始速度求解离子运动的经典力学方程。</p> <p><code class="language-plaintext highlighter-rouge">'vc-md'</code>：允许cell改变的md。</p> <h1 id="自洽计算-scf">自洽计算 scf</h1> <h3 id="输入文件">输入文件</h3> <p>在 QE 的输入文件中，有 <code class="language-plaintext highlighter-rouge">NAMELISTS</code> 和 <code class="language-plaintext highlighter-rouge">INPUT_CARDS</code>。</p> <p><code class="language-plaintext highlighter-rouge">PWscf</code> 中有三个强制 <code class="language-plaintext highlighter-rouge">NAMELISTS</code>：</p> <ol> <li> <code class="language-plaintext highlighter-rouge">&amp;CONTROL</code>：指定计算流，</li> <li> <code class="language-plaintext highlighter-rouge">&amp;SYSTEM</code>：指定系统，</li> <li> <code class="language-plaintext highlighter-rouge">&amp;ELECTRONS</code>：指定用于求解 Kohn-Sham 方程的算法。</li> </ol> <p>还有另外两个 <code class="language-plaintext highlighter-rouge">NAMELISTS</code>：<code class="language-plaintext highlighter-rouge">&amp;IONS</code> 和 <code class="language-plaintext highlighter-rouge">&amp;CELLS</code>，需要根据计算指定。</p> <p><code class="language-plaintext highlighter-rouge">PWscf</code> 中的三个 <code class="language-plaintext highlighter-rouge">INPUT_CARDS</code>：<code class="language-plaintext highlighter-rouge">ATOMIC_SPECIES</code>、<code class="language-plaintext highlighter-rouge">ATOMIC_POSITIONS</code> 和 <code class="language-plaintext highlighter-rouge">K_POINTS</code> 是必需的。 在某些计算中还必须提供其他一些信息。</p> <p><strong>示例：单晶硅的自洽计算 pw.scf.silicon.in</strong></p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;CONTROL
+<span class="nv">calculation</span><span class="o">=</span><span class="s1">'scf'</span>,   <span class="c"># self-consistent field 进行自洽计算</span>
+<span class="nv">prefix</span><span class="o">=</span><span class="s1">'silicon'</span>,   <span class="c"># 输出文件的前缀</span>
+<span class="nv">pseudo_dir</span><span class="o">=</span><span class="s1">'./pseudo/'</span>,   <span class="c"># 存放赝势的文件夹</span>
+<span class="nv">outdir</span><span class="o">=</span><span class="s1">'./out/'</span>,   <span class="c"># 指向输出文件的文件夹</span>
+/
+&amp;SYSTEM
+<span class="nv">ibrav</span><span class="o">=</span>2,   <span class="c"># 布拉维晶格类型 FCC结构</span>
+celldm<span class="o">(</span>1<span class="o">)=</span>10.2625,   <span class="c"># 晶格常数 （单位为波尔，1波尔=0.529A）</span>
+<span class="nv">nat</span><span class="o">=</span>2,   <span class="c"># 结构内原子个数</span>
+<span class="nv">ntyp</span><span class="o">=</span>1,   <span class="c"># 结构内原子种类数</span>
+<span class="nv">ecutwfc</span><span class="o">=</span>60.0,   <span class="c"># 波函数截断能 （单位为里德伯格，1Ry = 13.606 eV）</span>
+<span class="nv">ecutrho</span><span class="o">=</span>720.0,   <span class="c"># 电荷密度截断能</span>
+<span class="o">!</span> occupations <span class="o">=</span> <span class="s1">'smearing'</span>, smearing <span class="o">=</span> <span class="s1">'gauss'</span>, degauss <span class="o">=</span> 1.0d-9 <span class="c"># 高斯展宽</span>
+/
+&amp;ELECTRONS
+<span class="nv">mixing_beta</span><span class="o">=</span>0.7,   <span class="c"># 自洽计算过程中前后电荷密度混合比，默认0.7</span>
+<span class="nv">conv_thr</span><span class="o">=</span>1d-8,   <span class="c"># 自洽收敛阙值，默认为1d-6</span>
+/
+ATOMIC_SPECIES
+SI 28.0855 Si.pbe-rrkj.UPF   <span class="c"># 赝势</span>
+ATOMIC_POSITIONS <span class="o">(</span>alat<span class="o">)</span>   <span class="c"># 原子位置（alat 表示采用分子坐标）</span>
+Si 0.00 0.00 0.00
+Si 0.25 0.25 0.25
+K_POINTS automatic  <span class="c"># K点自动分布</span>
+4 4 4 1 1 1
+</code></pre></div></div> <ul> <li> <code class="language-plaintext highlighter-rouge">ibrav</code> - 取值 1-14 对应 14 个布拉维晶格，0对应自由晶格</li> <li> <code class="language-plaintext highlighter-rouge">ecutwfc</code> - 波函数截断能，选择不同的赝势，会有对应的建议值。</li> <li> <code class="language-plaintext highlighter-rouge">ecutrho</code> - 电荷密度截断能，与 ecutwfc 大小相关</li> <li>赝势为 NC ，该值为 ecutwfc 的 4 倍</li> <li>赝势为 US，该值为 ecutwfc 的 8-12 倍</li> <li>赝势为 PAW，该值为 ecutwfc 的 4 倍</li> <li> <code class="language-plaintext highlighter-rouge">mixing</code> - 自洽计算过程中前后电荷密度混合比，默认0.7</li> <li> <code class="language-plaintext highlighter-rouge">conv_thr</code> - 自洽收敛阙值，默认1d-6</li> <li>文件保存为 <code class="language-plaintext highlighter-rouge">pw.scf.silicon.in</code> </li> <li>建议设置 <code class="language-plaintext highlighter-rouge">occupations='smearing',smearing='gaussian'</code>，使用高斯展宽。高斯展宽对导体和绝缘体是通用的，对于不同的材料调整degauss的值：（1）对于有带隙的材料，<code class="language-plaintext highlighter-rouge">degauss=1d-9</code>，也就是接近0就可以；（2）对于没有带隙的导体材料，<code class="language-plaintext highlighter-rouge">degauss</code> 从小尝试到大。</li> </ul> <p>必须阅读 <a href="https://www.quantum-espresso.org/Doc/INPUT_PW.html" rel="external nofollow noopener" target="_blank"><strong>PWscf user manual</strong></a> 才能深入理解自洽计算的输入文件。</p> <p>https://www.quantum-espresso.org/Doc/INPUT_PW.html</p> <h3 id="运行">运行</h3> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 pw.x <span class="nt">-inp</span> pw.scf.silicon.in <span class="o">&gt;</span> pw.scf.silicon.out
+</code></pre></div></div> <h3 id="输出文件">输出文件</h3> <p>现在让我们看看输出文件 <code class="language-plaintext highlighter-rouge">pw.scf.silicon.out</code> 并看看如何达到收敛：</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">grep</span> <span class="nt">-e</span> <span class="s1">'total energy'</span> <span class="nt">-e</span> estimate pw.scf.silicon.out
+</code></pre></div></div> <p>之后我们会看到：</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Self-consistent Calculation
+
+iteration <span class="c">#  1     ecut=    16.00 Ry     beta= 0.70</span>
+Davidson diagonalization with overlap
+ethr <span class="o">=</span>  1.00E-02,  avg <span class="c"># of iterations =  2.0</span>
+Threshold <span class="o">(</span>ethr<span class="o">)</span> on eigenvalues was too large:
+Diagonalizing with lowered threshold
+Davidson diagonalization with overlap
+ethr <span class="o">=</span>  6.93E-04,  avg <span class="c"># of iterations =  1.0</span>
+total cpu <span class="nb">time </span>spent up to now is        0.3 secs
+total energy              <span class="o">=</span>     <span class="nt">-15</span>.83539933 Ry
+estimated scf accuracy    &lt;       0.06071141 Ry
+
+iteration <span class="c">#  2     ecut=    16.00 Ry     beta= 0.70</span>
+Davidson diagonalization with overlap
+ethr <span class="o">=</span>  7.59E-04,  avg <span class="c"># of iterations =  1.0</span>
+total cpu <span class="nb">time </span>spent up to now is        0.4 secs
+total energy              <span class="o">=</span>     <span class="nt">-15</span>.83851631 Ry
+estimated scf accuracy    &lt;       0.00218630 Ry
+
+iteration <span class="c">#  3     ecut=    16.00 Ry     beta= 0.70</span>
+Davidson diagonalization with overlap
+ethr <span class="o">=</span>  2.73E-05,  avg <span class="c"># of iterations =  2.3</span>
+total cpu <span class="nb">time </span>spent up to now is        0.4 secs
+total energy              <span class="o">=</span>     <span class="nt">-15</span>.83897965 Ry
+estimated scf accuracy    &lt;       0.00007075 Ry
+
+iteration <span class="c">#  4     ecut=    16.00 Ry     beta= 0.70</span>
+Davidson diagonalization with overlap
+ethr <span class="o">=</span>  8.84E-07,  avg <span class="c"># of iterations =  2.6</span>
+total cpu <span class="nb">time </span>spent up to now is        0.4 secs
+total energy              <span class="o">=</span>     <span class="nt">-15</span>.83900178 Ry
+estimated scf accuracy    &lt;       0.00000211 Ry
+
+iteration <span class="c">#  5     ecut=    16.00 Ry     beta= 0.70</span>
+Davidson diagonalization with overlap
+ethr <span class="o">=</span>  2.64E-08,  avg <span class="c"># of iterations =  3.6</span>
+total cpu <span class="nb">time </span>spent up to now is        0.4 secs
+total energy              <span class="o">=</span>     <span class="nt">-15</span>.83900299 Ry
+estimated scf accuracy    &lt;       0.00000012 Ry
+
+iteration <span class="c">#  6     ecut=    16.00 Ry     beta= 0.70</span>
+Davidson diagonalization with overlap
+ethr <span class="o">=</span>  1.46E-09,  avg <span class="c"># of iterations =  2.7</span>
+total cpu <span class="nb">time </span>spent up to now is        0.4 secs
+
+End of self-consistent calculation
+</code></pre></div></div> <p>值得注意的是，DFT <strong>总能量</strong>的绝对值并不相对于真空参考，而是取决于所选的赝势。</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">!</span>    total energy              <span class="o">=</span>     <span class="nt">-15</span>.83900302 Ry
+     estimated scf accuracy    &lt;          3.2E-10 Ry
+
+     The total energy is the <span class="nb">sum </span>of the following terms:
+     one-electron contribution <span class="o">=</span>       4.79863652 Ry
+     hartree contribution      <span class="o">=</span>       1.07565897 Ry
+     xc contribution           <span class="o">=</span>      <span class="nt">-4</span>.81353993 Ry
+     ewald contribution        <span class="o">=</span>     <span class="nt">-16</span>.89975858 Ry
+
+     convergence has been achieved <span class="k">in   </span>6 iterations
+</code></pre></div></div> <p>Tips</p> <ul> <li>减少 <code class="language-plaintext highlighter-rouge">mixing_beta</code> 值，特别是当收敛能量周围存在振荡时。</li> <li>增加能量和电荷密度截止值（确保它们足够）。</li> <li>某些伪势文件有问题，可以尝试使用不同库中的伪势。</li> <li> <code class="language-plaintext highlighter-rouge">conv_thr</code> 的建议值： <ul> <li>能量和特征值（scf 计算）1.0d-7 Ry</li> <li>受力（relax 计算）1.0e-8 Ry</li> <li>应力（vc-relax 计算）1.0d-9 Ry</li> </ul> </li> <li>能量和特征值（scf 计算）1.0d-7</li> </ul> <p>输出文件上还打印了其他几个重要信息。</p> <p>计算中使用的<strong>交换相关性</strong>：</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Exchange-correlation<span class="o">=</span> SLA  PZ   NOGX NOGC
+</code></pre></div></div> <p>其中 <code class="language-plaintext highlighter-rouge">SLA</code> — Slater交换； <code class="language-plaintext highlighter-rouge">PZ</code> — LDA 的 Perdew-Zunger 参数化； <code class="language-plaintext highlighter-rouge">NOGX</code> 和 <code class="language-plaintext highlighter-rouge">NOGC</code> 表示不考虑密度梯度。</p> <p>计算中使用的<strong>平面波总数</strong> (1067)：</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Parallelization info
+<span class="nt">--------------------</span>
+sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+Min         108     108     34                 1489     1489     266
+Max         109     109     35                 1492     1492     267
+Sum         433     433    139                 5961     5961    1067
+</code></pre></div></div> <p><strong>Kohn-Sham 态的数量</strong>：</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>number of electrons       <span class="o">=</span>         8.00
+number of Kohn-Sham <span class="nv">states</span><span class="o">=</span>            8
+</code></pre></div></div> </body></html>
