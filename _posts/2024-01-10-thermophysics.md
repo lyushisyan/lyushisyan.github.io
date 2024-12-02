@@ -1,277 +1,261 @@
 ---
 layout: post
-title: Microscopic Description of Thermal Physics
+title: 热物理学的微观描述
 date: 2024-01-01 00:32:13
-description: Looking at thermal physics from the perspective of microscopic charge carriers.
-tags: physics theory
-categories: study
+tags: 热物理
+categories: 理论
 tabs: true
 ---
 
-The macroscopic energy conservation equation in heat transfer describes the storage, transfer (thermal conduction $$k$$, thermal convection $$u$$, and thermal radiation $$r$$), and conversion of thermal energy with other forms of energy.
+传热学中的宏观能量守恒方程描述热能的储存、传输（热传导 $$k$$、热对流 $$u$$ 和热辐射 $$r$$）以及与其他形式的能量之间的转换。
 
-1. **Energy Conservation**:
+## 1. **能量守恒**
 
 $$
 \nabla\cdot \boldsymbol q=-\rho c_p\frac{\partial T}{\partial t}+\sum_{i,j}\dot s_{i-j},
 \nabla\cdot \boldsymbol q=\frac{\int_{\Delta A}(\boldsymbol q\cdot\boldsymbol s_{\boldsymbol n})dA}{\Delta V \to 0}
 $$
 
-Here, $\rho c_p\frac{\partial T}{\partial t}$ is referred to as sensible heat storage, and $\dot s_{i-j}$ represents the energy conversion rate of thermal energy, determined by the nature and frequency of interactions between energy carriers $i$ and $j$.
+其中，$$\rho c_p\frac{\partial T}{\partial t}$$ 被称为显热储存，$$\dot s_{i-j}$$ 为热能的能量转换速率，由能量载流子 $$i$$ 和 $$j$$ 之间相互作用的性质和频率决定。
 
-1. **Heat Flux Vector**:
+### 2. **热流矢量**
 
 $$
 \boldsymbol q = \boldsymbol q_k + \boldsymbol q_u + \boldsymbol q_r
 $$
 
-The heat flux vector $\boldsymbol q$ is the sum of conductive, convective, and radiative heat flux vectors.
+热流矢量 $$\boldsymbol q$$ 是传导、对流和辐射热流矢量之和。
 
-**Conductive Heat Flux Vector**:
 $$
 \boldsymbol q_k = -k\nabla T
 $$
 
-The conductive heat flux vector $\boldsymbol q_k$ is the negative product of the thermal conductivity $k$ and the temperature gradient $\nabla T$, which follows Fourier's law of heat conduction.
+**传导热流矢量** $$\boldsymbol q_k$$ 是热导率 $$k$$ 与温度梯度 $$\nabla T$$ 乘积的负数，即傅立叶传导定律。
 
-**Convective Heat Flux Vector**:
 $$
 \boldsymbol q_u = \rho c_p\boldsymbol u T
 $$
 
-The convective heat flux vector $\boldsymbol q_u$ is the product of $\rho c_p$, the local velocity vector $\boldsymbol u$, and the temperature $T$.
+**对流热流矢量** $$\boldsymbol q_u$$ 是 $$\rho c_p$$、局部速度矢量 $$\boldsymbol u$$ 和温度 $$T$$ 的乘积。
 
-**Radiative Heat Flux Vector**:
 $$
 \boldsymbol q_r  = 2\pi\int_0^\infty\int_{-1}^1\boldsymbol s I_{ph,\omega}d\mu d\omega
 $$
 
-The radiative heat flux vector $\boldsymbol q_r$ is the spatial and spectral integral of the product of the unit vector $\boldsymbol s$ and the directional spectral radiative intensity $I_{ph,\omega}$.
+**辐射热流矢量** $$\boldsymbol q_r$$ 是对单位矢量 $$\boldsymbol s$$ 与电磁谱的定向辐射强度 $$I_{ph,\omega}$$ 乘积在空间上和电磁谱上的积分。
 
-## Main Energy Carriers
+## 主要的能量载流子
 
-The four main energy carriers are **phonons** ($p$), **electrons** ($e$), **fluid particles** ($f$), and **photons** ($ph$). These carriers form the microscopic model for the storage, transfer, and interaction of thermal energy.
+四种能量载流子，即：**声子** ($$p$$)、**电子** ($$e$$)、**流体粒子** ($$f$$) 和**光子** ($$ph$$)，构建了热能存储、传输和相互作用的微观模型。
 
-### 1. Phonons
+### 1. 声子
 
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/blog/thermophysics_1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+<div class="row">
+    <div class="col-md-12 text-center">
+        {% include figure.liquid loading="eager" path="assets/img/blog/thermophysics_1.png" class="img-fluid rounded z-depth-1" zoomable=true style="width: 50%;" %}
     </div>
 </div>
 
-- Phonons are quantized vibrational modes occurring in rigid atomic lattices.
-- The properties of long-wavelength phonons result in the generation of sound in solids, hence the name "phonons."
-- Phonons determine many physical properties of materials, including heat capacity and thermal/electrical conductivity (the propagation of phonons governs heat conduction in insulators).
-- In classical mechanics, any lattice vibration can be decomposed into a superposition of non-localized normal vibrational modes.
-- When these modes are analyzed using quantum mechanics, they exhibit particle-like properties (wave-particle duality). Thus, phonons are **quasiparticles**.
-- When treated as particles, phonons are **bosons** with zero spin. The phonon energy $E_p = \hbar\omega_p$ is the sum of its potential and kinetic energy, where $\hbar = h/2\pi$ and $h$ is Planck's constant.
-- Phonons are categorized into two types: **acoustic phonons** (denoted A) and **optical phonons** (denoted O).
-  - **Acoustic phonons** have frequencies that decrease with increasing wavelength, corresponding to sound waves in the lattice. **Longitudinal** and **transverse** acoustic phonons are usually abbreviated as LA and TA, respectively.
-  - **Optical phonons** occur in lattices with multiple atoms per unit cell. They are called "optical" because they can be easily excited by light in ionic crystals. Optical phonons are typically abbreviated as LO and TO, representing **longitudinal** and **transverse** types, respectively.
+- 声子是刚性原子晶格中发生的量子化振动模式。
+- 长波长声子的特性导致固体中产生声音，因此得名声子。
+- 声子决定了材料的许多物理特性，包括热容量和热/电导率（声子的传播负责绝缘体中的热传导）。
+- 在经典力学中，晶格的任何振动都可以分解为非局域简正振动模式的叠加。
+- 当使用量子力学分析这些模式时，发现它们具有一些类似粒子的特性（波粒二象性）。因此，声子是一种**准粒子**。
+- 当声子被视为粒子时，声子被称为**玻色子**，具有零自旋。声子能量 $$E_p=\hbar\omega_p$$ 是其势能和动能的总和，其中 $$\hbar= h/2\pi$$，$$h$$ 是普朗克常数。
+- 声子有两种类型：**声学声子**，用 $$A$$ 表示，**光学声子**，用 $$O$$ 表示。
+- 声学声子的频率随着波长的增加而变小，对应于晶格中的声波。**纵向**声子和**横向**声子通常分别缩写为 $$LA$$ 和 $$TA$$。
+- 光学声子出现在一个晶胞含有多个原子的晶格中。它们之所以被称为光学的，是因为在离子晶体中很容易被光激发。光学声子通常缩写为 $$LO$$ 和 $$TO$$，分别表示**纵向**和**横向**类型。
 
+### 电子
 
-### Electrons
-
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/blog/thermophysics_2.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+<div class="row">
+    <div class="col-md-12 text-center">
+        {% include figure.liquid loading="eager" path="assets/img/blog/thermophysics_2.png" class="img-fluid rounded z-depth-1" zoomable=true style="width: 50%;" %}
     </div>
 </div>
 
-- Electrons are negatively charged **subatomic particles**. Electrons have a spin of 1/2 and are classified as **fermions**.
-- The antiparticle of the electron is the **positron**, which has the same charge, mass, and spin magnitude as the electron but an opposite charge polarity.
-- Electrons exhibit both particle and wave characteristics and are therefore considered **quasiparticles**. Electrons bound to atomic nuclei behave as **standing waves** and can be observed.
-- In solids, electrons are categorized into core and valence electrons:
-  - **Core electrons** do not participate in bonding and are considered to always move with the nucleus.
-  - **Valence electrons** are further divided into conduction (or free) electrons and **bonding electrons**.
-- In quantum mechanics, electrons are described by the **Dirac equation**.
-- Generally, an electron's energy consists of **potential energy** (associated with bond energy) and **kinetic energy** (associated with velocity).
+- 电子是带负电的**亚原子粒子**。电子的自旋为 $$1/2$$，是**费米子**。
+- 电子的反粒子是**正电子**。正电子与电子具有相同数量的电荷、质量和自旋，只是电荷是相反的。
+- 电子可以表现出粒子和波的特性，因此可以被视为**准粒子**。与原子核结合的电子表现为**驻波**，可以被观测到。
+- 固体中的电子分为核心电子和外层电子。核心电子不参与键合，并且被认为始终与原子核一起移动。
+- 外层电子距离原子核较远，又分为传导（或自由）电子和**价电子**。
+- 在量子力学中，电子由**狄拉克方程**描述。
+- 一般情况下，电子的能量分为势能（用键能表示）和动能（用速度表示）。
 
+### 流体粒子
 
-### Fluid Particles
-
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/blog/thermophysics_3.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+<div class="row">
+    <div class="col-md-12 text-center">
+        {% include figure.liquid loading="eager" path="assets/img/blog/thermophysics_3.png" class="img-fluid rounded z-depth-1" zoomable=true style="width: 50%;" %}
     </div>
 </div>
 
-- Gases and liquids are composed of atoms or molecules, broadly referred to as **fluid particles**. Fluid particles can be neutral or charged and are in constant **random motion**.
-- The energy of fluid particles includes potential energy, electronic energy, and kinetic energy.
-- In **ideal gases**, collisions between particles are **elastic**, and the intermolecular attractive forces can be neglected.
-- For ideal gases, the Maxwell-Boltzmann distribution can be derived using statistical mechanics (along with concepts of energy distribution and symmetry).
-- Liquid particles have sufficient kinetic energy to stretch intermolecular forces but cannot completely overcome them (thus, liquids have densities close to those of solids). As the temperature of a liquid increases, its velocity increases, and the kinetic energy becomes large enough to overcome all intermolecular forces, allowing particles to move freely and transition into the gas phase.
+- 气体和液体由原子或分子（广义上称为流体粒子）组成。流体粒子可以是中性的或带电的，一直处于**随机运动**中。
+- 流体粒子的能量分为势能、电子能和动能。
+- 在**理想气体**中，气体粒子之间的碰撞是**弹性**的并且粒子之间的吸引力可以忽略不计。
+- 对于理想气体，麦克斯韦-玻尔兹曼分布可以通过使用统计力学（以及能量分配和对称性的概念）来导出。
+- 液体粒子具有足够的动能来拉伸粒子间吸引力，但不能完全克服它们（因此液体的密度接近固体）。当液体温度升高时，液体的速度增加。动能变大，以至于粒子克服了所有分子间力并自由移动，从而变成了气体。
 
+### 光子
 
-### Photons
-
-<div class="row mt-3">
-    <div class="col-sm-6 mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/blog/thermophysics_4.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+<div class="row">
+    <div class="col-md-12 text-center">
+        {% include figure.liquid loading="eager" path="assets/img/blog/thermophysics_4.png" class="img-fluid rounded z-depth-1" zoomable=true style="width: 50%;" %}
     </div>
 </div>
 
-- Photons are quantized excitations of the electromagnetic field and fundamental particles in quantum electrodynamics. They are part of the Standard Model of particle physics.
-- According to quantum mechanics, photons exhibit wave-like properties.
-- Photons have **zero rest mass** but finite and well-defined energy. Due to their energy, photons are influenced by gravity, as predicted by general relativity.
-- Photons have a spin of 1 and are classified as **bosons**. Individual photons are circularly polarized due to their unit spin.
-- In general, an electromagnetic field consists of **plane monochromatic waves** with a frequency $f_{ph}$ (angular frequency $\omega_{ph} = 2\pi f_{ph}$), wavelength $\lambda_{ph}$, and speed $u_{ph}$.
-- The quantum nature of electromagnetic waves is given by their energy $E_{ph} = \hbar \omega_{ph}$. Photons also have momentum $\boldsymbol p_{ph} = \hbar \boldsymbol\kappa_{ph}$, where $\boldsymbol\kappa_{ph}$ is the wave vector.
-- In a vacuum, the dispersion relation (the relationship between angular frequency and wave vector) for photons is linear, with the proportionality constant being the **Planck constant**.
-- For excitations in matter, the dispersion relation becomes nonlinear, and the momentum is no longer proportional to energy. Thus, these particles propagate in a vacuum at speeds slower than the speed of light.
+- 光子是电磁场激发的量子，也是量子电动力学中的基本粒子，是粒子物理学标准模型的一部分。
+- 根据量子力学，光子具有波的特性。
+- 光子的**静止质量**为零，但能量是确定且有限的。由于光子具有能量，广义相对论指出它们受到重力的影响。
+- 光子的自旋为 1，是**玻色子**。单个光子由于其单位自旋而被圆偏振。
+- 一般来说，电磁场由频率为 $$f_{ph}$$（角频率 $$\omega_{ph}=2\pi f_{ph}$$）、波长 $$\lambda_{ph}$$ 和速度 $$u_{ph}$$ 的**平面单色波**组成。
+- 电磁波的量子特性由其能量 $$E_{ph} = \hbar \omega_{ph}$$ 给出。光子还具有动量 $$\boldsymbol p_{ph} = \hbar \boldsymbol\kappa_{ph}$$ ，其中 $$\boldsymbol\kappa_{ph}$$ 是波矢。
+- 在真空中，光子的色散关系（角频率与波矢量之间的关系）是线性的，这个比例就是**普朗克常数**。
+- 物质激发具有非线性色散关系，其动量与其能量不成正比。因此，这些粒子在真空中的传播速度比光速慢。
 
-## Energy Distribution Functions
+## 能量分布函数
 
-In a system composed of multiple particles, the observed **macroscopic state** (ensemble average) is related to the probabilities of each microscopic state (described by energy distribution functions) and the **microscopic state** (position and momentum) of each particle.
+在由多个粒子组成的系统中，观察到的**宏观状态**（系综平均值）通过每个微观状态存在的概率（能量分布函数）与每个粒子的**微观状态**（位置和动量）相关。
 
 $$
 \left \langle \phi \right \rangle=\sum_if_i\phi_i
 $$
 
-Probability distribution functions are used to determine the energy and transport properties of carriers.
+概率分布函数用于确定载流子能量及其传输特性。
 
-These particle probability distribution functions allow us to describe the temperature dependence of the heat capacity of lattices (phonons) and electrons, the relationship between temperature and kinetic energy in gases, and the blackbody radiation of photons.
+这些粒子概率分布函数使我们能够描述晶格（声子）和电子比热容的温度依赖性、温度和气体动能之间的关系以及光子的黑体热发射。
 
-The equilibrium probability distribution function $f_i^0$ represents the most probable distribution of microscopic states under undisturbed conditions.
+平衡概率分布函数 $$f_i^0$$ 给出了零扰动下微观状态的最可能分布。
 
-- **Bose-Einstein Distribution** (phonons, photons):
-  $$
-  f_i^0 = \frac{1}{\exp(\frac{E_i}{k_\text BT})-1}
-  $$
+- **玻色-爱因斯坦分布** (声子，光子)
 
-- **Fermi-Dirac Distribution** (electrons):
-  $$
-  f_i^0 = \frac{1}{\exp(\frac{E_i-\mu}{k_\text BT})+1}
-  $$
+$$
+f_i^0 = \frac{1}{\exp(\frac{E_i}{k_\text BT})-1}
+$$
 
-- **Maxwell-Boltzmann Distribution** (ideal gas molecules):
-  $$
-  f_i^0 = \frac{1}{\exp(\frac{E_i}{k_\text BT})}
-  $$
+- **费米-狄拉克分布** (电子)
 
-Deviations from equilibrium distributions are used to analyze the transport properties of these carriers, which is the foundation of **Boltzmann transport theory**.
+$$
+f_i^0 = \frac{1}{\exp(\frac{E_i-\mu}{k_\text BT})+1}
+$$
 
+- **麦克斯韦-玻尔兹曼分布** (理想气体分子)
 
-## Particles, Waves, and Quasiparticles
+$$
+f_i^0 = \frac{1}{\exp(\frac{E_i}{k_\text BT})}
+$$
 
-### Particles
+与平衡分布的偏差被用于这些载流子的输运性质，即**玻尔兹曼输运理论**。
 
-Particles are **discrete** entities. Their energy is localized in a finite region with well-defined boundaries. Particles exist at specific locations, and to reach different points in space, they must move according to the laws of kinematics.
+## 粒子、波 和 准粒子
 
-Interactions between particles follow simple laws, such as conservation of energy and momentum in elastic collisions. Particles without interactions are referred to as ballistic particles.
+### 粒子
 
-### Waves
+粒子是**离散**的。它们的能量集中在有明确边界的有限空间中。粒子存在于特定位置，为了到达空间中的不同点，粒子必须根据运动学定律移动。
 
-Waves cannot be considered finite entities. Their energy is distributed over space and time. Waves propagate until they occupy all positions. The phase of a wave can be analyzed to determine its velocity in space. Waves are characterized by frequency and wavelength.
+粒子之间的相互作用遵循简单的定律，例如弹性碰撞情况下的能量和动量守恒定律。当没有相互作用时，粒子被称为弹道粒子。
 
-### Quasiparticles
+### 波
 
-Quasiparticles (including phonons, electrons, and photons) exhibit both particle-like and wave-like properties. They can be described using wave packets, which are localized energy distributions formed by the superposition of many plane waves of different wavelengths.
+波不能被视为有限实体。它们的能量分布在空间和时间上。波可以传播直到它存在于所有位置。可以分析波的相位以确定其在空间中的速度。波由频率和波长指定。
 
-In a sense, they are simultaneously both particles and waves, a concept known as **wave-particle duality**.
+### 准粒子
 
-For quasiparticles, the classical distinction between particles and waves may become blurred. Their behavior can be partially described using wave theory and partially using particle theory.
+准粒子（包括声子、电子和光子）同时具有粒子和波的性质，可以用波包来描述，即由许多不同波长的平面波叠加而成的能量局域化。
 
+从某种意义上说，它们同时既是粒子又是波，这个概念被称为**波粒二象性**。
 
-## Contributions to Heat Transfer Physics
+对于准粒子，粒子和波之间的经典区别可能变得模糊。它们的行为部分根据波动理论，部分根据粒子理论。
 
-Heat is a form of energy manifested as the motion of particles in matter. It can be transferred from one body to another through **conduction** (via phonons, electrons, and fluid particles), **convection** (via fluid particles), and **radiation** (via photons).
+## 对传热物理学的贡献
 
-The fields most closely related to heat transfer physics include:
-- Atomic/molecular dynamics,
-- Solid-state (condensed matter) and fluid-state physics,
-- Electromagnetism,
-- Quantum optics.
+热是能量的一种形式，表现为物质分子的运动，能够通过**传导**（通过声子、电子和流体粒子）、**对流**（通过流体粒子）和**辐射**（通过光子）从一个物体传递到另一个物体。
 
-- **Boltzmann** proposed that heat capacity, entropy, and other thermodynamic properties are the result of the behavior of large numbers of atoms, which can be treated using mechanics and statistics. He introduced the Boltzmann constant $k_B$ and, together with Maxwell, proposed the **equipartition theorem**.
-- **Maxwell** developed the electromagnetic theory of light and made significant contributions to kinetic theory, molecular physics, and thermodynamics.
-- **Planck** discovered that energy exists in **discrete** forms, later called "quanta." He hypothesized that the energy absorbed or emitted by a body must be in multiples of $h\nu$, where $\nu$ is the frequency of the photon.
-- **Bohr**, while studying the simplest atomic hydrogen spectrum, proposed that an atom can only absorb and emit **quantized energy** corresponding to the differences between energy levels.
-- **Pauli** formulated the rules governing atomic structure (commonly known as the **Pauli exclusion principle**), stating that no two or more electrons in a single atom can occupy the exact same quantum state.
-- The **Schrödinger equation** describes the probabilistic wave (or **wave function**) governing the motion of small particles and specifies how these waves are affected by external influences. These wave functions form the basis of **quantum wave mechanics**.
-- **Fermi** developed a method for calculating the behavior of particle systems obeying the Pauli exclusion principle, later known as **Fermi statistics**. **Dirac** independently developed an equivalent theory.
-- **Green** and **Kubo** developed the **fluctuation-dissipation theorem** for transport coefficients.
-- **Ziman** applied variational methods to study nonequilibrium phonon transport properties.
-- **Callaway** and **Holland** formulated (and solved) the **single-mode relaxation time model** for lattice thermal conductivity.
+与热物理学最相关的物理学领域有：
+- 原子/分子动力学；
+- 固态（凝聚态）和流体态物理学；
+- 电磁学；
+- 量子光学。
 
-## Fundamental Constants and Fine Structure Scale
+- **玻尔兹曼**提出：热容、熵和其他热力学性质是大量原子行为的结果，可以用力学和统计学来处理。他引入了玻尔兹曼常数 $$k_B$$，并与麦克斯韦一起提出了**能量均分定律**。
+- **麦克斯韦**创立了光的电磁理论，还对气体动力学理论、分子物理学和热力学做出了贡献。
+- **普朗克**发现能量以**离散**的形式存在，后来被称为“量子”。他假设允许物体吸收或发射的能量是有选择性的，必须为 $$h\nu$$ 的倍数，其中 $$\nu$$ 是光子频率。
+- **玻耳**在研究最简单的原子氢线谱时，假设原子只能吸收和发射对应于能级之间的能量差的**量子能量**。
+- **泡利**阐述了原子结构的规则（通常称为**泡利不相容原理**），单个原子中不能有两个或两个以上的电子处于完全相同的状态。
+- **薛定谔**方程描述了控制小粒子运动的概率波（或**波函数**）的形式，并指定了这些波如何受到外部影响的改变。这些波函数奠定了**量子波力学**的基础。
+- **费米**设计了一种计算遵循泡利不相容原理的粒子系统行为的方法，后来称为**费米统计**。狄拉克独立发展了等效理论。
+- **Green 和 Kubo** 发展了输运系数的**波动耗散理论**。
+- **Ziman** 对非平衡声子输运特性进行了变分处理。
+- **Callaway 和 Holland** 制定（并求解）了晶格热导率的**单模弛豫时间模型**。
 
-### Boltzmann Constant
+## 基本常数和精细结构尺度
+
+### 玻尔兹曼常数
 
 $$
 k_\text B=1.38065\times10^{-23} ~ \text J/\text K
 $$
 
-The Boltzmann constant is defined as the relationship between the average thermal energy of energy carriers (phonons, electrons, photons, or fluid particles) and their absolute temperature $T$.
+定义为能量载流子（声子、电子、光子或流体粒子）的平均热能与其绝对温度 $$T$$ 之间的关系。
 
-When energy carriers are treated as particles, this thermal energy $k_\text BT$ is used to normalize the energy of the carriers.
+当能量载流子被视为粒子时，该热能 $$k_\text BT$$ 用于归一化能量载流子的能量。
 
-In statistical mechanics, the entropy $S$ of a system with $N$ particles is defined as:
+在统计力学中，$$N$$ 个粒子系统的熵 $$S$$ 定义为 $$S=k_\text BN\ln Z$$。这里，$$Z$$ 称为配分函数，它是描述系统在给定宏观约束的情况下可用能态分布的概率函数。
 
-$$
-S=k_\text BN\ln Z
-$$
+在动力学理论中，根据能量均分，为每个运动度分配一个等于 $$k_\text BT/2$$ 的能量。
 
-where $Z$ is the partition function, which describes the probability distribution of available energy states under given macroscopic constraints.
-
-In dynamical theory, based on the equipartition of energy, each degree of freedom is assigned an energy of $k_\text BT/2$.
-
-
-### Planck Constant
+### 普朗克常数
 
 $$
-h=6.626069\times10^{-34} ~ \text J\cdot \text s
+h=6.626069\times10^{−34} ~ \text J\cdot \text s
 $$
 
-According to quantum mechanics, the energy of an object is the product of its frequency $\nu$ and $h$.
+遵循量子力学，物体内的能量是其频率 $$\nu$$ 和 $$h$$ 的乘积。
 
-The reduced Planck constant (also known as the Dirac constant) is:
+约化的普朗克常数（也称为狄拉克常数）为 $$\hbar = h/2\pi$$。
+
+普朗克常数用于描述量子化，主要能量载体的某些物理属性以固定量出现，而不是连续范围的值。
+
+普朗克常数也出现在海森堡不确定性原理的陈述中，任何位置测量的不确定性 $$\Delta x$$ 和沿同一方向的动量测量的不确定性 $$\Delta p_x$$ 遵循关系 $$\Delta p_x \Delta x \le \hbar/2$$。
+
+### 原子单位
+
+四个基本常数，约化普朗克常数 $$\hbar$$、电子质量 $$m_e$$、库仑静电常数 $$1/4\pi\varepsilon_0$$（其中 $$\varepsilon_0$$ 是自由空间介电常数）和电子电荷 $$e_c$$ 用于定义原子单位。
+
+- 原子长度：
 
 $$
-\hbar = \frac{h}{2\pi}
+r_\text B = \frac{4\pi\varepsilon_0\hbar^2}{m_e e_c^2}=5.2918\times 10^{-11}~ \text m
 $$
 
-The Planck constant is used to describe quantization, where certain physical properties of primary energy carriers appear in fixed amounts rather than a continuous range of values.
-
-The Planck constant also appears in the Heisenberg uncertainty principle, where the uncertainty in position $\Delta x$ and the uncertainty in momentum $\Delta p_x$ along the same direction are related as:
+- 原子时间：
 
 $$
-\Delta p_x \Delta x \le \frac{\hbar}{2}
+\tau_a=\frac{m_er_\text B^2}{\hbar} = 2.4189\times 10^{-17} ~ \text s
 $$
 
+- 原子能量：
 
-### Atomic Units
+$$
+\frac{e_c^2}{4\pi\varepsilon_0r_\text B}=4.3597\times10^{-18}\text J=27.211~ \text{eV}
+$$
 
-Four fundamental constants—the reduced Planck constant $\hbar$, the electron mass $m_e$, the Coulomb constant $1/4\pi\varepsilon_0$ (where $\varepsilon_0$ is the permittivity of free space), and the electron charge $e_c$—are used to define atomic units.
+- 原子速度：	
 
-- **Atomic length**:
-  $$
-  r_\text B = \frac{4\pi\varepsilon_0\hbar^2}{m_e e_c^2}=5.2918\times 10^{-11}~ \text m
-  $$
+$$
+\frac{r_\text B}{\tau_a} = 2.1877 \times 10^6~ \text m/\text s
+$$
 
-- **Atomic time**:
-  $$
-  \tau_a=\frac{m_er_\text B^2}{\hbar} = 2.4189\times 10^{-17} ~ \text s
-  $$
+- 原子偶极矩：
 
-- **Atomic energy**:
-  $$
-  \frac{e_c^2}{4\pi\varepsilon_0r_\text B}=4.3597\times10^{-18}\text J=27.211~ \text{eV}
-  $$
+$$
+e_cr_\text B=8.4783\times 10^{-30}~ \text C\cdot\text m
+$$
 
-- **Atomic velocity**:
-  $$
-  \frac{r_\text B}{\tau_a} = 2.1877 \times 10^6~ \text m/\text s
-  $$
+---
 
-- **Atomic dipole moment**:
-  $$
-  e_cr_\text B=8.4783\times 10^{-30}~ \text C\cdot\text m
-  $$
+**参考文献：**
 
+Kaviany M 《*Heat Transfer Physics*》 2008
 
-### References
-
-Kaviany M, *Heat Transfer Physics*, 2008
 
