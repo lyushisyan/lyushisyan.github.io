@@ -1,10 +1,9 @@
 ---
 layout: post
-title: Phonon dispersion calculation for Graphene using QE
+title: 使用QE计算硅的声子色散曲线
 date: 2024-05-01 00:32:13
-description: This method is based on Density Functional Perturbation Theory.
-tags: DFT tutorial
-categories: study
+tags: DFT
+categories: 方法
 tabs: true
 ---
 
