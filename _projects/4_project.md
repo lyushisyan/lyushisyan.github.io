@@ -1,7 +1,7 @@
 ---
 layout: page
-title: WTT-2024
-description: The 8th workshop on thermal transport
+title: WTT2024
+description: 2024.07.22-26
 img: assets/img/talk4/WTT-2024.png
 importance: 4
 category: talks
