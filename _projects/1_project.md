@@ -1,7 +1,7 @@
 ---
 layout: page
-title: MMMSEC-2023
-description: V International сonference "Mathematical modeling in materials science of electronic components"
+title: V-MMMSEC
+description: Time: 2023.10.23-25
 img: assets/img/talk1/MMMSEC-2023.png
 importance: 1
 category: talks
