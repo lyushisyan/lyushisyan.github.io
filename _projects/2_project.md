@@ -1,7 +1,7 @@
 ---
 layout: page
 title: SEB-2024
-description: Calculation of the thermophysical properties of graphene from first principles
+description: 6th Interacademic Conference for Graduate Students and Young Researchers "Science, Engineering and Business"
 img: assets/img/talk2/SEB-2024.png
 importance: 4
 category: talks
