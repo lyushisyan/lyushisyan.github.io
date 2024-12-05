@@ -1,7 +1,7 @@
 ---
 layout: page
-title: MIPT-2024
-description: 66th All-Russian Scientific Conference of MIPT
+title: 66-MIPT
+description: 2024.04.01-06
 img: assets/img/talk3/MIPT-2024.png
 importance: 4
 category: talks
