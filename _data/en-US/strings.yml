@@ -4,8 +4,8 @@ archive_year: an archive of posts from this year
 blog:
   navigation_title: blog
 categories:
-  fun: fun
-  work: work
+  talks: talks
+  travel: travel
 citation:
   bibtex: "or as a BibTeX entry:"
   introduction: "If you found this useful, please cite this as:"
@@ -61,10 +61,10 @@ cv:
   username: Username
   volunteer: Volunteer
   work: Work
+
 footer_text: > # the ">" symbol means to ignore newlines until "titles:"
-  Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/george-gca/multi-language-al-folio">multi-language-al-folio</a> theme.
+  Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> .
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-  Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
 latest_posts: latest posts
 months:
   long:

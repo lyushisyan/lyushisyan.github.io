@@ -1,7 +1,7 @@
 ---
 page_id: projects
 layout: page
-title: projects
+title: Moments
 permalink: /projects/
 description: Some academic conferences and important events
 nav: true

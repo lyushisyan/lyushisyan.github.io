@@ -1,0 +1,49 @@
+- title: 个人信息  
+  type: map  
+  contents:  
+    - name: 姓名  
+      value: 刘世贤  
+    - name: 出生日期  
+      value: 1998年8月23日  
+    - name: 语言  
+      value: 英语、俄语、中文  
+
+- title: 教育背景  
+  type: time_table  
+  contents:  
+    - title: 热物理学与理论热工程博士  
+      institution: 莫斯科鲍曼国立技术大学（俄罗斯莫斯科）  
+      year: 2023年至今  
+    - title: 核能与热物理学硕士  
+      institution: 莫斯科鲍曼国立技术大学（俄罗斯莫斯科）  
+      year: 2021-2023年  
+    - title: 核能与热物理学学士  
+      institution: 莫斯科动力工程学院（俄罗斯莫斯科）  
+      year: 2019-2021年  
+    - title: 核工程与核技术学士  
+      institution: 华北电力大学（中国北京）  
+      year: 2017-2021年  
+
+- title: 项目经历  
+  type: time_table  
+  contents:  
+    - title: 俄罗斯科学基金项目 22-19-00793  
+      year: 2022-2024年  
+      description: 研究水平蒸汽发生器中两相流的流体动力学，以优化其设计  
+
+- title: 荣誉与奖项  
+  type: time_table  
+  contents:  
+    - title: 优秀毕业生奖
+      year: 2023年  
+
+- title: 学术兴趣  
+  type: nested_list  
+  contents:  
+    - title: 微纳米尺度热传递  
+      items:  
+        - 密度泛函理论  
+        - 蒙特卡罗模拟  
+    - title: 相变热过程  
+      items:  
+        - 水蒸气分离模型  

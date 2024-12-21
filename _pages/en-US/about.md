@@ -1,7 +1,7 @@
 ---
 page_id: about
 layout: about
-title: about
+title: Home
 permalink: /
 subtitle: <a href='#'>Bauman Moscow State Technical University</a> 
 
