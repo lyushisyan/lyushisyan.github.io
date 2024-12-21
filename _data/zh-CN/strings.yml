@@ -64,7 +64,7 @@ cv:
 footer_text: > # ">" 符号表示忽略换行符，直到 "titles:"
  由 <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> 提供支持.
  由 <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> 托管.
-latest_posts: 最新文章
+latest_posts: 最新笔记
 months:
   long:
     january: 一月
@@ -137,4 +137,4 @@ search:
     description: 将网站主题更改为系统默认
     title: 使用系统默认主题
   theme: 主题
-selected_publications: 选定出版物
+selected_publications: 代表作
