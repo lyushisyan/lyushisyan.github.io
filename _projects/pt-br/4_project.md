@@ -1,81 +1,28 @@
 ---
-page_id: project_4
 layout: page
-title: projeto 4
-description: outro sem imagem
-img:
-importance: 3
-category: fun
+title: WTT2024
+description: 2024.07.22-26
+img: assets/img/talks/WTT-2024.png
+importance: 4
+category: talks
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+[Download presentation](https://lyushisyan.github.io/assets/pdf/talks/WTT-2024-PPT.pdf)
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+---
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+### View presentation online
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+<iframe src="https://lyushisyan.github.io/assets/pdf/talks/WTT-2024-PPT.pdf" width="100%" height="600px" style="border:none;"></iframe>
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+--- 
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+### Theoretical Model of Thermophysical Properties of Nanowires
 
-{% raw %}
+Nanowires have broad application prospects due to their unique and superior physical properties, especially in the field of micro-nanoelectronics, so studying the thermophysical properties of nanowires is necessary to predict the thermal operating conditions of microelectronic devices. A large number of studies have demonstrated the special thermophysical properties of nanowires [1, 2, 3]. In this work, several determinants affecting the thermophysical properties of nanostructures are considered: 1. Quantum confinement. We proposed a numerical algorithm [4] to solve the phonon dispersion relation in nanowires and determine the density of states of confined phonons in nanowires. Our calculations show that for diameters smaller than 20 nm, quantum confinement significantly affects the phonon state density. 2. Size effect. From a heat transfer perspective, when the feature size (nanowire diameter) is smaller than the phonon mean free path, scattering at the boundary has a decisive influence on the thermal conductivity. This phenomenon is called the size effect [5]. Boundary scattering will cause the phonon mean free path to be significantly reduced, thereby reducing the material thermal conductivity. 3. Rough surface. The surface of nanowires prepared by different methods has different roughness. Experiments have shown that the surface roughness of nanowires [3] is also an important factor affecting the thermophysical properties. To characterize the rough surface, the specular reflection parameter p and the root mean square roughness (rms) are introduced. By linking these parameters to specific experimental methods, more realistic mathematical models can be obtained.
 
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
+The results show that the heat capacity behaves like a one-dimensional material at low temperatures and like a three-dimensional material at high temperatures. We developed a set of computational tools to evaluate and predict the thermal conductivity of nanowires, taking into account variables such as temperature, diameter, and root-mean-square roughness. It was compared and verified with the experimental data of thermal conductivity of silicon nanowires with diameters of 2.0nm, 6.14nm, 37nm, 56nm and 115nm in the temperature range of 100~350K [1,2,3].
 
-{% endraw %}
+
+
