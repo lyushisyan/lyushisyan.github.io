@@ -2,9 +2,9 @@
 layout: page
 title: V-MMMSEC
 description: 2023.10.23-25
-img: assets/img/talks/MMMSEC-2023.png
+img: assets/img/talks/MMMSEC-V.png
 importance: 1
-category: 交流
+category: talks
 ---
 
 [PPT下载](https://lyushisyan.github.io/assets/pdf/talks/MMMSEC-2023-PPT.pdf)

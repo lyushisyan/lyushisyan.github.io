@@ -5,9 +5,9 @@ title: Moments
 permalink: /projects/
 description: Some academic conferences and important events
 nav: true
-nav_order: 3
+nav_order: 4
 display_categories: [talks, travel]
-horizontal: false
+horizontal: true
 ---
 
 <!-- pages/projects.md -->

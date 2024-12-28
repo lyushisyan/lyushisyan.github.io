@@ -2,7 +2,7 @@
 layout: page
 title: WTT2024
 description: 2024.07.22-26
-img: assets/img/talks/WTT-2024.png
+img: assets/img/talks/WTT-8.png
 importance: 4
 category: talks
 ---

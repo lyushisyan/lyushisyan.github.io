@@ -5,9 +5,9 @@ title: 动态
 permalink: /projects/
 description: 一些学术会议及重要活动
 nav: true
-nav_order: 3
-display_categories: [交流, 旅行]
-horizontal: false
+nav_order: 4
+display_categories: [talks, travel]
+horizontal: true
 ---
 
 <!-- pages/projects.md -->

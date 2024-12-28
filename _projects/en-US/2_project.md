@@ -2,7 +2,7 @@
 layout: page
 title: VI-SEB
 description: 2024.04.16-18
-img: assets/img/talks/SEB-2024.png
+img: assets/img/talks/SEB-VI.png
 importance: 4
 category: talks
 ---

@@ -2,9 +2,9 @@
 layout: page
 title: 66-MIPT
 description: 2024.04.01-06
-img: assets/img/talks/MIPT-2024.png
+img: assets/img/talks/MIPT-66.png
 importance: 4
-category: 交流
+category: talks
 ---
 
 [PPT下载](https://lyushisyan.github.io/assets/pdf/talks/MIPT-2024-PPT.pdf)

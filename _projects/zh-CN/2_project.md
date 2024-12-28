@@ -2,9 +2,9 @@
 layout: page
 title: VI-SEB
 description: 2024.04.16-18
-img: assets/img/talks/SEB-2024.png
+img: assets/img/talks/SEB-VI.png
 importance: 4
-category: 交流
+category: talks
 ---
 
 [PPT下载](https://lyushisyan.github.io/assets/pdf/talks/BMSTU-2024-PPT.pdf)
