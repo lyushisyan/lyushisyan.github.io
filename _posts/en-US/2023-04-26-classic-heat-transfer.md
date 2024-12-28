@@ -33,7 +33,7 @@ _styles: >
   }
 ---
 
-## Mean Free Path of Gas Molecules and Thermal Conductivity
+## Dynamic Theory of Gas Molecules
 
 Assuming the total path traveled by a molecule is $$L$$, the total volume it occupies during energy transfer is $$\pi d^2L$$ ($$d$$ being the molecular diameter). The total number of molecules in this volume is $$\pi n d^2 L$$ ($$n$$ being molecular density), so the number of collisions is $$\pi n d^2 L$$.
 
@@ -75,7 +75,7 @@ $$
 
 It is proportional to the heat capacity $$C$$, molecular velocity $$v$$, and mean free path $$\Lambda$$.
 
-## Heat Transfer in Dielectrics: Phonon Gas Thermal Conductivity
+## Heat Transfer in Dielectrics
 
 Heat transfer in dielectrics is carried by phonons, which are quanta of vibrational energy $$\hbar \omega$$. The thermal conductivity of the phonon gas can be calculated using the above formula:
 $$
@@ -101,7 +101,7 @@ $$
     </div>
 </div>
 
-## Heat Transfer in Metals: Electron Gas Thermal Conductivity
+## Heat Transfer in Metals
 
 Considering the thermal conductivity of electron gas (metals), similar to phonons:
 $$
@@ -126,7 +126,7 @@ $$
 
 The equation is meaningful if the collision term $$(\partial f/\partial t)_\text{st}$$ is known.
 
-## Thermal Conductivity: Fourier Equation
+## Fourier Equation
 
 In macroscopic systems, Fourier's law determines heat transfer in the absence of macroscopic motion:
 $$

@@ -121,11 +121,6 @@ $$
 \omega^2=c_t^2\left[\xi^2+\left(n\pi/2b\right)^2\right]
 $$
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/els-DS-SH.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
 
 ## Rayleigh-Lamb 波的色散关系
 
@@ -195,11 +190,6 @@ $$
 \frac{\tan\beta b}{\tan\alpha b} = -\frac{4\alpha\beta \xi^2}{(\xi^2-\beta^2)^2}
 $$
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/els-DS-L.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
 
 ### 反对称波
 
@@ -281,21 +271,9 @@ $$
 v_p=\frac{\omega}{k}
 $$
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/els-vp.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-
 群速度是介质中能量传递的速度：
 
 $$
 v_g=\frac{\partial\omega}{\partial k}
 $$
-
-<div class="row">
-    <div class="col-md-6 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/els-vg.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
 
