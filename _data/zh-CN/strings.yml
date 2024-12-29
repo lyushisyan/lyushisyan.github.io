@@ -3,6 +3,15 @@ archive_tag: 按照标签归档
 archive_year: 年文章归档
 blog:
   navigation_title: 博客
+  DFT calculations: DFT 计算
+  Machine learning: 机器学习
+  Monte Carlo simulations: 蒙特卡洛模拟
+  Molecular dynamics simulations: 分子动力学模拟
+  Elastic wave theory: 弹性波理论
+  Phonon physics: 声子物理
+  Thermophysics: 热物理学
+  Theory: 理论
+  Method: 方法
 categories:
   talks: 交流
   travel: 旅行

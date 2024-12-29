@@ -1,6 +1,6 @@
 ---
 layout: distill
-title: 热传递的经典动力学理论
+title: 热物理学的微观描述
 date: 2023-10-08 00:32:13
 tags: Phonon
 categories: Theory

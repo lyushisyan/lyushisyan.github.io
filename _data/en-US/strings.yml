@@ -3,6 +3,15 @@ archive_tag: an archive of posts with this tag
 archive_year: an archive of posts from this year
 blog:
   navigation_title: blog
+  DFT calculations: DFT calculations
+  Machine learning: Machine learning
+  Monte Carlo simulations: Monte Carlo simulations
+  Molecular dynamics simulations: Molecular dynamics simulations
+  Elastic wave theory: Elastic wave theory
+  Phonon physics: Phonon physics
+  Thermophysics: Thermophysics
+  Theory: 理论
+  Method: 方法
 categories:
   talks: talks
   travel: travel

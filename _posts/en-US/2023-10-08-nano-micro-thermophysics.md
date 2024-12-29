@@ -1,6 +1,6 @@
 ---
 layout: distill
-title: Classical Dynamics Theory of Heat Transfer
+title: Microscopic Description of Thermal Physics
 date: 2023-10-08 00:32:13
 tags: Phonon
 categories: Theory
