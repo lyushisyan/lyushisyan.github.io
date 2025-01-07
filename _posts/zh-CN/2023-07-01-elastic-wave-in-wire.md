@@ -2,7 +2,7 @@
 layout: distill
 title: 圆棒中的弹性波色散关系
 date: 2023-07-01 00:32:13
-tags: Wave
+tags: Elastic-wave-theory
 categories: Theory
 tabs: true
 giscus_comments: true
