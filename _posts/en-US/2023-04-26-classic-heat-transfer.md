@@ -2,7 +2,7 @@
 layout: distill
 title: Classical Dynamic Theory of Heat Transfer
 date: 2023-04-26 00:32:13
-tags: Phonon
+tags: Heat-conduction
 categories: Theory
 tabs: true
 giscus_comments: true

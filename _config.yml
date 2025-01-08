@@ -250,7 +250,7 @@ jekyll-archives:
     tag: "/blog/tag/:name/"
     category: "/blog/category/:name/"
 
-display_tags: ["DFT calculations", "Machine learning", "Monte Carlo simulations", "Molecular dynamics simulations", "Elastic wave theory", "Phonon physics", "Thermophysics"] # these tags will be displayed on the front page of your blog
+display_tags: ["DFT calculations", "Machine learning", "MC simulations", "MD simulations", "Solid State Physics", "Heat conduction"] # these tags will be displayed on the front page of your blog
 display_categories: ["Theory", "Method"] # these categories will be displayed on the front page of your blog
 
 # -----------------------------------------------------------------------------

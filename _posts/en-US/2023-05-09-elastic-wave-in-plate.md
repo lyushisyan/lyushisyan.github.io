@@ -2,7 +2,7 @@
 layout: distill
 title: Dispersion Relations of Elastic Waves in Plates
 date: 2023-05-09 00:32:13
-tags: Elastic-wave-theory
+tags: Solid-State-Physics
 categories: Theory
 tabs: true
 giscus_comments: true

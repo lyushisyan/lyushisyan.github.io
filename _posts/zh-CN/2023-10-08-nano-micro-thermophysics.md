@@ -2,7 +2,7 @@
 layout: distill
 title: 热物理学的微观描述
 date: 2023-10-08 00:32:13
-tags: Phonon
+tags: Heat-conduction
 categories: Theory
 tabs: true
 giscus_comments: true

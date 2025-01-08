@@ -2,8 +2,8 @@
 layout: distill
 title: Numerical Methods for Density of States (DOS) Calculation
 date: 2024-10-05 23:36:10
-tags: Phonon
-categories: Theory
+tags: Solid-State-Physics
+categories: Method
 tabs: true
 giscus_comments: true
 map: true
