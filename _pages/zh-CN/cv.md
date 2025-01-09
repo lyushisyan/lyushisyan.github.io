@@ -5,7 +5,7 @@ permalink: /cv/
 title: 简历
 nav: true
 nav_order: 5
-cv_pdf: CV_LIU_CN.pdf
+cv_pdf: CV_LIU_ZH.pdf
 description: 点击右边的按钮可以下载我的简历
 toc:
   sidebar: left
