@@ -1,0 +1,2065 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://lyushisyan.github.io/zh-CN/feed.xml" rel="self" type="application/atom+xml" /><link href="https://lyushisyan.github.io/zh-CN/" rel="alternate" type="text/html" /><updated>2025-05-11T00:27:26+03:00</updated><id>https://lyushisyan.github.io/feed.xml</id><title type="html">blank</title><entry><title type="html">VASP 结构优化</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/vasp-relax/" rel="alternate" type="text/html" title="VASP 结构优化" /><published>2024-12-02T02:36:10+03:00</published><updated>2024-12-02T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/vasp-relax</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/vasp-relax/"><![CDATA[<h2 id="1-输入文件">1. 输入文件</h2>
+<p>输入文件为 vasp 的四个基础文件：<code class="language-plaintext highlighter-rouge">INCAR</code>  <code class="language-plaintext highlighter-rouge">POSCAR</code>  <code class="language-plaintext highlighter-rouge">POTCAR</code>  <code class="language-plaintext highlighter-rouge">KPOINTS</code></p>
+
+<h3 id="11-incar-的参数设置">1.1 <code class="language-plaintext highlighter-rouge">INCAR</code> 的参数设置</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>System = Si-film    # 体系名称，可以随意定义，用于标记当前计算体系
+
+# 作业控制（Job Control）
+ISTART = 0          # 初始状态设置：
+                    # 0 从头开始计算
+                    # 1 从已有的 WAVECAR 文件读取初始电子波函数
+                    # 2 从 WAVECAR 和 CHGCAR 文件读取初始波函数和电子密度
+ISPIN = 1           # 自旋极化选项：
+                    # 1 无自旋极化（适用于非磁性材料）
+                    # 2 自旋极化（适用于磁性材料）
+ICHARGE = 2         # 初始电子密度选择：
+                    # 2 从 POTCAR 提供的静态电子密度开始计算
+                    # 1 从头生成电子密度
+LWAVE = .FALSE.     # 是否输出 WAVECAR 文件：
+                    # .TRUE. 输出（存储波函数数据）
+                    # .FALSE. 不输出（节省磁盘空间）
+LCHARG = .FALSE.    # 是否输出 CHGCAR 文件：
+                    # .TRUE. 输出（存储静态电荷密度）
+                    # .FALSE. 不输出（节省磁盘空间）
+ISYM = 0            # 对称性设置：
+                    # 0 关闭对称性（适用于含缺陷或非对称结构）
+                    # 1 或 2 保留对称性操作
+
+# 电子弛豫设置（Electronic Relaxation）
+ENCUT = 500         # 平面波截断能量，单位 eV，决定计算精度和效率
+ISMEAR = 0          # 展宽方法：
+                    # -5 (四电子系统)、0 (高斯展宽，适合半导体)、1 或 2 (费米展宽)
+SIGMA = 0.05        # 展宽宽度（单位 eV），推荐值为 0.01 ~ 0.1
+EDIFF = 1E-08       # SCF 收敛准则：两次迭代能量变化小于 1E-08 eV 时停止
+NELMIN = 6          # 最小电子迭代次数，确保基础收敛过程
+NELM = 300          # 最大电子迭代次数，避免迭代死循环
+GGA = PE            # 泛函选择，采用 PBE（Perdew-Burke-Ernzerhof）交换-相关泛函
+LREAL = .FALSE.     # 动量空间计算，提高精度但增加计算量
+ADDGRID = .TRUE.    # 启用附加 FFT 网格，提升数值精度
+ALGO = N            # 电子弛豫算法：
+                    # Normal（标准模式）、Fast 或 VeryFast（加速模式）
+PREC = Accurate     # 精度设置：
+                    # Accurate（高精度）、Normal 或 Low（初步测试用）
+
+# 离子弛豫设置（Ionic Relaxation）
+ISIF = 2            # 晶格优化选项：
+                    # 2 仅优化原子位置，不改变晶格参数
+                    # 3 优化原子和晶格形状
+EDIFFG = -0.01      # 离子收敛准则：
+                    # 负值基于力（单位 eV/Å）
+                    # 正值基于能量
+IBRION = 2          # 离子弛豫算法：
+                    # 2 使用共轭梯度算法（适用于大多数优化任务）
+POTIM = 0.5         # 时间步长，控制优化过程速度
+NSW = 200           # 最大离子优化步数
+
+# 并行控制（Parallel Control）
+NPAR = 4            # FFT 网格的并行维度（推荐值为 sqrt(总核数)）
+KPAR = 2            # k 点的并行处理数（总核数应为 NPAR × KPAR × NCORE 的整数倍）
+NCORE = 12          # 每个任务的并行核数
+</code></pre></div></div>
+
+<p>在结构优化中，<code class="language-plaintext highlighter-rouge">INCAR</code> 中的关键参数包括 <code class="language-plaintext highlighter-rouge">IBRION</code> ，<code class="language-plaintext highlighter-rouge">ISIF</code>，<code class="language-plaintext highlighter-rouge">NSW</code>，<code class="language-plaintext highlighter-rouge">EDIFF</code> 和 <code class="language-plaintext highlighter-rouge">EDIFFG</code></p>
+
+<h4 id="111-ibrion-常用设置及适用场景">1.1.1 <code class="language-plaintext highlighter-rouge">IBRION</code> 常用设置及适用场景</h4>
+
+<h5 id="1-单点能计算">(1) 单点能计算</h5>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">IBRION = -1</code></strong><br />
+<strong>用途</strong>：适用于单点能量计算，例如固定晶格、电子结构计算或 DOS 分析。
+<strong>注意</strong>：在设置 <code class="language-plaintext highlighter-rouge">NSW &gt; 0</code> 时不要使用，否则会浪费计算资源。</li>
+</ul>
+
+<h5 id="2-结构优化">(2) 结构优化</h5>
+<ul>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">IBRION = 1</code></strong>（RMM-DIIS）<br />
+<strong>用途</strong>：适用于势能面光滑、体系较简单的优化。<br />
+<strong>限制</strong>：对于复杂或不稳定的势能面，可能导致收敛问题。</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">IBRION = 2</code></strong>（共轭梯度）<br />
+<strong>用途</strong>：最常用的优化方法，适合大多数体系。<br />
+<strong>优点</strong>：对势能面陡峭的复杂体系表现较好。</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">IBRION = 3</code></strong>（阻尼分子动力学）<br />
+<strong>用途</strong>：优化路径可能振荡或不稳定时，可通过阻尼修正来避免发散。</p>
+  </li>
+</ul>
+
+<h5 id="3-分子动力学模拟">(3) 分子动力学模拟</h5>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">IBRION = 0</code></strong><br />
+<strong>用途</strong>：用于研究体系在不同温度下的动态行为，例如扩散、振动模式、温度效应。</li>
+</ul>
+
+<h5 id="4-声子计算">(4) 声子计算</h5>
+
+<p>a. <strong>有限差分法</strong>   <strong><code class="language-plaintext highlighter-rouge">IBRION = 5, 6</code></strong><br />
+计算声子模式的有限差分方法，其中：</p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">5</code></strong>：不考虑对称性，适合缺陷或低对称性结构。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">6</code></strong>：利用对称性加速计算，适合对称性较高的体系。</li>
+</ul>
+
+<p>b. <strong>微扰理论（DFPT）</strong> <strong><code class="language-plaintext highlighter-rouge">IBRION = 7, 8</code></strong><br />
+通过密度泛函微扰理论（DFPT）计算声子模式，其中：</p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">7</code></strong>：无对称性优化，适用于复杂或低对称性结构。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">8</code></strong>：利用对称性优化计算，更高效。</li>
+</ul>
+
+<h4 id="112-isif-常用设置及适用场景">1.1.2 <code class="language-plaintext highlighter-rouge">ISIF</code> 常用设置及适用场景</h4>
+
+<ul>
+  <li>
+    <p>未设置 <code class="language-plaintext highlighter-rouge">ISIF</code> 时：
+默认值为 <code class="language-plaintext highlighter-rouge">ISIF=2</code>，即优化原子位置但不改变晶胞形状和体积。</p>
+  </li>
+  <li>
+    <p>当 <code class="language-plaintext highlighter-rouge">IBRION=0</code>（分子动力学）或 <code class="language-plaintext highlighter-rouge">LHFCALC=.TRUE.</code>（混合泛函计算）时：
+默认值为 <code class="language-plaintext highlighter-rouge">ISIF=0</code>，仅优化原子位置。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">ISIF = 2</code>（<strong>最常用</strong>）
+优化内容： 优化原子位置，不改变晶胞形状和体积。
+适用场景： 二维材料、已知晶格常数、表面或界面体系。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">ISIF = 3</code>（<strong>体材料优化</strong>）
+优化内容： 优化原子位置、晶胞形状和体积。
+适用场景： 体材料结构优化、全方位晶格弛豫。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">ISIF = 4</code>（<strong>固定体积优化</strong>）
+优化内容： 优化原子位置和晶胞形状，但体积固定。
+适用场景： 压力测试或固定体积弛豫。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">ISIF = 6</code>（<strong>仅优化晶胞</strong>）
+优化内容： 优化晶胞形状和体积，不优化原子位置。
+适用场景： 测试晶胞参数或晶格变形分析。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">ISIF = 0</code>（<strong>位置优化，无应力计算</strong>）
+优化内容： 仅优化原子位置，不计算应力。
+适用场景： 固定晶胞的优化。</p>
+  </li>
+</ul>
+
+<h4 id="113-nswediff-和-ediffg-的设置规律">1.1.3 <code class="language-plaintext highlighter-rouge">NSW</code>，<code class="language-plaintext highlighter-rouge">EDIFF</code> 和 <code class="language-plaintext highlighter-rouge">EDIFFG</code> 的设置规律</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th>功能</th>
+      <th>初步优化</th>
+      <th>高精度优化</th>
+      <th>单点计算</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">NSW</code></td>
+      <td>最大离子步数</td>
+      <td>100-200</td>
+      <td>200-500</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">EDIFF</code></td>
+      <td>SCF 迭代收敛准则（eV）</td>
+      <td>1e-05</td>
+      <td>1e-08</td>
+      <td>1e-06</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">EDIFFG</code></td>
+      <td>离子优化收敛准则（eV/Å）</td>
+      <td>-0.1</td>
+      <td>-0.01</td>
+      <td>无需设置</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="12-poscar-的示例">1.2 <code class="language-plaintext highlighter-rouge">POSCAR</code> 的示例</h3>
+
+<p>下面是描述了硅晶体结构的 <code class="language-plaintext highlighter-rouge">POSCAR</code> 文件示例：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si-bulk   # 系统名称，可自定义
+1.0          # 全局尺度因子（可以用于缩放晶格）
+   5.430    0.000    0.000  # 晶格向量 a
+   0.000    5.430    0.000  # 晶格向量 b
+   0.000    0.000    5.430  # 晶格向量 c
+Si           # 原子种类
+2            # 每种原子的个数
+Direct       # 坐标类型（Direct：分数坐标；Cartesian：笛卡尔坐标）
+  0.000  0.000  0.000  # 原子 1 的坐标
+  0.250  0.250  0.250  # 原子 2 的坐标
+</code></pre></div></div>
+
+<p>下面是描述硅薄膜（Si-film）的 <code class="language-plaintext highlighter-rouge">POSCAR</code> 文件示例：
+假设薄膜沿 $x$ 和 $𝑦$ 方向为周期性，沿 $z$ 方向有限（需要设置真空层）</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si Thin Film                            
+   1.00000000000000     
+     5.4299999999999997    0.0000000000000000    0.0000000000000000
+     0.0000000000000000    5.4299999999999997    0.0000000000000000
+     0.0000000000000000    0.0000000000000000   20.8599999999999994
+   Si
+    16
+Selective dynamics  # 启用 Selective dynamics
+Direct
+0.000000 0.000000 0.200000 F F F  # 三个方向固定
+0.500000 0.500000 0.200000 T T F  # z 方向固定，x 和 y 方向可移动
+0.500000 0.000000 0.330153 T T T  # 三个方向可移动
+0.000000 0.500000 0.330153 T T T
+0.250000 0.250000 0.265077 T T T
+0.750000 0.750000 0.265077 T T T
+0.750000 0.250000 0.395230 T T T
+0.250000 0.750000 0.395230 T T T
+0.000000 0.000000 0.460307 T T T
+0.500000 0.500000 0.460307 T T T
+0.500000 0.000000 0.590460 T T T
+0.000000 0.500000 0.590460 T T T
+0.250000 0.250000 0.525384 T T T
+0.750000 0.750000 0.525384 T T T
+0.750000 0.250000 0.655537 T T T
+0.250000 0.750000 0.655537 T T T
+</code></pre></div></div>
+
+<h3 id="13-kpoints-的书写方式">1.3 <code class="language-plaintext highlighter-rouge">KPOINTS</code> 的书写方式</h3>
+
+<h4 id="1-monkhorst-pack-网格">(1) Monkhorst-Pack 网格</h4>
+<p>Monkhorst-Pack 网格是一种均匀分布的 k 点网格，常用于周期性晶体的电子结构计算。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   # 自动生成 k 点的方式（注释）
+0                              # 忽略 k 点总数，采用自动生成
+Monkhorst-Pack                 # 选择 Monkhorst-Pack 网格
+4 4 4                          # k 点网格密度，分别表示 x、y、z 方向的分布
+0 0 0                          # 网格偏移，0 表示不偏移
+</code></pre></div></div>
+
+<p><strong>适用场景</strong>：周期性晶体，优化、DOS 计算、电子结构分析等。</p>
+
+<h4 id="2-gamma-网格">(2) Gamma 网格</h4>
+<p>Gamma 网格以 Gamma 点为中心，更适合小体系或非对称晶格。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   # 自动生成 k 点的方式（注释）
+0                              # 忽略 k 点总数，采用自动生成
+Gamma                          # 选择 Gamma 点中心网格
+4 4 4                          # k 点网格密度，分别表示 x、y、z 方向的分布
+0 0 0                          # 网格偏移，0 表示不偏移
+</code></pre></div></div>
+
+<p><strong>适用场景</strong>：小体系、非对称晶格或需要快速计算的优化任务。</p>
+
+<h3 id="14-potcar-的使用">1.4 <code class="language-plaintext highlighter-rouge">POTCAR</code> 的使用</h3>
+
+<p><code class="language-plaintext highlighter-rouge">POTCAR</code> 包含了计算所需的赝势（pseudopotential）信息，用于描述体系中的原子种类及其相关的物理属性。</p>
+
+<p>VASP 提供多种类型的赝势，包括：</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">POT_GGA_PAW</code>：使用 GGA 泛函的 PAW 赝势。</li>
+  <li><code class="language-plaintext highlighter-rouge">POT_LDA_PAW</code>：使用 LDA 泛函的 PAW 赝势。</li>
+</ul>
+
+<p><strong>生成 POTCAR 文件</strong>：根据体系中的原子种类 (比如 Si 和 H)，逐个合并赝势文件：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat /POT_GGA_PAW/POTCAR_Si /POT_GGA_PAW/POTCAR_H &gt; POTCAR
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">POTCAR</code> 文件中的泛函类型应与 <code class="language-plaintext highlighter-rouge">INCAR</code> 文件中设置的泛函一致</li>
+  <li><code class="language-plaintext highlighter-rouge">POTCAR</code> 文件中原子顺序必须与 <code class="language-plaintext highlighter-rouge">POSCAR</code> 文件中元素顺序一致</li>
+</ul>
+
+<h2 id="2-输出文件">2. 输出文件</h2>
+
+<p>主要输出文件有：<code class="language-plaintext highlighter-rouge">CONTCAR</code>  <code class="language-plaintext highlighter-rouge">OSZICAR</code>  <code class="language-plaintext highlighter-rouge">OUTCAR</code>  <code class="language-plaintext highlighter-rouge">XDATCAR</code> <code class="language-plaintext highlighter-rouge">vasprun.xml</code></p>
+
+<h3 id="21-contcar-文件">2.1 <code class="language-plaintext highlighter-rouge">CONTCAR</code> 文件</h3>
+
+<p><strong>内容：</strong></p>
+<ul>
+  <li>优化结束后的晶体结构，记录最新的原子坐标和晶格参数。</li>
+</ul>
+
+<p><strong>格式：</strong></p>
+<ul>
+  <li>文件格式与 <code class="language-plaintext highlighter-rouge">POSCAR</code> 相同，可以直接用作新的 <code class="language-plaintext highlighter-rouge">POSCAR</code> 文件继续计算。</li>
+</ul>
+
+<p><strong>用途：</strong></p>
+<ul>
+  <li>查看最终优化后的晶体结构。</li>
+  <li>用作进一步的计算（如能带、态密度等）。</li>
+</ul>
+
+<h3 id="22-oszicar-文件">2.2 <code class="language-plaintext highlighter-rouge">OSZICAR</code> 文件</h3>
+
+<p><strong>内容：</strong> 简要记录 SCF（自洽场）迭代的能量变化。</p>
+<ul>
+  <li>每步 SCF 迭代的能量（<code class="language-plaintext highlighter-rouge">E0</code>、<code class="language-plaintext highlighter-rouge">dE</code>）。</li>
+  <li>自洽场（SCF）是否收敛的信息。</li>
+  <li>优化时每一离子步的总能量变化。</li>
+</ul>
+
+<p><strong>用途：</strong></p>
+<ul>
+  <li>快速查看 SCF 计算或优化是否成功收敛。</li>
+  <li>判断是否需要调整 <code class="language-plaintext highlighter-rouge">EDIFF</code> 或优化步骤。</li>
+</ul>
+
+<h3 id="23-outcar-文件">2.3 <code class="language-plaintext highlighter-rouge">OUTCAR</code> 文件</h3>
+
+<p><strong>内容：</strong> 最详细的输出文件，包含优化和计算的全程信息。</p>
+<ul>
+  <li>计算参数：电子弛豫、迭代信息、收敛准则等。</li>
+  <li>优化步骤：每步的能量、力、应力、原子坐标等。</li>
+  <li>总能量：每一步 SCF 的自由能（Free energy）。</li>
+  <li>力和应力：各方向的力（单位 eV/Å）和应力张量。</li>
+  <li>电荷密度信息（如果有相关设置）。</li>
+</ul>
+
+<p><strong>用途：</strong></p>
+<ul>
+  <li>用于分析优化过程是否收敛，以及收敛过程中能量和力的变化。</li>
+</ul>
+
+<h3 id="24-xdatcar-文件">2.4 <code class="language-plaintext highlighter-rouge">XDATCAR</code> 文件</h3>
+
+<p><strong>内容：</strong></p>
+<ul>
+  <li>优化或分子动力学（MD）过程中的每个离子步的原子坐标。</li>
+</ul>
+
+<p><strong>用途：</strong></p>
+<ul>
+  <li>分析原子在优化过程中的移动路径。</li>
+  <li>对结构变化进行轨迹分析。</li>
+</ul>
+
+<h3 id="25-vasprunxml-文件">2.5 <code class="language-plaintext highlighter-rouge">vasprun.xml</code> 文件</h3>
+
+<p>以 XML 格式记录的所有计算数据，便于解析和后处理。</p>
+
+<p><strong>内容：</strong></p>
+<ul>
+  <li>电子迭代、离子优化过程中的所有参数和结果。</li>
+  <li>能量、力、应力、原子坐标等数据。</li>
+</ul>
+
+<p><strong>用途：</strong></p>
+<ul>
+  <li>需要使用工具（如 <code class="language-plaintext highlighter-rouge">pymatgen</code> 或 <code class="language-plaintext highlighter-rouge">ASE</code>）提取关键信息。</li>
+</ul>
+
+<hr />
+
+<h2 id="3-优化过程与收敛性判断">3. 优化过程与收敛性判断</h2>
+
+<h3 id="31-优化过程">3.1 优化过程</h3>
+
+<ol>
+  <li><strong>初始化结构：</strong>
+    <ul>
+      <li>通过 <code class="language-plaintext highlighter-rouge">POSCAR</code> 文件提供初始结构。</li>
+      <li>配置优化条件的 <code class="language-plaintext highlighter-rouge">POTCAR</code>、<code class="language-plaintext highlighter-rouge">KPOINTS</code> 和 <code class="language-plaintext highlighter-rouge">INCAR</code> 文件。</li>
+    </ul>
+  </li>
+  <li><strong>逐步优化：</strong>
+    <ul>
+      <li>每一步离子优化后，重新计算体系的总能量、原子受力和晶格应力。</li>
+      <li>优化会持续到满足收敛准则（如 <code class="language-plaintext highlighter-rouge">EDIFFG</code>），或达到最大步数 <code class="language-plaintext highlighter-rouge">NSW</code>。</li>
+    </ul>
+  </li>
+  <li><strong>更新结构：</strong>
+    <ul>
+      <li>每一步优化的中间结果存储在 <code class="language-plaintext highlighter-rouge">XDATCAR</code> 文件中。</li>
+      <li>优化完成后的最终结构保存至 <code class="language-plaintext highlighter-rouge">CONTCAR</code> 文件。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="32-收敛性的判断方法">3.2 收敛性的判断方法</h3>
+
+<p>优化过程是否收敛，可通过以下方式判断：</p>
+
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">OUTCAR</code> 文件：</strong>
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>检查每个原子的受力是否小于</td>
+              <td><code class="language-plaintext highlighter-rouge">EDIFFG</code></td>
+              <td>。</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>总能量变化是否小于 <code class="language-plaintext highlighter-rouge">EDIFF</code>。</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">OSZICAR</code> 文件：</strong>
+    <ul>
+      <li>查看 SCF 迭代的能量变化（<code class="language-plaintext highlighter-rouge">E0</code> 和 <code class="language-plaintext highlighter-rouge">dE</code>）。</li>
+      <li>判断 SCF 是否稳定收敛。</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">CONTCAR</code> 文件：</strong>
+    <ul>
+      <li>提取最终优化的原子位置和晶格参数。</li>
+      <li>如果优化未收敛，<code class="language-plaintext highlighter-rouge">CONTCAR</code> 保存的是最后一步的结构。</li>
+    </ul>
+  </li>
+  <li><strong>借助工具：</strong>
+    <ul>
+      <li>使用 <code class="language-plaintext highlighter-rouge">pymatgen</code> 或 <code class="language-plaintext highlighter-rouge">ASE</code> 等工具解析 <code class="language-plaintext highlighter-rouge">vasprun.xml</code> 文件，判断优化收敛性。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="33-常见问题与解决方法">3.3 常见问题与解决方法</h3>
+
+<h4 id="331-scf-不收敛"><strong>3.3.1 SCF 不收敛</strong></h4>
+
+<p><strong>问题：</strong> SCF 迭代过程中能量振荡或发散。</p>
+
+<p><strong>可能原因：</strong></p>
+<ul>
+  <li>初始电子密度设置不合理。</li>
+  <li>截断能量（<code class="language-plaintext highlighter-rouge">ENCUT</code>）不足。</li>
+</ul>
+
+<p><strong>解决方法：</strong></p>
+<ul>
+  <li>增大 SCF 最大迭代次数：设置 <code class="language-plaintext highlighter-rouge">NELM=200</code>。</li>
+  <li>提高截断能量：将 <code class="language-plaintext highlighter-rouge">ENCUT</code> 提高至 520 eV 或更高。</li>
+</ul>
+
+<h4 id="332-优化不收敛"><strong>3.3.2 优化不收敛</strong></h4>
+
+<p><strong>问题：</strong> 优化迭代达到最大步数（<code class="language-plaintext highlighter-rouge">NSW</code>），但力或能量未满足收敛准则。</p>
+
+<p><strong>可能原因：</strong></p>
+<ul>
+  <li>初始结构远离势能最低点。</li>
+  <li>收敛准则（<code class="language-plaintext highlighter-rouge">EDIFFG</code>）过于严格。</li>
+  <li>优化步长（<code class="language-plaintext highlighter-rouge">POTIM</code>）过大。</li>
+</ul>
+
+<p><strong>解决方法：</strong></p>
+<ul>
+  <li>提供合理的初始结构，或通过外部工具预优化初始结构。</li>
+  <li>放宽收敛准则：将 <code class="language-plaintext highlighter-rouge">EDIFFG</code> 从 <code class="language-plaintext highlighter-rouge">-0.01</code> 调整为 <code class="language-plaintext highlighter-rouge">-0.02</code>。</li>
+  <li>降低优化步长：将 <code class="language-plaintext highlighter-rouge">POTIM</code> 从 <code class="language-plaintext highlighter-rouge">0.5</code> 调整为 <code class="language-plaintext highlighter-rouge">0.2</code>。</li>
+</ul>
+
+<h4 id="333-优化过程振荡"><strong>3.3.3 优化过程振荡</strong></h4>
+
+<p><strong>问题：</strong> 优化过程中能量和力反复波动，难以稳定收敛。</p>
+
+<p><strong>可能原因：</strong></p>
+<ul>
+  <li>优化步长（<code class="language-plaintext highlighter-rouge">POTIM</code>）设置过大。</li>
+  <li>优化算法不适合当前体系。</li>
+</ul>
+
+<p><strong>解决方法：</strong></p>
+<ul>
+  <li>减小优化步长：将 <code class="language-plaintext highlighter-rouge">POTIM</code> 设置为 <code class="language-plaintext highlighter-rouge">0.2</code> 或更小。</li>
+  <li>更换优化算法：
+    <ul>
+      <li>使用共轭梯度法：设置 <code class="language-plaintext highlighter-rouge">IBRION=2</code>。</li>
+      <li>使用阻尼分子动力学法：设置 <code class="language-plaintext highlighter-rouge">IBRION=3</code>。</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="334-优化过程发散"><strong>3.3.4 优化过程发散</strong></h4>
+
+<p><strong>问题：</strong> 优化中结构严重变形，能量大幅增加。</p>
+
+<p><strong>可能原因：</strong></p>
+<ul>
+  <li>原子间距过小，初始结构设置不合理。</li>
+  <li>真空层不足（适用于低维体系，如薄膜或纳米结构）。</li>
+  <li>错误的赝势文件。</li>
+</ul>
+
+<p><strong>解决方法：</strong></p>
+<ul>
+  <li>确保合理的初始原子间距，避免原子间过近。</li>
+  <li>增加真空层：对低维体系，设置真空层厚度至少为 15 Å。</li>
+  <li>检查 <code class="language-plaintext highlighter-rouge">POTCAR</code> 文件，确保赝势与原子种类匹配。</li>
+</ul>]]></content><author><name></name></author><category term="Method" /><category term="DFT-calculations" /><summary type="html"><![CDATA[1. 输入文件 输入文件为 vasp 的四个基础文件：INCAR POSCAR POTCAR KPOINTS]]></summary></entry><entry><title type="html">拓扑声子的物理量与性质</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/topology/" rel="alternate" type="text/html" title="拓扑声子的物理量与性质" /><published>2024-12-02T02:36:10+03:00</published><updated>2024-12-02T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/topology</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/topology/"><![CDATA[<h2 id="拓扑几何">拓扑几何</h2>
+
+<p>拓扑学研究在连续变化中保持不变的几何性质，这是一种反映全局特征的数学工具。<br />
+例如，表面的 <strong>Gauss 曲率</strong> \(K\) 是一种描述局部几何性质的量，通过以下 <strong>Gauss-Bonnet 定理</strong>将其与全局拓扑特性关联起来：</p>
+
+\[\int_S K \, d^2r = 4\pi (1-\text{genus}),\]
+
+<p>其中，\(\text{genus}\)（亏格）表示几何体上的孔洞数。例如，球体的亏格为 \(0\)，而环面（如甜甜圈）的亏格为 \(1\)。</p>
+
+<div class="row">
+    <div class="col-md-6 text-center">
+        
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/topology_huan-480.webp 480w,/assets/img/blog/topology_huan-800.webp 800w,/assets/img/blog/topology_huan-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/topology_huan.gif" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+</figure>
+
+    </div>
+</div>
+
+<h2 id="拓扑物理">拓扑物理</h2>
+
+<p>拓扑物理主要研究动量空间中的拓扑特性。在周期性晶格中，电子态可以用以下定态薛定谔方程描述：</p>
+
+\[H|\varphi\rangle = E|\varphi\rangle,\]
+
+<p>其中 \(H\) 是体系的哈密顿量，\(E\) 是电子的能量本征值，\(\vert\varphi\rangle\) 是对应的本征态。通过求解该方程，可以获得能带结构，即电子的能量与动量的关系。</p>
+
+<p>传统能带理论主要关注电子的能量本征值，而拓扑物理的重要贡献在于揭示波函数中隐藏的拓扑信息，即电子波函数的拓扑结构。例如，在 <strong>量子霍尔效应</strong>中，体系的时间反演对称性被破坏，陈数 \(C \neq 0\)。基于不同的对称性，研究者已构建出许多拓扑材料体系，如谷霍尔效应、拓扑晶体绝缘体，以及无能隙的拓扑半金属态，包括 Dirac 态、Weyl 态、节点线和三重拓扑简并点等。</p>
+
+<h2 id="拓扑声子">拓扑声子</h2>
+
+<p>声子由于不具备电荷和自旋属性，其拓扑性的研究起步较晚。传统上，声子研究主要关注其粒子性质（色散与散射）以及波动性质（相干效应）。近年来，受声子-电子类比的启发，研究者在声子体系中观察到了许多新的输运现象，如 <strong>声子热霍尔效应</strong>。</p>
+
+<p>在声子体系中，破坏时间反演对称性较为困难。对于具有时间反演对称的晶体，其原子振动可用基于牛顿定律的动力学方程描述。在简谐近似下，声子特征方程可写为：</p>
+
+\[\boldsymbol{D}(\boldsymbol{k}) \boldsymbol{u}(\boldsymbol{k}) = \omega^2(\boldsymbol{k}) \boldsymbol{u}(\boldsymbol{k}),\]
+
+<p>其中，\(\boldsymbol{u}(\boldsymbol{k})\) 为声子本征态，\(\omega(\boldsymbol{k})\) 为声子频率。传统研究仅关注本征值，得到声子色散关系和态密度，而拓扑声子研究则进一步挖掘本征态中隐含的波函数拓扑信息。</p>
+
+<h3 id="声子体系中的拓扑物理量">声子体系中的拓扑物理量</h3>
+
+<p>通过声子本征态的波函数，可以定义拓扑物理量：</p>
+
+<ul>
+  <li>
+    <p><strong>贝里联络</strong>：</p>
+
+\[A_{s,\boldsymbol{k}} = \text{i} \langle u_{s\boldsymbol{k}} | \nabla_{\boldsymbol{k}} | u_{s\boldsymbol{k}} \rangle,\]
+
+    <p>描述动量空间中波函数的几何性质。</p>
+  </li>
+  <li>
+    <p><strong>贝里曲率</strong>：</p>
+
+\[\Omega_{s,\boldsymbol{k}} = \nabla_{\boldsymbol{k}} \times A_{s,\boldsymbol{k}},\]
+
+    <p>是贝里联络的旋度，表征波函数在动量空间中的局部拓扑结构。</p>
+  </li>
+  <li>
+    <p><strong>贝里相位</strong>：</p>
+
+\[\gamma_s = \int_L A \cdot d\boldsymbol{k},\]
+
+    <p>是贝里联络沿特定路径或环路的积分。</p>
+  </li>
+  <li>
+    <p><strong>陈数</strong>：<br />
+对于三维体系中的声子，陈数定义为动量空间中包含该点的闭合曲面上的积分：</p>
+
+\[C = \frac{1}{2\pi} \oint \Omega_{s,\boldsymbol{k}} d^2\boldsymbol{k}.\]
+  </li>
+</ul>
+
+<p>由于声子不具有自旋 \(1/2\) 属性，无法直接应用量子自旋霍尔态的理论。电子体系中的量子自旋霍尔态可视为两组具有相反陈数的量子霍尔态，其总陈数在时间反演对称下为 \(0\)。而在声子体系中，可以利用晶格对称性实现双重甚至多重简并，构造出类自旋的赝自旋，为拓扑声子研究提供了新思路。</p>
+
+<p>在经典的声子输运研究中，晶格对称性用于分析声子散射通道，简化力常数计算；而从拓扑声子的角度，晶格对称性主要用于确定声子的简并性和对声子分支进行分类。</p>
+
+<p>在材料的边界或界面处，拓扑声子可以形成特殊的边界态。这些边界态源自材料固有的拓扑不变量（如陈数或贝里曲率），能够沿着不受散射影响的通道传播。这种稳定性被称为 <strong>拓扑保护机制</strong>。</p>
+
+<p>拓扑声子的色散关系也具有独特特性。在某些特定频率范围内，声子的传播更加顺畅，而在其他频率范围内，声子可能被抑制。</p>]]></content><author><name></name></author><category term="Theory" /><category term="Solid-State-Physics" /><summary type="html"><![CDATA[拓扑几何]]></summary></entry><entry><title type="html">声子蒙特卡罗模拟的理论基础</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/MC-phononBTE/" rel="alternate" type="text/html" title="声子蒙特卡罗模拟的理论基础" /><published>2024-11-16T02:36:10+03:00</published><updated>2024-11-16T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/MC-phononBTE</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/MC-phononBTE/"><![CDATA[<h2 id="1-玻尔兹曼输运方程">1. 玻尔兹曼输运方程</h2>
+
+<h3 id="11-基于粒子玻尔兹曼输运方程">1.1 基于粒子玻尔兹曼输运方程：</h3>
+
+\[\frac{\partial f}{\partial t} + \boldsymbol v_g(\omega,p)\nabla f = - \frac{f-f^{\text{loc}}}{\tau(\omega,p,T)}\]
+
+<p>其中 \(f=f(t,\boldsymbol x,\boldsymbol k,p)\) 是相空间中的声子分布函数，\(\omega=\omega(\boldsymbol k,p)\) 是声子径向频率，\(p\) 是声子极化，\(T\) 是温度。此外，\(f^\text{loc}\) 是由局部伪温度参数化的 BE 平衡分布。</p>
+
+<p>使用声子束来代表模拟粒子：</p>
+
+\[f(t,\boldsymbol x,\boldsymbol k,p) \approx 8\pi^3N_\text{eff}\sum_i \delta^3(\boldsymbol x - \boldsymbol x_i) \delta^3(\boldsymbol k - \boldsymbol k_i) \delta_{p,p_i}\]
+
+<p>\(N_\text{eff}\) 是每个声子束中的声子有效数量。</p>
+
+<h3 id="12-基于能量玻尔兹曼输运方程-energy-based-bte">1.2 基于能量玻尔兹曼输运方程 (energy-based BTE)：</h3>
+
+\[\frac{\partial e}{\partial t} + \boldsymbol v_g\nabla e = - \frac{e-e^{\text{loc}}}{\tau}\]
+
+<p>这里，模拟粒子为能量 \(e=\hbar\omega f\) ，且 \(e^\text{loc}=\hbar\omega f^\text{loc}\)。</p>
+
+\[e \approx 8\pi^3\varepsilon_\text{eff}\sum_i \delta^3(\boldsymbol x - \boldsymbol x_i) \delta^3(\boldsymbol k - \boldsymbol k_i) \delta_{p,p_i}\]
+
+<p>其中 \(\varepsilon_\text{eff}\) 定义为每个模拟粒子携带的有效能量 \(\varepsilon_\text{eff}=N_\text{eff}\hbar\omega\) 。这里定义的能量粒子 \(\varepsilon_\text{eff}\) 所代表的声子的有效数量是可变的。</p>
+
+<h3 id="13-基于偏差能量玻尔兹曼输运方程-deviational-energy-based-bte">1.3 基于偏差能量玻尔兹曼输运方程 (deviational energy-based BTE)：</h3>
+
+\[\frac{\partial e^d}{\partial t} + \boldsymbol v_g\nabla e^d = \frac{(e^{\text{loc}}-e^{\text{eq}}_{T_\text{eq}})-e^d}{\tau}\]
+
+<p>其中，</p>
+
+\[e^{\text{eq}}_{T_\text{eq}}(\omega) = \frac{\hbar\omega}{\exp\left(\frac{\hbar\omega}{k_BT_\text{eq}}\right)-1}\]
+
+<p>这里，模拟粒子为能量偏差：\(e^d =e - e^{\text{eq}}_{T_\text{eq}}\) 。</p>
+
+\[e^d \approx 8\pi^3\varepsilon_\text{eff}^d\sum_i s(i) \delta^3(\boldsymbol x - \boldsymbol x_i) \delta^3(\boldsymbol k - \boldsymbol k_i) \delta_{p,p_i}\]
+
+<p>\(s(i)=+1\) 的粒子代表相对于参考状态增加的偏差能量份额（即较高温度区的“超额”声子群）。</p>
+
+<p>\(s(i)=-1\) 的粒子则代表相对于参考状态的负偏差能量份额（即较低温度区的“欠额”声子群）。</p>
+
+<div class="row">
+    <div class="col-md-6 text-center">
+        
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/detaE-480.webp 480w,/assets/img/blog/detaE-800.webp 800w,/assets/img/blog/detaE-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/detaE.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+</figure>
+
+    </div>
+</div>
+
+<p>偏差能量方法通过引入参考平衡温度 \(T_\text{eq}\)，将计算聚焦于非平衡态的能量偏差，而不是完整的声子分布函数。这减少了计算中对大量平衡态声子的无效模拟，尤其在小温差或接近平衡态的情况下，显著提高了模拟效率。</p>
+
+<p>偏差能量方法中，模拟粒子的数量和符号（正负）直接对应偏差能量的变化，减少了添加或删除粒子时可能引入的能量误差。同时，其计算机制天然遵循能量守恒原则。</p>
+
+<h2 id="2-蒙特卡洛模拟算法">2. 蒙特卡洛模拟算法</h2>
+
+<h3 id="21-基于粒子模拟">2.1 基于粒子模拟</h3>
+
+<h3 id="初始化"><strong>初始化:</strong></h3>
+
+<p>在初始温度 \(T\) 下，使用 BE 统计计算体积 \(V\) 中的声子数量：
+\(N=V\int_{\omega=0}^{\omega_\text{max}}\sum_p D(\omega,p) f_T^\text{eq}(\omega) d\omega\)
+模拟粒子（每个代表一个声子束）的数量由 \(N/N_\text{eff}\) 给出。</p>
+
+<p>\(N_\text{eff}\) 的值是通过平衡计算成本与获得具有统计意义的结果所需的粒子数量来确定的。</p>
+
+<h3 id="时间演化"><strong>时间演化:</strong></h3>
+
+<p>系统初始化后，将通过应用时间步长为 \(\Delta t\) 的分割算法来进行模拟。
+每一个时间步长由三个子步骤组成：</p>
+
+<p>1). <strong>声子 Drift</strong></p>
+
+<p>在此期间模拟粒子 \(i\) 移动 \(\boldsymbol v_{g,i}\Delta t\) 。</p>
+
+<p>2). <strong>采样</strong></p>
+
+<p>记录温度 (\(T\)) 和伪温度 (\(T_\text{loc}\))，它们是通过反转能量 (\(E\)) 和赝能量 (\(\widetilde E\)) 关系来计算的：
+\(E=N_\text{eff}\sum_i\hbar\omega_i=V\int_{\omega=0}^{\omega_\text{max}}\sum_p \frac{D(\omega,p) \hbar\omega}{\exp\left(\frac{\hbar\omega}{k_BT}\right)-1} d\omega\)
+\(\widetilde E=N_\text{eff}\sum_i\frac{\hbar\omega_i}{\tau(\omega_i,p_i,T)}=V\int_{\omega=0}^{\omega_\text{max}}\sum_p \frac{D(\omega,p) \hbar\omega}{\tau(\omega,p,T)}\frac{1}{\exp\left(\frac{\hbar\omega}{k_BT_\text{loc}}\right)-1} d\omega\)
+温度 (\(T\)) 表示热平衡下的平均温度，伪温度 (\(T_\text{loc}\)) 与声子的散射过程有关，用于非平衡态下的声子行为分析。</p>
+
+<p>3). <strong>声子 Scatter</strong></p>
+
+<p>根据散射概率进行散射：</p>
+
+\[P_i = 1-\exp\left(-\frac{\Delta t}{\tau(\omega_i,p_i,T)}\right)\]
+
+<p>散射通过采样新的频率、偏振和传播方向来完成。散射后的频率必须从分布 \(D(\omega,p)f^\text{loc}/\tau(\omega,p,T)\) 中得出。</p>
+
+<p>散射过程中要保证能量守恒。然而，由于散射声子的频率是随机采样的，因此需要添加或删除粒子，直到近似达到目标能量，强制实现能量守恒。</p>
+
+<p>此方法并不总是确保能量守恒，导致模拟系统的能量随机游走，会引入确定性误差。</p>
+
+<h3 id="22-基于能量模拟">2.2 基于能量模拟</h3>
+
+<p>以能量作为模拟粒子，算法与上述类似，但需要做出以下调整：</p>
+
+<ol>
+  <li>初始化、边界发射或散射期间，频率分布的采样需考虑乘以因子 \(\hbar\omega\) 的修正。</li>
+  <li>网格内能量的计算很简单，只需计算粒子的数量即可。 \(N\) 个粒子的能量由 \(\varepsilon_\text{eff} N\) 给出。</li>
+  <li>由于网格内的能量与粒子数量成正比，因此不需要添加或删除过程：只需保持粒子数量守恒，能量就严格自动守恒。</li>
+</ol>
+
+<h3 id="23-基于偏差能量模拟">2.3 基于偏差能量模拟</h3>
+
+<h3 id="初始化-1"><strong>初始化:</strong></h3>
+
+<p>首先选择温度 $T_\text{eq}$ 下的平衡状态作为参考值。</p>
+
+<p>如果初始状态 $f^0$ 与平衡分布相同，那么模拟开始时没有粒子。基于对温度偏差上限的猜测，系统的偏差能量可以估计为：</p>
+
+\[\Delta E = \int_{\omega=0}^{\omega_\text{max}}\sum_p\hbar\omega D(\omega,p)\times \bigg|\frac{1}{\exp(\frac{\hbar\omega}{k_BT})-1}-\frac{1}{\exp(\frac{\hbar\omega}{k_BT_\text{eq}})-1}\bigg| d\omega\]
+
+<p>偏差有效能量 $\varepsilon_\text{eff}^d$ 可以根据所需的模拟粒子数量大致确定。</p>
+
+<p>如果初始状态 $f^0$ 与平衡分布不同，则需要对粒子进行初始化。它们的频率和极化是从分布中得出的</p>
+
+\[D(\omega,p)e^d(\omega) = \hbar\omega D(\omega,p)\bigg[f^0-\frac{1}{\exp(\frac{\hbar\omega}{k_BT_\text{eq}})-1}\bigg]\]
+
+<p>通常，$f^0$ 是某个温度 $T$ 下的平衡分布，由此上述表达式可简化为</p>
+
+\[D(\omega,p)e^d(\omega) = \hbar\omega D(\omega,p)\bigg[\frac{1}{\exp(\frac{\hbar\omega}{k_BT})-1}-\frac{1}{\exp(\frac{\hbar\omega}{k_BT_\text{eq}})-1}\bigg]\]
+
+<p>如果 $T&gt;T_\text{eq}$ 该函数为正，如果 $T &lt; T_\text{eq}$ 该函数为负。因此，在后一种情况下，粒子被赋予负号。</p>
+
+<p>频率的采样：通过将频率范围细分为 bin，根据上式定义一个离散化和归一化的累积分布，均匀地抽取一个0到1之间的随机数，通过该随机数对应归一化累积分布，从而找到对应的 bin。</p>
+
+<h3 id="时间演化-1"><strong>时间演化:</strong></h3>
+
+<p><strong>(1) 声子 drift：</strong></p>
+
+<p>在这一时间步长 $\Delta t$，模拟粒子 $i$ 移动 $\boldsymbol v_{g,i}\Delta t$ 。</p>
+
+<p><strong>(2) 采样：</strong></p>
+
+<p>(a) 令 $C_j$ 为对应于时间 $t$ 时体积为 $V_j$ 的单元 $j$ 内的粒子的索引集。由于每个粒子代表相同的能量，因此偏差能量为</p>
+
+\[\Delta E_j = \varepsilon_\text{eff}^d \sum_{i\in C_j} s(i) = \varepsilon_\text{eff}^d (N_j^+-N_j^-)\]
+
+<p>其中 $N^+_j$ 和 $N^−_j$ 分别是单元 $j$ 内正粒子和负粒子的数量。</p>
+
+<p>(b) 相应的温度 $T_j$ 通过对下式进行数值反演来计算</p>
+
+\[\frac{\Delta E_j}{V_j} = \int_0^{\omega_\text{max}}\sum_p D(\omega,p)\hbar\omega \bigg[\frac{1}{\exp(\frac{\hbar\omega}{k_BT_j})-1} - \frac{1}{\exp(\frac{\hbar\omega}{k_BT_\text{eq}})-1} \bigg] d\omega\]
+
+<p>(c) 通过数值反演计算相应的伪温度 $[T_\text{loc}]_j$</p>
+
+\[\frac{\Delta \widetilde E_j}{V_j} = \int_0^{\omega_\text{max}}\sum_p \frac{D(\omega,p)\hbar\omega}{\tau(\omega,p,T_j)} \bigg[\frac{1}{\exp(\frac{\hbar\omega}{k_B[T_\text{loc}]_j})-1} - \frac{1}{\exp(\frac{\hbar\omega}{k_BT_\text{eq}})-1} \bigg] d\omega\]
+
+\[\Delta\widetilde E_j = \varepsilon^d_\text{eff} \sum_{i\in C_j}\frac{s(i)}{\tau(\omega_i,p_i,T_j)}\]
+
+<p><strong>(3) 声子 scatter：</strong></p>
+
+<p>我们根据散射概率判断每个声子是否发生散射，散射概率公式为：</p>
+
+\[P(\omega_i, p_i, T_j) = 1 - \exp\left(-\frac{\Delta t}{\tau(\omega_i, p_i, T_j)}\right)\]
+
+<p>其中，$\omega_i$ 是声子的频率，$p_i$ 是偏振，$\tau$ 是声子的散射时间，取决于频率、偏振和局部温度 $T_j$ 。</p>
+
+<p>散射过程中，单元格 $j$ 中的声子群代表了一定的偏差能量：$E^d_\text{eff}(N^+<em>{s,j} - N^-</em>{s,j})$
+其中：</p>
+<ul>
+  <li>$N^+_{s,j}$ 表示单元格 $j$ 中正偏差粒子的数量；</li>
+  <li>$N^-_{s,j}$ 表示单元格 $j$ 中负偏差粒子的数量。</li>
+</ul>
+
+<p>散射后的声子群需要替换为新的粒子，其属性（频率和偏振）从以下分布中抽取：</p>
+
+\[\frac{D(\omega, p)(e^\text{loc} - e^\text{eq}_{T_\text{eq}})}{\tau(\omega, p, T_j)} = \frac{D(\omega, p)\hbar\omega}{\tau(\omega, p, T_j)} \bigg[\frac{1}{\exp\left(\frac{\hbar\omega}{k_B [T_\text{loc}]_j}\right) - 1} - \frac{1}{\exp\left(\frac{\hbar\omega}{k_B T_\text{eq}}\right) - 1} \bigg]\]
+
+<h2 id="3-设置边界条件">3. 设置边界条件</h2>
+
+<p>在声子输运问题中，会出现各种类型的边界条件：绝热边界，等温边界，周期性边界。</p>
+
+<h3 id="31-绝热边界-adiabatic-boundary">3.1 绝热边界 (Adiabatic boundary)</h3>
+
+<p>绝热边界反映了所有入射声子。这种反射过程可分为两大类：漫反射和镜面反射。
+在这两种情况下，假设声子反射时偏振和频率保持相同。</p>
+
+<p>在此过程中唯一修改的参数是行进方向。</p>
+
+<p>(i) 镜面反射保证能量守恒 \(e^d(\boldsymbol x, \boldsymbol k) = e^d(\boldsymbol x, \boldsymbol k')\) ，方向为：\(\boldsymbol k' = \boldsymbol k - 2(\boldsymbol k \cdot \boldsymbol n) \boldsymbol n\)，其中 \(\boldsymbol n\) 为边界的法向量。</p>
+
+<p>(ii) 漫反射相当于入射在边界上的声子的反射方向随机化，即与散射声子处理方式一致。</p>
+
+<p>镜面反射发生在边界非常光滑时（相对于声子波长），即边界表面粗糙度远小于声子的波长。镜面反射不会导致声子分布的随机化，因此声子保持较强的方向性传输。</p>
+
+<p>漫反射发生在边界粗糙度与声子波长相当或大于声子波长时。漫反射导致声子分布趋于各向同性，使声子传热效率降低。在纳米结构中，漫反射增强了声子边界散射效应，显著降低材料的有效热导率。</p>
+
+<h3 id="32-等温边界-isothermal-boundary">3.2 等温边界 (Isothermal boundary)</h3>
+
+<p>在温度 \(T_b\) 的等温边界条件下，入射到边界的声子会被边界完全吸收。同时，边界会以其自身温度 \(T_b\) 为准，从对应的平衡分布中重新发射声子。</p>
+
+<p>每单位径向频率的发射热通量可以表示为：</p>
+
+\[q_{\omega,b}'' = \frac{1}{4} \sum_p \frac{D(\omega,p)v_g(\omega,p)\hbar\omega}{\exp\left(\frac{\hbar\omega}{k_B T_b}\right) - 1}\]
+
+<p>在偏差能量模拟中，需要考虑等温边界与参考平衡温度 \(T_\text{eq}\) 之间的热流差异，我们可以通过减去 \(T_\text{eq}\) 对应的热通量来得到修正的表达式：</p>
+
+\[q_{\omega,b}'' = \frac{1}{4} \sum_p D(\omega,p)v_g(\omega,p)\hbar\omega \cdot \bigg[\frac{1}{\exp\left(\frac{\hbar\omega}{k_B T_b}\right) - 1} - \frac{1}{\exp\left(\frac{\hbar\omega}{k_B T_\text{eq}}\right) - 1} \bigg]\]
+
+<p>该公式提供了在等温边界条件下，发射粒子的频率分布函数。具体来说，它反映了边界在温度 \(T_b\) 下的非平衡声子输运特性，即边界如何根据温度差对声子进行吸收和重新发射。</p>
+
+<h3 id="33-周期性边界-periodic-boundary">3.3 周期性边界 (Periodic boundary)</h3>
+
+<p>周期性边界条件允许我们仅通过考虑一个晶胞（周期）来有效模拟完整的结构。</p>
+
+<div class="row">
+    <div class="col-md-10 text-center">
+        
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/peri_bond-480.webp 480w,/assets/img/blog/peri_bond-800.webp 800w,/assets/img/blog/peri_bond-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/peri_bond.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+</figure>
+
+    </div>
+</div>
+
+<p>在边界处，声子分布与局部平衡的偏差是周期性的，可以通过以下关系描述：</p>
+
+\[f_1^+ - f_{T_1}^\text{eq} = f_2^+ - f_{T_2}^\text{eq}\]
+
+\[f_1^- - f_{T_1}^\text{eq} = f_2^- - f_{T_2}^\text{eq}\]
+
+<p>其中 \(f_{T_1}^\text{eq}\) 和 \(f_{T_2}^\text{eq}\) 指温度 \(T_1\) 和 \(T_2\) 下的平衡分布，上标 \(+\) 表示粒子向右移动，上标 \(-\) 表示粒子向左移动。该公式同时反映了热通量和温度梯度的周期性。</p>
+
+<p>对于偏差能量分布，该关系变为</p>
+
+\[\hbar\omega(f_1^+ - f_{T_\text{eq}}^\text{eq} - f_{T_1}^\text{eq}) = \hbar\omega(f_2^+ - f_{T_\text{eq}}^\text{eq} - f_{T_2}^\text{eq})\]
+
+\[\hbar\omega(f_1^- - f_{T_\text{eq}}^\text{eq} - f_{T_1}^\text{eq}) = \hbar\omega(f_2^- - f_{T_\text{eq}}^\text{eq} - f_{T_2}^\text{eq})\]
+
+<p>用偏差能量来表示为：</p>
+
+\[e_1^{d,+} - e_{T_1}^\text{eq} = e_2^{d,+} - e_{T_2}^\text{eq}\]
+
+\[e_1^{d,-} - e_{T_1}^\text{eq} = e_2^{d,-} - e_{T_2}^\text{eq}\]
+
+<p>周期性边界条件可以通过以下方式强制实现：</p>
+
+<p>(i) 将跨越周期性边界的粒子从系统的一侧移除，并重新插入到另一侧，同时保持粒子的属性不变。</p>
+
+<p>(ii) 在边界生成新的粒子：这些粒子的行进方向在半球体上是随机的，在热边界，它们被发送到带有正号的右侧行进。相反，具有相同性质的负粒子从冷边界发射出来。粒子的生成遵循下列分布：</p>
+
+\[(e_{T_1}^\text{eq}-e_{T_2}^\text{eq})\frac{D(\omega,p)}{4\pi} v_g(\omega,p)\]
+
+<hr />
+
+<p>参考文献：</p>
+
+<p>[1] S. Mazumder, A. Majumdar, Monte Carlo Study of Phonon Transport in Solid Thin Films Including Dispersion and Polarization, Journal of Heat Transfer 123 (2001) 749–759.</p>
+
+<p>[2] Q. Hao, G. Chen, M.-S. Jeng, Frequency-dependent Monte Carlo simulations of phonon transport in two-dimensional porous silicon with aligned pores, Journal of Applied Physics 106 (2009) 114321.</p>
+
+<p>[3] J.-P.M. Péraud, N.G. Hadjiconstantinou, Efficient simulation of multidimensional phonon transport using energy-based variance-reduced Monte Carlo formulations, Phys. Rev. B 84 (2011) 205331.</p>]]></content><author><name></name></author><category term="Method" /><category term="MC-simulations" /><summary type="html"><![CDATA[1. 玻尔兹曼输运方程]]></summary></entry><entry><title type="html">态密度的数值求解方法</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/dos-method/" rel="alternate" type="text/html" title="态密度的数值求解方法" /><published>2024-10-06T02:36:10+03:00</published><updated>2024-10-06T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/dos-method</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/dos-method/"><![CDATA[<p>晶格动力学研究中最重要的量之一是态密度 (DOS)，定义为在频率 \(\omega\) 和 \(\omega+d\omega\) 之间的简正模态的数量。</p>
+
+<p>态密度的表达式：
+\(\text{DOS}(\omega)=\frac{V}{8\pi^3}\sum_s\int\frac{dS_\omega}{|\Delta_{\boldsymbol k}\omega_s|}\)</p>
+
+<p>其中，\(S_\omega\) 是等频面。</p>
+
+<h2 id="根采样法">根采样法</h2>
+
+<p>这是一种最简单的方法 (也可称为直方图统计法)</p>
+
+\[\text{DOS}(\omega)=\frac{V}{8\pi^3}\sum_{\boldsymbol qs} \delta(\omega-\omega(\boldsymbol qs))\]
+
+<p>根据此方法，我们可以统计位于 \(\Delta\omega\) 中的模态数量，从而得到态密度。但该方法需要布里渊区内大量的 \(\boldsymbol k\) 点（网格需要足够密）以得到准确的结果。</p>
+
+<h2 id="线性外推">线性外推</h2>
+
+<p>GR 方法将第一布里渊区的不可约部分划分为由点 \(\boldsymbol k_c\) 组成的均匀简单立方网格，点之间的距离为 \(2b\)。每个点 \(\boldsymbol k_c\) 都位于一个小立方体的中心。从包含每个 \(\boldsymbol k_c\) 的小立方体中提取 “所有” 频率，然后对所有立方体的贡献求和获得完整的频率分布。</p>
+
+<p>在 \(\boldsymbol k_c\) 处对应的特征频率为 \(\omega(\boldsymbol k_c)\)。我们假设线性外推法在每个小立方体中都适用，所以，等频面可以表示为垂直于 \(\nabla\omega(\boldsymbol k_c)\) 的平行平面。两个这样的平行平面之间的体积元 \(dV\) 与 \(\omega\) 和 \(\omega+d\omega\) 之间的频率数量成正比。当 \(dV\) 接近 0 时，可以近似为
+\(dV=Sdk_\perp\)
+其中 \(S\) 是立方体限制的平面面积（即为截面积），\(dk_\perp\) 是体积单元的厚度。</p>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/GR_method-480.webp 480w,/assets/img/blog/GR_method-800.webp 800w,/assets/img/blog/GR_method-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/GR_method.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+</figure>
+
+    </div>
+</div>
+
+<p>接下来需要考虑这一组恒频平面在立方体中横截面积的大小。首先假设等频平面的法线的三个方向余弦从大到小分别为 \(l_1\)，\(l_2\) 和 \(l_3\)。</p>
+
+<p>设任意截面与 \(\boldsymbol k_c\) 的距离为 \(h\)，截面积表示为 \(S(h)\)</p>
+
+<p>而且必然满足 \(S(h) = S(-h)\), 所以我们只需考虑立方体的一半 (\(h&gt;0\))</p>
+
+<p>以递增的顺序列出位于这半部分的四个角与通过立方体中心的平面的距离：</p>
+
+<p>\(h_1 = b|l_1-l_2-l_3|\)
+\(h_2 = b(l_1-l_2+l_3)\)
+\(h_3 = b(l_1+l_2-l_3)\)
+\(h_4 = b(l_1+l_2+l_3)\)</p>
+
+<p>在第一个范围 \((0\leq h \leq h_1)\) 中有两种可能性，取决于 \((l_1-l_2-l_3)\) 的符号。如果符号为正，则横截面是平行四边形，面积为</p>
+
+\[S(h) = 4b^2/l_1\]
+
+<p>如果为负，则横截面为六边形，面积为</p>
+
+\[S(h) = \frac{2b^2(l_1l_2+l_2l_3+l_3l_1) - (h^2+b^2)}{l_1l_2l_3}\]
+
+<p>在第二个范围 \((h_1\leq h \leq h_2)\) 中，形状是五边形，其面积为</p>
+
+\[S(h) = \frac{2b^2(l_1l_2+3l_2l_3+l_3l_1) - bh(-l_1+l_2+l_3) - \frac{1}{2}(h^2+b^2)}{l_1l_2l_3}\]
+
+<p>在第三个范围 \((h_2\leq h \leq h_3)\) 中，形状是四边形，其面积为</p>
+
+\[S(h) = 2\frac{b^2l_3(l_1+l_2)-bhl_3}{l_1l_2l_3}\]
+
+<p>在第四个范围 \((h_3\leq h \leq h_4)\) 中，形状是四边形，其面积为</p>
+
+\[S(h) = \frac{[b(l_1+l_2+l_3)-h]^2}{2l_1l_2l_3}\]
+
+<p>这些表达式及其导数在各自的边界处都是连续的，\(S(h)\) 在整个范围内积分可得到立方体的体积。</p>
+
+<p>对整个立方体进行线性外推可以获得频率变化
+\(\Omega = \omega(\boldsymbol k_c) \pm h\nabla\omega(\boldsymbol k_c)\)
+其中 \(0\leq h\leq h_4\)</p>
+
+<p>为了构造 \(\text{DOS}(\omega)\)，我们定义一个函数 \(g_s(\boldsymbol k_c,\omega)\)，它是通过线性外推整个以 \(\boldsymbol k_c\) 为中心的立方体而获得的频率分布:</p>
+
+\[g_s(\boldsymbol k_c,\omega) = CW(\boldsymbol k_c)S_s(h)dh = CW(\boldsymbol k_c)S_s(w) \frac{d\omega}{|\nabla\omega(\boldsymbol k_c)|}\]
+
+<p>其中, \(\omega(\boldsymbol k_c) - h_4\nabla\omega(\boldsymbol k_c) \leq \omega \leq \omega(\boldsymbol k_c) + h_4\nabla\omega(\boldsymbol k_cs)\)</p>
+
+<p>这里 \(C\) 是归一化常数，\(W\boldsymbol k_c)\) 是点 \(\boldsymbol k_c\) 与对称性相关的权重因子</p>
+
+<p>最后, 完整的态密度</p>
+
+\[\text{DOS}(\omega) = \sum_{\boldsymbol k_c, s} g_s(\boldsymbol k_c,\omega)\]
+
+<p>GR 方法有两个实际困难：
+（i）它需要首先计算梯度 \(\nabla\omega(\boldsymbol k_c)\)，
+（ii）由于立方体通常不完全符合布里渊区，因此有必要确定区域不可约部分的立方体的统计权重。</p>
+
+<h2 id="线性外推的推广">线性外推的推广</h2>
+
+<p>GGR 方法的核心思想是使用仿射变换将平行六面体的布里渊区变换为立方体，从而使得原始 GR 方法可以用于任何格子。</p>
+
+<p>BZ是由三个倒易向量 \(\boldsymbol b_i(i=1,2,3)\) 构成的平行六面体。\(\boldsymbol k\) 点沿三个基向量 \(\boldsymbol b_i\) 均匀分布。</p>
+
+<p>仿射变换将平行六面体 BZ 的 \(\boldsymbol k\) 基变为立方的 \(\boldsymbol t=(t_1, t_2, t_3)\) 基：
+\(\boldsymbol k = \boldsymbol b_1 t_1 + \boldsymbol b_2 t_2 + \boldsymbol b_3 t_3\)
+其中 \(t_1, t_2, t_3 \in [0, 1]\)</p>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/GGR-480.webp 480w,/assets/img/blog/GGR-800.webp 800w,/assets/img/blog/GGR-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/GGR.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+</figure>
+
+    </div>
+</div>
+
+<p>两组基底的体积元满足 \(dV_k = \det(B)dV_t = \Omega dV_t\)，其中 \(\Omega\) 为 BZ 的体积。</p>
+
+<p>我们将 \(\text{DOS}(\omega)\)（等频曲面 \(S_\omega\) 上的积分）从 \(\boldsymbol k\) 基变为立方的 \(\boldsymbol t\) 基：</p>
+
+\[\text{DOS}(\omega)=\frac{1}{\Omega} \sum_s\int_{S_\omega}\frac{dS_k}{|\Delta_{\boldsymbol k}\omega_s|} = \sum_s\int_{S_\omega}\frac{dS_t}{|\Delta_{\boldsymbol t}\omega_s|}\]
+
+<h2 id="线性内插">线性内插</h2>
+
+<p>将不可约部分内的立方体划分为多个等体积的四面体。在四面体的每个顶点处已知声子频率，然后四面体内部任意位置的声子频率 \(\nabla\omega(\boldsymbol k)\) 可以通过线性内插得到
+\(\omega(\boldsymbol k) = a_1\omega(\boldsymbol k_1) + a_2\omega(\boldsymbol k_2) + a_3\omega(\boldsymbol k_3) + a_4\omega(\boldsymbol k_4)\)</p>
+
+<p>其中，\(a_i\) 是四面体的顶点权重系数，满足 \(a_1+a_2+a_3+a_4 = 1\)，而这些权重系数依赖于点 \(\boldsymbol k\) 在四面体内的位置。</p>
+
+<p>四面体法只需要粗网格下的 \(\omega(\boldsymbol k_i)\) 的分布，不需要频率梯度（群速度）。</p>
+
+<p>但是在带交叉处，即对简并性上的点进行采样，线性插值会导致误差增加。</p>]]></content><author><name></name></author><category term="Method" /><category term="Solid-State-Physics" /><summary type="html"><![CDATA[晶格动力学研究中最重要的量之一是态密度 (DOS)，定义为在频率 \(\omega\) 和 \(\omega+d\omega\) 之间的简正模态的数量。]]></summary></entry><entry><title type="html">QE 计算硅的声子色散关系</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/qe-disp-si/" rel="alternate" type="text/html" title="QE 计算硅的声子色散关系" /><published>2024-04-06T02:36:10+03:00</published><updated>2024-04-06T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/qe-disp-si</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/qe-disp-si/"><![CDATA[<p>在 Quantum Espresso 中，声子色散是使用 <code class="language-plaintext highlighter-rouge">ph.x</code> 程序计算的，该程序基于密度泛函微扰理论 (DFPT) 。本文以单晶硅 (Si) 为例展开计算。</p>
+
+<h2 id="第一步-pwx">第一步 pw.x</h2>
+
+<p>使用 <code class="language-plaintext highlighter-rouge">pw.x</code> 进行SCF计算</p>
+
+<ul>
+  <li><strong>SCF 输入文件 (<code class="language-plaintext highlighter-rouge">pw.scf.Si.in</code>)</strong></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;control
+  calculation <span class="o">=</span> <span class="s1">'scf'</span>
+  restart_mode <span class="o">=</span> <span class="s1">'from_scratch'</span>
+  pseudo_dir <span class="o">=</span> <span class="s1">'./pseudos/'</span>
+  outdir <span class="o">=</span> <span class="s1">'./out/'</span>
+  prefix <span class="o">=</span> <span class="s1">'Si'</span>
+/
+&amp;system
+  ibrav <span class="o">=</span> 2
+  celldm<span class="o">(</span>1<span class="o">)</span> <span class="o">=</span> 10.20
+  nat <span class="o">=</span> 2
+  ntyp <span class="o">=</span> 1
+  ecutwfc <span class="o">=</span> 16
+/
+&amp;electrons
+  mixing_mode <span class="o">=</span> <span class="s1">'plain'</span>
+  mixing_beta <span class="o">=</span> 0.7
+  conv_thr <span class="o">=</span> 1.0e-8
+/
+ATOMIC_SPECIES
+  Si 28.0855 Si.vbc.UPF
+ATOMIC_POSITIONS
+  Si 0.00 0.00 0.00
+  Si 0.25 0.25 0.25
+K_POINTS <span class="o">{</span>automatic<span class="o">}</span>
+  8 8 8 0 0 0
+</code></pre></div></div>
+
+<ul>
+  <li><strong>执行 SCF 计算</strong></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 pw.x <span class="nt">-i</span> pw.scf.Si.in <span class="o">&gt;</span> pw.scf.Si.out
+</code></pre></div></div>
+
+<h2 id="第二步-phx">第二步 ph.x</h2>
+
+<p>使用 <code class="language-plaintext highlighter-rouge">ph.x</code> 计算 q 点均匀网格上的动力学矩阵</p>
+
+<ul>
+  <li><strong>输入文件 (<code class="language-plaintext highlighter-rouge">ph.Si.in</code>)</strong></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;INPUTPH
+  tr2_ph <span class="o">=</span> 1d-14
+  amass<span class="o">(</span>1<span class="o">)</span> <span class="o">=</span> 28.0855
+  ldisp <span class="o">=</span> .true.
+  nq1 <span class="o">=</span> 4
+  nq2 <span class="o">=</span> 4
+  nq3 <span class="o">=</span> 4
+  outdir <span class="o">=</span> <span class="s1">'./out/'</span>
+  prefix <span class="o">=</span> <span class="s1">'Si'</span>
+  fildyn <span class="o">=</span> <span class="s1">'Si.dyn'</span>
+/
+</code></pre></div></div>
+
+<ul>
+  <li><strong>执行计算</strong></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 ph.x <span class="nt">-i</span> ph.Si.in <span class="o">&gt;</span> ph.Si.out
+</code></pre></div></div>
+
+<ul>
+  <li><strong>输出文件</strong></li>
+</ul>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Si.dyn0</code></strong> 包含有关 q 点网格的坐标</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Si.dyn1-N</code></strong> 包含力常数 C(q_n)，其中 n = 1,…N，其中 N 是不可约布里渊区中 <strong>q</strong> 点数量</p>
+
+<h2 id="第三步-q2rx">第三步 q2r.x</h2>
+
+<p>使用 <code class="language-plaintext highlighter-rouge">q2r.x</code> 对 q 空间的力常数进行逆傅里叶变换以获得实空间中的力常数。</p>
+
+<ul>
+  <li><strong>输入文件 (<code class="language-plaintext highlighter-rouge">q2r.graphene.in</code>)</strong></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;INPUT
+  fildyn <span class="o">=</span> <span class="s1">'Si.dyn'</span>
+  zasr <span class="o">=</span> <span class="s1">'simple'</span> 
+  flfrc <span class="o">=</span> <span class="s1">'Si444.fc'</span>
+/
+</code></pre></div></div>
+
+<ul>
+  <li><strong>执行计算</strong></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 q2r.x <span class="nt">-i</span> q2r.Si.in <span class="o">&gt;</span> q2r.Si.out
+</code></pre></div></div>
+
+<ul>
+  <li><strong>输出文件</strong></li>
+</ul>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Si444.fc</code></strong> 包含实空间 <strong>4<em>4</em>4</strong> 超胞的原子间力常数</p>
+
+<h2 id="第四步-matdynx">第四步 matdyn.x</h2>
+
+<p>使用 <strong><code class="language-plaintext highlighter-rouge">matdyn.x</code></strong> 对实空间分量进行傅里叶变换，得到任意 q 处的动力学矩阵，进而得到任意 q 处的特征值（频率）。</p>
+
+<ul>
+  <li><strong>输入文件 (<code class="language-plaintext highlighter-rouge">matdyn.Si.in</code>)</strong></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;INPUT
+  asr <span class="o">=</span> <span class="s1">'simple'</span>  
+  flfrc <span class="o">=</span> <span class="s1">'Si444.fc'</span>
+  flfrq <span class="o">=</span> <span class="s1">'Si.freq'</span>  
+  flvec <span class="o">=</span> <span class="s1">'Si.modes'</span> 
+  q_in_band_form <span class="o">=</span> .true.
+/
+6
+0.000 0.000 0.000   50
+0.500 0.000 0.500   50
+0.625 0.250 0.625   1
+0.375 0.375 0.750   50
+0.000 0.000 0.000   50
+0.500 0.500 0.500    1
+</code></pre></div></div>
+
+<ul>
+  <li><strong>执行计算</strong></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 matdyn.x <span class="nt">-i</span> matdyn.Si.in <span class="o">&gt;</span> matdyn.Si.out
+</code></pre></div></div>
+
+<p>然后根据得到的 <code class="language-plaintext highlighter-rouge">Si.freq.gp</code> 文件进行绘图：</p>
+
+<div class="row">
+    <div class="col-md-8 text-center">
+        
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/Si-bulk-qe-480.webp 480w,/assets/img/blog/Si-bulk-qe-800.webp 800w,/assets/img/blog/Si-bulk-qe-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/Si-bulk-qe.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+</figure>
+
+    </div>
+</div>]]></content><author><name></name></author><category term="Method" /><category term="DFT-calculations" /><summary type="html"><![CDATA[在 Quantum Espresso 中，声子色散是使用 ph.x 程序计算的，该程序基于密度泛函微扰理论 (DFPT) 。本文以单晶硅 (Si) 为例展开计算。]]></summary></entry><entry><title type="html">QE 进行能量自洽计算</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/qe-scf/" rel="alternate" type="text/html" title="QE 进行能量自洽计算" /><published>2024-03-17T02:36:10+03:00</published><updated>2024-03-17T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/qe-scf</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/qe-scf/"><![CDATA[<p>pw.x 处理的计算包括以下7种类型，在输入文件中用 <code class="language-plaintext highlighter-rouge">calculation</code> 设置：</p>
+
+<p><code class="language-plaintext highlighter-rouge">'scf'</code>：自洽计算，self-consistent field，通过迭代的方式数值求解微分-积分方程（Kohn-Sham方程），迭代收敛以电荷的变化足够小为准，最终得到自洽电荷。</p>
+
+<p><code class="language-plaintext highlighter-rouge">'nscf'</code>：非自洽计算，nscf 计算常在k空间的网格上进行，网格要足够密以完成 k 空间上的积分，在DOS等计算需要更密的 k 点，这时在自洽电荷基础上，计算这些更多的 k 点，nscf计算保持自洽电荷不变。</p>
+
+<p><code class="language-plaintext highlighter-rouge">'bands'</code>：也是一种 nscf 计算，k 点按照三维 k 空间中的特殊路径选取。</p>
+
+<p><code class="language-plaintext highlighter-rouge">'relax'</code>：一系列 scf 计算，通过 Hellman-Feynman 力计算离子坐标驰豫（通过优化算法找到受力为零的结构），relax计算时固定cell不变。</p>
+
+<p><code class="language-plaintext highlighter-rouge">'vc-relax'</code>: 允许cell变化的relax，通过应力的计算改变cell。</p>
+
+<p><code class="language-plaintext highlighter-rouge">'md'</code>：分子动力学，将电子对离子的作用看成离子感受到的势，根据势能和离子初始速度求解离子运动的经典力学方程。</p>
+
+<p><code class="language-plaintext highlighter-rouge">'vc-md'</code>：允许cell改变的md。</p>
+
+<h2 id="输入文件">输入文件</h2>
+
+<p>在 QE 的输入文件中，有 <code class="language-plaintext highlighter-rouge">NAMELISTS</code> 和 <code class="language-plaintext highlighter-rouge">INPUT_CARDS</code>。</p>
+
+<p><code class="language-plaintext highlighter-rouge">PWscf</code> 中有三个强制 <code class="language-plaintext highlighter-rouge">NAMELISTS</code>：</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">&amp;CONTROL</code>：指定计算流，</li>
+  <li><code class="language-plaintext highlighter-rouge">&amp;SYSTEM</code>：指定系统，</li>
+  <li><code class="language-plaintext highlighter-rouge">&amp;ELECTRONS</code>：指定用于求解 Kohn-Sham 方程的算法。</li>
+</ol>
+
+<p>还有另外两个 <code class="language-plaintext highlighter-rouge">NAMELISTS</code>：<code class="language-plaintext highlighter-rouge">&amp;IONS</code> 和 <code class="language-plaintext highlighter-rouge">&amp;CELLS</code>，需要根据计算指定。</p>
+
+<p><code class="language-plaintext highlighter-rouge">PWscf</code> 中的三个 <code class="language-plaintext highlighter-rouge">INPUT_CARDS</code>：<code class="language-plaintext highlighter-rouge">ATOMIC_SPECIES</code>、<code class="language-plaintext highlighter-rouge">ATOMIC_POSITIONS</code> 和 <code class="language-plaintext highlighter-rouge">K_POINTS</code> 是必需的。 在某些计算中还必须提供其他一些信息。</p>
+
+<p><strong>示例：单晶硅的自洽计算  pw.scf.silicon.in</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;CONTROL
+<span class="nv">calculation</span><span class="o">=</span><span class="s1">'scf'</span>,   <span class="c"># self-consistent field 进行自洽计算</span>
+<span class="nv">prefix</span><span class="o">=</span><span class="s1">'silicon'</span>,   <span class="c"># 输出文件的前缀</span>
+<span class="nv">pseudo_dir</span><span class="o">=</span><span class="s1">'./pseudo/'</span>,   <span class="c"># 存放赝势的文件夹</span>
+<span class="nv">outdir</span><span class="o">=</span><span class="s1">'./out/'</span>,   <span class="c"># 指向输出文件的文件夹</span>
+/
+&amp;SYSTEM
+<span class="nv">ibrav</span><span class="o">=</span>2,   <span class="c"># 布拉维晶格类型 FCC结构</span>
+celldm<span class="o">(</span>1<span class="o">)=</span>10.2625,   <span class="c"># 晶格常数 （单位为波尔，1波尔=0.529A）</span>
+<span class="nv">nat</span><span class="o">=</span>2,   <span class="c"># 结构内原子个数</span>
+<span class="nv">ntyp</span><span class="o">=</span>1,   <span class="c"># 结构内原子种类数</span>
+<span class="nv">ecutwfc</span><span class="o">=</span>60.0,   <span class="c"># 波函数截断能 （单位为里德伯格，1Ry = 13.606 eV）</span>
+<span class="nv">ecutrho</span><span class="o">=</span>720.0,   <span class="c"># 电荷密度截断能</span>
+<span class="o">!</span> occupations <span class="o">=</span> <span class="s1">'smearing'</span>, smearing <span class="o">=</span> <span class="s1">'gauss'</span>, degauss <span class="o">=</span> 1.0d-9 <span class="c"># 高斯展宽</span>
+/
+&amp;ELECTRONS
+<span class="nv">mixing_beta</span><span class="o">=</span>0.7,   <span class="c"># 自洽计算过程中前后电荷密度混合比，默认0.7</span>
+<span class="nv">conv_thr</span><span class="o">=</span>1d-8,   <span class="c"># 自洽收敛阙值，默认为1d-6</span>
+/
+ATOMIC_SPECIES
+SI 28.0855 Si.pbe-rrkj.UPF   <span class="c"># 赝势</span>
+ATOMIC_POSITIONS <span class="o">(</span>alat<span class="o">)</span>   <span class="c"># 原子位置（alat 表示采用分子坐标）</span>
+Si 0.00 0.00 0.00
+Si 0.25 0.25 0.25
+K_POINTS automatic  <span class="c"># K点自动分布</span>
+4 4 4 1 1 1
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ibrav</code> - 取值 1-14 对应 14 个布拉维晶格，0对应自由晶格</li>
+  <li><code class="language-plaintext highlighter-rouge">ecutwfc</code> - 波函数截断能，选择不同的赝势，会有对应的建议值。</li>
+  <li><code class="language-plaintext highlighter-rouge">ecutrho</code> - 电荷密度截断能，与 ecutwfc 大小相关</li>
+  <li>赝势为 NC ，该值为 ecutwfc 的 4 倍</li>
+  <li>赝势为 US，该值为 ecutwfc 的 8-12 倍</li>
+  <li>赝势为 PAW，该值为 ecutwfc 的 4 倍</li>
+  <li><code class="language-plaintext highlighter-rouge">mixing</code> - 自洽计算过程中前后电荷密度混合比，默认0.7</li>
+  <li><code class="language-plaintext highlighter-rouge">conv_thr</code> - 自洽收敛阙值，默认1d-6</li>
+  <li>文件保存为 <code class="language-plaintext highlighter-rouge">pw.scf.silicon.in</code></li>
+  <li>建议设置 <code class="language-plaintext highlighter-rouge">occupations='smearing',smearing='gaussian'</code>，使用高斯展宽。高斯展宽对导体和绝缘体是通用的，对于不同的材料调整degauss的值：（1）对于有带隙的材料，<code class="language-plaintext highlighter-rouge">degauss=1d-9</code>，也就是接近0就可以；（2）对于没有带隙的导体材料，<code class="language-plaintext highlighter-rouge">degauss</code> 从小尝试到大。</li>
+</ul>
+
+<p>必须阅读 <a href="https://www.quantum-espresso.org/Doc/INPUT_PW.html"><strong>PWscf user manual</strong></a> 才能深入理解自洽计算的输入文件。</p>
+
+<p>https://www.quantum-espresso.org/Doc/INPUT_PW.html</p>
+
+<h2 id="运行">运行</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 pw.x <span class="nt">-inp</span> pw.scf.silicon.in <span class="o">&gt;</span> pw.scf.silicon.out
+</code></pre></div></div>
+
+<h2 id="输出文件">输出文件</h2>
+
+<p>现在让我们看看输出文件 <code class="language-plaintext highlighter-rouge">pw.scf.silicon.out</code> 并看看如何达到收敛：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">grep</span> <span class="nt">-e</span> <span class="s1">'total energy'</span> <span class="nt">-e</span> estimate pw.scf.silicon.out
+</code></pre></div></div>
+
+<p>之后我们会看到：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Self-consistent Calculation
+
+iteration <span class="c">#  1     ecut=    16.00 Ry     beta= 0.70</span>
+Davidson diagonalization with overlap
+ethr <span class="o">=</span>  1.00E-02,  avg <span class="c"># of iterations =  2.0</span>
+Threshold <span class="o">(</span>ethr<span class="o">)</span> on eigenvalues was too large:
+Diagonalizing with lowered threshold
+Davidson diagonalization with overlap
+ethr <span class="o">=</span>  6.93E-04,  avg <span class="c"># of iterations =  1.0</span>
+total cpu <span class="nb">time </span>spent up to now is        0.3 secs
+total energy              <span class="o">=</span>     <span class="nt">-15</span>.83539933 Ry
+estimated scf accuracy    &lt;       0.06071141 Ry
+
+iteration <span class="c">#  2     ecut=    16.00 Ry     beta= 0.70</span>
+Davidson diagonalization with overlap
+ethr <span class="o">=</span>  7.59E-04,  avg <span class="c"># of iterations =  1.0</span>
+total cpu <span class="nb">time </span>spent up to now is        0.4 secs
+total energy              <span class="o">=</span>     <span class="nt">-15</span>.83851631 Ry
+estimated scf accuracy    &lt;       0.00218630 Ry
+
+iteration <span class="c">#  3     ecut=    16.00 Ry     beta= 0.70</span>
+Davidson diagonalization with overlap
+ethr <span class="o">=</span>  2.73E-05,  avg <span class="c"># of iterations =  2.3</span>
+total cpu <span class="nb">time </span>spent up to now is        0.4 secs
+total energy              <span class="o">=</span>     <span class="nt">-15</span>.83897965 Ry
+estimated scf accuracy    &lt;       0.00007075 Ry
+
+iteration <span class="c">#  4     ecut=    16.00 Ry     beta= 0.70</span>
+Davidson diagonalization with overlap
+ethr <span class="o">=</span>  8.84E-07,  avg <span class="c"># of iterations =  2.6</span>
+total cpu <span class="nb">time </span>spent up to now is        0.4 secs
+total energy              <span class="o">=</span>     <span class="nt">-15</span>.83900178 Ry
+estimated scf accuracy    &lt;       0.00000211 Ry
+
+iteration <span class="c">#  5     ecut=    16.00 Ry     beta= 0.70</span>
+Davidson diagonalization with overlap
+ethr <span class="o">=</span>  2.64E-08,  avg <span class="c"># of iterations =  3.6</span>
+total cpu <span class="nb">time </span>spent up to now is        0.4 secs
+total energy              <span class="o">=</span>     <span class="nt">-15</span>.83900299 Ry
+estimated scf accuracy    &lt;       0.00000012 Ry
+
+iteration <span class="c">#  6     ecut=    16.00 Ry     beta= 0.70</span>
+Davidson diagonalization with overlap
+ethr <span class="o">=</span>  1.46E-09,  avg <span class="c"># of iterations =  2.7</span>
+total cpu <span class="nb">time </span>spent up to now is        0.4 secs
+
+End of self-consistent calculation
+</code></pre></div></div>
+
+<p>值得注意的是，DFT <strong>总能量</strong>的绝对值并不相对于真空参考，而是取决于所选的赝势。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">!</span>    total energy              <span class="o">=</span>     <span class="nt">-15</span>.83900302 Ry
+     estimated scf accuracy    &lt;          3.2E-10 Ry
+
+     The total energy is the <span class="nb">sum </span>of the following terms:
+     one-electron contribution <span class="o">=</span>       4.79863652 Ry
+     hartree contribution      <span class="o">=</span>       1.07565897 Ry
+     xc contribution           <span class="o">=</span>      <span class="nt">-4</span>.81353993 Ry
+     ewald contribution        <span class="o">=</span>     <span class="nt">-16</span>.89975858 Ry
+
+     convergence has been achieved <span class="k">in   </span>6 iterations
+</code></pre></div></div>
+
+<p>Tips</p>
+
+<ul>
+  <li>减少 <code class="language-plaintext highlighter-rouge">mixing_beta</code> 值，特别是当收敛能量周围存在振荡时。</li>
+  <li>增加能量和电荷密度截止值（确保它们足够）。</li>
+  <li>某些伪势文件有问题，可以尝试使用不同库中的伪势。</li>
+  <li><code class="language-plaintext highlighter-rouge">conv_thr</code> 的建议值：
+    <ul>
+      <li>能量和特征值（scf 计算）1.0d-7 Ry</li>
+      <li>受力（relax 计算）1.0e-8 Ry</li>
+      <li>应力（vc-relax 计算）1.0d-9 Ry</li>
+    </ul>
+  </li>
+  <li>能量和特征值（scf 计算）1.0d-7</li>
+</ul>
+
+<p>输出文件上还打印了其他几个重要信息。</p>
+
+<p>计算中使用的<strong>交换相关性</strong>：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Exchange-correlation<span class="o">=</span> SLA  PZ   NOGX NOGC
+</code></pre></div></div>
+
+<p>其中 <code class="language-plaintext highlighter-rouge">SLA</code> — Slater交换； <code class="language-plaintext highlighter-rouge">PZ</code> — LDA 的 Perdew-Zunger 参数化； <code class="language-plaintext highlighter-rouge">NOGX</code> 和 <code class="language-plaintext highlighter-rouge">NOGC</code> 表示不考虑密度梯度。</p>
+
+<p>计算中使用的<strong>平面波总数</strong> (1067)：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Parallelization info
+<span class="nt">--------------------</span>
+sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+Min         108     108     34                 1489     1489     266
+Max         109     109     35                 1492     1492     267
+Sum         433     433    139                 5961     5961    1067
+</code></pre></div></div>
+
+<p><strong>Kohn-Sham 态的数量</strong>：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>number of electrons       <span class="o">=</span>         8.00
+number of Kohn-Sham <span class="nv">states</span><span class="o">=</span>            8
+</code></pre></div></div>]]></content><author><name></name></author><category term="Method" /><category term="DFT-calculations" /><summary type="html"><![CDATA[pw.x 处理的计算包括以下7种类型，在输入文件中用 calculation 设置：]]></summary></entry><entry><title type="html">LAMMPS 石墨烯热导率计算</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/lammps-graphene/" rel="alternate" type="text/html" title="LAMMPS 石墨烯热导率计算" /><published>2024-02-02T02:36:10+03:00</published><updated>2024-02-02T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/lammps-graphene</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/lammps-graphene/"><![CDATA[<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">#模型基本设置</span>
+<span class="nx">units</span>             <span class="nx">metal</span>
+<span class="nx">dimension</span>         <span class="mi">3</span>
+<span class="nx">newton</span>            <span class="nx">on</span>
+<span class="nx">boundary</span>          <span class="nx">p</span> <span class="nx">p</span> <span class="nx">p</span>
+<span class="nx">atom_style</span>        <span class="nx">full</span>
+<span class="nx">neighbor</span>          <span class="mf">0.3</span> <span class="nx">bin</span>
+<span class="nx">#模拟步长0</span><span class="p">.</span><span class="mi">5</span><span class="nx">fs</span>
+<span class="nx">timestep</span>          <span class="mf">0.0005</span>
+<span class="nx">#读取data文件</span>
+<span class="nx">read_data</span>        <span class="nx">gp</span><span class="p">.</span><span class="nx">data</span>
+
+<span class="nx">#力场设置</span>
+<span class="nx">pair_style</span>       <span class="nx">airebo</span> <span class="mf">3.0</span>
+<span class="nx">pair_coeff</span>       <span class="o">*</span> <span class="o">*</span> <span class="nx">CH</span><span class="p">.</span><span class="nx">airebo</span> <span class="nx">C</span>
+
+<span class="nx">#计算温度</span>
+<span class="nx">compute</span>       <span class="nx">ke1</span>  <span class="nx">all</span>  <span class="nx">ke</span><span class="o">/</span><span class="nx">atom</span>
+<span class="nx">variable</span>      <span class="nx">kb</span>  <span class="nx">equal</span> <span class="mf">8.625</span><span class="nx">e</span><span class="o">-</span><span class="mi">5</span>
+<span class="nx">variable</span>      <span class="nx">temp1</span> <span class="nx">atom</span>  <span class="nx">c_ke1</span><span class="o">/</span><span class="mf">1.5</span><span class="o">/</span><span class="nx">$</span><span class="p">{</span><span class="nx">kb</span><span class="p">}</span>      
+<span class="nx">#热力学量输出</span>
+<span class="nx">thermo</span>	      <span class="mi">1000</span>
+<span class="nx">thermo_style</span>  <span class="nx">custom</span>    <span class="nx">step</span>    <span class="nx">temp</span>   <span class="nx">pxx</span> <span class="nx">pyy</span> <span class="nx">pzz</span> <span class="nx">press</span>  <span class="nx">vol</span>
+<span class="nx">#温度初始化</span>
+<span class="nx">velocity</span>	<span class="nx">all</span> <span class="nx">create</span> <span class="mi">300</span> <span class="mi">898758</span> <span class="nx">mom</span> <span class="nx">yes</span> <span class="nx">rot</span> <span class="nx">yes</span> <span class="nx">dist</span> <span class="nx">gaussian</span>
+
+<span class="nx">#能量最小化</span>
+<span class="nx">min_style</span>	    <span class="nx">cg</span>
+<span class="nx">minimize</span>	    <span class="mf">1.0</span><span class="nx">e</span><span class="o">-</span><span class="mi">8</span> <span class="mf">1.0</span><span class="nx">e</span><span class="o">-</span><span class="mi">8</span> <span class="mi">1000000</span> <span class="mi">1000000</span>
+
+<span class="nx">#npt系综下弛豫</span>
+<span class="nx">thermo</span>     <span class="mi">2000</span>
+<span class="nx">thermo_style</span>   <span class="nx">custom</span> <span class="nx">step</span> <span class="nx">temp</span> <span class="nx">pe</span> <span class="nx">ke</span> <span class="nx">etotal</span> <span class="nx">vol</span> <span class="nx">pxx</span> <span class="nx">pyy</span> <span class="nx">pzz</span> <span class="nx">press</span>
+<span class="nx">fix</span>         <span class="mi">1</span> <span class="nx">all</span> <span class="nx">npt</span> <span class="nx">temp</span> <span class="mi">300</span> <span class="mi">300</span> <span class="mf">0.05</span> <span class="nx">iso</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">0.5</span>
+<span class="nx">dump</span>	    <span class="mi">1</span> <span class="nx">all</span> <span class="nx">custom</span> <span class="mi">100000</span> <span class="nx">npt</span><span class="p">.</span><span class="nx">xyz</span> <span class="nx">id</span> <span class="nx">type</span> <span class="nx">x</span> <span class="nx">y</span> <span class="nx">z</span> 
+<span class="nx">run</span>         <span class="mi">500000</span>
+<span class="nx">unfix</span>       <span class="mi">1</span>
+<span class="nx">undump</span>      <span class="mi">1</span>
+<span class="nx">reset_timestep</span> <span class="mi">0</span>
+
+<span class="nx">write_data</span>  <span class="nx">Gp</span><span class="p">.</span><span class="nx">data</span>
+
+<span class="nx">#nvt系综下弛豫</span>
+<span class="nx">thermo</span>     <span class="mi">2000</span>
+<span class="nx">thermo_style</span>   <span class="nx">custom</span> <span class="nx">step</span> <span class="nx">temp</span> <span class="nx">pe</span> <span class="nx">ke</span> <span class="nx">etotal</span> <span class="nx">vol</span> <span class="nx">pxx</span> <span class="nx">pyy</span> <span class="nx">pzz</span> <span class="nx">press</span>
+<span class="nx">fix</span>         <span class="mi">1</span> <span class="nx">all</span> <span class="nx">nvt</span> <span class="nx">temp</span> <span class="mi">300</span> <span class="mi">300</span> <span class="mf">0.05</span> 
+<span class="nx">dump</span>	    <span class="mi">1</span> <span class="nx">all</span> <span class="nx">custom</span> <span class="mi">20000</span> <span class="nx">nvt</span><span class="p">.</span><span class="nx">xyz</span> <span class="nx">id</span> <span class="nx">type</span> <span class="nx">x</span> <span class="nx">y</span> <span class="nx">z</span> 
+<span class="nx">run</span>         <span class="mi">100000</span>
+<span class="nx">unfix</span>       <span class="mi">1</span>
+<span class="nx">undump</span>      <span class="mi">1</span>
+<span class="nx">reset_timestep</span> <span class="mi">0</span>
+
+<span class="nx">#分块参数设置</span>
+<span class="nx">variable</span> <span class="nx">X1</span> 	 <span class="nx">equal</span> <span class="nx">xlo</span>
+<span class="nx">variable</span> <span class="nx">X2</span> 	 <span class="nx">equal</span> <span class="nx">xhi</span>
+<span class="nx">variable</span> <span class="nx">Nlay</span>    <span class="nx">equal</span> <span class="mi">100</span>
+<span class="nx">variable</span> <span class="nx">Dscale</span>  <span class="nx">equal</span> <span class="mi">1</span><span class="o">/</span><span class="nx">$</span><span class="p">{</span><span class="nx">Nlay</span><span class="p">}</span>   <span class="nx">#分块个数</span>
+<span class="nx">variable</span> <span class="nx">Len</span>     <span class="nx">equal</span> <span class="nx">$</span><span class="p">{</span><span class="nx">X2</span><span class="p">}</span><span class="o">-</span><span class="nx">$</span><span class="p">{</span><span class="nx">X1</span><span class="p">}</span> <span class="nx">#总长度</span>
+<span class="nx">variable</span> <span class="nx">Dz</span>      <span class="nx">equal</span> <span class="nx">$</span><span class="p">{</span><span class="nx">Len</span><span class="p">}</span><span class="sr">/${Nlay} #每一块尺</span><span class="err">寸
+</span>
+<span class="nx">#固定端和冷热源端点处坐标</span>
+<span class="nx">variable</span>   <span class="nx">BL1</span>    <span class="nx">equal</span>   <span class="nx">$</span><span class="p">{</span><span class="nx">X1</span><span class="p">}</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="nx">$</span><span class="p">{</span><span class="nx">Dz</span><span class="p">}</span>                 
+<span class="nx">variable</span>   <span class="nx">BL2</span>    <span class="nx">equal</span>   <span class="nx">$</span><span class="p">{</span><span class="nx">X1</span><span class="p">}</span><span class="o">+</span><span class="mi">6</span><span class="o">*</span><span class="nx">$</span><span class="p">{</span><span class="nx">Dz</span><span class="p">}</span>          
+<span class="nx">variable</span>   <span class="nx">BR1</span>   <span class="nx">equal</span>   <span class="nx">$</span><span class="p">{</span><span class="nx">X2</span><span class="p">}</span><span class="o">-</span><span class="mi">6</span><span class="o">*</span><span class="nx">$</span><span class="p">{</span><span class="nx">Dz</span><span class="p">}</span>          
+<span class="nx">variable</span>   <span class="nx">BR2</span>   <span class="nx">equal</span>   <span class="nx">$</span><span class="p">{</span><span class="nx">X2</span><span class="p">}</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="nx">$</span><span class="p">{</span><span class="nx">Dz</span><span class="p">}</span>            
+
+<span class="nx">#区域设置</span>
+<span class="nx">region</span>	<span class="nx">reg_all</span>	<span class="nx">block</span>	<span class="nx">$</span><span class="p">{</span><span class="nx">X1</span><span class="p">}</span>  <span class="nx">$</span><span class="p">{</span><span class="nx">X2</span><span class="p">}</span>   <span class="nx">INF</span> <span class="nx">INF</span>      <span class="nx">INF</span> <span class="nx">INF</span>     <span class="nx">units</span> <span class="nx">box</span>
+<span class="nx">#左侧固定端</span>
+<span class="nx">region</span>	<span class="nx">fixed_L</span>	<span class="nx">block</span>	<span class="nx">INF</span>    <span class="nx">$</span><span class="p">{</span><span class="nx">BL1</span><span class="p">}</span>   <span class="nx">INF</span> <span class="nx">INF</span>      <span class="nx">INF</span> <span class="nx">INF</span>     <span class="nx">units</span> <span class="nx">box</span>
+<span class="nx">#左侧热源</span>
+<span class="nx">region</span>	<span class="nx">Hot</span>	<span class="nx">block</span>	<span class="nx">$</span><span class="p">{</span><span class="nx">BL1</span><span class="p">}</span>  <span class="nx">$</span><span class="p">{</span><span class="nx">BL2</span><span class="p">}</span>   <span class="nx">INF</span> <span class="nx">INF</span>      <span class="nx">INF</span> <span class="nx">INF</span>     <span class="nx">units</span> <span class="nx">box</span>
+<span class="nx">#右侧冷源</span>
+<span class="nx">region</span>	<span class="nx">Cold</span>	<span class="nx">block</span>	<span class="nx">$</span><span class="p">{</span><span class="nx">BR1</span><span class="p">}</span> <span class="nx">$</span><span class="p">{</span><span class="nx">BR2</span><span class="p">}</span>  <span class="nx">INF</span> <span class="nx">INF</span>      <span class="nx">INF</span> <span class="nx">INF</span>     <span class="nx">units</span> <span class="nx">box</span>
+<span class="nx">#右侧固定端</span>
+<span class="nx">region</span>	<span class="nx">fixed_R</span>	<span class="nx">block</span>	<span class="nx">$</span><span class="p">{</span><span class="nx">BR2</span><span class="p">}</span> <span class="nx">INF</span>     <span class="nx">INF</span> <span class="nx">INF</span>      <span class="nx">INF</span> <span class="nx">INF</span>     <span class="nx">units</span> <span class="nx">box</span>
+
+<span class="nx">#对以上区域内原子进行分组</span>                
+<span class="nx">group</span>	<span class="nx">fixed_L</span>		<span class="nx">region</span>	<span class="nx">fixed_L</span>         <span class="nx">#fixed</span> 
+<span class="nx">group</span>	<span class="nx">Hot</span>		    <span class="nx">region</span>	<span class="nx">Hot</span>         <span class="nx">#heatbath1</span>
+<span class="nx">group</span>	<span class="nx">Cold</span>		<span class="nx">region</span>	<span class="nx">Cold</span>        <span class="nx">#heatbath2</span> 
+<span class="nx">group</span>	<span class="nx">fixed_R</span>		<span class="nx">region</span>	<span class="nx">fixed_R</span>        <span class="nx">#fixed</span> 
+<span class="nx">group</span>   <span class="nx">mobile</span>      <span class="nx">subtract</span> <span class="nx">all</span> <span class="nx">fixed_L</span> <span class="nx">fixed_R</span>
+
+<span class="nx">reset_timestep</span> <span class="mi">0</span>
+<span class="nx">#改变边界条件</span><span class="err">，</span><span class="nx">传热方向改为固定边界</span>
+<span class="nx">change_box</span> <span class="nx">all</span> <span class="nx">boundary</span>  <span class="nx">f</span> <span class="nx">p</span> <span class="nx">p</span> 
+
+<span class="nx">#固定两端</span>
+<span class="nx">velocity</span>   <span class="nx">fixed_L</span>      <span class="kd">set</span> <span class="mi">0</span>  <span class="mi">0</span>  <span class="mi">0</span>  
+<span class="nx">velocity</span>   <span class="nx">fixed_R</span>     <span class="kd">set</span> <span class="mi">0</span>  <span class="mi">0</span>  <span class="mi">0</span> 
+<span class="nx">fix</span>      <span class="nx">fixed_L</span>     <span class="nx">fixed_L</span>    <span class="nx">setforce</span>  <span class="mi">0</span>   <span class="mi">0</span>   <span class="mi">0</span>
+<span class="nx">fix</span>      <span class="nx">fixed_R</span>     <span class="nx">fixed_R</span>   <span class="nx">setforce</span>  <span class="mi">0</span>   <span class="mi">0</span>   <span class="mi">0</span>
+
+<span class="nx">#设置langevin控制冷热源</span>
+<span class="nx">fix</span>	  <span class="mi">3</span>	     <span class="nx">Hot</span>	<span class="nx">langevin</span> <span class="mi">400</span> <span class="mi">400</span> <span class="mf">0.05</span> <span class="mi">14565</span> <span class="nx">tally</span> <span class="nx">yes</span>
+<span class="nx">fix</span>	  <span class="mi">4</span>	     <span class="nx">Cold</span>	<span class="nx">langevin</span> <span class="mi">200</span> <span class="mi">200</span> <span class="mf">0.05</span> <span class="mi">16576</span> <span class="nx">tally</span> <span class="nx">yes</span>
+<span class="nx">#nve系综</span>
+<span class="nx">fix</span>   <span class="mi">5</span>      <span class="nx">all</span>   <span class="nx">nve</span>
+
+<span class="nx">#定义热源和冷源输入和输出的能量</span>
+<span class="nx">variable</span> <span class="nx">Time</span> 	 <span class="nx">equal</span> <span class="nx">step</span>
+<span class="nx">variable</span> <span class="nx">EL</span> 	 <span class="nx">equal</span> <span class="nx">f_3</span>
+<span class="nx">variable</span> <span class="nx">ER</span> 	 <span class="nx">equal</span> <span class="nx">f_4</span>
+
+<span class="nx">#分块设置</span>
+<span class="nx">compute</span> <span class="mi">18</span> <span class="nx">all</span> <span class="nx">chunk</span><span class="o">/</span><span class="nx">atom</span> <span class="nx">bin</span><span class="o">/</span><span class="mi">1</span><span class="nx">d</span> <span class="nx">x</span> <span class="nx">lower</span> <span class="nx">$</span><span class="p">{</span><span class="nx">Dscale</span><span class="p">}</span> <span class="nx">units</span> <span class="nx">reduced</span>
+<span class="nx">#计算每一块的温度</span>
+<span class="nx">fix</span> <span class="mi">8</span> <span class="nx">all</span> <span class="nx">ave</span><span class="o">/</span><span class="nx">chunk</span> <span class="mi">1</span> <span class="mi">200000</span> <span class="mi">200000</span> <span class="mi">18</span> <span class="nx">v_temp1</span> <span class="nx">file</span> <span class="nx">temp_relax</span><span class="p">.</span><span class="nx">dat</span>
+
+<span class="nx">dump</span> <span class="mi">1</span> <span class="nx">all</span> <span class="nx">xyz</span> <span class="mi">100000</span> <span class="nx">relax</span><span class="p">.</span><span class="nx">xyz</span>
+<span class="nx">thermo</span> <span class="mi">20000</span>
+<span class="nx">thermo_style</span> <span class="nx">custom</span> <span class="nx">step</span> <span class="nx">temp</span> <span class="nx">ke</span> <span class="nx">pe</span> <span class="nx">etotal</span> <span class="nx">press</span> <span class="nx">vol</span>
+<span class="nx">run</span> <span class="mi">200000</span>
+<span class="nx">unfix</span>     <span class="mi">8</span>
+<span class="nx">undump</span>    <span class="mi">1</span>
+<span class="nx">reset_timestep</span> <span class="mi">0</span>
+
+<span class="nx">#保存温差和能量</span><span class="err">，</span><span class="nx">以下数据用于计算温度梯度和热流</span>
+<span class="nx">fix</span> <span class="mi">11</span> <span class="nx">all</span> <span class="nx">ave</span><span class="o">/</span><span class="nx">chunk</span> <span class="mi">1</span> <span class="mi">10000000</span> <span class="mi">10000000</span> <span class="mi">18</span> <span class="nx">v_temp1</span> <span class="nx">file</span> <span class="nx">temp_equ</span><span class="p">.</span><span class="nx">dat</span>
+<span class="nx">fix</span>	<span class="nx">E_out</span>	<span class="nx">all</span> <span class="nx">print</span> <span class="mi">2000</span> <span class="dl">"</span><span class="s2">${Time}  ${EL}  ${ER}</span><span class="dl">"</span> <span class="nx">file</span> <span class="nx">Ener_equ</span><span class="p">.</span><span class="nx">dat</span> <span class="nx">title</span> <span class="dl">"</span><span class="s2">Time  E1  E2</span><span class="dl">"</span> <span class="nx">screen</span> <span class="nx">no</span>	
+
+<span class="nx">dump</span>         <span class="mi">1</span>  <span class="nx">all</span> <span class="nx">xyz</span> <span class="mi">5000000</span> <span class="nx">equ</span><span class="p">.</span><span class="nx">xyz</span>
+<span class="nx">thermo</span> <span class="mi">1000000</span>
+<span class="nx">thermo_style</span> <span class="nx">custom</span> <span class="nx">step</span> <span class="nx">temp</span> <span class="nx">ke</span> <span class="nx">pe</span> <span class="nx">etotal</span> <span class="nx">press</span> <span class="nx">vol</span>
+<span class="nx">#运行</span>
+<span class="nx">run</span> <span class="mi">10000000</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="Method" /><category term="MD-simulations" /><summary type="html"><![CDATA[```jsx #模型基本设置 units metal dimension 3 newton on boundary p p p atom_style full neighbor 0.3 bin #模拟步长0.5fs timestep 0.0005 #读取data文件 read_data gp.data]]></summary></entry><entry><title type="html">LAMMPS 非平衡分子动力学计算热导率</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/lammps-nemd/" rel="alternate" type="text/html" title="LAMMPS 非平衡分子动力学计算热导率" /><published>2024-01-20T02:36:10+03:00</published><updated>2024-01-20T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/lammps-nemd</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/lammps-nemd/"><![CDATA[<h2 id="热导率模拟方法">热导率模拟方法</h2>
+
+<ul>
+  <li>平衡分子动力学（EMD）（Green-Kubo）</li>
+  <li>非平衡分子动力学（NEMD）（傅里叶定律）</li>
+  <li>反扰动动力学（rNEMD）(Muller-Plathe)</li>
+</ul>
+
+<p>采用非平衡分子动力学（NEMD）的方法进行模拟，通过在材料结构外部施加热流扰动，达到稳定后统计结构中的温度分布，进而计算得出材料的热导率。</p>
+
+<p>傅里叶定律：</p>
+
+\[\kappa=-\frac{J}{A\times\nabla T}\]
+
+<p>$J$ — 热流； $A$ — 传热面积； $\nabla T$ — 温度梯度</p>
+
+<p>热流 $J$ 计算公式：</p>
+
+\[J=\frac{\partial E}{\partial t}\]
+
+<p>$E$ — 输入的能量； $t$ — 输入时间</p>
+
+<p>温度梯度计算公式：</p>
+
+\[\nabla T=\frac{\partial T}{\partial x}\]
+
+<p>$T$ — 温度； $x$ — 传热方向位移</p>
+
+<h2 id="热导建模">热导建模</h2>
+
+<p>（1）固定边界建模方式：</p>
+
+<div class="row">
+    <div class="col-md-8 text-center">
+        
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/lammps-kappa1-480.webp 480w,/assets/img/blog/lammps-kappa1-800.webp 800w,/assets/img/blog/lammps-kappa1-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/lammps-kappa1.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+</figure>
+
+    </div>
+</div>
+
+<p>（2）周期性边界建模方式</p>
+
+<div class="row">
+    <div class="col-md-8 text-center">
+        
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/lammps-kappa2-480.webp 480w,/assets/img/blog/lammps-kappa2-800.webp 800w,/assets/img/blog/lammps-kappa2-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/lammps-kappa2.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+</figure>
+
+    </div>
+</div>
+
+<h2 id="冷热源设置方式">冷热源设置方式</h2>
+
+<ol>
+  <li><strong>fix langevin</strong></li>
+</ol>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">3</span> <span class="nx">Hot</span> <span class="nx">langevin</span> <span class="mi">400</span> <span class="mi">400</span> <span class="mf">0.05</span> <span class="mi">14565</span> <span class="nx">tally</span> <span class="nx">yes</span>
+<span class="nx">fix</span>           <span class="mi">4</span> <span class="nx">Cold</span> <span class="nx">langevin</span> <span class="mi">200</span> <span class="mi">200</span> <span class="mf">0.05</span> <span class="mi">16576</span> <span class="nx">tally</span> <span class="nx">yes</span>
+</code></pre></div></div>
+
+<ol>
+  <li><strong>fix heat</strong></li>
+</ol>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="nx">hot</span> <span class="nx">all</span> <span class="nx">heat</span> <span class="mi">1</span> <span class="mi">10</span> <span class="nx">region</span> <span class="nx">hot</span>
+<span class="nx">fix</span>           <span class="nx">cold</span> <span class="nx">all</span> <span class="nx">heat</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">10</span> <span class="nx">region</span> <span class="nx">cold</span>
+</code></pre></div></div>
+
+<ol>
+  <li><strong>fix ehex</strong></li>
+</ol>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="nx">hot</span> <span class="nx">all</span> <span class="nx">ehex</span> <span class="mi">1</span> <span class="mi">10</span> <span class="nx">region</span> <span class="nx">hot</span>
+<span class="nx">fix</span>           <span class="nx">cold</span> <span class="nx">all</span> <span class="nx">ehex</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">1</span><span class="o">-</span> <span class="nx">region</span> <span class="nx">cold</span>
+</code></pre></div></div>
+
+<h2 id="热流计算">热流计算</h2>
+
+<p><strong>fix langevin</strong></p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">3</span> <span class="nx">Hot</span> <span class="nx">langevin</span> <span class="mi">400</span> <span class="mi">400</span> <span class="mf">0.05</span> <span class="mi">14565</span> <span class="nx">tally</span> <span class="nx">yes</span>
+<span class="nx">fix</span>           <span class="mi">4</span> <span class="nx">Cold</span> <span class="nx">langevin</span> <span class="mi">200</span> <span class="mi">200</span> <span class="mf">0.05</span> <span class="mi">16576</span> <span class="nx">tally</span> <span class="nx">yes</span>
+<span class="nx">variable</span>      <span class="nx">EL</span> <span class="nx">equal</span> <span class="nx">f_3</span>
+<span class="nx">variable</span>      <span class="nx">ER</span> <span class="nx">equal</span> <span class="nx">f_4</span>
+<span class="nx">fix</span>           <span class="nx">E_out</span> <span class="nx">all</span> <span class="nx">print</span> <span class="mi">2000</span> <span class="dl">"</span><span class="s2">${Time} ${EL} ${ER}</span><span class="dl">"</span> <span class="nx">file</span>
+              <span class="o">&amp;</span><span class="nx">Ener_equ</span><span class="p">.</span><span class="nx">dat</span> <span class="nx">title</span> <span class="dl">"</span><span class="s2">Time E1 E2</span><span class="dl">"</span> <span class="nx">screen</span> <span class="nx">no</span>
+</code></pre></div></div>
+
+<h2 id="温度梯度计算">温度梯度计算</h2>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">compute</span>       <span class="nx">ke1</span> <span class="nx">all</span> <span class="nx">ke</span><span class="o">/</span><span class="nx">atom</span>
+<span class="nx">variable</span>      <span class="nx">kb</span> <span class="nx">equal</span> <span class="mf">8.625</span><span class="nx">e</span><span class="o">-</span><span class="mi">5</span>
+<span class="nx">variable</span>      <span class="nx">temp1</span> <span class="nx">atom</span> <span class="nx">c_ke1</span><span class="o">/</span><span class="mf">1.5</span><span class="o">/</span><span class="nx">$</span><span class="p">{</span><span class="nx">kb</span><span class="p">}</span>
+<span class="err">#</span> <span class="nx">分块设置</span>
+<span class="nx">compute</span>       <span class="mi">18</span> <span class="nx">all</span> <span class="nx">chunk</span><span class="o">/</span><span class="nx">atom</span> <span class="nx">bin</span><span class="o">/</span><span class="mi">1</span><span class="nx">d</span> <span class="nx">x</span> <span class="nx">lower</span> <span class="nx">$</span><span class="p">{</span><span class="nx">Dscale</span><span class="p">}</span>
+              <span class="nx">units</span> <span class="nx">reduced</span>
+<span class="nx">fix</span>           <span class="mi">11</span> <span class="nx">all</span> <span class="nx">ave</span><span class="o">/</span><span class="nx">chunk</span> <span class="mi">1</span> <span class="mi">10000000</span> <span class="mi">10000000</span> <span class="mi">18</span> <span class="nx">v_temp1</span> <span class="nx">file</span> <span class="nx">temp_equ</span><span class="p">.</span><span class="nx">dat</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="Method" /><category term="MD-simulations" /><summary type="html"><![CDATA[热导率模拟方法]]></summary></entry><entry><title type="html">LAMMPS 的输入文件结构与编写</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/lammps-in/" rel="alternate" type="text/html" title="LAMMPS 的输入文件结构与编写" /><published>2024-01-11T02:36:10+03:00</published><updated>2024-01-11T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/lammps-in</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/lammps-in/"><![CDATA[<h2 id="模型基本设置">模型基本设置</h2>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">units</span>         <span class="nx">metal</span>
+<span class="nx">dimension</span>     <span class="mi">3</span>
+<span class="nx">boundary</span>      <span class="nx">p</span> <span class="nx">p</span> <span class="nx">p</span>
+<span class="nx">atom_style</span>    <span class="nx">atomic</span>
+<span class="nx">neighbor</span>      <span class="mf">2.0</span> <span class="nx">bin</span>
+<span class="nx">neigh_modify</span>  <span class="nx">every</span> <span class="mi">5</span> <span class="nx">delay</span> <span class="mi">0</span>
+<span class="nx">timestep</span>      <span class="mf">0.001</span>
+</code></pre></div></div>
+
+<h2 id="系统建模">系统建模</h2>
+
+<p>（1）读取data文件</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">read_data</span>     <span class="nx">Al</span><span class="p">.</span><span class="nx">data</span>
+</code></pre></div></div>
+
+<p>（2）自建模型</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">lattice</span>       <span class="nx">fcc</span> <span class="mf">4.05</span>
+<span class="nx">region</span>        <span class="nx">box</span> <span class="nx">block</span> <span class="mi">0</span> <span class="mi">10</span> <span class="mi">0</span> <span class="mi">10</span> <span class="mi">0</span> <span class="mi">10</span>
+<span class="nx">create_box</span>    <span class="mi">1</span> <span class="nx">box</span>
+<span class="nx">create_atoms</span>  <span class="mi">1</span> <span class="nx">box</span>
+</code></pre></div></div>
+
+<h2 id="力场设置">力场设置</h2>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pair_style</span>    <span class="nx">eam</span><span class="o">/</span><span class="nx">fs</span>
+<span class="nx">pair_coeff</span>    <span class="o">*</span> <span class="o">*</span> <span class="nx">Al_mm</span><span class="p">.</span><span class="nx">eam</span><span class="p">.</span><span class="nx">fs</span> <span class="nx">Al</span>
+</code></pre></div></div>
+
+<p>或者</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pair_style</span>    <span class="nx">eam</span>
+<span class="nx">pair_coeff</span>    <span class="o">*</span> <span class="o">*</span> <span class="nx">Al</span><span class="p">.</span><span class="nx">eam</span>
+</code></pre></div></div>
+
+<p>或者</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pair_style</span>    <span class="nx">lj</span><span class="o">/</span><span class="nx">cut</span> <span class="mf">10.0</span>
+<span class="nx">pair_coeff</span>    <span class="mi">1</span> <span class="mi">1</span> <span class="mf">0.023</span> <span class="mf">2.8</span>
+</code></pre></div></div>
+
+<h2 id="温度初始化">温度初始化</h2>
+
+<p>原子温度由原子速度计算得到</p>
+
+<p>温度初始化后，原子获得初始速度</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">velocity</span>      <span class="nx">all</span> <span class="nx">create</span> <span class="mi">300</span> <span class="mi">8989</span>
+</code></pre></div></div>
+
+<h2 id="弛豫">弛豫</h2>
+
+<p>（1）nve 系综</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">nve</span>
+</code></pre></div></div>
+
+<p>（2）nvt 系综</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">nvt</span> <span class="nx">temp</span> <span class="mi">300</span> <span class="mi">300</span> <span class="mf">0.1</span> <span class="nx">#保温</span>
+<span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">nvt</span> <span class="nx">temp</span> <span class="mi">300</span> <span class="mi">1000</span> <span class="mf">0.1</span> <span class="nx">#升温</span>
+</code></pre></div></div>
+
+<p>（3）npt 系综</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">npt</span> <span class="nx">temp</span> <span class="mi">300</span> <span class="mi">300</span> <span class="mf">0.1</span> <span class="nx">iso</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">npt</span> <span class="nx">temp</span> <span class="mi">300</span> <span class="mi">300</span> <span class="mf">0.1</span> <span class="nx">x</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<h2 id="模拟设置">模拟设置</h2>
+
+<p>（1）compute 计算</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">compute</span>       <span class="mi">1</span> <span class="nx">mobile</span> <span class="nx">stress</span><span class="o">/</span><span class="nx">atom</span> <span class="nx">NULL</span>  <span class="nx">#计算原子应力</span>
+<span class="nx">compute</span>       <span class="nx">myTemp</span> <span class="nx">mobile</span> <span class="nx">temp</span>  <span class="nx">#计算温度</span>
+</code></pre></div></div>
+
+<p>（2）fix 计算</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">deform</span> <span class="mi">100</span> <span class="nx">x</span> <span class="nx">erate</span> <span class="mf">0.05</span> <span class="nx">remap</span> <span class="nx">x</span>
+</code></pre></div></div>
+
+<h2 id="输出设置">输出设置</h2>
+
+<p>（1）体系变量输出</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">thermo</span> <span class="nx">style</span>  <span class="nx">custom</span> <span class="nx">step</span> <span class="nx">temp</span> <span class="nx">pe</span> <span class="nx">ke</span> <span class="nx">press</span>
+<span class="nx">thermo</span>        <span class="mi">100</span>
+</code></pre></div></div>
+
+<p>（2）原子量输出</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">dump</span>          <span class="mi">1</span> <span class="nx">all</span> <span class="nx">custom</span> <span class="mi">100</span> <span class="nx">tension</span><span class="p">.</span><span class="nx">xyz</span> <span class="nx">type</span> <span class="nx">x</span> <span class="nx">y</span> <span class="nx">z</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="Method" /><category term="MD-simulations" /><summary type="html"><![CDATA[模型基本设置]]></summary></entry><entry><title type="html">热物理学的微观描述</title><link href="https://lyushisyan.github.io/zh-CN/blog/2023/nano-micro-thermophysics/" rel="alternate" type="text/html" title="热物理学的微观描述" /><published>2023-10-08T03:32:13+03:00</published><updated>2023-10-08T03:32:13+03:00</updated><id>https://lyushisyan.github.io/blog/2023/nano-micro-thermophysics</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2023/nano-micro-thermophysics/"><![CDATA[<p>传热学中的宏观能量守恒方程描述热能的储存、传输（热传导 \(k\)、热对流 \(u\) 和热辐射 \(r\)）以及与其他形式的能量之间的转换。</p>
+
+<h2 id="能量守恒方程">能量守恒方程</h2>
+
+\[\nabla\cdot \boldsymbol q=-\rho c_p\frac{\partial T}{\partial t}+\sum_{i,j}\dot s_{i-j},
+\nabla\cdot \boldsymbol q=\frac{\int_{\Delta A}(\boldsymbol q\cdot\boldsymbol s_{\boldsymbol n})dA}{\Delta V \to 0}\]
+
+<p>其中，\(\rho c_p\frac{\partial T}{\partial t}\) 被称为显热储存，\(\dot s_{i-j}\) 为热能的能量转换速率，由能量载流子 \(i\) 和 \(j\) 之间相互作用的性质和频率决定。</p>
+
+<p>热流矢量 \(\boldsymbol q\) 是传导、对流和辐射热流矢量之和：</p>
+
+\[\boldsymbol q = \boldsymbol q_k + \boldsymbol q_u + \boldsymbol q_r\]
+
+<p><strong>传导热流矢量</strong> \(\boldsymbol q_k\) 是热导率 \(k\) 与温度梯度 \(\nabla T\) 乘积的负数，即傅立叶传导定律：</p>
+
+\[\boldsymbol q_k = -k\nabla T\]
+
+<p><strong>对流热流矢量</strong> \(\boldsymbol q_u\) 是 \(\rho c_p\)、局部速度矢量 \(\boldsymbol u\) 和温度 \(T\) 的乘积：</p>
+
+\[\boldsymbol q_u = \rho c_p\boldsymbol u T\]
+
+<p><strong>辐射热流矢量</strong> \(\boldsymbol q_r\) 是对单位矢量 \(\boldsymbol s\) 与电磁谱的定向辐射强度 \(I_{ph,\omega}\) 乘积在空间上和电磁谱上的积分：</p>
+
+\[\boldsymbol q_r  = 2\pi\int_0^\infty\int_{-1}^1\boldsymbol s I_{ph,\omega}d\mu d\omega\]
+
+<h2 id="主要的能量载流子">主要的能量载流子</h2>
+
+<p>四种能量载流子，即：<strong>声子</strong> (\(p\))、<strong>电子</strong> (\(e\))、<strong>流体粒子</strong> (\(f\)) 和<strong>光子</strong> (\(ph\))，构建了热能存储、传输和相互作用的微观模型。</p>
+
+<h3 id="声子">声子</h3>
+
+<div class="row">
+    <div class="col-md-6 text-center">
+        
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/thermophysics_1-480.webp 480w,/assets/img/blog/thermophysics_1-800.webp 800w,/assets/img/blog/thermophysics_1-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/thermophysics_1.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+</figure>
+
+    </div>
+</div>
+
+<ul>
+  <li>声子是刚性原子晶格中发生的量子化振动模式。</li>
+  <li>长波长声子的特性导致固体中产生声音，因此得名声子。</li>
+  <li>声子决定了材料的许多物理特性，包括热容量和热/电导率（声子的传播负责绝缘体中的热传导）。</li>
+  <li>在经典力学中，晶格的任何振动都可以分解为非局域简正振动模式的叠加。</li>
+  <li>当使用量子力学分析这些模式时，发现它们具有一些类似粒子的特性（波粒二象性）。因此，声子是一种<strong>准粒子</strong>。</li>
+  <li>当声子被视为粒子时，声子被称为<strong>玻色子</strong>，具有零自旋。声子能量 \(E_p=\hbar\omega_p\) 是其势能和动能的总和，其中 \(\hbar= h/2\pi\)，\(h\) 是普朗克常数。</li>
+  <li>声子有两种类型：<strong>声学声子</strong>，用 \(A\) 表示，<strong>光学声子</strong>，用 \(O\) 表示。</li>
+  <li>声学声子的频率随着波长的增加而变小，对应于晶格中的声波。<strong>纵向</strong>声子和<strong>横向</strong>声子通常分别缩写为 \(LA\) 和 \(TA\)。</li>
+  <li>光学声子出现在一个晶胞含有多个原子的晶格中。它们之所以被称为光学的，是因为在离子晶体中很容易被光激发。光学声子通常缩写为 \(LO\) 和 \(TO\)，分别表示<strong>纵向</strong>和<strong>横向</strong>类型。</li>
+</ul>
+
+<h3 id="电子">电子</h3>
+
+<div class="row">
+    <div class="col-md-6 text-center">
+        
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/thermophysics_2-480.webp 480w,/assets/img/blog/thermophysics_2-800.webp 800w,/assets/img/blog/thermophysics_2-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/thermophysics_2.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+</figure>
+
+    </div>
+</div>
+
+<ul>
+  <li>电子是带负电的<strong>亚原子粒子</strong>。电子的自旋为 \(1/2\)，是<strong>费米子</strong>。</li>
+  <li>电子的反粒子是<strong>正电子</strong>。正电子与电子具有相同数量的电荷、质量和自旋，只是电荷是相反的。</li>
+  <li>电子可以表现出粒子和波的特性，因此可以被视为<strong>准粒子</strong>。与原子核结合的电子表现为<strong>驻波</strong>，可以被观测到。</li>
+  <li>固体中的电子分为核心电子和外层电子。核心电子不参与键合，并且被认为始终与原子核一起移动。</li>
+  <li>外层电子距离原子核较远，又分为传导（或自由）电子和<strong>价电子</strong>。</li>
+  <li>在量子力学中，电子由<strong>狄拉克方程</strong>描述。</li>
+  <li>一般情况下，电子的能量分为势能（用键能表示）和动能（用速度表示）。</li>
+</ul>
+
+<h3 id="流体粒子">流体粒子</h3>
+
+<div class="row">
+    <div class="col-md-6 text-center">
+        
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/thermophysics_3-480.webp 480w,/assets/img/blog/thermophysics_3-800.webp 800w,/assets/img/blog/thermophysics_3-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/thermophysics_3.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+</figure>
+
+    </div>
+</div>
+
+<ul>
+  <li>气体和液体由原子或分子（广义上称为流体粒子）组成。流体粒子可以是中性的或带电的，一直处于<strong>随机运动</strong>中。</li>
+  <li>流体粒子的能量分为势能、电子能和动能。</li>
+  <li>在<strong>理想气体</strong>中，气体粒子之间的碰撞是<strong>弹性</strong>的并且粒子之间的吸引力可以忽略不计。</li>
+  <li>对于理想气体，麦克斯韦-玻尔兹曼分布可以通过使用统计力学（以及能量分配和对称性的概念）来导出。</li>
+  <li>液体粒子具有足够的动能来拉伸粒子间吸引力，但不能完全克服它们（因此液体的密度接近固体）。当液体温度升高时，液体的速度增加。动能变大，以至于粒子克服了所有分子间力并自由移动，从而变成了气体。</li>
+</ul>
+
+<h3 id="光子">光子</h3>
+
+<div class="row">
+    <div class="col-md-6 text-center">
+        
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/thermophysics_4-480.webp 480w,/assets/img/blog/thermophysics_4-800.webp 800w,/assets/img/blog/thermophysics_4-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/thermophysics_4.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+</figure>
+
+    </div>
+</div>
+
+<ul>
+  <li>光子是电磁场激发的量子，也是量子电动力学中的基本粒子，是粒子物理学标准模型的一部分。</li>
+  <li>根据量子力学，光子具有波的特性。</li>
+  <li>光子的<strong>静止质量</strong>为零，但能量是确定且有限的。由于光子具有能量，广义相对论指出它们受到重力的影响。</li>
+  <li>光子的自旋为 1，是<strong>玻色子</strong>。单个光子由于其单位自旋而被圆偏振。</li>
+  <li>一般来说，电磁场由频率为 \(f_{ph}\)（角频率 \(\omega_{ph}=2\pi f_{ph}\)）、波长 \(\lambda_{ph}\) 和速度 \(u_{ph}\) 的<strong>平面单色波</strong>组成。</li>
+  <li>电磁波的量子特性由其能量 \(E_{ph} = \hbar \omega_{ph}\) 给出。光子还具有动量 \(\boldsymbol p_{ph} = \hbar \boldsymbol\kappa_{ph}\) ，其中 \(\boldsymbol\kappa_{ph}\) 是波矢。</li>
+  <li>在真空中，光子的色散关系（角频率与波矢量之间的关系）是线性的，这个比例就是<strong>普朗克常数</strong>。</li>
+  <li>物质激发具有非线性色散关系，其动量与其能量不成正比。因此，这些粒子在真空中的传播速度比光速慢。</li>
+</ul>
+
+<h2 id="能量分布函数">能量分布函数</h2>
+
+<p>在由多个粒子组成的系统中，观察到的<strong>宏观状态</strong>（系综平均值）通过每个微观状态存在的概率（能量分布函数）与每个粒子的<strong>微观状态</strong>（位置和动量）相关。</p>
+
+\[\left \langle \phi \right \rangle=\sum_if_i\phi_i\]
+
+<p>概率分布函数用于确定载流子能量及其传输特性。</p>
+
+<p>这些粒子概率分布函数使我们能够描述晶格（声子）和电子比热容的温度依赖性、温度和气体动能之间的关系以及光子的黑体热发射。</p>
+
+<p>平衡概率分布函数 \(f_i^0\) 给出了零扰动下微观状态的最可能分布。</p>
+
+<ul>
+  <li><strong>玻色-爱因斯坦分布</strong> (声子，光子)</li>
+</ul>
+
+\[f_i^0 = \frac{1}{\exp(\frac{E_i}{k_\text BT})-1}\]
+
+<ul>
+  <li><strong>费米-狄拉克分布</strong> (电子)</li>
+</ul>
+
+\[f_i^0 = \frac{1}{\exp(\frac{E_i-\mu}{k_\text BT})+1}\]
+
+<ul>
+  <li><strong>麦克斯韦-玻尔兹曼分布</strong> (理想气体分子)</li>
+</ul>
+
+\[f_i^0 = \frac{1}{\exp(\frac{E_i}{k_\text BT})}\]
+
+<p>与平衡分布的偏差被用于这些载流子的输运性质，即<strong>玻尔兹曼输运理论</strong>。</p>
+
+<h2 id="粒子波-和-准粒子">粒子、波 和 准粒子</h2>
+
+<h3 id="粒子">粒子</h3>
+
+<p>粒子是<strong>离散</strong>的。它们的能量集中在有明确边界的有限空间中。粒子存在于特定位置，为了到达空间中的不同点，粒子必须根据运动学定律移动。</p>
+
+<p>粒子之间的相互作用遵循简单的定律，例如弹性碰撞情况下的能量和动量守恒定律。当没有相互作用时，粒子被称为弹道粒子。</p>
+
+<h3 id="波">波</h3>
+
+<p>波不能被视为有限实体。它们的能量分布在空间和时间上。波可以传播直到它存在于所有位置。可以分析波的相位以确定其在空间中的速度。波由频率和波长指定。</p>
+
+<h3 id="准粒子">准粒子</h3>
+
+<p>准粒子（包括声子、电子和光子）同时具有粒子和波的性质，可以用波包来描述，即由许多不同波长的平面波叠加而成的能量局域化。</p>
+
+<p>从某种意义上说，它们同时既是粒子又是波，这个概念被称为<strong>波粒二象性</strong>。</p>
+
+<p>对于准粒子，粒子和波之间的经典区别可能变得模糊。它们的行为部分根据波动理论，部分根据粒子理论。</p>
+
+<h2 id="对传热物理学的贡献">对传热物理学的贡献</h2>
+
+<p>热是能量的一种形式，表现为物质分子的运动，能够通过<strong>传导</strong>（通过声子、电子和流体粒子）、<strong>对流</strong>（通过流体粒子）和<strong>辐射</strong>（通过光子）从一个物体传递到另一个物体。</p>
+
+<p>与热物理学最相关的物理学领域有：</p>
+<ul>
+  <li>原子/分子动力学；</li>
+  <li>固态（凝聚态）和流体态物理学；</li>
+  <li>电磁学；</li>
+  <li>
+    <p>量子光学。</p>
+  </li>
+  <li><strong>玻尔兹曼</strong>提出：热容、熵和其他热力学性质是大量原子行为的结果，可以用力学和统计学来处理。他引入了玻尔兹曼常数 \(k_B\)，并与麦克斯韦一起提出了<strong>能量均分定律</strong>。</li>
+  <li><strong>麦克斯韦</strong>创立了光的电磁理论，还对气体动力学理论、分子物理学和热力学做出了贡献。</li>
+  <li><strong>普朗克</strong>发现能量以<strong>离散</strong>的形式存在，后来被称为“量子”。他假设允许物体吸收或发射的能量是有选择性的，必须为 \(h\nu\) 的倍数，其中 \(\nu\) 是光子频率。</li>
+  <li><strong>玻耳</strong>在研究最简单的原子氢线谱时，假设原子只能吸收和发射对应于能级之间的能量差的<strong>量子能量</strong>。</li>
+  <li><strong>泡利</strong>阐述了原子结构的规则（通常称为<strong>泡利不相容原理</strong>），单个原子中不能有两个或两个以上的电子处于完全相同的状态。</li>
+  <li><strong>薛定谔</strong>方程描述了控制小粒子运动的概率波（或<strong>波函数</strong>）的形式，并指定了这些波如何受到外部影响的改变。这些波函数奠定了<strong>量子波力学</strong>的基础。</li>
+  <li><strong>费米</strong>设计了一种计算遵循泡利不相容原理的粒子系统行为的方法，后来称为<strong>费米统计</strong>。狄拉克独立发展了等效理论。</li>
+  <li><strong>Green 和 Kubo</strong> 发展了输运系数的<strong>波动耗散理论</strong>。</li>
+  <li><strong>Ziman</strong> 对非平衡声子输运特性进行了变分处理。</li>
+  <li><strong>Callaway 和 Holland</strong> 制定（并求解）了晶格热导率的<strong>单模弛豫时间模型</strong>。</li>
+</ul>
+
+<h2 id="基本常数和精细结构尺度">基本常数和精细结构尺度</h2>
+
+<h3 id="玻尔兹曼常数">玻尔兹曼常数</h3>
+
+\[k_\text B=1.38065\times10^{-23} ~ \text J/\text K\]
+
+<p>定义为能量载流子（声子、电子、光子或流体粒子）的平均热能与其绝对温度 \(T\) 之间的关系。</p>
+
+<p>当能量载流子被视为粒子时，该热能 \(k_\text BT\) 用于归一化能量载流子的能量。</p>
+
+<p>在统计力学中，\(N\) 个粒子系统的熵 \(S\) 定义为 \(S=k_\text BN\ln Z\)。这里，\(Z\) 称为配分函数，它是描述系统在给定宏观约束的情况下可用能态分布的概率函数。</p>
+
+<p>在动力学理论中，根据能量均分，为每个运动度分配一个等于 \(k_\text BT/2\) 的能量。</p>
+
+<h3 id="普朗克常数">普朗克常数</h3>
+
+\[h=6.626069\times10^{−34} ~ \text J\cdot \text s\]
+
+<p>遵循量子力学，物体内的能量是其频率 \(\nu\) 和 \(h\) 的乘积。</p>
+
+<p>约化的普朗克常数（也称为狄拉克常数）为 \(\hbar = h/2\pi\)。</p>
+
+<p>普朗克常数用于描述量子化，主要能量载体的某些物理属性以固定量出现，而不是连续范围的值。</p>
+
+<p>普朗克常数也出现在海森堡不确定性原理的陈述中，任何位置测量的不确定性 \(\Delta x\) 和沿同一方向的动量测量的不确定性 \(\Delta p_x\) 遵循关系 \(\Delta p_x \Delta x \le \hbar/2\)。</p>
+
+<h3 id="原子单位">原子单位</h3>
+
+<p>四个基本常数，约化普朗克常数 \(\hbar\)、电子质量 \(m_e\)、库仑静电常数 \(1/4\pi\varepsilon_0\)（其中 \(\varepsilon_0\) 是自由空间介电常数）和电子电荷 \(e_c\) 用于定义原子单位。</p>
+
+<ul>
+  <li>原子长度：</li>
+</ul>
+
+\[r_\text B = \frac{4\pi\varepsilon_0\hbar^2}{m_e e_c^2}=5.2918\times 10^{-11}~ \text m\]
+
+<ul>
+  <li>原子时间：</li>
+</ul>
+
+\[\tau_a=\frac{m_er_\text B^2}{\hbar} = 2.4189\times 10^{-17} ~ \text s\]
+
+<ul>
+  <li>原子能量：</li>
+</ul>
+
+\[\frac{e_c^2}{4\pi\varepsilon_0r_\text B}=4.3597\times10^{-18}\text J=27.211~ \text{eV}\]
+
+<ul>
+  <li>原子速度：</li>
+</ul>
+
+\[\frac{r_\text B}{\tau_a} = 2.1877 \times 10^6~ \text m/\text s\]
+
+<ul>
+  <li>原子偶极矩：</li>
+</ul>
+
+\[e_cr_\text B=8.4783\times 10^{-30}~ \text C\cdot\text m\]
+
+<hr />
+
+<p><strong>参考文献：</strong></p>
+
+<p>Kaviany M 《<em>Heat Transfer Physics</em>》 2008</p>]]></content><author><name></name></author><category term="Theory" /><category term="Heat-conduction" /><summary type="html"><![CDATA[传热学中的宏观能量守恒方程描述热能的储存、传输（热传导 \(k\)、热对流 \(u\) 和热辐射 \(r\)）以及与其他形式的能量之间的转换。]]></summary></entry></feed>
