@@ -1,7 +1,7 @@
 ---
 page_id: news
 layout: page
-title: 新闻
+title: 大事件
 permalink: /news/
 ---
 

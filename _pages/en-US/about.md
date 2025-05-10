@@ -1,14 +1,14 @@
 ---
 page_id: about
 layout: about
-title: Home
+title: 🏠 Home
 permalink: /
 subtitle: <a href='#'>Bauman Moscow State Technical University</a> 
 
 profile:
   align: right
   image: liusx2.jpg
-  image_circular: false # crops the image to make it circular
+  image_circular: true # crops the image to make it circular
 
 news: true # includes a list of news items
 latest_posts: true # includes a list of the newest posts
@@ -16,11 +16,27 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-Welcome! 
+**Research Interests:**  
+My research focuses on **thermal transport at the micro- and nanoscale**, with particular emphasis on phonon transport mechanisms in low-dimensional materials.
 
-I'm a PhD student at the Department of Thermophysics at Bauman Moscow State Technical University. My advisors are Khvesyuk V.I. and Barinov A.A. My research focuses on understanding heat transfer phenomena at the micro- and nanoscale. Specifically, I'm intrigued by the intricate dynamics of phonons and how they govern thermal transport processes. 
+**Main Research Topics:**  
+- Phonon confinement effects  
+- Resonant hybridization phenomena  
+- Targeted phonon excitation mechanisms  
+- First-principles calculations  
+- Monte Carlo simulations  
+- Machine learning for thermal transport modeling  
 
-Before that, I graduated from Moscow Power Engineering Institute and North China Electric Power University. I worked with my advisor Melikhov V.I. on mathematical modeling of water vapor separation in steam generators.
+**Education:**  
+- **2023 – Present:** Ph.D. Student in Thermal Physics  
+  *Bauman Moscow State Technical University*  
+  Supervisors: Prof. V.I. Khvesyuk, Prof. A.A. Barinov  
 
-My current work primarily revolves around mathematical modeling to unravel the complexities of phonon physics and its implications on heat transfer. By delving into these intricate mechanisms, I aim to contribute to advancements in thermal management technologies and materials design.
+- **2021 – 2023:** M.Sc. in Thermal Physics  
+  *Bauman Moscow State Technical University*  
+  Supervisors: Prof. V.I. Khvesyuk, Prof. A.A. Barinov  
+
+- **2017 – 2021:** B.Sc. in Thermal Engineering (2+2 Joint Program)  
+  *North China Electric Power University & Moscow Power Engineering Institute*  
+  Supervisor: Prof. V.I. Melikhov  
 

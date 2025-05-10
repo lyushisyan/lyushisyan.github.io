@@ -556,7 +556,7 @@ footer.sticky-bottom {
 
   h1 {
     color: var(--global-theme-color);
-    font-size: 5rem;
+    font-size: 4rem;
   }
 }
 
@@ -580,10 +580,16 @@ footer.sticky-bottom {
 }
 
 .post-title {
+  font-size: 2.4rem;
+  font-weight: 1000;
+  margin-bottom: 0.3rem;
+
+  // 保留 MathJax 兼容性处理
   mjx-container[jax="CHTML"][display="true"] {
     display: unset;
   }
 }
+
 
 .post-list {
   margin: 0;
@@ -701,7 +707,7 @@ footer.sticky-bottom {
 
   h1 {
     color: var(--global-theme-color);
-    font-size: 2rem;
+    font-size: 4rem;
     text-align: center;
     margin-top: 1em;
     margin-bottom: 1em;
@@ -1380,3 +1386,4 @@ ninja-keys::part(ninja-input-wrapper) {
   background-color: var(--global-theme-color);
   color: var(--global-text-color);
 }
+

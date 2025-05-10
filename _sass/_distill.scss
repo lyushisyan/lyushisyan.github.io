@@ -52,6 +52,38 @@ d-article {
     border-left: 2px solid var(--global-theme-color) !important;
   }
 
+  h1 {
+    font-size: 2rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 1rem !important;
+    font-weight: 1000 !important;
+    color: var(--global-theme-color) !important;
+  }
+
+  h2 {
+    font-size: 1.6rem !important;
+    line-height: 1.3 !important;
+    margin-top: 1.8rem !important;
+    margin-bottom: 0.8rem !important;
+    color: var(--global-theme-color) !important;
+  }
+
+  h3 {
+    font-size: 1.3rem !important;
+    line-height: 1.3 !important;
+    margin-top: 1.4rem !important;
+    margin-bottom: 0.6rem !important;
+    color: var(--global-theme-color) !important;
+  }
+
+  h4 {
+    font-size: 1.1rem !important;
+    line-height: 1.2 !important;
+    margin-top: 1.2rem !important;
+    margin-bottom: 0.4rem !important;
+    color: var(--global-theme-color) !important;
+  }
+
   // Style taken from code blocks
   details {
     color: var(--global-text-color);
@@ -169,3 +201,4 @@ d-appendix {
     }
   }
 }
+

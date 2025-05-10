@@ -39,29 +39,34 @@ layout: default
 
     <div class="clearfix">{{ content }}</div>
 
-    <!-- News -->
-    {% if page.news and site.announcements.enabled %}
-      <h2>
-        <a href="{{ '/news/' | relative_url }}" style="color: inherit">{{ site.data[site.active_lang].strings.news }}</a>
-      </h2>
-      {% include news.liquid limit=true %}
-    {% endif %}
+    <!-- News Section -->
+    <h3 style="font-weight: bold; border-bottom: 2px solid #ccc; padding-bottom: 4px; margin-top: 2em;">
+      📅
+      <a href="{{ '/news/' | relative_url }}" style="color: inherit; text-decoration: none;">
+        {{ site.data[site.active_lang].strings.news }}
+      </a>
+    </h3>
+    {% include news.liquid limit=true %}
 
-    <!-- Latest posts -->
-    {% if site.latest_posts.enabled %}
-      <h2>
-        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">{{ site.data[site.active_lang].strings.latest_posts }}</a>
-      </h2>
-      {% include latest_posts.liquid %}
-    {% endif %}
 
-    <!-- Selected papers -->
-    {% if page.selected_papers %}
-      <h2>
-        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">{{ site.data[site.active_lang].strings.selected_publications }}</a>
-      </h2>
-      {% include selected_papers.liquid %}
-    {% endif %}
+    <!-- Latest Posts Section -->
+    <h3 style="font-weight: bold; border-bottom: 2px solid #ccc; padding-bottom: 4px; margin-top: 2em;">
+      ✍️ 
+      <a href="{{ '/blog/' | relative_url }}" style="color: inherit; text-decoration: none;">
+        {{ site.data[site.active_lang].strings.latest_posts }}
+      </a>
+    </h3>
+    {% include latest_posts.liquid %}
+
+
+    <!-- Selected Publications Section -->
+    <h3 style="font-weight: bold; border-bottom: 2px solid #ccc; padding-bottom: 4px; margin-top: 2em;">
+      📚 
+      <a href="{{ '/publications/' | relative_url }}" style="color: inherit; text-decoration: none;">
+        {{ site.data[site.active_lang].strings.selected_publications }}
+      </a>
+    </h3>
+    {% include selected_papers.liquid %}
 
     <!-- Social -->
     {% if page.social %}
