@@ -16,27 +16,31 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-**Research Interests:**  
-My research focuses on **thermal transport at the micro- and nanoscale**, with particular emphasis on phonon transport mechanisms in low-dimensional materials.
+📧  [sxliu98@gmail.com](mailto:sxliu98@gmail.com)  
+📍  Room 547, White Building (ULK)
 
-**Main Research Topics:**  
+<i class="fas fa-file-pdf"></i>  <a href="https://lyushisyan.github.io/assets/pdf/en-US/CV_LIU_EN.pdf">Download CV</a>
+
+**Research Interests :**
+
+Focused on **micro- and nanoscale heat transfer**, especially the physical mechanisms of phonon transport in low-dimensional materials.
+
+**Research Areas :**
+
 - Phonon confinement effects  
 - Resonant hybridization phenomena  
-- Targeted phonon excitation mechanisms  
+- Targeted excitation mechanisms  
 - First-principles calculations  
 - Monte Carlo simulations  
-- Machine learning for thermal transport modeling  
+- Machine learning applications
 
-**Education:**  
-- **2023 – Present:** Ph.D. Student in Thermal Physics  
-  *Bauman Moscow State Technical University*  
-  Supervisors: Prof. V.I. Khvesyuk, Prof. A.A. Barinov  
+**Education :**
 
-- **2021 – 2023:** M.Sc. in Thermal Physics  
-  *Bauman Moscow State Technical University*  
-  Supervisors: Prof. V.I. Khvesyuk, Prof. A.A. Barinov  
+- **2023 – Present:** Ph.D. Student, Bauman Moscow State Technical University  
+  *Supervisors: Prof. V.I. Khvesyuk, Prof. A.A. Barinov*
 
-- **2017 – 2021:** B.Sc. in Thermal Engineering (2+2 Joint Program)  
-  *North China Electric Power University & Moscow Power Engineering Institute*  
-  Supervisor: Prof. V.I. Melikhov  
+- **2021 – 2023:** M.Sc. in Thermal Physics, Bauman Moscow State Technical University  
+  *Supervisors: Prof. V.I. Khvesyuk, Prof. A.A. Barinov*
 
+- **2017 – 2021:** B.Sc., North China Electric Power University & Moscow Power Engineering Institute (2+2 Dual-Degree Program)  
+  *Supervisor: Prof. V.I. Melikhov*

@@ -84,7 +84,17 @@
     <!-- Content -->
     <div class="post distill">
     <d-title>
-      <h1 style="font-size: 2.0rem; font-weight: 600;">{{ page.title }}</h1>
+      <h1 style="
+        font-size: 1.8rem;
+        font-weight: 600;
+        text-align: center;
+        overflow: hidden;
+        margin-top: 0.2em;
+        margin-bottom: 0.1em;
+        text-overflow: ellipsis;
+      ">
+        {{ page.title }}
+      </h1>
       <p>{{ page.description }}</p>
     </d-title>
       {% if page.authors %}

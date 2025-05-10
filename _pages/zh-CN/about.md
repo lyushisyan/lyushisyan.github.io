@@ -19,13 +19,14 @@ social: true # 在页面底部包含社交图标
 📧  [sxliu98@gmail.com](mailto:sxliu98@gmail.com)  
 📍  白楼(УЛК) 547室 
 
-
 <i class="fas fa-file-pdf"></i>  <a href="https://lyushisyan.github.io/assets/pdf/en-US/CV_LIU_ZH.pdf">中文简历</a>
 
 **研究兴趣：**  
+
 致力于探究**微纳米尺度下的传热过程**，尤其关注低维材料中声子输运的物理机制。
 
 **研究方向涵盖：** 
+
 - 声子限制效应 
 - 共振杂化效应
 - 靶向激发机制
@@ -34,6 +35,7 @@ social: true # 在页面底部包含社交图标
 - 机器学习 
 
 **教育背景：**  
+
 - **2023年 – 至今：** 莫斯科鲍曼国立技术大学，博士研究生  
   导师：V.I. Khvesyuk 教授，A.A. Barinov 教授
 
