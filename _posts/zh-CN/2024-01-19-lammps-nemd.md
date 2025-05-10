@@ -26,7 +26,7 @@ _styles: >
     margin-bottom: 12px;
   }
   .fake-img p {
-    font-family: monospace;
+    font-family: sans-serif;
     color: white;
     text-align: left;
     margin: 12px 0;

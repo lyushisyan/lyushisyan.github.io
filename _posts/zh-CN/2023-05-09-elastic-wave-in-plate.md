@@ -21,12 +21,12 @@ toc:
 _styles: >
   .fake-img {
     background: #bbb;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(14, 13, 13, 0.1);
     box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 12px;
   }
   .fake-img p {
-    font-family: monospace;
+    font-family: sans-serif;
     color: white;
     text-align: left;
     margin: 12px 0;
