@@ -1,4 +1,4 @@
-_site
+
 .bundle
 .sass-cache
 .jekyll-cache
@@ -11,5 +11,5 @@ assets/libs/
 node_modules/
 vendor
 .idea_site/
-_site/
-_site/
+!_site/
+

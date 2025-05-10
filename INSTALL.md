@@ -35,6 +35,7 @@ The recommended approach for using **al-folio** is to first create your own site
 $ git clone git@github.com:<your-username>/<your-repo-name>.git
 ```
 
+
 Starting version [v0.3.5](https://github.com/alshedivat/al-folio/releases/tag/v0.3.5), **al-folio** will automatically re-deploy your webpage each time you push new changes to your repository! :sparkles:
 
 ## Local setup on Windows
