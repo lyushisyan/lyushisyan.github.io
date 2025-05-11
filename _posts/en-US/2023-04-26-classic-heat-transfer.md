@@ -35,7 +35,7 @@ _styles: >
 
 ## Dynamic Theory of Gas Molecules
 
-Assuming the total path traveled by a molecule is $$L$$, the total volume it occupies during energy transfer is $$\pi d^2L$$ ($$d$$ being the molecular diameter). The total number of molecules in this volume is $$\pi n d^2 L$$ ($$n$$ being molecular density), so the number of collisions is $$\pi n d^2 L$$.
+Assuming the total path traveled by a molecule is $$L$$, the total volume it occupies during energy transfer is $\pi d^2L$ ($d$ being the molecular diameter). The total number of molecules in this volume is $\pi n d^2 L$ ($$n$$ being molecular density), so the number of collisions is $\pi n d^2 L$.
 
 The mean distance $$\Lambda$$ between two collisions equals the ratio of the total path $$L$$ to the number of collisions:
 $$

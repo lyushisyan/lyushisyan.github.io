@@ -42,5 +42,5 @@ Focused on **micro- and nanoscale heat transfer**, especially the physical mecha
 - **2021 – 2023:** M.Sc. in Thermal Physics, Bauman Moscow State Technical University  
   *Supervisors: Prof. V.I. Khvesyuk, Prof. A.A. Barinov*
 
-- **2017 – 2021:** B.Sc., North China Electric Power University & Moscow Power Engineering Institute (2+2 Dual-Degree Program)  
+- **2017 – 2021:** B.Sc., North China Electric Power University & Moscow Power Engineering Institute
   *Supervisor: Prof. V.I. Melikhov*

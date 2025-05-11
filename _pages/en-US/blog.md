@@ -8,7 +8,7 @@ nav_order: 1
 
 <div class="post">
 
-  <h1><strong>📝 Blog </strong></h1>
+  <h1><strong>{{ page.title }} </strong></h1>
   <h2 style="margin-top: 1.5em; font-size: 1.6rem;">
     <strong>Tags </strong>
   </h2>
