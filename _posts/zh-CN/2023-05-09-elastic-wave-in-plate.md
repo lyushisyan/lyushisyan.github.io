@@ -14,52 +14,31 @@ toc:
   - name: 反对称波
   - name: 群速度与相速度
 
-# Below is an example of injecting additional post-specific styles.
-# If you use this post as a template, delete this _styles block.
-_styles: >
-  .fake-img {
-    background: #bbb;
-    border: 1px solid rgba(14, 13, 13, 0.1);
-    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 12px;
-  }
-  .fake-img p {
-    font-family: sans-serif;
-    color: white;
-    text-align: left;
-    margin: 12px 0;
-    text-align: center;
-    font-size: 16px;
-  }
-
 ---
-
 
 本文基于求解**连续介质的弹性方程**来研究波动过程。
 
 在平板中，波可以分为 纵波（**P**波）与 横波（**S**波），**S** 波又分为 **SH** 波 和 **SV** 波。
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/elsplate_1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/elsplate_1.png" zoomable=true caption="图 1：薄膜中弹性波示意图" class="w-50" %}
 </div>
 
-假设波的传播方向为 $x$ 轴。质点振动发生在 $x$ 轴方向的为 **P 波**，质点振动发生在 $$y$$ 轴方向的为 **SH 波**，质点振动发生在 $$z$$ 轴方向的为 **SV 波**。
+假设波的传播方向为 $x$ 轴。质点振动发生在 $x$ 轴方向的为 **P 波**，质点振动发生在 $y$ 轴方向的为 **SH 波**，质点振动发生在 $z$ 轴方向的为 **SV 波**。
 
 SV 波和 P 波在平板表面无应力的条件下耦合为 **Rayleigh-Lamb 波**。
 
 ## 弹性波动方程
 
-在连续介质近似中，考虑在平板中沿 $$x$$ 方向传播的弹性波，波动方程为：
+在连续介质近似中，考虑在平板中沿 $x$ 方向传播的弹性波，波动方程为：
 
 $$
 \mu\Delta\vec u+(\lambda+\mu)\nabla(\nabla\vec u) = \rho \frac{\partial^2 \vec u}{\partial t^2}
 $$
 
-其中 $$\vec u$$ 是位移矢量； $$\lambda + \mu$$ 是 Lame 常数，取决于介质的弹性特性；$$\rho$$ 为介质密度。
+其中 $\vec u$ 是位移矢量； $\lambda + \mu$ 是 Lame 常数，取决于介质的弹性特性；$\rho$ 为介质密度。
 
-波动方程的所有解都可以表示为标量势 $$\varphi$$ 和向量势 $$\vec\psi$$ 的组合：
+波动方程的所有解都可以表示为标量势 $\varphi$ 和向量势 $\vec\psi$ 的组合：
 
 $$
 \vec u =\text{grad }\varphi + \text{rot }\vec\psi
@@ -67,7 +46,7 @@ $$
 
 ## SH 波的色散关系
 
-SH 波中原子的位移发生在 $$y$$ 轴方向，即位移矢量为 $$\vec u = (0,u_y,0)$$。
+SH 波中原子的位移发生在 $y$ 轴方向，即位移矢量为 $\vec u = (0,u_y,0)$。
 
 因此，SH 波的波动方程为：
 
@@ -75,7 +54,7 @@ $$
 \frac{\partial^2 u_y}{\partial x^2}+\frac{\partial^2 u_y}{\partial z^2} = \frac{1}{c_t^2}\frac{\partial^2 u_y}{\partial t^2}
 $$
 
-其中 $$c_t=\sqrt{\mu/\rho}$$ 为剪切波的速度。
+其中 $c_t=\sqrt{\mu/\rho}$ 为剪切波的速度。
 
 解为：
 
@@ -83,7 +62,7 @@ $$
 u_y=(A_1\sin\beta z + A_2\cos\beta z)e^{i(\xi x-\omega t)}
 $$
 
-其中 $$\xi$$ 为波矢在 $$x$$ 轴上的投影； $$\omega$$ 为频率；$$\beta$$ 是波矢在 $$z$$ 轴上的投影，满足关系式：
+其中 $\xi$ 为波矢在 $x$ 轴上的投影； $\omega$ 为频率；$\beta$ 是波矢在 $z$ 轴上的投影，满足关系式：
 
 $$
 \beta^2+\xi^2=\frac{\omega^2}{c_t^2}
@@ -119,12 +98,16 @@ $$
 \omega^2=c_t^2\left[\xi^2+\left(n\pi/2b\right)^2\right]
 $$
 
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/els-DS-SH.png" zoomable=true caption="图 2：SH 波的色散关系" class="w-50" %}
+</div>
+
 
 ## Rayleigh-Lamb 波的色散关系
 
 考虑在具有无应力边界的厚度为 2b 的板中同时存在 P 波和 SV 波。
 
-由于原子运动不依赖于 $$y$$ 坐标，位移矢量为 $$\vec u = (u_x,0,u_z)$$，标量势为 $$\psi$$，向量势为 $$\vec\psi=(0,\psi_y,0)$$。
+由于原子运动不依赖于 $y$ 坐标，位移矢量为 $\vec u = (u_x,0,u_z)$，标量势为 $\psi$，向量势为 $\vec\psi=(0,\psi_y,0)$。
 
 Rayleigh-Lamb 波的波动方程为：
 
@@ -136,7 +119,7 @@ $$
 \frac{\partial^2 \psi_y}{\partial x^2}+\frac{\partial^2 \psi_y}{\partial y^2}=\frac{1}{c_t^2}\frac{\partial \psi_y}{\partial t^2}
 $$
 
-其中 $$c_l=\sqrt{(\lambda+2\mu)/\rho}$$ 是膨胀波的速度；$$c_t=\sqrt{\mu/\rho}$$ 为剪切波的速度。
+其中 $c_l=\sqrt{(\lambda+2\mu)/\rho}$ 是膨胀波的速度；$c_t=\sqrt{\mu/\rho}$ 为剪切波的速度。
 
 考虑波动方程的解为：
 
@@ -166,7 +149,7 @@ $$
 
 ### 对称波
 
-应用 $$A=D=0$$，位移为：
+应用 $A=D=0$，位移为：
 
 $$
 u_x=i(Bk\cos\alpha z+ C\beta\cos\beta z)e^{i(\xi x-\omega t)}
@@ -191,7 +174,7 @@ $$
 
 ### 反对称波
 
-应用 $$B=C=0$$，位移为：
+应用 $B=C=0$，位移为：
 
 $$
 u_x = i \bigg(\xi A\sin\alpha z - \beta D\sin\beta z\bigg) e^{i(\xi x-\omega t)}
@@ -201,7 +184,7 @@ $$
 u_z = \bigg(\alpha A\cos\alpha z + \xi D\cos\beta z\bigg) e^{i(\xi x-\omega t)}
 $$
 
-此时 $$\tau_{zz}$$ 和 $$\tau_{xz}$$ 的边界条件简化为：
+此时 $\tau_{zz}$ 和 $\tau_{xz}$ 的边界条件简化为：
 
 $$
 \pm \bigg[ \bigg(\xi^2-\beta^2\bigg)A\sin\alpha b - 2\beta \xi D \sin\beta b \bigg] = 0
@@ -235,31 +218,48 @@ $$
 \beta^2 = \frac{\omega^2}{c_t^2} - \xi^2 = \xi^2 \bigg(\frac{c^2}{c_t^2} - 1\bigg)
 $$
 
-可以看出，$$\alpha$、$\beta$$ 可能为实数、零或虚数。然后频率方程也相应地改变：
+可以看出，$\alpha$、$\beta$ 可能为实数、零或虚数。然后频率方程也相应地改变：
 
 **区域 I：** $$\xi > \frac{\omega}{c_t}$$ （也可以表示为：$$c < c_l, c_t$$）
 
-我们用 $$i\alpha'$$, $$i\beta'$$ 代替频率方程中的 $$\alpha$$, $$\beta$$ （其中，$$\alpha'^2 = -\alpha^2, ~\beta'^2 = -\beta^2$$），得到：
+我们用 $i\alpha'$, $i\beta'$ 代替频率方程中的 $\alpha$, $\beta$ （其中，$\alpha'^2 = -\alpha^2, ~\beta'^2 = -\beta^2$），得到：
 
 $$
 \frac{\tan\beta' b}{\tan\alpha' b} = -\bigg(\frac{4\alpha'\beta' \xi^2}{\big(\xi^2-\beta'^2\big)^2}\bigg)^{\pm 1}
 $$
 
-**区域 II：** $$\frac{\omega}{c_t} > \xi > \frac{\omega}{c_l}$$ （也可以表示为：$$c_t < c < c_l$$）
+**区域 II：** $\frac{\omega}{c_t} > \xi > \frac{\omega}{c_l}$ （也可以表示为：$c_t < c < c_l$）
 
-我们用 $$i\alpha'$$ 代替频率方程中的 $$\alpha$$（其中，$$\alpha'^2 = -\alpha^2$$），得到：
+我们用 $i\alpha'$ 代替频率方程中的 $\alpha$（其中，$\alpha'^2 = -\alpha^2$），得到：
 
 $$
 \frac{\tan\beta b}{\tan\alpha' b} = -\bigg(\frac{4\alpha'\beta \xi^2}{\big(\xi^2-\beta^2\big)^2}\bigg)^{\pm 1}
 $$
 
-**区域 III：** $$\xi < \frac{\omega}{c_l}$$ （也可以表示为：$$c > c_l$$）
+**区域 III：** $\xi < \frac{\omega}{c_l}$ （也可以表示为：$c > c_l$）
 
 频率方程和之前一致：
 
 $$
 \frac{\tan\beta b}{\tan\alpha b} = -\bigg(\frac{4\alpha\beta \xi^2}{\big(\xi^2-\beta^2\big)^2}\bigg)^{\pm 1}
 $$
+
+<div class="row">
+  <div class="col-md-6 text-center">
+    {% include figure.liquid 
+      path="assets/img/blog/els-DS-L.png" 
+      zoomable=true 
+      caption="图 3：对称 Rayleigh-Lamb 波的色散关系" 
+      class="img-fluid w-100" %}
+  </div>
+  <div class="col-md-6 text-center">
+    {% include figure.liquid 
+      path="assets/img/blog/els-DS-F.png" 
+      zoomable=true 
+      caption="图 4：反对称 Rayleigh-Lamb 波的色散关系" 
+      class="img-fluid w-100" %}
+  </div>
+</div>
 
 ## 群速度与相速度
 
@@ -275,3 +275,19 @@ $$
 v_g=\frac{\partial\omega}{\partial k}
 $$
 
+<div class="row">
+  <div class="col-md-6 text-center">
+    {% include figure.liquid 
+      path="assets/img/blog/els-vg.png" 
+      zoomable=true 
+      caption="图 5：薄膜中弹性波的群速度" 
+      class="img-fluid w-100" %}
+  </div>
+  <div class="col-md-6 text-center">
+    {% include figure.liquid 
+      path="assets/img/blog/els-vp.png" 
+      zoomable=true 
+      caption="图 6：薄膜中弹性波的相速度" 
+      class="img-fluid w-100" %}
+  </div>
+</div>

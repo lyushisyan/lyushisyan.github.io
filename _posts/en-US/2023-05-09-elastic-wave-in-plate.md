@@ -12,113 +12,101 @@ toc:
   - name: Dispersion Relation of Rayleigh-Lamb Waves
   - name: Symmetric Waves
   - name: Antisymmetric Waves
-  - name: Group Velocity and Phase Velocity
-
-_styles: >
-  .fake-img {
-    background: #bbb;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 12px;
-  }
-  .fake-img p {
-    font-family: sans-serif;
-    color: white;
-    text-align: left;
-    margin: 12px 0;
-    text-align: center;
-    font-size: 16px;
-  }
+  - name: Group and Phase Velocity
 ---
 
-This article studies the wave propagation process based on solving the **elastic equations of a continuous medium**.
+This article studies wave propagation by solving the **elastic equation in a continuous medium**.
 
-In plates, waves can be divided into longitudinal waves (**P** waves) and transverse waves (**S** waves), with **S** waves further classified into **SH** waves and **SV** waves.
+In a plate, waves can be classified into longitudinal (**P**) waves and transverse (**S**) waves. **S** waves further include **SH** and **SV** waves.
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/elsplate_1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/elsplate_1.png" zoomable=true caption="Figure 1: Schematic of elastic waves in thin films" class="w-50" %}
 </div>
 
-Assuming the wave propagates along the $x$-axis:
-- Displacement in the $x$ direction corresponds to **P waves**.
-- Displacement in the $y$ direction corresponds to **SH waves**.
-- Displacement in the $z$ direction corresponds to **SV waves**.
+Assume the wave propagates along the $x$-axis. If particle motion is in $x$, it is a **P wave**; in $y$, an **SH wave**; in $z$, an **SV wave**.
 
-**SV waves** and **P waves** couple under the stress-free conditions of a plate surface to form **Rayleigh-Lamb waves**.
+SV and P waves couple under stress-free boundary conditions to form **Rayleigh-Lamb waves**.
 
 ## Elastic Wave Equation
 
-In the approximation of a continuous medium, considering elastic waves propagating along the $$x$$ direction in a plate, the wave equation is:
+In the continuous medium approximation, the wave equation for propagation along $x$ is:
+
 $$
-\mu\Delta\vec u+(\lambda+\mu)\nabla(\nabla\vec u) = \rho \frac{\partial^2 \vec u}{\partial t^2}
+\mu \Delta \vec{u} + (\lambda + \mu) \nabla (\nabla \cdot \vec{u}) = \rho \frac{\partial^2 \vec{u}}{\partial t^2}
 $$
 
-where $$\vec u$$ is the displacement vector, $$\lambda + \mu$$ are Lamé constants (dependent on the medium's elastic properties), and $$\rho$$ is the medium density.
+Here, $\vec{u}$ is the displacement vector; $\lambda$, $\mu$ are Lamé constants; $\rho$ is the density.
 
-The solutions to the wave equation can be expressed as a combination of scalar potential $$\varphi$$ and vector potential $$\vec\psi$$:
+All solutions can be written using scalar and vector potentials:
+
 $$
-\vec u =\text{grad }\varphi + \text{rot }\vec\psi
+\vec{u} = \nabla \varphi + \nabla \times \vec{\psi}
 $$
 
 ## Dispersion Relation of SH Waves
 
-In SH waves, atomic displacement occurs in the $$y$$ direction, i.e., the displacement vector is $$\vec u = (0,u_y,0)$$.
+For SH waves: $\vec{u} = (0, u_y, 0)$.
 
-Thus, the wave equation for SH waves is:
-$$
-\frac{\partial^2 u_y}{\partial x^2}+\frac{\partial^2 u_y}{\partial z^2} = \frac{1}{c_t^2}\frac{\partial^2 u_y}{\partial t^2}
-$$
+Wave equation:
 
-where $$c_t=\sqrt{\mu/\rho}$$ is the shear wave velocity.
-
-The solution is:
 $$
-u_y=(A_1\sin\beta z + A_2\cos\beta z)e^{i(\xi x-\omega t)}$$
-
-where $$\xi$$ is the wave vector projection along the $$x$$-axis, $$\omega$$ is the frequency, and $$\beta$$ is the wave vector projection along the $$z$$-axis, satisfying:
-$$
-\beta^2+\xi^2=\frac{\omega^2}{c_t^2}
+\frac{\partial^2 u_y}{\partial x^2} + \frac{\partial^2 u_y}{\partial z^2} = \frac{1}{c_t^2} \frac{\partial^2 u_y}{\partial t^2}
 $$
 
-Considering stress-free boundary conditions on the plate surfaces, $$\tau_{zy} =\mu\frac{\partial u_y}{\partial z}=0$$ at $$y=\pm b$$, the solution yields:
+with $c_t = \sqrt{\mu / \rho}$.
+
+Solution:
+
 $$
-A_1\cos\beta b-A_2\sin\beta b =0 \quad \text{and} \quad A_1\cos\beta b+A_2\sin\beta b =0
+u_y = (A_1 \sin \beta z + A_2 \cos \beta z) e^{i(\xi x - \omega t)}
 $$
 
-Thus, the frequency equation is:
+where:
+
 $$
-\cos\beta b\sin \beta b=0
+\beta^2 + \xi^2 = \frac{\omega^2}{c_t^2}
 $$
 
-This equation is satisfied when:
+Boundary condition at $y = \pm b$:
+
 $$
-\beta b = n\pi/2~~~(n=0,1,2,3,...)
+\tau_{zy} = \mu \frac{\partial u_y}{\partial z} = 0
 $$
 
-The dispersion relation for SH waves is then:
+From the boundary condition:
+
 $$
-\omega^2=c_t^2\left[\xi^2+\left(n\pi/2b\right)^2\right]
+\cos \beta b \sin \beta b = 0
+\quad \Rightarrow \quad \beta b = \frac{n\pi}{2}, \quad n = 0,1,2,...
 $$
+
+Dispersion relation:
+
+$$
+\omega^2 = c_t^2 \left[ \xi^2 + \left( \frac{n\pi}{2b} \right)^2 \right]
+$$
+
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/els-DS-SH.png" zoomable=true caption="Figure 2: Dispersion relation of SH waves" class="w-50" %}
+</div>
 
 ## Dispersion Relation of Rayleigh-Lamb Waves
 
-Considering the simultaneous presence of P and SV waves in a plate of thickness $$2b$$ with stress-free boundaries:
-- The displacement vector is $$\vec u = (u_x,0,u_z)$$.
-- Scalar potential $$\psi$$ and vector potential $$\vec\psi=(0,\psi_y,0)$$ are used.
+Consider a plate of thickness $2b$ with stress-free boundaries, where both P and SV waves exist.
 
-The wave equations for Rayleigh-Lamb waves are:
+Displacement: $\vec{u} = (u_x, 0, u_z)$, scalar potential: $\varphi$, vector potential: $\vec{\psi} = (0, \psi_y, 0)$.
+
+Wave equations:
+
 $$
-\frac{\partial^2 \varphi}{\partial x^2}+\frac{\partial^2 \varphi}{\partial y^2}=\frac{1}{c_l^2}\frac{\partial \varphi}{\partial t^2}
-$$
-$$
-\frac{\partial^2 \psi_y}{\partial x^2}+\frac{\partial^2 \psi_y}{\partial y^2}=\frac{1}{c_t^2}\frac{\partial \psi_y}{\partial t^2}
+\nabla^2 \varphi = \frac{1}{c_l^2} \frac{\partial^2 \varphi}{\partial t^2}, \quad
+\nabla^2 \psi_y = \frac{1}{c_t^2} \frac{\partial^2 \psi_y}{\partial t^2}
 $$
 
-where $$c_l=\sqrt{(\lambda+2\mu)/\rho}$$ is the longitudinal wave velocity and $$c_t=\sqrt{\mu/\rho}$$ is the shear wave velocity.
+with $c_l = \sqrt{(\lambda + 2\mu)/\rho}$.
 
 The solutions are:
+
 $$
 \varphi=(A\sin\alpha z+B\cos\alpha z)e^{i(\xi x-\omega t)}
 $$
@@ -130,14 +118,16 @@ Symmetric and antisymmetric waves are treated separately.
 
 ### Symmetric Waves
 
-For symmetric waves ($$A=D=0$$):
+For symmetric waves ($A=D=0$):
+
 $$
 \frac{\tan\beta b}{\tan\alpha b} = -\frac{4\alpha\beta \xi^2}{(\xi^2-\beta^2)^2}
 $$
 
 ### Antisymmetric Waves
 
-For antisymmetric waves ($$B=C=0$$):
+For antisymmetric waves ($B=C=0$):
+
 $$
 \frac{\tan\beta b}{\tan\alpha b} = -\frac{(\xi^2-\beta^2)^2}{4\alpha\beta \xi^2}
 $$
@@ -145,6 +135,7 @@ $$
 ### Rayleigh-Lamb Frequency Equation
 
 Combining symmetric and antisymmetric cases:
+
 $$
 F(\alpha,\beta,\xi) = \frac{\tan\beta b}{\tan\alpha b} + \left(\frac{4\alpha\beta \xi^2}{(\xi^2-\beta^2)^2}\right)^{\pm 1} = 0
 $$
@@ -152,11 +143,30 @@ $$
 ## Group Velocity and Phase Velocity
 
 The phase velocity is the propagation velocity of the wave phase:
+
 $$
 v_p=\frac{\omega}{k}
 $$
 
 The group velocity is the velocity at which energy is transmitted in the medium:
+
 $$
 v_g=\frac{\partial\omega}{\partial k}
 $$
+
+<div class="row">
+  <div class="col-md-6 text-center">
+    {% include figure.liquid 
+      path="assets/img/blog/els-vg.png" 
+      zoomable=true 
+      caption="Figure 5: Group velocity of elastic waves in thin films" 
+      class="img-fluid w-100" %}
+  </div>
+  <div class="col-md-6 text-center">
+    {% include figure.liquid 
+      path="assets/img/blog/els-vp.png" 
+      zoomable=true 
+      caption="Figure 6: Phase velocity of elastic waves in thin films" 
+      class="img-fluid w-100" %}
+  </div>
+</div>

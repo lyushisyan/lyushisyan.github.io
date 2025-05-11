@@ -13,23 +13,6 @@ toc:
   - name: 弯曲波
   - name: 数值求解
 
-# Below is an example of injecting additional post-specific styles.
-# If you use this post as a template, delete this _styles block.
-_styles: >
-  .fake-img {
-    background: #bbb;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 12px;
-  }
-  .fake-img p {
-    font-family: sans-serif;
-    color: white;
-    text-align: left;
-    margin: 12px 0;
-    text-align: center;
-    font-size: 16px;
-  }
 
 ---
 
@@ -58,10 +41,8 @@ $$
 
 其中 $c_l=\sqrt{(\lambda+2\mu)/\rho}$ 是膨胀波的速度，$c_t=\sqrt{\mu/\rho}$ 是剪切波的速度。
 
-<div class="row">
-    <div class="col-md-8 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/wire.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/wire.png" zoomable=true caption="图 1：在柱坐标系下圆棒的示意图" class="w-50" %}
 </div>
 
 在柱坐标系中，位移分量为：
@@ -100,10 +81,8 @@ $$
 
 ## 扭转波
 
-<div class="row">
-    <div class="col-md-8 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/wire-T.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/wire-T.png" zoomable=true caption="图 2：圆棒中扭转波示意图" class="w-50" %}
 </div>
 
 扭转波仅存在周向位移分量 $u_\theta$ ：
@@ -133,10 +112,8 @@ $$
 
 ## 纵波
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/wire-L.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/wire-L.png" zoomable=true caption="图 3：圆棒中纵波示意图" class="w-50" %}
 </div>
 
 纵波是轴对称波，存在径向位移分量 $u_r$ 和轴向位移分量 $u_z$ ：
@@ -170,10 +147,8 @@ $$
 
 ## 弯曲波
 
-<div class="row">
-    <div class="col-md-8 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/wire-F.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/wire-F.png" zoomable=true caption="图 4：圆棒中弯曲波示意图" class="w-50" %}
 </div>
 
 对于弯曲波，必须考虑所有三个位移分量：

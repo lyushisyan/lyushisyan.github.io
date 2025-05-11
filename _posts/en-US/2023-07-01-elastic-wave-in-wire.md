@@ -1,139 +1,150 @@
 ---
 layout: distill
-title: Dispersion Relations of Elastic Waves in Circular Rods
+title: Dispersion Relations of Elastic Waves in Cylindrical Rods
 date: 2023-07-01 00:32:13
 categories: Theory
 tabs: true
 map: true
 
 toc:
-  - name: Elastic Equations in Circular Rods
+  - name: Elastic Equation in Cylindrical Rods
   - name: Torsional Waves
   - name: Longitudinal Waves
   - name: Flexural Waves
   - name: Numerical Solution
-
-_styles: >
-  .fake-img {
-    background: #bbb;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 12px;
-  }
-  .fake-img p {
-    font-family: sans-serif;
-    color: white;
-    text-align: left;
-    margin: 12px 0;
-    text-align: center;
-    font-size: 16px;
-  }
-
 ---
 
-## Elastic Equations in Circular Rods
+## Elastic Equation in Cylindrical Rods
 
-The general equation of elastic wave motion:
-
-$$
-\mu \nabla^2\vec u=(\lambda+\mu)\nabla(\nabla\cdot\vec u)=\rho\frac{\partial^2\vec u}{\partial t^2}
-$$
-
-where $\vec u$ is the displacement vector, $\lambda$ and $\mu$ are the Lamé constants characterizing the elastic properties of the medium, $\rho$ is the density, and $t$ is time.
-
-Expressing the displacement vector $\vec u$ as a combination of a scalar potential $\varphi$ and a vector potential $\vec\psi$:
+General equation for elastic wave propagation:
 
 $$
-\vec u=\nabla\varphi+\nabla\times\vec\psi
+\mu \nabla^2 \vec{u} + (\lambda + \mu) \nabla (\nabla \cdot \vec{u}) = \rho \frac{\partial^2 \vec{u}}{\partial t^2}
 $$
 
-Substituting the displacement vector into the elastic wave equation gives:
+Here, $\vec{u}$ is the displacement vector; $\lambda$, $\mu$ are Lamé constants characterizing the elasticity; $\rho$ is the density; $t$ is time.
+
+Express $\vec{u}$ as a combination of scalar potential $\varphi$ and vector potential $\vec{\psi}$:
 
 $$
-\nabla^2\varphi=\frac{1}{c_l^2}\frac{\partial^2\varphi}{\partial t^2},~
-\nabla^2\vec\psi=\frac{1}{c_t^2}\frac{\partial^2\vec\psi}{\partial t^2}
+\vec{u} = \nabla \varphi + \nabla \times \vec{\psi}
 $$
 
-where $c_l=\sqrt{(\lambda+2\mu)/\rho}$ is the speed of compressional waves and $c_t=\sqrt{\mu/\rho}$ is the speed of shear waves.
+Substituting into the wave equation:
 
-<div class="row">
-    <div class="col-md-8 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/wire.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+$$
+\nabla^2 \varphi = \frac{1}{c_l^2} \frac{\partial^2 \varphi}{\partial t^2}, \quad
+\nabla^2 \vec{\psi} = \frac{1}{c_t^2} \frac{\partial^2 \vec{\psi}}{\partial t^2}
+$$
+
+where $c_l = \sqrt{(\lambda + 2\mu)/\rho}$ is the longitudinal wave speed and $c_t = \sqrt{\mu/\rho}$ is the shear wave speed.
+
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/wire.png" zoomable=true caption="Figure 1: Schematic of a cylindrical rod in cylindrical coordinates" class="w-50" %}
 </div>
 
 In cylindrical coordinates, the displacement components are:
 
 $$
-u_r=\frac{\partial\varphi}{\partial r}+\frac{1}{r}\frac{\partial\psi_z}{\partial\theta}-\frac{\partial\psi_\theta}{\partial z} 
+u_r = \frac{\partial \varphi}{\partial r} + \frac{1}{r} \frac{\partial \psi_z}{\partial \theta} - \frac{\partial \psi_\theta}{\partial z}
 $$
 
 $$
-u_\theta=\frac{1}{r}\frac{\partial\varphi}{\partial\theta}+\frac{\partial\psi_r}{\partial z}-\frac{\partial\psi_z}{\partial r}
+u_\theta = \frac{1}{r} \frac{\partial \varphi}{\partial \theta} + \frac{\partial \psi_r}{\partial z} - \frac{\partial \psi_z}{\partial r}
 $$
 
 $$
-u_z=\frac{\partial\varphi}{\partial z}+\frac{1}{r}\frac{\partial(\psi_\theta r)}{\partial r}-\frac{1}{r}\frac{\partial\psi_r}{\partial\theta}
+u_z = \frac{\partial \varphi}{\partial z} + \frac{1}{r} \frac{\partial (\psi_\theta r)}{\partial r} - \frac{1}{r} \frac{\partial \psi_r}{\partial \theta}
 $$
 
-The stresses are:
+Stress components:
 
 $$
-\tau_{rr}=\lambda\left(\frac{\partial u_r}{\partial r}+\frac{u_r}{r}+\frac{1}{r}\frac{\partial u_\theta}{\partial\theta}+\frac{\partial u_z}{\partial z}\right)+2\mu\frac{\partial u_r}{\partial r}
-$$
-
-$$
-\tau_{r\theta}=\mu\left(\frac{\partial u_\theta}{\partial r}-\frac{u_\theta}{r}+\frac{1}{r}\frac{\partial u_r}{\partial\theta}\right)
+\tau_{rr} = \lambda\left(\frac{\partial u_r}{\partial r} + \frac{u_r}{r} + \frac{1}{r} \frac{\partial u_\theta}{\partial \theta} + \frac{\partial u_z}{\partial z} \right) + 2\mu \frac{\partial u_r}{\partial r}
 $$
 
 $$
-\tau_{rz}=\mu\left(\frac{\partial u_r}{\partial z}+\frac{\partial u_z}{\partial r}\right)
+\tau_{r\theta} = \mu \left( \frac{\partial u_\theta}{\partial r} - \frac{u_\theta}{r} + \frac{1}{r} \frac{\partial u_r}{\partial \theta} \right)
 $$
 
-Considering an infinitely long solid circular rod with radius $a$ and stress-free boundary conditions at the surface:
+$$
+\tau_{rz} = \mu \left( \frac{\partial u_r}{\partial z} + \frac{\partial u_z}{\partial r} \right)
+$$
+
+Consider an infinitely long solid rod of radius $a$. Assume stress-free boundary conditions on the surface:
 
 $$
-\tau_{rr}=\tau_{r\theta}=\tau_{rz}=0,~~~r=a
+\tau_{rr} = \tau_{r\theta} = \tau_{rz} = 0, \quad r = a
 $$
 
 ## Torsional Waves
 
-<div class="row">
-    <div class="col-md-8 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/wire-T.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/wire-T.png" zoomable=true caption="Figure 2: Schematic of torsional wave in a cylindrical rod" class="w-50" %}
 </div>
 
-Torsional waves only involve the circumferential displacement component $u_\theta$:
+Torsional waves have only an angular displacement component $u_\theta$:
 
 $$
-u_\theta=\frac{1}{\beta}BJ_1(\beta r)\exp[i(\xi z-\omega t)]
+u_\theta = \frac{1}{\beta} B J_1(\beta r) \exp[i(\xi z - \omega t)]
 $$
 
-From the boundary conditions, the frequency equation for torsional waves is:
+The frequency equation under boundary conditions:
 
 $$
-\beta a\cdot J_0(\beta a)-2J_1(\beta a)=0
+\beta a \cdot J_0(\beta a) - 2 J_1(\beta a) = 0
 $$
 
 Dispersion relation:
 
 $$
-\omega^2=c_t^2(\xi^2+\beta^2)
+\omega^2 = c_t^2 (\xi^2 + \beta^2)
 $$
 
-Introducing dimensionless variables $\overline\alpha=\alpha a$, $\overline\beta=\beta a$, $\overline\xi=\xi a$, and $\Omega=\omega a/c_t$, the non-dimensional dispersion relation becomes:
+Define nondimensional quantities $\overline{\beta} = \beta a$, $\overline{\xi} = \xi a$, and $\Omega = \omega a / c_t$, then:
 
 $$
-\Omega^2=\overline\xi^2+\overline\beta^2
+\Omega^2 = \overline{\xi}^2 + \overline{\beta}^2
+$$
+
+## Longitudinal Waves
+
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/wire-L.png" zoomable=true caption="Figure 3: Schematic of longitudinal wave in a cylindrical rod" class="w-50" %}
+</div>
+
+Longitudinal waves are axisymmetric, with radial $u_r$ and axial $u_z$ displacement:
+
+$$
+u_r = [-\alpha A J_1(\alpha r) - i\xi C J_1(\beta r)] \exp[i(\xi z - \omega t)]
+$$
+
+$$
+u_z = [i\xi A J_0(\alpha r) + \beta C J_0(\beta r)] \exp[i(\xi z - \omega t)]
+$$
+
+Frequency equation:
+
+$$
+(\xi^2 - \beta^2)^2 \frac{(\alpha a) J_0(\alpha a)}{J_1(\alpha a)} + 4\xi^2 \alpha^2 \frac{(\beta a) J_0(\beta a)}{J_1(\beta a)} = 2\alpha^2 (\xi^2 + \beta^2)
+$$
+
+Dispersion relation:
+
+$$
+\omega^2 = c_t^2 (\xi^2 + \beta^2) = c_l^2 (\xi^2 + \alpha^2)
+$$
+
+In nondimensional form:
+
+$$
+\Omega^2 = \overline{\xi}^2 + \overline{\beta}^2 = \left(\frac{c_l}{c_t}\right)^2 (\overline{\xi}^2 + \overline{\alpha}^2)
 $$
 
 ## Flexural Waves
 
-<div class="row">
-    <div class="col-md-8 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/wire-F.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/wire-F.png" zoomable=true caption="Figure 4: Schematic of flexural wave in a cylindrical rod" class="w-50" %}
 </div>
 
 For flexural waves, all three displacement components must be considered:
