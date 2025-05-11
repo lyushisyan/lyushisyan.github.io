@@ -2,10 +2,8 @@
 layout: distill
 title: 平板中的弹性波色散关系
 date: 2023-05-09 00:32:13
-tags: Solid-State-Physics
 categories: Theory
 tabs: true
-giscus_comments: true
 map: true
 
 toc:

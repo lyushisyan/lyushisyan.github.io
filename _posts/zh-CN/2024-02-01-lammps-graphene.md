@@ -2,9 +2,7 @@
 layout: distill
 title: LAMMPS 石墨烯热导率计算
 date: 2024-02-01 23:36:10
-tags: MD-simulations
 categories: Method
-giscus_comments: true
 tabs: true
 
 

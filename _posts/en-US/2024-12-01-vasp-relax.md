@@ -2,9 +2,7 @@
 layout: distill
 title: VASP Structure Optimization
 date: 2024-12-01 23:36:10
-tags: DFT-calculations
 categories: Method
-giscus_comments: true
 tabs: true
 map: true
 

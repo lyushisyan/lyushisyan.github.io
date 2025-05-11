@@ -2,9 +2,7 @@
 layout: distill
 title: 态密度的数值求解方法
 date: 2024-10-05 23:36:10
-tags: Solid-State-Physics
 categories: Method
-giscus_comments: true
 tabs: true
 map: true
 

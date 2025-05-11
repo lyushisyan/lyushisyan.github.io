@@ -2,9 +2,7 @@
 layout: distill
 title: LAMMPS 非平衡分子动力学计算热导率
 date: 2024-01-19 23:36:10
-tags: MD-simulations
 categories: Method
-giscus_comments: true
 tabs: true
 map: true
 

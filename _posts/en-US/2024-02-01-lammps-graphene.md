@@ -2,9 +2,7 @@
 layout: distill
 title: Graphene Thermal Conductivity Calculation (LAMMPS)
 date: 2024-02-01 23:36:10
-tags: MD-simulations
 categories: Method
-giscus_comments: true
 tabs: true
 
 # Below is an example of injecting additional post-specific styles.

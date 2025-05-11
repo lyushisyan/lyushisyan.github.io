@@ -2,9 +2,7 @@
 layout: distill
 title: Thermal Conductivity Simulation Using NEMD (LAMMPS)
 date: 2024-01-19 23:36:10
-tags: MD-simulations
 categories: Method
-giscus_comments: true
 tabs: true
 map: true
 

@@ -2,9 +2,7 @@
 layout: distill
 title: 声子蒙特卡罗模拟的理论基础
 date: 2024-11-15 23:36:10
-tags: MC-simulations
 categories: Method
-giscus_comments: true
 tabs: true
 map: true
 

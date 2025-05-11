@@ -2,9 +2,7 @@
 layout: distill
 title: Theoretical framework for phonon Monte Carlo simulations
 date: 2024-11-15 23:36:10
-tags: MC-simulations
 categories: Method
-giscus_comments: true
 tabs: true
 map: true
 
