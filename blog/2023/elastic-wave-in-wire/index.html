@@ -19,7 +19,7 @@
   
     
     
-      Dispersion Relations of Elastic Waves in Circular Rods | Shixian Liu
+      Dispersion Relations of Elastic Waves in Cylindrical Rods | Shixian Liu
     
   
 </title>
@@ -181,31 +181,13 @@
     <script src="/assets/js/distillpub/transforms.v2.js"></script>
     <script src="/assets/js/distillpub/overrides.js"></script>
     
-      <!-- Page/Post style -->
-      <style type="text/css">
-        .fake-img {
-  background: #bbb;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 12px;
-} .fake-img p {
-  font-family: sans-serif;
-  color: white;
-  text-align: left;
-  margin: 12px 0;
-  text-align: center;
-  font-size: 16px;
-}
-
-      </style>
-    
   </head>
 
   <body>
 <d-front-matter>
     <script async type="text/json">
       {
-            "title": "Dispersion Relations of Elastic Waves in Circular Rods",
+            "title": "Dispersion Relations of Elastic Waves in Cylindrical Rods",
             "description": "",
             "published": "July 01, 2023",
             "authors": [
@@ -267,6 +249,8 @@
 
           <!-- Other pages -->
           
+          
+            
           
             
           
@@ -385,7 +369,7 @@
         margin-bottom: 0.1em;
         text-overflow: ellipsis;
       ">
-        Dispersion Relations of Elastic Waves in Circular Rods
+        Dispersion Relations of Elastic Waves in Cylindrical Rods
       </h1>
       <p></p>
     </d-title>
@@ -398,7 +382,7 @@
               <h3>Contents</h3>
               
                 <div>
-                  <a href="#elastic-equations-in-circular-rods">Elastic Equations in Circular Rods</a>
+                  <a href="#elastic-equation-in-cylindrical-rods">Elastic Equation in Cylindrical Rods</a>
                 </div>
                 
               
@@ -425,28 +409,27 @@
             </nav>
           </d-contents>
         
-        <h2 id="elastic-equations-in-circular-rods">Elastic Equations in Circular Rods</h2>
+        <h2 id="elastic-equation-in-cylindrical-rods">Elastic Equation in Cylindrical Rods</h2>
 
-<p>The general equation of elastic wave motion:</p>
+<p>General equation for elastic wave propagation:</p>
 
-\[\mu \nabla^2\vec u=(\lambda+\mu)\nabla(\nabla\cdot\vec u)=\rho\frac{\partial^2\vec u}{\partial t^2}\]
+\[\mu \nabla^2 \vec{u} + (\lambda + \mu) \nabla (\nabla \cdot \vec{u}) = \rho \frac{\partial^2 \vec{u}}{\partial t^2}\]
 
-<p>where $\vec u$ is the displacement vector, $\lambda$ and $\mu$ are the Lamé constants characterizing the elastic properties of the medium, $\rho$ is the density, and $t$ is time.</p>
+<p>Here, $\vec{u}$ is the displacement vector; $\lambda$, $\mu$ are Lamé constants characterizing the elasticity; $\rho$ is the density; $t$ is time.</p>
 
-<p>Expressing the displacement vector $\vec u$ as a combination of a scalar potential $\varphi$ and a vector potential $\vec\psi$:</p>
+<p>Express $\vec{u}$ as a combination of scalar potential $\varphi$ and vector potential $\vec{\psi}$:</p>
 
-\[\vec u=\nabla\varphi+\nabla\times\vec\psi\]
+\[\vec{u} = \nabla \varphi + \nabla \times \vec{\psi}\]
 
-<p>Substituting the displacement vector into the elastic wave equation gives:</p>
+<p>Substituting into the wave equation:</p>
 
-\[\nabla^2\varphi=\frac{1}{c_l^2}\frac{\partial^2\varphi}{\partial t^2},~
-\nabla^2\vec\psi=\frac{1}{c_t^2}\frac{\partial^2\vec\psi}{\partial t^2}\]
+\[\nabla^2 \varphi = \frac{1}{c_l^2} \frac{\partial^2 \varphi}{\partial t^2}, \quad
+\nabla^2 \vec{\psi} = \frac{1}{c_t^2} \frac{\partial^2 \vec{\psi}}{\partial t^2}\]
 
-<p>where $c_l=\sqrt{(\lambda+2\mu)/\rho}$ is the speed of compressional waves and $c_t=\sqrt{\mu/\rho}$ is the speed of shear waves.</p>
+<p>where $c_l = \sqrt{(\lambda + 2\mu)/\rho}$ is the longitudinal wave speed and $c_t = \sqrt{\mu/\rho}$ is the shear wave speed.</p>
 
-<div class="row">
-    <div class="col-md-8 text-center">
-        
+<div class="text-center">
+  
 
 
 
@@ -460,40 +443,40 @@
     
       <source class="responsive-img-srcset" srcset="/assets/img/blog/wire-480.webp 480w,/assets/img/blog/wire-800.webp 800w,/assets/img/blog/wire-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
     
-    <img src="/assets/img/blog/wire.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/blog/wire.png" class="w-50" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
   </picture>
 
   
+    <figcaption class="caption">Figure 1: Schematic of a cylindrical rod in cylindrical coordinates</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
 <p>In cylindrical coordinates, the displacement components are:</p>
 
-\[u_r=\frac{\partial\varphi}{\partial r}+\frac{1}{r}\frac{\partial\psi_z}{\partial\theta}-\frac{\partial\psi_\theta}{\partial z}\]
+\[u_r = \frac{\partial \varphi}{\partial r} + \frac{1}{r} \frac{\partial \psi_z}{\partial \theta} - \frac{\partial \psi_\theta}{\partial z}\]
 
-\[u_\theta=\frac{1}{r}\frac{\partial\varphi}{\partial\theta}+\frac{\partial\psi_r}{\partial z}-\frac{\partial\psi_z}{\partial r}\]
+\[u_\theta = \frac{1}{r} \frac{\partial \varphi}{\partial \theta} + \frac{\partial \psi_r}{\partial z} - \frac{\partial \psi_z}{\partial r}\]
 
-\[u_z=\frac{\partial\varphi}{\partial z}+\frac{1}{r}\frac{\partial(\psi_\theta r)}{\partial r}-\frac{1}{r}\frac{\partial\psi_r}{\partial\theta}\]
+\[u_z = \frac{\partial \varphi}{\partial z} + \frac{1}{r} \frac{\partial (\psi_\theta r)}{\partial r} - \frac{1}{r} \frac{\partial \psi_r}{\partial \theta}\]
 
-<p>The stresses are:</p>
+<p>Stress components:</p>
 
-\[\tau_{rr}=\lambda\left(\frac{\partial u_r}{\partial r}+\frac{u_r}{r}+\frac{1}{r}\frac{\partial u_\theta}{\partial\theta}+\frac{\partial u_z}{\partial z}\right)+2\mu\frac{\partial u_r}{\partial r}\]
+\[\tau_{rr} = \lambda\left(\frac{\partial u_r}{\partial r} + \frac{u_r}{r} + \frac{1}{r} \frac{\partial u_\theta}{\partial \theta} + \frac{\partial u_z}{\partial z} \right) + 2\mu \frac{\partial u_r}{\partial r}\]
 
-\[\tau_{r\theta}=\mu\left(\frac{\partial u_\theta}{\partial r}-\frac{u_\theta}{r}+\frac{1}{r}\frac{\partial u_r}{\partial\theta}\right)\]
+\[\tau_{r\theta} = \mu \left( \frac{\partial u_\theta}{\partial r} - \frac{u_\theta}{r} + \frac{1}{r} \frac{\partial u_r}{\partial \theta} \right)\]
 
-\[\tau_{rz}=\mu\left(\frac{\partial u_r}{\partial z}+\frac{\partial u_z}{\partial r}\right)\]
+\[\tau_{rz} = \mu \left( \frac{\partial u_r}{\partial z} + \frac{\partial u_z}{\partial r} \right)\]
 
-<p>Considering an infinitely long solid circular rod with radius $a$ and stress-free boundary conditions at the surface:</p>
+<p>Consider an infinitely long solid rod of radius $a$. Assume stress-free boundary conditions on the surface:</p>
 
-\[\tau_{rr}=\tau_{r\theta}=\tau_{rz}=0,~~~r=a\]
+\[\tau_{rr} = \tau_{r\theta} = \tau_{rz} = 0, \quad r = a\]
 
 <h2 id="torsional-waves">Torsional Waves</h2>
 
-<div class="row">
-    <div class="col-md-8 text-center">
-        
+<div class="text-center">
+  
 
 
 
@@ -507,36 +490,81 @@
     
       <source class="responsive-img-srcset" srcset="/assets/img/blog/wire-T-480.webp 480w,/assets/img/blog/wire-T-800.webp 800w,/assets/img/blog/wire-T-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
     
-    <img src="/assets/img/blog/wire-T.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/blog/wire-T.png" class="w-50" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
   </picture>
 
   
+    <figcaption class="caption">Figure 2: Schematic of torsional wave in a cylindrical rod</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
-<p>Torsional waves only involve the circumferential displacement component $u_\theta$:</p>
+<p>Torsional waves have only an angular displacement component $u_\theta$:</p>
 
-\[u_\theta=\frac{1}{\beta}BJ_1(\beta r)\exp[i(\xi z-\omega t)]\]
+\[u_\theta = \frac{1}{\beta} B J_1(\beta r) \exp[i(\xi z - \omega t)]\]
 
-<p>From the boundary conditions, the frequency equation for torsional waves is:</p>
+<p>The frequency equation under boundary conditions:</p>
 
-\[\beta a\cdot J_0(\beta a)-2J_1(\beta a)=0\]
+\[\beta a \cdot J_0(\beta a) - 2 J_1(\beta a) = 0\]
 
 <p>Dispersion relation:</p>
 
-\[\omega^2=c_t^2(\xi^2+\beta^2)\]
+\[\omega^2 = c_t^2 (\xi^2 + \beta^2)\]
 
-<p>Introducing dimensionless variables $\overline\alpha=\alpha a$, $\overline\beta=\beta a$, $\overline\xi=\xi a$, and $\Omega=\omega a/c_t$, the non-dimensional dispersion relation becomes:</p>
+<p>Define nondimensional quantities $\overline{\beta} = \beta a$, $\overline{\xi} = \xi a$, and $\Omega = \omega a / c_t$, then:</p>
 
-\[\Omega^2=\overline\xi^2+\overline\beta^2\]
+\[\Omega^2 = \overline{\xi}^2 + \overline{\beta}^2\]
+
+<h2 id="longitudinal-waves">Longitudinal Waves</h2>
+
+<div class="text-center">
+  
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/wire-L-480.webp 480w,/assets/img/blog/wire-L-800.webp 800w,/assets/img/blog/wire-L-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
+    
+    <img src="/assets/img/blog/wire-L.png" class="w-50" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+  </picture>
+
+  
+    <figcaption class="caption">Figure 3: Schematic of longitudinal wave in a cylindrical rod</figcaption>
+  
+</figure>
+
+</div>
+
+<p>Longitudinal waves are axisymmetric, with radial $u_r$ and axial $u_z$ displacement:</p>
+
+\[u_r = [-\alpha A J_1(\alpha r) - i\xi C J_1(\beta r)] \exp[i(\xi z - \omega t)]\]
+
+\[u_z = [i\xi A J_0(\alpha r) + \beta C J_0(\beta r)] \exp[i(\xi z - \omega t)]\]
+
+<p>Frequency equation:</p>
+
+\[(\xi^2 - \beta^2)^2 \frac{(\alpha a) J_0(\alpha a)}{J_1(\alpha a)} + 4\xi^2 \alpha^2 \frac{(\beta a) J_0(\beta a)}{J_1(\beta a)} = 2\alpha^2 (\xi^2 + \beta^2)\]
+
+<p>Dispersion relation:</p>
+
+\[\omega^2 = c_t^2 (\xi^2 + \beta^2) = c_l^2 (\xi^2 + \alpha^2)\]
+
+<p>In nondimensional form:</p>
+
+\[\Omega^2 = \overline{\xi}^2 + \overline{\beta}^2 = \left(\frac{c_l}{c_t}\right)^2 (\overline{\xi}^2 + \overline{\alpha}^2)\]
 
 <h2 id="flexural-waves">Flexural Waves</h2>
 
-<div class="row">
-    <div class="col-md-8 text-center">
-        
+<div class="text-center">
+  
 
 
 
@@ -550,13 +578,14 @@
     
       <source class="responsive-img-srcset" srcset="/assets/img/blog/wire-F-480.webp 480w,/assets/img/blog/wire-F-800.webp 800w,/assets/img/blog/wire-F-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
     
-    <img src="/assets/img/blog/wire-F.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/blog/wire-F.png" class="w-50" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
   </picture>
 
   
+    <figcaption class="caption">Figure 4: Schematic of flexural wave in a cylindrical rod</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
 <p>For flexural waves, all three displacement components must be considered:</p>
@@ -926,9 +955,9 @@
               window.location.href = "/blog/2023/nano-micro-thermophysics/";
             
           },
-        },{id: "post-dispersion-relations-of-elastic-waves-in-circular-rods",
+        },{id: "post-dispersion-relations-of-elastic-waves-in-cylindrical-rods",
           
-            title: "Dispersion Relations of Elastic Waves in Circular Rods",
+            title: "Dispersion Relations of Elastic Waves in Cylindrical Rods",
           
           description: "",
           section: "Posts",
@@ -948,15 +977,15 @@
               window.location.href = "/blog/2023/elastic-wave-in-plate/";
             
           },
-        },{id: "post-classical-dynamic-theory-of-heat-transfer",
+        },{id: "post-classical-kinetic-theory-of-heat-conduction",
           
-            title: "Classical Dynamic Theory of Heat Transfer",
+            title: "Classical Kinetic Theory of Heat Conduction",
           
           description: "",
           section: "Posts",
           handler: () => {
             
-              window.location.href = "/blog/2023/classic-heat-transfer/";
+              window.location.href = "/blog/2023/classical-kinetic-theory/";
             
           },
         },{id: "news-graduated-from-bauman-moscow-state-technical-university-with-a-master-39-s-degree-in-nuclear-energy-and-thermophysics-and-received-a-badge-with-honors-media-https-bmstu-ru-news-kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery",

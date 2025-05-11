@@ -19,12 +19,12 @@
   
     
     
-      热传递的经典动力学理论 | Shixian Liu
+      Classical Kinetic Theory of Heat Conduction | Shixian Liu
     
   
 </title>
 <meta name="author" content="Shixian Liu">
-<meta name="description" content="">
+<meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.">
 
   <meta name="keywords" content="thermophysics, phonon, heat transfer">
 
@@ -63,7 +63,7 @@
   <link rel="shortcut icon" href="/assets/img/sheng.png?999c12785eb719d4b77e851bbb1bffbc">
 
 <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e">
-<link rel="canonical" href="https://lyushisyan.github.io/zh-CN/blog/2023/classic-heat-transfer/">
+<link rel="canonical" href="https://lyushisyan.github.io/blog/2023/classical-kinetic-theory/">
 
 <!-- Dark Mode -->
 <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
@@ -181,31 +181,13 @@
     <script src="/assets/js/distillpub/transforms.v2.js"></script>
     <script src="/assets/js/distillpub/overrides.js"></script>
     
-      <!-- Page/Post style -->
-      <style type="text/css">
-        .fake-img {
-  background: #bbb;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 12px;
-} .fake-img p {
-  font-family: sans-serif;
-  color: white;
-  text-align: left;
-  margin: 12px 0;
-  text-align: center;
-  font-size: 16px;
-}
-
-      </style>
-    
   </head>
 
   <body>
 <d-front-matter>
     <script async type="text/json">
       {
-            "title": "热传递的经典动力学理论",
+            "title": "Classical Kinetic Theory of Heat Conduction",
             "description": "",
             "published": "April 26, 2023",
             "authors": [
@@ -236,7 +218,7 @@
   <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation">
     <div class="container">
       
-        <a class="navbar-brand title font-weight-lighter" href="/zh-CN/">
+        <a class="navbar-brand title font-weight-lighter" href="/">
           
             
               <span class="font-weight-bold">Shixian</span>
@@ -260,7 +242,7 @@
 
           <!-- About -->
           <li class="nav-item ">
-            <a class="nav-link" href="/zh-CN/">🏠 首页
+            <a class="nav-link" href="/">🏠 Home
               
             </a>
           </li>
@@ -289,10 +271,16 @@
             
           
             
+          
+            
+          
+            
+          
+            
               
                 
                 <li class="nav-item active">
-                  <a class="nav-link" href="/zh-CN/blog/">📝 博客
+                  <a class="nav-link" href="/blog/">📝 Blog
                     
                       <span class="sr-only">(current)</span>
                     
@@ -305,7 +293,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/zh-CN/publications/">📚 发表
+                  <a class="nav-link" href="/publications/">📚 Publications
                     
                   </a>
                 </li>
@@ -316,7 +304,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/zh-CN/teaching/">🧑‍🏫 教学
+                  <a class="nav-link" href="/teaching/">🧑‍🏫 Teaching
                     
                   </a>
                 </li>
@@ -337,9 +325,9 @@
               
               <li class="nav-item active">
                 
-                  <a class="nav-link" href="/blog/2023/classic-heat-transfer/">
+                  <a class="nav-link" href="/zh-CN/blog/2023/classical-kinetic-theory/">
                     
-                      EN-US</a>
+                      ZH-CN</a>
                 
               </li>
             
@@ -381,7 +369,7 @@
         margin-bottom: 0.1em;
         text-overflow: ellipsis;
       ">
-        热传递的经典动力学理论
+        Classical Kinetic Theory of Heat Conduction
       </h1>
       <p></p>
     </d-title>
@@ -394,50 +382,52 @@
               <h3>Contents</h3>
               
                 <div>
-                  <a href="#%E7%BB%8F%E5%85%B8%E5%8A%A8%E5%8A%9B%E5%AD%A6">经典动力学</a>
+                  <a href="#kinetic-theory-of-gases">Kinetic Theory of Gases</a>
                 </div>
                 
               
                 <div>
-                  <a href="#%E7%94%B5%E4%BB%8B%E8%B4%A8%E4%B8%AD%E7%9A%84%E4%BC%A0%E7%83%AD">电介质中的传热</a>
+                  <a href="#heat-conduction-in-dielectrics">Heat Conduction in Dielectrics</a>
                 </div>
                 
               
                 <div>
-                  <a href="#%E9%87%91%E5%B1%9E%E4%B8%AD%E7%9A%84%E4%BC%A0%E7%83%AD">金属中的传热</a>
+                  <a href="#heat-conduction-in-metals">Heat Conduction in Metals</a>
                 </div>
                 
               
                 <div>
-                  <a href="#%E7%8E%BB%E5%B0%94%E5%85%B9%E6%9B%BC%E6%96%B9%E7%A8%8B">玻尔兹曼方程</a>
+                  <a href="#boltzmann-transport-equation">Boltzmann Transport Equation</a>
                 </div>
                 
               
                 <div>
-                  <a href="#%E5%82%85%E9%87%8C%E5%8F%B6%E6%96%B9%E7%A8%8B">傅里叶方程</a>
+                  <a href="#fourier-equation">Fourier Equation</a>
                 </div>
                 
               
                 <div>
-                  <a href="#%E6%80%BB%E7%BB%93">总结</a>
+                  <a href="#summary">Summary</a>
                 </div>
                 
               
             </nav>
           </d-contents>
         
-        <h2 id="经典动力学">经典动力学</h2>
+        <h2 id="kinetic-theory-of-gases">Kinetic Theory of Gases</h2>
 
-<p>假设一个分子移动的总路径为 \(L\)，那么它在能量转移过程中占据的总体积为 \(\pi d^2L\)（\(d\) 为分子的直径），该体积中的分子总数为 \(\pi n d^2 L\)（\(n\) 为分子密度），所以该分子的碰撞次数为 \(\pi n d^2 L\)。</p>
+<p>In classical kinetic theory, consider a molecule traveling a total path length $L$. The effective volume it sweeps out is $\pi d^2 L$, where $d$ is the molecular diameter. If the number density of the gas is $n$, then the number of molecules within this volume is $\pi n d^2 L$, meaning the number of collisions experienced is:</p>
 
-<p>两次碰撞之间的平均距离 \(\Lambda\) 等于总路径 \(L\) 与碰撞次数的比率：
-\(\Lambda = \frac{L}{n \pi d^2 L} = \frac{1}{n \sigma}\)</p>
+\[N = \pi n d^2 L\]
 
-<p>其中 \(\sigma\) 是碰撞截面。</p>
+<p>The mean free path $\Lambda$ between two collisions is then:</p>
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        
+\[\Lambda = \frac{L}{N} = \frac{L}{\pi n d^2 L} = \frac{1}{n \sigma}\]
+
+<p>where $\sigma = \pi d^2$ is the collision cross-section.</p>
+
+<div class="text-center">
+  
 
 
 
@@ -451,55 +441,72 @@
     
       <source class="responsive-img-srcset" srcset="/assets/img/blog/meanlength-480.webp 480w,/assets/img/blog/meanlength-800.webp 800w,/assets/img/blog/meanlength-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
     
-    <img src="/assets/img/blog/meanlength.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/blog/meanlength.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
   </picture>
 
   
+    <figcaption class="caption">Figure 1: Schematic of mean free path</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
-<p>代入理想气体分子的密度 \(n = \frac{p}{k_B T}\)：
-\(\Lambda = \frac{k_B T}{p \sigma}\)</p>
+<p>Substituting the ideal gas relation $n = \frac{p}{k_B T}$ gives:</p>
 
-<p>基于动力学理论，计算理想气体中的热流。设 \(\varepsilon\) 为气体的内能，则一个分子的热流为：
-\(q_x = \frac{1}{2} v_x [\varepsilon(x - \Lambda_x) - \varepsilon(x + \Lambda_x)]\)</p>
+\[\Lambda = \frac{k_B T}{p \sigma}\]
 
-<p>其中 \(x\) 是坐标；\(v_x\) 是速度的 \(x\)-分量。</p>
+<p>To calculate the heat flux from a single molecule, assume its internal energy is $\varepsilon$, and its velocity component in the $x$ direction is $v_x$. Then the energy transfer per unit time is approximately:</p>
 
-<p>展开为泰勒级数，我们得到：
-\(q_x = -v_x \Lambda_x \frac{\text{d}\varepsilon}{\text{dx}} \approx -(\cos^2\theta) v \Lambda \frac{\text{d}\varepsilon}{\text{dx}}\)</p>
+\[q_x = \frac{1}{2} v_x \left[\varepsilon(x - \Lambda_x) - \varepsilon(x + \Lambda_x)\right]\]
 
-<p>通过全角度积分，得到总热流：
-\(q_x = -\frac{1}{2\pi} v \Lambda \frac{\text{d}\varepsilon}{\text{dx}}
-\left[\int_{\varphi=0}^{2\pi}\int_{\theta=0}^{\pi/2}\cos^2\theta\sin\theta\text{d}\theta\text{d}\varphi\right] \frac{\text{d}\varepsilon}{\text{dT}} \frac{\text{dT}}{\text{dx}}
-\approx -\frac{1}{3} C v \Lambda \frac{\text{dT}}{\text{dx}}\)</p>
+<p>Expanding using a Taylor series and neglecting higher-order terms:</p>
 
-<p>由此得到气体热导率的表达式：
-\(\lambda \approx \frac{1}{3} C v \Lambda\)</p>
+\[q_x \approx -v_x \Lambda_x \frac{\mathrm{d} \varepsilon}{\mathrm{d}x} \approx -(\cos^2\theta) v \Lambda \frac{\mathrm{d} \varepsilon}{\mathrm{d}x}\]
 
-<p>它与热容量 \(C\)、分子速度 \(v\) 和平均自由程 \(\Lambda\) 成正比。</p>
+<p>Integrating over all directions (assuming isotropy), the total heat flux is:</p>
 
-<h2 id="电介质中的传热">电介质中的传热</h2>
+\[q_x = -\frac{1}{2\pi} v \Lambda \frac{\mathrm{d} \varepsilon}{\mathrm{d}x}
+\left[\int_0^{2\pi} \mathrm{d}\varphi \int_0^{\pi/2} \cos^2\theta \sin\theta \, \mathrm{d}\theta \right] \frac{\mathrm{d} \varepsilon}{\mathrm{d}T} \frac{\mathrm{d}T}{\mathrm{d}x}\]
 
-<p>电介质中的热量传递由声子负责，声子是振动能量量子 \(\hbar \omega\)。
-声子气体的热导率可以使用上述关系式计算：
-\(\lambda_{ph} = \frac{1}{3} C_{ph} v_s \Lambda_{\Sigma}\)</p>
+<p>Which simplifies to:</p>
 
-<p>声子散射的主要机制：</p>
+\[q_x \approx -\frac{1}{3} C v \Lambda \frac{\mathrm{d}T}{\mathrm{d}x}\]
+
+<p>The resulting thermal conductivity is:</p>
+
+\[\lambda = \frac{1}{3} C v \Lambda\]
+
+<p>This shows that thermal conductivity is proportional to specific heat $C$, molecular speed $v$, and mean free path $\Lambda$.</p>
+
+<h2 id="heat-conduction-in-dielectrics">Heat Conduction in Dielectrics</h2>
+
+<p>In dielectrics such as insulators or semiconductors, heat is carried by <strong>phonons</strong>, the quantized vibrations of the crystal lattice. Each phonon has energy $\hbar \omega$, where $\omega$ is the vibrational frequency.</p>
+
+<p>Phonon thermal conductivity is similarly given by:</p>
+
+\[\lambda_{ph} = \frac{1}{3} C_{ph} v_s \Lambda_{\Sigma}\]
+
+<p>where:</p>
 <ul>
-  <li>声子-边界散射（\(b\)）；</li>
-  <li>声子-杂质散射（\(imp\)）；</li>
-  <li>声子-声子散射（\(ph\)）。</li>
+  <li>$C_{ph}$ is the specific heat of the phonon system;</li>
+  <li>$v_s$ is the effective sound speed;</li>
+  <li>$\Lambda_{\Sigma}$ is the effective mean free path.</li>
 </ul>
 
-<p>根据马蒂森规则，我们有：
-\(\Lambda_{\Sigma}^{-1} = \Lambda_{ph}^{-1} + \Lambda_{imp}^{-1} + \Lambda_{b}^{-1}\)</p>
+<p>Main phonon scattering mechanisms include:</p>
+<ul>
+  <li>Boundary scattering ($b$);</li>
+  <li>Impurity scattering ($imp$);</li>
+  <li>Phonon-phonon scattering ($ph$).</li>
+</ul>
 
-<div class="row text-center">
-    <div class="col-md-6">
-        
+<p>According to <strong>Matthiessen’s rule</strong>, the total inverse mean free path is the sum of the individual contributions:</p>
+
+\[\Lambda_{\Sigma}^{-1} = \Lambda_{ph}^{-1} + \Lambda_{imp}^{-1} + \Lambda_{b}^{-1}\]
+
+<div class="row">
+  <div class="col-md-6 text-center">
+    
 
 
 
@@ -513,15 +520,17 @@
     
       <source class="responsive-img-srcset" srcset="/assets/img/blog/classic1-480.webp 480w,/assets/img/blog/classic1-800.webp 800w,/assets/img/blog/classic1-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
     
-    <img src="/assets/img/blog/classic1.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/blog/classic1.png" class="img-fluid w-100" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
   </picture>
 
   
+    <figcaption class="caption">Figure 2: Impact of different scattering mechanisms on mean free path</figcaption>
+  
 </figure>
 
-    </div>
-    <div class="col-md-6">
-        
+  </div>
+  <div class="col-md-6 text-center">
+    
 
 
 
@@ -535,55 +544,75 @@
     
       <source class="responsive-img-srcset" srcset="/assets/img/blog/classic2-480.webp 480w,/assets/img/blog/classic2-800.webp 800w,/assets/img/blog/classic2-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
     
-    <img src="/assets/img/blog/classic2.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/blog/classic2.png" class="img-fluid w-100" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
   </picture>
 
   
+    <figcaption class="caption">Figure 3: Influence of scattering mechanisms on thermal conductivity</figcaption>
+  
 </figure>
 
-    </div>
+  </div>
 </div>
 
-<h2 id="金属中的传热">金属中的传热</h2>
+<h2 id="heat-conduction-in-metals">Heat Conduction in Metals</h2>
 
-<p>考虑电子气体（金属）的热导率。根据动力学理论，像对于声子一样：
-\(\lambda_{e} = \frac{1}{3} C_{e} v_F \Lambda_{e}\)</p>
+<p>In metals, heat is mainly carried by free electrons. The thermal conductivity of the electron gas is:</p>
 
-<p>金属中的电子被声子、缺陷和边界散射。根据 Matthiessen 规则：
-\(\frac{1}{\Lambda_e} = \frac{1}{\Lambda_{ph}} + \frac{1}{\Lambda_d} + \frac{1}{\Lambda_b}\)</p>
+\[\lambda_{e} = \frac{1}{3} C_{e} v_F \Lambda_{e}\]
 
-<h2 id="玻尔兹曼方程">玻尔兹曼方程</h2>
+<p>where:</p>
+<ul>
+  <li>$C_e$ is the electronic specific heat;</li>
+  <li>$v_F$ is the Fermi velocity;</li>
+  <li>$\Lambda_e$ is the mean free path of electrons.</li>
+</ul>
 
-<p>热力学平衡状态可以通过平衡分布函数 \(f(\varepsilon, T)\)（麦克斯韦-玻尔兹曼、玻色-爱因斯坦、费米-狄拉克）来描述，它取决于能量、温度和化学势。</p>
+<p>Again using Matthiessen’s rule:</p>
 
-<p>如果系统中的热力学平衡被破坏，则系统的状态由非平衡分布函数描述，除了能量、温度和化学势，它还可能取决于各个载流子的坐标和动量。</p>
+\[\frac{1}{\Lambda_e} = \frac{1}{\Lambda_{ph}} + \frac{1}{\Lambda_d} + \frac{1}{\Lambda_b}\]
 
-<p>在封闭系统中，由于内部弛豫过程，非平衡分布会向趋于平衡分布的方向变化。玻尔兹曼方程描述这种非平衡分布函数的变化：</p>
+<h2 id="boltzmann-transport-equation">Boltzmann Transport Equation</h2>
+
+<p>At the microscopic level, heat transport is described by particle distribution functions. In equilibrium, these are:</p>
+<ul>
+  <li>
+<strong>Maxwell–Boltzmann distribution</strong> (classical gases);</li>
+  <li>
+<strong>Bose–Einstein distribution</strong> (e.g., phonons);</li>
+  <li>
+<strong>Fermi–Dirac distribution</strong> (e.g., electrons).</li>
+</ul>
+
+<p>When far from equilibrium, the distribution becomes $f(\vec{r}, \vec{p}, t)$ and evolves according to the <strong>Boltzmann transport equation</strong>:</p>
 
 \[\frac{\partial f}{\partial t} + \vec v \cdot \nabla_{\vec r} f + \vec F \cdot \nabla_{\vec p} f = \left(\frac{\partial f}{\partial t}\right)_\text{st}\]
 
-<p>如果碰撞项 \((\partial f/\partial t)_\text{st}\) 已知，则该方程有意义。</p>
+<p>where the right-hand collision term $\left(\partial f / \partial t\right)_{\text{st}}$ describes how the system relaxes toward equilibrium.</p>
 
-<h2 id="傅里叶方程">傅里叶方程</h2>
+<h2 id="fourier-equation">Fourier Equation</h2>
 
-<p>在宏观系统中，傅里叶定律决定了在没有宏观运动的情况下的传热，其形式为：
-\(\vec q = -\lambda \nabla T\)</p>
+<p>At the macroscopic level, classical <strong>Fourier’s law</strong> governs steady-state heat conduction:</p>
 
-<p>传热方程为：
-\(\rho C_p \frac{\partial T}{\partial t} = -\nabla \vec q\)</p>
+\[\vec q = -\lambda \nabla T\]
 
-<p>代入傅里叶定律，得到：
-\(\rho C_p \frac{\partial T}{\partial t} = \lambda \nabla^2 T\)</p>
+<p>Substituting into energy conservation gives the heat diffusion equation:</p>
 
-<p>引入热扩散系数，得到：
-\(\frac{1}{a} \frac{\partial T}{\partial t} = \nabla^2 T\)</p>
+\[\rho C_p \frac{\partial T}{\partial t} = -\nabla \cdot \vec q\]
 
-<h2 id="总结">总结</h2>
+<p>Which becomes:</p>
+
+\[\rho C_p \frac{\partial T}{\partial t} = \lambda \nabla^2 T
+\quad \Rightarrow \quad \frac{\partial T}{\partial t} = a \nabla^2 T\]
+
+<p>Here, $a = \frac{\lambda}{\rho C_p}$ is the thermal diffusivity, describing how temperature disturbances propagate in the medium.</p>
+
+<h2 id="summary">Summary</h2>
 
 <ul>
-  <li>宏观物体传热性质与特征长度和特征时间相关，分别与平均自由程和弛豫时间相比较。</li>
-  <li>玻尔兹曼方程适用于稀薄系统。</li>
-  <li>对于特征尺寸与载流子的波长相当的系统，需要采用波动性质的分析方法。</li>
+  <li>Thermal transport depends not only on intrinsic properties like specific heat, velocity, and mean free path, but also on the characteristic size and timescale.</li>
+  <li>When the system size is smaller than the mean free path, Fourier’s law fails; one should apply the Boltzmann equation or molecular dynamics.</li>
+  <li>When the system size is comparable to carrier wavelengths, wave effects dominate and require wave-based models (e.g., phonon interference or localization theory).</li>
 </ul>
 
       </d-article>
@@ -606,7 +635,7 @@
       © Copyright 2025
       Shixian
       
-      Liu. 由 <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> 提供支持. 由 <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a> 托管.
+      Liu. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> . Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>.
 
       
       
@@ -712,14 +741,14 @@
 
     
   <script type="module" src="/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script>
-  <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="输入以开始搜索">
+  <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching">
     
     <div class="modal-footer" slot="footer">
       <span class="help">
         <svg version="1.0" class="ninja-examplekey" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1280 1280">
           <path d="M1013 376c0 73.4-.4 113.3-1.1 120.2a159.9 159.9 0 0 1-90.2 127.3c-20 9.6-36.7 14-59.2 15.5-7.1.5-121.9.9-255 1h-242l95.5-95.5 95.5-95.5-38.3-38.2-38.2-38.3-160 160c-88 88-160 160.4-160 161 0 .6 72 73 160 161l160 160 38.2-38.3 38.3-38.2-95.5-95.5-95.5-95.5h251.1c252.9 0 259.8-.1 281.4-3.6 72.1-11.8 136.9-54.1 178.5-116.4 8.6-12.9 22.6-40.5 28-55.4 4.4-12 10.7-36.1 13.1-50.6 1.6-9.6 1.8-21 2.1-132.8l.4-122.2H1013v110z"></path>
         </svg>
-        选择
+        to select
       </span>
       <span class="help">
         <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24">
@@ -730,17 +759,17 @@
           <path d="M0 0h24v24H0V0z" fill="none"></path>
           <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path>
         </svg>
-        导航
+        to navigate
       </span>
       <span class="help">
         <span class="ninja-examplekey esc">esc</span>
-        关闭
+        to close
       </span>
       <span class="help">
         <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey backspace" viewbox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M6.707 4.879A3 3 0 018.828 4H15a3 3 0 013 3v6a3 3 0 01-3 3H8.828a3 3 0 01-2.12-.879l-4.415-4.414a1 1 0 010-1.414l4.414-4.414zm4 2.414a1 1 0 00-1.414 1.414L10.586 10l-1.293 1.293a1 1 0 101.414 1.414L12 11.414l1.293 1.293a1 1 0 001.414-1.414L13.414 10l1.293-1.293a1 1 0 00-1.414-1.414L12 8.586l-1.293-1.293z" clip-rule="evenodd"></path>
         </svg>
-        返回上一级
+        move to parent
       </span>
     </div>
   </ninja-keys>
@@ -770,243 +799,243 @@
 
     // add the home and posts menu items
     ninja.data = [{
-        id: "nav-首页",
-        title: "🏠 首页",
-        section: "导航菜单",
+        id: "nav-home",
+        title: "🏠 Home",
+        section: "Navigation menu",
         handler: () => {
-          window.location.href = "/zh-CN/";
+          window.location.href = "/";
         },
-      },{id: "nav-博客",
-              title: "📝 博客",
+      },{id: "nav-blog",
+              title: "📝 Blog",
               description: "",
-              section: "导航菜单",
+              section: "Navigation menu",
               handler: () => {
-                window.location.href = "/zh-CN/blog/";
+                window.location.href = "/blog/";
               },
-            },{id: "nav-发表",
-              title: "📚 发表",
-              description: "Scopus和WoS检索的论文发表清单",
-              section: "导航菜单",
+            },{id: "nav-publications",
+              title: "📚 Publications",
+              description: "Publications indexed in Scopus and Web of Science",
+              section: "Navigation menu",
               handler: () => {
-                window.location.href = "/zh-CN/publications/";
+                window.location.href = "/publications/";
               },
-            },{id: "nav-教学",
-              title: "🧑‍🏫 教学",
-              description: "课件",
-              section: "导航菜单",
+            },{id: "nav-teaching",
+              title: "🧑‍🏫 Teaching",
+              description: "Lectures",
+              section: "Navigation menu",
               handler: () => {
-                window.location.href = "/zh-CN/teaching/";
+                window.location.href = "/teaching/";
               },
-            },{id: "post-拓扑声子的物理量与性质",
+            },{id: "post-topological-quantities-and-properties-of-phonons",
           
-            title: "拓扑声子的物理量与性质",
-          
-          description: "",
-          section: "文章",
-          handler: () => {
-            
-              window.location.href = "/zh-CN/blog/2024/topology/";
-            
-          },
-        },{id: "post-vasp-结构优化",
-          
-            title: "VASP 结构优化",
+            title: "Topological Quantities and Properties of Phonons",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2024/vasp-relax/";
+              window.location.href = "/blog/2024/topology/";
             
           },
-        },{id: "post-声子蒙特卡罗模拟的理论基础",
+        },{id: "post-vasp-structure-optimization",
           
-            title: "声子蒙特卡罗模拟的理论基础",
+            title: "VASP Structure Optimization",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2024/MC-phononBTE/";
+              window.location.href = "/blog/2024/vasp-relax/";
             
           },
-        },{id: "post-态密度的数值求解方法",
+        },{id: "post-theoretical-framework-for-phonon-monte-carlo-simulations",
           
-            title: "态密度的数值求解方法",
+            title: "Theoretical framework for phonon Monte Carlo simulations",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2024/dos-method/";
+              window.location.href = "/blog/2024/MC-phononBTE/";
             
           },
-        },{id: "post-qe-计算硅的声子色散关系",
+        },{id: "post-numerical-methods-for-density-of-states-dos-calculation",
           
-            title: "QE 计算硅的声子色散关系",
+            title: "Numerical Methods for Density of States (DOS) Calculation",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2024/qe-disp-si/";
+              window.location.href = "/blog/2024/dos-method/";
             
           },
-        },{id: "post-qe-进行能量自洽计算",
+        },{id: "post-phonon-dispersion-calculation-of-silicon-using-qe",
           
-            title: "QE 进行能量自洽计算",
+            title: "Phonon Dispersion Calculation of Silicon Using QE",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2024/qe-scf/";
+              window.location.href = "/blog/2024/qe-disp-si/";
             
           },
-        },{id: "post-lammps-石墨烯热导率计算",
+        },{id: "post-self-consistent-energy-calculations-with-qe",
           
-            title: "LAMMPS 石墨烯热导率计算",
+            title: "Self-Consistent Energy Calculations with QE",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2024/lammps-graphene/";
+              window.location.href = "/blog/2024/qe-scf/";
             
           },
-        },{id: "post-lammps-非平衡分子动力学计算热导率",
+        },{id: "post-graphene-thermal-conductivity-calculation-lammps",
           
-            title: "LAMMPS 非平衡分子动力学计算热导率",
+            title: "Graphene Thermal Conductivity Calculation (LAMMPS)",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2024/lammps-nemd/";
+              window.location.href = "/blog/2024/lammps-graphene/";
             
           },
-        },{id: "post-lammps-的输入文件结构与编写",
+        },{id: "post-thermal-conductivity-simulation-using-nemd-lammps",
           
-            title: "LAMMPS 的输入文件结构与编写",
+            title: "Thermal Conductivity Simulation Using NEMD (LAMMPS)",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2024/lammps-in/";
+              window.location.href = "/blog/2024/lammps-nemd/";
             
           },
-        },{id: "post-热物理学的微观描述",
+        },{id: "post-structure-and-writing-of-lammps-input-files",
           
-            title: "热物理学的微观描述",
+            title: "Structure and Writing of LAMMPS Input Files",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2023/nano-micro-thermophysics/";
+              window.location.href = "/blog/2024/lammps-in/";
             
           },
-        },{id: "post-圆棒中的弹性波色散关系",
+        },{id: "post-microscopic-description-of-thermal-physics",
           
-            title: "圆棒中的弹性波色散关系",
+            title: "Microscopic Description of Thermal Physics",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2023/elastic-wave-in-wire/";
+              window.location.href = "/blog/2023/nano-micro-thermophysics/";
             
           },
-        },{id: "post-平板中的弹性波色散关系",
+        },{id: "post-dispersion-relations-of-elastic-waves-in-cylindrical-rods",
           
-            title: "平板中的弹性波色散关系",
+            title: "Dispersion Relations of Elastic Waves in Cylindrical Rods",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2023/elastic-wave-in-plate/";
+              window.location.href = "/blog/2023/elastic-wave-in-wire/";
             
           },
-        },{id: "post-热传递的经典动力学理论",
+        },{id: "post-dispersion-relations-of-elastic-waves-in-plates",
           
-            title: "热传递的经典动力学理论",
+            title: "Dispersion Relations of Elastic Waves in Plates",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2023/classic-heat-transfer/";
+              window.location.href = "/blog/2023/elastic-wave-in-plate/";
             
           },
-        },{id: "news-毕业于鲍曼莫斯科国立技术大学-获得核能与热物理专业的硕士学位-并荣获荣誉徽章-新闻-https-bmstu-ru-news-kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery",
-              title: '毕业于鲍曼莫斯科国立技术大学，获得核能与热物理专业的硕士学位，并荣获荣誉徽章。[新闻](https://bmstu.ru/news/kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery)',
+        },{id: "post-classical-kinetic-theory-of-heat-conduction",
+          
+            title: "Classical Kinetic Theory of Heat Conduction",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2023/classical-kinetic-theory/";
+            
+          },
+        },{id: "news-graduated-from-bauman-moscow-state-technical-university-with-a-master-39-s-degree-in-nuclear-energy-and-thermophysics-and-received-a-badge-with-honors-media-https-bmstu-ru-news-kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery",
+              title: 'Graduated from Bauman Moscow State Technical University with a Master&amp;#39;s degree in Nuclear...',
               description: "",
-              section: "新闻",},{id: "news-开始了我的博士研究-研究课题为-考虑声子和电子的量子力学特性对纳米结构热物理性质的确定",
-              title: '开始了我的博士研究，研究课题为“考虑声子和电子的量子力学特性对纳米结构热物理性质的确定”。',
+              section: "News",},{id: "news-started-my-phd-research-on-the-topic-quot-determination-of-the-thermophysical-properties-of-nanostructures-taking-into-account-the-quantum-mechanical-properties-of-phonons-and-electrons-quot",
+              title: 'Started my PhD research on the topic &amp;quot;Determination of the thermophysical properties of...',
               description: "",
-              section: "新闻",},{id: "news-受邀参加国际论坛-atomexpo-2024-上的主题为-绿色科技与年轻一代-的俄罗斯高校校友会议-新闻-https-www-rudn-ru-media-news-international-cooperation-rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo-2024",
-              title: '受邀参加国际论坛 ATOMEXPO-2024 上的主题为“绿色科技与年轻一代”的俄罗斯高校校友会议。 [新闻](https://www.rudn.ru/media/news/international-cooperation/rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo--2024)',
+              section: "News",},{id: "news-invited-to-participate-in-the-russian-universities-alumni-meeting-on-quot-green-technology-for-the-younger-generation-quot-at-the-international-forum-atomexpo-2024-media-https-www-rudn-ru-media-news-international-cooperation-rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo-2024",
+              title: 'Invited to participate in the Russian universities alumni meeting on &amp;quot;Green technology for...',
               description: "",
-              section: "新闻",},{
+              section: "News",},{
             id: 'social-email',
-            title: '发送邮件',
-            section: '社交媒体',
+            title: 'Send an email',
+            section: 'Socials',
             handler: () => {
               window.open("mailto:%73%78%6C%69%75%39%38@%67%6D%61%69%6C.%63%6F%6D", "_blank");
             },
           },{
             id: 'social-github',
             title: 'GitHub',
-            section: '社交媒体',
+            section: 'Socials',
             handler: () => {
               window.open("https://github.com/lyushisyan# your GitHub user name", "_blank");
             },
           },{
             id: 'social-orcid',
             title: 'ORCID',
-            section: '社交媒体',
+            section: 'Socials',
             handler: () => {
               window.open("https://orcid.org/0000-0003-3042-7817", "_blank");
             },
           },{
             id: 'social-scholar',
             title: 'Google Scholar',
-            section: '社交媒体',
+            section: 'Socials',
             handler: () => {
               window.open("https://scholar.google.com/citations?user=bLVSRuUAAAAJ", "_blank");
             },
           },{
-              id: 'lang-en-US',
-              title: 'en-US',
-              section: '语言',
+              id: 'lang-zh-CN',
+              title: 'zh-CN',
+              section: 'Languages',
               handler: () => {
-                window.location.href = "/blog/2023/classic-heat-transfer/";
+                window.location.href = "/zh-CN/blog/2023/classical-kinetic-theory/";
               },
             },{
           id: 'light-theme',
-          title: '切换到浅色主题',
-          description: '将网站主题更改为浅色',
-          section: '主题',
+          title: 'Change theme to light',
+          description: 'Change the theme of the site to Light',
+          section: 'Theme',
           handler: () => {
             setThemeSetting("light");
           },
         },
         {
           id: 'dark-theme',
-          title: '切换到深色主题',
-          description: '将网站主题更改为深色',
-          section: '主题',
+          title: 'Change theme to dark',
+          description: 'Change the theme of the site to Dark',
+          section: 'Theme',
           handler: () => {
             setThemeSetting("dark");
           },
         },
         {
           id: 'system-theme',
-          title: '使用系统默认主题',
-          description: '将网站主题更改为系统默认',
-          section: '主题',
+          title: 'Use system default theme',
+          description: 'Change the theme of the site to System Default',
+          section: 'Theme',
           handler: () => {
             setThemeSetting("system");
           },

@@ -181,24 +181,6 @@
     <script src="/assets/js/distillpub/transforms.v2.js"></script>
     <script src="/assets/js/distillpub/overrides.js"></script>
     
-      <!-- Page/Post style -->
-      <style type="text/css">
-        .fake-img {
-  background: #bbb;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 12px;
-} .fake-img p {
-  font-family: sans-serif;
-  color: white;
-  text-align: left;
-  margin: 12px 0;
-  text-align: center;
-  font-size: 16px;
-}
-
-      </style>
-    
   </head>
 
   <body>
@@ -267,6 +249,8 @@
 
           <!-- Other pages -->
           
+          
+            
           
             
           
@@ -423,20 +407,19 @@
                 
               
                 <div>
-                  <a href="#group-velocity-and-phase-velocity">Group Velocity and Phase Velocity</a>
+                  <a href="#group-and-phase-velocity">Group and Phase Velocity</a>
                 </div>
                 
               
             </nav>
           </d-contents>
         
-        <p>This article studies the wave propagation process based on solving the <strong>elastic equations of a continuous medium</strong>.</p>
+        <p>This article studies wave propagation by solving the <strong>elastic equation in a continuous medium</strong>.</p>
 
-<p>In plates, waves can be divided into longitudinal waves (<strong>P</strong> waves) and transverse waves (<strong>S</strong> waves), with <strong>S</strong> waves further classified into <strong>SH</strong> waves and <strong>SV</strong> waves.</p>
+<p>In a plate, waves can be classified into longitudinal (<strong>P</strong>) waves and transverse (<strong>S</strong>) waves. <strong>S</strong> waves further include <strong>SH</strong> and <strong>SV</strong> waves.</p>
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        
+<div class="text-center">
+  
 
 
 
@@ -450,103 +433,186 @@
     
       <source class="responsive-img-srcset" srcset="/assets/img/blog/elsplate_1-480.webp 480w,/assets/img/blog/elsplate_1-800.webp 800w,/assets/img/blog/elsplate_1-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
     
-    <img src="/assets/img/blog/elsplate_1.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/blog/elsplate_1.png" class="w-50" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
   </picture>
 
   
+    <figcaption class="caption">Figure 1: Schematic of elastic waves in thin films</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
-<p>Assuming the wave propagates along the $x$-axis:</p>
-<ul>
-  <li>Displacement in the $x$ direction corresponds to <strong>P waves</strong>.</li>
-  <li>Displacement in the $y$ direction corresponds to <strong>SH waves</strong>.</li>
-  <li>Displacement in the $z$ direction corresponds to <strong>SV waves</strong>.</li>
-</ul>
+<p>Assume the wave propagates along the $x$-axis. If particle motion is in $x$, it is a <strong>P wave</strong>; in $y$, an <strong>SH wave</strong>; in $z$, an <strong>SV wave</strong>.</p>
 
-<p><strong>SV waves</strong> and <strong>P waves</strong> couple under the stress-free conditions of a plate surface to form <strong>Rayleigh-Lamb waves</strong>.</p>
+<p>SV and P waves couple under stress-free boundary conditions to form <strong>Rayleigh-Lamb waves</strong>.</p>
 
 <h2 id="elastic-wave-equation">Elastic Wave Equation</h2>
 
-<p>In the approximation of a continuous medium, considering elastic waves propagating along the \(x\) direction in a plate, the wave equation is:
-\(\mu\Delta\vec u+(\lambda+\mu)\nabla(\nabla\vec u) = \rho \frac{\partial^2 \vec u}{\partial t^2}\)</p>
+<p>In the continuous medium approximation, the wave equation for propagation along $x$ is:</p>
 
-<p>where \(\vec u\) is the displacement vector, \(\lambda + \mu\) are Lamé constants (dependent on the medium’s elastic properties), and \(\rho\) is the medium density.</p>
+\[\mu \Delta \vec{u} + (\lambda + \mu) \nabla (\nabla \cdot \vec{u}) = \rho \frac{\partial^2 \vec{u}}{\partial t^2}\]
 
-<p>The solutions to the wave equation can be expressed as a combination of scalar potential \(\varphi\) and vector potential \(\vec\psi\):
-\(\vec u =\text{grad }\varphi + \text{rot }\vec\psi\)</p>
+<p>Here, $\vec{u}$ is the displacement vector; $\lambda$, $\mu$ are Lamé constants; $\rho$ is the density.</p>
+
+<p>All solutions can be written using scalar and vector potentials:</p>
+
+\[\vec{u} = \nabla \varphi + \nabla \times \vec{\psi}\]
 
 <h2 id="dispersion-relation-of-sh-waves">Dispersion Relation of SH Waves</h2>
 
-<p>In SH waves, atomic displacement occurs in the \(y\) direction, i.e., the displacement vector is \(\vec u = (0,u_y,0)\).</p>
+<p>For SH waves: $\vec{u} = (0, u_y, 0)$.</p>
 
-<p>Thus, the wave equation for SH waves is:
-\(\frac{\partial^2 u_y}{\partial x^2}+\frac{\partial^2 u_y}{\partial z^2} = \frac{1}{c_t^2}\frac{\partial^2 u_y}{\partial t^2}\)</p>
+<p>Wave equation:</p>
 
-<p>where \(c_t=\sqrt{\mu/\rho}\) is the shear wave velocity.</p>
+\[\frac{\partial^2 u_y}{\partial x^2} + \frac{\partial^2 u_y}{\partial z^2} = \frac{1}{c_t^2} \frac{\partial^2 u_y}{\partial t^2}\]
 
-<p>The solution is:
-\(u_y=(A_1\sin\beta z + A_2\cos\beta z)e^{i(\xi x-\omega t)}\)</p>
+<p>with $c_t = \sqrt{\mu / \rho}$.</p>
 
-<p>where \(\xi\) is the wave vector projection along the \(x\)-axis, \(\omega\) is the frequency, and \(\beta\) is the wave vector projection along the \(z\)-axis, satisfying:
-\(\beta^2+\xi^2=\frac{\omega^2}{c_t^2}\)</p>
+<p>Solution:</p>
 
-<p>Considering stress-free boundary conditions on the plate surfaces, \(\tau_{zy} =\mu\frac{\partial u_y}{\partial z}=0\) at \(y=\pm b\), the solution yields:
-\(A_1\cos\beta b-A_2\sin\beta b =0 \quad \text{and} \quad A_1\cos\beta b+A_2\sin\beta b =0\)</p>
+\[u_y = (A_1 \sin \beta z + A_2 \cos \beta z) e^{i(\xi x - \omega t)}\]
 
-<p>Thus, the frequency equation is:
-\(\cos\beta b\sin \beta b=0\)</p>
+<p>where:</p>
 
-<p>This equation is satisfied when:
-\(\beta b = n\pi/2~~~(n=0,1,2,3,...)\)</p>
+\[\beta^2 + \xi^2 = \frac{\omega^2}{c_t^2}\]
 
-<p>The dispersion relation for SH waves is then:
-\(\omega^2=c_t^2\left[\xi^2+\left(n\pi/2b\right)^2\right]\)</p>
+<p>Boundary condition at $y = \pm b$:</p>
+
+\[\tau_{zy} = \mu \frac{\partial u_y}{\partial z} = 0\]
+
+<p>From the boundary condition:</p>
+
+\[\cos \beta b \sin \beta b = 0
+\quad \Rightarrow \quad \beta b = \frac{n\pi}{2}, \quad n = 0,1,2,...\]
+
+<p>Dispersion relation:</p>
+
+\[\omega^2 = c_t^2 \left[ \xi^2 + \left( \frac{n\pi}{2b} \right)^2 \right]\]
+
+<div class="text-center">
+  
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/els-DS-SH-480.webp 480w,/assets/img/blog/els-DS-SH-800.webp 800w,/assets/img/blog/els-DS-SH-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
+    
+    <img src="/assets/img/blog/els-DS-SH.png" class="w-50" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+  </picture>
+
+  
+    <figcaption class="caption">Figure 2: Dispersion relation of SH waves</figcaption>
+  
+</figure>
+
+</div>
 
 <h2 id="dispersion-relation-of-rayleigh-lamb-waves">Dispersion Relation of Rayleigh-Lamb Waves</h2>
 
-<p>Considering the simultaneous presence of P and SV waves in a plate of thickness \(2b\) with stress-free boundaries:</p>
-<ul>
-  <li>The displacement vector is \(\vec u = (u_x,0,u_z)\).</li>
-  <li>Scalar potential \(\psi\) and vector potential \(\vec\psi=(0,\psi_y,0)\) are used.</li>
-</ul>
+<p>Consider a plate of thickness $2b$ with stress-free boundaries, where both P and SV waves exist.</p>
 
-<p>The wave equations for Rayleigh-Lamb waves are:
-\(\frac{\partial^2 \varphi}{\partial x^2}+\frac{\partial^2 \varphi}{\partial y^2}=\frac{1}{c_l^2}\frac{\partial \varphi}{\partial t^2}\)
-\(\frac{\partial^2 \psi_y}{\partial x^2}+\frac{\partial^2 \psi_y}{\partial y^2}=\frac{1}{c_t^2}\frac{\partial \psi_y}{\partial t^2}\)</p>
+<p>Displacement: $\vec{u} = (u_x, 0, u_z)$, scalar potential: $\varphi$, vector potential: $\vec{\psi} = (0, \psi_y, 0)$.</p>
 
-<p>where \(c_l=\sqrt{(\lambda+2\mu)/\rho}\) is the longitudinal wave velocity and \(c_t=\sqrt{\mu/\rho}\) is the shear wave velocity.</p>
+<p>Wave equations:</p>
 
-<p>The solutions are:
-\(\varphi=(A\sin\alpha z+B\cos\alpha z)e^{i(\xi x-\omega t)}\)
+\[\nabla^2 \varphi = \frac{1}{c_l^2} \frac{\partial^2 \varphi}{\partial t^2}, \quad
+\nabla^2 \psi_y = \frac{1}{c_t^2} \frac{\partial^2 \psi_y}{\partial t^2}\]
+
+<p>with $c_l = \sqrt{(\lambda + 2\mu)/\rho}$.</p>
+
+<p>The solutions are:</p>
+
+<p>\(\varphi=(A\sin\alpha z+B\cos\alpha z)e^{i(\xi x-\omega t)}\)
 \(\psi_y=i(C\sin\beta z+ D\cos\beta z)e^{i(\xi x-\omega t)}\)</p>
 
 <p>Symmetric and antisymmetric waves are treated separately.</p>
 
 <h3 id="symmetric-waves">Symmetric Waves</h3>
 
-<p>For symmetric waves (\(A=D=0\)):
-\(\frac{\tan\beta b}{\tan\alpha b} = -\frac{4\alpha\beta \xi^2}{(\xi^2-\beta^2)^2}\)</p>
+<p>For symmetric waves ($A=D=0$):</p>
+
+\[\frac{\tan\beta b}{\tan\alpha b} = -\frac{4\alpha\beta \xi^2}{(\xi^2-\beta^2)^2}\]
 
 <h3 id="antisymmetric-waves">Antisymmetric Waves</h3>
 
-<p>For antisymmetric waves (\(B=C=0\)):
-\(\frac{\tan\beta b}{\tan\alpha b} = -\frac{(\xi^2-\beta^2)^2}{4\alpha\beta \xi^2}\)</p>
+<p>For antisymmetric waves ($B=C=0$):</p>
+
+\[\frac{\tan\beta b}{\tan\alpha b} = -\frac{(\xi^2-\beta^2)^2}{4\alpha\beta \xi^2}\]
 
 <h3 id="rayleigh-lamb-frequency-equation">Rayleigh-Lamb Frequency Equation</h3>
 
-<p>Combining symmetric and antisymmetric cases:
-\(F(\alpha,\beta,\xi) = \frac{\tan\beta b}{\tan\alpha b} + \left(\frac{4\alpha\beta \xi^2}{(\xi^2-\beta^2)^2}\right)^{\pm 1} = 0\)</p>
+<p>Combining symmetric and antisymmetric cases:</p>
+
+\[F(\alpha,\beta,\xi) = \frac{\tan\beta b}{\tan\alpha b} + \left(\frac{4\alpha\beta \xi^2}{(\xi^2-\beta^2)^2}\right)^{\pm 1} = 0\]
 
 <h2 id="group-velocity-and-phase-velocity">Group Velocity and Phase Velocity</h2>
 
-<p>The phase velocity is the propagation velocity of the wave phase:
-\(v_p=\frac{\omega}{k}\)</p>
+<p>The phase velocity is the propagation velocity of the wave phase:</p>
 
-<p>The group velocity is the velocity at which energy is transmitted in the medium:
-\(v_g=\frac{\partial\omega}{\partial k}\)</p>
+\[v_p=\frac{\omega}{k}\]
+
+<p>The group velocity is the velocity at which energy is transmitted in the medium:</p>
+
+\[v_g=\frac{\partial\omega}{\partial k}\]
+
+<div class="row">
+  <div class="col-md-6 text-center">
+    
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/els-vg-480.webp 480w,/assets/img/blog/els-vg-800.webp 800w,/assets/img/blog/els-vg-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
+    
+    <img src="/assets/img/blog/els-vg.png" class="img-fluid w-100" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+  </picture>
+
+  
+    <figcaption class="caption">Figure 5: Group velocity of elastic waves in thin films</figcaption>
+  
+</figure>
+
+  </div>
+  <div class="col-md-6 text-center">
+    
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/els-vp-480.webp 480w,/assets/img/blog/els-vp-800.webp 800w,/assets/img/blog/els-vp-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
+    
+    <img src="/assets/img/blog/els-vp.png" class="img-fluid w-100" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+  </picture>
+
+  
+    <figcaption class="caption">Figure 6: Phase velocity of elastic waves in thin films</figcaption>
+  
+</figure>
+
+  </div>
+</div>
 
       </d-article>
 
@@ -869,9 +935,9 @@
               window.location.href = "/blog/2023/nano-micro-thermophysics/";
             
           },
-        },{id: "post-dispersion-relations-of-elastic-waves-in-circular-rods",
+        },{id: "post-dispersion-relations-of-elastic-waves-in-cylindrical-rods",
           
-            title: "Dispersion Relations of Elastic Waves in Circular Rods",
+            title: "Dispersion Relations of Elastic Waves in Cylindrical Rods",
           
           description: "",
           section: "Posts",
@@ -891,15 +957,15 @@
               window.location.href = "/blog/2023/elastic-wave-in-plate/";
             
           },
-        },{id: "post-classical-dynamic-theory-of-heat-transfer",
+        },{id: "post-classical-kinetic-theory-of-heat-conduction",
           
-            title: "Classical Dynamic Theory of Heat Transfer",
+            title: "Classical Kinetic Theory of Heat Conduction",
           
           description: "",
           section: "Posts",
           handler: () => {
             
-              window.location.href = "/blog/2023/classic-heat-transfer/";
+              window.location.href = "/blog/2023/classical-kinetic-theory/";
             
           },
         },{id: "news-graduated-from-bauman-moscow-state-technical-university-with-a-master-39-s-degree-in-nuclear-energy-and-thermophysics-and-received-a-badge-with-honors-media-https-bmstu-ru-news-kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery",
