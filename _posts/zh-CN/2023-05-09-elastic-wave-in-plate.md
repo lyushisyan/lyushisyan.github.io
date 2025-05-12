@@ -2,7 +2,7 @@
 layout: distill
 title: 平板中的弹性波色散关系
 date: 2023-05-09 00:32:13
-categories: Theory
+categories: Physics
 tabs: true
 map: true
 

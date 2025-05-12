@@ -2,7 +2,7 @@
 layout: distill
 title: 热物理学的微观描述
 date: 2023-10-08 00:32:13
-categories: Theory
+categories: Physics
 tabs: true
 map: true
 
@@ -13,24 +13,6 @@ toc:
   - name: 粒子、波 和 准粒子
   - name: 对传热物理学的贡献
   - name: 基本常数和精细结构尺度
-
-# Below is an example of injecting additional post-specific styles.
-# If you use this post as a template, delete this _styles block.
-_styles: >
-  .fake-img {
-    background: #bbb;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 12px;
-  }
-  .fake-img p {
-    font-family: sans-serif;
-    color: white;
-    text-align: left;
-    margin: 12px 0;
-    text-align: center;
-    font-size: 16px;
-  }
 
 ---
 
@@ -75,10 +57,8 @@ $$
 
 ### 声子
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/thermophysics_1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/thermophysics_1.png" zoomable=true caption="图 1: 声子" class="w-75" %}
 </div>
 
 - 声子是刚性原子晶格中发生的量子化振动模式。
@@ -93,10 +73,8 @@ $$
 
 ### 电子
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/thermophysics_2.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/thermophysics_2.png" zoomable=true caption="图 2: 电子" class="w-75" %}
 </div>
 
 - 电子是带负电的**亚原子粒子**。电子的自旋为 $$1/2$$，是**费米子**。
@@ -109,10 +87,8 @@ $$
 
 ### 流体粒子
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/thermophysics_3.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/thermophysics_3.png" zoomable=true caption="图 3: 流体粒子" class="w-75" %}
 </div>
 
 - 气体和液体由原子或分子（广义上称为流体粒子）组成。流体粒子可以是中性的或带电的，一直处于**随机运动**中。
@@ -123,10 +99,8 @@ $$
 
 ### 光子
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/thermophysics_4.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/thermophysics_4.png" zoomable=true caption="图 4: 光子" class="w-75" %}
 </div>
 
 - 光子是电磁场激发的量子，也是量子电动力学中的基本粒子，是粒子物理学标准模型的一部分。

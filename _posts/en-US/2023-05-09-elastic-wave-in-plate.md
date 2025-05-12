@@ -2,7 +2,7 @@
 layout: distill
 title: Dispersion Relations of Elastic Waves in Plates
 date: 2023-05-09 00:32:13
-categories: Theory
+categories: Physics
 tabs: true
 map: true
 
@@ -110,6 +110,7 @@ The solutions are:
 $$
 \varphi=(A\sin\alpha z+B\cos\alpha z)e^{i(\xi x-\omega t)}
 $$
+
 $$
 \psi_y=i(C\sin\beta z+ D\cos\beta z)e^{i(\xi x-\omega t)}
 $$

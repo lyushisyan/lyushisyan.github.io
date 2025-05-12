@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
+  <!-- Head -->
   <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <!-- Metadata, OpenGraph and Schema.org -->
 
 
@@ -19,7 +21,7 @@
   
     
     
-      LAMMPS 的输入文件结构与编写 | Shixian Liu
+      Physics | Shixian Liu
     
   
 </title>
@@ -63,7 +65,7 @@
   <link rel="shortcut icon" href="/assets/img/sheng.png?999c12785eb719d4b77e851bbb1bffbc">
 
 <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e">
-<link rel="canonical" href="https://lyushisyan.github.io/zh-CN/blog/2024/lammps-in/">
+<link rel="canonical" href="https://lyushisyan.github.io/zh-CN/blog/category/physics/">
 
 <!-- Dark Mode -->
 <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
@@ -76,8 +78,6 @@
 
 <!-- GeoJSON support via Leaflet -->
 
-  <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" integrity="sha256-q9ba7o845pMPFU+zcAll8rv+gC+fSovKsOoNQ6cynuQ=" crossorigin="anonymous">
-
 
 <!-- diff2html -->
 
@@ -86,150 +86,10 @@
 
 
 
-    
-      <!-- Medium Zoom JS -->
-      <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
-      <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script>
-    
-    <!-- jQuery -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-    
-  
-    <!-- MathJax -->
-    <script type="text/javascript">
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        tags: 'ams',
-      }
-    };
-    </script>
-    <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script>
-    <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script>
-  
-
-
-    
-
-    
-
-    
-  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js" integrity="sha256-MgH13bFTTNqsnuEoqNPBLDaqxjGH+lCpqrukmXc8Ppg=" crossorigin="anonymous"></script>
-  <script>
-    /* Create leaflet map as another node and hide the code block, appending the leaflet node after it */
-    document.addEventListener('readystatechange', () => {
-      if (document.readyState === 'complete') {
-        document.querySelectorAll('pre>code.language-geojson').forEach((elem) => {
-          const jsonData = elem.textContent;
-          const backup = elem.parentElement;
-          backup.classList.add('unloaded');
-          /* create leaflet node */
-          let mapElement = document.createElement('div');
-          mapElement.classList.add('map');
-          backup.after(mapElement);
-
-          var map = L.map(mapElement);
-          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-          }).addTo(map);
-          let geoJSON = L.geoJSON(JSON.parse(jsonData)).addTo(map);
-          map.fitBounds(geoJSON.getBounds());
-        });
-      }
-    });
-  </script>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-  <!-- Medium Zoom JS -->
-  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
-  <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script>
-
-
-
-<!-- Bootstrap Table -->
-
-
-<!-- Load Common JS -->
-<script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script>
-<script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script>
-<script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script>
-
-<!-- Jupyter Open External Links New Tab -->
-<script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script>
-
-
-
-    
-
-    <!-- Distill js -->
-    <script src="/assets/js/distillpub/template.v2.js"></script>
-    <script src="/assets/js/distillpub/transforms.v2.js"></script>
-    <script src="/assets/js/distillpub/overrides.js"></script>
-    
-      <!-- Page/Post style -->
-      <style type="text/css">
-        .fake-img {
-  background: #bbb;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 12px;
-} .fake-img p {
-  font-family: sans-serif;
-  color: white;
-  text-align: left;
-  margin: 12px 0;
-  text-align: center;
-  font-size: 16px;
-}
-
-      </style>
-    
   </head>
 
-  <body>
-<d-front-matter>
-    <script async type="text/json">
-      {
-            "title": "LAMMPS 的输入文件结构与编写",
-            "description": "",
-            "published": "January 11, 2024",
-            "authors": [
-              
-            ],
-            "katex": {
-              "delimiters": [
-                {
-                  "left": "$",
-                  "right": "$",
-                  "display": false
-                },
-                {
-                  "left": "$$",
-                  "right": "$$",
-                  "display": true
-                }
-              ]
-            }
-          }
-    </script>
-  </d-front-matter>
-
-  
+  <!-- Body -->
+  <body class="fixed-top-nav ">
     <!-- Header -->
     <header>
   <!-- Nav Bar -->
@@ -267,6 +127,8 @@
 
           <!-- Other pages -->
           
+          
+            
           
             
           
@@ -339,7 +201,7 @@
               
               <li class="nav-item active">
                 
-                  <a class="nav-link" href="/blog/2024/lammps-in/">
+                  <a class="nav-link" href="/blog/category/physics/">
                     
                       EN-US</a>
                 
@@ -372,175 +234,96 @@
 
 
     <!-- Content -->
-    <div class="post distill">
-    <d-title>
-      <h1 style="
-        font-size: 1.8rem;
-        font-weight: 600;
-        text-align: center;
-        overflow: hidden;
-        margin-top: 0.2em;
-        margin-bottom: 0.1em;
-        text-overflow: ellipsis;
-      ">
-        LAMMPS 的输入文件结构与编写
-      </h1>
-      <p></p>
-    </d-title>
+    <div class="container mt-5" role="main">
       
+        <div class="post">
+  <header class="post-header">
+    <h1 class="post-title">
+<i class="fa-solid fa-tag fa-sm"></i> Physics</h1>
+    <p class="post-description">按照类别归档</p>
+  </header>
 
-      <d-article>
+  <article class="archive">
+    <div class="table-responsive">
+      <table class="table table-sm table-borderless">
         
-          <d-contents>
-            <nav class="l-text figcaption">
-              <h3>Contents</h3>
+          <tr>
+            <th scope="row">
+
+
+
+
+
+
+08
+  10月
+  2023</th>
+            <td>
               
-                <div>
-                  <a href="#%E6%A8%A1%E5%9E%8B%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE">模型基本设置</a>
-                </div>
-                
+                <a class="post-link" href="/zh-CN/blog/2023/nano-micro-thermophysics/">热物理学的微观描述</a>
               
-                <div>
-                  <a href="#%E7%B3%BB%E7%BB%9F%E5%BB%BA%E6%A8%A1">系统建模</a>
-                </div>
-                
-              
-                <div>
-                  <a href="#%E5%8A%9B%E5%9C%BA%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE">力场参数设置</a>
-                </div>
-                
-              
-                <div>
-                  <a href="#%E6%B8%A9%E5%BA%A6%E5%88%9D%E5%A7%8B%E5%8C%96">温度初始化</a>
-                </div>
-                
-              
-                <div>
-                  <a href="#%E5%BC%9B%E8%B1%AB%E8%AE%BE%E7%BD%AE">弛豫设置</a>
-                </div>
-                
-              
-                <div>
-                  <a href="#%E6%A8%A1%E6%8B%9F%E8%AE%BE%E7%BD%AE">模拟设置</a>
-                </div>
-                
-              
-                <div>
-                  <a href="#%E8%BE%93%E5%87%BA%E8%AE%BE%E7%BD%AE">输出设置</a>
-                </div>
-                
-              
-            </nav>
-          </d-contents>
+            </td>
+          </tr>
         
-        <h2 id="模型基本设置">模型基本设置</h2>
+          <tr>
+            <th scope="row">
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">units</span>         <span class="nx">metal</span>
-<span class="nx">dimension</span>     <span class="mi">3</span>
-<span class="nx">boundary</span>      <span class="nx">p</span> <span class="nx">p</span> <span class="nx">p</span>
-<span class="nx">atom_style</span>    <span class="nx">atomic</span>
-<span class="nx">neighbor</span>      <span class="mf">2.0</span> <span class="nx">bin</span>
-<span class="nx">neigh_modify</span>  <span class="nx">every</span> <span class="mi">5</span> <span class="nx">delay</span> <span class="mi">0</span>
-<span class="nx">timestep</span>      <span class="mf">0.001</span>
-</code></pre></div></div>
 
-<h2 id="系统建模">系统建模</h2>
 
-<p>（1）读取data文件</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">read_data</span>     <span class="nx">Al</span><span class="p">.</span><span class="nx">data</span>
-</code></pre></div></div>
 
-<p>（2）自建模型</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">lattice</span>       <span class="nx">fcc</span> <span class="mf">4.05</span>
-<span class="nx">region</span>        <span class="nx">box</span> <span class="nx">block</span> <span class="mi">0</span> <span class="mi">10</span> <span class="mi">0</span> <span class="mi">10</span> <span class="mi">0</span> <span class="mi">10</span>
-<span class="nx">create_box</span>    <span class="mi">1</span> <span class="nx">box</span>
-<span class="nx">create_atoms</span>  <span class="mi">1</span> <span class="nx">box</span>
-</code></pre></div></div>
+01
+  7月
+  2023</th>
+            <td>
+              
+                <a class="post-link" href="/zh-CN/blog/2023/elastic-wave-in-wire/">圆棒中的弹性波色散关系</a>
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th scope="row">
 
-<h2 id="力场设置">力场设置</h2>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pair_style</span>    <span class="nx">eam</span><span class="o">/</span><span class="nx">fs</span>
-<span class="nx">pair_coeff</span>    <span class="o">*</span> <span class="o">*</span> <span class="nx">Al_mm</span><span class="p">.</span><span class="nx">eam</span><span class="p">.</span><span class="nx">fs</span> <span class="nx">Al</span>
-</code></pre></div></div>
 
-<p>或者</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pair_style</span>    <span class="nx">eam</span>
-<span class="nx">pair_coeff</span>    <span class="o">*</span> <span class="o">*</span> <span class="nx">Al</span><span class="p">.</span><span class="nx">eam</span>
-</code></pre></div></div>
 
-<p>或者</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pair_style</span>    <span class="nx">lj</span><span class="o">/</span><span class="nx">cut</span> <span class="mf">10.0</span>
-<span class="nx">pair_coeff</span>    <span class="mi">1</span> <span class="mi">1</span> <span class="mf">0.023</span> <span class="mf">2.8</span>
-</code></pre></div></div>
+09
+  5月
+  2023</th>
+            <td>
+              
+                <a class="post-link" href="/zh-CN/blog/2023/elastic-wave-in-plate/">平板中的弹性波色散关系</a>
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th scope="row">
 
-<h2 id="温度初始化">温度初始化</h2>
 
-<p>原子温度由原子速度计算得到</p>
 
-<p>温度初始化后，原子获得初始速度</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">velocity</span>      <span class="nx">all</span> <span class="nx">create</span> <span class="mi">300</span> <span class="mi">8989</span>
-</code></pre></div></div>
 
-<h2 id="弛豫">弛豫</h2>
 
-<p>（1）nve 系综</p>
+26
+  4月
+  2023</th>
+            <td>
+              
+                <a class="post-link" href="/zh-CN/blog/2023/classical-kinetic-theory/">热传递的经典动力学理论</a>
+              
+            </td>
+          </tr>
+        
+      </table>
+    </div>
+  </article>
+</div>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">nve</span>
-</code></pre></div></div>
-
-<p>（2）nvt 系综</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">nvt</span> <span class="nx">temp</span> <span class="mi">300</span> <span class="mi">300</span> <span class="mf">0.1</span> <span class="nx">#保温</span>
-<span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">nvt</span> <span class="nx">temp</span> <span class="mi">300</span> <span class="mi">1000</span> <span class="mf">0.1</span> <span class="nx">#升温</span>
-</code></pre></div></div>
-
-<p>（3）npt 系综</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">npt</span> <span class="nx">temp</span> <span class="mi">300</span> <span class="mi">300</span> <span class="mf">0.1</span> <span class="nx">iso</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
-<span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">npt</span> <span class="nx">temp</span> <span class="mi">300</span> <span class="mi">300</span> <span class="mf">0.1</span> <span class="nx">x</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
-</code></pre></div></div>
-
-<h2 id="模拟设置">模拟设置</h2>
-
-<p>（1）compute 计算</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">compute</span>       <span class="mi">1</span> <span class="nx">mobile</span> <span class="nx">stress</span><span class="o">/</span><span class="nx">atom</span> <span class="nx">NULL</span>  <span class="nx">#计算原子应力</span>
-<span class="nx">compute</span>       <span class="nx">myTemp</span> <span class="nx">mobile</span> <span class="nx">temp</span>  <span class="nx">#计算温度</span>
-</code></pre></div></div>
-
-<p>（2）fix 计算</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">deform</span> <span class="mi">100</span> <span class="nx">x</span> <span class="nx">erate</span> <span class="mf">0.05</span> <span class="nx">remap</span> <span class="nx">x</span>
-</code></pre></div></div>
-
-<h2 id="输出设置">输出设置</h2>
-
-<p>（1）体系变量输出</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">thermo</span> <span class="nx">style</span>  <span class="nx">custom</span> <span class="nx">step</span> <span class="nx">temp</span> <span class="nx">pe</span> <span class="nx">ke</span> <span class="nx">press</span>
-<span class="nx">thermo</span>        <span class="mi">100</span>
-</code></pre></div></div>
-
-<p>（2）原子量输出</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">dump</span>          <span class="mi">1</span> <span class="nx">all</span> <span class="nx">custom</span> <span class="mi">100</span> <span class="nx">tension</span><span class="p">.</span><span class="nx">xyz</span> <span class="nx">type</span> <span class="nx">x</span> <span class="nx">y</span> <span class="nx">z</span>
-</code></pre></div></div>
-
-      </d-article>
-
-      <d-appendix>
-        <d-footnote-list></d-footnote-list>
-        <d-citation-list></d-citation-list>
-      </d-appendix>
-
-      <d-bibliography src="/assets/bibliography/"></d-bibliography>
-
-      
       
     </div>
 
@@ -559,10 +342,85 @@
   </footer>
 
 
+
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
     <!-- Bootsrap & MDB scripts -->
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 <!-- <script src="/assets/js/mdb.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    
+  <!-- Masonry & imagesLoaded -->
+  <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/masonry.js" type="text/javascript"></script>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script>
+
+
+
+<!-- Bootstrap Table -->
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script>
+<script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script>
+<script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script>
+
+<!-- Jupyter Open External Links New Tab -->
+<script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script>
+
+
+
+    
+  <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+
+
+  <script async src="https://badge.dimensions.ai/badge.js"></script>
+
+
+    
+  
+    <!-- MathJax -->
+    <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        tags: 'ams',
+      }
+    };
+    </script>
+    <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script>
+  
+
+
+    
 
     
 
@@ -647,6 +505,12 @@
     }
   </script>
 
+
+    
+
+    
+
+    
 
     
   <script src="/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script>
@@ -808,39 +672,6 @@
               window.location.href = "/zh-CN/blog/2024/qe-scf/";
             
           },
-        },{id: "post-lammps-石墨烯热导率计算",
-          
-            title: "LAMMPS 石墨烯热导率计算",
-          
-          description: "",
-          section: "文章",
-          handler: () => {
-            
-              window.location.href = "/zh-CN/blog/2024/lammps-graphene/";
-            
-          },
-        },{id: "post-lammps-非平衡分子动力学计算热导率",
-          
-            title: "LAMMPS 非平衡分子动力学计算热导率",
-          
-          description: "",
-          section: "文章",
-          handler: () => {
-            
-              window.location.href = "/zh-CN/blog/2024/lammps-nemd/";
-            
-          },
-        },{id: "post-lammps-的输入文件结构与编写",
-          
-            title: "LAMMPS 的输入文件结构与编写",
-          
-          description: "",
-          section: "文章",
-          handler: () => {
-            
-              window.location.href = "/zh-CN/blog/2024/lammps-in/";
-            
-          },
         },{id: "post-热物理学的微观描述",
           
             title: "热物理学的微观描述",
@@ -885,14 +716,14 @@
               window.location.href = "/zh-CN/blog/2023/classical-kinetic-theory/";
             
           },
-        },{id: "news-毕业于鲍曼莫斯科国立技术大学-获得核能与热物理专业的硕士学位-并荣获荣誉徽章-新闻-https-bmstu-ru-news-kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery",
-              title: '毕业于鲍曼莫斯科国立技术大学，获得核能与热物理专业的硕士学位，并荣获荣誉徽章。[新闻](https://bmstu.ru/news/kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery)',
+        },{id: "news-毕业于鲍曼莫斯科国立技术大学-获得核能与热物理专业的硕士学位-并荣获荣誉徽章-新闻",
+              title: '毕业于鲍曼莫斯科国立技术大学，获得核能与热物理专业的硕士学位，并荣获荣誉徽章。新闻',
               description: "",
               section: "新闻",},{id: "news-开始了我的博士研究-研究课题为-考虑声子和电子的量子力学特性对纳米结构热物理性质的确定",
               title: '开始了我的博士研究，研究课题为“考虑声子和电子的量子力学特性对纳米结构热物理性质的确定”。',
               description: "",
-              section: "新闻",},{id: "news-受邀参加国际论坛-atomexpo-2024-上的主题为-绿色科技与年轻一代-的俄罗斯高校校友会议-新闻-https-www-rudn-ru-media-news-international-cooperation-rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo-2024",
-              title: '受邀参加国际论坛 ATOMEXPO-2024 上的主题为“绿色科技与年轻一代”的俄罗斯高校校友会议。 [新闻](https://www.rudn.ru/media/news/international-cooperation/rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo--2024)',
+              section: "新闻",},{id: "news-受邀参加国际论坛-atomexpo-2024-上的主题为-绿色科技与年轻一代-的俄罗斯高校校友会议-新闻",
+              title: '受邀参加国际论坛 ATOMEXPO-2024 上的主题为“绿色科技与年轻一代”的俄罗斯高校校友会议。 新闻',
               description: "",
               section: "新闻",},{
             id: 'social-email',
@@ -927,7 +758,7 @@
               title: 'en-US',
               section: '语言',
               handler: () => {
-                window.location.href = "/blog/2024/lammps-in/";
+                window.location.href = "/blog/category/physics/";
               },
             },{
           id: 'light-theme',
@@ -960,6 +791,5 @@
   <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script>
 
 
-  
-</body>
+  </body>
 </html>

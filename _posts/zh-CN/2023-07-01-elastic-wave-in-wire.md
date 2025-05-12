@@ -2,7 +2,7 @@
 layout: distill
 title: 圆棒中的弹性波色散关系
 date: 2023-07-01 00:32:13
-categories: Theory
+categories: Physics
 tabs: true
 map: true
 
@@ -42,7 +42,7 @@ $$
 其中 $c_l=\sqrt{(\lambda+2\mu)/\rho}$ 是膨胀波的速度，$c_t=\sqrt{\mu/\rho}$ 是剪切波的速度。
 
 <div class="text-center">
-  {% include figure.liquid path="assets/img/blog/wire.png" zoomable=true caption="图 1：在柱坐标系下圆棒的示意图" class="w-50" %}
+  {% include figure.liquid path="assets/img/blog/wire.png" zoomable=true caption="图 1：在柱坐标系下圆棒的示意图" class="w-75" %}
 </div>
 
 在柱坐标系中，位移分量为：
@@ -82,7 +82,7 @@ $$
 ## 扭转波
 
 <div class="text-center">
-  {% include figure.liquid path="assets/img/blog/wire-T.png" zoomable=true caption="图 2：圆棒中扭转波示意图" class="w-50" %}
+  {% include figure.liquid path="assets/img/blog/wire-T.png" zoomable=true caption="图 2：圆棒中扭转波示意图" class="w-75" %}
 </div>
 
 扭转波仅存在周向位移分量 $u_\theta$ ：
@@ -113,7 +113,7 @@ $$
 ## 纵波
 
 <div class="text-center">
-  {% include figure.liquid path="assets/img/blog/wire-L.png" zoomable=true caption="图 3：圆棒中纵波示意图" class="w-50" %}
+  {% include figure.liquid path="assets/img/blog/wire-L.png" zoomable=true caption="图 3：圆棒中纵波示意图" class="w-75" %}
 </div>
 
 纵波是轴对称波，存在径向位移分量 $u_r$ 和轴向位移分量 $u_z$ ：
@@ -148,7 +148,7 @@ $$
 ## 弯曲波
 
 <div class="text-center">
-  {% include figure.liquid path="assets/img/blog/wire-F.png" zoomable=true caption="图 4：圆棒中弯曲波示意图" class="w-50" %}
+  {% include figure.liquid path="assets/img/blog/wire-F.png" zoomable=true caption="图 4：圆棒中弯曲波示意图" class="w-75" %}
 </div>
 
 对于弯曲波，必须考虑所有三个位移分量：
@@ -206,3 +206,6 @@ $$
 
 第二步，根据前两组根逐层自适应对方程进行求解。
 
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/mathmethod.png" zoomable=true caption="图 4：数值计算方法图示" class="w-75" %}
+</div>

@@ -2,7 +2,7 @@
 layout: distill
 title: Microscopic Description of Thermal Physics
 date: 2023-10-08 00:32:13
-categories: Theory
+categories: Physics
 tabs: true
 map: true
 
@@ -14,23 +14,6 @@ toc:
   - name: Contribution to Heat Transfer Physics
   - name: Fundamental Constants and Fine Structure Scales
 
-# Below is an example of injecting additional post-specific styles.
-# If you use this post as a template, delete this _styles block.
-_styles: >
-  .fake-img {
-    background: #bbb;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 12px;
-  }
-  .fake-img p {
-    font-family: sans-serif;
-    color: white;
-    text-align: left;
-    margin: 12px 0;
-    text-align: center;
-    font-size: 16px;
-  }
 
 ---
 
@@ -75,10 +58,8 @@ The four primary energy carriers—**phonons** ($$p$$), **electrons** ($$e$$), *
 
 ### Phonons
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/thermophysics_1.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/thermophysics_1.png" zoomable=true caption="Figure 1: Phonon" class="w-75" %}
 </div>
 
 - Phonons are quantized vibrational modes in a rigid atomic lattice.
@@ -93,10 +74,8 @@ The four primary energy carriers—**phonons** ($$p$$), **electrons** ($$e$$), *
 
 ### Electrons
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/thermophysics_2.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/thermophysics_1.png" zoomable=true caption="Figure 2: Electron" class="w-75" %}
 </div>
 
 - Electrons are negatively charged **subatomic particles**. With a spin of $$1/2$$, electrons are classified as **fermions**.
@@ -109,10 +88,8 @@ The four primary energy carriers—**phonons** ($$p$$), **electrons** ($$e$$), *
 
 ### Fluid Particles
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/thermophysics_3.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/thermophysics_1.png" zoomable=true caption="Figure 3: Fluid Particle" class="w-75" %}
 </div>
 
 - Gases and liquids consist of atoms or molecules (generally referred to as fluid particles). Fluid particles can be neutral or charged and are constantly in **random motion**.
@@ -123,10 +100,8 @@ The four primary energy carriers—**phonons** ($$p$$), **electrons** ($$e$$), *
 
 ### Photons
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        {% include figure.liquid loading="eager" path="assets/img/blog/thermophysics_4.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
+<div class="text-center">
+  {% include figure.liquid path="assets/img/blog/thermophysics_1.png" zoomable=true caption="Figure 4: Photon" class="w-75" %}
 </div>
 
 - Photons are quanta of the electromagnetic field and fundamental particles in quantum electrodynamics, forming part of the Standard Model of particle physics.
