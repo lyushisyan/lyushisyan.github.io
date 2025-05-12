@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
+  <!-- Head -->
   <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <!-- Metadata, OpenGraph and Schema.org -->
 
 
@@ -19,7 +21,7 @@
   
     
     
-      Phonon Dispersion Calculation of Silicon Using QE | Shixian Liu
+      Physics | Shixian Liu
     
   
 </title>
@@ -63,7 +65,7 @@
   <link rel="shortcut icon" href="/assets/img/sheng.png?999c12785eb719d4b77e851bbb1bffbc">
 
 <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e">
-<link rel="canonical" href="https://lyushisyan.github.io/blog/2024/qe-disp-si/">
+<link rel="canonical" href="https://lyushisyan.github.io/blog/category/physics/">
 
 <!-- Dark Mode -->
 <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
@@ -76,8 +78,6 @@
 
 <!-- GeoJSON support via Leaflet -->
 
-  <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" integrity="sha256-q9ba7o845pMPFU+zcAll8rv+gC+fSovKsOoNQ6cynuQ=" crossorigin="anonymous">
-
 
 <!-- diff2html -->
 
@@ -86,150 +86,10 @@
 
 
 
-    
-      <!-- Medium Zoom JS -->
-      <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
-      <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script>
-    
-    <!-- jQuery -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-    
-  
-    <!-- MathJax -->
-    <script type="text/javascript">
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        tags: 'ams',
-      }
-    };
-    </script>
-    <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script>
-    <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script>
-  
-
-
-    
-
-    
-
-    
-  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js" integrity="sha256-MgH13bFTTNqsnuEoqNPBLDaqxjGH+lCpqrukmXc8Ppg=" crossorigin="anonymous"></script>
-  <script>
-    /* Create leaflet map as another node and hide the code block, appending the leaflet node after it */
-    document.addEventListener('readystatechange', () => {
-      if (document.readyState === 'complete') {
-        document.querySelectorAll('pre>code.language-geojson').forEach((elem) => {
-          const jsonData = elem.textContent;
-          const backup = elem.parentElement;
-          backup.classList.add('unloaded');
-          /* create leaflet node */
-          let mapElement = document.createElement('div');
-          mapElement.classList.add('map');
-          backup.after(mapElement);
-
-          var map = L.map(mapElement);
-          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-          }).addTo(map);
-          let geoJSON = L.geoJSON(JSON.parse(jsonData)).addTo(map);
-          map.fitBounds(geoJSON.getBounds());
-        });
-      }
-    });
-  </script>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-  <!-- Medium Zoom JS -->
-  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
-  <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script>
-
-
-
-<!-- Bootstrap Table -->
-
-
-<!-- Load Common JS -->
-<script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script>
-<script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script>
-<script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script>
-
-<!-- Jupyter Open External Links New Tab -->
-<script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script>
-
-
-
-    
-
-    <!-- Distill js -->
-    <script src="/assets/js/distillpub/template.v2.js"></script>
-    <script src="/assets/js/distillpub/transforms.v2.js"></script>
-    <script src="/assets/js/distillpub/overrides.js"></script>
-    
-      <!-- Page/Post style -->
-      <style type="text/css">
-        .fake-img {
-  background: #bbb;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 12px;
-} .fake-img p {
-  font-family: sans-serif;
-  color: white;
-  text-align: left;
-  margin: 12px 0;
-  text-align: center;
-  font-size: 16px;
-}
-
-      </style>
-    
   </head>
 
-  <body>
-<d-front-matter>
-    <script async type="text/json">
-      {
-            "title": "Phonon Dispersion Calculation of Silicon Using QE",
-            "description": "",
-            "published": "April 06, 2024",
-            "authors": [
-              
-            ],
-            "katex": {
-              "delimiters": [
-                {
-                  "left": "$",
-                  "right": "$",
-                  "display": false
-                },
-                {
-                  "left": "$$",
-                  "right": "$$",
-                  "display": true
-                }
-              ]
-            }
-          }
-    </script>
-  </d-front-matter>
-
-  
+  <!-- Body -->
+  <body class="fixed-top-nav ">
     <!-- Header -->
     <header>
   <!-- Nav Bar -->
@@ -345,7 +205,7 @@
               
               <li class="nav-item active">
                 
-                  <a class="nav-link" href="/zh-CN/blog/2024/qe-disp-si/">
+                  <a class="nav-link" href="/zh-CN/blog/category/physics/">
                     
                       ZH-CN</a>
                 
@@ -378,228 +238,96 @@
 
 
     <!-- Content -->
-    <div class="post distill">
-    <d-title>
-      <h1 style="
-        font-size: 1.8rem;
-        font-weight: 600;
-        text-align: center;
-        overflow: hidden;
-        margin-top: 0.2em;
-        margin-bottom: 0.1em;
-        text-overflow: ellipsis;
-      ">
-        Phonon Dispersion Calculation of Silicon Using QE
-      </h1>
-      <p></p>
-    </d-title>
+    <div class="container mt-5" role="main">
       
+        <div class="post">
+  <header class="post-header">
+    <h1 class="post-title">
+<i class="fa-solid fa-tag fa-sm"></i> Physics</h1>
+    <p class="post-description">an archive of posts in this category</p>
+  </header>
 
-      <d-article>
+  <article class="archive">
+    <div class="table-responsive">
+      <table class="table table-sm table-borderless">
         
-          <d-contents>
-            <nav class="l-text figcaption">
-              <h3>Contents</h3>
+          <tr>
+            <th scope="row">
+
+
+
+
+
+
+08
+  Oct
+  2023</th>
+            <td>
               
-                <div>
-                  <a href="#step-1-pw-x">Step 1 pw.x</a>
-                </div>
-                
+                <a class="post-link" href="/blog/2023/nano-micro-thermophysics/">Microscopic Description of Thermal Physics</a>
               
-                <div>
-                  <a href="#step-2-ph-x">Step 2 ph.x</a>
-                </div>
-                
-              
-                <div>
-                  <a href="#step-3-q2r-x">Step 3 q2r.x</a>
-                </div>
-                
-              
-                <div>
-                  <a href="#step-4-matdyn-x">Step 4 matdyn.x</a>
-                </div>
-                
-              
-            </nav>
-          </d-contents>
+            </td>
+          </tr>
         
-        <p>Phonon dispersion in Quantum Espresso is calculated using the <code class="language-plaintext highlighter-rouge">ph.x</code> program, based on Density Functional Perturbation Theory (DFPT). This article demonstrates the calculation process using monocrystalline silicon (Si) as an example.</p>
+          <tr>
+            <th scope="row">
 
-<h2 id="step-1-pwx">Step 1 pw.x</h2>
 
-<p>Perform SCF calculation using <code class="language-plaintext highlighter-rouge">pw.x</code>.</p>
 
-<ul>
-  <li><strong>SCF Input File (<code class="language-plaintext highlighter-rouge">pw.scf.Si.in</code>)</strong></li>
-</ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;control
-  calculation <span class="o">=</span> <span class="s1">'scf'</span>
-  restart_mode <span class="o">=</span> <span class="s1">'from_scratch'</span>
-  pseudo_dir <span class="o">=</span> <span class="s1">'./pseudos/'</span>
-  outdir <span class="o">=</span> <span class="s1">'./out/'</span>
-  prefix <span class="o">=</span> <span class="s1">'Si'</span>
-/
-&amp;system
-  ibrav <span class="o">=</span> 2
-  celldm<span class="o">(</span>1<span class="o">)</span> <span class="o">=</span> 10.20
-  nat <span class="o">=</span> 2
-  ntyp <span class="o">=</span> 1
-  ecutwfc <span class="o">=</span> 16
-/
-&amp;electrons
-  mixing_mode <span class="o">=</span> <span class="s1">'plain'</span>
-  mixing_beta <span class="o">=</span> 0.7
-  conv_thr <span class="o">=</span> 1.0e-8
-/
-ATOMIC_SPECIES
-  Si 28.0855 Si.vbc.UPF
-ATOMIC_POSITIONS
-  Si 0.00 0.00 0.00
-  Si 0.25 0.25 0.25
-K_POINTS <span class="o">{</span>automatic<span class="o">}</span>
-  8 8 8 0 0 0
-</code></pre></div></div>
 
-<ul>
-  <li><strong>Execute SCF Calculation</strong></li>
-</ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 pw.x <span class="nt">-i</span> pw.scf.Si.in <span class="o">&gt;</span> pw.scf.Si.out
-</code></pre></div></div>
-
-<h2 id="step-2-phx">Step 2 ph.x</h2>
-
-<p>Compute dynamical matrices on a uniform <strong>q-point</strong> grid using <code class="language-plaintext highlighter-rouge">ph.x</code>.</p>
-
-<ul>
-  <li><strong>Input File (<code class="language-plaintext highlighter-rouge">ph.Si.in</code>)</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;INPUTPH
-  tr2_ph <span class="o">=</span> 1d-14
-  amass<span class="o">(</span>1<span class="o">)</span> <span class="o">=</span> 28.0855
-  ldisp <span class="o">=</span> .true.
-  nq1 <span class="o">=</span> 4
-  nq2 <span class="o">=</span> 4
-  nq3 <span class="o">=</span> 4
-  outdir <span class="o">=</span> <span class="s1">'./out/'</span>
-  prefix <span class="o">=</span> <span class="s1">'Si'</span>
-  fildyn <span class="o">=</span> <span class="s1">'Si.dyn'</span>
-/
-</code></pre></div></div>
-
-<ul>
-  <li><strong>Execute Calculation</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 ph.x <span class="nt">-i</span> ph.Si.in <span class="o">&gt;</span> ph.Si.out
-</code></pre></div></div>
-
-<ul>
-  <li><strong>Output Files</strong></li>
-</ul>
-
-<p><strong><code class="language-plaintext highlighter-rouge">Si.dyn0</code></strong> contains the coordinates of the q-point grid.<br>
-<strong><code class="language-plaintext highlighter-rouge">Si.dyn1-N</code></strong> contains force constants ( C(q_n) ), where ( n = 1,…N ), with ( N ) being the number of irreducible q-points in the Brillouin zone.</p>
-
-<h2 id="step-3-q2rx">Step 3 q2r.x</h2>
-
-<p>Use <code class="language-plaintext highlighter-rouge">q2r.x</code> to perform an inverse Fourier transform of the force constants in q-space to obtain real-space force constants.</p>
-
-<ul>
-  <li><strong>Input File (<code class="language-plaintext highlighter-rouge">q2r.Si.in</code>)</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;INPUT
-  fildyn <span class="o">=</span> <span class="s1">'Si.dyn'</span>
-  zasr <span class="o">=</span> <span class="s1">'simple'</span> 
-  flfrc <span class="o">=</span> <span class="s1">'Si444.fc'</span>
-/
-</code></pre></div></div>
-
-<ul>
-  <li><strong>Execute Calculation</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 q2r.x <span class="nt">-i</span> q2r.Si.in <span class="o">&gt;</span> q2r.Si.out
-</code></pre></div></div>
-
-<ul>
-  <li><strong>Output File</strong></li>
-</ul>
-
-<p><strong><code class="language-plaintext highlighter-rouge">Si444.fc</code></strong> contains real-space force constants for a <strong>4×4×4</strong> supercell.</p>
-
-<h2 id="step-4-matdynx">Step 4 matdyn.x</h2>
-
-<p>Use <code class="language-plaintext highlighter-rouge">matdyn.x</code> to perform a Fourier transform on real-space components to obtain the dynamical matrix and eigenvalues (frequencies) at arbitrary q-points.</p>
-
-<ul>
-  <li><strong>Input File (<code class="language-plaintext highlighter-rouge">matdyn.Si.in</code>)</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;INPUT
-  asr <span class="o">=</span> <span class="s1">'simple'</span>  
-  flfrc <span class="o">=</span> <span class="s1">'Si444.fc'</span>
-  flfrq <span class="o">=</span> <span class="s1">'Si.freq'</span>  
-  flvec <span class="o">=</span> <span class="s1">'Si.modes'</span> 
-  q_in_band_form <span class="o">=</span> .true.
-/
-6
-0.000 0.000 0.000   50
-0.500 0.000 0.500   50
-0.625 0.250 0.625   1
-0.375 0.375 0.750   50
-0.000 0.000 0.000   50
-0.500 0.500 0.500    1
-</code></pre></div></div>
-
-<ul>
-  <li><strong>Execute Calculation</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 matdyn.x <span class="nt">-i</span> matdyn.Si.in <span class="o">&gt;</span> matdyn.Si.out
-</code></pre></div></div>
-
-<p>Then, use the resulting <code class="language-plaintext highlighter-rouge">Si.freq.gp</code> file to generate plots.</p>
-
-<div class="row">
-    <div class="col-md-8 text-center">
+01
+  Jul
+  2023</th>
+            <td>
+              
+                <a class="post-link" href="/blog/2023/elastic-wave-in-wire/">Dispersion Relations of Elastic Waves in Rods</a>
+              
+            </td>
+          </tr>
         
+          <tr>
+            <th scope="row">
 
 
 
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/Si-bulk-qe-480.webp 480w,/assets/img/blog/Si-bulk-qe-800.webp 800w,/assets/img/blog/Si-bulk-qe-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
-    
-    <img src="/assets/img/blog/Si-bulk-qe.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
-  </picture>
 
-  
-</figure>
 
+
+09
+  May
+  2023</th>
+            <td>
+              
+                <a class="post-link" href="/blog/2023/elastic-wave-in-plate/">Dispersion Relations of Elastic Waves in Plates</a>
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th scope="row">
+
+
+
+
+
+
+26
+  Apr
+  2023</th>
+            <td>
+              
+                <a class="post-link" href="/blog/2023/classical-kinetic-theory/">Classical Kinetic Theory of Heat Conduction</a>
+              
+            </td>
+          </tr>
+        
+      </table>
     </div>
+  </article>
 </div>
 
-      </d-article>
-
-      <d-appendix>
-        <d-footnote-list></d-footnote-list>
-        <d-citation-list></d-citation-list>
-      </d-appendix>
-
-      <d-bibliography src="/assets/bibliography/"></d-bibliography>
-
-      
       
     </div>
 
@@ -618,10 +346,85 @@ K_POINTS <span class="o">{</span>automatic<span class="o">}</span>
   </footer>
 
 
+
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
     <!-- Bootsrap & MDB scripts -->
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 <!-- <script src="/assets/js/mdb.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    
+  <!-- Masonry & imagesLoaded -->
+  <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/masonry.js" type="text/javascript"></script>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script>
+
+
+
+<!-- Bootstrap Table -->
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script>
+<script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script>
+<script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script>
+
+<!-- Jupyter Open External Links New Tab -->
+<script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script>
+
+
+
+    
+  <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+
+
+  <script async src="https://badge.dimensions.ai/badge.js"></script>
+
+
+    
+  
+    <!-- MathJax -->
+    <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        tags: 'ams',
+      }
+    };
+    </script>
+    <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script>
+  
+
+
+    
 
     
 
@@ -706,6 +509,12 @@ K_POINTS <span class="o">{</span>automatic<span class="o">}</span>
     }
   </script>
 
+
+    
+
+    
+
+    
 
     
   <script src="/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script>
@@ -911,14 +720,14 @@ K_POINTS <span class="o">{</span>automatic<span class="o">}</span>
               window.location.href = "/blog/2023/classical-kinetic-theory/";
             
           },
-        },{id: "news-graduated-from-bauman-moscow-state-technical-university-with-a-master-39-s-degree-in-nuclear-energy-and-thermophysics-and-received-a-badge-with-honors-media-https-bmstu-ru-news-kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery",
-              title: 'Graduated from Bauman Moscow State Technical University with a Master&amp;#39;s degree in Nuclear...',
+        },{id: "news-graduated-from-bauman-moscow-state-technical-university-with-a-master-s-degree-in-nuclear-energy-and-thermophysics-and-received-a-badge-with-honors-media",
+              title: 'Graduated from Bauman Moscow State Technical University with a Master’s degree in Nuclear...',
               description: "",
-              section: "News",},{id: "news-started-my-phd-research-on-the-topic-quot-determination-of-the-thermophysical-properties-of-nanostructures-taking-into-account-the-quantum-mechanical-properties-of-phonons-and-electrons-quot",
-              title: 'Started my PhD research on the topic &amp;quot;Determination of the thermophysical properties of...',
+              section: "News",},{id: "news-started-my-phd-research-on-the-topic-determination-of-the-thermophysical-properties-of-nanostructures-taking-into-account-the-quantum-mechanical-properties-of-phonons-and-electrons",
+              title: 'Started my PhD research on the topic “Determination of the thermophysical properties of...',
               description: "",
-              section: "News",},{id: "news-invited-to-participate-in-the-russian-universities-alumni-meeting-on-quot-green-technology-for-the-younger-generation-quot-at-the-international-forum-atomexpo-2024-media-https-www-rudn-ru-media-news-international-cooperation-rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo-2024",
-              title: 'Invited to participate in the Russian universities alumni meeting on &amp;quot;Green technology for...',
+              section: "News",},{id: "news-invited-to-participate-in-the-russian-universities-alumni-meeting-on-green-technology-for-the-younger-generation-at-the-international-forum-atomexpo-2024-media",
+              title: 'Invited to participate in the Russian universities alumni meeting on “Green technology for...',
               description: "",
               section: "News",},{
             id: 'social-email',
@@ -953,7 +762,7 @@ K_POINTS <span class="o">{</span>automatic<span class="o">}</span>
               title: 'zh-CN',
               section: 'Languages',
               handler: () => {
-                window.location.href = "/zh-CN/blog/2024/qe-disp-si/";
+                window.location.href = "/zh-CN/blog/category/physics/";
               },
             },{
           id: 'light-theme',
@@ -986,6 +795,5 @@ K_POINTS <span class="o">{</span>automatic<span class="o">}</span>
   <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script>
 
 
-  
-</body>
+  </body>
 </html>

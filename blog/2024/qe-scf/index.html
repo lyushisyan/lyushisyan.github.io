@@ -295,6 +295,8 @@
             
           
             
+          
+            
               
                 
                 <li class="nav-item active">
@@ -517,18 +519,18 @@ K_POINTS automatic  <span class="c"># Automatic k-point grid</span>
 
 <p>Example:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Self-consistent Calculation
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">Self-consistent</span><span class="w"> </span><span class="err">Calculation</span><span class="w">
 
-iteration <span class="c">#  1     ecut=    16.00 Ry     beta= 0.70</span>
-total energy              <span class="o">=</span>     <span class="nt">-15</span>.83539933 Ry
-estimated scf accuracy    &lt;       0.06071141 Ry
+</span><span class="err">iteration</span><span class="w"> </span><span class="err">#</span><span class="w">  </span><span class="mi">1</span><span class="w">     </span><span class="err">ecut=</span><span class="w">    </span><span class="mf">16.00</span><span class="w"> </span><span class="err">Ry</span><span class="w">     </span><span class="err">beta=</span><span class="w"> </span><span class="mf">0.70</span><span class="w">
+</span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83539933</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+</span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">       </span><span class="mf">0.06071141</span><span class="w"> </span><span class="err">Ry</span><span class="w">
 
-iteration <span class="c">#  5     ecut=    16.00 Ry     beta= 0.70</span>
-total energy              <span class="o">=</span>     <span class="nt">-15</span>.83900299 Ry
-estimated scf accuracy    &lt;       0.00000012 Ry
+</span><span class="err">iteration</span><span class="w"> </span><span class="err">#</span><span class="w">  </span><span class="mi">5</span><span class="w">     </span><span class="err">ecut=</span><span class="w">    </span><span class="mf">16.00</span><span class="w"> </span><span class="err">Ry</span><span class="w">     </span><span class="err">beta=</span><span class="w"> </span><span class="mf">0.70</span><span class="w">
+</span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83900299</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+</span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">       </span><span class="mf">0.00000012</span><span class="w"> </span><span class="err">Ry</span><span class="w">
 
-End of self-consistent calculation
-</code></pre></div></div>
+</span><span class="err">End</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">self-consistent</span><span class="w"> </span><span class="err">calculation</span><span class="w">
+</span></code></pre></div></div>
 
 <p>Important notes:</p>
 <ul>
@@ -536,17 +538,17 @@ End of self-consistent calculation
   <li>Convergence is achieved in 6 iterations.</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">!</span>    total energy              <span class="o">=</span>     <span class="nt">-15</span>.83900302 Ry
-     estimated scf accuracy    &lt;          3.2E-10 Ry
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span><span class="w">    </span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83900302</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+     </span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">          </span><span class="mf">3.2E-10</span><span class="w"> </span><span class="err">Ry</span><span class="w">
 
-     The total energy is the <span class="nb">sum </span>of the following terms:
-     one-electron contribution <span class="o">=</span>       4.79863652 Ry
-     hartree contribution      <span class="o">=</span>       1.07565897 Ry
-     xc contribution           <span class="o">=</span>      <span class="nt">-4</span>.81353993 Ry
-     ewald contribution        <span class="o">=</span>     <span class="nt">-16</span>.89975858 Ry
+     </span><span class="err">The</span><span class="w"> </span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">sum</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">terms:</span><span class="w">
+     </span><span class="err">one-electron</span><span class="w"> </span><span class="err">contribution</span><span class="w"> </span><span class="err">=</span><span class="w">       </span><span class="mf">4.79863652</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+     </span><span class="err">hartree</span><span class="w"> </span><span class="err">contribution</span><span class="w">      </span><span class="err">=</span><span class="w">       </span><span class="mf">1.07565897</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+     </span><span class="err">xc</span><span class="w"> </span><span class="err">contribution</span><span class="w">           </span><span class="err">=</span><span class="w">      </span><span class="mf">-4.81353993</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+     </span><span class="err">ewald</span><span class="w"> </span><span class="err">contribution</span><span class="w">        </span><span class="err">=</span><span class="w">     </span><span class="mf">-16.89975858</span><span class="w"> </span><span class="err">Ry</span><span class="w">
 
-     convergence has been achieved <span class="k">in   </span>6 iterations
-</code></pre></div></div>
+     </span><span class="err">convergence</span><span class="w"> </span><span class="err">has</span><span class="w"> </span><span class="err">been</span><span class="w"> </span><span class="err">achieved</span><span class="w"> </span><span class="err">in</span><span class="w">   </span><span class="mi">6</span><span class="w"> </span><span class="err">iterations</span><span class="w">
+</span></code></pre></div></div>
 
 <h3 id="tips">Tips</h3>
 
@@ -569,26 +571,26 @@ End of self-consistent calculation
   <li>Exchange-correlation used in the calculation:</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Exchange-correlation<span class="o">=</span> SLA  PZ   NOGX NOGC
-</code></pre></div></div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">Exchange-correlation=</span><span class="w"> </span><span class="err">SLA</span><span class="w">  </span><span class="err">PZ</span><span class="w">   </span><span class="err">NOGX</span><span class="w"> </span><span class="err">NOGC</span><span class="w">
+</span></code></pre></div></div>
 
 <ul>
   <li>
 <strong>Total plane waves</strong> used (e.g., 1067):</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
-Sum         433     433    139                 5961     5961    1067
-</code></pre></div></div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">sticks:</span><span class="w">   </span><span class="err">dense</span><span class="w">  </span><span class="err">smooth</span><span class="w">     </span><span class="err">PW</span><span class="w">     </span><span class="err">G-vecs:</span><span class="w">    </span><span class="err">dense</span><span class="w">   </span><span class="err">smooth</span><span class="w">      </span><span class="err">PW</span><span class="w">
+</span><span class="err">Sum</span><span class="w">         </span><span class="mi">433</span><span class="w">     </span><span class="mi">433</span><span class="w">    </span><span class="mi">139</span><span class="w">                 </span><span class="mi">5961</span><span class="w">     </span><span class="mi">5961</span><span class="w">    </span><span class="mi">1067</span><span class="w">
+</span></code></pre></div></div>
 
 <ul>
   <li>
 <strong>Number of Kohn-Sham states</strong>:</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>number of electrons       <span class="o">=</span>         8.00
-number of Kohn-Sham <span class="nv">states</span><span class="o">=</span>            8
-</code></pre></div></div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">electrons</span><span class="w">       </span><span class="err">=</span><span class="w">         </span><span class="mf">8.00</span><span class="w">
+</span><span class="err">number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">Kohn-Sham</span><span class="w"> </span><span class="err">states=</span><span class="w">            </span><span class="mi">8</span><span class="w">
+</span></code></pre></div></div>
 
       </d-article>
 
@@ -867,39 +869,6 @@ number of Kohn-Sham <span class="nv">states</span><span class="o">=</span>      
               window.location.href = "/blog/2024/qe-scf/";
             
           },
-        },{id: "post-graphene-thermal-conductivity-calculation-lammps",
-          
-            title: "Graphene Thermal Conductivity Calculation (LAMMPS)",
-          
-          description: "",
-          section: "Posts",
-          handler: () => {
-            
-              window.location.href = "/blog/2024/lammps-graphene/";
-            
-          },
-        },{id: "post-thermal-conductivity-simulation-using-nemd-lammps",
-          
-            title: "Thermal Conductivity Simulation Using NEMD (LAMMPS)",
-          
-          description: "",
-          section: "Posts",
-          handler: () => {
-            
-              window.location.href = "/blog/2024/lammps-nemd/";
-            
-          },
-        },{id: "post-structure-and-writing-of-lammps-input-files",
-          
-            title: "Structure and Writing of LAMMPS Input Files",
-          
-          description: "",
-          section: "Posts",
-          handler: () => {
-            
-              window.location.href = "/blog/2024/lammps-in/";
-            
-          },
         },{id: "post-microscopic-description-of-thermal-physics",
           
             title: "Microscopic Description of Thermal Physics",
@@ -911,9 +880,9 @@ number of Kohn-Sham <span class="nv">states</span><span class="o">=</span>      
               window.location.href = "/blog/2023/nano-micro-thermophysics/";
             
           },
-        },{id: "post-dispersion-relations-of-elastic-waves-in-cylindrical-rods",
+        },{id: "post-dispersion-relations-of-elastic-waves-in-rods",
           
-            title: "Dispersion Relations of Elastic Waves in Cylindrical Rods",
+            title: "Dispersion Relations of Elastic Waves in Rods",
           
           description: "",
           section: "Posts",

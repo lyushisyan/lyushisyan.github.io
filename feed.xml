@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://lyushisyan.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://lyushisyan.github.io/" rel="alternate" type="text/html" /><updated>2025-05-11T23:43:17+03:00</updated><id>https://lyushisyan.github.io/feed.xml</id><title type="html">blank</title><entry><title type="html">VASP Structure Optimization</title><link href="https://lyushisyan.github.io/blog/2024/vasp-relax/" rel="alternate" type="text/html" title="VASP Structure Optimization" /><published>2024-12-02T02:36:10+03:00</published><updated>2024-12-02T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/vasp-relax</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/vasp-relax/"><![CDATA[<h2 id="1-input-files">1. Input Files</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://lyushisyan.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://lyushisyan.github.io/" rel="alternate" type="text/html" /><updated>2025-05-13T00:12:17+03:00</updated><id>https://lyushisyan.github.io/feed.xml</id><title type="html">blank</title><entry><title type="html">VASP Structure Optimization</title><link href="https://lyushisyan.github.io/blog/2024/vasp-relax/" rel="alternate" type="text/html" title="VASP Structure Optimization" /><published>2024-12-02T02:36:10+03:00</published><updated>2024-12-02T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/vasp-relax</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/vasp-relax/"><![CDATA[<h2 id="1-input-files">1. Input Files</h2>
 <p>The input files for VASP are the four basic files: <code class="language-plaintext highlighter-rouge">INCAR</code>, <code class="language-plaintext highlighter-rouge">POSCAR</code>, <code class="language-plaintext highlighter-rouge">POTCAR</code>, <code class="language-plaintext highlighter-rouge">KPOINTS</code>.</p>
 
 <h3 id="11-incar-parameter-settings">1.1 <code class="language-plaintext highlighter-rouge">INCAR</code> Parameter Settings</h3>
@@ -1233,18 +1233,18 @@ K_POINTS automatic  <span class="c"># Automatic k-point grid</span>
 
 <p>Example:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Self-consistent Calculation
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">Self-consistent</span><span class="w"> </span><span class="err">Calculation</span><span class="w">
 
-iteration <span class="c">#  1     ecut=    16.00 Ry     beta= 0.70</span>
-total energy              <span class="o">=</span>     <span class="nt">-15</span>.83539933 Ry
-estimated scf accuracy    &lt;       0.06071141 Ry
+</span><span class="err">iteration</span><span class="w"> </span><span class="err">#</span><span class="w">  </span><span class="mi">1</span><span class="w">     </span><span class="err">ecut=</span><span class="w">    </span><span class="mf">16.00</span><span class="w"> </span><span class="err">Ry</span><span class="w">     </span><span class="err">beta=</span><span class="w"> </span><span class="mf">0.70</span><span class="w">
+</span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83539933</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+</span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">       </span><span class="mf">0.06071141</span><span class="w"> </span><span class="err">Ry</span><span class="w">
 
-iteration <span class="c">#  5     ecut=    16.00 Ry     beta= 0.70</span>
-total energy              <span class="o">=</span>     <span class="nt">-15</span>.83900299 Ry
-estimated scf accuracy    &lt;       0.00000012 Ry
+</span><span class="err">iteration</span><span class="w"> </span><span class="err">#</span><span class="w">  </span><span class="mi">5</span><span class="w">     </span><span class="err">ecut=</span><span class="w">    </span><span class="mf">16.00</span><span class="w"> </span><span class="err">Ry</span><span class="w">     </span><span class="err">beta=</span><span class="w"> </span><span class="mf">0.70</span><span class="w">
+</span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83900299</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+</span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">       </span><span class="mf">0.00000012</span><span class="w"> </span><span class="err">Ry</span><span class="w">
 
-End of self-consistent calculation
-</code></pre></div></div>
+</span><span class="err">End</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">self-consistent</span><span class="w"> </span><span class="err">calculation</span><span class="w">
+</span></code></pre></div></div>
 
 <p>Important notes:</p>
 <ul>
@@ -1252,17 +1252,17 @@ End of self-consistent calculation
   <li>Convergence is achieved in 6 iterations.</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">!</span>    total energy              <span class="o">=</span>     <span class="nt">-15</span>.83900302 Ry
-     estimated scf accuracy    &lt;          3.2E-10 Ry
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span><span class="w">    </span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83900302</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+     </span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">          </span><span class="mf">3.2E-10</span><span class="w"> </span><span class="err">Ry</span><span class="w">
 
-     The total energy is the <span class="nb">sum </span>of the following terms:
-     one-electron contribution <span class="o">=</span>       4.79863652 Ry
-     hartree contribution      <span class="o">=</span>       1.07565897 Ry
-     xc contribution           <span class="o">=</span>      <span class="nt">-4</span>.81353993 Ry
-     ewald contribution        <span class="o">=</span>     <span class="nt">-16</span>.89975858 Ry
+     </span><span class="err">The</span><span class="w"> </span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">sum</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">terms:</span><span class="w">
+     </span><span class="err">one-electron</span><span class="w"> </span><span class="err">contribution</span><span class="w"> </span><span class="err">=</span><span class="w">       </span><span class="mf">4.79863652</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+     </span><span class="err">hartree</span><span class="w"> </span><span class="err">contribution</span><span class="w">      </span><span class="err">=</span><span class="w">       </span><span class="mf">1.07565897</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+     </span><span class="err">xc</span><span class="w"> </span><span class="err">contribution</span><span class="w">           </span><span class="err">=</span><span class="w">      </span><span class="mf">-4.81353993</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+     </span><span class="err">ewald</span><span class="w"> </span><span class="err">contribution</span><span class="w">        </span><span class="err">=</span><span class="w">     </span><span class="mf">-16.89975858</span><span class="w"> </span><span class="err">Ry</span><span class="w">
 
-     convergence has been achieved <span class="k">in   </span>6 iterations
-</code></pre></div></div>
+     </span><span class="err">convergence</span><span class="w"> </span><span class="err">has</span><span class="w"> </span><span class="err">been</span><span class="w"> </span><span class="err">achieved</span><span class="w"> </span><span class="err">in</span><span class="w">   </span><span class="mi">6</span><span class="w"> </span><span class="err">iterations</span><span class="w">
+</span></code></pre></div></div>
 
 <h3 id="tips">Tips</h3>
 
@@ -1285,411 +1285,24 @@ End of self-consistent calculation
   <li>Exchange-correlation used in the calculation:</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Exchange-correlation<span class="o">=</span> SLA  PZ   NOGX NOGC
-</code></pre></div></div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">Exchange-correlation=</span><span class="w"> </span><span class="err">SLA</span><span class="w">  </span><span class="err">PZ</span><span class="w">   </span><span class="err">NOGX</span><span class="w"> </span><span class="err">NOGC</span><span class="w">
+</span></code></pre></div></div>
 
 <ul>
   <li><strong>Total plane waves</strong> used (e.g., 1067):</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
-Sum         433     433    139                 5961     5961    1067
-</code></pre></div></div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">sticks:</span><span class="w">   </span><span class="err">dense</span><span class="w">  </span><span class="err">smooth</span><span class="w">     </span><span class="err">PW</span><span class="w">     </span><span class="err">G-vecs:</span><span class="w">    </span><span class="err">dense</span><span class="w">   </span><span class="err">smooth</span><span class="w">      </span><span class="err">PW</span><span class="w">
+</span><span class="err">Sum</span><span class="w">         </span><span class="mi">433</span><span class="w">     </span><span class="mi">433</span><span class="w">    </span><span class="mi">139</span><span class="w">                 </span><span class="mi">5961</span><span class="w">     </span><span class="mi">5961</span><span class="w">    </span><span class="mi">1067</span><span class="w">
+</span></code></pre></div></div>
 
 <ul>
   <li><strong>Number of Kohn-Sham states</strong>:</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>number of electrons       <span class="o">=</span>         8.00
-number of Kohn-Sham <span class="nv">states</span><span class="o">=</span>            8
-</code></pre></div></div>]]></content><author><name></name></author><category term="Method" /><summary type="html"><![CDATA[The calculations handled by pw.x include seven types, specified in the input file with calculation:]]></summary></entry><entry><title type="html">Graphene Thermal Conductivity Calculation (LAMMPS)</title><link href="https://lyushisyan.github.io/blog/2024/lammps-graphene/" rel="alternate" type="text/html" title="Graphene Thermal Conductivity Calculation (LAMMPS)" /><published>2024-02-02T02:36:10+03:00</published><updated>2024-02-02T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/lammps-graphene</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/lammps-graphene/"><![CDATA[<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="nx">Basic</span> <span class="nx">model</span> <span class="nx">setup</span>
-<span class="nx">units</span>             <span class="nx">metal</span>
-<span class="nx">dimension</span>         <span class="mi">3</span>
-<span class="nx">newton</span>            <span class="nx">on</span>
-<span class="nx">boundary</span>          <span class="nx">p</span> <span class="nx">p</span> <span class="nx">p</span>
-<span class="nx">atom_style</span>        <span class="nx">full</span>
-<span class="nx">neighbor</span>          <span class="mf">0.3</span> <span class="nx">bin</span>
-<span class="err">#</span> <span class="nx">Simulation</span> <span class="nx">timestep</span> <span class="k">of</span> <span class="mf">0.5</span> <span class="nx">fs</span>
-<span class="nx">timestep</span>          <span class="mf">0.0005</span>
-<span class="err">#</span> <span class="nx">Read</span> <span class="nx">data</span> <span class="nx">file</span>
-<span class="nx">read_data</span>        <span class="nx">gp</span><span class="p">.</span><span class="nx">data</span>
-
-<span class="err">#</span> <span class="nx">Force</span> <span class="nx">field</span> <span class="nx">settings</span>
-<span class="nx">pair_style</span>       <span class="nx">airebo</span> <span class="mf">3.0</span>
-<span class="nx">pair_coeff</span>       <span class="o">*</span> <span class="o">*</span> <span class="nx">CH</span><span class="p">.</span><span class="nx">airebo</span> <span class="nx">C</span>
-
-<span class="err">#</span> <span class="nx">Temperature</span> <span class="nx">computation</span>
-<span class="nx">compute</span>       <span class="nx">ke1</span>  <span class="nx">all</span>  <span class="nx">ke</span><span class="o">/</span><span class="nx">atom</span>
-<span class="nx">variable</span>      <span class="nx">kb</span>  <span class="nx">equal</span> <span class="mf">8.625</span><span class="nx">e</span><span class="o">-</span><span class="mi">5</span>
-<span class="nx">variable</span>      <span class="nx">temp1</span> <span class="nx">atom</span>  <span class="nx">c_ke1</span><span class="o">/</span><span class="mf">1.5</span><span class="o">/</span><span class="nx">$</span><span class="p">{</span><span class="nx">kb</span><span class="p">}</span>      
-<span class="err">#</span> <span class="nx">Thermodynamic</span> <span class="nx">output</span>
-<span class="nx">thermo</span>	      <span class="mi">1000</span>
-<span class="nx">thermo_style</span>  <span class="nx">custom</span>    <span class="nx">step</span>    <span class="nx">temp</span>   <span class="nx">pxx</span> <span class="nx">pyy</span> <span class="nx">pzz</span> <span class="nx">press</span>  <span class="nx">vol</span>
-<span class="err">#</span> <span class="nx">Temperature</span> <span class="nx">initialization</span>
-<span class="nx">velocity</span>	<span class="nx">all</span> <span class="nx">create</span> <span class="mi">300</span> <span class="mi">898758</span> <span class="nx">mom</span> <span class="nx">yes</span> <span class="nx">rot</span> <span class="nx">yes</span> <span class="nx">dist</span> <span class="nx">gaussian</span>
-
-<span class="err">#</span> <span class="nx">Energy</span> <span class="nx">minimization</span>
-<span class="nx">min_style</span>	    <span class="nx">cg</span>
-<span class="nx">minimize</span>	    <span class="mf">1.0</span><span class="nx">e</span><span class="o">-</span><span class="mi">8</span> <span class="mf">1.0</span><span class="nx">e</span><span class="o">-</span><span class="mi">8</span> <span class="mi">1000000</span> <span class="mi">1000000</span>
-
-<span class="err">#</span> <span class="nx">Relaxation</span> <span class="nx">under</span> <span class="nx">NPT</span> <span class="nx">ensemble</span>
-<span class="nx">thermo</span>     <span class="mi">2000</span>
-<span class="nx">thermo_style</span>   <span class="nx">custom</span> <span class="nx">step</span> <span class="nx">temp</span> <span class="nx">pe</span> <span class="nx">ke</span> <span class="nx">etotal</span> <span class="nx">vol</span> <span class="nx">pxx</span> <span class="nx">pyy</span> <span class="nx">pzz</span> <span class="nx">press</span>
-<span class="nx">fix</span>         <span class="mi">1</span> <span class="nx">all</span> <span class="nx">npt</span> <span class="nx">temp</span> <span class="mi">300</span> <span class="mi">300</span> <span class="mf">0.05</span> <span class="nx">iso</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">0.5</span>
-<span class="nx">dump</span>	    <span class="mi">1</span> <span class="nx">all</span> <span class="nx">custom</span> <span class="mi">100000</span> <span class="nx">npt</span><span class="p">.</span><span class="nx">xyz</span> <span class="nx">id</span> <span class="nx">type</span> <span class="nx">x</span> <span class="nx">y</span> <span class="nx">z</span> 
-<span class="nx">run</span>         <span class="mi">500000</span>
-<span class="nx">unfix</span>       <span class="mi">1</span>
-<span class="nx">undump</span>      <span class="mi">1</span>
-<span class="nx">reset_timestep</span> <span class="mi">0</span>
-
-<span class="nx">write_data</span>  <span class="nx">Gp</span><span class="p">.</span><span class="nx">data</span>
-
-<span class="err">#</span> <span class="nx">Relaxation</span> <span class="nx">under</span> <span class="nx">NVT</span> <span class="nx">ensemble</span>
-<span class="nx">thermo</span>     <span class="mi">2000</span>
-<span class="nx">thermo_style</span>   <span class="nx">custom</span> <span class="nx">step</span> <span class="nx">temp</span> <span class="nx">pe</span> <span class="nx">ke</span> <span class="nx">etotal</span> <span class="nx">vol</span> <span class="nx">pxx</span> <span class="nx">pyy</span> <span class="nx">pzz</span> <span class="nx">press</span>
-<span class="nx">fix</span>         <span class="mi">1</span> <span class="nx">all</span> <span class="nx">nvt</span> <span class="nx">temp</span> <span class="mi">300</span> <span class="mi">300</span> <span class="mf">0.05</span> 
-<span class="nx">dump</span>	    <span class="mi">1</span> <span class="nx">all</span> <span class="nx">custom</span> <span class="mi">20000</span> <span class="nx">nvt</span><span class="p">.</span><span class="nx">xyz</span> <span class="nx">id</span> <span class="nx">type</span> <span class="nx">x</span> <span class="nx">y</span> <span class="nx">z</span> 
-<span class="nx">run</span>         <span class="mi">100000</span>
-<span class="nx">unfix</span>       <span class="mi">1</span>
-<span class="nx">undump</span>      <span class="mi">1</span>
-<span class="nx">reset_timestep</span> <span class="mi">0</span>
-
-<span class="err">#</span> <span class="nx">Chunk</span> <span class="nx">parameter</span> <span class="nx">setup</span>
-<span class="nx">variable</span> <span class="nx">X1</span> 	 <span class="nx">equal</span> <span class="nx">xlo</span>
-<span class="nx">variable</span> <span class="nx">X2</span> 	 <span class="nx">equal</span> <span class="nx">xhi</span>
-<span class="nx">variable</span> <span class="nx">Nlay</span>    <span class="nx">equal</span> <span class="mi">100</span>
-<span class="nx">variable</span> <span class="nx">Dscale</span>  <span class="nx">equal</span> <span class="mi">1</span><span class="o">/</span><span class="nx">$</span><span class="p">{</span><span class="nx">Nlay</span><span class="p">}</span>   <span class="err">#</span> <span class="nb">Number</span> <span class="k">of</span> <span class="nx">chunks</span>
-<span class="nx">variable</span> <span class="nx">Len</span>     <span class="nx">equal</span> <span class="nx">$</span><span class="p">{</span><span class="nx">X2</span><span class="p">}</span><span class="o">-</span><span class="nx">$</span><span class="p">{</span><span class="nx">X1</span><span class="p">}</span> <span class="err">#</span> <span class="nx">Total</span> <span class="nx">length</span>
-<span class="nx">variable</span> <span class="nx">Dz</span>      <span class="nx">equal</span> <span class="nx">$</span><span class="p">{</span><span class="nx">Len</span><span class="p">}</span><span class="sr">/${Nlay} # Size of each chun</span><span class="err">k
-</span>
-<span class="err">#</span> <span class="nx">Fixed</span> <span class="nx">end</span> <span class="nx">and</span> <span class="nx">hot</span><span class="o">/</span><span class="nx">cold</span> <span class="nx">source</span> <span class="nx">coordinates</span>
-<span class="nx">variable</span>   <span class="nx">BL1</span>    <span class="nx">equal</span>   <span class="nx">$</span><span class="p">{</span><span class="nx">X1</span><span class="p">}</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="nx">$</span><span class="p">{</span><span class="nx">Dz</span><span class="p">}</span>                 
-<span class="nx">variable</span>   <span class="nx">BL2</span>    <span class="nx">equal</span>   <span class="nx">$</span><span class="p">{</span><span class="nx">X1</span><span class="p">}</span><span class="o">+</span><span class="mi">6</span><span class="o">*</span><span class="nx">$</span><span class="p">{</span><span class="nx">Dz</span><span class="p">}</span>          
-<span class="nx">variable</span>   <span class="nx">BR1</span>   <span class="nx">equal</span>   <span class="nx">$</span><span class="p">{</span><span class="nx">X2</span><span class="p">}</span><span class="o">-</span><span class="mi">6</span><span class="o">*</span><span class="nx">$</span><span class="p">{</span><span class="nx">Dz</span><span class="p">}</span>          
-<span class="nx">variable</span>   <span class="nx">BR2</span>   <span class="nx">equal</span>   <span class="nx">$</span><span class="p">{</span><span class="nx">X2</span><span class="p">}</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="nx">$</span><span class="p">{</span><span class="nx">Dz</span><span class="p">}</span>            
-
-<span class="err">#</span> <span class="nx">Region</span> <span class="nx">setup</span>
-<span class="nx">region</span>	<span class="nx">reg_all</span>	<span class="nx">block</span>	<span class="nx">$</span><span class="p">{</span><span class="nx">X1</span><span class="p">}</span>  <span class="nx">$</span><span class="p">{</span><span class="nx">X2</span><span class="p">}</span>   <span class="nx">INF</span> <span class="nx">INF</span>      <span class="nx">INF</span> <span class="nx">INF</span>     <span class="nx">units</span> <span class="nx">box</span>
-<span class="err">#</span> <span class="nx">Left</span> <span class="nx">fixed</span> <span class="nx">end</span>
-<span class="nx">region</span>	<span class="nx">fixed_L</span>	<span class="nx">block</span>	<span class="nx">INF</span>    <span class="nx">$</span><span class="p">{</span><span class="nx">BL1</span><span class="p">}</span>   <span class="nx">INF</span> <span class="nx">INF</span>      <span class="nx">INF</span> <span class="nx">INF</span>     <span class="nx">units</span> <span class="nx">box</span>
-<span class="err">#</span> <span class="nx">Left</span> <span class="nx">hot</span> <span class="nx">source</span>
-<span class="nx">region</span>	<span class="nx">Hot</span>	<span class="nx">block</span>	<span class="nx">$</span><span class="p">{</span><span class="nx">BL1</span><span class="p">}</span>  <span class="nx">$</span><span class="p">{</span><span class="nx">BL2</span><span class="p">}</span>   <span class="nx">INF</span> <span class="nx">INF</span>      <span class="nx">INF</span> <span class="nx">INF</span>     <span class="nx">units</span> <span class="nx">box</span>
-<span class="err">#</span> <span class="nx">Right</span> <span class="nx">cold</span> <span class="nx">source</span>
-<span class="nx">region</span>	<span class="nx">Cold</span>	<span class="nx">block</span>	<span class="nx">$</span><span class="p">{</span><span class="nx">BR1</span><span class="p">}</span> <span class="nx">$</span><span class="p">{</span><span class="nx">BR2</span><span class="p">}</span>  <span class="nx">INF</span> <span class="nx">INF</span>      <span class="nx">INF</span> <span class="nx">INF</span>     <span class="nx">units</span> <span class="nx">box</span>
-<span class="err">#</span> <span class="nx">Right</span> <span class="nx">fixed</span> <span class="nx">end</span>
-<span class="nx">region</span>	<span class="nx">fixed_R</span>	<span class="nx">block</span>	<span class="nx">$</span><span class="p">{</span><span class="nx">BR2</span><span class="p">}</span> <span class="nx">INF</span>     <span class="nx">INF</span> <span class="nx">INF</span>      <span class="nx">INF</span> <span class="nx">INF</span>     <span class="nx">units</span> <span class="nx">box</span>
-
-<span class="err">#</span> <span class="nx">Group</span> <span class="nx">atoms</span> <span class="k">in</span> <span class="nx">regions</span>
-<span class="nx">group</span>	<span class="nx">fixed_L</span>		<span class="nx">region</span>	<span class="nx">fixed_L</span>         <span class="err">#</span> <span class="nx">Fixed</span> <span class="nx">end</span>
-<span class="nx">group</span>	<span class="nx">Hot</span>		    <span class="nx">region</span>	<span class="nx">Hot</span>         <span class="err">#</span> <span class="nx">Heat</span> <span class="nx">source</span>
-<span class="nx">group</span>	<span class="nx">Cold</span>		<span class="nx">region</span>	<span class="nx">Cold</span>        <span class="err">#</span> <span class="nx">Cold</span> <span class="nx">source</span>
-<span class="nx">group</span>	<span class="nx">fixed_R</span>		<span class="nx">region</span>	<span class="nx">fixed_R</span>        <span class="err">#</span> <span class="nx">Fixed</span> <span class="nx">end</span>
-<span class="nx">group</span>   <span class="nx">mobile</span>      <span class="nx">subtract</span> <span class="nx">all</span> <span class="nx">fixed_L</span> <span class="nx">fixed_R</span>
-
-<span class="nx">reset_timestep</span> <span class="mi">0</span>
-<span class="err">#</span> <span class="nx">Change</span> <span class="nx">boundary</span> <span class="nx">conditions</span> <span class="nx">to</span> <span class="nx">fixed</span> <span class="k">for</span> <span class="nx">heat</span> <span class="nx">transfer</span>
-<span class="nx">tchange_box</span> <span class="nx">all</span> <span class="nx">boundary</span>  <span class="nx">f</span> <span class="nx">p</span> <span class="nx">p</span> 
-
-<span class="err">#</span> <span class="nx">Fix</span> <span class="nx">two</span> <span class="nx">ends</span>
-<span class="nx">velocity</span>   <span class="nx">fixed_L</span>      <span class="kd">set</span> <span class="mi">0</span>  <span class="mi">0</span>  <span class="mi">0</span>  
-<span class="nx">velocity</span>   <span class="nx">fixed_R</span>     <span class="kd">set</span> <span class="mi">0</span>  <span class="mi">0</span>  <span class="mi">0</span> 
-<span class="nx">fix</span>      <span class="nx">fixed_L</span>     <span class="nx">fixed_L</span>    <span class="nx">setforce</span>  <span class="mi">0</span>   <span class="mi">0</span>   <span class="mi">0</span>
-<span class="nx">fix</span>      <span class="nx">fixed_R</span>     <span class="nx">fixed_R</span>   <span class="nx">setforce</span>  <span class="mi">0</span>   <span class="mi">0</span>   <span class="mi">0</span>
-
-<span class="err">#</span> <span class="nb">Set</span> <span class="nx">langevin</span> <span class="nx">control</span> <span class="k">for</span> <span class="nx">hot</span> <span class="nx">and</span> <span class="nx">cold</span> <span class="nx">sources</span>
-<span class="nx">fix</span>	  <span class="mi">3</span>	     <span class="nx">Hot</span>	<span class="nx">langevin</span> <span class="mi">400</span> <span class="mi">400</span> <span class="mf">0.05</span> <span class="mi">14565</span> <span class="nx">tally</span> <span class="nx">yes</span>
-<span class="nx">fix</span>	  <span class="mi">4</span>	     <span class="nx">Cold</span>	<span class="nx">langevin</span> <span class="mi">200</span> <span class="mi">200</span> <span class="mf">0.05</span> <span class="mi">16576</span> <span class="nx">tally</span> <span class="nx">yes</span>
-<span class="err">#</span> <span class="nx">NVE</span> <span class="nx">ensemble</span>
-<span class="nx">fix</span>   <span class="mi">5</span>      <span class="nx">all</span>   <span class="nx">nve</span>
-
-<span class="err">#</span> <span class="nx">Define</span> <span class="nx">energy</span> <span class="nx">input</span><span class="o">/</span><span class="nx">output</span> <span class="k">for</span> <span class="nx">sources</span>
-<span class="nx">variable</span> <span class="nx">Time</span> 	 <span class="nx">equal</span> <span class="nx">step</span>
-<span class="nx">variable</span> <span class="nx">EL</span> 	 <span class="nx">equal</span> <span class="nx">f_3</span>
-<span class="nx">variable</span> <span class="nx">ER</span> 	 <span class="nx">equal</span> <span class="nx">f_4</span>
-
-<span class="err">#</span> <span class="nx">Chunk</span> <span class="nx">setup</span>
-<span class="nx">compute</span> <span class="mi">18</span> <span class="nx">all</span> <span class="nx">chunk</span><span class="o">/</span><span class="nx">atom</span> <span class="nx">bin</span><span class="o">/</span><span class="mi">1</span><span class="nx">d</span> <span class="nx">x</span> <span class="nx">lower</span> <span class="nx">$</span><span class="p">{</span><span class="nx">Dscale</span><span class="p">}</span> <span class="nx">units</span> <span class="nx">reduced</span>
-<span class="err">#</span> <span class="nx">Compute</span> <span class="nx">temperature</span> <span class="k">for</span> <span class="nx">each</span> <span class="nx">chunk</span>
-<span class="nx">fix</span> <span class="mi">8</span> <span class="nx">all</span> <span class="nx">ave</span><span class="o">/</span><span class="nx">chunk</span> <span class="mi">1</span> <span class="mi">200000</span> <span class="mi">200000</span> <span class="mi">18</span> <span class="nx">v_temp1</span> <span class="nx">file</span> <span class="nx">temp_relax</span><span class="p">.</span><span class="nx">dat</span>
-
-<span class="nx">dump</span> <span class="mi">1</span> <span class="nx">all</span> <span class="nx">xyz</span> <span class="mi">100000</span> <span class="nx">relax</span><span class="p">.</span><span class="nx">xyz</span>
-<span class="nx">thermo</span> <span class="mi">20000</span>
-<span class="nx">thermo_style</span> <span class="nx">custom</span> <span class="nx">step</span> <span class="nx">temp</span> <span class="nx">ke</span> <span class="nx">pe</span> <span class="nx">etotal</span> <span class="nx">press</span> <span class="nx">vol</span>
-<span class="nx">run</span> <span class="mi">200000</span>
-<span class="nx">unfix</span>     <span class="mi">8</span>
-<span class="nx">undump</span>    <span class="mi">1</span>
-<span class="nx">reset_timestep</span> <span class="mi">0</span>
-
-<span class="err">#</span> <span class="nx">Save</span> <span class="nx">temperature</span> <span class="nx">and</span> <span class="nx">energy</span> <span class="nx">data</span> <span class="k">for</span> <span class="nx">calculations</span>
-<span class="nx">fix</span> <span class="mi">11</span> <span class="nx">all</span> <span class="nx">ave</span><span class="o">/</span><span class="nx">chunk</span> <span class="mi">1</span> <span class="mi">10000000</span> <span class="mi">10000000</span> <span class="mi">18</span> <span class="nx">v_temp1</span> <span class="nx">file</span> <span class="nx">temp_equ</span><span class="p">.</span><span class="nx">dat</span>
-<span class="nx">fix</span>	<span class="nx">E_out</span>	<span class="nx">all</span> <span class="nx">print</span> <span class="mi">2000</span> <span class="dl">"</span><span class="s2">${Time}  ${EL}  ${ER}</span><span class="dl">"</span> <span class="nx">file</span> <span class="nx">Ener_equ</span><span class="p">.</span><span class="nx">dat</span> <span class="nx">title</span> <span class="dl">"</span><span class="s2">Time  E1  E2</span><span class="dl">"</span> <span class="nx">screen</span> <span class="nx">no</span>	
-
-<span class="nx">dump</span>         <span class="mi">1</span>  <span class="nx">all</span> <span class="nx">xyz</span> <span class="mi">5000000</span> <span class="nx">equ</span><span class="p">.</span><span class="nx">xyz</span>
-<span class="nx">thermo</span> <span class="mi">1000000</span>
-<span class="nx">thermo_style</span> <span class="nx">custom</span> <span class="nx">step</span> <span class="nx">temp</span> <span class="nx">ke</span> <span class="nx">pe</span> <span class="nx">etotal</span> <span class="nx">press</span> <span class="nx">vol</span>
-<span class="err">#</span> <span class="nx">Run</span> <span class="nx">simulation</span>
-<span class="nx">run</span> <span class="mi">10000000</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="Method" /><summary type="html"><![CDATA[```jsx Basic model setup units metal dimension 3 newton on boundary p p p atom_style full neighbor 0.3 bin Simulation timestep of 0.5 fs timestep 0.0005 Read data file read_data gp.data]]></summary></entry><entry><title type="html">Thermal Conductivity Simulation Using NEMD (LAMMPS)</title><link href="https://lyushisyan.github.io/blog/2024/lammps-nemd/" rel="alternate" type="text/html" title="Thermal Conductivity Simulation Using NEMD (LAMMPS)" /><published>2024-01-20T02:36:10+03:00</published><updated>2024-01-20T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/lammps-nemd</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/lammps-nemd/"><![CDATA[<h2 id="thermal-conductivity-simulation-methods">Thermal Conductivity Simulation Methods</h2>
-
-<ul>
-  <li>Equilibrium Molecular Dynamics (EMD) (Green-Kubo)</li>
-  <li>Non-Equilibrium Molecular Dynamics (NEMD) (Fourier’s Law)</li>
-  <li>Reverse Perturbation Dynamics (rNEMD) (Muller-Plathe)</li>
-</ul>
-
-<p>The simulation uses the NEMD method, which applies an external heat flux disturbance to the material. Once a steady state is reached, the temperature distribution within the structure is analyzed to compute the thermal conductivity of the material.</p>
-
-<p>Fourier’s Law:</p>
-
-\[\kappa = -\frac{J}{A \times \nabla T}\]
-
-<p>where:</p>
-<ul>
-  <li>( J ) — Heat flux</li>
-  <li>( A ) — Heat transfer area</li>
-  <li>( \nabla T ) — Temperature gradient</li>
-</ul>
-
-<p>Heat flux ( J ) is calculated as:</p>
-
-\[J = \frac{\partial E}{\partial t}\]
-
-<p>where:</p>
-<ul>
-  <li>( E ) — Input energy</li>
-  <li>( t ) — Input time</li>
-</ul>
-
-<p>The temperature gradient is calculated as:</p>
-
-\[\nabla T = \frac{\partial T}{\partial x}\]
-
-<p>where:</p>
-<ul>
-  <li>( T ) — Temperature</li>
-  <li>( x ) — Displacement along the heat transfer direction</li>
-</ul>
-
-<h2 id="modeling-approach">Modeling Approach</h2>
-
-<ol>
-  <li><strong>Fixed boundary modeling:</strong></li>
-</ol>
-
-<div class="row">
-    <div class="col-md-8 text-center">
-        
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/lammps-kappa1-480.webp 480w,/assets/img/blog/lammps-kappa1-800.webp 800w,/assets/img/blog/lammps-kappa1-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/lammps-kappa1.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-</figure>
-
-    </div>
-</div>
-
-<ol>
-  <li><strong>Periodic boundary modeling:</strong></li>
-</ol>
-
-<div class="row">
-    <div class="col-md-8 text-center">
-        
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/lammps-kappa2-480.webp 480w,/assets/img/blog/lammps-kappa2-800.webp 800w,/assets/img/blog/lammps-kappa2-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/lammps-kappa2.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-</figure>
-
-    </div>
-</div>
-
-<h2 id="heat-source-and-sink-setup">Heat Source and Sink Setup</h2>
-
-<ol>
-  <li><strong>Using <code class="language-plaintext highlighter-rouge">fix langevin</code>:</strong></li>
-</ol>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">3</span> <span class="nx">Hot</span> <span class="nx">langevin</span> <span class="mi">400</span> <span class="mi">400</span> <span class="mf">0.05</span> <span class="mi">14565</span> <span class="nx">tally</span> <span class="nx">yes</span>
-<span class="nx">fix</span>           <span class="mi">4</span> <span class="nx">Cold</span> <span class="nx">langevin</span> <span class="mi">200</span> <span class="mi">200</span> <span class="mf">0.05</span> <span class="mi">16576</span> <span class="nx">tally</span> <span class="nx">yes</span>
-</code></pre></div></div>
-
-<ol>
-  <li><strong>Using <code class="language-plaintext highlighter-rouge">fix heat</code>:</strong></li>
-</ol>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="nx">hot</span> <span class="nx">all</span> <span class="nx">heat</span> <span class="mi">1</span> <span class="mi">10</span> <span class="nx">region</span> <span class="nx">hot</span>
-<span class="nx">fix</span>           <span class="nx">cold</span> <span class="nx">all</span> <span class="nx">heat</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">10</span> <span class="nx">region</span> <span class="nx">cold</span>
-</code></pre></div></div>
-
-<ol>
-  <li><strong>Using <code class="language-plaintext highlighter-rouge">fix ehex</code>:</strong></li>
-</ol>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="nx">hot</span> <span class="nx">all</span> <span class="nx">ehex</span> <span class="mi">1</span> <span class="mi">10</span> <span class="nx">region</span> <span class="nx">hot</span>
-<span class="nx">fix</span>           <span class="nx">cold</span> <span class="nx">all</span> <span class="nx">ehex</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">1</span> <span class="nx">region</span> <span class="nx">cold</span>
-</code></pre></div></div>
-
-<h2 id="heat-flux-calculation">Heat Flux Calculation</h2>
-
-<p><strong>Using <code class="language-plaintext highlighter-rouge">fix langevin</code>:</strong></p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">3</span> <span class="nx">Hot</span> <span class="nx">langevin</span> <span class="mi">400</span> <span class="mi">400</span> <span class="mf">0.05</span> <span class="mi">14565</span> <span class="nx">tally</span> <span class="nx">yes</span>
-<span class="nx">fix</span>           <span class="mi">4</span> <span class="nx">Cold</span> <span class="nx">langevin</span> <span class="mi">200</span> <span class="mi">200</span> <span class="mf">0.05</span> <span class="mi">16576</span> <span class="nx">tally</span> <span class="nx">yes</span>
-<span class="nx">variable</span>      <span class="nx">EL</span> <span class="nx">equal</span> <span class="nx">f_3</span>
-<span class="nx">variable</span>      <span class="nx">ER</span> <span class="nx">equal</span> <span class="nx">f_4</span>
-<span class="nx">fix</span>           <span class="nx">E_out</span> <span class="nx">all</span> <span class="nx">print</span> <span class="mi">2000</span> <span class="dl">"</span><span class="s2">${Time} ${EL} ${ER}</span><span class="dl">"</span> <span class="nx">file</span> <span class="nx">Ener_equ</span><span class="p">.</span><span class="nx">dat</span> <span class="nx">title</span> <span class="dl">"</span><span class="s2">Time E1 E2</span><span class="dl">"</span> <span class="nx">screen</span> <span class="nx">no</span>
-</code></pre></div></div>
-
-<h2 id="temperature-gradient-calculation">Temperature Gradient Calculation</h2>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">compute</span>       <span class="nx">ke1</span> <span class="nx">all</span> <span class="nx">ke</span><span class="o">/</span><span class="nx">atom</span>
-<span class="nx">variable</span>      <span class="nx">kb</span> <span class="nx">equal</span> <span class="mf">8.625</span><span class="nx">e</span><span class="o">-</span><span class="mi">5</span>
-<span class="nx">variable</span>      <span class="nx">temp1</span> <span class="nx">atom</span> <span class="nx">c_ke1</span><span class="o">/</span><span class="mf">1.5</span><span class="o">/</span><span class="nx">$</span><span class="p">{</span><span class="nx">kb</span><span class="p">}</span>
-<span class="err">#</span> <span class="nx">Define</span> <span class="nx">chunks</span>
-<span class="nx">compute</span>       <span class="mi">18</span> <span class="nx">all</span> <span class="nx">chunk</span><span class="o">/</span><span class="nx">atom</span> <span class="nx">bin</span><span class="o">/</span><span class="mi">1</span><span class="nx">d</span> <span class="nx">x</span> <span class="nx">lower</span> <span class="nx">$</span><span class="p">{</span><span class="nx">Dscale</span><span class="p">}</span> <span class="nx">units</span> <span class="nx">reduced</span>
-<span class="nx">fix</span>           <span class="mi">11</span> <span class="nx">all</span> <span class="nx">ave</span><span class="o">/</span><span class="nx">chunk</span> <span class="mi">1</span> <span class="mi">10000000</span> <span class="mi">10000000</span> <span class="mi">18</span> <span class="nx">v_temp1</span> <span class="nx">file</span> <span class="nx">temp_equ</span><span class="p">.</span><span class="nx">dat</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="Method" /><summary type="html"><![CDATA[Thermal Conductivity Simulation Methods]]></summary></entry><entry><title type="html">Structure and Writing of LAMMPS Input Files</title><link href="https://lyushisyan.github.io/blog/2024/lammps-in/" rel="alternate" type="text/html" title="Structure and Writing of LAMMPS Input Files" /><published>2024-01-11T02:36:10+03:00</published><updated>2024-01-11T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/lammps-in</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/lammps-in/"><![CDATA[<h2 id="basic-model-setup">Basic Model Setup</h2>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">units</span>         <span class="nx">metal</span>
-<span class="nx">dimension</span>     <span class="mi">3</span>
-<span class="nx">boundary</span>      <span class="nx">p</span> <span class="nx">p</span> <span class="nx">p</span>
-<span class="nx">atom_style</span>    <span class="nx">atomic</span>
-<span class="nx">neighbor</span>      <span class="mf">2.0</span> <span class="nx">bin</span>
-<span class="nx">neigh_modify</span>  <span class="nx">every</span> <span class="mi">5</span> <span class="nx">delay</span> <span class="mi">0</span>
-<span class="nx">timestep</span>      <span class="mf">0.001</span>
-</code></pre></div></div>
-
-<h2 id="system-modeling">System Modeling</h2>
-
-<h3 id="1-reading-a-data-file">(1) Reading a Data File</h3>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">read_data</span>     <span class="nx">Al</span><span class="p">.</span><span class="nx">data</span>
-</code></pre></div></div>
-
-<h3 id="2-building-a-model">(2) Building a Model</h3>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">lattice</span>       <span class="nx">fcc</span> <span class="mf">4.05</span>
-<span class="nx">region</span>        <span class="nx">box</span> <span class="nx">block</span> <span class="mi">0</span> <span class="mi">10</span> <span class="mi">0</span> <span class="mi">10</span> <span class="mi">0</span> <span class="mi">10</span>
-<span class="nx">create_box</span>    <span class="mi">1</span> <span class="nx">box</span>
-<span class="nx">create_atoms</span>  <span class="mi">1</span> <span class="nx">box</span>
-</code></pre></div></div>
-
-<h2 id="force-field-parameters">Force Field Parameters</h2>
-
-<h3 id="example-1-eam-potential">Example 1: EAM Potential</h3>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pair_style</span>    <span class="nx">eam</span><span class="o">/</span><span class="nx">fs</span>
-<span class="nx">pair_coeff</span>    <span class="o">*</span> <span class="o">*</span> <span class="nx">Al_mm</span><span class="p">.</span><span class="nx">eam</span><span class="p">.</span><span class="nx">fs</span> <span class="nx">Al</span>
-</code></pre></div></div>
-
-<h3 id="example-2-eam-potential-alternate">Example 2: EAM Potential (Alternate)</h3>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pair_style</span>    <span class="nx">eam</span>
-<span class="nx">pair_coeff</span>    <span class="o">*</span> <span class="o">*</span> <span class="nx">Al</span><span class="p">.</span><span class="nx">eam</span>
-</code></pre></div></div>
-
-<h3 id="example-3-lennard-jones-potential">Example 3: Lennard-Jones Potential</h3>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pair_style</span>    <span class="nx">lj</span><span class="o">/</span><span class="nx">cut</span> <span class="mf">10.0</span>
-<span class="nx">pair_coeff</span>    <span class="mi">1</span> <span class="mi">1</span> <span class="mf">0.023</span> <span class="mf">2.8</span>
-</code></pre></div></div>
-
-<h2 id="temperature-initialization">Temperature Initialization</h2>
-
-<p>Atomic temperature is calculated based on atomic velocities. Initial velocities are assigned after temperature initialization:</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">velocity</span>      <span class="nx">all</span> <span class="nx">create</span> <span class="mi">300</span> <span class="mi">8989</span>
-</code></pre></div></div>
-
-<h2 id="relaxation-settings">Relaxation Settings</h2>
-
-<h3 id="1-nve-ensemble">(1) NVE Ensemble</h3>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">nve</span>
-</code></pre></div></div>
-
-<h3 id="2-nvt-ensemble">(2) NVT Ensemble</h3>
-
-<h4 id="constant-temperature">Constant Temperature</h4>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">nvt</span> <span class="nx">temp</span> <span class="mi">300</span> <span class="mi">300</span> <span class="mf">0.1</span>
-</code></pre></div></div>
-
-<h4 id="heating">Heating</h4>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">nvt</span> <span class="nx">temp</span> <span class="mi">300</span> <span class="mi">1000</span> <span class="mf">0.1</span>
-</code></pre></div></div>
-
-<h3 id="3-npt-ensemble">(3) NPT Ensemble</h3>
-
-<h4 id="isotropic-pressure-control">Isotropic Pressure Control</h4>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">npt</span> <span class="nx">temp</span> <span class="mi">300</span> <span class="mi">300</span> <span class="mf">0.1</span> <span class="nx">iso</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
-</code></pre></div></div>
-
-<h4 id="x-direction-pressure-control">X-Direction Pressure Control</h4>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">npt</span> <span class="nx">temp</span> <span class="mi">300</span> <span class="mi">300</span> <span class="mf">0.1</span> <span class="nx">x</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
-</code></pre></div></div>
-
-<h2 id="simulation-setup">Simulation Setup</h2>
-
-<h3 id="1-compute-properties">(1) Compute Properties</h3>
-
-<h4 id="per-atom-stress">Per-Atom Stress</h4>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">compute</span>       <span class="mi">1</span> <span class="nx">mobile</span> <span class="nx">stress</span><span class="o">/</span><span class="nx">atom</span> <span class="nx">NULL</span>
-</code></pre></div></div>
-
-<h4 id="temperature-calculation">Temperature Calculation</h4>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">compute</span>       <span class="nx">myTemp</span> <span class="nx">mobile</span> <span class="nx">temp</span>
-</code></pre></div></div>
-
-<h3 id="2-fix-deformation">(2) Fix Deformation</h3>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fix</span>           <span class="mi">1</span> <span class="nx">all</span> <span class="nx">deform</span> <span class="mi">100</span> <span class="nx">x</span> <span class="nx">erate</span> <span class="mf">0.05</span> <span class="nx">remap</span> <span class="nx">x</span>
-</code></pre></div></div>
-
-<h2 id="output-settings">Output Settings</h2>
-
-<h3 id="1-system-variables-output">(1) System Variables Output</h3>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">thermo</span> <span class="nx">style</span>  <span class="nx">custom</span> <span class="nx">step</span> <span class="nx">temp</span> <span class="nx">pe</span> <span class="nx">ke</span> <span class="nx">press</span>
-<span class="nx">thermo</span>        <span class="mi">100</span>
-</code></pre></div></div>
-
-<h3 id="2-atomic-data-output">(2) Atomic Data Output</h3>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">dump</span>          <span class="mi">1</span> <span class="nx">all</span> <span class="nx">custom</span> <span class="mi">100</span> <span class="nx">tension</span><span class="p">.</span><span class="nx">xyz</span> <span class="nx">type</span> <span class="nx">x</span> <span class="nx">y</span> <span class="nx">z</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="Method" /><summary type="html"><![CDATA[Basic Model Setup]]></summary></entry><entry><title type="html">Microscopic Description of Thermal Physics</title><link href="https://lyushisyan.github.io/blog/2023/nano-micro-thermophysics/" rel="alternate" type="text/html" title="Microscopic Description of Thermal Physics" /><published>2023-10-08T03:32:13+03:00</published><updated>2023-10-08T03:32:13+03:00</updated><id>https://lyushisyan.github.io/blog/2023/nano-micro-thermophysics</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2023/nano-micro-thermophysics/"><![CDATA[<p>The macroscopic energy conservation equation in heat transfer describes the storage, transport (conduction \(k\), convection \(u\), and radiation \(r\)), and conversion of heat energy to other forms of energy.</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">electrons</span><span class="w">       </span><span class="err">=</span><span class="w">         </span><span class="mf">8.00</span><span class="w">
+</span><span class="err">number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">Kohn-Sham</span><span class="w"> </span><span class="err">states=</span><span class="w">            </span><span class="mi">8</span><span class="w">
+</span></code></pre></div></div>]]></content><author><name></name></author><category term="Method" /><summary type="html"><![CDATA[The calculations handled by pw.x include seven types, specified in the input file with calculation:]]></summary></entry><entry><title type="html">Microscopic Description of Thermal Physics</title><link href="https://lyushisyan.github.io/blog/2023/nano-micro-thermophysics/" rel="alternate" type="text/html" title="Microscopic Description of Thermal Physics" /><published>2023-10-08T03:32:13+03:00</published><updated>2023-10-08T03:32:13+03:00</updated><id>https://lyushisyan.github.io/blog/2023/nano-micro-thermophysics</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2023/nano-micro-thermophysics/"><![CDATA[<p>The macroscopic energy conservation equation in heat transfer describes the storage, transport (conduction \(k\), convection \(u\), and radiation \(r\)), and conversion of heat energy to other forms of energy.</p>
 
 <h2 id="energy-conservation-equation">Energy Conservation Equation</h2>
 
@@ -1720,9 +1333,8 @@ number of Kohn-Sham <span class="nv">states</span><span class="o">=</span>      
 
 <h3 id="phonons">Phonons</h3>
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        
+<div class="text-center">
+  
 
 
 
@@ -1736,13 +1348,14 @@ number of Kohn-Sham <span class="nv">states</span><span class="o">=</span>      
     
       <source class="responsive-img-srcset" srcset="/assets/img/blog/thermophysics_1-480.webp 480w,/assets/img/blog/thermophysics_1-800.webp 800w,/assets/img/blog/thermophysics_1-1400.webp 1400w," type="image/webp" sizes="95vw" />
     
-    <img src="/assets/img/blog/thermophysics_1.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/blog/thermophysics_1.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
   </picture>
 
   
+    <figcaption class="caption">Figure 1: Phonon</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
 <ul>
@@ -1759,9 +1372,8 @@ number of Kohn-Sham <span class="nv">states</span><span class="o">=</span>      
 
 <h3 id="electrons">Electrons</h3>
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        
+<div class="text-center">
+  
 
 
 
@@ -1773,15 +1385,16 @@ number of Kohn-Sham <span class="nv">states</span><span class="o">=</span>      
       https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
     -->
     
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/thermophysics_2-480.webp 480w,/assets/img/blog/thermophysics_2-800.webp 800w,/assets/img/blog/thermophysics_2-1400.webp 1400w," type="image/webp" sizes="95vw" />
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/thermophysics_1-480.webp 480w,/assets/img/blog/thermophysics_1-800.webp 800w,/assets/img/blog/thermophysics_1-1400.webp 1400w," type="image/webp" sizes="95vw" />
     
-    <img src="/assets/img/blog/thermophysics_2.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/blog/thermophysics_1.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
   </picture>
 
   
+    <figcaption class="caption">Figure 2: Electron</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
 <ul>
@@ -1796,9 +1409,8 @@ number of Kohn-Sham <span class="nv">states</span><span class="o">=</span>      
 
 <h3 id="fluid-particles">Fluid Particles</h3>
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        
+<div class="text-center">
+  
 
 
 
@@ -1810,15 +1422,16 @@ number of Kohn-Sham <span class="nv">states</span><span class="o">=</span>      
       https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
     -->
     
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/thermophysics_3-480.webp 480w,/assets/img/blog/thermophysics_3-800.webp 800w,/assets/img/blog/thermophysics_3-1400.webp 1400w," type="image/webp" sizes="95vw" />
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/thermophysics_1-480.webp 480w,/assets/img/blog/thermophysics_1-800.webp 800w,/assets/img/blog/thermophysics_1-1400.webp 1400w," type="image/webp" sizes="95vw" />
     
-    <img src="/assets/img/blog/thermophysics_3.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/blog/thermophysics_1.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
   </picture>
 
   
+    <figcaption class="caption">Figure 3: Fluid Particle</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
 <ul>
@@ -1831,9 +1444,8 @@ number of Kohn-Sham <span class="nv">states</span><span class="o">=</span>      
 
 <h3 id="photons">Photons</h3>
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        
+<div class="text-center">
+  
 
 
 
@@ -1845,15 +1457,16 @@ number of Kohn-Sham <span class="nv">states</span><span class="o">=</span>      
       https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
     -->
     
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/thermophysics_4-480.webp 480w,/assets/img/blog/thermophysics_4-800.webp 800w,/assets/img/blog/thermophysics_4-1400.webp 1400w," type="image/webp" sizes="95vw" />
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/thermophysics_1-480.webp 480w,/assets/img/blog/thermophysics_1-800.webp 800w,/assets/img/blog/thermophysics_1-1400.webp 1400w," type="image/webp" sizes="95vw" />
     
-    <img src="/assets/img/blog/thermophysics_4.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/blog/thermophysics_1.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
   </picture>
 
   
+    <figcaption class="caption">Figure 4: Photon</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
 <ul>
@@ -2007,4 +1620,646 @@ number of Kohn-Sham <span class="nv">states</span><span class="o">=</span>      
 
 <p><strong>References:</strong></p>
 
-<p>Kaviany M <em>Heat Transfer Physics</em> 2008</p>]]></content><author><name></name></author><category term="Theory" /><summary type="html"><![CDATA[The macroscopic energy conservation equation in heat transfer describes the storage, transport (conduction \(k\), convection \(u\), and radiation \(r\)), and conversion of heat energy to other forms of energy.]]></summary></entry></feed>
+<p>Kaviany M <em>Heat Transfer Physics</em> 2008</p>]]></content><author><name></name></author><category term="Physics" /><summary type="html"><![CDATA[The macroscopic energy conservation equation in heat transfer describes the storage, transport (conduction \(k\), convection \(u\), and radiation \(r\)), and conversion of heat energy to other forms of energy.]]></summary></entry><entry><title type="html">Dispersion Relations of Elastic Waves in Rods</title><link href="https://lyushisyan.github.io/blog/2023/elastic-wave-in-wire/" rel="alternate" type="text/html" title="Dispersion Relations of Elastic Waves in Rods" /><published>2023-07-01T03:32:13+03:00</published><updated>2023-07-01T03:32:13+03:00</updated><id>https://lyushisyan.github.io/blog/2023/elastic-wave-in-wire</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2023/elastic-wave-in-wire/"><![CDATA[<h2 id="elastic-equation-in-rods">Elastic Equation in Rods</h2>
+
+<p>General equation for elastic wave propagation:</p>
+
+\[\mu \nabla^2 \vec{u} + (\lambda + \mu) \nabla (\nabla \cdot \vec{u}) = \rho \frac{\partial^2 \vec{u}}{\partial t^2}\]
+
+<p>Here, $\vec{u}$ is the displacement vector; $\lambda$, $\mu$ are Lamé constants characterizing the elasticity; $\rho$ is the density; $t$ is time.</p>
+
+<p>Express $\vec{u}$ as a combination of scalar potential $\varphi$ and vector potential $\vec{\psi}$:</p>
+
+\[\vec{u} = \nabla \varphi + \nabla \times \vec{\psi}\]
+
+<p>Substituting into the wave equation:</p>
+
+\[\nabla^2 \varphi = \frac{1}{c_l^2} \frac{\partial^2 \varphi}{\partial t^2}, \quad
+\nabla^2 \vec{\psi} = \frac{1}{c_t^2} \frac{\partial^2 \vec{\psi}}{\partial t^2}\]
+
+<p>where $c_l = \sqrt{(\lambda + 2\mu)/\rho}$ is the longitudinal wave speed and $c_t = \sqrt{\mu/\rho}$ is the shear wave speed.</p>
+
+<div class="text-center">
+  
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/wire-480.webp 480w,/assets/img/blog/wire-800.webp 800w,/assets/img/blog/wire-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/wire.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+    <figcaption class="caption">Figure 1: Schematic of a rod in cylindrical coordinates</figcaption>
+  
+</figure>
+
+</div>
+
+<p>In cylindrical coordinates, the displacement components are:</p>
+
+\[u_r = \frac{\partial \varphi}{\partial r} + \frac{1}{r} \frac{\partial \psi_z}{\partial \theta} - \frac{\partial \psi_\theta}{\partial z}\]
+
+\[u_\theta = \frac{1}{r} \frac{\partial \varphi}{\partial \theta} + \frac{\partial \psi_r}{\partial z} - \frac{\partial \psi_z}{\partial r}\]
+
+\[u_z = \frac{\partial \varphi}{\partial z} + \frac{1}{r} \frac{\partial (\psi_\theta r)}{\partial r} - \frac{1}{r} \frac{\partial \psi_r}{\partial \theta}\]
+
+<p>Stress components:</p>
+
+\[\tau_{rr} = \lambda\left(\frac{\partial u_r}{\partial r} + \frac{u_r}{r} + \frac{1}{r} \frac{\partial u_\theta}{\partial \theta} + \frac{\partial u_z}{\partial z} \right) + 2\mu \frac{\partial u_r}{\partial r}\]
+
+\[\tau_{r\theta} = \mu \left( \frac{\partial u_\theta}{\partial r} - \frac{u_\theta}{r} + \frac{1}{r} \frac{\partial u_r}{\partial \theta} \right)\]
+
+\[\tau_{rz} = \mu \left( \frac{\partial u_r}{\partial z} + \frac{\partial u_z}{\partial r} \right)\]
+
+<p>Consider an infinitely long solid rod of radius $a$. Assume stress-free boundary conditions on the surface:</p>
+
+\[\tau_{rr} = \tau_{r\theta} = \tau_{rz} = 0, \quad r = a\]
+
+<h2 id="torsional-waves">Torsional Waves</h2>
+
+<div class="text-center">
+  
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/wire-T-480.webp 480w,/assets/img/blog/wire-T-800.webp 800w,/assets/img/blog/wire-T-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/wire-T.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+    <figcaption class="caption">Figure 2: Schematic of torsional wave in a rod</figcaption>
+  
+</figure>
+
+</div>
+
+<p>Torsional waves have only an angular displacement component $u_\theta$:</p>
+
+\[u_\theta = \frac{1}{\beta} B J_1(\beta r) \exp[i(\xi z - \omega t)]\]
+
+<p>The frequency equation under boundary conditions:</p>
+
+\[\beta a \cdot J_0(\beta a) - 2 J_1(\beta a) = 0\]
+
+<p>Dispersion relation:</p>
+
+\[\omega^2 = c_t^2 (\xi^2 + \beta^2)\]
+
+<p>Define nondimensional quantities $\overline{\beta} = \beta a$, $\overline{\xi} = \xi a$, and $\Omega = \omega a / c_t$, then:</p>
+
+\[\Omega^2 = \overline{\xi}^2 + \overline{\beta}^2\]
+
+<h2 id="longitudinal-waves">Longitudinal Waves</h2>
+
+<div class="text-center">
+  
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/wire-L-480.webp 480w,/assets/img/blog/wire-L-800.webp 800w,/assets/img/blog/wire-L-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/wire-L.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+    <figcaption class="caption">Figure 3: Schematic of longitudinal wave in a rod</figcaption>
+  
+</figure>
+
+</div>
+
+<p>Longitudinal waves are axisymmetric, with radial $u_r$ and axial $u_z$ displacement:</p>
+
+\[u_r = [-\alpha A J_1(\alpha r) - i\xi C J_1(\beta r)] \exp[i(\xi z - \omega t)]\]
+
+\[u_z = [i\xi A J_0(\alpha r) + \beta C J_0(\beta r)] \exp[i(\xi z - \omega t)]\]
+
+<p>Frequency equation:</p>
+
+\[(\xi^2 - \beta^2)^2 \frac{(\alpha a) J_0(\alpha a)}{J_1(\alpha a)} + 4\xi^2 \alpha^2 \frac{(\beta a) J_0(\beta a)}{J_1(\beta a)} = 2\alpha^2 (\xi^2 + \beta^2)\]
+
+<p>Dispersion relation:</p>
+
+\[\omega^2 = c_t^2 (\xi^2 + \beta^2) = c_l^2 (\xi^2 + \alpha^2)\]
+
+<p>In nondimensional form:</p>
+
+\[\Omega^2 = \overline{\xi}^2 + \overline{\beta}^2 = \left(\frac{c_l}{c_t}\right)^2 (\overline{\xi}^2 + \overline{\alpha}^2)\]
+
+<h2 id="flexural-waves">Flexural Waves</h2>
+
+<div class="text-center">
+  
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/wire-F-480.webp 480w,/assets/img/blog/wire-F-800.webp 800w,/assets/img/blog/wire-F-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/wire-F.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+    <figcaption class="caption">Figure 4: Schematic of flexural wave in a rod</figcaption>
+  
+</figure>
+
+</div>
+
+<p>For flexural waves, all three displacement components must be considered:</p>
+
+\[u_r=\left[A\frac{\partial}{\partial r}J_1(\alpha r)+\frac{B}{r}J_1(\beta r)+ikCJ_2(\beta r)\right]\cos(\theta)\exp[i(\xi z-\omega t)]\]
+
+\[u_\theta=\left[-\frac{A}{r}J_1(\alpha r)+ikCJ_2(\beta r)-B\frac{\partial}{\partial r}J_1(\beta r)\right]\cos(\theta)\exp[i(\xi z-\omega t)]\]
+
+\[u_z=\left[ikAJ_1(\alpha r)-\frac{C}{r}\frac{\partial}{\partial r}[rJ_2(\beta r)]-\frac{C}{r}J_2(\beta r)\right]\cos(\theta)\exp[i(\xi z-\omega t)]\]
+
+<p>From the boundary conditions, the frequency equation for flexural waves is:</p>
+
+\[J_1(\overline\alpha)J_1^2(\overline\beta)
+\begin{vmatrix}
+\overline\xi^2-\overline\beta^2+4-2\Psi_\alpha &amp; 2\overline\xi(\overline\beta^2-2+\Psi_\beta) &amp; 2\Psi_\beta-4 \\
+4-2\Psi_\alpha &amp; 2\overline\xi(\Psi_\beta-2) &amp; \overline\beta^2-4+2\Psi_\beta \\
+2\overline\xi(\Psi_\alpha-1) &amp; (\overline\beta^2-\overline\xi^2)(\Psi_\beta-1) &amp; \overline\xi
+\end{vmatrix}
+=0\]
+
+\[\Psi_\alpha = \overline\alpha J_0(\overline\alpha)/J_1(\overline\alpha)\]
+
+\[\Psi_\beta = \overline\beta J_0(\overline\beta)/J_1(\overline\beta)\]
+
+<p>Non-dimensional dispersion relation:</p>
+
+\[\Omega^2=\overline\xi^2+\overline\beta^2 = (c_l/c_t)^2(\overline\xi^2+\overline\alpha^2)\]
+
+<h2 id="numerical-solution">Numerical Solution</h2>
+
+<p>Depending on whether $\alpha$ is real or imaginary, the solutions can be divided into two regions:</p>
+
+<p>Region I: $\omega &gt; c_l\xi$, $\alpha$ is real.</p>
+
+<p>Region II: $\omega &lt; c_l\xi$, $\alpha$ is imaginary, replaced by $i\alpha’$ (where $\alpha’^2 = -\alpha^2$).</p>
+
+<p>For different regions, the following root-finding method is used:</p>
+
+<ol>
+  <li>
+    <p>At the smallest wavenumber, two sets of roots are determined by sweeping.</p>
+  </li>
+  <li>
+    <p>Based on the initial roots, the equation is solved layer by layer using an adaptive approach.</p>
+  </li>
+</ol>
+
+<div class="text-center">
+  
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/mathmethod-480.webp 480w,/assets/img/blog/mathmethod-800.webp 800w,/assets/img/blog/mathmethod-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/mathmethod.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+    <figcaption class="caption">Figure 5: Illustration of numerical calculation method</figcaption>
+  
+</figure>
+
+</div>]]></content><author><name></name></author><category term="Physics" /><summary type="html"><![CDATA[Elastic Equation in Rods]]></summary></entry><entry><title type="html">Dispersion Relations of Elastic Waves in Plates</title><link href="https://lyushisyan.github.io/blog/2023/elastic-wave-in-plate/" rel="alternate" type="text/html" title="Dispersion Relations of Elastic Waves in Plates" /><published>2023-05-09T03:32:13+03:00</published><updated>2023-05-09T03:32:13+03:00</updated><id>https://lyushisyan.github.io/blog/2023/elastic-wave-in-plate</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2023/elastic-wave-in-plate/"><![CDATA[<p>This article studies wave propagation by solving the <strong>elastic equation in a continuous medium</strong>.</p>
+
+<p>In a plate, waves can be classified into longitudinal (<strong>P</strong>) waves and transverse (<strong>S</strong>) waves. <strong>S</strong> waves further include <strong>SH</strong> and <strong>SV</strong> waves.</p>
+
+<div class="text-center">
+  
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/elsplate_1-480.webp 480w,/assets/img/blog/elsplate_1-800.webp 800w,/assets/img/blog/elsplate_1-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/elsplate_1.png" class="w-50" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+    <figcaption class="caption">Figure 1: Schematic of elastic waves in thin films</figcaption>
+  
+</figure>
+
+</div>
+
+<p>Assume the wave propagates along the $x$-axis. If particle motion is in $x$, it is a <strong>P wave</strong>; in $y$, an <strong>SH wave</strong>; in $z$, an <strong>SV wave</strong>.</p>
+
+<p>SV and P waves couple under stress-free boundary conditions to form <strong>Rayleigh-Lamb waves</strong>.</p>
+
+<h2 id="elastic-wave-equation">Elastic Wave Equation</h2>
+
+<p>In the continuous medium approximation, the wave equation for propagation along $x$ is:</p>
+
+\[\mu \Delta \vec{u} + (\lambda + \mu) \nabla (\nabla \cdot \vec{u}) = \rho \frac{\partial^2 \vec{u}}{\partial t^2}\]
+
+<p>Here, $\vec{u}$ is the displacement vector; $\lambda$, $\mu$ are Lamé constants; $\rho$ is the density.</p>
+
+<p>All solutions can be written using scalar and vector potentials:</p>
+
+\[\vec{u} = \nabla \varphi + \nabla \times \vec{\psi}\]
+
+<h2 id="dispersion-relation-of-sh-waves">Dispersion Relation of SH Waves</h2>
+
+<p>For SH waves: $\vec{u} = (0, u_y, 0)$.</p>
+
+<p>Wave equation:</p>
+
+\[\frac{\partial^2 u_y}{\partial x^2} + \frac{\partial^2 u_y}{\partial z^2} = \frac{1}{c_t^2} \frac{\partial^2 u_y}{\partial t^2}\]
+
+<p>with $c_t = \sqrt{\mu / \rho}$.</p>
+
+<p>Solution:</p>
+
+\[u_y = (A_1 \sin \beta z + A_2 \cos \beta z) e^{i(\xi x - \omega t)}\]
+
+<p>where:</p>
+
+\[\beta^2 + \xi^2 = \frac{\omega^2}{c_t^2}\]
+
+<p>Boundary condition at $y = \pm b$:</p>
+
+\[\tau_{zy} = \mu \frac{\partial u_y}{\partial z} = 0\]
+
+<p>From the boundary condition:</p>
+
+\[\cos \beta b \sin \beta b = 0
+\quad \Rightarrow \quad \beta b = \frac{n\pi}{2}, \quad n = 0,1,2,...\]
+
+<p>Dispersion relation:</p>
+
+\[\omega^2 = c_t^2 \left[ \xi^2 + \left( \frac{n\pi}{2b} \right)^2 \right]\]
+
+<div class="text-center">
+  
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/els-DS-SH-480.webp 480w,/assets/img/blog/els-DS-SH-800.webp 800w,/assets/img/blog/els-DS-SH-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/els-DS-SH.png" class="w-50" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+    <figcaption class="caption">Figure 2: Dispersion relation of SH waves</figcaption>
+  
+</figure>
+
+</div>
+
+<h2 id="dispersion-relation-of-rayleigh-lamb-waves">Dispersion Relation of Rayleigh-Lamb Waves</h2>
+
+<p>Consider a plate of thickness $2b$ with stress-free boundaries, where both P and SV waves exist.</p>
+
+<p>Displacement: $\vec{u} = (u_x, 0, u_z)$, scalar potential: $\varphi$, vector potential: $\vec{\psi} = (0, \psi_y, 0)$.</p>
+
+<p>Wave equations:</p>
+
+\[\nabla^2 \varphi = \frac{1}{c_l^2} \frac{\partial^2 \varphi}{\partial t^2}, \quad
+\nabla^2 \psi_y = \frac{1}{c_t^2} \frac{\partial^2 \psi_y}{\partial t^2}\]
+
+<p>with $c_l = \sqrt{(\lambda + 2\mu)/\rho}$.</p>
+
+<p>The solutions are:</p>
+
+\[\varphi=(A\sin\alpha z+B\cos\alpha z)e^{i(\xi x-\omega t)}\]
+
+\[\psi_y=i(C\sin\beta z+ D\cos\beta z)e^{i(\xi x-\omega t)}\]
+
+<p>Symmetric and antisymmetric waves are treated separately.</p>
+
+<h3 id="symmetric-waves">Symmetric Waves</h3>
+
+<p>For symmetric waves ($A=D=0$):</p>
+
+\[\frac{\tan\beta b}{\tan\alpha b} = -\frac{4\alpha\beta \xi^2}{(\xi^2-\beta^2)^2}\]
+
+<h3 id="antisymmetric-waves">Antisymmetric Waves</h3>
+
+<p>For antisymmetric waves ($B=C=0$):</p>
+
+\[\frac{\tan\beta b}{\tan\alpha b} = -\frac{(\xi^2-\beta^2)^2}{4\alpha\beta \xi^2}\]
+
+<h3 id="rayleigh-lamb-frequency-equation">Rayleigh-Lamb Frequency Equation</h3>
+
+<p>Combining symmetric and antisymmetric cases:</p>
+
+\[F(\alpha,\beta,\xi) = \frac{\tan\beta b}{\tan\alpha b} + \left(\frac{4\alpha\beta \xi^2}{(\xi^2-\beta^2)^2}\right)^{\pm 1} = 0\]
+
+<h2 id="group-velocity-and-phase-velocity">Group Velocity and Phase Velocity</h2>
+
+<p>The phase velocity is the propagation velocity of the wave phase:</p>
+
+\[v_p=\frac{\omega}{k}\]
+
+<p>The group velocity is the velocity at which energy is transmitted in the medium:</p>
+
+\[v_g=\frac{\partial\omega}{\partial k}\]
+
+<div class="row">
+  <div class="col-md-6 text-center">
+    
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/els-vg-480.webp 480w,/assets/img/blog/els-vg-800.webp 800w,/assets/img/blog/els-vg-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/els-vg.png" class="img-fluid w-100" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+    <figcaption class="caption">Figure 5: Group velocity of elastic waves in thin films</figcaption>
+  
+</figure>
+
+  </div>
+  <div class="col-md-6 text-center">
+    
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/els-vp-480.webp 480w,/assets/img/blog/els-vp-800.webp 800w,/assets/img/blog/els-vp-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/els-vp.png" class="img-fluid w-100" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+    <figcaption class="caption">Figure 6: Phase velocity of elastic waves in thin films</figcaption>
+  
+</figure>
+
+  </div>
+</div>]]></content><author><name></name></author><category term="Physics" /><summary type="html"><![CDATA[This article studies wave propagation by solving the elastic equation in a continuous medium.]]></summary></entry><entry><title type="html">Classical Kinetic Theory of Heat Conduction</title><link href="https://lyushisyan.github.io/blog/2023/classical-kinetic-theory/" rel="alternate" type="text/html" title="Classical Kinetic Theory of Heat Conduction" /><published>2023-04-26T03:32:13+03:00</published><updated>2023-04-26T03:32:13+03:00</updated><id>https://lyushisyan.github.io/blog/2023/classical-kinetic-theory</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2023/classical-kinetic-theory/"><![CDATA[<h2 id="kinetic-theory-of-gases">Kinetic Theory of Gases</h2>
+
+<p>In classical kinetic theory, consider a molecule traveling a total path length $L$. The effective volume it sweeps out is $\pi d^2 L$, where $d$ is the molecular diameter. If the number density of the gas is $n$, then the number of molecules within this volume is $\pi n d^2 L$, meaning the number of collisions experienced is:</p>
+
+\[N = \pi n d^2 L\]
+
+<p>The mean free path $\Lambda$ between two collisions is then:</p>
+
+\[\Lambda = \frac{L}{N} = \frac{L}{\pi n d^2 L} = \frac{1}{n \sigma}\]
+
+<p>where $\sigma = \pi d^2$ is the collision cross-section.</p>
+
+<div class="text-center">
+  
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/meanlength-480.webp 480w,/assets/img/blog/meanlength-800.webp 800w,/assets/img/blog/meanlength-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/meanlength.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+    <figcaption class="caption">Figure 1: Schematic of mean free path</figcaption>
+  
+</figure>
+
+</div>
+
+<p>Substituting the ideal gas relation $n = \frac{p}{k_B T}$ gives:</p>
+
+\[\Lambda = \frac{k_B T}{p \sigma}\]
+
+<p>To calculate the heat flux from a single molecule, assume its internal energy is $\varepsilon$, and its velocity component in the $x$ direction is $v_x$. Then the energy transfer per unit time is approximately:</p>
+
+\[q_x = \frac{1}{2} v_x \left[\varepsilon(x - \Lambda_x) - \varepsilon(x + \Lambda_x)\right]\]
+
+<p>Expanding using a Taylor series and neglecting higher-order terms:</p>
+
+\[q_x \approx -v_x \Lambda_x \frac{\mathrm{d} \varepsilon}{\mathrm{d}x} \approx -(\cos^2\theta) v \Lambda \frac{\mathrm{d} \varepsilon}{\mathrm{d}x}\]
+
+<p>Integrating over all directions (assuming isotropy), the total heat flux is:</p>
+
+\[q_x = -\frac{1}{2\pi} v \Lambda \frac{\mathrm{d} \varepsilon}{\mathrm{d}x}
+\left[\int_0^{2\pi} \mathrm{d}\varphi \int_0^{\pi/2} \cos^2\theta \sin\theta \, \mathrm{d}\theta \right] \frac{\mathrm{d} \varepsilon}{\mathrm{d}T} \frac{\mathrm{d}T}{\mathrm{d}x}\]
+
+<p>Which simplifies to:</p>
+
+\[q_x \approx -\frac{1}{3} C v \Lambda \frac{\mathrm{d}T}{\mathrm{d}x}\]
+
+<p>The resulting thermal conductivity is:</p>
+
+\[\lambda = \frac{1}{3} C v \Lambda\]
+
+<p>This shows that thermal conductivity is proportional to specific heat $C$, molecular speed $v$, and mean free path $\Lambda$.</p>
+
+<h2 id="heat-conduction-in-dielectrics">Heat Conduction in Dielectrics</h2>
+
+<p>In dielectrics such as insulators or semiconductors, heat is carried by <strong>phonons</strong>, the quantized vibrations of the crystal lattice. Each phonon has energy $\hbar \omega$, where $\omega$ is the vibrational frequency.</p>
+
+<p>Phonon thermal conductivity is similarly given by:</p>
+
+\[\lambda_{ph} = \frac{1}{3} C_{ph} v_s \Lambda_{\Sigma}\]
+
+<p>where:</p>
+<ul>
+  <li>$C_{ph}$ is the specific heat of the phonon system;</li>
+  <li>$v_s$ is the effective sound speed;</li>
+  <li>$\Lambda_{\Sigma}$ is the effective mean free path.</li>
+</ul>
+
+<p>Main phonon scattering mechanisms include:</p>
+<ul>
+  <li>Boundary scattering ($b$);</li>
+  <li>Impurity scattering ($imp$);</li>
+  <li>Phonon-phonon scattering ($ph$).</li>
+</ul>
+
+<p>According to <strong>Matthiessen’s rule</strong>, the total inverse mean free path is the sum of the individual contributions:</p>
+
+\[\Lambda_{\Sigma}^{-1} = \Lambda_{ph}^{-1} + \Lambda_{imp}^{-1} + \Lambda_{b}^{-1}\]
+
+<div class="row">
+  <div class="col-md-6 text-center">
+    
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/classic1-480.webp 480w,/assets/img/blog/classic1-800.webp 800w,/assets/img/blog/classic1-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/classic1.png" class="img-fluid w-100" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+    <figcaption class="caption">Figure 2: Impact of different scattering mechanisms on mean free path</figcaption>
+  
+</figure>
+
+  </div>
+  <div class="col-md-6 text-center">
+    
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/classic2-480.webp 480w,/assets/img/blog/classic2-800.webp 800w,/assets/img/blog/classic2-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/classic2.png" class="img-fluid w-100" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+    <figcaption class="caption">Figure 3: Influence of scattering mechanisms on thermal conductivity</figcaption>
+  
+</figure>
+
+  </div>
+</div>
+
+<h2 id="heat-conduction-in-metals">Heat Conduction in Metals</h2>
+
+<p>In metals, heat is mainly carried by free electrons. The thermal conductivity of the electron gas is:</p>
+
+\[\lambda_{e} = \frac{1}{3} C_{e} v_F \Lambda_{e}\]
+
+<p>where:</p>
+<ul>
+  <li>$C_e$ is the electronic specific heat;</li>
+  <li>$v_F$ is the Fermi velocity;</li>
+  <li>$\Lambda_e$ is the mean free path of electrons.</li>
+</ul>
+
+<p>Again using Matthiessen’s rule:</p>
+
+\[\frac{1}{\Lambda_e} = \frac{1}{\Lambda_{ph}} + \frac{1}{\Lambda_d} + \frac{1}{\Lambda_b}\]
+
+<h2 id="boltzmann-transport-equation">Boltzmann Transport Equation</h2>
+
+<p>At the microscopic level, heat transport is described by particle distribution functions. In equilibrium, these are:</p>
+<ul>
+  <li><strong>Maxwell–Boltzmann distribution</strong> (classical gases);</li>
+  <li><strong>Bose–Einstein distribution</strong> (e.g., phonons);</li>
+  <li><strong>Fermi–Dirac distribution</strong> (e.g., electrons).</li>
+</ul>
+
+<p>When far from equilibrium, the distribution becomes $f(\vec{r}, \vec{p}, t)$ and evolves according to the <strong>Boltzmann transport equation</strong>:</p>
+
+\[\frac{\partial f}{\partial t} + \vec v \cdot \nabla_{\vec r} f + \vec F \cdot \nabla_{\vec p} f = \left(\frac{\partial f}{\partial t}\right)_\text{st}\]
+
+<p>where the right-hand collision term $\left(\partial f / \partial t\right)_{\text{st}}$ describes how the system relaxes toward equilibrium.</p>
+
+<h2 id="fourier-equation">Fourier Equation</h2>
+
+<p>At the macroscopic level, classical <strong>Fourier’s law</strong> governs steady-state heat conduction:</p>
+
+\[\vec q = -\lambda \nabla T\]
+
+<p>Substituting into energy conservation gives the heat diffusion equation:</p>
+
+\[\rho C_p \frac{\partial T}{\partial t} = -\nabla \cdot \vec q\]
+
+<p>Which becomes:</p>
+
+\[\rho C_p \frac{\partial T}{\partial t} = \lambda \nabla^2 T
+\quad \Rightarrow \quad \frac{\partial T}{\partial t} = a \nabla^2 T\]
+
+<p>Here, $a = \frac{\lambda}{\rho C_p}$ is the thermal diffusivity, describing how temperature disturbances propagate in the medium.</p>
+
+<h2 id="summary">Summary</h2>
+
+<ul>
+  <li>Thermal transport depends not only on intrinsic properties like specific heat, velocity, and mean free path, but also on the characteristic size and timescale.</li>
+  <li>When the system size is smaller than the mean free path, Fourier’s law fails; one should apply the Boltzmann equation or molecular dynamics.</li>
+  <li>When the system size is comparable to carrier wavelengths, wave effects dominate and require wave-based models (e.g., phonon interference or localization theory).</li>
+</ul>]]></content><author><name></name></author><category term="Heat-conduction," /><category term="Physics" /><summary type="html"><![CDATA[Kinetic Theory of Gases]]></summary></entry></feed>
