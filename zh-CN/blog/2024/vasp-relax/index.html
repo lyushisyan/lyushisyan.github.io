@@ -19,7 +19,7 @@
   
     
     
-      VASP 结构优化 | Shixian Liu
+      使用 VASP 进行结构优化计算 | Shixian Liu
     
   
 </title>
@@ -181,31 +181,13 @@
     <script src="/assets/js/distillpub/transforms.v2.js"></script>
     <script src="/assets/js/distillpub/overrides.js"></script>
     
-      <!-- Page/Post style -->
-      <style type="text/css">
-        .fake-img {
-  background: #bbb;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 12px;
-} .fake-img p {
-  font-family: sans-serif;
-  color: white;
-  text-align: left;
-  margin: 12px 0;
-  text-align: center;
-  font-size: 16px;
-}
-
-      </style>
-    
   </head>
 
   <body>
 <d-front-matter>
     <script async type="text/json">
       {
-            "title": "VASP 结构优化",
+            "title": "使用 VASP 进行结构优化计算",
             "description": "",
             "published": "December 02, 2024",
             "authors": [
@@ -260,7 +242,7 @@
 
           <!-- About -->
           <li class="nav-item ">
-            <a class="nav-link" href="/zh-CN/">🏠 首页
+            <a class="nav-link" href="/zh-CN/">首页
               
             </a>
           </li>
@@ -296,7 +278,7 @@
               
                 
                 <li class="nav-item active">
-                  <a class="nav-link" href="/zh-CN/blog/">📝 博客
+                  <a class="nav-link" href="/zh-CN/blog/">博客
                     
                       <span class="sr-only">(current)</span>
                     
@@ -309,7 +291,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/zh-CN/publications/">📚 发表
+                  <a class="nav-link" href="/zh-CN/publications/">发表
                     
                   </a>
                 </li>
@@ -320,7 +302,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/zh-CN/teaching/">🧑‍🏫 教学
+                  <a class="nav-link" href="/zh-CN/teaching/">教学
                     
                   </a>
                 </li>
@@ -385,7 +367,7 @@
         margin-bottom: 0.1em;
         text-overflow: ellipsis;
       ">
-        VASP 结构优化
+        使用 VASP 进行结构优化计算
       </h1>
       <p></p>
     </d-title>
@@ -420,61 +402,61 @@
 
 <h3 id="11-incar-的参数设置">1.1 <code class="language-plaintext highlighter-rouge">INCAR</code> 的参数设置</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>System = Si-film    # 体系名称，可以随意定义，用于标记当前计算体系
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>System <span class="o">=</span> Si-film    <span class="c"># 体系名称，可以随意定义，用于标记当前计算体系</span>
 
-# 作业控制（Job Control）
-ISTART = 0          # 初始状态设置：
-                    # 0 从头开始计算
-                    # 1 从已有的 WAVECAR 文件读取初始电子波函数
-                    # 2 从 WAVECAR 和 CHGCAR 文件读取初始波函数和电子密度
-ISPIN = 1           # 自旋极化选项：
-                    # 1 无自旋极化（适用于非磁性材料）
-                    # 2 自旋极化（适用于磁性材料）
-ICHARGE = 2         # 初始电子密度选择：
-                    # 2 从 POTCAR 提供的静态电子密度开始计算
-                    # 1 从头生成电子密度
-LWAVE = .FALSE.     # 是否输出 WAVECAR 文件：
-                    # .TRUE. 输出（存储波函数数据）
-                    # .FALSE. 不输出（节省磁盘空间）
-LCHARG = .FALSE.    # 是否输出 CHGCAR 文件：
-                    # .TRUE. 输出（存储静态电荷密度）
-                    # .FALSE. 不输出（节省磁盘空间）
-ISYM = 0            # 对称性设置：
-                    # 0 关闭对称性（适用于含缺陷或非对称结构）
-                    # 1 或 2 保留对称性操作
+<span class="c"># 作业控制（Job Control）</span>
+ISTART <span class="o">=</span> 0          <span class="c"># 初始状态设置：</span>
+                    <span class="c"># 0 从头开始计算</span>
+                    <span class="c"># 1 从已有的 WAVECAR 文件读取初始电子波函数</span>
+                    <span class="c"># 2 从 WAVECAR 和 CHGCAR 文件读取初始波函数和电子密度</span>
+ISPIN <span class="o">=</span> 1           <span class="c"># 自旋极化选项：</span>
+                    <span class="c"># 1 无自旋极化（适用于非磁性材料）</span>
+                    <span class="c"># 2 自旋极化（适用于磁性材料）</span>
+ICHARGE <span class="o">=</span> 2         <span class="c"># 初始电子密度选择：</span>
+                    <span class="c"># 2 从 POTCAR 提供的静态电子密度开始计算</span>
+                    <span class="c"># 1 从头生成电子密度</span>
+LWAVE <span class="o">=</span> .FALSE.     <span class="c"># 是否输出 WAVECAR 文件：</span>
+                    <span class="c"># .TRUE. 输出（存储波函数数据）</span>
+                    <span class="c"># .FALSE. 不输出（节省磁盘空间）</span>
+LCHARG <span class="o">=</span> .FALSE.    <span class="c"># 是否输出 CHGCAR 文件：</span>
+                    <span class="c"># .TRUE. 输出（存储静态电荷密度）</span>
+                    <span class="c"># .FALSE. 不输出（节省磁盘空间）</span>
+ISYM <span class="o">=</span> 0            <span class="c"># 对称性设置：</span>
+                    <span class="c"># 0 关闭对称性（适用于含缺陷或非对称结构）</span>
+                    <span class="c"># 1 或 2 保留对称性操作</span>
 
-# 电子弛豫设置（Electronic Relaxation）
-ENCUT = 500         # 平面波截断能量，单位 eV，决定计算精度和效率
-ISMEAR = 0          # 展宽方法：
-                    # -5 (四电子系统)、0 (高斯展宽，适合半导体)、1 或 2 (费米展宽)
-SIGMA = 0.05        # 展宽宽度（单位 eV），推荐值为 0.01 ~ 0.1
-EDIFF = 1E-08       # SCF 收敛准则：两次迭代能量变化小于 1E-08 eV 时停止
-NELMIN = 6          # 最小电子迭代次数，确保基础收敛过程
-NELM = 300          # 最大电子迭代次数，避免迭代死循环
-GGA = PE            # 泛函选择，采用 PBE（Perdew-Burke-Ernzerhof）交换-相关泛函
-LREAL = .FALSE.     # 动量空间计算，提高精度但增加计算量
-ADDGRID = .TRUE.    # 启用附加 FFT 网格，提升数值精度
-ALGO = N            # 电子弛豫算法：
-                    # Normal（标准模式）、Fast 或 VeryFast（加速模式）
-PREC = Accurate     # 精度设置：
-                    # Accurate（高精度）、Normal 或 Low（初步测试用）
+<span class="c"># 电子弛豫设置（Electronic Relaxation）</span>
+ENCUT <span class="o">=</span> 500         <span class="c"># 平面波截断能量，单位 eV，决定计算精度和效率</span>
+ISMEAR <span class="o">=</span> 0          <span class="c"># 展宽方法：</span>
+                    <span class="c"># -5 (四电子系统)、0 (高斯展宽，适合半导体)、1 或 2 (费米展宽)</span>
+SIGMA <span class="o">=</span> 0.05        <span class="c"># 展宽宽度（单位 eV），推荐值为 0.01 ~ 0.1</span>
+EDIFF <span class="o">=</span> 1E-08       <span class="c"># SCF 收敛准则：两次迭代能量变化小于 1E-08 eV 时停止</span>
+NELMIN <span class="o">=</span> 6          <span class="c"># 最小电子迭代次数，确保基础收敛过程</span>
+NELM <span class="o">=</span> 300          <span class="c"># 最大电子迭代次数，避免迭代死循环</span>
+GGA <span class="o">=</span> PE            <span class="c"># 泛函选择，采用 PBE（Perdew-Burke-Ernzerhof）交换-相关泛函</span>
+LREAL <span class="o">=</span> .FALSE.     <span class="c"># 动量空间计算，提高精度但增加计算量</span>
+ADDGRID <span class="o">=</span> .TRUE.    <span class="c"># 启用附加 FFT 网格，提升数值精度</span>
+ALGO <span class="o">=</span> N            <span class="c"># 电子弛豫算法：</span>
+                    <span class="c"># Normal（标准模式）、Fast 或 VeryFast（加速模式）</span>
+PREC <span class="o">=</span> Accurate     <span class="c"># 精度设置：</span>
+                    <span class="c"># Accurate（高精度）、Normal 或 Low（初步测试用）</span>
 
-# 离子弛豫设置（Ionic Relaxation）
-ISIF = 2            # 晶格优化选项：
-                    # 2 仅优化原子位置，不改变晶格参数
-                    # 3 优化原子和晶格形状
-EDIFFG = -0.01      # 离子收敛准则：
-                    # 负值基于力（单位 eV/Å）
-                    # 正值基于能量
-IBRION = 2          # 离子弛豫算法：
-                    # 2 使用共轭梯度算法（适用于大多数优化任务）
-POTIM = 0.5         # 时间步长，控制优化过程速度
-NSW = 200           # 最大离子优化步数
+<span class="c"># 离子弛豫设置（Ionic Relaxation）</span>
+ISIF <span class="o">=</span> 2            <span class="c"># 晶格优化选项：</span>
+                    <span class="c"># 2 仅优化原子位置，不改变晶格参数</span>
+                    <span class="c"># 3 优化原子和晶格形状</span>
+EDIFFG <span class="o">=</span> <span class="nt">-0</span>.01      <span class="c"># 离子收敛准则：</span>
+                    <span class="c"># 负值基于力（单位 eV/Å）</span>
+                    <span class="c"># 正值基于能量</span>
+IBRION <span class="o">=</span> 2          <span class="c"># 离子弛豫算法：</span>
+                    <span class="c"># 2 使用共轭梯度算法（适用于大多数优化任务）</span>
+POTIM <span class="o">=</span> 0.5         <span class="c"># 时间步长，控制优化过程速度</span>
+NSW <span class="o">=</span> 200           <span class="c"># 最大离子优化步数</span>
 
-# 并行控制（Parallel Control）
-NPAR = 4            # FFT 网格的并行维度（推荐值为 sqrt(总核数)）
-KPAR = 2            # k 点的并行处理数（总核数应为 NPAR × KPAR × NCORE 的整数倍）
-NCORE = 12          # 每个任务的并行核数
+<span class="c"># 并行控制（Parallel Control）</span>
+NPAR <span class="o">=</span> 4            <span class="c"># FFT 网格的并行维度（推荐值为 sqrt(总核数)）</span>
+KPAR <span class="o">=</span> 2            <span class="c"># k 点的并行处理数（总核数应为 NPAR × KPAR × NCORE 的整数倍）</span>
+NCORE <span class="o">=</span> 12          <span class="c"># 每个任务的并行核数</span>
 </code></pre></div></div>
 
 <p>在结构优化中，<code class="language-plaintext highlighter-rouge">INCAR</code> 中的关键参数包括 <code class="language-plaintext highlighter-rouge">IBRION</code> ，<code class="language-plaintext highlighter-rouge">ISIF</code>，<code class="language-plaintext highlighter-rouge">NSW</code>，<code class="language-plaintext highlighter-rouge">EDIFF</code> 和 <code class="language-plaintext highlighter-rouge">EDIFFG</code></p>
@@ -613,33 +595,33 @@ NCORE = 12          # 每个任务的并行核数
 
 <p>下面是描述了硅晶体结构的 <code class="language-plaintext highlighter-rouge">POSCAR</code> 文件示例：</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si-bulk   # 系统名称，可自定义
-1.0          # 全局尺度因子（可以用于缩放晶格）
-   5.430    0.000    0.000  # 晶格向量 a
-   0.000    5.430    0.000  # 晶格向量 b
-   0.000    0.000    5.430  # 晶格向量 c
-Si           # 原子种类
-2            # 每种原子的个数
-Direct       # 坐标类型（Direct：分数坐标；Cartesian：笛卡尔坐标）
-  0.000  0.000  0.000  # 原子 1 的坐标
-  0.250  0.250  0.250  # 原子 2 的坐标
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si-bulk   <span class="c"># 系统名称，可自定义</span>
+1.0          <span class="c"># 全局尺度因子（可以用于缩放晶格）</span>
+   5.430    0.000    0.000  <span class="c"># 晶格向量 a</span>
+   0.000    5.430    0.000  <span class="c"># 晶格向量 b</span>
+   0.000    0.000    5.430  <span class="c"># 晶格向量 c</span>
+Si           <span class="c"># 原子种类</span>
+2            <span class="c"># 每种原子的个数</span>
+Direct       <span class="c"># 坐标类型（Direct：分数坐标；Cartesian：笛卡尔坐标）</span>
+  0.000  0.000  0.000  <span class="c"># 原子 1 的坐标</span>
+  0.250  0.250  0.250  <span class="c"># 原子 2 的坐标</span>
 </code></pre></div></div>
 
 <p>下面是描述硅薄膜（Si-film）的 <code class="language-plaintext highlighter-rouge">POSCAR</code> 文件示例：
 假设薄膜沿 $x$ 和 $𝑦$ 方向为周期性，沿 $z$ 方向有限（需要设置真空层）</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si Thin Film                            
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si Thin Film                            
    1.00000000000000     
      5.4299999999999997    0.0000000000000000    0.0000000000000000
      0.0000000000000000    5.4299999999999997    0.0000000000000000
      0.0000000000000000    0.0000000000000000   20.8599999999999994
    Si
     16
-Selective dynamics  # 启用 Selective dynamics
+Selective dynamics  <span class="c"># 启用 Selective dynamics</span>
 Direct
-0.000000 0.000000 0.200000 F F F  # 三个方向固定
-0.500000 0.500000 0.200000 T T F  # z 方向固定，x 和 y 方向可移动
-0.500000 0.000000 0.330153 T T T  # 三个方向可移动
+0.000000 0.000000 0.200000 F F F  <span class="c"># 三个方向固定</span>
+0.500000 0.500000 0.200000 T T F  <span class="c"># z 方向固定，x 和 y 方向可移动</span>
+0.500000 0.000000 0.330153 T T T  <span class="c"># 三个方向可移动</span>
 0.000000 0.500000 0.330153 T T T
 0.250000 0.250000 0.265077 T T T
 0.750000 0.750000 0.265077 T T T
@@ -660,11 +642,11 @@ Direct
 <h4 id="1-monkhorst-pack-网格">(1) Monkhorst-Pack 网格</h4>
 <p>Monkhorst-Pack 网格是一种均匀分布的 k 点网格，常用于周期性晶体的电子结构计算。</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   # 自动生成 k 点的方式（注释）
-0                              # 忽略 k 点总数，采用自动生成
-Monkhorst-Pack                 # 选择 Monkhorst-Pack 网格
-4 4 4                          # k 点网格密度，分别表示 x、y、z 方向的分布
-0 0 0                          # 网格偏移，0 表示不偏移
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   <span class="c"># 自动生成 k 点的方式（注释）</span>
+0                              <span class="c"># 忽略 k 点总数，采用自动生成</span>
+Monkhorst-Pack                 <span class="c"># 选择 Monkhorst-Pack 网格</span>
+4 4 4                          <span class="c"># k 点网格密度，分别表示 x、y、z 方向的分布</span>
+0 0 0                          <span class="c"># 网格偏移，0 表示不偏移</span>
 </code></pre></div></div>
 
 <p><strong>适用场景</strong>：周期性晶体，优化、DOS 计算、电子结构分析等。</p>
@@ -672,11 +654,11 @@ Monkhorst-Pack                 # 选择 Monkhorst-Pack 网格
 <h4 id="2-gamma-网格">(2) Gamma 网格</h4>
 <p>Gamma 网格以 Gamma 点为中心，更适合小体系或非对称晶格。</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   # 自动生成 k 点的方式（注释）
-0                              # 忽略 k 点总数，采用自动生成
-Gamma                          # 选择 Gamma 点中心网格
-4 4 4                          # k 点网格密度，分别表示 x、y、z 方向的分布
-0 0 0                          # 网格偏移，0 表示不偏移
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   <span class="c"># 自动生成 k 点的方式（注释）</span>
+0                              <span class="c"># 忽略 k 点总数，采用自动生成</span>
+Gamma                          <span class="c"># 选择 Gamma 点中心网格</span>
+4 4 4                          <span class="c"># k 点网格密度，分别表示 x、y、z 方向的分布</span>
+0 0 0                          <span class="c"># 网格偏移，0 表示不偏移</span>
 </code></pre></div></div>
 
 <p><strong>适用场景</strong>：小体系、非对称晶格或需要快速计算的优化任务。</p>
@@ -695,7 +677,7 @@ Gamma                          # 选择 Gamma 点中心网格
 
 <p><strong>生成 POTCAR 文件</strong>：根据体系中的原子种类 (比如 Si 和 H)，逐个合并赝势文件：</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat /POT_GGA_PAW/POTCAR_Si /POT_GGA_PAW/POTCAR_H &gt; POTCAR
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /POT_GGA_PAW/POTCAR_Si /POT_GGA_PAW/POTCAR_H <span class="o">&gt;</span> POTCAR
 </code></pre></div></div>
 
 <ul>
@@ -1120,27 +1102,27 @@ Gamma                          # 选择 Gamma 点中心网格
     // add the home and posts menu items
     ninja.data = [{
         id: "nav-首页",
-        title: "🏠 首页",
+        title: "首页",
         section: "导航菜单",
         handler: () => {
           window.location.href = "/zh-CN/";
         },
       },{id: "nav-博客",
-              title: "📝 博客",
+              title: "博客",
               description: "",
               section: "导航菜单",
               handler: () => {
                 window.location.href = "/zh-CN/blog/";
               },
             },{id: "nav-发表",
-              title: "📚 发表",
+              title: "发表",
               description: "Scopus和WoS检索的论文发表清单",
               section: "导航菜单",
               handler: () => {
                 window.location.href = "/zh-CN/publications/";
               },
             },{id: "nav-教学",
-              title: "🧑‍🏫 教学",
+              title: "教学",
               description: "课件",
               section: "导航菜单",
               handler: () => {
@@ -1157,9 +1139,9 @@ Gamma                          # 选择 Gamma 点中心网格
               window.location.href = "/zh-CN/blog/2024/topology/";
             
           },
-        },{id: "post-vasp-结构优化",
+        },{id: "post-使用-vasp-进行结构优化计算",
           
-            title: "VASP 结构优化",
+            title: "使用 VASP 进行结构优化计算",
           
           description: "",
           section: "文章",
@@ -1201,9 +1183,9 @@ Gamma                          # 选择 Gamma 点中心网格
               window.location.href = "/zh-CN/blog/2024/qe-disp-si/";
             
           },
-        },{id: "post-qe-进行能量自洽计算",
+        },{id: "post-使用-qe-进行能量自洽计算",
           
-            title: "QE 进行能量自洽计算",
+            title: "使用 QE 进行能量自洽计算",
           
           description: "",
           section: "文章",

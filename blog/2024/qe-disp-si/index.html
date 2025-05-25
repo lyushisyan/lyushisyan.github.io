@@ -181,24 +181,6 @@
     <script src="/assets/js/distillpub/transforms.v2.js"></script>
     <script src="/assets/js/distillpub/overrides.js"></script>
     
-      <!-- Page/Post style -->
-      <style type="text/css">
-        .fake-img {
-  background: #bbb;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 12px;
-} .fake-img p {
-  font-family: sans-serif;
-  color: white;
-  text-align: left;
-  margin: 12px 0;
-  text-align: center;
-  font-size: 16px;
-}
-
-      </style>
-    
   </head>
 
   <body>
@@ -260,7 +242,7 @@
 
           <!-- About -->
           <li class="nav-item ">
-            <a class="nav-link" href="/">🏠 Home
+            <a class="nav-link" href="/">Home
               
             </a>
           </li>
@@ -300,7 +282,7 @@
               
                 
                 <li class="nav-item active">
-                  <a class="nav-link" href="/blog/">📝 Blog
+                  <a class="nav-link" href="/blog/">Blog
                     
                       <span class="sr-only">(current)</span>
                     
@@ -313,7 +295,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/publications/">📚 Publications
+                  <a class="nav-link" href="/publications/">Publications
                     
                   </a>
                 </li>
@@ -324,7 +306,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/teaching/">🧑‍🏫 Teaching
+                  <a class="nav-link" href="/teaching/">Teaching
                     
                   </a>
                 </li>
@@ -565,9 +547,8 @@ K_POINTS <span class="o">{</span>automatic<span class="o">}</span>
 
 <p>Then, use the resulting <code class="language-plaintext highlighter-rouge">Si.freq.gp</code> file to generate plots.</p>
 
-<div class="row">
-    <div class="col-md-8 text-center">
-        
+<div class="text-center">
+  
 
 
 
@@ -581,13 +562,14 @@ K_POINTS <span class="o">{</span>automatic<span class="o">}</span>
     
       <source class="responsive-img-srcset" srcset="/assets/img/blog/Si-bulk-qe-480.webp 480w,/assets/img/blog/Si-bulk-qe-800.webp 800w,/assets/img/blog/Si-bulk-qe-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
     
-    <img src="/assets/img/blog/Si-bulk-qe.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/blog/Si-bulk-qe.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
   </picture>
 
   
+    <figcaption class="caption">Figure: Phonon Dispersion in Silicon</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
       </d-article>
@@ -775,27 +757,27 @@ K_POINTS <span class="o">{</span>automatic<span class="o">}</span>
     // add the home and posts menu items
     ninja.data = [{
         id: "nav-home",
-        title: "🏠 Home",
+        title: "Home",
         section: "Navigation menu",
         handler: () => {
           window.location.href = "/";
         },
       },{id: "nav-blog",
-              title: "📝 Blog",
+              title: "Blog",
               description: "",
               section: "Navigation menu",
               handler: () => {
                 window.location.href = "/blog/";
               },
             },{id: "nav-publications",
-              title: "📚 Publications",
+              title: "Publications",
               description: "Publications indexed in Scopus and Web of Science",
               section: "Navigation menu",
               handler: () => {
                 window.location.href = "/publications/";
               },
             },{id: "nav-teaching",
-              title: "🧑‍🏫 Teaching",
+              title: "Teaching",
               description: "Lectures",
               section: "Navigation menu",
               handler: () => {
@@ -867,9 +849,9 @@ K_POINTS <span class="o">{</span>automatic<span class="o">}</span>
               window.location.href = "/blog/2024/qe-scf/";
             
           },
-        },{id: "post-microscopic-description-of-thermal-physics",
+        },{id: "post-microscopic-description-of-thermophysics",
           
-            title: "Microscopic Description of Thermal Physics",
+            title: "Microscopic Description of Thermophysics",
           
           description: "",
           section: "Posts",
