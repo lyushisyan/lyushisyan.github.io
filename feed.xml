@@ -1,4 +1,1065 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://lyushisyan.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://lyushisyan.github.io/" rel="alternate" type="text/html" /><updated>2025-05-25T23:10:03+03:00</updated><id>https://lyushisyan.github.io/feed.xml</id><title type="html">blank</title><entry><title type="html">VASP Structure Optimization</title><link href="https://lyushisyan.github.io/blog/2024/vasp-relax/" rel="alternate" type="text/html" title="VASP Structure Optimization" /><published>2024-12-02T02:36:10+03:00</published><updated>2024-12-02T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/vasp-relax</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/vasp-relax/"><![CDATA[<h2 id="1-input-files">1. Input Files</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://lyushisyan.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://lyushisyan.github.io/" rel="alternate" type="text/html" /><updated>2025-05-26T00:21:56+03:00</updated><id>https://lyushisyan.github.io/feed.xml</id><title type="html">blank</title><entry><title type="html">Thermal Conductivity Calculation using VASP + Phono3py</title><link href="https://lyushisyan.github.io/blog/2025/vasp-phono3py/" rel="alternate" type="text/html" title="Thermal Conductivity Calculation using VASP + Phono3py" /><published>2025-05-21T02:36:10+03:00</published><updated>2025-05-21T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2025/vasp-phono3py</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2025/vasp-phono3py/"><![CDATA[<p>VASP is a first-principles simulation software.
+Phono3py can calculate <strong>phonon-phonon interactions</strong> through <strong>third-order force constants</strong>. This allows the computation of lattice thermal conductivity, phonon lifetimes/linewidths, the imaginary part of self-energy (lowest-order approximation), joint density of states (JDOS), and weighted JDOS (w-JDOS).</p>
+
+<h2 id="1-generate-displaced-supercells-poscar-files">1. Generate Displaced Supercells (<code class="language-plaintext highlighter-rouge">POSCAR</code> files)</h2>
+
+<p>Taking diamond-structured silicon (Si) as an example, the primitive cell <code class="language-plaintext highlighter-rouge">POSCAR-unitcell</code> looks like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Si
+   1.0
+     5.4335600309153529    0.0000000000000000    0.0000000000000000
+     0.0000000000000000    5.4335600309153529    0.0000000000000000
+     0.0000000000000000    0.0000000000000000    5.4335600309153529
+ Si
+   8
+Direct
+   0.8750000000000000 0.8750000000000000 0.8750000000000000
+   0.8750000000000000 0.3750000000000000 0.3750000000000000
+   0.3750000000000000 0.8750000000000000 0.3750000000000000
+   0.3750000000000000 0.3750000000000000 0.8750000000000000
+   0.1250000000000000 0.1250000000000000 0.1250000000000000
+   0.1250000000000000 0.6250000000000000 0.6250000000000000
+   0.6250000000000000 0.1250000000000000 0.6250000000000000
+   0.6250000000000000 0.6250000000000000 0.1250000000000000
+</code></pre></div></div>
+
+<p>Based on this unit cell, generate 2×2×2 supercells with displacements for calculating second-order (fc2) and third-order (fc3) force constants:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>phono3py -d --dim 2 2 2 -c POSCAR-unitcell
+</code></pre></div></div>
+
+<p>This generates 111 displaced structures, stored in <code class="language-plaintext highlighter-rouge">phono3py_disp.yaml</code>, and creates 111 <code class="language-plaintext highlighter-rouge">POSCAR-00XXX</code> files (XXX from 000 to 110).</p>
+
+<p>To use a larger supercell for fc2 calculation than for fc3:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>phono3py -d --dim-fc2 4 4 4 --dim 2 2 2 -c POSCAR-unitcell
+</code></pre></div></div>
+
+<p>In this case, <code class="language-plaintext highlighter-rouge">POSCAR_FC2-xxxxx</code> files will also be created.</p>
+
+<h2 id="2-run-vasp-to-calculate-forces-for-each-supercell">2. Run VASP to Calculate Forces for Each Supercell</h2>
+
+<p>To compute the atomic forces in each displaced supercell, use the <code class="language-plaintext highlighter-rouge">POSCAR-xxxxx</code> (and <code class="language-plaintext highlighter-rouge">POSCAR_FC2-xxxxx</code> if applicable) as inputs to VASP. Each displacement supercell also requires <code class="language-plaintext highlighter-rouge">KPOINTS</code>, <code class="language-plaintext highlighter-rouge">POTCAR</code>, and <code class="language-plaintext highlighter-rouge">INCAR</code>.</p>
+
+<p>Run each calculation in folders named <code class="language-plaintext highlighter-rouge">disp-xxxxx</code> (and <code class="language-plaintext highlighter-rouge">disp_fc2-xxxxx</code>), where xxxxx is the index. Each folder contains the input files, and the results will be saved in the <code class="language-plaintext highlighter-rouge">vasprun.xml</code> file inside that folder.</p>
+
+<p>Use the following script to prepare input folders:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nv">P</span><span class="o">=</span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span>
+
+<span class="k">for </span>i <span class="k">in</span> <span class="si">$(</span><span class="nb">seq</span> <span class="nt">-f</span> <span class="s2">"%05g"</span> 1 111<span class="si">)</span><span class="p">;</span> <span class="k">do
+	</span><span class="nb">dir</span><span class="o">=</span><span class="s2">"disp-</span><span class="nv">$i</span><span class="s2">"</span>
+	<span class="nb">mkdir</span> <span class="nt">-p</span> <span class="s2">"</span><span class="nv">$dir</span><span class="s2">"</span>
+	<span class="nb">cd</span> <span class="s2">"</span><span class="nv">$dir</span><span class="s2">"</span> <span class="o">||</span> <span class="k">continue
+	</span><span class="nb">cp</span> <span class="s2">"</span><span class="nv">$P</span><span class="s2">"</span>/INCAR <span class="s2">"</span><span class="nv">$P</span><span class="s2">"</span>/KPOINTS <span class="s2">"</span><span class="nv">$P</span><span class="s2">"</span>/POTCAR <span class="nb">.</span>
+	<span class="nb">cp</span> <span class="s2">"</span><span class="nv">$P</span><span class="s2">"</span>/POSCAR-<span class="s2">"</span><span class="nv">$i</span><span class="s2">"</span> POSCAR
+	<span class="nb">echo</span> <span class="s2">"Prepared </span><span class="nv">$dir</span><span class="s2">"</span>
+	<span class="nb">cd</span> <span class="s2">"</span><span class="nv">$P</span><span class="s2">"</span>
+<span class="k">done</span>
+</code></pre></div></div>
+
+<p>Then run the VASP calculations:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nv">P</span><span class="o">=</span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span>
+
+<span class="k">for </span>i <span class="k">in</span> <span class="si">$(</span><span class="nb">seq</span> <span class="nt">-f</span> <span class="s2">"%05g"</span> 1 111<span class="si">)</span><span class="p">;</span> <span class="k">do
+    </span><span class="nv">DIR</span><span class="o">=</span><span class="s2">"</span><span class="nv">$P</span><span class="s2">/disp-</span><span class="nv">$i</span><span class="s2">"</span>
+    <span class="nb">cd</span> <span class="s2">"</span><span class="nv">$DIR</span><span class="s2">"</span> <span class="o">||</span> <span class="k">continue
+    </span><span class="nb">echo</span> <span class="s2">"Running disp-</span><span class="nv">$i</span><span class="s2">..."</span>
+
+    <span class="c"># Clean old logs</span>
+    <span class="nb">rm</span> <span class="nt">-f</span> OUTCAR vasprun.xml log.vasp
+
+    <span class="c"># Run VASP and capture exit code</span>
+    mpirun <span class="nt">-np</span> 16 vasp_std <span class="o">&gt;</span> log.vasp 2&gt;&amp;1
+    <span class="nv">exit_code</span><span class="o">=</span><span class="nv">$?</span>
+
+    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$exit_code</span> <span class="nt">-ne</span> 0 <span class="o">]]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"❌ disp-</span><span class="nv">$i</span><span class="s2"> FAILED (exit code </span><span class="nv">$exit_code</span><span class="s2">)"</span>
+    <span class="k">elif </span><span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"F= "</span> log.vasp<span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"✅ disp-</span><span class="nv">$i</span><span class="s2"> completed successfully"</span>
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"⚠️  disp-</span><span class="nv">$i</span><span class="s2"> might be incomplete (check log.vasp)"</span>
+    <span class="k">fi
+
+    </span><span class="nb">cd</span> <span class="s2">"</span><span class="nv">$P</span><span class="s2">"</span>
+<span class="k">done</span>
+</code></pre></div></div>
+
+<h2 id="3-collect-force-calculation-results">3. Collect Force Calculation Results</h2>
+
+<p>To collect the force sets for fc3 and fc2, use:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>phono3py <span class="nt">--cf3</span> disp-<span class="o">{</span>00001..00057<span class="o">}</span>/vasprun.xml
+</code></pre></div></div>
+
+<p>This generates the <code class="language-plaintext highlighter-rouge">FORCES_FC3</code> file.</p>
+
+<p>If larger supercells are used for fc2, collect forces with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>phono3py <span class="nt">--cf2</span> disp_fc2-<span class="o">{</span>00001..00002<span class="o">}</span>/vasprun.xml
+</code></pre></div></div>
+
+<h2 id="4-create-fc2hdf-and-fc3hdf">4. Create <code class="language-plaintext highlighter-rouge">fc2.hdf</code> and <code class="language-plaintext highlighter-rouge">fc3.hdf</code></h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>phono3py --fc-symmetry
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">--fc-symmetry</code> option symmetrizes fc3 and fc2. This command uses <code class="language-plaintext highlighter-rouge">FORCES_FC3</code>, optionally <code class="language-plaintext highlighter-rouge">FORCES_FC2</code>, and <code class="language-plaintext highlighter-rouge">phono3py_disp.yaml</code> to generate <code class="language-plaintext highlighter-rouge">fc2.hdf5</code> and <code class="language-plaintext highlighter-rouge">fc3.hdf5</code>.</p>
+
+<p>Although optional, using the <code class="language-plaintext highlighter-rouge">--fc3</code> and <code class="language-plaintext highlighter-rouge">--fc2</code> flags allows loading these files directly without recalculating force constants each time.</p>
+
+<h2 id="5-thermal-conductivity-calculation">5. Thermal Conductivity Calculation</h2>
+
+<p>A typical command for computing thermal conductivity:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>phono3py --mesh 11 11 11 --br
+</code></pre></div></div>
+
+<p>This may take a long time. The <code class="language-plaintext highlighter-rouge">--thm</code> flag (tetrahedron method) is the default for Brillouin zone integration. You can alternatively use <code class="language-plaintext highlighter-rouge">--sigma</code> to specify a smearing width.</p>
+
+<p>The above command computes phonon lifetimes serially over multiple q-points. Since each point is independent, you can parallelize across grid points:</p>
+
+<h3 id="step-1-get-irreducible-grid-points">Step 1: Get Irreducible Grid Points</h3>
+
+<p>First, generate irreducible q-point info with:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>phono3py --fc3 --fc2 --mesh 11 11 11 --br --wgp
+</code></pre></div></div>
+
+<p>This creates <code class="language-plaintext highlighter-rouge">ir_grid_points.yaml</code>. View the grid point indices with:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grep grid_point: ir_grid_points.yaml | awk '{printf("%d ", $3)}'
+</code></pre></div></div>
+
+<p>Example output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 1 2 3 4 5 12 13 14 15 16 17 18 19 20 21 24 25 26 27 28 29 30 31 36 37 38 39 40 41 48 49 50 51 60 61 148 149 150 151 160 161 162 163 164 165 172 173 174 175 184 185 297 298 309 310
+</code></pre></div></div>
+
+<h3 id="step-2-compute-phonon-lifetimes-for-subset-of-grid-points">Step 2: Compute Phonon Lifetimes for Subset of Grid Points</h3>
+
+<p>Calculate phonon lifetimes at the first 10 irreducible q-points and store in <code class="language-plaintext highlighter-rouge">gamma</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>phono3py --mesh 11 11 11 --br --write-gamma --gp 0 1 2 3 4 5 12 13 14 15
+</code></pre></div></div>
+
+<h3 id="step-3-merge-gamma-files-after-completion">Step 3: Merge Gamma Files After Completion</h3>
+
+<p>Once all irreducible q-points (e.g., 0, 1, …, 310) are computed, merge them using:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>phono3py --fc3 --fc2 --mesh 11 11 11 --br --read-gamma
+</code></pre></div></div>
+
+<p>If successful, the individual <code class="language-plaintext highlighter-rouge">.hdf5</code> files for each q-point can be safely deleted.</p>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[VASP is a first-principles simulation software. Phono3py can calculate phonon-phonon interactions through third-order force constants. This allows the computation of lattice thermal conductivity, phonon lifetimes/linewidths, the imaginary part of self-energy (lowest-order approximation), joint density of states (JDOS), and weighted JDOS (w-JDOS).]]></summary></entry><entry><title type="html">Training Neural-Evolution Machine Learning Potentials</title><link href="https://lyushisyan.github.io/blog/2025/nep-train/" rel="alternate" type="text/html" title="Training Neural-Evolution Machine Learning Potentials" /><published>2025-04-18T02:36:10+03:00</published><updated>2025-04-18T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2025/nep-train</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2025/nep-train/"><![CDATA[<p>Classical interatomic potentials play a critical role in atomic simulations by enabling efficient calculation of various material properties. Machine learning-based interatomic potentials can achieve quantum-level accuracy while significantly reducing computational cost.</p>
+
+<p>To date, a variety of machine learning models have been used to construct interatomic potentials, including:</p>
+
+<ul>
+  <li>Artificial neural networks [Phys. Rev. Lett. 98, 146401 (2007)]</li>
+  <li>Gaussian regression [Phys. Rev. Lett. 104, 136403 (2010)]</li>
+  <li>Linear regression [J. Comput. Phys. 285, 316 (2015)]</li>
+</ul>
+
+<p>For any model, many fitting parameters need to be determined by training on quantum mechanical data. This abundance of parameters gives machine learning potentials their superior interpolation capability over traditional empirical potentials.</p>
+
+<p>However, finding an optimized set of parameters is not easy. Traditional training of neural network potentials relies on gradient descent, which can get trapped in local minima of the loss function and result in suboptimal solutions.</p>
+
+<p>A better approach is based on <strong>evolutionary algorithms</strong>, a global search method. When combined with neural networks, this is referred to as <strong>neuroevolution</strong>.</p>
+
+<p>The state-of-the-art evolutionary algorithm, <strong>separable natural evolution strategies</strong> (SNES), is particularly suitable for evolving large-scale neural networks.
+[J. Mach. Learn. Res. 15, 949 (2014)]</p>
+
+<p>Although evolutionary algorithms are less likely to get stuck in local minima, these population-based methods require many evaluations of the loss function per iteration and are usually more computationally expensive than gradient-based methods.</p>
+
+<h2 id="1-from-coordinates-to-descriptor-vectors">1. From Coordinates to Descriptor Vectors</h2>
+
+<p>In machine learning potentials, the site energy $U_i$ is not modeled directly as a function of relative coordinates ${\mathbf r_{ij}}$, but rather as a function of a <strong>high-dimensional descriptor vector</strong>, whose components are invariant to spatial translation, 3D rotation and inversion, and permutation of identical atoms.</p>
+
+<p>Numerous descriptors have been proposed, such as:</p>
+
+<ul>
+  <li>Behler’s symmetry functions [J. Chem. Phys. 134, 074106 (2011)]</li>
+  <li>Smooth overlap of atomic positions (SOAP) [Phys. Rev. B 87, 184115 (2013)]</li>
+  <li>Bispectrum [Phys. Rev. Lett. 104, 136403 (2010)]</li>
+  <li>Coulomb matrix [Phys. Rev. Lett. 108, 058301 (2012)]</li>
+  <li>Moment tensor [Multiscale Model. Simul. 14, 1153 (2016)]</li>
+  <li>Atomic cluster expansions [Phys. Rev. B 99, 014104 (2019)]</li>
+  <li>Embedded atom descriptor [J. Phys. Chem. Lett. 10, 4962 (2019)]</li>
+  <li>Gaussian moments [J. Chem. Theory Comput. 16, 5410 (2020)]</li>
+  <li>Atomic permutationally invariant polynomials [Mach. Learn.: Sci. Technol. 1, 015004 (2020)]</li>
+</ul>
+
+<p>Several libraries implement these descriptors:
+[Comput. Phys. Commun. 207, 310 (2016)]
+[Comput. Phys. Commun. 247, 106949 (2020)]
+[Mach. Learn.: Sci. Technol. 2, 027001 (2021)]</p>
+
+<p>An overview of atomic environment descriptors can be found in: [J. Chem. Phys. 150, 154110 (2019)]</p>
+
+<h3 id="11-single-component-systems">1.1 Single-Component Systems</h3>
+
+<p>The following descriptors are inspired by <strong>Behler’s symmetry functions</strong> and <strong>optimized SOAP</strong>.</p>
+
+<p>For a central atom $i$ in a single-component system, a set of <strong>radial descriptor components</strong> ($n \geq 0$) is defined as:</p>
+
+\[q_n^i = \sum_{j\neq i} g_n(r_{ij}) \tag{1}\]
+
+<p>And a set of <strong>angular descriptor components</strong> ($n \geq 0$ and $l \geq 1$):</p>
+
+\[q_{nl}^i = \sum_{j\neq i}\sum_{k\neq i} g_n(r_{ij}) g_n(r_{ik}) P_l(\cos\theta_{ijk}) \tag{2}\]
+
+<p>where $P_l(\cos\theta_{ijk})$ is the Legendre polynomial of degree $l$, and $\theta_{ijk}$ is the angle formed between bonds $ij$ and $ik$.</p>
+
+<p>The function $g_n(r_{ij})$ is a <strong>radial function</strong>, defined using the Chebyshev polynomials of the first kind as a function of $x \equiv 2(r_{ij}/r_c − 1)^2 − 1$:</p>
+
+\[g_n(r_{ij}) = \frac{T_n(x)+1}{2} f_c(r_{ij}) \tag{3}\]
+
+<p>Here, $x$ ranges from -1 to 1.</p>
+
+<p>The function $f_c(r_{ij})$ is a <strong>cutoff function</strong>:</p>
+
+\[f_c(r_{ij}) =
+\begin{cases}
+(1+\cos(\pi r_{ij}/r_c))/2 &amp;\quad r\leq r_c \\
+0 &amp;\quad r &gt; r_c \\
+\end{cases} \tag{4}\]
+
+<p>Note that radial functions are used in both radial and angular descriptors:</p>
+
+<ul>
+  <li>Radial components are expanded up to $n_\text{max}^\text R$, i.e., $n = 0, 1, …, n_\text{max}^\text R$</li>
+  <li>Angular components are expanded up to $n_\text{max}^\text A$ in radial terms and up to $l_\text{max}$ in angular terms</li>
+</ul>
+
+<p>The dimension of the full descriptor vector is:</p>
+
+\[N_\text{des} = (n_\text{max}^{\text R} + 1) + (n_\text{max}^{\text A} + 1) l_\text{max} \tag{5}\]
+
+<p>Note: cutoff radii for radial and angular components can differ, denoted $r_c^\text R$ and $r_c^\text A$.</p>
+
+<ul>
+  <li>Radial components capture longer-range interactions (e.g., Coulomb and van der Waals),</li>
+  <li>Angular components capture mid-range interactions.</li>
+</ul>
+
+<h3 id="12-multi-component-systems">1.2 Multi-Component Systems</h3>
+
+<p>The above discussion omits atom species. For multi-component systems, descriptors are constructed by:</p>
+
+<ul>
+  <li>Multiplying terms in Eq. (1) with weights like $Z_j$</li>
+  <li>Multiplying terms in Eq. (2) with weights like $Z_jZ_k$</li>
+</ul>
+
+<p>This method is used in the PyXtal_FF package and applies to all implemented descriptors.</p>
+
+<p>With our definition of $g_n(r_{ij})$ in Eq. (3), the cutoff function is modified as: $f_c(r_{ij})Z_j$ or $f_c(r_{ij})\sqrt{Z_iZ_j}$.</p>
+
+<h2 id="2-from-descriptors-to-site-energy">2. From Descriptors to Site Energy</h2>
+
+<p>In machine learning potentials, the site energy is modeled as a function of descriptor components:</p>
+
+\[U_i = U_i(\{q_{nl}^i\}) \tag{6}\]
+
+<p>This is a multivariable scalar function.</p>
+
+<p>Different machine learning models have been used to construct this function, including <strong>neural networks</strong>, <strong>Gaussian regression</strong>, and <strong>linear regression</strong>. In NEP, we choose a <strong>feedforward neural network</strong>.</p>
+
+<p>The descriptor vector forms the input layer, and the site energy is the output layer. One or more hidden layers may lie in between.</p>
+
+<p>Let $q_\nu^i$ be the descriptor vector (merging $n$ and $l$ into $\nu$). Let $x_\mu$ denote the hidden layer neuron states ($1 \leq \mu \leq N_\text{neu}$).</p>
+
+<p>Then the hidden layer state is computed as:</p>
+
+\[x_\mu = \tanh\left(\sum_{\nu=1}^{N_\text{des}} w_{\mu\nu}^{(1)} q_\nu^i - b_\mu^{(1)}\right) \tag{7}\]
+
+<p>Here, $w_{\mu\nu}^{(1)}$ is the weight between input $\nu$ and neuron $\mu$, and $b_\mu^{(1)}$ is the bias.</p>
+
+<p>We use the hyperbolic tangent as the activation function.</p>
+
+<p>The output (site energy) is computed as a linear combination of hidden neurons:</p>
+
+\[U_i = \sum_{\mu=1}^{N_\text{neu}} w_\mu^{(2)} x_\mu - b^{(2)} \tag{8}\]
+
+<h2 id="3-training-the-machine-learning-potential">3. Training the Machine Learning Potential</h2>
+
+<h3 id="31-defining-the-loss-function">3.1 Defining the Loss Function</h3>
+
+<p>The goal is to determine the weights and biases that minimize a <strong>loss function</strong> measuring error between the ML-predicted quantities (energy, forces, stress) and quantum target data.</p>
+
+<p>Let $\mathbf z$ be the vector of all network parameters, of dimension $N_\text{par}$. For a single-hidden-layer network:</p>
+
+\[N_\text{par} = (N_\text{des}+2)N_\text{neu} + 1 \tag{9}\]
+
+<p>The <strong>loss function</strong> $L$ is a function of $\mathbf z$:</p>
+
+\[L = L(\mathbf z) \tag{10}\]
+
+<p>Training becomes a <strong>real-valued optimization problem</strong>:</p>
+
+\[\mathbf z^* = \min L(\mathbf z) \tag{11}\]
+
+<p>Here, $\mathbf z^*$ are the optimal parameters.</p>
+
+<p>The total loss combines several weighted terms:</p>
+
+<ul>
+  <li>Energy loss $L_\text{e}(\mathbf z)$</li>
+  <li>Force loss $L_\text{f}(\mathbf z)$</li>
+  <li>Stress loss $L_\text{v}(\mathbf z)$</li>
+  <li>Regularization losses $L_1(\mathbf z)$ and $L_2(\mathbf z)$</li>
+</ul>
+
+<p>The total loss is:</p>
+
+\[L(\mathbf z) = \lambda_\text{e} L_\text{e} + \lambda_\text{f} L_\text{f} + \lambda_\text{v} L_\text{v} + \lambda_1 L_1 + \lambda_2 L_2 \tag{12}\]
+
+<ul>
+  <li><strong>Energy loss</strong> (RMSE):</li>
+</ul>
+
+\[L_\text{e}(\mathbf z) = \left( \frac{1}{N_\text{str}} \sum_{n=1}^{N_\text{str}} (U^\text{NEP}(n,\mathbf z) - U^\text{tar}(n))^2 \right)^{1/2} \tag{13}\]
+
+\[U = \sum_i U_i \tag{14}\]
+
+<ul>
+  <li><strong>Force loss</strong> (RMSE):</li>
+</ul>
+
+\[L_\text{f}(\mathbf z) = \left( \frac{1}{3N} \sum_{i=1}^{3N} (\mathbf F_i^\text{NEP} - \mathbf F_i^\text{tar})^2 \right)^{1/2} \tag{15}\]
+
+\[\mathbf F_i = \sum_{j\neq i} \mathbf F_{ij} \tag{16}\]
+
+\[\mathbf F_{ij} = \frac{\partial U_i}{\partial \mathbf r_{ij}} - \frac{\partial U_j}{\partial \mathbf r_{ji}} \tag{17}\]
+
+<ul>
+  <li><strong>Stress loss</strong> (RMSE):</li>
+</ul>
+
+\[L_\text{v}(\mathbf z) = \left( \frac{1}{6N_\text{str}} \sum_{n=1}^{N_\text{str}} \sum_{\mu\nu} (W^\text{NEP}_{\mu\nu}(n) - W^\text{tar}_{\mu\nu}(n))^2 \right)^{1/2} \tag{18}\]
+
+\[\mathbf W_i = \sum_{j\neq i} \mathbf r_{ij} \otimes \frac{\partial U_j}{\partial \mathbf r_{ji}} \tag{19}\]
+
+<ul>
+  <li><strong>Regularization terms</strong>:</li>
+</ul>
+
+\[L_1(\mathbf z) = \frac{1}{N_\text{par}} \sum_{n=1}^{N_\text{par}} |z_n| \tag{20}\]
+
+\[L_2(\mathbf z) = \left( \frac{1}{N_\text{par}} \sum_{n=1}^{N_\text{par}} z_n^2 \right)^{1/2} \tag{21}\]
+
+<p>Regularization helps prevent overfitting by keeping weights small.</p>
+
+<p>Recommended weights:</p>
+
+<ul>
+  <li>$\lambda_\text{e} = \lambda_\text{f} = \lambda_\text{v} = 1$ for eV/atom (energy), eV/Å (force)</li>
+  <li>Tune $\lambda_1$, $\lambda_2$ for balance between overfitting and underfitting</li>
+</ul>
+
+<h3 id="32-separable-natural-evolution-strategies-as-training-algorithm">3.2 Separable Natural Evolution Strategies as Training Algorithm</h3>
+
+<p>SNES is a derivative-free black-box optimizer that follows the <strong>natural gradient</strong> of the loss function.</p>
+
+<p><strong>Workflow</strong>:</p>
+
+<ol>
+  <li>
+    <p><strong>Initialization</strong>:
+Create an initial search distribution with mean $\mathbf m$ and standard deviation $\mathbf s$ (e.g., $\mathbf m \in [-0.5, 0.5]$, $\mathbf s = 0.1$)</p>
+  </li>
+  <li>
+    <p><strong>Iterations</strong> for $N_\text{gen}$ generations:</p>
+  </li>
+</ol>
+
+<ul>
+  <li>a. Generate population of candidate solutions:</li>
+</ul>
+
+\[\mathbf z_k \leftarrow \mathbf m + \mathbf s \odot \mathbf r_k \tag{22}\]
+
+<p>where $\mathbf r_k$ is drawn from a standard normal distribution.</p>
+
+<ul>
+  <li>
+    <p>b. Evaluate all $L(\mathbf z_k)$ and sort candidates</p>
+  </li>
+  <li>
+    <p>c. Update natural gradients:</p>
+  </li>
+</ul>
+
+\[\nabla_{\mathbf m} \mathbf J \leftarrow \sum_k u_k \mathbf r_k \tag{23}\]
+
+\[\nabla_{\mathbf s} \mathbf J \leftarrow \sum_k u_k (\mathbf r_k \odot \mathbf r_k - 1) \tag{24}\]
+
+<p>where $u_k$ are rank-based utility values.</p>
+
+<ul>
+  <li>d. Update search distribution:</li>
+</ul>
+
+\[\mathbf m \leftarrow \mathbf m + \eta_\mathbf{m} (\mathbf s \odot \nabla_{\mathbf m} \mathbf J) \tag{25}\]
+
+\[\mathbf s \leftarrow \mathbf s + \exp\left(\frac{\eta_\mathbf{s}}{2} \nabla_{\mathbf s} \mathbf J\right) \tag{25}\]
+
+<p>where $\eta_\mathbf{m}$ and $\eta_\mathbf{s}$ are learning rates.</p>]]></content><author><name></name></author><category term="Machine-Learning" /><summary type="html"><![CDATA[Classical interatomic potentials play a critical role in atomic simulations by enabling efficient calculation of various material properties. Machine learning-based interatomic potentials can achieve quantum-level accuracy while significantly reducing computational cost.]]></summary></entry><entry><title type="html">Landauer Theory for Electrons and Phonons</title><link href="https://lyushisyan.github.io/blog/2025/el-ph-landauer/" rel="alternate" type="text/html" title="Landauer Theory for Electrons and Phonons" /><published>2025-03-05T09:36:10+03:00</published><updated>2025-03-05T09:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2025/el-ph-landauer</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2025/el-ph-landauer/"><![CDATA[<p>In nanoscale thermal transport, how to accurately describe the heat flow of electrons or phonons between two reservoirs (thermal baths) from a microscopic perspective has become a research hotspot. Landauer theory was initially proposed to analyze electron transport in quantum wires, but later this concept was extended to bosonic systems like phonons, revealing the essence of transport in nano- or micro/nano-structures.</p>
+
+<ul>
+  <li><strong>Electrons (fermions):</strong> Follow the Fermi-Dirac distribution. Each quantum state can accommodate at most two electrons (spin degeneracy). The chemical potential $\mu$ plays a key role in electron transport.</li>
+  <li><strong>Phonons (bosons):</strong> Follow the Bose-Einstein distribution. Each quantum state can contain an unlimited number of phonons (no spin degeneracy, and typically $\mu = 0$).</li>
+</ul>
+
+<h2 id="1-landauer-theory-and-heat-flow-description">1. Landauer Theory and Heat Flow Description</h2>
+
+<p>The core idea of Landauer theory in heat transport is: <strong>the transport process can be understood as quantum states being scattered or transmitted through a relatively short device region</strong>, and the upper limit of transport is determined by the number of available modes (transport channels) and the probability that these modes can transmit through the device (i.e., transmission function $\tau(\mathbf{k})$).</p>
+
+<p>A simple physical picture is:</p>
+
+<ul>
+  <li>The device is treated as a scattering region with different distribution functions in the left and right thermal reservoirs.</li>
+  <li>For a wave vector $\mathbf{k}$ with $k_x &gt; 0$, particles propagate from left to right; conversely, if $k_x &lt; 0$, they move from right to left.</li>
+  <li>The net heat flow equals “left-to-right heat flow” minus “right-to-left heat flow.”</li>
+</ul>
+
+<p>The heat flux density from the left to the right reservoir (unit: W/m$^{d-1}$) is generally written as:</p>
+
+\[J_{Q,L\to R}(T_1) = \frac{1}{L^d}\sum_p\sum_{\mathbf{k};k_x&gt;0} v_{gx,p}(\mathbf{k}) \tau_p(\mathbf{k}) [E_{i,p}(\mathbf{k}) - \mu][f_i^0(E_{i,p}(\mathbf{k}), T_1) + c_0]\]
+
+<p>where:</p>
+
+<ul>
+  <li>$v_{gx,p}$: group velocity component in the $x$ direction;</li>
+  <li>$\tau_p(\mathbf{k})$: transmission function;</li>
+  <li>$E_{i,p}$: particle energy;</li>
+  <li>$f_i^0$: equilibrium distribution function;</li>
+  <li>$\mu$: chemical potential;</li>
+  <li>$c_0$: zero-point energy correction.</li>
+</ul>
+
+<p>Similarly, the heat flow from right to left can be written, and the <strong>net heat flow</strong> is:</p>
+
+\[J_{Q,\text{net}} = \frac{1}{L^d}\sum_p\sum_{\mathbf{k};k_x&gt;0} v_{gx,p} \tau_p [E_{i,p} - \mu][f_i^0(T_1) - f_i^0(T_2)]\]
+
+<p>Note that the zero-point energy $c_0$ cancels out in the net heat flow and thus has no net contribution.</p>
+
+<h2 id="2-from-k-space-summation-to-integral-form">2. From k-Space Summation to Integral Form</h2>
+
+<p>For better analysis, the k-space summation is often converted into an integral (Landauer integral). The forms differ with dimensionality:</p>
+
+<h3 id="1d-system">1D System:</h3>
+
+\[J_{Q,\text{net}} = \sum_p \int_0^\infty \frac{v_{g,p} \tau_p [E_{i,p}(k) - \mu]}{2\pi} [f_i^0(T_1) - f_i^0(T_2)] dk\]
+
+<h3 id="2d-system">2D System:</h3>
+
+\[J_{Q,\text{net}} = \sum_p\int_{-\pi/2}^{\pi/2}\int_0^\infty\frac{v_{g,p}\cos\theta\tau_p [E_{i,p}(k)-\mu]}{4\pi^2}[f_i^0(T_1)-f_i^0(T_2)]kdkd\theta\]
+
+\[= \frac{1}{2\pi^2}\sum_p\int_0^\infty v_{g,p}\tau_p [E_{i,p}(k)-\mu] [f_i^0(T_1)-f_i^0(T_2)]kdk\]
+
+<h3 id="3d-system">3D System:</h3>
+
+\[J_{Q,\text{net}} = \sum_p\int_0^{2\pi}\int_{0}^{\pi/2}\int_0^\infty\frac{v_{g,p}\cos\theta\tau_p [E_{i,p}(k)-\mu]}{8\pi^3} [f_i^0(T_1)-f_i^0(T_2)]k^2dk\sin\theta d\theta d\varphi\]
+
+\[= \frac{1}{8\pi^2}\sum_p\int_0^\infty v_{g,p}\tau_p [E_{i,p}(k)-\mu] [f_i^0(T_1)-f_i^0(T_2)]k^2dk\]
+
+<p>Angle $\theta$ denotes the angle between the wave vector and the transport direction $x$. It’s often assumed that $\tau$ is direction-independent.</p>
+
+<p>By introducing the density of states (DOS), the k-space integral can be converted into an integral over frequency $\omega$ or energy $E$.</p>
+
+<h3 id="for-phonons">For Phonons:</h3>
+
+<p>Using frequency DOS $D(\omega)$ and $E = \hbar\omega$ with $\mu = 0$:</p>
+
+<ul>
+  <li><strong>1D:</strong></li>
+</ul>
+
+\[J_{Q,\text{ph}} = \frac{1}{2} \sum_p \int_0^\infty v_{g,p} D_{\text{1D}}(\omega) \tau_p(\omega) \hbar\omega [f_{\text{BE}}^0(T_1) - f_{\text{BE}}^0(T_2)] d\omega\]
+
+<ul>
+  <li><strong>2D:</strong></li>
+</ul>
+
+\[J_{Q,\text{ph}} = \frac{1}{\pi} \sum_p \int_0^\infty v_{g,p} D_{\text{2D}}(\omega) \tau_p(\omega) \hbar\omega [f_{\text{BE}}^0(T_1) - f_{\text{BE}}^0(T_2)] d\omega\]
+
+<ul>
+  <li><strong>3D:</strong></li>
+</ul>
+
+\[J_{Q,\text{ph}} = \frac{1}{4} \sum_p \int_0^\infty v_{g,p} D_{\text{3D}}(\omega) \tau_p(\omega) \hbar\omega [f_{\text{BE}}^0(T_1) - f_{\text{BE}}^0(T_2)] d\omega\]
+
+<h3 id="for-electrons">For Electrons:</h3>
+
+<p>With nonzero chemical potential $\mu$ and energy DOS $D(E)$:</p>
+
+<ul>
+  <li><strong>1D:</strong></li>
+</ul>
+
+\[J_{Q,\text{el}} = \frac{1}{2} \sum_p \int_0^\infty v_{g,p} D_{\text{1D}}(E) \tau_p(E) (E - \mu) [f_{\text{FD}}^0(T_1) - f_{\text{FD}}^0(T_2)] dE\]
+
+<ul>
+  <li><strong>2D:</strong></li>
+</ul>
+
+\[J_{Q,\text{el}} = \frac{1}{\pi} \sum_p \int_0^\infty v_{g,p} D_{\text{2D}}(E) \tau_p(E) (E - \mu) [f_{\text{FD}}^0(T_1) - f_{\text{FD}}^0(T_2)] dE\]
+
+<ul>
+  <li><strong>3D:</strong></li>
+</ul>
+
+\[J_{Q,\text{el}} = \frac{1}{4} \sum_p \int_0^\infty v_{g,p} D_{\text{3D}}(E) \tau_p(E) (E - \mu) [f_{\text{FD}}^0(T_1) - f_{\text{FD}}^0(T_2)] dE\]
+
+<h2 id="3-number-of-modes-and-half-wavelength-interpretation">3. Number of Modes and Half-Wavelength Interpretation</h2>
+
+<p>To combine quantitative analysis with intuitive understanding, the Landauer theory introduces the concept of <strong>number of modes</strong>.</p>
+
+<p>This idea can also be used to analyze <strong>heat flow</strong> $Q$ (in watts), which is the product of <strong>heat flux density</strong> $J_Q$ and “cross-sectional area”:</p>
+
+<ul>
+  <li>For 1D: the area is 1 (or ignored);</li>
+  <li>For 2D: the area is the contact width $W$;</li>
+  <li>For 3D: the area is the contact cross-sectional area $A$.</li>
+</ul>
+
+<h3 id="31-general-expression-for-phonon-heat-flow">3.1 General Expression for Phonon Heat Flow</h3>
+
+<p>For phonons, the general expression for heat flow (or thermal power) is:</p>
+
+\[Q_{\text{ph}} = \frac{1}{2\pi} \int_0^\infty M(\omega)\tau(\omega)\hbar\omega [f_\text{BE}^0(T_1) - f_\text{BE}^0(T_2)]\,d\omega\]
+
+<p>where:</p>
+
+<ul>
+  <li>$M(\omega)$ is the <strong>number of modes</strong>, representing the number of half-wavelengths (λ/2) of phonons per unit cross-sectional area at frequency $\omega$;</li>
+  <li>$\tau(\omega)$ is the transmission function;</li>
+  <li>$f_\text{BE}^0$ is the Bose-Einstein distribution function.</li>
+</ul>
+
+<h3 id="32-number-of-modes-in-different-dimensions">3.2 Number of Modes in Different Dimensions</h3>
+
+<p>The number of modes varies with dimensionality:</p>
+
+<ul>
+  <li><strong>1D:</strong></li>
+</ul>
+
+\[M(\omega) = M_{\text{1D}}(\omega)\]
+
+<ul>
+  <li><strong>2D:</strong></li>
+</ul>
+
+\[M(\omega) = W \cdot M_{\text{2D}}(\omega)\]
+
+<ul>
+  <li><strong>3D:</strong></li>
+</ul>
+
+\[M(\omega) = A \cdot M_{\text{3D}}(\omega)\]
+
+<p>By comparing the relations $J_Q(1D)=Q$, $J_Q(2D)=Q/W$, $J_Q(3D)=Q/A$ with the expressions for heat flux density, we can derive the relationship between mode density $M(\omega)$ and density of states $D(\omega)$:</p>
+
+\[M_{\text{1D}}(\omega) = 1 = \pi v_g(\omega) D_{\text{1D}}(\omega)\]
+
+\[M_{\text{2D}}(\omega) = \frac{K(\omega)}{\pi} = \pi \cdot \frac{2v_g(\omega)}{\pi} D_{\text{2D}}(\omega)\]
+
+\[M_{\text{3D}}(\omega) = \frac{K^2(\omega)}{4\pi} = \pi \cdot \frac{v_g(\omega)}{2} D_{\text{3D}}(\omega)\]
+
+<p>Here, $v_g(\omega)$ is the group velocity, and $K(\omega)$ is the wave vector magnitude.</p>
+
+<p>We know the <strong>phonon DOS</strong> is:</p>
+
+\[D_{\text{1D}}(\omega) = \frac{1}{\pi v_g(\omega)}\]
+
+\[D_{\text{2D}}(\omega) = \frac{K(\omega)}{2\pi v_g(\omega)}\]
+
+\[D_{\text{3D}}(\omega) = \frac{K^2(\omega)}{2\pi^2 v_g(\omega)}\]
+
+<p>Substituting these into the expressions for number of modes:</p>
+
+\[M_{\text{1D}}(\omega) = \pi v_g(\omega) \cdot \frac{1}{\pi v_g(\omega)} = 1\]
+
+\[M_{\text{2D}}(\omega) = W \cdot \pi \cdot \left[ \frac{2v_g(\omega)}{\pi} \right] \cdot \frac{K(\omega)}{2\pi v_g(\omega)}\]
+
+\[M_{\text{3D}}(\omega) = A \cdot \pi \cdot \left[ \frac{v_g(\omega)}{2} \right] \cdot \frac{K^2(\omega)}{2\pi^2 v_g(\omega)}\]
+
+<h3 id="33-physical-meaning-of-spatially-averaged-group-velocity">3.3 Physical Meaning of Spatially Averaged Group Velocity</h3>
+
+<p>The terms in square brackets above represent the <strong>spatially averaged x-direction group velocity</strong> at a given frequency:</p>
+
+<ul>
+  <li><strong>1D</strong>: Only motion along x-direction, so the average is $v_g$ itself;</li>
+  <li><strong>2D</strong>: Average of $\cos\theta$ over a semicircle is $2/\pi$, thus $\langle v_{gx} \rangle = 2v_g/\pi$;</li>
+  <li><strong>3D</strong>: Average of $\cos\theta$ over a hemisphere is $1/2$, thus $\langle v_{gx} \rangle = v_g/2$.</li>
+</ul>
+
+<h3 id="34-geometric-interpretation-using-half-wavelength">3.4 Geometric Interpretation Using Half-Wavelength</h3>
+
+<p>The number of modes $M(\omega)$ can also be interpreted geometrically as the number of half-wavelengths fitting into the cross-section:</p>
+
+<ul>
+  <li>In <strong>1D</strong>, there’s only 1 propagating mode per frequency;</li>
+  <li>In <strong>2D</strong>, the contact width $W$ can be divided into half-wavelength sections;</li>
+  <li>In <strong>3D</strong>, the contact area $A$ is filled with these half-wave units.</li>
+</ul>
+
+\[(\text{1D}) :\quad M(\omega)=1\]
+
+\[(\text{2D}) :\quad M(\omega) = \frac{W}{\lambda/2}\]
+
+\[(\text{3D}) :\quad M(\omega) = \frac{A}{4/\pi(\lambda/2)^2}\]
+
+<h3 id="35-similar-analysis-for-electrons">3.5 Similar Analysis for Electrons</h3>
+
+<p>For electrons, a similar analysis gives the energy-integrated thermal flow as:</p>
+
+\[Q_{\text{el}} = \frac{1}{\pi\hbar} \int_0^\infty M(E) \tau(E)(E - \mu)[f_\text{FD}^0(T_1) - f_\text{FD}^0(T_2)]\,dE\]
+
+<p>According to Lundstrom and Jeong (2013), for electrons with a parabolic band, the number of modes is:</p>
+
+\[(\text{1D}) :\quad M_\text{1D}(E) = H(E - E_c)\]
+
+\[(\text{2D}) :\quad M(E) = W \cdot g_v \cdot \frac{\sqrt{2m^*(E - E_c)}}{\pi\hbar} \cdot H(E - E_c)\]
+
+\[(\text{3D}) :\quad M(E) = A \cdot g_v \cdot \frac{m^*(E - E_c)}{2\pi\hbar^2} \cdot H(E - E_c)\]
+
+<p>Where:</p>
+
+<ul>
+  <li>$H(E - E_c)$ is the Heaviside function (only electrons above the conduction band minimum contribute);</li>
+  <li>$g_v$ is valley degeneracy;</li>
+  <li>$m^*$ is the effective mass;</li>
+  <li>$E_c$ is the conduction band minimum.</li>
+</ul>
+
+<hr />
+
+<h2 id="4-thermal-conductance-and-spectral-conductance">4. Thermal Conductance and Spectral Conductance</h2>
+
+<h3 id="41-thermal-conductance">4.1 Thermal Conductance</h3>
+
+<p><strong>Thermal conductance</strong> $G_Q$ is defined as heat flow per unit temperature difference:</p>
+
+\[G_Q = \frac{Q}{T_1 - T_2}\]
+
+<p>For small temperature differences, the differential form is:</p>
+
+\[G_Q(T) = \frac{Q(T + \delta T/2, T - \delta T/2)}{\delta T}\]
+
+<h4 id="for-phonons-1">For Phonons:</h4>
+
+\[G_Q(T) = \frac{1}{2\pi} \int_0^\infty M(\omega) \tau(\omega) \hbar\omega \frac{\partial f_\text{BE}^0}{\partial T} \, d\omega\]
+
+<h4 id="for-electrons-1">For Electrons:</h4>
+
+\[G_Q(T) = \frac{1}{\pi\hbar} \int_0^\infty M(E) \tau(E) (E - \mu) \frac{\partial f_\text{FD}^0}{\partial T} \, dE\]
+
+<p>Here, $M$ is the number of modes, $\tau$ is the transmission function, and $f^0$ is the equilibrium distribution.</p>
+
+<h3 id="42-spectral-conductance">4.2 Spectral Conductance</h3>
+
+<p>The integrand of $G_Q$ represents the <strong>contribution to thermal conductance at each frequency or energy</strong>, known as the <strong>spectral conductance</strong> $G_Q’$:</p>
+
+<ul>
+  <li><strong>For Phonons:</strong></li>
+</ul>
+
+\[G_Q'(\omega, T) = \frac{1}{2\pi} M(\omega) \tau(\omega) \hbar\omega \frac{\partial f_\text{BE}^0}{\partial T}\]
+
+<ul>
+  <li><strong>For Electrons:</strong></li>
+</ul>
+
+\[G_Q'(E, T) = \frac{1}{\pi\hbar} M(E) \tau(E) (E - \mu) \frac{\partial f_\text{FD}^0}{\partial T}\]
+
+<p>These functions show that the energy transport capacity depends on both the number of available modes $M$ and the thermal sensitivity $\partial f / \partial T$.</p>
+
+<p>To simplify analysis, one can define a <strong>normalized spectral conductance</strong> by dividing out constants like $k_B$, $M$, and assuming <strong>ideal transmission</strong> $\tau = 1$:</p>
+
+\[\tilde G_Q' = \frac{G_Q'}{C_0k_BM\tau} = (f_i^0)^2e^xx^2\]
+
+<p>with $x = \hbar\omega / k_B T$ as the dimensionless energy.</p>
+
+<p>In the <strong>phonon case</strong>, for low-frequency modes, the normalized conductance approaches 1 — indicating that <strong>each mode contributes equally</strong> at low frequencies, until the energy exceeds thermal energy $k_BT$.</p>
+
+<p>In the <strong>electron case</strong>, low-energy modes contribute little due to the <strong>Pauli exclusion principle</strong>: electrons must be thermally excited across the Fermi level, so most contribution comes from states near $E \approx \mu$.</p>]]></content><author><name></name></author><category term="Physics" /><summary type="html"><![CDATA[In nanoscale thermal transport, how to accurately describe the heat flow of electrons or phonons between two reservoirs (thermal baths) from a microscopic perspective has become a research hotspot. Landauer theory was initially proposed to analyze electron transport in quantum wires, but later this concept was extended to bosonic systems like phonons, revealing the essence of transport in nano- or micro/nano-structures.]]></summary></entry><entry><title type="html">First-Principles-Based PBTE Method</title><link href="https://lyushisyan.github.io/blog/2025/abinitio-bte/" rel="alternate" type="text/html" title="First-Principles-Based PBTE Method" /><published>2025-02-16T09:36:10+03:00</published><updated>2025-02-16T09:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2025/abinitio-bte</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2025/abinitio-bte/"><![CDATA[<p>In microscale and nanoscale heat conduction, size effects mainly involve two key length scales: <strong>phonon wavelength</strong> and <strong>mean free path (MFP)</strong>.</p>
+
+<ul>
+  <li>If the system’s characteristic size is much larger than the phonon MFP, heat conduction is in the <strong>macroscopic diffusive regime</strong>, and the classical heat diffusion equation is applicable.</li>
+  <li>If the size is comparable to the phonon MFP, <strong>classical size effects</strong> and <strong>ballistic phonon transport</strong> must be considered. In this case, the <strong>Boltzmann Transport Equation (BTE)</strong> should be used to describe energy transport.</li>
+  <li>If the size further shrinks to the scale of the phonon wavelength, <strong>wave characteristics of phonons</strong> become important.</li>
+</ul>
+
+<p>The <strong>First-Principles Phonon Boltzmann Transport Equation (PBTE)</strong> method is essentially a combination of the following three techniques:</p>
+
+<ul>
+  <li><strong>First-principles method (ab initio method)</strong>: A numerical method for solving the <strong>Schrödinger equation</strong>.</li>
+  <li><strong>Lattice dynamics method</strong>: A method to compute phonon dispersion and relaxation times based on interatomic force constants (IFCs).</li>
+  <li><strong>Boltzmann Transport Equation (BTE)</strong>: A heat transport model that uses phonon dispersion and relaxation time as inputs to calculate the system’s total thermal conductivity.</li>
+</ul>
+
+<h2 id="1-first-principles-methods">1. First-Principles Methods</h2>
+
+<p>First-principles (ab initio) methods refer to techniques that solve the electronic structure and atomic interactions of materials within the framework of quantum mechanics, using <strong>minimal empirical parameters</strong>. They are primarily based on numerical solutions to the Schrödinger equation, yielding properties such as ground-state electron density, band structure, total energy, and other physical quantities.
+In solid-state physics and materials science, first-principles methods are typically based on <strong>Density Functional Theory (DFT)</strong>. As the full many-body Schrödinger equation is difficult to solve directly, DFT provides an efficient way to handle many-body problems via the electron density and is widely applied to metals, semiconductors, insulators, molecules, and surfaces.</p>
+
+<h3 id="11-basic-concept-of-density-functional-theory">1.1 Basic Concept of Density Functional Theory</h3>
+
+<p>The core concepts of DFT originate from the Hohenberg-Kohn theorem and the Kohn-Sham equation:</p>
+
+<ol>
+  <li>The <strong>Hohenberg-Kohn theorem</strong> states that all ground-state physical quantities of a system are functionals of the electron density $\rho(\mathbf{r})$, i.e., the Hamiltonian and energy of the system are uniquely determined by the electron density.</li>
+  <li>The <strong>Kohn-Sham equation</strong> maps the real many-electron system to an auxiliary system of non-interacting electrons, using an appropriate <strong>exchange-correlation potential</strong> to approximate electron–electron interactions. The multi-body problem thus becomes solving a set of single-particle-like equations:</li>
+</ol>
+
+\[\left[ -\frac{\hbar^2}{2m}\nabla^2 + V_\text{ext}(\mathbf{r}) + V_\text{H}(\mathbf{r}) + V_\text{xc}(\mathbf{r}) \right] \phi_i(\mathbf{r}) = \epsilon_i \phi_i(\mathbf{r})\]
+
+<p>Where:</p>
+
+<ul>
+  <li>$V_\text{ext}(\mathbf{r})$: Coulomb potential from atomic nuclei</li>
+  <li>$V_\text{H}(\mathbf{r})$: classical Hartree potential</li>
+  <li>$V_\text{xc}(\mathbf{r})$: exchange-correlation potential that includes all complex many-body effects</li>
+</ul>
+
+<p>In practice, one must choose an exchange-correlation functional (e.g., LDA, GGA, or hybrid functionals) and adopt a method to treat real and reciprocal space (e.g., pseudopotentials, PAW, APW+lo, etc.).</p>
+
+<h3 id="12-obtaining-interatomic-force-constants-ifcs-from-dft">1.2 Obtaining Interatomic Force Constants (IFCs) from DFT</h3>
+
+<p>A crucial step in thermal conductivity calculations is determining the <strong>interatomic force constants (IFCs)</strong> of the material. These constants are used to construct the dynamical matrix and calculate lattice dynamical properties such as phonon dispersion and phonon lifetimes. IFCs can be obtained from first-principles calculations using two main methods:</p>
+
+<h4 id="121-density-functional-perturbation-theory-dfpt">1.2.1 Density Functional Perturbation Theory (DFPT)</h4>
+
+<p>In the DFPT framework, small periodic perturbations are applied to the periodic structure, and the linearized Kohn-Sham equations are solved to obtain the first-, second-, or third-order responses of the potential energy with respect to atomic displacements.</p>
+
+<ul>
+  <li>DFPT can directly calculate IFCs and phonon modes in $\mathbf{q}$-space.</li>
+  <li>Both second-order (harmonic) and third-order (anharmonic) IFCs can be obtained for phonon dispersion and scattering analysis.</li>
+</ul>
+
+<h4 id="122-finite-displacement-method-fdm">1.2.2 Finite Displacement Method (FDM)</h4>
+
+<p>In this method, small displacements (e.g., 0.01 Å) are applied to atoms in a supercell, and the resulting changes in energy or forces are used to compute second-order and higher-order IFCs:</p>
+
+<ul>
+  <li>A sufficiently large supercell is required to ensure negligible interaction across boundaries.</li>
+  <li>Multiple configurations with different displacements must be computed to extract complete IFCs.</li>
+</ul>
+
+<p>Both methods rely on DFT-level force or energy calculations. Since phonon properties are sensitive to calculation accuracy, careful choices of exchange-correlation functional, plane-wave cutoff energy, and k-point mesh are necessary to ensure accurate IFCs.</p>
+
+<h2 id="2-harmonic-and-anharmonic-lattice-dynamics">2. Harmonic and Anharmonic Lattice Dynamics</h2>
+
+<p>In <strong>harmonic lattice dynamics</strong>, the second-order IFCs are used to obtain the phonon dispersion relation $\omega_\lambda(\mathbf{q})$. Once dispersion is known, specific heat of each phonon mode $\lambda$ can be computed.
+The phonon group velocity is defined as the gradient of the frequency with respect to wave vector: $\mathbf{v}<em>\lambda = \nabla</em>\mathbf{q} \omega_\lambda$
+The <strong>relaxation time</strong> $\tau_\lambda$ is obtained through <strong>anharmonic lattice dynamics</strong>, which involves both second- and higher-order IFCs.</p>
+
+<h3 id="21-dispersion-relation">2.1 Dispersion Relation</h3>
+
+<p>For a periodic crystal with small displacements around equilibrium, the total potential energy $U$ can be expanded as a Taylor series:</p>
+
+\[U = U_0 + \frac{1}{2!} \sum_{ij}\sum_{\alpha\beta} \Phi_{ij}^{\alpha\beta} u_i^\alpha u_j^\beta + \frac{1}{3!} \sum_{ijk}\sum_{\alpha\beta\gamma} \Psi_{ijk}^{\alpha\beta\gamma} u_i^\alpha u_j^\beta u_k^\gamma + \mathcal{O}(u^4)\]
+
+<p>Where:</p>
+
+<ul>
+  <li>$U_0$: potential energy at equilibrium</li>
+  <li>$u_{i}^\alpha$: displacement of atom $i$ in direction $\alpha$</li>
+  <li>$\Phi_{ij}^{\alpha\beta}$: second-order IFCs (harmonic)</li>
+  <li>$\Psi_{ijk}^{\alpha\beta\gamma}$: third-order IFCs (anharmonic)</li>
+  <li>$\mathcal{O}(u^4)$: higher-order terms</li>
+</ul>
+
+<p>Due to force equilibrium, first-order terms are absent. Neglecting higher-order terms leads to the harmonic approximation.</p>
+
+<p>If atom $i$ belongs to the $b$-th atom in the $l$-th unit cell and $j$ is in the $l’$-th cell, the equation of motion becomes:</p>
+
+\[m_b\frac{d^2 u_{lb}^\alpha (t)}{d t^2} = -\sum_{l'b',\beta} \Phi_{lb,l'b'}^{\alpha\beta} u_{l'b'}^{\beta} (t)\]
+
+<p>Assuming plane wave solutions:</p>
+
+\[u_{lb}^\alpha (t) = \frac{1}{\sqrt{m_b}}\Lambda_\lambda e_{b,\lambda}^\alpha e^{i(\mathbf q\cdot\mathbf R_l - \omega_\lambda t)}\]
+
+<p>Substituting gives the eigenvalue equation:</p>
+
+\[\omega_\lambda^2 \mathbf e _{b,\lambda} = \mathbf D_{bb'}^{\alpha\beta}(\textbf q) \textbf e_{b,\lambda}\]
+
+<p>Where the <strong>dynamical matrix</strong> is:</p>
+
+\[\mathbf D_{bb'}^{\alpha\beta}(\textbf q) =\frac{1}{\sqrt{m_bm_{b'}}}\sum_{l'}\Phi_{0b,l'b'}^{\alpha\beta} e^{i\mathbf q\cdot(\mathbf R_{l'} - \mathbf R_0)}\]
+
+<p>Solving gives the phonon dispersion $\omega_\lambda(\mathbf{q})$ and corresponding eigenvectors ${e_{b,\lambda}^\alpha}$.</p>
+
+<h3 id="22-phonon-scattering-mechanisms-and-relaxation-time">2.2 Phonon Scattering Mechanisms and Relaxation Time</h3>
+
+<p>In real materials, phonons have finite lifetimes due to various scattering mechanisms. Within the BTE framework, these are expressed as <strong>scattering rates</strong> $\Gamma_\lambda$ or equivalently <strong>relaxation times</strong> $\tau_\lambda$.</p>
+
+<h4 id="221-phonon-phonon-scattering">2.2.1 Phonon-Phonon Scattering</h4>
+
+<p>In nonmetals, the dominant scattering is <strong>phonon-phonon interactions</strong>, i.e., anharmonic lattice effects. Quantum mechanically, the crystal Hamiltonian is divided into harmonic and anharmonic parts.
+Third-order scattering (three-phonon processes) includes combination and splitting processes. Energy and momentum conservation must be satisfied (including Umklapp processes):</p>
+
+\[\Gamma_{\lambda\lambda'\lambda''}^{\pm} = \frac{\hbar\pi}{4}\begin{Bmatrix}n_{\lambda'}-n_{\lambda''} \\ n_{\lambda'} + n_{\lambda''}+1 \end{Bmatrix} \frac{\delta(\omega_\lambda\pm\omega_{\lambda'} - \omega_{\lambda''})}{\omega_{\lambda}\omega_{\lambda'}\omega_{\lambda''}}|V_{\lambda\lambda'\lambda''}^{\pm}|^2\Delta_{\mathbf{G}, \,\mathbf{q}\pm \mathbf{q}' - \mathbf{q}''}\]
+
+<h4 id="222-phonon-impurity-scattering">2.2.2 Phonon-Impurity Scattering</h4>
+
+<p>Caused by mass or bonding perturbations from impurities (e.g., isotopes, defects):</p>
+
+\[\Gamma_{\lambda\lambda'} = \frac{\pi \omega_\lambda^2}{2}\delta(\omega_\lambda - \omega_{\lambda'})\sum_bg(b) |\mathbf e_{b,\lambda}^*\cdot \mathbf e_{b,\lambda'}|^2\]
+
+<p>Where $g(b) = \sum_s f_s(b)(1 - \frac{m_{b,s}}{\overline{m}_b})^2$ and $\overline{m}<em>b = \sum_s f_s(b) m</em>{b,s}$.</p>
+
+<h2 id="3-thermal-conductivity-and-the-boltzmann-transport-equation-bte">3. Thermal Conductivity and the Boltzmann Transport Equation (BTE)</h2>
+
+<h3 id="31-thermal-conductivity">3.1 Thermal Conductivity</h3>
+
+<p>According to Fourier’s law, the thermal conductivity $\kappa$ characterizes the ability of a material to conduct heat:</p>
+
+\[\mathbf{J} = -\kappa \nabla T\]
+
+<p>Where $\mathbf{J}$ is the heat flux vector and $\nabla T$ is the temperature gradient. In anisotropic materials, $\kappa$ is a tensor.</p>
+
+<p>To predict $\kappa$ from phonon properties, one must use the BTE to describe the non-equilibrium phonon distribution under a small temperature gradient. Assuming steady-state and small gradients, the linearized BTE is:</p>
+
+\[-\mathbf{v}_\lambda \nabla T \frac{\partial n_\lambda^0}{\partial T} = \frac{n_\lambda'}{\tau_\lambda}\]
+
+<p>Where:</p>
+
+<ul>
+  <li>$n_\lambda = n_\lambda^0 + n_\lambda’$ is the phonon distribution</li>
+  <li>$n_\lambda^0$ is the equilibrium Bose–Einstein distribution</li>
+  <li>$n_\lambda’$ is the perturbation from equilibrium</li>
+  <li>$\tau_\lambda$ is the relaxation time</li>
+  <li>$\mathbf{v}_\lambda$ is the group velocity of mode $\lambda$</li>
+</ul>
+
+<p>The Bose–Einstein distribution:</p>
+
+\[n_\lambda^0 = \frac{1}{\exp\left(\frac{\hbar \omega_\lambda}{k_B T}\right) - 1}\]
+
+<p>The heat flux contributed by phonons:</p>
+
+\[\mathbf{J} = \frac{1}{V} \sum_\lambda \hbar\omega_\lambda \mathbf{v}_\lambda n_\lambda\]
+
+<p>Where $V = N_0 \cdot \Omega$ is the total volume ($\Omega$ = unit cell volume, $N_0$ = number of $\mathbf{q}$-points). Comparing with Fourier’s law gives the thermal conductivity tensor:</p>
+
+\[\kappa^{\alpha\beta} = \frac{1}{V}\sum_\lambda \hbar\omega_\lambda \frac{\partial n_\lambda^0}{\partial T} v_\lambda^\alpha v_\lambda^\beta \tau_\lambda = \sum_\lambda c_\lambda v_\lambda^\alpha v_\lambda^\beta \tau_\lambda\]
+
+<p>Where $c_\lambda = \frac{\hbar\omega_\lambda}{V}\frac{\partial n_\lambda^0}{\partial T}$ is the mode heat capacity.
+For isotropic systems:</p>
+
+\[\kappa = \frac{1}{3V}\sum_\lambda \hbar\omega_\lambda \frac{\partial n_\lambda^0}{\partial T} |\mathbf{v}_\lambda|^2 \tau_\lambda\]
+
+<h3 id="32-single-mode-relaxation-time-approximation-smrta">3.2 Single-Mode Relaxation Time Approximation (SMRTA)</h3>
+
+<p>The SMRTA assumes that all phonon modes except mode $\lambda$ remain in equilibrium:</p>
+
+\[\begin{cases}
+n_\lambda = n_\lambda^0 + n_\lambda' \\
+n_{\lambda'} = n_{\lambda'}^0 \\
+n_{\lambda''} = n_{\lambda''}^0
+\end{cases}\]
+
+<p>The SMRTA relaxation time becomes:</p>
+
+\[\frac{1}{\tau_\lambda^0} = \sum_{\lambda'\lambda''}^+ \Gamma_{\lambda\lambda'\lambda''}^+ + \sum_{\lambda'\lambda''}^- \frac{1}{2} \Gamma_{\lambda\lambda'\lambda''}^- + \sum_{\lambda'}\Gamma_{\lambda\lambda'}\]
+
+<p>Where superscript 0 indicates this is the zero-order approximation.</p>
+
+<h3 id="33-iterative-solution">3.3 Iterative Solution</h3>
+
+<p>To overcome SMRTA limitations, the <strong>Full Iterative Method</strong> solves the BTE self-consistently:</p>
+
+\[\begin{cases}
+n_\lambda = n_\lambda^0 + n_\lambda' \\
+n_{\lambda'} = n_{\lambda'}^0 + n_{\lambda'}' \\
+n_{\lambda''} = n_{\lambda''}^0 + n_{\lambda''}'
+\end{cases}\]
+
+<p><strong>Initial Guess</strong>:
+Use $\tau_\lambda^0$ from SMRTA.</p>
+
+<p><strong>Self-Consistent Iteration</strong>:
+Form a coupled system of equations for all $n_\lambda’$ and iterate until convergence.</p>
+
+<p>The relaxation time becomes:</p>
+
+\[\tau_\lambda = \tau_\lambda^0 + \tau_\lambda^0 \Delta_\lambda\]
+
+\[\Delta_\lambda = \sum_{\lambda'\lambda''}^+ \Gamma_{\lambda\lambda'\lambda''}^+ (\xi_{\lambda\lambda''}\tau_{\lambda''} - \xi_{\lambda\lambda'}\tau_{\lambda'}) \\ + \sum_{\lambda'\lambda''}^- \frac{1}{2} \Gamma_{\lambda\lambda'\lambda''}^-(\xi_{\lambda\lambda''}\tau_{\lambda''} + \xi_{\lambda\lambda'}\tau_{\lambda'}) \\+ \sum_{\lambda'}\Gamma_{\lambda\lambda'}\xi_{\lambda\lambda'}\tau_{\lambda'}\]
+
+<p>This method includes more detailed interactions and better captures <strong>phonon redistribution</strong> caused by <strong>Normal processes</strong>, especially in high thermal conductivity or low-temperature systems. However, it is also more computationally intensive.</p>
+
+<h2 id="4-computational-workflow-and-software">4. Computational Workflow and Software</h2>
+
+<p>The general workflow for calculating phonon thermal conductivity includes:</p>
+
+<h3 id="1-extract-interatomic-force-constants-ifcs">(1) Extract Interatomic Force Constants (IFCs)</h3>
+
+<p>IFCs are the basis for lattice dynamics and thermal transport. They can be obtained via:</p>
+
+<ul>
+  <li><strong>Classical potentials</strong>: for simple structures with known potentials</li>
+  <li><strong>Machine learning potentials (MLPs)</strong>: recent development balancing accuracy and efficiency</li>
+  <li><strong>First-principles (DFT)</strong>: most common and accurate method without empirical parameters</li>
+</ul>
+
+<p>Two main extraction methods:</p>
+
+<ul>
+  <li><strong>Finite Displacement Method</strong>: Apply small displacements in supercells and use numerical derivatives to obtain IFCs (supports classical/ML/DFT).</li>
+  <li><strong>DFPT</strong>: Perturbative method within DFT framework; directly computes IFCs in reciprocal space.</li>
+</ul>
+
+<h3 id="2-truncation-and-symmetry-correction">(2) Truncation and Symmetry Correction</h3>
+
+<p>IFCs theoretically exist between all atomic pairs. In practice, a <strong>cutoff radius</strong> is applied. The impact of different cutoffs should be tested.</p>
+
+<p>Also, due to numerical noise and truncation, computed IFCs may violate <strong>translational invariance</strong> or crystal symmetry. These must be corrected to ensure accurate thermal conductivity.</p>
+
+<h3 id="3-compute-thermal-conductivity">(3) Compute Thermal Conductivity</h3>
+
+<p>With second- and third-order IFCs, combine <strong>anharmonic lattice dynamics</strong> and <strong>BTE</strong> using:</p>
+
+<ul>
+  <li><strong>SMRTA</strong>: fast estimation</li>
+  <li><strong>Full Iterative Solution</strong>: more accurate, especially for high-κ or low-T systems</li>
+</ul>
+
+<p>This method requires <strong>no fitting parameters</strong>, only the initial atomic structure. It is highly predictive and widely validated against experiments.</p>
+
+<h3 id="4-numerical-error-and-applicability">(4) Numerical Error and Applicability</h3>
+
+<p>Despite its strength, this method is still sensitive to:</p>
+
+<ul>
+  <li>DFT convergence, functional choice, and displacement size</li>
+  <li>IFC cutoff radius</li>
+  <li>Brillouin zone integration grid (q-mesh)</li>
+</ul>
+
+<p>Nevertheless, PBTE is considered one of the most reliable methods for predicting lattice thermal conductivity. It not only yields <strong>total κ</strong>, but also <strong>mode-resolved contributions</strong>, enabling studies of interfacial thermal conductance and nanoscale transport.</p>
+
+<h3 id="5-software-and-interfaces">(5) Software and Interfaces</h3>
+
+<p>Several open-source packages support this workflow:</p>
+
+<ul>
+  <li><strong>ShengBTE</strong></li>
+  <li><strong>phono3py</strong></li>
+</ul>
+
+<p>These integrate well with major first-principles codes like:</p>
+
+<ul>
+  <li><strong>VASP</strong></li>
+  <li><strong>Quantum ESPRESSO</strong></li>
+  <li><strong>ABINIT</strong></li>
+</ul>
+
+<p>They enable an end-to-end automated workflow from structure optimization to IFC extraction and thermal conductivity prediction.</p>]]></content><author><name></name></author><category term="Heat-conduction" /><category term="Calculation" /><summary type="html"><![CDATA[In microscale and nanoscale heat conduction, size effects mainly involve two key length scales: phonon wavelength and mean free path (MFP).]]></summary></entry><entry><title type="html">Topological Quantities and Properties of Phonons</title><link href="https://lyushisyan.github.io/blog/2024/topology/" rel="alternate" type="text/html" title="Topological Quantities and Properties of Phonons" /><published>2024-12-02T02:36:10+03:00</published><updated>2024-12-02T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/topology</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/topology/"><![CDATA[<h2 id="topological-geometry">Topological Geometry</h2>
+
+<p>Topology studies geometric properties that remain invariant under continuous transformations, reflecting global characteristics.<br />
+For example, the <strong>Gaussian curvature</strong> $K$ of a surface describes local geometric properties and is related to global topological characteristics through the <strong>Gauss-Bonnet theorem</strong>:</p>
+
+\[\int_S K \, d^2r = 4\pi (1-\text{genus}),\]
+
+<p>where $\text{genus}$ represents the number of holes in a geometric object. For example, the genus of a sphere is $0$, while the genus of a torus (like a donut) is $1$.</p>
+
+<div class="text-center">
+  
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/topology_huan-480.webp 480w,/assets/img/blog/topology_huan-800.webp 800w,/assets/img/blog/topology_huan-1400.webp 1400w," type="image/webp" sizes="95vw" />
+    
+    <img src="/assets/img/blog/topology_huan.gif" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+  
+    <figcaption class="caption">Figure 1: A continuous deformation (a type of homeomorphism) of a mug into a doughnut (torus)</figcaption>
+  
+</figure>
+
+</div>
+
+<h2 id="topological-physics">Topological Physics</h2>
+
+<p>Topological physics primarily investigates the topological properties in momentum space. In periodic lattices, electronic states can be described by the time-independent Schrödinger equation:</p>
+
+\[H|\varphi\rangle = E|\varphi\rangle,\]
+
+<p>where $H$ is the Hamiltonian of the system, $E$ is the energy eigenvalue of the electron, and $\vert\varphi\rangle$ is the corresponding eigenstate. By solving this equation, one can obtain the band structure, i.e., the relationship between energy and momentum of electrons.</p>
+
+<p>Traditional band theory focuses on the energy eigenvalues of electrons, while the significant contribution of topological physics lies in uncovering the hidden topological information within wavefunctions, i.e., the topology of electronic wavefunctions. For example, in the <strong>quantum Hall effect</strong>, the time-reversal symmetry of the system is broken, and the Chern number \(C \neq 0\). Based on different symmetries, researchers have developed many topological material systems, such as the valley Hall effect, topological crystalline insulators, and gapless topological semimetals, including Dirac states, Weyl states, nodal lines, and triple degeneracy points.</p>
+
+<h2 id="topological-phonons">Topological Phonons</h2>
+
+<p>Phonons, lacking charge and spin properties, entered topological research relatively late. Traditionally, phonon studies primarily focused on their particle-like properties (dispersion and scattering) and wave-like properties (coherence effects). Inspired by the analogy between phonons and electrons, researchers have recently observed novel transport phenomena in phononic systems, such as the <strong>phonon thermal Hall effect</strong>.</p>
+
+<p>In phononic systems, breaking time-reversal symmetry is challenging. For crystals with time-reversal symmetry, atomic vibrations can be described by the equations of motion based on Newton’s laws. Under the harmonic approximation, the phonon characteristic equation can be written as:</p>
+
+\[\boldsymbol{D}(\boldsymbol{k}) \boldsymbol{u}(\boldsymbol{k}) = \omega^2(\boldsymbol{k}) \boldsymbol{u}(\boldsymbol{k}),\]
+
+<p>where $\boldsymbol{u}(\boldsymbol{k})$ is the phonon eigenstate, and $\omega(\boldsymbol{k})$ is the phonon frequency. Traditional studies only focus on eigenvalues, yielding phonon dispersion relations and density of states, while topological phonon research further explores the hidden topological information within eigenstates.</p>
+
+<h3 id="topological-quantities-in-phononic-systems">Topological Quantities in Phononic Systems</h3>
+
+<p>Using the wavefunctions of phonon eigenstates, topological quantities can be defined:</p>
+
+<ul>
+  <li>
+    <p><strong>Berry Connection</strong>:</p>
+
+\[A_{s,\boldsymbol{k}} = \text{i} \langle u_{s\boldsymbol{k}} | \nabla_{\boldsymbol{k}} | u_{s\boldsymbol{k}} \rangle,\]
+
+    <p>describing the geometric properties of wavefunctions in momentum space.</p>
+  </li>
+  <li>
+    <p><strong>Berry Curvature</strong>:</p>
+
+\[\Omega_{s,\boldsymbol{k}} = \nabla_{\boldsymbol{k}} \times A_{s,\boldsymbol{k}},\]
+
+    <p>the curl of the Berry connection, characterizing the local topological structure of wavefunctions in momentum space.</p>
+  </li>
+  <li>
+    <p><strong>Berry Phase</strong>:</p>
+
+\[\gamma_s = \int_L A \cdot d\boldsymbol{k},\]
+
+    <p>the integral of the Berry connection along a specific path or loop.</p>
+  </li>
+  <li>
+    <p><strong>Chern Number</strong>:<br />
+In three-dimensional systems, the Chern number is defined as the integral over a closed surface in momentum space:</p>
+
+\[C = \frac{1}{2\pi} \oint \Omega_{s,\boldsymbol{k}} d^2\boldsymbol{k}.\]
+  </li>
+</ul>
+
+<p>Since phonons do not have spin $1/2$ properties, the theory of quantum spin Hall states cannot be directly applied. Quantum spin Hall states in electronic systems can be seen as two quantum Hall states with opposite Chern numbers, resulting in a total Chern number of $0$ under time-reversal symmetry. In phononic systems, lattice symmetry can be used to achieve double or multiple degeneracies, constructing pseudo-spin-like properties and providing new approaches to topological phonon research.</p>
+
+<p>In classical phonon transport research, lattice symmetry is used to analyze phonon scattering channels and simplify force constant calculations. From the perspective of topological phonons, lattice symmetry is primarily used to determine phonon degeneracy and classify phonon branches.</p>
+
+<p>At the boundaries or interfaces of materials, topological phonons can form special boundary states. These boundary states originate from inherent topological invariants of materials (such as Chern numbers or Berry curvature) and can propagate along scattering-free channels. This stability is known as the <strong>topological protection mechanism</strong>.</p>
+
+<p>The dispersion relations of topological phonons also exhibit unique characteristics. In certain frequency ranges, phonon propagation is more efficient, while in other ranges, phonons may be suppressed.</p>]]></content><author><name></name></author><category term="Physics" /><summary type="html"><![CDATA[Topological Geometry]]></summary></entry><entry><title type="html">VASP Structure Optimization</title><link href="https://lyushisyan.github.io/blog/2024/vasp-relax/" rel="alternate" type="text/html" title="VASP Structure Optimization" /><published>2024-12-02T02:36:10+03:00</published><updated>2024-12-02T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/vasp-relax</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/vasp-relax/"><![CDATA[<h2 id="1-input-files">1. Input Files</h2>
 <p>The input files for VASP are the four basic files: <code class="language-plaintext highlighter-rouge">INCAR</code>, <code class="language-plaintext highlighter-rouge">POSCAR</code>, <code class="language-plaintext highlighter-rouge">POTCAR</code>, <code class="language-plaintext highlighter-rouge">KPOINTS</code>.</p>
 
 <h3 id="11-incar-parameter-settings">1.1 <code class="language-plaintext highlighter-rouge">INCAR</code> Parameter Settings</h3>
@@ -478,101 +1539,7 @@ Gamma                          <span class="c"># Choose Gamma-centered grid</spa
   <li>Ensure reasonable initial atomic distances to avoid overly close atoms.</li>
   <li>Increase the vacuum spacing: for low-dimensional systems, set the vacuum layer thickness to at least 15 Å.</li>
   <li>Verify the <code class="language-plaintext highlighter-rouge">POTCAR</code> file to ensure the pseudopotential matches the atomic species.</li>
-</ul>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[1. Input Files The input files for VASP are the four basic files: INCAR, POSCAR, POTCAR, KPOINTS.]]></summary></entry><entry><title type="html">Topological Quantities and Properties of Phonons</title><link href="https://lyushisyan.github.io/blog/2024/topology/" rel="alternate" type="text/html" title="Topological Quantities and Properties of Phonons" /><published>2024-12-02T02:36:10+03:00</published><updated>2024-12-02T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/topology</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/topology/"><![CDATA[<h2 id="topological-geometry">Topological Geometry</h2>
-
-<p>Topology studies geometric properties that remain invariant under continuous transformations, reflecting global characteristics.<br />
-For example, the <strong>Gaussian curvature</strong> $K$ of a surface describes local geometric properties and is related to global topological characteristics through the <strong>Gauss-Bonnet theorem</strong>:</p>
-
-\[\int_S K \, d^2r = 4\pi (1-\text{genus}),\]
-
-<p>where $\text{genus}$ represents the number of holes in a geometric object. For example, the genus of a sphere is $0$, while the genus of a torus (like a donut) is $1$.</p>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/topology_huan-480.webp 480w,/assets/img/blog/topology_huan-800.webp 800w,/assets/img/blog/topology_huan-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/topology_huan.gif" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 1: A continuous deformation (a type of homeomorphism) of a mug into a doughnut (torus)</figcaption>
-  
-</figure>
-
-</div>
-
-<h2 id="topological-physics">Topological Physics</h2>
-
-<p>Topological physics primarily investigates the topological properties in momentum space. In periodic lattices, electronic states can be described by the time-independent Schrödinger equation:</p>
-
-\[H|\varphi\rangle = E|\varphi\rangle,\]
-
-<p>where $H$ is the Hamiltonian of the system, $E$ is the energy eigenvalue of the electron, and $\vert\varphi\rangle$ is the corresponding eigenstate. By solving this equation, one can obtain the band structure, i.e., the relationship between energy and momentum of electrons.</p>
-
-<p>Traditional band theory focuses on the energy eigenvalues of electrons, while the significant contribution of topological physics lies in uncovering the hidden topological information within wavefunctions, i.e., the topology of electronic wavefunctions. For example, in the <strong>quantum Hall effect</strong>, the time-reversal symmetry of the system is broken, and the Chern number \(C \neq 0\). Based on different symmetries, researchers have developed many topological material systems, such as the valley Hall effect, topological crystalline insulators, and gapless topological semimetals, including Dirac states, Weyl states, nodal lines, and triple degeneracy points.</p>
-
-<h2 id="topological-phonons">Topological Phonons</h2>
-
-<p>Phonons, lacking charge and spin properties, entered topological research relatively late. Traditionally, phonon studies primarily focused on their particle-like properties (dispersion and scattering) and wave-like properties (coherence effects). Inspired by the analogy between phonons and electrons, researchers have recently observed novel transport phenomena in phononic systems, such as the <strong>phonon thermal Hall effect</strong>.</p>
-
-<p>In phononic systems, breaking time-reversal symmetry is challenging. For crystals with time-reversal symmetry, atomic vibrations can be described by the equations of motion based on Newton’s laws. Under the harmonic approximation, the phonon characteristic equation can be written as:</p>
-
-\[\boldsymbol{D}(\boldsymbol{k}) \boldsymbol{u}(\boldsymbol{k}) = \omega^2(\boldsymbol{k}) \boldsymbol{u}(\boldsymbol{k}),\]
-
-<p>where $\boldsymbol{u}(\boldsymbol{k})$ is the phonon eigenstate, and $\omega(\boldsymbol{k})$ is the phonon frequency. Traditional studies only focus on eigenvalues, yielding phonon dispersion relations and density of states, while topological phonon research further explores the hidden topological information within eigenstates.</p>
-
-<h3 id="topological-quantities-in-phononic-systems">Topological Quantities in Phononic Systems</h3>
-
-<p>Using the wavefunctions of phonon eigenstates, topological quantities can be defined:</p>
-
-<ul>
-  <li>
-    <p><strong>Berry Connection</strong>:</p>
-
-\[A_{s,\boldsymbol{k}} = \text{i} \langle u_{s\boldsymbol{k}} | \nabla_{\boldsymbol{k}} | u_{s\boldsymbol{k}} \rangle,\]
-
-    <p>describing the geometric properties of wavefunctions in momentum space.</p>
-  </li>
-  <li>
-    <p><strong>Berry Curvature</strong>:</p>
-
-\[\Omega_{s,\boldsymbol{k}} = \nabla_{\boldsymbol{k}} \times A_{s,\boldsymbol{k}},\]
-
-    <p>the curl of the Berry connection, characterizing the local topological structure of wavefunctions in momentum space.</p>
-  </li>
-  <li>
-    <p><strong>Berry Phase</strong>:</p>
-
-\[\gamma_s = \int_L A \cdot d\boldsymbol{k},\]
-
-    <p>the integral of the Berry connection along a specific path or loop.</p>
-  </li>
-  <li>
-    <p><strong>Chern Number</strong>:<br />
-In three-dimensional systems, the Chern number is defined as the integral over a closed surface in momentum space:</p>
-
-\[C = \frac{1}{2\pi} \oint \Omega_{s,\boldsymbol{k}} d^2\boldsymbol{k}.\]
-  </li>
-</ul>
-
-<p>Since phonons do not have spin $1/2$ properties, the theory of quantum spin Hall states cannot be directly applied. Quantum spin Hall states in electronic systems can be seen as two quantum Hall states with opposite Chern numbers, resulting in a total Chern number of $0$ under time-reversal symmetry. In phononic systems, lattice symmetry can be used to achieve double or multiple degeneracies, constructing pseudo-spin-like properties and providing new approaches to topological phonon research.</p>
-
-<p>In classical phonon transport research, lattice symmetry is used to analyze phonon scattering channels and simplify force constant calculations. From the perspective of topological phonons, lattice symmetry is primarily used to determine phonon degeneracy and classify phonon branches.</p>
-
-<p>At the boundaries or interfaces of materials, topological phonons can form special boundary states. These boundary states originate from inherent topological invariants of materials (such as Chern numbers or Berry curvature) and can propagate along scattering-free channels. This stability is known as the <strong>topological protection mechanism</strong>.</p>
-
-<p>The dispersion relations of topological phonons also exhibit unique characteristics. In certain frequency ranges, phonon propagation is more efficient, while in other ranges, phonons may be suppressed.</p>]]></content><author><name></name></author><category term="Physics" /><summary type="html"><![CDATA[Topological Geometry]]></summary></entry><entry><title type="html">Theoretical framework for phonon Monte Carlo simulations</title><link href="https://lyushisyan.github.io/blog/2024/MC-phononBTE/" rel="alternate" type="text/html" title="Theoretical framework for phonon Monte Carlo simulations" /><published>2024-11-16T02:36:10+03:00</published><updated>2024-11-16T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/MC-phononBTE</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/MC-phononBTE/"><![CDATA[<h2 id="1-boltzmann-transport-equation">1. Boltzmann Transport Equation</h2>
+</ul>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[1. Input Files The input files for VASP are the four basic files: INCAR, POSCAR, POTCAR, KPOINTS.]]></summary></entry><entry><title type="html">Theoretical framework for phonon Monte Carlo simulations</title><link href="https://lyushisyan.github.io/blog/2024/MC-phononBTE/" rel="alternate" type="text/html" title="Theoretical framework for phonon Monte Carlo simulations" /><published>2024-11-16T02:36:10+03:00</published><updated>2024-11-16T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/MC-phononBTE</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/MC-phononBTE/"><![CDATA[<h2 id="1-boltzmann-transport-equation">1. Boltzmann Transport Equation</h2>
 
 <h3 id="11-particle-based-boltzmann-transport-equation">1.1 Particle-Based Boltzmann Transport Equation:</h3>
 
@@ -1370,956 +2337,4 @@ K_POINTS automatic  <span class="c"># Automatic k-point grid</span>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">electrons</span><span class="w">       </span><span class="err">=</span><span class="w">         </span><span class="mf">8.00</span><span class="w">
 </span><span class="err">number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">Kohn-Sham</span><span class="w"> </span><span class="err">states=</span><span class="w">            </span><span class="mi">8</span><span class="w">
-</span></code></pre></div></div>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[The calculations handled by pw.x include seven types, specified in the input file with calculation:]]></summary></entry><entry><title type="html">Microscopic Description of Thermophysics</title><link href="https://lyushisyan.github.io/blog/2023/nano-micro-thermophysics/" rel="alternate" type="text/html" title="Microscopic Description of Thermophysics" /><published>2023-10-08T03:32:13+03:00</published><updated>2023-10-08T03:32:13+03:00</updated><id>https://lyushisyan.github.io/blog/2023/nano-micro-thermophysics</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2023/nano-micro-thermophysics/"><![CDATA[<p>The macroscopic energy conservation equation in heat transfer describes the storage, transport (conduction $k$, convection $u$, and radiation $r$), and conversion of thermal energy into other forms of energy.</p>
-
-<h2 id="energy-conservation-equation">Energy Conservation Equation</h2>
-
-\[\nabla\cdot \boldsymbol q=-\rho c_p\frac{\partial T}{\partial t}+\sum_{i,j}\dot s_{i-j},
-\nabla\cdot \boldsymbol q=\frac{\int_{\Delta A}(\boldsymbol q\cdot\boldsymbol s_{\boldsymbol n})dA}{\Delta V \to 0}\]
-
-<p>Here, $\rho c_p\frac{\partial T}{\partial t}$ is referred to as sensible heat storage, and $\dot s_{i-j}$ is the rate of energy conversion due to interactions between energy carriers $i$ and $j$, determined by their properties and frequency of interaction.</p>
-
-<p>The heat flux vector $\boldsymbol q$ is the sum of conduction, convection, and radiation heat flux vectors:</p>
-
-\[\boldsymbol q = \boldsymbol q_k + \boldsymbol q_u + \boldsymbol q_r\]
-
-<p><strong>Conduction heat flux vector</strong> $\boldsymbol q_k$ is the negative product of thermal conductivity $k$ and temperature gradient $\nabla T$, according to Fourier’s law:</p>
-
-\[\boldsymbol q_k = -k\nabla T\]
-
-<p><strong>Convection heat flux vector</strong> $\boldsymbol q_u$ is the product of $\rho c_p$, local velocity vector $\boldsymbol u$, and temperature $T$:</p>
-
-\[\boldsymbol q_u = \rho c_p\boldsymbol u T\]
-
-<p><strong>Radiative heat flux vector</strong> $\boldsymbol q_r$ is the integral over space and electromagnetic spectrum of the product of unit vector $\boldsymbol s$ and directional spectral intensity $I_{ph,\omega}$:</p>
-
-\[\boldsymbol q_r  = 2\pi\int_0^\infty\int_{-1}^1\boldsymbol s I_{ph,\omega}d\mu d\omega\]
-
-<h2 id="primary-energy-carriers">Primary Energy Carriers</h2>
-
-<p>Four types of energy carriers—<strong>phonons</strong> ($p$), <strong>electrons</strong> ($e$), <strong>fluid particles</strong> ($f$), and <strong>photons</strong> ($ph$)—form the microscopic basis for thermal energy storage, transport, and interaction.</p>
-
-<h3 id="phonons">Phonons</h3>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/thermophysics_1-480.webp 480w,/assets/img/blog/thermophysics_1-800.webp 800w,/assets/img/blog/thermophysics_1-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/thermophysics_1.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 1: Phonons</figcaption>
-  
-</figure>
-
-</div>
-
-<ul>
-  <li>Phonons are quantized vibrational modes in a rigid atomic lattice.</li>
-  <li>Long-wavelength phonons cause sound propagation in solids, hence the name “phonons.”</li>
-  <li>Phonons determine many physical properties of materials, including heat capacity and thermal/electrical conductivity (phonons transport heat in insulators).</li>
-  <li>In classical mechanics, lattice vibrations decompose into nonlocal normal modes.</li>
-  <li>Quantum mechanically, these modes exhibit particle-like behavior—hence phonons are <strong>quasiparticles</strong>.</li>
-  <li>As particles, phonons are <strong>bosons</strong> with zero spin, and their energy $E_p=\hbar\omega_p$ is the sum of kinetic and potential energies.</li>
-  <li>Phonons come in two types: <strong>acoustic</strong> ($A$) and <strong>optical</strong> ($O$).</li>
-  <li>Acoustic phonons decrease in frequency with increasing wavelength and correspond to lattice sound waves. Longitudinal and transverse types are abbreviated $LA$ and $TA$.</li>
-  <li>Optical phonons arise in lattices with multiple atoms per unit cell and are excited by light in ionic crystals: $LO$ and $TO$ indicate longitudinal and transverse types.</li>
-</ul>
-
-<h3 id="electrons">Electrons</h3>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/thermophysics_2-480.webp 480w,/assets/img/blog/thermophysics_2-800.webp 800w,/assets/img/blog/thermophysics_2-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/thermophysics_2.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 2: Electrons</figcaption>
-  
-</figure>
-
-</div>
-
-<ul>
-  <li>Electrons are negatively charged <strong>subatomic particles</strong> with spin $1/2$—they are <strong>fermions</strong>.</li>
-  <li>The electron’s antiparticle is the <strong>positron</strong>, with the same mass and spin but opposite charge.</li>
-  <li>Electrons exhibit both wave and particle properties, making them <strong>quasiparticles</strong>.</li>
-  <li>Bound electrons appear as <strong>standing waves</strong>, observable experimentally.</li>
-  <li>Electrons in solids include core and outer electrons. Core electrons are tightly bound and do not participate in bonding.</li>
-  <li>Outer electrons, including <strong>conduction</strong> and <strong>valence</strong> electrons, are farther from the nucleus.</li>
-  <li>Quantum mechanically, electrons are described by the <strong>Dirac equation</strong>.</li>
-  <li>Their energy includes potential energy (binding energy) and kinetic energy (velocity-related).</li>
-</ul>
-
-<h3 id="fluid-particles">Fluid Particles</h3>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/thermophysics_3-480.webp 480w,/assets/img/blog/thermophysics_3-800.webp 800w,/assets/img/blog/thermophysics_3-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/thermophysics_3.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 3: Fluid Particles</figcaption>
-  
-</figure>
-
-</div>
-
-<ul>
-  <li>Gases and liquids consist of atoms or molecules (fluid particles), which can be neutral or charged and are in <strong>random motion</strong>.</li>
-  <li>Their energy includes potential, electronic, and kinetic components.</li>
-  <li>In <strong>ideal gases</strong>, particle collisions are <strong>elastic</strong>, and intermolecular forces are negligible.</li>
-  <li>Maxwell–Boltzmann distribution for ideal gases can be derived via statistical mechanics and energy symmetry principles.</li>
-  <li>Liquid particles have sufficient kinetic energy to stretch but not overcome intermolecular forces. As temperature rises, they gain enough energy to become gases.</li>
-</ul>
-
-<h3 id="photons">Photons</h3>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/thermophysics_4-480.webp 480w,/assets/img/blog/thermophysics_4-800.webp 800w,/assets/img/blog/thermophysics_4-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/thermophysics_4.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 4: Photons</figcaption>
-  
-</figure>
-
-</div>
-
-<ul>
-  <li>Photons are quantum excitations of the electromagnetic field and are part of the Standard Model of particle physics.</li>
-  <li>Quantum mechanically, photons exhibit wave properties.</li>
-  <li>Although photons have <strong>zero rest mass</strong>, they carry finite energy and are affected by gravity (relativity).</li>
-  <li>Photons are <strong>bosons</strong> with spin 1 and exhibit circular polarization.</li>
-  <li>Electromagnetic fields consist of <strong>monochromatic plane waves</strong> characterized by frequency $f_{ph}$, wavelength $\lambda_{ph}$, and speed $u_{ph}$.</li>
-  <li>Quantum energy: $E_{ph} = \hbar \omega_{ph}$; momentum: $\boldsymbol p_{ph} = \hbar \boldsymbol\kappa_{ph}$.</li>
-  <li>In vacuum, photon dispersion is linear—proportional to <strong>Planck’s constant</strong>.</li>
-  <li>Matter excitations have nonlinear dispersion, so they travel slower than light.</li>
-</ul>
-
-<h2 id="energy-distribution-function">Energy Distribution Function</h2>
-
-<p>In multi-particle systems, the observed <strong>macroscopic state</strong> (ensemble average) is linked to each particle’s <strong>microscopic state</strong> (position and momentum) through the probability of occurrence (energy distribution function):</p>
-
-\[\left \langle \phi \right \rangle=\sum_if_i\phi_i\]
-
-<p>Probability distribution functions determine carrier energy and transport characteristics. They allow modeling of temperature-dependent lattice and electronic heat capacity, gas kinetic energy, and blackbody radiation.</p>
-
-<p>Equilibrium distribution $f_i^0$ describes the most likely distribution of microstates in the absence of perturbations:</p>
-
-<ul>
-  <li><strong>Bose–Einstein distribution</strong> (phonons, photons)</li>
-</ul>
-
-\[f_i^0 = \frac{1}{\exp(\frac{E_i}{k_\text BT})-1}\]
-
-<ul>
-  <li><strong>Fermi–Dirac distribution</strong> (electrons)</li>
-</ul>
-
-\[f_i^0 = \frac{1}{\exp(\frac{E_i-\mu}{k_\text BT})+1}\]
-
-<ul>
-  <li><strong>Maxwell–Boltzmann distribution</strong> (ideal gas molecules)</li>
-</ul>
-
-\[f_i^0 = \frac{1}{\exp(\frac{E_i}{k_\text BT})}\]
-
-<p>Deviations from equilibrium underpin carrier transport—<strong>Boltzmann transport theory</strong>.</p>
-
-<h2 id="particles-waves-and-quasiparticles">Particles, Waves, and Quasiparticles</h2>
-
-<h3 id="particles">Particles</h3>
-
-<p>Particles are <strong>discrete</strong>; their energy is localized in finite regions. To reach different positions, particles must move according to kinematic laws.</p>
-
-<p>Interactions follow simple rules like conservation of energy and momentum in elastic collisions. When unperturbed, particles move <strong>ballistically</strong>.</p>
-
-<h3 id="waves">Waves</h3>
-
-<p>Waves are not finite entities. Their energy is distributed across space and time. Waves propagate indefinitely, with phase analysis revealing their speed. Waves are described by frequency and wavelength.</p>
-
-<h3 id="quasiparticles">Quasiparticles</h3>
-
-<p>Quasiparticles (phonons, electrons, photons) exhibit both particle and wave nature and are described as wave packets—a superposition of plane waves with different wavelengths.</p>
-
-<p>This dual nature is called <strong>wave–particle duality</strong>.</p>
-
-<p>The classical distinction between particles and waves blurs for quasiparticles. Their behavior is part wave theory, part particle theory.</p>
-
-<h2 id="contributions-to-heat-transfer-physics">Contributions to Heat Transfer Physics</h2>
-
-<p>Heat is a form of energy manifested as molecular motion and is transferred between bodies via <strong>conduction</strong> (phonons, electrons, fluid particles), <strong>convection</strong> (fluid particles), and <strong>radiation</strong> (photons).</p>
-
-<p>Key physical foundations:</p>
-
-<ul>
-  <li><strong>Boltzmann</strong>: Proposed that heat capacity, entropy, and thermodynamics arise from atomic motion; introduced Boltzmann constant $k_B$ and co-developed energy equipartition theorem.</li>
-  <li><strong>Maxwell</strong>: Founded electromagnetic theory of light; contributed to kinetic gas theory, molecular physics, thermodynamics.</li>
-  <li><strong>Planck</strong>: Discovered energy is <strong>quantized</strong>, postulating discrete energy quanta $h\nu$.</li>
-  <li><strong>Bohr</strong>: Suggested atoms absorb/emit quantum energy matching energy level differences.</li>
-  <li><strong>Pauli</strong>: Formulated <strong>Pauli exclusion principle</strong>: no two electrons can occupy the same state.</li>
-  <li><strong>Schrödinger</strong>: Derived wave function (probability wave) equation foundational to <strong>quantum wave mechanics</strong>.</li>
-  <li><strong>Fermi</strong>: Developed method (with Dirac) for particles following Pauli principle—<strong>Fermi statistics</strong>.</li>
-  <li><strong>Green &amp; Kubo</strong>: Developed <strong>fluctuation–dissipation theorem</strong> for transport coefficients.</li>
-  <li><strong>Ziman</strong>: Applied variational method to phonon transport.</li>
-  <li><strong>Callaway &amp; Holland</strong>: Modeled lattice thermal conductivity via <strong>single-mode relaxation time</strong>.</li>
-</ul>
-
-<h2 id="fundamental-constants-and-fine-structure-scale">Fundamental Constants and Fine Structure Scale</h2>
-
-<h3 id="boltzmann-constant">Boltzmann Constant</h3>
-
-\[k_\text B=1.38065\times10^{-23} ~ \text J/\text K\]
-
-<p>Relates mean thermal energy of carriers (phonons, electrons, photons, fluids) to absolute temperature $T$.</p>
-
-<p>Used to normalize carrier energy: $k_\text BT$.</p>
-
-<p>In statistical mechanics: entropy $S=k_\text BN\ln Z$, with $Z$ as the partition function.</p>
-
-<p>In kinetic theory: each degree of freedom has energy $k_\text BT/2$ (equipartition).</p>
-
-<h3 id="planck-constant">Planck Constant</h3>
-
-\[h=6.626069\times10^{−34} ~ \text J\cdot \text s\]
-
-<p>In quantum mechanics: energy = frequency $\times$ $h$.</p>
-
-<p>Reduced Planck constant: $\hbar = h/2\pi$.</p>
-
-<p>Quantizes physical properties and appears in Heisenberg uncertainty principle: $\Delta p_x \Delta x \le \hbar/2$.</p>
-
-<h3 id="atomic-units">Atomic Units</h3>
-
-<p>Four constants define atomic units: $\hbar$, $m_e$, Coulomb constant $1/4\pi\varepsilon_0$, electron charge $e_c$.</p>
-
-<ul>
-  <li>Atomic length:</li>
-</ul>
-
-\[r_\text B = \frac{4\pi\varepsilon_0\hbar^2}{m_e e_c^2}=5.2918\times 10^{-11}~ \text m\]
-
-<ul>
-  <li>Atomic time:</li>
-</ul>
-
-\[\tau_a=\frac{m_er_\text B^2}{\hbar} = 2.4189\times 10^{-17} ~ \text s\]
-
-<ul>
-  <li>Atomic energy:</li>
-</ul>
-
-\[\frac{e_c^2}{4\pi\varepsilon_0r_\text B}=4.3597\times10^{-18}\text J=27.211~ \text{eV}\]
-
-<ul>
-  <li>Atomic velocity:</li>
-</ul>
-
-\[\frac{r_\text B}{\tau_a} = 2.1877 \times 10^6~ \text m/\text s\]
-
-<ul>
-  <li>Atomic dipole moment:</li>
-</ul>
-
-\[e_cr_\text B=8.4783\times 10^{-30}~ \text C\cdot\text m\]
-
-<hr />
-
-<p><strong>References:</strong></p>
-
-<p>Kaviany M. <em>Heat Transfer Physics</em>, 2008</p>]]></content><author><name></name></author><category term="Physics" /><category term="Heat-conduction" /><summary type="html"><![CDATA[The macroscopic energy conservation equation in heat transfer describes the storage, transport (conduction $k$, convection $u$, and radiation $r$), and conversion of thermal energy into other forms of energy.]]></summary></entry><entry><title type="html">Dispersion Relations of Elastic Waves in Rods</title><link href="https://lyushisyan.github.io/blog/2023/elastic-wave-in-wire/" rel="alternate" type="text/html" title="Dispersion Relations of Elastic Waves in Rods" /><published>2023-07-01T03:32:13+03:00</published><updated>2023-07-01T03:32:13+03:00</updated><id>https://lyushisyan.github.io/blog/2023/elastic-wave-in-wire</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2023/elastic-wave-in-wire/"><![CDATA[<h2 id="elastic-equation-in-rods">Elastic Equation in Rods</h2>
-
-<p>General equation for elastic wave propagation:</p>
-
-\[\mu \nabla^2 \vec{u} + (\lambda + \mu) \nabla (\nabla \cdot \vec{u}) = \rho \frac{\partial^2 \vec{u}}{\partial t^2}\]
-
-<p>Here, $\vec{u}$ is the displacement vector; $\lambda$, $\mu$ are Lamé constants characterizing the elasticity; $\rho$ is the density; $t$ is time.</p>
-
-<p>Express $\vec{u}$ as a combination of scalar potential $\varphi$ and vector potential $\vec{\psi}$:</p>
-
-\[\vec{u} = \nabla \varphi + \nabla \times \vec{\psi}\]
-
-<p>Substituting into the wave equation:</p>
-
-\[\nabla^2 \varphi = \frac{1}{c_l^2} \frac{\partial^2 \varphi}{\partial t^2}, \quad
-\nabla^2 \vec{\psi} = \frac{1}{c_t^2} \frac{\partial^2 \vec{\psi}}{\partial t^2}\]
-
-<p>where $c_l = \sqrt{(\lambda + 2\mu)/\rho}$ is the longitudinal wave speed and $c_t = \sqrt{\mu/\rho}$ is the shear wave speed.</p>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/wire-480.webp 480w,/assets/img/blog/wire-800.webp 800w,/assets/img/blog/wire-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/wire.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 1: Schematic of a rod in cylindrical coordinates</figcaption>
-  
-</figure>
-
-</div>
-
-<p>In cylindrical coordinates, the displacement components are:</p>
-
-\[u_r = \frac{\partial \varphi}{\partial r} + \frac{1}{r} \frac{\partial \psi_z}{\partial \theta} - \frac{\partial \psi_\theta}{\partial z}\]
-
-\[u_\theta = \frac{1}{r} \frac{\partial \varphi}{\partial \theta} + \frac{\partial \psi_r}{\partial z} - \frac{\partial \psi_z}{\partial r}\]
-
-\[u_z = \frac{\partial \varphi}{\partial z} + \frac{1}{r} \frac{\partial (\psi_\theta r)}{\partial r} - \frac{1}{r} \frac{\partial \psi_r}{\partial \theta}\]
-
-<p>Stress components:</p>
-
-\[\tau_{rr} = \lambda\left(\frac{\partial u_r}{\partial r} + \frac{u_r}{r} + \frac{1}{r} \frac{\partial u_\theta}{\partial \theta} + \frac{\partial u_z}{\partial z} \right) + 2\mu \frac{\partial u_r}{\partial r}\]
-
-\[\tau_{r\theta} = \mu \left( \frac{\partial u_\theta}{\partial r} - \frac{u_\theta}{r} + \frac{1}{r} \frac{\partial u_r}{\partial \theta} \right)\]
-
-\[\tau_{rz} = \mu \left( \frac{\partial u_r}{\partial z} + \frac{\partial u_z}{\partial r} \right)\]
-
-<p>Consider an infinitely long solid rod of radius $a$. Assume stress-free boundary conditions on the surface:</p>
-
-\[\tau_{rr} = \tau_{r\theta} = \tau_{rz} = 0, \quad r = a\]
-
-<h2 id="torsional-waves">Torsional Waves</h2>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/wire-T-480.webp 480w,/assets/img/blog/wire-T-800.webp 800w,/assets/img/blog/wire-T-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/wire-T.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 2: Schematic of torsional wave in a rod</figcaption>
-  
-</figure>
-
-</div>
-
-<p>Torsional waves have only an angular displacement component $u_\theta$:</p>
-
-\[u_\theta = \frac{1}{\beta} B J_1(\beta r) \exp[i(\xi z - \omega t)]\]
-
-<p>The frequency equation under boundary conditions:</p>
-
-\[\beta a \cdot J_0(\beta a) - 2 J_1(\beta a) = 0\]
-
-<p>Dispersion relation:</p>
-
-\[\omega^2 = c_t^2 (\xi^2 + \beta^2)\]
-
-<p>Define nondimensional quantities $\overline{\beta} = \beta a$, $\overline{\xi} = \xi a$, and $\Omega = \omega a / c_t$, then:</p>
-
-\[\Omega^2 = \overline{\xi}^2 + \overline{\beta}^2\]
-
-<h2 id="longitudinal-waves">Longitudinal Waves</h2>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/wire-L-480.webp 480w,/assets/img/blog/wire-L-800.webp 800w,/assets/img/blog/wire-L-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/wire-L.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 3: Schematic of longitudinal wave in a rod</figcaption>
-  
-</figure>
-
-</div>
-
-<p>Longitudinal waves are axisymmetric, with radial $u_r$ and axial $u_z$ displacement:</p>
-
-\[u_r = [-\alpha A J_1(\alpha r) - i\xi C J_1(\beta r)] \exp[i(\xi z - \omega t)]\]
-
-\[u_z = [i\xi A J_0(\alpha r) + \beta C J_0(\beta r)] \exp[i(\xi z - \omega t)]\]
-
-<p>Frequency equation:</p>
-
-\[(\xi^2 - \beta^2)^2 \frac{(\alpha a) J_0(\alpha a)}{J_1(\alpha a)} + 4\xi^2 \alpha^2 \frac{(\beta a) J_0(\beta a)}{J_1(\beta a)} = 2\alpha^2 (\xi^2 + \beta^2)\]
-
-<p>Dispersion relation:</p>
-
-\[\omega^2 = c_t^2 (\xi^2 + \beta^2) = c_l^2 (\xi^2 + \alpha^2)\]
-
-<p>In nondimensional form:</p>
-
-\[\Omega^2 = \overline{\xi}^2 + \overline{\beta}^2 = \left(\frac{c_l}{c_t}\right)^2 (\overline{\xi}^2 + \overline{\alpha}^2)\]
-
-<h2 id="flexural-waves">Flexural Waves</h2>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/wire-F-480.webp 480w,/assets/img/blog/wire-F-800.webp 800w,/assets/img/blog/wire-F-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/wire-F.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 4: Schematic of flexural wave in a rod</figcaption>
-  
-</figure>
-
-</div>
-
-<p>For flexural waves, all three displacement components must be considered:</p>
-
-\[u_r=\left[A\frac{\partial}{\partial r}J_1(\alpha r)+\frac{B}{r}J_1(\beta r)+ikCJ_2(\beta r)\right]\cos(\theta)\exp[i(\xi z-\omega t)]\]
-
-\[u_\theta=\left[-\frac{A}{r}J_1(\alpha r)+ikCJ_2(\beta r)-B\frac{\partial}{\partial r}J_1(\beta r)\right]\cos(\theta)\exp[i(\xi z-\omega t)]\]
-
-\[u_z=\left[ikAJ_1(\alpha r)-\frac{C}{r}\frac{\partial}{\partial r}[rJ_2(\beta r)]-\frac{C}{r}J_2(\beta r)\right]\cos(\theta)\exp[i(\xi z-\omega t)]\]
-
-<p>From the boundary conditions, the frequency equation for flexural waves is:</p>
-
-\[J_1(\overline\alpha)J_1^2(\overline\beta)
-\begin{vmatrix}
-\overline\xi^2-\overline\beta^2+4-2\Psi_\alpha &amp; 2\overline\xi(\overline\beta^2-2+\Psi_\beta) &amp; 2\Psi_\beta-4 \\
-4-2\Psi_\alpha &amp; 2\overline\xi(\Psi_\beta-2) &amp; \overline\beta^2-4+2\Psi_\beta \\
-2\overline\xi(\Psi_\alpha-1) &amp; (\overline\beta^2-\overline\xi^2)(\Psi_\beta-1) &amp; \overline\xi
-\end{vmatrix}
-=0\]
-
-\[\Psi_\alpha = \overline\alpha J_0(\overline\alpha)/J_1(\overline\alpha)\]
-
-\[\Psi_\beta = \overline\beta J_0(\overline\beta)/J_1(\overline\beta)\]
-
-<p>Non-dimensional dispersion relation:</p>
-
-\[\Omega^2=\overline\xi^2+\overline\beta^2 = (c_l/c_t)^2(\overline\xi^2+\overline\alpha^2)\]
-
-<h2 id="numerical-solution">Numerical Solution</h2>
-
-<p>Depending on whether $\alpha$ is real or imaginary, the solutions can be divided into two regions:</p>
-
-<p>Region I: $\omega &gt; c_l\xi$, $\alpha$ is real.</p>
-
-<p>Region II: $\omega &lt; c_l\xi$, $\alpha$ is imaginary, replaced by $i\alpha’$ (where $\alpha’^2 = -\alpha^2$).</p>
-
-<p>For different regions, the following root-finding method is used:</p>
-
-<ol>
-  <li>
-    <p>At the smallest wavenumber, two sets of roots are determined by sweeping.</p>
-  </li>
-  <li>
-    <p>Based on the initial roots, the equation is solved layer by layer using an adaptive approach.</p>
-  </li>
-</ol>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/mathmethod-480.webp 480w,/assets/img/blog/mathmethod-800.webp 800w,/assets/img/blog/mathmethod-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/mathmethod.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 5: Illustration of numerical calculation method</figcaption>
-  
-</figure>
-
-</div>]]></content><author><name></name></author><category term="Physics" /><summary type="html"><![CDATA[Elastic Equation in Rods]]></summary></entry><entry><title type="html">Dispersion Relations of Elastic Waves in Plates</title><link href="https://lyushisyan.github.io/blog/2023/elastic-wave-in-plate/" rel="alternate" type="text/html" title="Dispersion Relations of Elastic Waves in Plates" /><published>2023-05-09T03:32:13+03:00</published><updated>2023-05-09T03:32:13+03:00</updated><id>https://lyushisyan.github.io/blog/2023/elastic-wave-in-plate</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2023/elastic-wave-in-plate/"><![CDATA[<p>This article studies wave propagation by solving the <strong>elastic equation in a continuous medium</strong>.</p>
-
-<p>In a plate, waves can be classified into longitudinal (<strong>P</strong>) waves and transverse (<strong>S</strong>) waves. <strong>S</strong> waves further include <strong>SH</strong> and <strong>SV</strong> waves.</p>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/elsplate_1-480.webp 480w,/assets/img/blog/elsplate_1-800.webp 800w,/assets/img/blog/elsplate_1-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/elsplate_1.png" class="w-50" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 1: Schematic of elastic waves in thin films</figcaption>
-  
-</figure>
-
-</div>
-
-<p>Assume the wave propagates along the $x$-axis. If particle motion is in $x$, it is a <strong>P wave</strong>; in $y$, an <strong>SH wave</strong>; in $z$, an <strong>SV wave</strong>.</p>
-
-<p>SV and P waves couple under stress-free boundary conditions to form <strong>Rayleigh-Lamb waves</strong>.</p>
-
-<h2 id="elastic-wave-equation">Elastic Wave Equation</h2>
-
-<p>In the continuous medium approximation, the wave equation for propagation along $x$ is:</p>
-
-\[\mu \Delta \vec{u} + (\lambda + \mu) \nabla (\nabla \cdot \vec{u}) = \rho \frac{\partial^2 \vec{u}}{\partial t^2}\]
-
-<p>Here, $\vec{u}$ is the displacement vector; $\lambda$, $\mu$ are Lamé constants; $\rho$ is the density.</p>
-
-<p>All solutions can be written using scalar and vector potentials:</p>
-
-\[\vec{u} = \nabla \varphi + \nabla \times \vec{\psi}\]
-
-<h2 id="dispersion-relation-of-sh-waves">Dispersion Relation of SH Waves</h2>
-
-<p>For SH waves: $\vec{u} = (0, u_y, 0)$.</p>
-
-<p>Wave equation:</p>
-
-\[\frac{\partial^2 u_y}{\partial x^2} + \frac{\partial^2 u_y}{\partial z^2} = \frac{1}{c_t^2} \frac{\partial^2 u_y}{\partial t^2}\]
-
-<p>with $c_t = \sqrt{\mu / \rho}$.</p>
-
-<p>Solution:</p>
-
-\[u_y = (A_1 \sin \beta z + A_2 \cos \beta z) e^{i(\xi x - \omega t)}\]
-
-<p>where:</p>
-
-\[\beta^2 + \xi^2 = \frac{\omega^2}{c_t^2}\]
-
-<p>Boundary condition at $y = \pm b$:</p>
-
-\[\tau_{zy} = \mu \frac{\partial u_y}{\partial z} = 0\]
-
-<p>From the boundary condition:</p>
-
-\[\cos \beta b \sin \beta b = 0
-\quad \Rightarrow \quad \beta b = \frac{n\pi}{2}, \quad n = 0,1,2,...\]
-
-<p>Dispersion relation:</p>
-
-\[\omega^2 = c_t^2 \left[ \xi^2 + \left( \frac{n\pi}{2b} \right)^2 \right]\]
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/els-DS-SH-480.webp 480w,/assets/img/blog/els-DS-SH-800.webp 800w,/assets/img/blog/els-DS-SH-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/els-DS-SH.png" class="w-50" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 2: Dispersion relation of SH waves</figcaption>
-  
-</figure>
-
-</div>
-
-<h2 id="dispersion-relation-of-rayleigh-lamb-waves">Dispersion Relation of Rayleigh-Lamb Waves</h2>
-
-<p>Consider a plate of thickness $2b$ with stress-free boundaries, where both P and SV waves exist.</p>
-
-<p>Displacement: $\vec{u} = (u_x, 0, u_z)$, scalar potential: $\varphi$, vector potential: $\vec{\psi} = (0, \psi_y, 0)$.</p>
-
-<p>Wave equations:</p>
-
-\[\nabla^2 \varphi = \frac{1}{c_l^2} \frac{\partial^2 \varphi}{\partial t^2}, \quad
-\nabla^2 \psi_y = \frac{1}{c_t^2} \frac{\partial^2 \psi_y}{\partial t^2}\]
-
-<p>with $c_l = \sqrt{(\lambda + 2\mu)/\rho}$.</p>
-
-<p>The solutions are:</p>
-
-\[\varphi=(A\sin\alpha z+B\cos\alpha z)e^{i(\xi x-\omega t)}\]
-
-\[\psi_y=i(C\sin\beta z+ D\cos\beta z)e^{i(\xi x-\omega t)}\]
-
-<p>Symmetric and antisymmetric waves are treated separately.</p>
-
-<h3 id="symmetric-waves">Symmetric Waves</h3>
-
-<p>For symmetric waves ($A=D=0$):</p>
-
-\[\frac{\tan\beta b}{\tan\alpha b} = -\frac{4\alpha\beta \xi^2}{(\xi^2-\beta^2)^2}\]
-
-<h3 id="antisymmetric-waves">Antisymmetric Waves</h3>
-
-<p>For antisymmetric waves ($B=C=0$):</p>
-
-\[\frac{\tan\beta b}{\tan\alpha b} = -\frac{(\xi^2-\beta^2)^2}{4\alpha\beta \xi^2}\]
-
-<h3 id="rayleigh-lamb-frequency-equation">Rayleigh-Lamb Frequency Equation</h3>
-
-<p>Combining symmetric and antisymmetric cases:</p>
-
-\[F(\alpha,\beta,\xi) = \frac{\tan\beta b}{\tan\alpha b} + \left(\frac{4\alpha\beta \xi^2}{(\xi^2-\beta^2)^2}\right)^{\pm 1} = 0\]
-
-<h2 id="group-velocity-and-phase-velocity">Group Velocity and Phase Velocity</h2>
-
-<p>The phase velocity is the propagation velocity of the wave phase:</p>
-
-\[v_p=\frac{\omega}{k}\]
-
-<p>The group velocity is the velocity at which energy is transmitted in the medium:</p>
-
-\[v_g=\frac{\partial\omega}{\partial k}\]
-
-<div class="row">
-  <div class="col-md-6 text-center">
-    
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/els-vg-480.webp 480w,/assets/img/blog/els-vg-800.webp 800w,/assets/img/blog/els-vg-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/els-vg.png" class="img-fluid w-100" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 5: Group velocity of elastic waves in thin films</figcaption>
-  
-</figure>
-
-  </div>
-  <div class="col-md-6 text-center">
-    
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/els-vp-480.webp 480w,/assets/img/blog/els-vp-800.webp 800w,/assets/img/blog/els-vp-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/els-vp.png" class="img-fluid w-100" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 6: Phase velocity of elastic waves in thin films</figcaption>
-  
-</figure>
-
-  </div>
-</div>]]></content><author><name></name></author><category term="Physics" /><summary type="html"><![CDATA[This article studies wave propagation by solving the elastic equation in a continuous medium.]]></summary></entry><entry><title type="html">Classical Kinetic Theory of Heat Conduction</title><link href="https://lyushisyan.github.io/blog/2023/classical-kinetic-theory/" rel="alternate" type="text/html" title="Classical Kinetic Theory of Heat Conduction" /><published>2023-04-26T03:32:13+03:00</published><updated>2023-04-26T03:32:13+03:00</updated><id>https://lyushisyan.github.io/blog/2023/classical-kinetic-theory</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2023/classical-kinetic-theory/"><![CDATA[<h2 id="kinetic-theory-of-gases">Kinetic Theory of Gases</h2>
-
-<p>In classical kinetic theory, consider a molecule traveling a total path length $L$. The effective volume it sweeps out is $\pi d^2 L$, where $d$ is the molecular diameter. If the number density of the gas is $n$, then the number of molecules within this volume is $\pi n d^2 L$, meaning the number of collisions experienced is:</p>
-
-\[N = \pi n d^2 L\]
-
-<p>The mean free path $\Lambda$ between two collisions is then:</p>
-
-\[\Lambda = \frac{L}{N} = \frac{L}{\pi n d^2 L} = \frac{1}{n \sigma}\]
-
-<p>where $\sigma = \pi d^2$ is the collision cross-section.</p>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/meanlength-480.webp 480w,/assets/img/blog/meanlength-800.webp 800w,/assets/img/blog/meanlength-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/meanlength.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 1: Schematic of mean free path</figcaption>
-  
-</figure>
-
-</div>
-
-<p>Substituting the ideal gas relation $n = \frac{p}{k_B T}$ gives:</p>
-
-\[\Lambda = \frac{k_B T}{p \sigma}\]
-
-<p>To calculate the heat flux from a single molecule, assume its internal energy is $\varepsilon$, and its velocity component in the $x$ direction is $v_x$. Then the energy transfer per unit time is approximately:</p>
-
-\[q_x = \frac{1}{2} v_x \left[\varepsilon(x - \Lambda_x) - \varepsilon(x + \Lambda_x)\right]\]
-
-<p>Expanding using a Taylor series and neglecting higher-order terms:</p>
-
-\[q_x \approx -v_x \Lambda_x \frac{\mathrm{d} \varepsilon}{\mathrm{d}x} \approx -(\cos^2\theta) v \Lambda \frac{\mathrm{d} \varepsilon}{\mathrm{d}x}\]
-
-<p>Integrating over all directions (assuming isotropy), the total heat flux is:</p>
-
-\[q_x = -\frac{1}{2\pi} v \Lambda \frac{\mathrm{d} \varepsilon}{\mathrm{d}x}
-\left[\int_0^{2\pi} \mathrm{d}\varphi \int_0^{\pi/2} \cos^2\theta \sin\theta \, \mathrm{d}\theta \right] \frac{\mathrm{d} \varepsilon}{\mathrm{d}T} \frac{\mathrm{d}T}{\mathrm{d}x}\]
-
-<p>Which simplifies to:</p>
-
-\[q_x \approx -\frac{1}{3} C v \Lambda \frac{\mathrm{d}T}{\mathrm{d}x}\]
-
-<p>The resulting thermal conductivity is:</p>
-
-\[\lambda = \frac{1}{3} C v \Lambda\]
-
-<p>This shows that thermal conductivity is proportional to specific heat $C$, molecular speed $v$, and mean free path $\Lambda$.</p>
-
-<h2 id="heat-conduction-in-dielectrics">Heat Conduction in Dielectrics</h2>
-
-<p>In dielectrics such as insulators or semiconductors, heat is carried by <strong>phonons</strong>, the quantized vibrations of the crystal lattice. Each phonon has energy $\hbar \omega$, where $\omega$ is the vibrational frequency.</p>
-
-<p>Phonon thermal conductivity is similarly given by:</p>
-
-\[\lambda_{ph} = \frac{1}{3} C_{ph} v_s \Lambda_{\Sigma}\]
-
-<p>where:</p>
-<ul>
-  <li>$C_{ph}$ is the specific heat of the phonon system;</li>
-  <li>$v_s$ is the effective sound speed;</li>
-  <li>$\Lambda_{\Sigma}$ is the effective mean free path.</li>
-</ul>
-
-<p>Main phonon scattering mechanisms include:</p>
-<ul>
-  <li>Boundary scattering ($b$);</li>
-  <li>Impurity scattering ($imp$);</li>
-  <li>Phonon-phonon scattering ($ph$).</li>
-</ul>
-
-<p>According to <strong>Matthiessen’s rule</strong>, the total inverse mean free path is the sum of the individual contributions:</p>
-
-\[\Lambda_{\Sigma}^{-1} = \Lambda_{ph}^{-1} + \Lambda_{imp}^{-1} + \Lambda_{b}^{-1}\]
-
-<div class="row">
-  <div class="col-md-6 text-center">
-    
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/classic1-480.webp 480w,/assets/img/blog/classic1-800.webp 800w,/assets/img/blog/classic1-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/classic1.png" class="img-fluid w-100" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 2: Impact of different scattering mechanisms on mean free path</figcaption>
-  
-</figure>
-
-  </div>
-  <div class="col-md-6 text-center">
-    
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/classic2-480.webp 480w,/assets/img/blog/classic2-800.webp 800w,/assets/img/blog/classic2-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/classic2.png" class="img-fluid w-100" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure 3: Influence of scattering mechanisms on thermal conductivity</figcaption>
-  
-</figure>
-
-  </div>
-</div>
-
-<h2 id="heat-conduction-in-metals">Heat Conduction in Metals</h2>
-
-<p>In metals, heat is mainly carried by free electrons. The thermal conductivity of the electron gas is:</p>
-
-\[\lambda_{e} = \frac{1}{3} C_{e} v_F \Lambda_{e}\]
-
-<p>where:</p>
-<ul>
-  <li>$C_e$ is the electronic specific heat;</li>
-  <li>$v_F$ is the Fermi velocity;</li>
-  <li>$\Lambda_e$ is the mean free path of electrons.</li>
-</ul>
-
-<p>Again using Matthiessen’s rule:</p>
-
-\[\frac{1}{\Lambda_e} = \frac{1}{\Lambda_{ph}} + \frac{1}{\Lambda_d} + \frac{1}{\Lambda_b}\]
-
-<h2 id="boltzmann-transport-equation">Boltzmann Transport Equation</h2>
-
-<p>At the microscopic level, heat transport is described by particle distribution functions. In equilibrium, these are:</p>
-<ul>
-  <li><strong>Maxwell–Boltzmann distribution</strong> (classical gases);</li>
-  <li><strong>Bose–Einstein distribution</strong> (e.g., phonons);</li>
-  <li><strong>Fermi–Dirac distribution</strong> (e.g., electrons).</li>
-</ul>
-
-<p>When far from equilibrium, the distribution becomes $f(\vec{r}, \vec{p}, t)$ and evolves according to the <strong>Boltzmann transport equation</strong>:</p>
-
-\[\frac{\partial f}{\partial t} + \vec v \cdot \nabla_{\vec r} f + \vec F \cdot \nabla_{\vec p} f = \left(\frac{\partial f}{\partial t}\right)_\text{st}\]
-
-<p>where the right-hand collision term $\left(\partial f / \partial t\right)_{\text{st}}$ describes how the system relaxes toward equilibrium.</p>
-
-<h2 id="fourier-equation">Fourier Equation</h2>
-
-<p>At the macroscopic level, classical <strong>Fourier’s law</strong> governs steady-state heat conduction:</p>
-
-\[\vec q = -\lambda \nabla T\]
-
-<p>Substituting into energy conservation gives the heat diffusion equation:</p>
-
-\[\rho C_p \frac{\partial T}{\partial t} = -\nabla \cdot \vec q\]
-
-<p>Which becomes:</p>
-
-\[\rho C_p \frac{\partial T}{\partial t} = \lambda \nabla^2 T
-\quad \Rightarrow \quad \frac{\partial T}{\partial t} = a \nabla^2 T\]
-
-<p>Here, $a = \frac{\lambda}{\rho C_p}$ is the thermal diffusivity, describing how temperature disturbances propagate in the medium.</p>
-
-<h2 id="summary">Summary</h2>
-
-<ul>
-  <li>Thermal transport depends not only on intrinsic properties like specific heat, velocity, and mean free path, but also on the characteristic size and timescale.</li>
-  <li>When the system size is smaller than the mean free path, Fourier’s law fails; one should apply the Boltzmann equation or molecular dynamics.</li>
-  <li>When the system size is comparable to carrier wavelengths, wave effects dominate and require wave-based models (e.g., phonon interference or localization theory).</li>
-</ul>]]></content><author><name></name></author><category term="Heat-conduction" /><category term="Physics" /><summary type="html"><![CDATA[Kinetic Theory of Gases]]></summary></entry></feed>
+</span></code></pre></div></div>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[The calculations handled by pw.x include seven types, specified in the input file with calculation:]]></summary></entry></feed>
