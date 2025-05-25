@@ -181,24 +181,6 @@
     <script src="/assets/js/distillpub/transforms.v2.js"></script>
     <script src="/assets/js/distillpub/overrides.js"></script>
     
-      <!-- Page/Post style -->
-      <style type="text/css">
-        .fake-img {
-  background: #bbb;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 12px;
-} .fake-img p {
-  font-family: sans-serif;
-  color: white;
-  text-align: left;
-  margin: 12px 0;
-  text-align: center;
-  font-size: 16px;
-}
-
-      </style>
-    
   </head>
 
   <body>
@@ -260,7 +242,7 @@
 
           <!-- About -->
           <li class="nav-item ">
-            <a class="nav-link" href="/">🏠 Home
+            <a class="nav-link" href="/">Home
               
             </a>
           </li>
@@ -300,7 +282,7 @@
               
                 
                 <li class="nav-item active">
-                  <a class="nav-link" href="/blog/">📝 Blog
+                  <a class="nav-link" href="/blog/">Blog
                     
                       <span class="sr-only">(current)</span>
                     
@@ -313,7 +295,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/publications/">📚 Publications
+                  <a class="nav-link" href="/publications/">Publications
                     
                   </a>
                 </li>
@@ -324,7 +306,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/teaching/">🧑‍🏫 Teaching
+                  <a class="nav-link" href="/teaching/">Teaching
                     
                   </a>
                 </li>
@@ -424,61 +406,61 @@
 
 <h3 id="11-incar-parameter-settings">1.1 <code class="language-plaintext highlighter-rouge">INCAR</code> Parameter Settings</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>System = Si-film    # System name, can be freely defined to identify the current calculation system.
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>System <span class="o">=</span> Si-film    <span class="c"># System name, can be freely defined to identify the current calculation system.</span>
 
-# Job Control
-ISTART = 0          # Initial state setup:
-                    # 0 Start calculation from scratch.
-                    # 1 Read initial wavefunctions from WAVECAR file.
-                    # 2 Read wavefunctions and charge density from WAVECAR and CHGCAR files.
-ISPIN = 1           # Spin polarization options:
-                    # 1 Non-spin-polarized (for non-magnetic materials).
-                    # 2 Spin-polarized (for magnetic materials).
-ICHARGE = 2         # Initial charge density selection:
-                    # 2 Start from static charge density provided by POTCAR.
-                    # 1 Generate charge density from scratch.
-LWAVE = .FALSE.     # Output WAVECAR file:
-                    # .TRUE. Output (store wavefunction data).
-                    # .FALSE. Do not output (save disk space).
-LCHARG = .FALSE.    # Output CHGCAR file:
-                    # .TRUE. Output (store static charge density).
-                    # .FALSE. Do not output (save disk space).
-ISYM = 0            # Symmetry settings:
-                    # 0 Disable symmetry (for systems with defects or asymmetric structures).
-                    # 1 or 2 Preserve symmetry operations.
+<span class="c"># Job Control</span>
+ISTART <span class="o">=</span> 0          <span class="c"># Initial state setup:</span>
+                    <span class="c"># 0 Start calculation from scratch.</span>
+                    <span class="c"># 1 Read initial wavefunctions from WAVECAR file.</span>
+                    <span class="c"># 2 Read wavefunctions and charge density from WAVECAR and CHGCAR files.</span>
+ISPIN <span class="o">=</span> 1           <span class="c"># Spin polarization options:</span>
+                    <span class="c"># 1 Non-spin-polarized (for non-magnetic materials).</span>
+                    <span class="c"># 2 Spin-polarized (for magnetic materials).</span>
+ICHARGE <span class="o">=</span> 2         <span class="c"># Initial charge density selection:</span>
+                    <span class="c"># 2 Start from static charge density provided by POTCAR.</span>
+                    <span class="c"># 1 Generate charge density from scratch.</span>
+LWAVE <span class="o">=</span> .FALSE.     <span class="c"># Output WAVECAR file:</span>
+                    <span class="c"># .TRUE. Output (store wavefunction data).</span>
+                    <span class="c"># .FALSE. Do not output (save disk space).</span>
+LCHARG <span class="o">=</span> .FALSE.    <span class="c"># Output CHGCAR file:</span>
+                    <span class="c"># .TRUE. Output (store static charge density).</span>
+                    <span class="c"># .FALSE. Do not output (save disk space).</span>
+ISYM <span class="o">=</span> 0            <span class="c"># Symmetry settings:</span>
+                    <span class="c"># 0 Disable symmetry (for systems with defects or asymmetric structures).</span>
+                    <span class="c"># 1 or 2 Preserve symmetry operations.</span>
 
-# Electronic Relaxation
-ENCUT = 500         # Plane-wave cutoff energy (eV), determines calculation precision and efficiency.
-ISMEAR = 0          # Smearing method:
-                    # -5 (tetrahedron method for metals), 0 (Gaussian smearing for semiconductors), 1 or 2 (Fermi smearing).
-SIGMA = 0.05        # Smearing width (eV), recommended values: 0.01 ~ 0.1.
-EDIFF = 1E-08       # SCF convergence criterion: stops if energy change between iterations is less than 1E-08 eV.
-NELMIN = 6          # Minimum number of electronic iterations to ensure basic convergence.
-NELM = 300          # Maximum number of electronic iterations to avoid iteration loops.
-GGA = PE            # Functional choice, using PBE (Perdew-Burke-Ernzerhof) exchange-correlation functional.
-LREAL = .FALSE.     # Reciprocal space calculations, increases precision but adds computational cost.
-ADDGRID = .TRUE.    # Enable additional FFT grid for improved numerical accuracy.
-ALGO = N            # Electronic relaxation algorithm:
-                    # Normal (standard mode), Fast, or VeryFast (accelerated modes).
-PREC = Accurate     # Precision settings:
-                    # Accurate (high precision), Normal, or Low (for initial tests).
+<span class="c"># Electronic Relaxation</span>
+ENCUT <span class="o">=</span> 500         <span class="c"># Plane-wave cutoff energy (eV), determines calculation precision and efficiency.</span>
+ISMEAR <span class="o">=</span> 0          <span class="c"># Smearing method:</span>
+                    <span class="c"># -5 (tetrahedron method for metals), 0 (Gaussian smearing for semiconductors), 1 or 2 (Fermi smearing).</span>
+SIGMA <span class="o">=</span> 0.05        <span class="c"># Smearing width (eV), recommended values: 0.01 ~ 0.1.</span>
+EDIFF <span class="o">=</span> 1E-08       <span class="c"># SCF convergence criterion: stops if energy change between iterations is less than 1E-08 eV.</span>
+NELMIN <span class="o">=</span> 6          <span class="c"># Minimum number of electronic iterations to ensure basic convergence.</span>
+NELM <span class="o">=</span> 300          <span class="c"># Maximum number of electronic iterations to avoid iteration loops.</span>
+GGA <span class="o">=</span> PE            <span class="c"># Functional choice, using PBE (Perdew-Burke-Ernzerhof) exchange-correlation functional.</span>
+LREAL <span class="o">=</span> .FALSE.     <span class="c"># Reciprocal space calculations, increases precision but adds computational cost.</span>
+ADDGRID <span class="o">=</span> .TRUE.    <span class="c"># Enable additional FFT grid for improved numerical accuracy.</span>
+ALGO <span class="o">=</span> N            <span class="c"># Electronic relaxation algorithm:</span>
+                    <span class="c"># Normal (standard mode), Fast, or VeryFast (accelerated modes).</span>
+PREC <span class="o">=</span> Accurate     <span class="c"># Precision settings:</span>
+                    <span class="c"># Accurate (high precision), Normal, or Low (for initial tests).</span>
 
-# Ionic Relaxation
-ISIF = 2            # Lattice optimization options:
-                    # 2 Optimize atomic positions only, keep lattice parameters fixed.
-                    # 3 Optimize both atomic positions and lattice shape.
-EDIFFG = -0.01      # Ionic convergence criterion:
-                    # Negative values based on force (eV/\u00c5).
-                    # Positive values based on energy.
-IBRION = 2          # Ionic relaxation algorithm:
-                    # 2 Conjugate gradient algorithm (suitable for most optimization tasks).
-POTIM = 0.5         # Time step, controls optimization speed.
-NSW = 200           # Maximum number of ionic steps.
+<span class="c"># Ionic Relaxation</span>
+ISIF <span class="o">=</span> 2            <span class="c"># Lattice optimization options:</span>
+                    <span class="c"># 2 Optimize atomic positions only, keep lattice parameters fixed.</span>
+                    <span class="c"># 3 Optimize both atomic positions and lattice shape.</span>
+EDIFFG <span class="o">=</span> <span class="nt">-0</span>.01      <span class="c"># Ionic convergence criterion:</span>
+                    <span class="c"># Negative values based on force (eV/\u00c5).</span>
+                    <span class="c"># Positive values based on energy.</span>
+IBRION <span class="o">=</span> 2          <span class="c"># Ionic relaxation algorithm:</span>
+                    <span class="c"># 2 Conjugate gradient algorithm (suitable for most optimization tasks).</span>
+POTIM <span class="o">=</span> 0.5         <span class="c"># Time step, controls optimization speed.</span>
+NSW <span class="o">=</span> 200           <span class="c"># Maximum number of ionic steps.</span>
 
-# Parallel Control
-NPAR = 4            # FFT grid parallelization dimension (recommended: sqrt(total cores)).
-KPAR = 2            # Number of parallel k-points (total cores should be divisible by NPAR \u00d7 KPAR \u00d7 NCORE).
-NCORE = 12          # Number of cores per task.
+<span class="c"># Parallel Control</span>
+NPAR <span class="o">=</span> 4            <span class="c"># FFT grid parallelization dimension (recommended: sqrt(total cores)).</span>
+KPAR <span class="o">=</span> 2            <span class="c"># Number of parallel k-points (total cores should be divisible by NPAR \u00d7 KPAR \u00d7 NCORE).</span>
+NCORE <span class="o">=</span> 12          <span class="c"># Number of cores per task.</span>
 </code></pre></div></div>
 
 <p>For structural optimization, key parameters in <code class="language-plaintext highlighter-rouge">INCAR</code> include <code class="language-plaintext highlighter-rouge">IBRION</code>, <code class="language-plaintext highlighter-rouge">ISIF</code>, <code class="language-plaintext highlighter-rouge">NSW</code>, <code class="language-plaintext highlighter-rouge">EDIFF</code>, and <code class="language-plaintext highlighter-rouge">EDIFFG</code>.</p>
@@ -614,32 +596,32 @@ Optimizes atomic positions without calculating stress, for fixed cell optimizati
 
 <p>Below is an example <code class="language-plaintext highlighter-rouge">POSCAR</code> file describing the structure of bulk silicon:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si-bulk   # System name, customizable
-1.0       # Global scaling factor (can be used to scale the lattice)
-   5.430    0.000    0.000  # Lattice vector a
-   0.000    5.430    0.000  # Lattice vector b
-   0.000    0.000    5.430  # Lattice vector c
-Si           # Atom types
-2            # Number of atoms for each type
-Direct       # Coordinate type (Direct: fractional; Cartesian: cartesian)
-  0.000  0.000  0.000  # Coordinates for atom 1
-  0.250  0.250  0.250  # Coordinates for atom 2
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si-bulk   <span class="c"># System name, customizable</span>
+1.0       <span class="c"># Global scaling factor (can be used to scale the lattice)</span>
+   5.430    0.000    0.000  <span class="c"># Lattice vector a</span>
+   0.000    5.430    0.000  <span class="c"># Lattice vector b</span>
+   0.000    0.000    5.430  <span class="c"># Lattice vector c</span>
+Si           <span class="c"># Atom types</span>
+2            <span class="c"># Number of atoms for each type</span>
+Direct       <span class="c"># Coordinate type (Direct: fractional; Cartesian: cartesian)</span>
+  0.000  0.000  0.000  <span class="c"># Coordinates for atom 1</span>
+  0.250  0.250  0.250  <span class="c"># Coordinates for atom 2</span>
 </code></pre></div></div>
 
 <p>Example POSCAR File for Silicon Thin Film (Si-film):</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si Thin Film                            
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si Thin Film                            
    1.00000000000000     
      5.4299999999999997    0.0000000000000000    0.0000000000000000
      0.0000000000000000    5.4299999999999997    0.0000000000000000
      0.0000000000000000    0.0000000000000000   20.8599999999999994
    Si
     16
-Selective dynamics  # Enable Selective Dynamics
+Selective dynamics  <span class="c"># Enable Selective Dynamics</span>
 Direct
-0.000000 0.000000 0.200000 F F F  # Fixed in all three directions
-0.500000 0.500000 0.200000 T T F  # Fixed in z-direction, free in x and y
-0.500000 0.000000 0.330153 T T T  # Free in all directions
+0.000000 0.000000 0.200000 F F F  <span class="c"># Fixed in all three directions</span>
+0.500000 0.500000 0.200000 T T F  <span class="c"># Fixed in z-direction, free in x and y</span>
+0.500000 0.000000 0.330153 T T T  <span class="c"># Free in all directions</span>
 0.000000 0.500000 0.330153 T T T
 0.250000 0.250000 0.265077 T T T
 0.750000 0.750000 0.265077 T T T
@@ -659,22 +641,26 @@ Direct
 
 <h4 id="1-monkhorst-pack-grid">(1) Monkhorst-Pack Grid</h4>
 <p>Monkhorst-Pack grids provide a uniform k-point distribution for periodic crystal calculations.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   # Automatic k-point generation method (comment)
-0                              # Ignore total k-point count, use automatic generation
-Monkhorst-Pack                 # Choose Monkhorst-Pack grid
-4 4 4                          # Grid density in x, y, z directions
-0 0 0                          # No grid shift
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   <span class="c"># Automatic k-point generation method (comment)</span>
+0                              <span class="c"># Ignore total k-point count, use automatic generation</span>
+Monkhorst-Pack                 <span class="c"># Choose Monkhorst-Pack grid</span>
+4 4 4                          <span class="c"># Grid density in x, y, z directions</span>
+0 0 0                          <span class="c"># No grid shift</span>
 </code></pre></div></div>
+
 <p><strong>Use Case:</strong> Periodic crystals, optimization, DOS calculations, and electronic structure analysis.</p>
 
 <h4 id="2-gamma-grid">(2) Gamma Grid</h4>
 <p>Gamma grids center the k-point grid at the Gamma point, suitable for small or asymmetric lattices.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   # Automatic k-point generation method (comment)
-0                              # Ignore total k-point count, use automatic generation
-Gamma                          # Choose Gamma-centered grid
-4 4 4                          # Grid density in x, y, z directions
-0 0 0                          # No grid shift
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   <span class="c"># Automatic k-point generation method (comment)</span>
+0                              <span class="c"># Ignore total k-point count, use automatic generation</span>
+Gamma                          <span class="c"># Choose Gamma-centered grid</span>
+4 4 4                          <span class="c"># Grid density in x, y, z directions</span>
+0 0 0                          <span class="c"># No grid shift</span>
 </code></pre></div></div>
+
 <p><strong>Use Case:</strong> Small systems, asymmetric lattices, or fast calculation optimization tasks.</p>
 
 <h3 id="14-potcar-file-usage">1.4 POTCAR File Usage</h3>
@@ -691,8 +677,10 @@ Gamma                          # Choose Gamma-centered grid
 
 <h4 id="generating-the-potcar-file">Generating the POTCAR File:</h4>
 <p>For a system with atoms like Si and H, concatenate the pseudopotential files:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat /POT_GGA_PAW/POTCAR_Si /POT_GGA_PAW/POTCAR_H &gt; POTCAR
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /POT_GGA_PAW/POTCAR_Si /POT_GGA_PAW/POTCAR_H <span class="o">&gt;</span> POTCAR
 </code></pre></div></div>
+
 <ul>
   <li>Ensure the functional type in POTCAR matches the INCAR settings.</li>
   <li>Maintain the atom order in POTCAR consistent with the element order in POSCAR.</li>
@@ -1100,27 +1088,27 @@ Gamma                          # Choose Gamma-centered grid
     // add the home and posts menu items
     ninja.data = [{
         id: "nav-home",
-        title: "🏠 Home",
+        title: "Home",
         section: "Navigation menu",
         handler: () => {
           window.location.href = "/";
         },
       },{id: "nav-blog",
-              title: "📝 Blog",
+              title: "Blog",
               description: "",
               section: "Navigation menu",
               handler: () => {
                 window.location.href = "/blog/";
               },
             },{id: "nav-publications",
-              title: "📚 Publications",
+              title: "Publications",
               description: "Publications indexed in Scopus and Web of Science",
               section: "Navigation menu",
               handler: () => {
                 window.location.href = "/publications/";
               },
             },{id: "nav-teaching",
-              title: "🧑‍🏫 Teaching",
+              title: "Teaching",
               description: "Lectures",
               section: "Navigation menu",
               handler: () => {
@@ -1192,9 +1180,9 @@ Gamma                          # Choose Gamma-centered grid
               window.location.href = "/blog/2024/qe-scf/";
             
           },
-        },{id: "post-microscopic-description-of-thermal-physics",
+        },{id: "post-microscopic-description-of-thermophysics",
           
-            title: "Microscopic Description of Thermal Physics",
+            title: "Microscopic Description of Thermophysics",
           
           description: "",
           section: "Posts",

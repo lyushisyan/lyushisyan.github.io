@@ -242,7 +242,7 @@
 
           <!-- About -->
           <li class="nav-item ">
-            <a class="nav-link" href="/zh-CN/">🏠 首页
+            <a class="nav-link" href="/zh-CN/">首页
               
             </a>
           </li>
@@ -278,7 +278,7 @@
               
                 
                 <li class="nav-item active">
-                  <a class="nav-link" href="/zh-CN/blog/">📝 博客
+                  <a class="nav-link" href="/zh-CN/blog/">博客
                     
                       <span class="sr-only">(current)</span>
                     
@@ -291,7 +291,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/zh-CN/publications/">📚 发表
+                  <a class="nav-link" href="/zh-CN/publications/">发表
                     
                   </a>
                 </li>
@@ -302,7 +302,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/zh-CN/teaching/">🧑‍🏫 教学
+                  <a class="nav-link" href="/zh-CN/teaching/">教学
                     
                   </a>
                 </li>
@@ -412,34 +412,34 @@
             </nav>
           </d-contents>
         
-        <p>传热学中的宏观能量守恒方程描述热能的储存、传输（热传导 \(k\)、热对流 \(u\) 和热辐射 \(r\)）以及与其他形式的能量之间的转换。</p>
+        <p>传热学中的宏观能量守恒方程描述热能的储存、传输（热传导 $k$、热对流 $u$ 和热辐射 $r$）以及与其他形式的能量之间的转换。</p>
 
 <h2 id="能量守恒方程">能量守恒方程</h2>
 
 \[\nabla\cdot \boldsymbol q=-\rho c_p\frac{\partial T}{\partial t}+\sum_{i,j}\dot s_{i-j},
 \nabla\cdot \boldsymbol q=\frac{\int_{\Delta A}(\boldsymbol q\cdot\boldsymbol s_{\boldsymbol n})dA}{\Delta V \to 0}\]
 
-<p>其中，\(\rho c_p\frac{\partial T}{\partial t}\) 被称为显热储存，\(\dot s_{i-j}\) 为热能的能量转换速率，由能量载流子 \(i\) 和 \(j\) 之间相互作用的性质和频率决定。</p>
+<p>其中，$\rho c_p\frac{\partial T}{\partial t}$ 被称为显热储存，$\dot s_{i-j}$ 为热能的能量转换速率，由能量载流子 $i$ 和 $j$ 之间相互作用的性质和频率决定。</p>
 
-<p>热流矢量 \(\boldsymbol q\) 是传导、对流和辐射热流矢量之和：</p>
+<p>热流矢量 $\boldsymbol q$ 是传导、对流和辐射热流矢量之和：</p>
 
 \[\boldsymbol q = \boldsymbol q_k + \boldsymbol q_u + \boldsymbol q_r\]
 
-<p><strong>传导热流矢量</strong> \(\boldsymbol q_k\) 是热导率 \(k\) 与温度梯度 \(\nabla T\) 乘积的负数，即傅立叶传导定律：</p>
+<p><strong>传导热流矢量</strong> $\boldsymbol q_k$ 是热导率 $k$ 与温度梯度 $\nabla T$ 乘积的负数，即傅立叶传导定律：</p>
 
 \[\boldsymbol q_k = -k\nabla T\]
 
-<p><strong>对流热流矢量</strong> \(\boldsymbol q_u\) 是 \(\rho c_p\)、局部速度矢量 \(\boldsymbol u\) 和温度 \(T\) 的乘积：</p>
+<p><strong>对流热流矢量</strong> $\boldsymbol q_u$ 是 $\rho c_p$、局部速度矢量 $\boldsymbol u$ 和温度 $T$ 的乘积：</p>
 
 \[\boldsymbol q_u = \rho c_p\boldsymbol u T\]
 
-<p><strong>辐射热流矢量</strong> \(\boldsymbol q_r\) 是对单位矢量 \(\boldsymbol s\) 与电磁谱的定向辐射强度 \(I_{ph,\omega}\) 乘积在空间上和电磁谱上的积分：</p>
+<p><strong>辐射热流矢量</strong> $\boldsymbol q_r$ 是对单位矢量 $\boldsymbol s$ 与电磁谱的定向辐射强度 $I_{ph,\omega}$ 乘积在空间上和电磁谱上的积分：</p>
 
 \[\boldsymbol q_r  = 2\pi\int_0^\infty\int_{-1}^1\boldsymbol s I_{ph,\omega}d\mu d\omega\]
 
 <h2 id="主要的能量载流子">主要的能量载流子</h2>
 
-<p>四种能量载流子，即：<strong>声子</strong> (\(p\))、<strong>电子</strong> (\(e\))、<strong>流体粒子</strong> (\(f\)) 和<strong>光子</strong> (\(ph\))，构建了热能存储、传输和相互作用的微观模型。</p>
+<p>四种能量载流子，即：<strong>声子</strong> ($p$)、<strong>电子</strong> ($e$)、<strong>流体粒子</strong> ($f$) 和<strong>光子</strong> ($ph$)，构建了热能存储、传输和相互作用的微观模型。</p>
 
 <h3 id="声子">声子</h3>
 
@@ -474,10 +474,10 @@
   <li>声子决定了材料的许多物理特性，包括热容量和热/电导率（声子的传播负责绝缘体中的热传导）。</li>
   <li>在经典力学中，晶格的任何振动都可以分解为非局域简正振动模式的叠加。</li>
   <li>当使用量子力学分析这些模式时，发现它们具有一些类似粒子的特性（波粒二象性）。因此，声子是一种<strong>准粒子</strong>。</li>
-  <li>当声子被视为粒子时，声子被称为<strong>玻色子</strong>，具有零自旋。声子能量 \(E_p=\hbar\omega_p\) 是其势能和动能的总和，其中 \(\hbar= h/2\pi\)，\(h\) 是普朗克常数。</li>
-  <li>声子有两种类型：<strong>声学声子</strong>，用 \(A\) 表示，<strong>光学声子</strong>，用 \(O\) 表示。</li>
-  <li>声学声子的频率随着波长的增加而变小，对应于晶格中的声波。<strong>纵向</strong>声子和<strong>横向</strong>声子通常分别缩写为 \(LA\) 和 \(TA\)。</li>
-  <li>光学声子出现在一个晶胞含有多个原子的晶格中。它们之所以被称为光学的，是因为在离子晶体中很容易被光激发。光学声子通常缩写为 \(LO\) 和 \(TO\)，分别表示<strong>纵向</strong>和<strong>横向</strong>类型。</li>
+  <li>当声子被视为粒子时，声子被称为<strong>玻色子</strong>，具有零自旋。声子能量 $E_p=\hbar\omega_p$ 是其势能和动能的总和，其中 $\hbar= h/2\pi$，$h$ 是普朗克常数。</li>
+  <li>声子有两种类型：<strong>声学声子</strong>，用 $A$ 表示，<strong>光学声子</strong>，用 $O$ 表示。</li>
+  <li>声学声子的频率随着波长的增加而变小，对应于晶格中的声波。<strong>纵向</strong>声子和<strong>横向</strong>声子通常分别缩写为 $LA$ 和 $TA$。</li>
+  <li>光学声子出现在一个晶胞含有多个原子的晶格中。它们之所以被称为光学的，是因为在离子晶体中很容易被光激发。光学声子通常缩写为 $LO$ 和 $TO$，分别表示<strong>纵向</strong>和<strong>横向</strong>类型。</li>
 </ul>
 
 <h3 id="电子">电子</h3>
@@ -508,7 +508,7 @@
 </div>
 
 <ul>
-  <li>电子是带负电的<strong>亚原子粒子</strong>。电子的自旋为 \(1/2\)，是<strong>费米子</strong>。</li>
+  <li>电子是带负电的<strong>亚原子粒子</strong>。电子的自旋为 $1/2$，是<strong>费米子</strong>。</li>
   <li>电子的反粒子是<strong>正电子</strong>。正电子与电子具有相同数量的电荷、质量和自旋，只是电荷是相反的。</li>
   <li>电子可以表现出粒子和波的特性，因此可以被视为<strong>准粒子</strong>。与原子核结合的电子表现为<strong>驻波</strong>，可以被观测到。</li>
   <li>固体中的电子分为核心电子和外层电子。核心电子不参与键合，并且被认为始终与原子核一起移动。</li>
@@ -584,8 +584,8 @@
   <li>根据量子力学，光子具有波的特性。</li>
   <li>光子的<strong>静止质量</strong>为零，但能量是确定且有限的。由于光子具有能量，广义相对论指出它们受到重力的影响。</li>
   <li>光子的自旋为 1，是<strong>玻色子</strong>。单个光子由于其单位自旋而被圆偏振。</li>
-  <li>一般来说，电磁场由频率为 \(f_{ph}\)（角频率 \(\omega_{ph}=2\pi f_{ph}\)）、波长 \(\lambda_{ph}\) 和速度 \(u_{ph}\) 的<strong>平面单色波</strong>组成。</li>
-  <li>电磁波的量子特性由其能量 \(E_{ph} = \hbar \omega_{ph}\) 给出。光子还具有动量 \(\boldsymbol p_{ph} = \hbar \boldsymbol\kappa_{ph}\) ，其中 \(\boldsymbol\kappa_{ph}\) 是波矢。</li>
+  <li>一般来说，电磁场由频率为 $f_{ph}$（角频率 $\omega_{ph}=2\pi f_{ph}$）、波长 $\lambda_{ph}$ 和速度 $u_{ph}$ 的<strong>平面单色波</strong>组成。</li>
+  <li>电磁波的量子特性由其能量 $E_{ph} = \hbar \omega_{ph}$ 给出。光子还具有动量 $\boldsymbol p_{ph} = \hbar \boldsymbol\kappa_{ph}$，其中 $\boldsymbol\kappa_{ph}$ 是波矢。</li>
   <li>在真空中，光子的色散关系（角频率与波矢量之间的关系）是线性的，这个比例就是<strong>普朗克常数</strong>。</li>
   <li>物质激发具有非线性色散关系，其动量与其能量不成正比。因此，这些粒子在真空中的传播速度比光速慢。</li>
 </ul>
@@ -600,7 +600,7 @@
 
 <p>这些粒子概率分布函数使我们能够描述晶格（声子）和电子比热容的温度依赖性、温度和气体动能之间的关系以及光子的黑体热发射。</p>
 
-<p>平衡概率分布函数 \(f_i^0\) 给出了零扰动下微观状态的最可能分布。</p>
+<p>平衡概率分布函数 $f_i^0$ 给出了零扰动下微观状态的最可能分布。</p>
 
 <ul>
   <li>
@@ -649,20 +649,15 @@
 
 <p>热是能量的一种形式，表现为物质分子的运动，能够通过<strong>传导</strong>（通过声子、电子和流体粒子）、<strong>对流</strong>（通过流体粒子）和<strong>辐射</strong>（通过光子）从一个物体传递到另一个物体。</p>
 
-<p>与热物理学最相关的物理学领域有：</p>
+<p>与热物理学最相关的物理学领域有：原子/分子动力学；固态（凝聚态）和流体态物理学; 电磁学; 量子光学。</p>
+
 <ul>
-  <li>原子/分子动力学；</li>
-  <li>固态（凝聚态）和流体态物理学；</li>
-  <li>电磁学；</li>
   <li>
-    <p>量子光学。</p>
-  </li>
-  <li>
-<strong>玻尔兹曼</strong>提出：热容、熵和其他热力学性质是大量原子行为的结果，可以用力学和统计学来处理。他引入了玻尔兹曼常数 \(k_B\)，并与麦克斯韦一起提出了<strong>能量均分定律</strong>。</li>
+<strong>玻尔兹曼</strong>提出：热容、熵和其他热力学性质是大量原子行为的结果，可以用力学和统计学来处理。他引入了玻尔兹曼常数 $k_B$，并与麦克斯韦一起提出了<strong>能量均分定律</strong>。</li>
   <li>
 <strong>麦克斯韦</strong>创立了光的电磁理论，还对气体动力学理论、分子物理学和热力学做出了贡献。</li>
   <li>
-<strong>普朗克</strong>发现能量以<strong>离散</strong>的形式存在，后来被称为“量子”。他假设允许物体吸收或发射的能量是有选择性的，必须为 \(h\nu\) 的倍数，其中 \(\nu\) 是光子频率。</li>
+<strong>普朗克</strong>发现能量以<strong>离散</strong>的形式存在，后来被称为“量子”。他假设允许物体吸收或发射的能量是有选择性的，必须为 $h\nu$ 的倍数，其中 $\nu$ 是光子频率。</li>
   <li>
 <strong>玻耳</strong>在研究最简单的原子氢线谱时，假设原子只能吸收和发射对应于能级之间的能量差的<strong>量子能量</strong>。</li>
   <li>
@@ -685,29 +680,29 @@
 
 \[k_\text B=1.38065\times10^{-23} ~ \text J/\text K\]
 
-<p>定义为能量载流子（声子、电子、光子或流体粒子）的平均热能与其绝对温度 \(T\) 之间的关系。</p>
+<p>定义为能量载流子（声子、电子、光子或流体粒子）的平均热能与其绝对温度 $T$ 之间的关系。</p>
 
-<p>当能量载流子被视为粒子时，该热能 \(k_\text BT\) 用于归一化能量载流子的能量。</p>
+<p>当能量载流子被视为粒子时，该热能 $k_\text BT$ 用于归一化能量载流子的能量。</p>
 
-<p>在统计力学中，\(N\) 个粒子系统的熵 \(S\) 定义为 \(S=k_\text BN\ln Z\)。这里，\(Z\) 称为配分函数，它是描述系统在给定宏观约束的情况下可用能态分布的概率函数。</p>
+<p>在统计力学中，$N$ 个粒子系统的熵 $S$ 定义为 $S=k_\text BN\ln Z$。这里，$Z$ 称为配分函数，它是描述系统在给定宏观约束的情况下可用能态分布的概率函数。</p>
 
-<p>在动力学理论中，根据能量均分，为每个运动度分配一个等于 \(k_\text BT/2\) 的能量。</p>
+<p>在动力学理论中，根据能量均分，为每个运动度分配一个等于 $k_\text BT/2$ 的能量。</p>
 
 <h3 id="普朗克常数">普朗克常数</h3>
 
 \[h=6.626069\times10^{−34} ~ \text J\cdot \text s\]
 
-<p>遵循量子力学，物体内的能量是其频率 \(\nu\) 和 \(h\) 的乘积。</p>
+<p>遵循量子力学，物体内的能量是其频率 $\nu$ 和 $h$ 的乘积。</p>
 
-<p>约化的普朗克常数（也称为狄拉克常数）为 \(\hbar = h/2\pi\)。</p>
+<p>约化的普朗克常数（也称为狄拉克常数）为 $\hbar = h/2\pi$。</p>
 
 <p>普朗克常数用于描述量子化，主要能量载体的某些物理属性以固定量出现，而不是连续范围的值。</p>
 
-<p>普朗克常数也出现在海森堡不确定性原理的陈述中，任何位置测量的不确定性 \(\Delta x\) 和沿同一方向的动量测量的不确定性 \(\Delta p_x\) 遵循关系 \(\Delta p_x \Delta x \le \hbar/2\)。</p>
+<p>普朗克常数也出现在海森堡不确定性原理的陈述中，任何位置测量的不确定性 $\Delta x$ 和沿同一方向的动量测量的不确定性 $\Delta p_x$ 遵循关系 $\Delta p_x \Delta x \le \hbar/2$。</p>
 
 <h3 id="原子单位">原子单位</h3>
 
-<p>四个基本常数，约化普朗克常数 \(\hbar\)、电子质量 \(m_e\)、库仑静电常数 \(1/4\pi\varepsilon_0\)（其中 \(\varepsilon_0\) 是自由空间介电常数）和电子电荷 \(e_c\) 用于定义原子单位。</p>
+<p>四个基本常数，约化普朗克常数 $\hbar$、电子质量 $m_e$、库仑静电常数 $1/4\pi\varepsilon_0$（其中 $\varepsilon_0$ 是自由空间介电常数）和电子电荷 $e_c$ 用于定义原子单位。</p>
 
 <ul>
   <li>原子长度：</li>
@@ -930,27 +925,27 @@
     // add the home and posts menu items
     ninja.data = [{
         id: "nav-首页",
-        title: "🏠 首页",
+        title: "首页",
         section: "导航菜单",
         handler: () => {
           window.location.href = "/zh-CN/";
         },
       },{id: "nav-博客",
-              title: "📝 博客",
+              title: "博客",
               description: "",
               section: "导航菜单",
               handler: () => {
                 window.location.href = "/zh-CN/blog/";
               },
             },{id: "nav-发表",
-              title: "📚 发表",
+              title: "发表",
               description: "Scopus和WoS检索的论文发表清单",
               section: "导航菜单",
               handler: () => {
                 window.location.href = "/zh-CN/publications/";
               },
             },{id: "nav-教学",
-              title: "🧑‍🏫 教学",
+              title: "教学",
               description: "课件",
               section: "导航菜单",
               handler: () => {
@@ -967,9 +962,9 @@
               window.location.href = "/zh-CN/blog/2024/topology/";
             
           },
-        },{id: "post-vasp-结构优化",
+        },{id: "post-使用-vasp-进行结构优化计算",
           
-            title: "VASP 结构优化",
+            title: "使用 VASP 进行结构优化计算",
           
           description: "",
           section: "文章",
@@ -1011,9 +1006,9 @@
               window.location.href = "/zh-CN/blog/2024/qe-disp-si/";
             
           },
-        },{id: "post-qe-进行能量自洽计算",
+        },{id: "post-使用-qe-进行能量自洽计算",
           
-            title: "QE 进行能量自洽计算",
+            title: "使用 QE 进行能量自洽计算",
           
           description: "",
           section: "文章",

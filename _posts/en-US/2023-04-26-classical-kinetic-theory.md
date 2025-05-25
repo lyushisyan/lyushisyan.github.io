@@ -2,7 +2,7 @@
 layout: distill
 title: Classical Kinetic Theory of Heat Conduction
 date: 2023-04-26 00:32:13
-categories: Heat-conduction, Physics
+categories: Heat-conduction Physics
 tabs: true
 map: true
 

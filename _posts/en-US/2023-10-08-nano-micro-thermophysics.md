@@ -1,23 +1,22 @@
 ---
 layout: distill
-title: Microscopic Description of Thermal Physics
+title: Microscopic Description of Thermophysics
 date: 2023-10-08 00:32:13
-categories: Physics
+categories: Physics Heat-conduction
 tabs: true
 map: true
 
 toc:
-  - name: Energy Conservation Equation
-  - name: Primary Energy Carriers
-  - name: Energy Distribution Function
-  - name: Particles, Waves, and Quasiparticles
-  - name: Contribution to Heat Transfer Physics
-  - name: Fundamental Constants and Fine Structure Scales
-
+ - name: Energy Conservation Equation
+ - name: Primary Energy Carriers
+ - name: Energy Distribution Function
+ - name: Particles, Waves, and Quasiparticles
+ - name: Contributions to Heat Transfer Physics
+ - name: Fundamental Constants and Fine Structure Scale
 
 ---
 
-The macroscopic energy conservation equation in heat transfer describes the storage, transport (conduction $$k$$, convection $$u$$, and radiation $$r$$), and conversion of heat energy to other forms of energy.
+The macroscopic energy conservation equation in heat transfer describes the storage, transport (conduction $k$, convection $u$, and radiation $r$), and conversion of thermal energy into other forms of energy.
 
 ## Energy Conservation Equation
 
@@ -26,27 +25,27 @@ $$
 \nabla\cdot \boldsymbol q=\frac{\int_{\Delta A}(\boldsymbol q\cdot\boldsymbol s_{\boldsymbol n})dA}{\Delta V \to 0}
 $$
 
-Here, $$\rho c_p\frac{\partial T}{\partial t}$$ is called sensible heat storage, and $$\dot s_{i-j}$$ is the rate of energy conversion due to interactions between energy carriers $$i$$ and $$j$$.
+Here, $\rho c_p\frac{\partial T}{\partial t}$ is referred to as sensible heat storage, and $\dot s_{i-j}$ is the rate of energy conversion due to interactions between energy carriers $i$ and $j$, determined by their properties and frequency of interaction.
 
-The heat flux vector $$\boldsymbol q$$ is the sum of conductive, convective, and radiative heat flux vectors:
+The heat flux vector $\boldsymbol q$ is the sum of conduction, convection, and radiation heat flux vectors:
 
 $$
 \boldsymbol q = \boldsymbol q_k + \boldsymbol q_u + \boldsymbol q_r
 $$
 
-**Conductive heat flux vector** $$\boldsymbol q_k$$ is the negative product of thermal conductivity $$k$$ and the temperature gradient $$\nabla T$$, according to Fourier's law of heat conduction:
+**Conduction heat flux vector** $\boldsymbol q_k$ is the negative product of thermal conductivity $k$ and temperature gradient $\nabla T$, according to Fourier's law:
 
 $$
 \boldsymbol q_k = -k\nabla T
 $$
 
-**Convective heat flux vector** $$\boldsymbol q_u$$ is the product of $$\rho c_p$$, the local velocity vector $$\boldsymbol u$$, and temperature $$T$$:
+**Convection heat flux vector** $\boldsymbol q_u$ is the product of $\rho c_p$, local velocity vector $\boldsymbol u$, and temperature $T$:
 
 $$
 \boldsymbol q_u = \rho c_p\boldsymbol u T
 $$
 
-**Radiative heat flux vector** $$\boldsymbol q_r$$ is the spatial and spectral integral of the product of unit vector $$\boldsymbol s$$ and directional spectral intensity $$I_{ph,\omega}$$:
+**Radiative heat flux vector** $\boldsymbol q_r$ is the integral over space and electromagnetic spectrum of the product of unit vector $\boldsymbol s$ and directional spectral intensity $I_{ph,\omega}$:
 
 $$
 \boldsymbol q_r  = 2\pi\int_0^\infty\int_{-1}^1\boldsymbol s I_{ph,\omega}d\mu d\omega
@@ -54,206 +53,199 @@ $$
 
 ## Primary Energy Carriers
 
-The four primary energy carriers—**phonons** ($$p$$), **electrons** ($$e$$), **fluid particles** ($$f$$), and **photons** ($$ph$$)—form the microscopic model of heat energy storage, transfer, and interaction.
+Four types of energy carriers—**phonons** ($p$), **electrons** ($e$), **fluid particles** ($f$), and **photons** ($ph$)—form the microscopic basis for thermal energy storage, transport, and interaction.
 
 ### Phonons
 
 <div class="text-center">
-  {% include figure.liquid path="assets/img/blog/thermophysics_1.png" zoomable=true caption="Figure 1: Phonon" class="w-75" %}
+  {% include figure.liquid path="assets/img/blog/thermophysics_1.png" zoomable=true caption="Figure 1: Phonons" class="w-75" %}
 </div>
 
-- Phonons are quantized vibrational modes in a rigid atomic lattice.
-- The characteristics of long-wavelength phonons lead to sound in solids, hence the name "phonons."
-- Phonons determine many material properties, including heat capacity and thermal/electrical conductivity (phonon propagation governs heat conduction in insulators).
-- In classical mechanics, any lattice vibration can be decomposed into a superposition of delocalized normal modes.
-- When analyzed using quantum mechanics, these modes exhibit particle-like properties (wave-particle duality), making phonons **quasiparticles**.
-- Phonons are classified as **bosons** with zero spin. The energy of a phonon $$E_p=\hbar\omega_p$$ is the sum of its potential and kinetic energies, where $$\hbar= h/2\pi$$ and $$h$$ is Planck's constant.
-- There are two types of phonons: **acoustic phonons**, denoted by $$A$$, and **optical phonons**, denoted by $$O$$.
-- Acoustic phonons have frequencies that decrease with increasing wavelength, corresponding to sound waves in the lattice. **Longitudinal** and **transverse** acoustic phonons are often abbreviated as $$LA$$ and $$TA$$, respectively.
-- Optical phonons occur in lattices with multiple atoms per unit cell. They are termed "optical" because they can be easily excited by light in ionic crystals. Optical phonons are usually abbreviated as $$LO$$ (longitudinal) and $$TO$$ (transverse).
+* Phonons are quantized vibrational modes in a rigid atomic lattice.
+* Long-wavelength phonons cause sound propagation in solids, hence the name "phonons."
+* Phonons determine many physical properties of materials, including heat capacity and thermal/electrical conductivity (phonons transport heat in insulators).
+* In classical mechanics, lattice vibrations decompose into nonlocal normal modes.
+* Quantum mechanically, these modes exhibit particle-like behavior—hence phonons are **quasiparticles**.
+* As particles, phonons are **bosons** with zero spin, and their energy $E_p=\hbar\omega_p$ is the sum of kinetic and potential energies.
+* Phonons come in two types: **acoustic** ($A$) and **optical** ($O$).
+* Acoustic phonons decrease in frequency with increasing wavelength and correspond to lattice sound waves. Longitudinal and transverse types are abbreviated $LA$ and $TA$.
+* Optical phonons arise in lattices with multiple atoms per unit cell and are excited by light in ionic crystals: $LO$ and $TO$ indicate longitudinal and transverse types.
 
 ### Electrons
 
 <div class="text-center">
-  {% include figure.liquid path="assets/img/blog/thermophysics_1.png" zoomable=true caption="Figure 2: Electron" class="w-75" %}
+  {% include figure.liquid path="assets/img/blog/thermophysics_2.png" zoomable=true caption="Figure 2: Electrons" class="w-75" %}
 </div>
 
-- Electrons are negatively charged **subatomic particles**. With a spin of $$1/2$$, electrons are classified as **fermions**.
-- The antiparticle of an electron is the **positron**, which has the same charge magnitude, mass, and spin as the electron but with opposite charge.
-- Electrons exhibit both particle and wave properties and can be considered **quasiparticles**. Electrons bound to nuclei behave as **standing waves** and can be observed.
-- In solids, electrons are categorized into core and valence electrons. Core electrons do not participate in bonding and are considered to always move with the nucleus.
-- Valence electrons, further divided into conduction (or free) electrons and **bonding electrons**, are farther from the nucleus.
-- In quantum mechanics, electrons are described by the **Dirac equation**.
-- Generally, electron energy comprises potential energy (expressed as binding energy) and kinetic energy (expressed in terms of velocity).
+* Electrons are negatively charged **subatomic particles** with spin $1/2$—they are **fermions**.
+* The electron's antiparticle is the **positron**, with the same mass and spin but opposite charge.
+* Electrons exhibit both wave and particle properties, making them **quasiparticles**.
+* Bound electrons appear as **standing waves**, observable experimentally.
+* Electrons in solids include core and outer electrons. Core electrons are tightly bound and do not participate in bonding.
+* Outer electrons, including **conduction** and **valence** electrons, are farther from the nucleus.
+* Quantum mechanically, electrons are described by the **Dirac equation**.
+* Their energy includes potential energy (binding energy) and kinetic energy (velocity-related).
 
 ### Fluid Particles
 
 <div class="text-center">
-  {% include figure.liquid path="assets/img/blog/thermophysics_1.png" zoomable=true caption="Figure 3: Fluid Particle" class="w-75" %}
+  {% include figure.liquid path="assets/img/blog/thermophysics_3.png" zoomable=true caption="Figure 3: Fluid Particles" class="w-75" %}
 </div>
 
-- Gases and liquids consist of atoms or molecules (generally referred to as fluid particles). Fluid particles can be neutral or charged and are constantly in **random motion**.
-- The energy of fluid particles is divided into potential energy, electronic energy, and kinetic energy.
-- In an **ideal gas**, collisions between particles are **elastic**, and interparticle attractions are negligible.
-- For ideal gases, the Maxwell-Boltzmann distribution can be derived using statistical mechanics (along with concepts of energy distribution and symmetry).
-- Fluid particles in liquids have sufficient kinetic energy to stretch interparticle attractions but not overcome them entirely (hence the density of liquids is close to solids). As the liquid temperature rises, particle speed increases, eventually overcoming molecular forces to form gases.
+* Gases and liquids consist of atoms or molecules (fluid particles), which can be neutral or charged and are in **random motion**.
+* Their energy includes potential, electronic, and kinetic components.
+* In **ideal gases**, particle collisions are **elastic**, and intermolecular forces are negligible.
+* Maxwell–Boltzmann distribution for ideal gases can be derived via statistical mechanics and energy symmetry principles.
+* Liquid particles have sufficient kinetic energy to stretch but not overcome intermolecular forces. As temperature rises, they gain enough energy to become gases.
 
 ### Photons
 
 <div class="text-center">
-  {% include figure.liquid path="assets/img/blog/thermophysics_1.png" zoomable=true caption="Figure 4: Photon" class="w-75" %}
+  {% include figure.liquid path="assets/img/blog/thermophysics_4.png" zoomable=true caption="Figure 4: Photons" class="w-75" %}
 </div>
 
-- Photons are quanta of the electromagnetic field and fundamental particles in quantum electrodynamics, forming part of the Standard Model of particle physics.
-- According to quantum mechanics, photons exhibit wave properties.
-- Photons have **zero rest mass** but finite, well-defined energy. As photons possess energy, general relativity predicts they are affected by gravity.
-- With a spin of 1, photons are **bosons**. A single photon is circularly polarized due to its unit spin.
-- Generally, the electromagnetic field consists of **plane monochromatic waves** with frequency $$f_{ph}$$ (angular frequency $$\omega_{ph}=2\pi f_{ph}$$), wavelength $$\lambda_{ph}$$, and velocity $$u_{ph}$$.
-- The quantum characteristics of electromagnetic waves are described by their energy $$E_{ph} = \hbar \omega_{ph}$$. Photons also have momentum $$\boldsymbol p_{ph} = \hbar \boldsymbol\kappa_{ph}$$, where $$\boldsymbol\kappa_{ph}$$ is the wavevector.
-- In a vacuum, the dispersion relation (relationship between angular frequency and wavevector) for photons is linear, with the proportionality constant being **Planck's constant**.
-- In matter, excitation involves a nonlinear dispersion relation, where momentum is not proportional to energy. Consequently, particle propagation speeds in a vacuum are slower than the speed of light.
+* Photons are quantum excitations of the electromagnetic field and are part of the Standard Model of particle physics.
+* Quantum mechanically, photons exhibit wave properties.
+* Although photons have **zero rest mass**, they carry finite energy and are affected by gravity (relativity).
+* Photons are **bosons** with spin 1 and exhibit circular polarization.
+* Electromagnetic fields consist of **monochromatic plane waves** characterized by frequency $f_{ph}$, wavelength $\lambda_{ph}$, and speed $u_{ph}$.
+* Quantum energy: $E_{ph} = \hbar \omega_{ph}$; momentum: $\boldsymbol p_{ph} = \hbar \boldsymbol\kappa_{ph}$.
+* In vacuum, photon dispersion is linear—proportional to **Planck's constant**.
+* Matter excitations have nonlinear dispersion, so they travel slower than light.
 
 ## Energy Distribution Function
 
-In systems composed of multiple particles, the observed **macroscopic state** (ensemble average) relates to the probabilities of each microscopic state (energy distribution function) and the **microscopic states** (positions and momenta) of each particle:
+In multi-particle systems, the observed **macroscopic state** (ensemble average) is linked to each particle's **microscopic state** (position and momentum) through the probability of occurrence (energy distribution function):
 
 $$
 \left \langle \phi \right \rangle=\sum_if_i\phi_i
 $$
 
-Probability distribution functions determine carrier energy and transport characteristics.
+Probability distribution functions determine carrier energy and transport characteristics. They allow modeling of temperature-dependent lattice and electronic heat capacity, gas kinetic energy, and blackbody radiation.
 
-These particle probability distribution functions enable us to describe the temperature dependence of lattice (phonon) and electronic heat capacity, the relationship between temperature and gas kinetic energy, and blackbody thermal emission of photons.
+Equilibrium distribution $f_i^0$ describes the most likely distribution of microstates in the absence of perturbations:
 
-The equilibrium probability distribution function $$f_i^0$$ gives the most probable distribution of microscopic states under zero perturbation:
-
-- **Bose-Einstein Distribution** (phonons, photons)
+* **Bose–Einstein distribution** (phonons, photons)
 
 $$
- f_i^0 = \frac{1}{\exp(\frac{E_i}{k_\text{B}T})-1}
+f_i^0 = \frac{1}{\exp(\frac{E_i}{k_\text BT})-1}
 $$
 
-- **Fermi-Dirac Distribution** (electrons)
+* **Fermi–Dirac distribution** (electrons)
 
 $$
- f_i^0 = \frac{1}{\exp(\frac{E_i-\mu}{k_\text{B}T})+1}
+f_i^0 = \frac{1}{\exp(\frac{E_i-\mu}{k_\text BT})+1}
 $$
 
-- **Maxwell-Boltzmann Distribution** (ideal gas molecules)
+* **Maxwell–Boltzmann distribution** (ideal gas molecules)
 
 $$
- f_i^0 = \frac{1}{\exp(\frac{E_i}{k_\text{B}T})}
+f_i^0 = \frac{1}{\exp(\frac{E_i}{k_\text BT})}
 $$
 
-Deviations from equilibrium distributions are used to analyze transport properties of these carriers, specifically through **Boltzmann transport theory**.
+Deviations from equilibrium underpin carrier transport—**Boltzmann transport theory**.
 
 ## Particles, Waves, and Quasiparticles
 
 ### Particles
 
-Particles are **discrete** entities. Their energy is localized within a finite region of well-defined boundaries. Particles exist in specific locations and must move according to kinematic laws to reach different points in space.
+Particles are **discrete**; their energy is localized in finite regions. To reach different positions, particles must move according to kinematic laws.
 
-Interactions between particles follow simple laws, such as the conservation of energy and momentum in elastic collisions. In the absence of interactions, particles are termed ballistic particles.
+Interactions follow simple rules like conservation of energy and momentum in elastic collisions. When unperturbed, particles move **ballistically**.
 
 ### Waves
 
-Waves cannot be considered finite entities. Their energy is distributed over space and time. Waves can propagate to exist at all locations. Wave phases can be analyzed to determine their speed in space. Waves are specified by frequency and wavelength.
+Waves are not finite entities. Their energy is distributed across space and time. Waves propagate indefinitely, with phase analysis revealing their speed. Waves are described by frequency and wavelength.
 
 ### Quasiparticles
 
-Quasiparticles (including phonons, electrons, and photons) exhibit properties of both particles and waves. They can be described by wave packets, which are localized energy constructs formed by the superposition of many different wavelengths.
+Quasiparticles (phonons, electrons, photons) exhibit both particle and wave nature and are described as wave packets—a superposition of plane waves with different wavelengths.
 
-In essence, they are simultaneously particles and waves, a concept referred to as **wave-particle duality**.
+This dual nature is called **wave–particle duality**.
 
-For quasiparticles, the classical distinction between particles and waves may become blurred. Their behavior partially adheres to wave theory and partially to particle theory.
+The classical distinction between particles and waves blurs for quasiparticles. Their behavior is part wave theory, part particle theory.
 
-## Contribution to Heat Transfer Physics
+## Contributions to Heat Transfer Physics
 
-Heat is a form of energy manifested as the motion of material molecules, capable of being transferred from one body to another through **conduction** (via phonons, electrons, and fluid particles), **convection** (via fluid particles), and **radiation** (via photons).
+Heat is a form of energy manifested as molecular motion and is transferred between bodies via **conduction** (phonons, electrons, fluid particles), **convection** (fluid particles), and **radiation** (photons).
 
-The fields most relevant to heat transfer physics include:
-- Atomic/Molecular Dynamics;
-- Solid-State (Condensed Matter) and Fluid Physics;
-- Electromagnetics;
-- Quantum Optics.
+Key physical foundations:
 
-- **Boltzmann** proposed that heat capacity, entropy, and other thermodynamic properties result from the collective behavior of atoms, which can be treated using mechanics and statistics. He introduced the Boltzmann constant $$k_B$$ and, with Maxwell, proposed the **equipartition theorem**.
-- **Maxwell** developed the electromagnetic theory of light and contributed to gas dynamics, molecular physics, and thermodynamics.
-- **Planck** discovered that energy exists in **discrete** units, later called "quanta." He hypothesized that the energy absorbed or emitted by an object must be in multiples of $$h\nu$$, where $$\nu$$ is photon frequency.
-- **Bohr** hypothesized that atoms could only absorb and emit **quantum energy** corresponding to differences between energy levels while studying the hydrogen spectrum.
-- **Pauli** formulated the rules of atomic structure (commonly called the **Pauli exclusion principle**), stating that no two or more electrons in an atom can occupy the same state.
-- **Schrödinger** formulated the equation describing the probability waves (or **wave functions**) governing small particle motion and specified how these waves change under external influences, laying the foundation of **quantum wave mechanics**.
-- **Fermi** devised a method to calculate the behavior of particle systems adhering to the Pauli exclusion principle, later known as **Fermi statistics**. Dirac independently developed an equivalent theory.
-- **Green and Kubo** developed the **fluctuation-dissipation theorem** for transport coefficients.
-- **Ziman** variationally treated nonequilibrium phonon transport properties.
-- **Callaway and Holland** formulated (and solved) the **single-mode relaxation time model** for lattice thermal conductivity.
+* **Boltzmann**: Proposed that heat capacity, entropy, and thermodynamics arise from atomic motion; introduced Boltzmann constant $k_B$ and co-developed energy equipartition theorem.
+* **Maxwell**: Founded electromagnetic theory of light; contributed to kinetic gas theory, molecular physics, thermodynamics.
+* **Planck**: Discovered energy is **quantized**, postulating discrete energy quanta $h\nu$.
+* **Bohr**: Suggested atoms absorb/emit quantum energy matching energy level differences.
+* **Pauli**: Formulated **Pauli exclusion principle**: no two electrons can occupy the same state.
+* **Schrödinger**: Derived wave function (probability wave) equation foundational to **quantum wave mechanics**.
+* **Fermi**: Developed method (with Dirac) for particles following Pauli principle—**Fermi statistics**.
+* **Green & Kubo**: Developed **fluctuation–dissipation theorem** for transport coefficients.
+* **Ziman**: Applied variational method to phonon transport.
+* **Callaway & Holland**: Modeled lattice thermal conductivity via **single-mode relaxation time**.
 
-## Fundamental Constants and Fine Structure Scales
+## Fundamental Constants and Fine Structure Scale
 
 ### Boltzmann Constant
 
 $$
- k_\text{B}=1.38065\times10^{-23} ~ \text J/\text K
+k_\text B=1.38065\times10^{-23} ~ \text J/\text K
 $$
 
-Defines the relationship between the average thermal energy of an energy carrier (phonon, electron, photon, or fluid particle) and its absolute temperature $$T$$.
+Relates mean thermal energy of carriers (phonons, electrons, photons, fluids) to absolute temperature $T$.
 
-When energy carriers are treated as particles, this thermal energy $$k_\text{B}T$$ is used to normalize their energy.
+Used to normalize carrier energy: $k_\text BT$.
 
-In statistical mechanics, the entropy $$S$$ of a system with $$N$$ particles is defined as $$S=k_\text{B}N\ln Z$$, where $$Z$$ is the partition function, describing the probability distribution of available energy states under given macroscopic constraints.
+In statistical mechanics: entropy $S=k_\text BN\ln Z$, with $Z$ as the partition function.
 
-In dynamical theory, energy equipartition assigns $$k_\text{B}T/2$$ of energy to each degree of freedom of motion.
+In kinetic theory: each degree of freedom has energy $k_\text BT/2$ (equipartition).
 
 ### Planck Constant
 
 $$
- h=6.626069\times10^{−34} ~ \text J\cdot \text s
+h=6.626069\times10^{−34} ~ \text J\cdot \text s
 $$
 
-According to quantum mechanics, the energy of a body is the product of its frequency $$\nu$$ and $$h$$.
+In quantum mechanics: energy = frequency $\times$ $h$.
 
-The reduced Planck constant (also known as the Dirac constant) is $$\hbar = h/2\pi$$.
+Reduced Planck constant: $\hbar = h/2\pi$.
 
-The Planck constant describes quantization, where certain physical properties of primary energy carriers appear in discrete amounts rather than as a continuous range of values.
-
-The Planck constant also appears in the Heisenberg uncertainty principle, which states that the uncertainties $$\Delta x$$ in position and $$\Delta p_x$$ in momentum measurement along the same direction satisfy $$\Delta p_x \Delta x \le \hbar/2$$.
+Quantizes physical properties and appears in Heisenberg uncertainty principle: $\Delta p_x \Delta x \le \hbar/2$.
 
 ### Atomic Units
 
-Four fundamental constants—the reduced Planck constant $$\hbar$$, electron mass $$m_e$$, Coulomb electrostatic constant $$1/4\pi\varepsilon_0$$ (where $$\varepsilon_0$$ is the permittivity of free space), and electron charge $$e_c$$—define atomic units:
+Four constants define atomic units: $\hbar$, $m_e$, Coulomb constant $1/4\pi\varepsilon_0$, electron charge $e_c$.
 
-- Atomic length:
-
-$$
- r_\text{B} = \frac{4\pi\varepsilon_0\hbar^2}{m_e e_c^2}=5.2918\times 10^{-11}~ \text m
-$$
-
-- Atomic time:
+* Atomic length:
 
 $$
- \tau_a=\frac{m_er_\text{B}^2}{\hbar} = 2.4189\times 10^{-17} ~ \text s
+r_\text B = \frac{4\pi\varepsilon_0\hbar^2}{m_e e_c^2}=5.2918\times 10^{-11}~ \text m
 $$
 
-- Atomic energy:
+* Atomic time:
 
 $$
- \frac{e_c^2}{4\pi\varepsilon_0r_\text{B}}=4.3597\times10^{-18}\text J=27.211~ \text{eV}
+\tau_a=\frac{m_er_\text B^2}{\hbar} = 2.4189\times 10^{-17} ~ \text s
 $$
 
-- Atomic velocity:	
+* Atomic energy:
 
 $$
- \frac{r_\text{B}}{\tau_a} = 2.1877 \times 10^6~ \text m/\text s
+\frac{e_c^2}{4\pi\varepsilon_0r_\text B}=4.3597\times10^{-18}\text J=27.211~ \text{eV}
 $$
 
-- Atomic dipole moment:
+* Atomic velocity:
 
 $$
- e_cr_\text{B}=8.4783\times 10^{-30}~ \text C\cdot\text m
+\frac{r_\text B}{\tau_a} = 2.1877 \times 10^6~ \text m/\text s
+$$
+
+* Atomic dipole moment:
+
+$$
+e_cr_\text B=8.4783\times 10^{-30}~ \text C\cdot\text m
 $$
 
 ---
 
 **References:**
 
-Kaviany M *Heat Transfer Physics* 2008
+Kaviany M. *Heat Transfer Physics*, 2008

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 📝 博客
+title: 博客
 permalink: /blog/
 nav: true
 nav_order: 1

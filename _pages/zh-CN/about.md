@@ -1,7 +1,7 @@
 ---
 page_id: about
 layout: about
-title: 🏠 首页
+title: 首页
 permalink: /
 subtitle: <a href='#'>莫斯科鲍曼国立技术大学</a>
 

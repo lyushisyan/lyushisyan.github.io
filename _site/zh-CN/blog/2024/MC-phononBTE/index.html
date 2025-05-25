@@ -181,24 +181,6 @@
     <script src="/assets/js/distillpub/transforms.v2.js"></script>
     <script src="/assets/js/distillpub/overrides.js"></script>
     
-      <!-- Page/Post style -->
-      <style type="text/css">
-        .fake-img {
-  background: #bbb;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 12px;
-} .fake-img p {
-  font-family: sans-serif;
-  color: white;
-  text-align: left;
-  margin: 12px 0;
-  text-align: center;
-  font-size: 16px;
-}
-
-      </style>
-    
   </head>
 
   <body>
@@ -260,7 +242,7 @@
 
           <!-- About -->
           <li class="nav-item ">
-            <a class="nav-link" href="/zh-CN/">🏠 首页
+            <a class="nav-link" href="/zh-CN/">首页
               
             </a>
           </li>
@@ -296,7 +278,7 @@
               
                 
                 <li class="nav-item active">
-                  <a class="nav-link" href="/zh-CN/blog/">📝 博客
+                  <a class="nav-link" href="/zh-CN/blog/">博客
                     
                       <span class="sr-only">(current)</span>
                     
@@ -309,7 +291,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/zh-CN/publications/">📚 发表
+                  <a class="nav-link" href="/zh-CN/publications/">发表
                     
                   </a>
                 </li>
@@ -320,7 +302,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/zh-CN/teaching/">🧑‍🏫 教学
+                  <a class="nav-link" href="/zh-CN/teaching/">教学
                     
                   </a>
                 </li>
@@ -421,23 +403,23 @@
 
 \[\frac{\partial f}{\partial t} + \boldsymbol v_g(\omega,p)\nabla f = - \frac{f-f^{\text{loc}}}{\tau(\omega,p,T)}\]
 
-<p>其中 \(f=f(t,\boldsymbol x,\boldsymbol k,p)\) 是相空间中的声子分布函数，\(\omega=\omega(\boldsymbol k,p)\) 是声子径向频率，\(p\) 是声子极化，\(T\) 是温度。此外，\(f^\text{loc}\) 是由局部伪温度参数化的 BE 平衡分布。</p>
+<p>其中 $f=f(t,\boldsymbol x,\boldsymbol k,p)$ 是相空间中的声子分布函数，$\omega=\omega(\boldsymbol k,p)$ 是声子径向频率，$p$ 是声子极化，$T$ 是温度。此外，$f^\text{loc}$ 是由局部伪温度参数化的 BE 平衡分布。</p>
 
 <p>使用声子束来代表模拟粒子：</p>
 
 \[f(t,\boldsymbol x,\boldsymbol k,p) \approx 8\pi^3N_\text{eff}\sum_i \delta^3(\boldsymbol x - \boldsymbol x_i) \delta^3(\boldsymbol k - \boldsymbol k_i) \delta_{p,p_i}\]
 
-<p>\(N_\text{eff}\) 是每个声子束中的声子有效数量。</p>
+<p>$N_\text{eff}$ 是每个声子束中的声子有效数量。</p>
 
 <h3 id="12-基于能量玻尔兹曼输运方程-energy-based-bte">1.2 基于能量玻尔兹曼输运方程 (energy-based BTE)：</h3>
 
 \[\frac{\partial e}{\partial t} + \boldsymbol v_g\nabla e = - \frac{e-e^{\text{loc}}}{\tau}\]
 
-<p>这里，模拟粒子为能量 \(e=\hbar\omega f\) ，且 \(e^\text{loc}=\hbar\omega f^\text{loc}\)。</p>
+<p>这里，模拟粒子为能量 $e=\hbar\omega f$，且 $e^\text{loc}=\hbar\omega f^\text{loc}$。</p>
 
 \[e \approx 8\pi^3\varepsilon_\text{eff}\sum_i \delta^3(\boldsymbol x - \boldsymbol x_i) \delta^3(\boldsymbol k - \boldsymbol k_i) \delta_{p,p_i}\]
 
-<p>其中 \(\varepsilon_\text{eff}\) 定义为每个模拟粒子携带的有效能量 \(\varepsilon_\text{eff}=N_\text{eff}\hbar\omega\) 。这里定义的能量粒子 \(\varepsilon_\text{eff}\) 所代表的声子的有效数量是可变的。</p>
+<p>其中 $\varepsilon_\text{eff}$ 定义为每个模拟粒子携带的有效能量 $\varepsilon_\text{eff}=N_\text{eff}\hbar\omega$。这里定义的能量粒子 $\varepsilon_\text{eff}$ 所代表的声子的有效数量是可变的。</p>
 
 <h3 id="13-基于偏差能量玻尔兹曼输运方程-deviational-energy-based-bte">1.3 基于偏差能量玻尔兹曼输运方程 (deviational energy-based BTE)：</h3>
 
@@ -447,17 +429,16 @@
 
 \[e^{\text{eq}}_{T_\text{eq}}(\omega) = \frac{\hbar\omega}{\exp\left(\frac{\hbar\omega}{k_BT_\text{eq}}\right)-1}\]
 
-<p>这里，模拟粒子为能量偏差：\(e^d =e - e^{\text{eq}}_{T_\text{eq}}\) 。</p>
+<p>这里，模拟粒子为能量偏差：$e^d =e - e^{\text{eq}}<em>{T</em>\text{eq}}$。</p>
 
 \[e^d \approx 8\pi^3\varepsilon_\text{eff}^d\sum_i s(i) \delta^3(\boldsymbol x - \boldsymbol x_i) \delta^3(\boldsymbol k - \boldsymbol k_i) \delta_{p,p_i}\]
 
-<p>\(s(i)=+1\) 的粒子代表相对于参考状态增加的偏差能量份额（即较高温度区的“超额”声子群）。</p>
+<p>$s(i)=+1$ 的粒子代表相对于参考状态增加的偏差能量份额（即较高温度区的“超额”声子群）。</p>
 
-<p>\(s(i)=-1\) 的粒子则代表相对于参考状态的负偏差能量份额（即较低温度区的“欠额”声子群）。</p>
+<p>$s(i)=-1$ 的粒子则代表相对于参考状态的负偏差能量份额（即较低温度区的“欠额”声子群）。</p>
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        
+<div class="text-center">
+  
 
 
 
@@ -469,18 +450,19 @@
       https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
     -->
     
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/detaE-480.webp 480w,/assets/img/blog/detaE-800.webp 800w,/assets/img/blog/detaE-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/peri_bond-480.webp 480w,/assets/img/blog/peri_bond-800.webp 800w,/assets/img/blog/peri_bond-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
     
-    <img src="/assets/img/blog/detaE.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/blog/peri_bond.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
   </picture>
 
   
+    <figcaption class="caption">图 1: 偏差能量示意图</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
-<p>偏差能量方法通过引入参考平衡温度 \(T_\text{eq}\)，将计算聚焦于非平衡态的能量偏差，而不是完整的声子分布函数。这减少了计算中对大量平衡态声子的无效模拟，尤其在小温差或接近平衡态的情况下，显著提高了模拟效率。</p>
+<p>偏差能量方法通过引入参考平衡温度 $T_\text{eq}$，将计算聚焦于非平衡态的能量偏差，而不是完整的声子分布函数。这减少了计算中对大量平衡态声子的无效模拟，尤其在小温差或接近平衡态的情况下，显著提高了模拟效率。</p>
 
 <p>偏差能量方法中，模拟粒子的数量和符号（正负）直接对应偏差能量的变化，减少了添加或删除粒子时可能引入的能量误差。同时，其计算机制天然遵循能量守恒原则。</p>
 
@@ -490,27 +472,32 @@
 
 <h3 id="初始化"><strong>初始化:</strong></h3>
 
-<p>在初始温度 \(T\) 下，使用 BE 统计计算体积 \(V\) 中的声子数量：
-\(N=V\int_{\omega=0}^{\omega_\text{max}}\sum_p D(\omega,p) f_T^\text{eq}(\omega) d\omega\)
-模拟粒子（每个代表一个声子束）的数量由 \(N/N_\text{eff}\) 给出。</p>
+<p>在初始温度 $T$ 下，使用 BE 统计计算体积 $V$ 中的声子数量：</p>
 
-<p>\(N_\text{eff}\) 的值是通过平衡计算成本与获得具有统计意义的结果所需的粒子数量来确定的。</p>
+\[N=V\int_{\omega=0}^{\omega_\text{max}}\sum_p D(\omega,p) f_T^\text{eq}(\omega) d\omega\]
+
+<p>模拟粒子（每个代表一个声子束）的数量由 $N/N_\text{eff}$ 给出。</p>
+
+<p>$N_\text{eff}$ 的值是通过平衡计算成本与获得具有统计意义的结果所需的粒子数量来确定的。</p>
 
 <h3 id="时间演化"><strong>时间演化:</strong></h3>
 
-<p>系统初始化后，将通过应用时间步长为 \(\Delta t\) 的分割算法来进行模拟。
+<p>系统初始化后，将通过应用时间步长为 $\Delta t$ 的分割算法来进行模拟。
 每一个时间步长由三个子步骤组成：</p>
 
 <p>1). <strong>声子 Drift</strong></p>
 
-<p>在此期间模拟粒子 \(i\) 移动 \(\boldsymbol v_{g,i}\Delta t\) 。</p>
+<p>在此期间模拟粒子 $i$ 移动 $\boldsymbol v_{g,i}\Delta t$。</p>
 
 <p>2). <strong>采样</strong></p>
 
-<p>记录温度 (\(T\)) 和伪温度 (\(T_\text{loc}\))，它们是通过反转能量 (\(E\)) 和赝能量 (\(\widetilde E\)) 关系来计算的：
-\(E=N_\text{eff}\sum_i\hbar\omega_i=V\int_{\omega=0}^{\omega_\text{max}}\sum_p \frac{D(\omega,p) \hbar\omega}{\exp\left(\frac{\hbar\omega}{k_BT}\right)-1} d\omega\)
-\(\widetilde E=N_\text{eff}\sum_i\frac{\hbar\omega_i}{\tau(\omega_i,p_i,T)}=V\int_{\omega=0}^{\omega_\text{max}}\sum_p \frac{D(\omega,p) \hbar\omega}{\tau(\omega,p,T)}\frac{1}{\exp\left(\frac{\hbar\omega}{k_BT_\text{loc}}\right)-1} d\omega\)
-温度 (\(T\)) 表示热平衡下的平均温度，伪温度 (\(T_\text{loc}\)) 与声子的散射过程有关，用于非平衡态下的声子行为分析。</p>
+<p>记录温度 ($T$) 和伪温度 ($T_\text{loc}$)，它们是通过反转能量 ($E$) 和赝能量 ($\widetilde E$) 关系来计算的：</p>
+
+\[E=N_\text{eff}\sum_i\hbar\omega_i=V\int_{\omega=0}^{\omega_\text{max}}\sum_p \frac{D(\omega,p) \hbar\omega}{\exp\left(\frac{\hbar\omega}{k_BT}\right)-1} d\omega\]
+
+\[\widetilde E=N_\text{eff}\sum_i\frac{\hbar\omega_i}{\tau(\omega_i,p_i,T)}=V\int_{\omega=0}^{\omega_\text{max}}\sum_p \frac{D(\omega,p) \hbar\omega}{\tau(\omega,p,T)}\frac{1}{\exp\left(\frac{\hbar\omega}{k_BT_\text{loc}}\right)-1} d\omega\]
+
+<p>温度 ($T$) 表示热平衡下的平均温度，伪温度 ($T_\text{loc}$) 与声子的散射过程有关，用于非平衡态下的声子行为分析。</p>
 
 <p>3). <strong>声子 Scatter</strong></p>
 
@@ -518,7 +505,7 @@
 
 \[P_i = 1-\exp\left(-\frac{\Delta t}{\tau(\omega_i,p_i,T)}\right)\]
 
-<p>散射通过采样新的频率、偏振和传播方向来完成。散射后的频率必须从分布 \(D(\omega,p)f^\text{loc}/\tau(\omega,p,T)\) 中得出。</p>
+<p>散射通过采样新的频率、偏振和传播方向来完成。散射后的频率必须从分布 $D(\omega,p)f^\text{loc}/\tau(\omega,p,T)$ 中得出。</p>
 
 <p>散射过程中要保证能量守恒。然而，由于散射声子的频率是随机采样的，因此需要添加或删除粒子，直到近似达到目标能量，强制实现能量守恒。</p>
 
@@ -529,8 +516,8 @@
 <p>以能量作为模拟粒子，算法与上述类似，但需要做出以下调整：</p>
 
 <ol>
-  <li>初始化、边界发射或散射期间，频率分布的采样需考虑乘以因子 \(\hbar\omega\) 的修正。</li>
-  <li>网格内能量的计算很简单，只需计算粒子的数量即可。 \(N\) 个粒子的能量由 \(\varepsilon_\text{eff} N\) 给出。</li>
+  <li>初始化、边界发射或散射期间，频率分布的采样需考虑乘以因子 $\hbar\omega$ 的修正。</li>
+  <li>网格内能量的计算很简单，只需计算粒子的数量即可。 $N$ 个粒子的能量由 $\varepsilon_\text{eff} N$ 给出。</li>
   <li>由于网格内的能量与粒子数量成正比，因此不需要添加或删除过程：只需保持粒子数量守恒，能量就严格自动守恒。</li>
 </ol>
 
@@ -590,8 +577,9 @@
 
 <p>其中，$\omega_i$ 是声子的频率，$p_i$ 是偏振，$\tau$ 是声子的散射时间，取决于频率、偏振和局部温度 $T_j$ 。</p>
 
-<p>散射过程中，单元格 $j$ 中的声子群代表了一定的偏差能量：$E^d_\text{eff}(N^+<em>{s,j} - N^-</em>{s,j})$
-其中：</p>
+<p>散射过程中，单元格 $j$ 中的声子群代表了一定的偏差能量：$E^d_\text{eff}(N^+<em>{s,j} - N^-</em>{s,j})$</p>
+
+<p>其中：</p>
 <ul>
   <li>$N^+_{s,j}$ 表示单元格 $j$ 中正偏差粒子的数量；</li>
   <li>$N^-_{s,j}$ 表示单元格 $j$ 中负偏差粒子的数量。</li>
@@ -628,7 +616,7 @@
 
 \[q_{\omega,b}'' = \frac{1}{4} \sum_p \frac{D(\omega,p)v_g(\omega,p)\hbar\omega}{\exp\left(\frac{\hbar\omega}{k_B T_b}\right) - 1}\]
 
-<p>在偏差能量模拟中，需要考虑等温边界与参考平衡温度 \(T_\text{eq}\) 之间的热流差异，我们可以通过减去 \(T_\text{eq}\) 对应的热通量来得到修正的表达式：</p>
+<p>在偏差能量模拟中，需要考虑等温边界与参考平衡温度 $T_\text{eq}$ 之间的热流差异，我们可以通过减去 \(T_\text{eq}\) 对应的热通量来得到修正的表达式：</p>
 
 \[q_{\omega,b}'' = \frac{1}{4} \sum_p D(\omega,p)v_g(\omega,p)\hbar\omega \cdot \bigg[\frac{1}{\exp\left(\frac{\hbar\omega}{k_B T_b}\right) - 1} - \frac{1}{\exp\left(\frac{\hbar\omega}{k_B T_\text{eq}}\right) - 1} \bigg]\]
 
@@ -638,9 +626,8 @@
 
 <p>周期性边界条件允许我们仅通过考虑一个晶胞（周期）来有效模拟完整的结构。</p>
 
-<div class="row">
-    <div class="col-md-10 text-center">
-        
+<div class="text-center">
+  
 
 
 
@@ -654,13 +641,14 @@
     
       <source class="responsive-img-srcset" srcset="/assets/img/blog/peri_bond-480.webp 480w,/assets/img/blog/peri_bond-800.webp 800w,/assets/img/blog/peri_bond-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
     
-    <img src="/assets/img/blog/peri_bond.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/blog/peri_bond.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
   </picture>
 
   
+    <figcaption class="caption">图 2: 周期性边界条件</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
 <p>在边界处，声子分布与局部平衡的偏差是周期性的，可以通过以下关系描述：</p>
@@ -669,7 +657,7 @@
 
 \[f_1^- - f_{T_1}^\text{eq} = f_2^- - f_{T_2}^\text{eq}\]
 
-<p>其中 \(f_{T_1}^\text{eq}\) 和 \(f_{T_2}^\text{eq}\) 指温度 \(T_1\) 和 \(T_2\) 下的平衡分布，上标 \(+\) 表示粒子向右移动，上标 \(-\) 表示粒子向左移动。该公式同时反映了热通量和温度梯度的周期性。</p>
+<p>其中 $f_{T_1}^\text{eq}$ 和 $f_{T_2}^\text{eq}$ 指温度 $T_1$ 和 $T_2$ 下的平衡分布，上标 $+$ 表示粒子向右移动，上标 $-$ 表示粒子向左移动。该公式同时反映了热通量和温度梯度的周期性。</p>
 
 <p>对于偏差能量分布，该关系变为</p>
 
@@ -886,27 +874,27 @@
     // add the home and posts menu items
     ninja.data = [{
         id: "nav-首页",
-        title: "🏠 首页",
+        title: "首页",
         section: "导航菜单",
         handler: () => {
           window.location.href = "/zh-CN/";
         },
       },{id: "nav-博客",
-              title: "📝 博客",
+              title: "博客",
               description: "",
               section: "导航菜单",
               handler: () => {
                 window.location.href = "/zh-CN/blog/";
               },
             },{id: "nav-发表",
-              title: "📚 发表",
+              title: "发表",
               description: "Scopus和WoS检索的论文发表清单",
               section: "导航菜单",
               handler: () => {
                 window.location.href = "/zh-CN/publications/";
               },
             },{id: "nav-教学",
-              title: "🧑‍🏫 教学",
+              title: "教学",
               description: "课件",
               section: "导航菜单",
               handler: () => {
@@ -923,9 +911,9 @@
               window.location.href = "/zh-CN/blog/2024/topology/";
             
           },
-        },{id: "post-vasp-结构优化",
+        },{id: "post-使用-vasp-进行结构优化计算",
           
-            title: "VASP 结构优化",
+            title: "使用 VASP 进行结构优化计算",
           
           description: "",
           section: "文章",
@@ -967,9 +955,9 @@
               window.location.href = "/zh-CN/blog/2024/qe-disp-si/";
             
           },
-        },{id: "post-qe-进行能量自洽计算",
+        },{id: "post-使用-qe-进行能量自洽计算",
           
-            title: "QE 进行能量自洽计算",
+            title: "使用 QE 进行能量自洽计算",
           
           description: "",
           section: "文章",

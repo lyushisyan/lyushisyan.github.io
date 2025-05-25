@@ -2,7 +2,7 @@
 layout: distill
 title: VASP Structure Optimization
 date: 2024-12-01 23:36:10
-categories: Method
+categories: Calculation
 tabs: true
 map: true
 
@@ -11,23 +11,6 @@ toc:
   - name: 2. Output Files
   - name: 3. Optimization Process and Convergence Criteria
 
-# Below is an example of injecting additional post-specific styles.
-# If you use this post as a template, delete this _styles block.
-_styles: >
-  .fake-img {
-    background: #bbb;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 12px;
-  }
-  .fake-img p {
-    font-family: sans-serif;
-    color: white;
-    text-align: left;
-    margin: 12px 0;
-    text-align: center;
-    font-size: 16px;
-  }
 
 ---
 
@@ -36,7 +19,7 @@ The input files for VASP are the four basic files: `INCAR`, `POSCAR`, `POTCAR`, 
 
 ### 1.1 `INCAR` Parameter Settings
 
-```plaintext
+```bash
 System = Si-film    # System name, can be freely defined to identify the current calculation system.
 
 # Job Control
@@ -165,7 +148,7 @@ Optimizes atomic positions without calculating stress, for fixed cell optimizati
 
 Below is an example `POSCAR` file describing the structure of bulk silicon:
 
-```plaintext
+```bash
 Si-bulk   # System name, customizable
 1.0       # Global scaling factor (can be used to scale the lattice)
    5.430    0.000    0.000  # Lattice vector a
@@ -180,7 +163,7 @@ Direct       # Coordinate type (Direct: fractional; Cartesian: cartesian)
 
 Example POSCAR File for Silicon Thin Film (Si-film):
 
-```
+```bash
 Si Thin Film                            
    1.00000000000000     
      5.4299999999999997    0.0000000000000000    0.0000000000000000
@@ -212,24 +195,28 @@ Direct
 
 #### (1) Monkhorst-Pack Grid
 Monkhorst-Pack grids provide a uniform k-point distribution for periodic crystal calculations.
-```
+
+```bash
 Automatic k-point generation   # Automatic k-point generation method (comment)
 0                              # Ignore total k-point count, use automatic generation
 Monkhorst-Pack                 # Choose Monkhorst-Pack grid
 4 4 4                          # Grid density in x, y, z directions
 0 0 0                          # No grid shift
 ```
+
 **Use Case:** Periodic crystals, optimization, DOS calculations, and electronic structure analysis.
 
 #### (2) Gamma Grid
 Gamma grids center the k-point grid at the Gamma point, suitable for small or asymmetric lattices.
-```
+
+```bash
 Automatic k-point generation   # Automatic k-point generation method (comment)
 0                              # Ignore total k-point count, use automatic generation
 Gamma                          # Choose Gamma-centered grid
 4 4 4                          # Grid density in x, y, z directions
 0 0 0                          # No grid shift
 ```
+
 **Use Case:** Small systems, asymmetric lattices, or fast calculation optimization tasks.
 
 ### 1.4 POTCAR File Usage
@@ -242,9 +229,11 @@ POTCAR contains pseudopotential information required to describe atomic properti
 
 #### Generating the POTCAR File:
 For a system with atoms like Si and H, concatenate the pseudopotential files:
-```
+
+```bash
 cat /POT_GGA_PAW/POTCAR_Si /POT_GGA_PAW/POTCAR_H > POTCAR
 ```
+
 - Ensure the functional type in POTCAR matches the INCAR settings.
 - Maintain the atom order in POTCAR consistent with the element order in POSCAR.
 

@@ -181,24 +181,6 @@
     <script src="/assets/js/distillpub/transforms.v2.js"></script>
     <script src="/assets/js/distillpub/overrides.js"></script>
     
-      <!-- Page/Post style -->
-      <style type="text/css">
-        .fake-img {
-  background: #bbb;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 12px;
-} .fake-img p {
-  font-family: sans-serif;
-  color: white;
-  text-align: left;
-  margin: 12px 0;
-  text-align: center;
-  font-size: 16px;
-}
-
-      </style>
-    
   </head>
 
   <body>
@@ -260,7 +242,7 @@
 
           <!-- About -->
           <li class="nav-item ">
-            <a class="nav-link" href="/">🏠 Home
+            <a class="nav-link" href="/">Home
               
             </a>
           </li>
@@ -300,7 +282,7 @@
               
                 
                 <li class="nav-item active">
-                  <a class="nav-link" href="/blog/">📝 Blog
+                  <a class="nav-link" href="/blog/">Blog
                     
                       <span class="sr-only">(current)</span>
                     
@@ -313,7 +295,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/publications/">📚 Publications
+                  <a class="nav-link" href="/publications/">Publications
                     
                   </a>
                 </li>
@@ -324,7 +306,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/teaching/">🧑‍🏫 Teaching
+                  <a class="nav-link" href="/teaching/">Teaching
                     
                   </a>
                 </li>
@@ -422,15 +404,14 @@
         <h2 id="topological-geometry">Topological Geometry</h2>
 
 <p>Topology studies geometric properties that remain invariant under continuous transformations, reflecting global characteristics.<br>
-For example, the <strong>Gaussian curvature</strong> \(K\) of a surface describes local geometric properties and is related to global topological characteristics through the <strong>Gauss-Bonnet theorem</strong>:</p>
+For example, the <strong>Gaussian curvature</strong> $K$ of a surface describes local geometric properties and is related to global topological characteristics through the <strong>Gauss-Bonnet theorem</strong>:</p>
 
 \[\int_S K \, d^2r = 4\pi (1-\text{genus}),\]
 
-<p>where \(\text{genus}\) represents the number of holes in a geometric object. For example, the genus of a sphere is \(0\), while the genus of a torus (like a donut) is \(1\).</p>
+<p>where $\text{genus}$ represents the number of holes in a geometric object. For example, the genus of a sphere is $0$, while the genus of a torus (like a donut) is $1$.</p>
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        
+<div class="text-center">
+  
 
 
 
@@ -444,13 +425,14 @@ For example, the <strong>Gaussian curvature</strong> \(K\) of a surface describe
     
       <source class="responsive-img-srcset" srcset="/assets/img/blog/topology_huan-480.webp 480w,/assets/img/blog/topology_huan-800.webp 800w,/assets/img/blog/topology_huan-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
     
-    <img src="/assets/img/blog/topology_huan.gif" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/blog/topology_huan.gif" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
   </picture>
 
   
+    <figcaption class="caption">Figure 1: A continuous deformation (a type of homeomorphism) of a mug into a doughnut (torus)</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
 <h2 id="topological-physics">Topological Physics</h2>
@@ -459,7 +441,7 @@ For example, the <strong>Gaussian curvature</strong> \(K\) of a surface describe
 
 \[H|\varphi\rangle = E|\varphi\rangle,\]
 
-<p>where \(H\) is the Hamiltonian of the system, \(E\) is the energy eigenvalue of the electron, and \(\vert\varphi\rangle\) is the corresponding eigenstate. By solving this equation, one can obtain the band structure, i.e., the relationship between energy and momentum of electrons.</p>
+<p>where $H$ is the Hamiltonian of the system, $E$ is the energy eigenvalue of the electron, and $\vert\varphi\rangle$ is the corresponding eigenstate. By solving this equation, one can obtain the band structure, i.e., the relationship between energy and momentum of electrons.</p>
 
 <p>Traditional band theory focuses on the energy eigenvalues of electrons, while the significant contribution of topological physics lies in uncovering the hidden topological information within wavefunctions, i.e., the topology of electronic wavefunctions. For example, in the <strong>quantum Hall effect</strong>, the time-reversal symmetry of the system is broken, and the Chern number \(C \neq 0\). Based on different symmetries, researchers have developed many topological material systems, such as the valley Hall effect, topological crystalline insulators, and gapless topological semimetals, including Dirac states, Weyl states, nodal lines, and triple degeneracy points.</p>
 
@@ -471,7 +453,7 @@ For example, the <strong>Gaussian curvature</strong> \(K\) of a surface describe
 
 \[\boldsymbol{D}(\boldsymbol{k}) \boldsymbol{u}(\boldsymbol{k}) = \omega^2(\boldsymbol{k}) \boldsymbol{u}(\boldsymbol{k}),\]
 
-<p>where \(\boldsymbol{u}(\boldsymbol{k})\) is the phonon eigenstate, and \(\omega(\boldsymbol{k})\) is the phonon frequency. Traditional studies only focus on eigenvalues, yielding phonon dispersion relations and density of states, while topological phonon research further explores the hidden topological information within eigenstates.</p>
+<p>where $\boldsymbol{u}(\boldsymbol{k})$ is the phonon eigenstate, and $\omega(\boldsymbol{k})$ is the phonon frequency. Traditional studies only focus on eigenvalues, yielding phonon dispersion relations and density of states, while topological phonon research further explores the hidden topological information within eigenstates.</p>
 
 <h3 id="topological-quantities-in-phononic-systems">Topological Quantities in Phononic Systems</h3>
 
@@ -507,7 +489,7 @@ In three-dimensional systems, the Chern number is defined as the integral over a
   </li>
 </ul>
 
-<p>Since phonons do not have spin \(1/2\) properties, the theory of quantum spin Hall states cannot be directly applied. Quantum spin Hall states in electronic systems can be seen as two quantum Hall states with opposite Chern numbers, resulting in a total Chern number of \(0\) under time-reversal symmetry. In phononic systems, lattice symmetry can be used to achieve double or multiple degeneracies, constructing pseudo-spin-like properties and providing new approaches to topological phonon research.</p>
+<p>Since phonons do not have spin $1/2$ properties, the theory of quantum spin Hall states cannot be directly applied. Quantum spin Hall states in electronic systems can be seen as two quantum Hall states with opposite Chern numbers, resulting in a total Chern number of $0$ under time-reversal symmetry. In phononic systems, lattice symmetry can be used to achieve double or multiple degeneracies, constructing pseudo-spin-like properties and providing new approaches to topological phonon research.</p>
 
 <p>In classical phonon transport research, lattice symmetry is used to analyze phonon scattering channels and simplify force constant calculations. From the perspective of topological phonons, lattice symmetry is primarily used to determine phonon degeneracy and classify phonon branches.</p>
 
@@ -700,27 +682,27 @@ In three-dimensional systems, the Chern number is defined as the integral over a
     // add the home and posts menu items
     ninja.data = [{
         id: "nav-home",
-        title: "🏠 Home",
+        title: "Home",
         section: "Navigation menu",
         handler: () => {
           window.location.href = "/";
         },
       },{id: "nav-blog",
-              title: "📝 Blog",
+              title: "Blog",
               description: "",
               section: "Navigation menu",
               handler: () => {
                 window.location.href = "/blog/";
               },
             },{id: "nav-publications",
-              title: "📚 Publications",
+              title: "Publications",
               description: "Publications indexed in Scopus and Web of Science",
               section: "Navigation menu",
               handler: () => {
                 window.location.href = "/publications/";
               },
             },{id: "nav-teaching",
-              title: "🧑‍🏫 Teaching",
+              title: "Teaching",
               description: "Lectures",
               section: "Navigation menu",
               handler: () => {
@@ -792,9 +774,9 @@ In three-dimensional systems, the Chern number is defined as the integral over a
               window.location.href = "/blog/2024/qe-scf/";
             
           },
-        },{id: "post-microscopic-description-of-thermal-physics",
+        },{id: "post-microscopic-description-of-thermophysics",
           
-            title: "Microscopic Description of Thermal Physics",
+            title: "Microscopic Description of Thermophysics",
           
           description: "",
           section: "Posts",

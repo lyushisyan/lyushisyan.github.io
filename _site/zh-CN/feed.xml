@@ -1,63 +1,63 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://lyushisyan.github.io/zh-CN/feed.xml" rel="self" type="application/atom+xml" /><link href="https://lyushisyan.github.io/zh-CN/" rel="alternate" type="text/html" /><updated>2025-05-13T00:12:26+03:00</updated><id>https://lyushisyan.github.io/feed.xml</id><title type="html">blank</title><entry><title type="html">VASP 结构优化</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/vasp-relax/" rel="alternate" type="text/html" title="VASP 结构优化" /><published>2024-12-02T02:36:10+03:00</published><updated>2024-12-02T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/vasp-relax</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/vasp-relax/"><![CDATA[<h2 id="1-输入文件">1. 输入文件</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://lyushisyan.github.io/zh-CN/feed.xml" rel="self" type="application/atom+xml" /><link href="https://lyushisyan.github.io/zh-CN/" rel="alternate" type="text/html" /><updated>2025-05-25T23:10:13+03:00</updated><id>https://lyushisyan.github.io/feed.xml</id><title type="html">blank</title><entry><title type="html">使用 VASP 进行结构优化计算</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/vasp-relax/" rel="alternate" type="text/html" title="使用 VASP 进行结构优化计算" /><published>2024-12-02T02:36:10+03:00</published><updated>2024-12-02T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/vasp-relax</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/vasp-relax/"><![CDATA[<h2 id="1-输入文件">1. 输入文件</h2>
 <p>输入文件为 vasp 的四个基础文件：<code class="language-plaintext highlighter-rouge">INCAR</code>  <code class="language-plaintext highlighter-rouge">POSCAR</code>  <code class="language-plaintext highlighter-rouge">POTCAR</code>  <code class="language-plaintext highlighter-rouge">KPOINTS</code></p>
 
 <h3 id="11-incar-的参数设置">1.1 <code class="language-plaintext highlighter-rouge">INCAR</code> 的参数设置</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>System = Si-film    # 体系名称，可以随意定义，用于标记当前计算体系
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>System <span class="o">=</span> Si-film    <span class="c"># 体系名称，可以随意定义，用于标记当前计算体系</span>
 
-# 作业控制（Job Control）
-ISTART = 0          # 初始状态设置：
-                    # 0 从头开始计算
-                    # 1 从已有的 WAVECAR 文件读取初始电子波函数
-                    # 2 从 WAVECAR 和 CHGCAR 文件读取初始波函数和电子密度
-ISPIN = 1           # 自旋极化选项：
-                    # 1 无自旋极化（适用于非磁性材料）
-                    # 2 自旋极化（适用于磁性材料）
-ICHARGE = 2         # 初始电子密度选择：
-                    # 2 从 POTCAR 提供的静态电子密度开始计算
-                    # 1 从头生成电子密度
-LWAVE = .FALSE.     # 是否输出 WAVECAR 文件：
-                    # .TRUE. 输出（存储波函数数据）
-                    # .FALSE. 不输出（节省磁盘空间）
-LCHARG = .FALSE.    # 是否输出 CHGCAR 文件：
-                    # .TRUE. 输出（存储静态电荷密度）
-                    # .FALSE. 不输出（节省磁盘空间）
-ISYM = 0            # 对称性设置：
-                    # 0 关闭对称性（适用于含缺陷或非对称结构）
-                    # 1 或 2 保留对称性操作
+<span class="c"># 作业控制（Job Control）</span>
+ISTART <span class="o">=</span> 0          <span class="c"># 初始状态设置：</span>
+                    <span class="c"># 0 从头开始计算</span>
+                    <span class="c"># 1 从已有的 WAVECAR 文件读取初始电子波函数</span>
+                    <span class="c"># 2 从 WAVECAR 和 CHGCAR 文件读取初始波函数和电子密度</span>
+ISPIN <span class="o">=</span> 1           <span class="c"># 自旋极化选项：</span>
+                    <span class="c"># 1 无自旋极化（适用于非磁性材料）</span>
+                    <span class="c"># 2 自旋极化（适用于磁性材料）</span>
+ICHARGE <span class="o">=</span> 2         <span class="c"># 初始电子密度选择：</span>
+                    <span class="c"># 2 从 POTCAR 提供的静态电子密度开始计算</span>
+                    <span class="c"># 1 从头生成电子密度</span>
+LWAVE <span class="o">=</span> .FALSE.     <span class="c"># 是否输出 WAVECAR 文件：</span>
+                    <span class="c"># .TRUE. 输出（存储波函数数据）</span>
+                    <span class="c"># .FALSE. 不输出（节省磁盘空间）</span>
+LCHARG <span class="o">=</span> .FALSE.    <span class="c"># 是否输出 CHGCAR 文件：</span>
+                    <span class="c"># .TRUE. 输出（存储静态电荷密度）</span>
+                    <span class="c"># .FALSE. 不输出（节省磁盘空间）</span>
+ISYM <span class="o">=</span> 0            <span class="c"># 对称性设置：</span>
+                    <span class="c"># 0 关闭对称性（适用于含缺陷或非对称结构）</span>
+                    <span class="c"># 1 或 2 保留对称性操作</span>
 
-# 电子弛豫设置（Electronic Relaxation）
-ENCUT = 500         # 平面波截断能量，单位 eV，决定计算精度和效率
-ISMEAR = 0          # 展宽方法：
-                    # -5 (四电子系统)、0 (高斯展宽，适合半导体)、1 或 2 (费米展宽)
-SIGMA = 0.05        # 展宽宽度（单位 eV），推荐值为 0.01 ~ 0.1
-EDIFF = 1E-08       # SCF 收敛准则：两次迭代能量变化小于 1E-08 eV 时停止
-NELMIN = 6          # 最小电子迭代次数，确保基础收敛过程
-NELM = 300          # 最大电子迭代次数，避免迭代死循环
-GGA = PE            # 泛函选择，采用 PBE（Perdew-Burke-Ernzerhof）交换-相关泛函
-LREAL = .FALSE.     # 动量空间计算，提高精度但增加计算量
-ADDGRID = .TRUE.    # 启用附加 FFT 网格，提升数值精度
-ALGO = N            # 电子弛豫算法：
-                    # Normal（标准模式）、Fast 或 VeryFast（加速模式）
-PREC = Accurate     # 精度设置：
-                    # Accurate（高精度）、Normal 或 Low（初步测试用）
+<span class="c"># 电子弛豫设置（Electronic Relaxation）</span>
+ENCUT <span class="o">=</span> 500         <span class="c"># 平面波截断能量，单位 eV，决定计算精度和效率</span>
+ISMEAR <span class="o">=</span> 0          <span class="c"># 展宽方法：</span>
+                    <span class="c"># -5 (四电子系统)、0 (高斯展宽，适合半导体)、1 或 2 (费米展宽)</span>
+SIGMA <span class="o">=</span> 0.05        <span class="c"># 展宽宽度（单位 eV），推荐值为 0.01 ~ 0.1</span>
+EDIFF <span class="o">=</span> 1E-08       <span class="c"># SCF 收敛准则：两次迭代能量变化小于 1E-08 eV 时停止</span>
+NELMIN <span class="o">=</span> 6          <span class="c"># 最小电子迭代次数，确保基础收敛过程</span>
+NELM <span class="o">=</span> 300          <span class="c"># 最大电子迭代次数，避免迭代死循环</span>
+GGA <span class="o">=</span> PE            <span class="c"># 泛函选择，采用 PBE（Perdew-Burke-Ernzerhof）交换-相关泛函</span>
+LREAL <span class="o">=</span> .FALSE.     <span class="c"># 动量空间计算，提高精度但增加计算量</span>
+ADDGRID <span class="o">=</span> .TRUE.    <span class="c"># 启用附加 FFT 网格，提升数值精度</span>
+ALGO <span class="o">=</span> N            <span class="c"># 电子弛豫算法：</span>
+                    <span class="c"># Normal（标准模式）、Fast 或 VeryFast（加速模式）</span>
+PREC <span class="o">=</span> Accurate     <span class="c"># 精度设置：</span>
+                    <span class="c"># Accurate（高精度）、Normal 或 Low（初步测试用）</span>
 
-# 离子弛豫设置（Ionic Relaxation）
-ISIF = 2            # 晶格优化选项：
-                    # 2 仅优化原子位置，不改变晶格参数
-                    # 3 优化原子和晶格形状
-EDIFFG = -0.01      # 离子收敛准则：
-                    # 负值基于力（单位 eV/Å）
-                    # 正值基于能量
-IBRION = 2          # 离子弛豫算法：
-                    # 2 使用共轭梯度算法（适用于大多数优化任务）
-POTIM = 0.5         # 时间步长，控制优化过程速度
-NSW = 200           # 最大离子优化步数
+<span class="c"># 离子弛豫设置（Ionic Relaxation）</span>
+ISIF <span class="o">=</span> 2            <span class="c"># 晶格优化选项：</span>
+                    <span class="c"># 2 仅优化原子位置，不改变晶格参数</span>
+                    <span class="c"># 3 优化原子和晶格形状</span>
+EDIFFG <span class="o">=</span> <span class="nt">-0</span>.01      <span class="c"># 离子收敛准则：</span>
+                    <span class="c"># 负值基于力（单位 eV/Å）</span>
+                    <span class="c"># 正值基于能量</span>
+IBRION <span class="o">=</span> 2          <span class="c"># 离子弛豫算法：</span>
+                    <span class="c"># 2 使用共轭梯度算法（适用于大多数优化任务）</span>
+POTIM <span class="o">=</span> 0.5         <span class="c"># 时间步长，控制优化过程速度</span>
+NSW <span class="o">=</span> 200           <span class="c"># 最大离子优化步数</span>
 
-# 并行控制（Parallel Control）
-NPAR = 4            # FFT 网格的并行维度（推荐值为 sqrt(总核数)）
-KPAR = 2            # k 点的并行处理数（总核数应为 NPAR × KPAR × NCORE 的整数倍）
-NCORE = 12          # 每个任务的并行核数
+<span class="c"># 并行控制（Parallel Control）</span>
+NPAR <span class="o">=</span> 4            <span class="c"># FFT 网格的并行维度（推荐值为 sqrt(总核数)）</span>
+KPAR <span class="o">=</span> 2            <span class="c"># k 点的并行处理数（总核数应为 NPAR × KPAR × NCORE 的整数倍）</span>
+NCORE <span class="o">=</span> 12          <span class="c"># 每个任务的并行核数</span>
 </code></pre></div></div>
 
 <p>在结构优化中，<code class="language-plaintext highlighter-rouge">INCAR</code> 中的关键参数包括 <code class="language-plaintext highlighter-rouge">IBRION</code> ，<code class="language-plaintext highlighter-rouge">ISIF</code>，<code class="language-plaintext highlighter-rouge">NSW</code>，<code class="language-plaintext highlighter-rouge">EDIFF</code> 和 <code class="language-plaintext highlighter-rouge">EDIFFG</code></p>
@@ -190,33 +190,33 @@ NCORE = 12          # 每个任务的并行核数
 
 <p>下面是描述了硅晶体结构的 <code class="language-plaintext highlighter-rouge">POSCAR</code> 文件示例：</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si-bulk   # 系统名称，可自定义
-1.0          # 全局尺度因子（可以用于缩放晶格）
-   5.430    0.000    0.000  # 晶格向量 a
-   0.000    5.430    0.000  # 晶格向量 b
-   0.000    0.000    5.430  # 晶格向量 c
-Si           # 原子种类
-2            # 每种原子的个数
-Direct       # 坐标类型（Direct：分数坐标；Cartesian：笛卡尔坐标）
-  0.000  0.000  0.000  # 原子 1 的坐标
-  0.250  0.250  0.250  # 原子 2 的坐标
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si-bulk   <span class="c"># 系统名称，可自定义</span>
+1.0          <span class="c"># 全局尺度因子（可以用于缩放晶格）</span>
+   5.430    0.000    0.000  <span class="c"># 晶格向量 a</span>
+   0.000    5.430    0.000  <span class="c"># 晶格向量 b</span>
+   0.000    0.000    5.430  <span class="c"># 晶格向量 c</span>
+Si           <span class="c"># 原子种类</span>
+2            <span class="c"># 每种原子的个数</span>
+Direct       <span class="c"># 坐标类型（Direct：分数坐标；Cartesian：笛卡尔坐标）</span>
+  0.000  0.000  0.000  <span class="c"># 原子 1 的坐标</span>
+  0.250  0.250  0.250  <span class="c"># 原子 2 的坐标</span>
 </code></pre></div></div>
 
 <p>下面是描述硅薄膜（Si-film）的 <code class="language-plaintext highlighter-rouge">POSCAR</code> 文件示例：
 假设薄膜沿 $x$ 和 $𝑦$ 方向为周期性，沿 $z$ 方向有限（需要设置真空层）</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si Thin Film                            
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si Thin Film                            
    1.00000000000000     
      5.4299999999999997    0.0000000000000000    0.0000000000000000
      0.0000000000000000    5.4299999999999997    0.0000000000000000
      0.0000000000000000    0.0000000000000000   20.8599999999999994
    Si
     16
-Selective dynamics  # 启用 Selective dynamics
+Selective dynamics  <span class="c"># 启用 Selective dynamics</span>
 Direct
-0.000000 0.000000 0.200000 F F F  # 三个方向固定
-0.500000 0.500000 0.200000 T T F  # z 方向固定，x 和 y 方向可移动
-0.500000 0.000000 0.330153 T T T  # 三个方向可移动
+0.000000 0.000000 0.200000 F F F  <span class="c"># 三个方向固定</span>
+0.500000 0.500000 0.200000 T T F  <span class="c"># z 方向固定，x 和 y 方向可移动</span>
+0.500000 0.000000 0.330153 T T T  <span class="c"># 三个方向可移动</span>
 0.000000 0.500000 0.330153 T T T
 0.250000 0.250000 0.265077 T T T
 0.750000 0.750000 0.265077 T T T
@@ -237,11 +237,11 @@ Direct
 <h4 id="1-monkhorst-pack-网格">(1) Monkhorst-Pack 网格</h4>
 <p>Monkhorst-Pack 网格是一种均匀分布的 k 点网格，常用于周期性晶体的电子结构计算。</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   # 自动生成 k 点的方式（注释）
-0                              # 忽略 k 点总数，采用自动生成
-Monkhorst-Pack                 # 选择 Monkhorst-Pack 网格
-4 4 4                          # k 点网格密度，分别表示 x、y、z 方向的分布
-0 0 0                          # 网格偏移，0 表示不偏移
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   <span class="c"># 自动生成 k 点的方式（注释）</span>
+0                              <span class="c"># 忽略 k 点总数，采用自动生成</span>
+Monkhorst-Pack                 <span class="c"># 选择 Monkhorst-Pack 网格</span>
+4 4 4                          <span class="c"># k 点网格密度，分别表示 x、y、z 方向的分布</span>
+0 0 0                          <span class="c"># 网格偏移，0 表示不偏移</span>
 </code></pre></div></div>
 
 <p><strong>适用场景</strong>：周期性晶体，优化、DOS 计算、电子结构分析等。</p>
@@ -249,11 +249,11 @@ Monkhorst-Pack                 # 选择 Monkhorst-Pack 网格
 <h4 id="2-gamma-网格">(2) Gamma 网格</h4>
 <p>Gamma 网格以 Gamma 点为中心，更适合小体系或非对称晶格。</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   # 自动生成 k 点的方式（注释）
-0                              # 忽略 k 点总数，采用自动生成
-Gamma                          # 选择 Gamma 点中心网格
-4 4 4                          # k 点网格密度，分别表示 x、y、z 方向的分布
-0 0 0                          # 网格偏移，0 表示不偏移
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   <span class="c"># 自动生成 k 点的方式（注释）</span>
+0                              <span class="c"># 忽略 k 点总数，采用自动生成</span>
+Gamma                          <span class="c"># 选择 Gamma 点中心网格</span>
+4 4 4                          <span class="c"># k 点网格密度，分别表示 x、y、z 方向的分布</span>
+0 0 0                          <span class="c"># 网格偏移，0 表示不偏移</span>
 </code></pre></div></div>
 
 <p><strong>适用场景</strong>：小体系、非对称晶格或需要快速计算的优化任务。</p>
@@ -270,7 +270,7 @@ Gamma                          # 选择 Gamma 点中心网格
 
 <p><strong>生成 POTCAR 文件</strong>：根据体系中的原子种类 (比如 Si 和 H)，逐个合并赝势文件：</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat /POT_GGA_PAW/POTCAR_Si /POT_GGA_PAW/POTCAR_H &gt; POTCAR
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /POT_GGA_PAW/POTCAR_Si /POT_GGA_PAW/POTCAR_H <span class="o">&gt;</span> POTCAR
 </code></pre></div></div>
 
 <ul>
@@ -499,18 +499,17 @@ Gamma                          # 选择 Gamma 点中心网格
   <li>确保合理的初始原子间距，避免原子间过近。</li>
   <li>增加真空层：对低维体系，设置真空层厚度至少为 15 Å。</li>
   <li>检查 <code class="language-plaintext highlighter-rouge">POTCAR</code> 文件，确保赝势与原子种类匹配。</li>
-</ul>]]></content><author><name></name></author><category term="Method" /><summary type="html"><![CDATA[1. 输入文件 输入文件为 vasp 的四个基础文件：INCAR POSCAR POTCAR KPOINTS]]></summary></entry><entry><title type="html">拓扑声子的物理量与性质</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/topology/" rel="alternate" type="text/html" title="拓扑声子的物理量与性质" /><published>2024-12-02T02:36:10+03:00</published><updated>2024-12-02T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/topology</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/topology/"><![CDATA[<h2 id="拓扑几何">拓扑几何</h2>
+</ul>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[1. 输入文件 输入文件为 vasp 的四个基础文件：INCAR POSCAR POTCAR KPOINTS]]></summary></entry><entry><title type="html">拓扑声子的物理量与性质</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/topology/" rel="alternate" type="text/html" title="拓扑声子的物理量与性质" /><published>2024-12-02T02:36:10+03:00</published><updated>2024-12-02T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/topology</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/topology/"><![CDATA[<h2 id="拓扑几何">拓扑几何</h2>
 
 <p>拓扑学研究在连续变化中保持不变的几何性质，这是一种反映全局特征的数学工具。<br />
-例如，表面的 <strong>Gauss 曲率</strong> \(K\) 是一种描述局部几何性质的量，通过以下 <strong>Gauss-Bonnet 定理</strong>将其与全局拓扑特性关联起来：</p>
+例如，表面的 <strong>Gauss 曲率</strong> $K$ 是一种描述局部几何性质的量，通过以下 <strong>Gauss-Bonnet 定理</strong>将其与全局拓扑特性关联起来：</p>
 
 \[\int_S K \, d^2r = 4\pi (1-\text{genus}),\]
 
-<p>其中，\(\text{genus}\)（亏格）表示几何体上的孔洞数。例如，球体的亏格为 \(0\)，而环面（如甜甜圈）的亏格为 \(1\)。</p>
+<p>其中，$\text{genus}$（亏格）表示几何体上的孔洞数。例如，球体的亏格为 $0$，而环面（如甜甜圈）的亏格为 $1$。</p>
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        
+<div class="text-center">
+  
 
 
 
@@ -524,13 +523,14 @@ Gamma                          # 选择 Gamma 点中心网格
     
       <source class="responsive-img-srcset" srcset="/assets/img/blog/topology_huan-480.webp 480w,/assets/img/blog/topology_huan-800.webp 800w,/assets/img/blog/topology_huan-1400.webp 1400w," type="image/webp" sizes="95vw" />
     
-    <img src="/assets/img/blog/topology_huan.gif" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/blog/topology_huan.gif" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
   </picture>
 
   
+    <figcaption class="caption">图 1: 在拓扑学中，一个杯子和一个面包圈是相同的</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
 <h2 id="拓扑物理">拓扑物理</h2>
@@ -541,7 +541,7 @@ Gamma                          # 选择 Gamma 点中心网格
 
 <p>其中 \(H\) 是体系的哈密顿量，\(E\) 是电子的能量本征值，\(\vert\varphi\rangle\) 是对应的本征态。通过求解该方程，可以获得能带结构，即电子的能量与动量的关系。</p>
 
-<p>传统能带理论主要关注电子的能量本征值，而拓扑物理的重要贡献在于揭示波函数中隐藏的拓扑信息，即电子波函数的拓扑结构。例如，在 <strong>量子霍尔效应</strong>中，体系的时间反演对称性被破坏，陈数 \(C \neq 0\)。基于不同的对称性，研究者已构建出许多拓扑材料体系，如谷霍尔效应、拓扑晶体绝缘体，以及无能隙的拓扑半金属态，包括 Dirac 态、Weyl 态、节点线和三重拓扑简并点等。</p>
+<p>传统能带理论主要关注电子的能量本征值，而拓扑物理的重要贡献在于揭示波函数中隐藏的拓扑信息，即电子波函数的拓扑结构。例如，在 <strong>量子霍尔效应</strong>中，体系的时间反演对称性被破坏，陈数 $C \neq 0$。基于不同的对称性，研究者已构建出许多拓扑材料体系，如谷霍尔效应、拓扑晶体绝缘体，以及无能隙的拓扑半金属态，包括 Dirac 态、Weyl 态、节点线和三重拓扑简并点等。</p>
 
 <h2 id="拓扑声子">拓扑声子</h2>
 
@@ -551,7 +551,7 @@ Gamma                          # 选择 Gamma 点中心网格
 
 \[\boldsymbol{D}(\boldsymbol{k}) \boldsymbol{u}(\boldsymbol{k}) = \omega^2(\boldsymbol{k}) \boldsymbol{u}(\boldsymbol{k}),\]
 
-<p>其中，\(\boldsymbol{u}(\boldsymbol{k})\) 为声子本征态，\(\omega(\boldsymbol{k})\) 为声子频率。传统研究仅关注本征值，得到声子色散关系和态密度，而拓扑声子研究则进一步挖掘本征态中隐含的波函数拓扑信息。</p>
+<p>其中，$\boldsymbol{u}(\boldsymbol{k})$ 为声子本征态，$\omega(\boldsymbol{k})$ 为声子频率。传统研究仅关注本征值，得到声子色散关系和态密度，而拓扑声子研究则进一步挖掘本征态中隐含的波函数拓扑信息。</p>
 
 <h3 id="声子体系中的拓扑物理量">声子体系中的拓扑物理量</h3>
 
@@ -587,35 +587,35 @@ Gamma                          # 选择 Gamma 点中心网格
   </li>
 </ul>
 
-<p>由于声子不具有自旋 \(1/2\) 属性，无法直接应用量子自旋霍尔态的理论。电子体系中的量子自旋霍尔态可视为两组具有相反陈数的量子霍尔态，其总陈数在时间反演对称下为 \(0\)。而在声子体系中，可以利用晶格对称性实现双重甚至多重简并，构造出类自旋的赝自旋，为拓扑声子研究提供了新思路。</p>
+<p>由于声子不具有自旋 $1/2$ 属性，无法直接应用量子自旋霍尔态的理论。电子体系中的量子自旋霍尔态可视为两组具有相反陈数的量子霍尔态，其总陈数在时间反演对称下为 $0$。而在声子体系中，可以利用晶格对称性实现双重甚至多重简并，构造出类自旋的赝自旋，为拓扑声子研究提供了新思路。</p>
 
 <p>在经典的声子输运研究中，晶格对称性用于分析声子散射通道，简化力常数计算；而从拓扑声子的角度，晶格对称性主要用于确定声子的简并性和对声子分支进行分类。</p>
 
 <p>在材料的边界或界面处，拓扑声子可以形成特殊的边界态。这些边界态源自材料固有的拓扑不变量（如陈数或贝里曲率），能够沿着不受散射影响的通道传播。这种稳定性被称为 <strong>拓扑保护机制</strong>。</p>
 
-<p>拓扑声子的色散关系也具有独特特性。在某些特定频率范围内，声子的传播更加顺畅，而在其他频率范围内，声子可能被抑制。</p>]]></content><author><name></name></author><category term="Theory" /><summary type="html"><![CDATA[拓扑几何]]></summary></entry><entry><title type="html">声子蒙特卡罗模拟的理论基础</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/MC-phononBTE/" rel="alternate" type="text/html" title="声子蒙特卡罗模拟的理论基础" /><published>2024-11-16T02:36:10+03:00</published><updated>2024-11-16T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/MC-phononBTE</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/MC-phononBTE/"><![CDATA[<h2 id="1-玻尔兹曼输运方程">1. 玻尔兹曼输运方程</h2>
+<p>拓扑声子的色散关系也具有独特特性。在某些特定频率范围内，声子的传播更加顺畅，而在其他频率范围内，声子可能被抑制。</p>]]></content><author><name></name></author><category term="Physics" /><summary type="html"><![CDATA[拓扑几何]]></summary></entry><entry><title type="html">声子蒙特卡罗模拟的理论基础</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/MC-phononBTE/" rel="alternate" type="text/html" title="声子蒙特卡罗模拟的理论基础" /><published>2024-11-16T02:36:10+03:00</published><updated>2024-11-16T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/MC-phononBTE</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/MC-phononBTE/"><![CDATA[<h2 id="1-玻尔兹曼输运方程">1. 玻尔兹曼输运方程</h2>
 
 <h3 id="11-基于粒子玻尔兹曼输运方程">1.1 基于粒子玻尔兹曼输运方程：</h3>
 
 \[\frac{\partial f}{\partial t} + \boldsymbol v_g(\omega,p)\nabla f = - \frac{f-f^{\text{loc}}}{\tau(\omega,p,T)}\]
 
-<p>其中 \(f=f(t,\boldsymbol x,\boldsymbol k,p)\) 是相空间中的声子分布函数，\(\omega=\omega(\boldsymbol k,p)\) 是声子径向频率，\(p\) 是声子极化，\(T\) 是温度。此外，\(f^\text{loc}\) 是由局部伪温度参数化的 BE 平衡分布。</p>
+<p>其中 $f=f(t,\boldsymbol x,\boldsymbol k,p)$ 是相空间中的声子分布函数，$\omega=\omega(\boldsymbol k,p)$ 是声子径向频率，$p$ 是声子极化，$T$ 是温度。此外，$f^\text{loc}$ 是由局部伪温度参数化的 BE 平衡分布。</p>
 
 <p>使用声子束来代表模拟粒子：</p>
 
 \[f(t,\boldsymbol x,\boldsymbol k,p) \approx 8\pi^3N_\text{eff}\sum_i \delta^3(\boldsymbol x - \boldsymbol x_i) \delta^3(\boldsymbol k - \boldsymbol k_i) \delta_{p,p_i}\]
 
-<p>\(N_\text{eff}\) 是每个声子束中的声子有效数量。</p>
+<p>$N_\text{eff}$ 是每个声子束中的声子有效数量。</p>
 
 <h3 id="12-基于能量玻尔兹曼输运方程-energy-based-bte">1.2 基于能量玻尔兹曼输运方程 (energy-based BTE)：</h3>
 
 \[\frac{\partial e}{\partial t} + \boldsymbol v_g\nabla e = - \frac{e-e^{\text{loc}}}{\tau}\]
 
-<p>这里，模拟粒子为能量 \(e=\hbar\omega f\) ，且 \(e^\text{loc}=\hbar\omega f^\text{loc}\)。</p>
+<p>这里，模拟粒子为能量 $e=\hbar\omega f$，且 $e^\text{loc}=\hbar\omega f^\text{loc}$。</p>
 
 \[e \approx 8\pi^3\varepsilon_\text{eff}\sum_i \delta^3(\boldsymbol x - \boldsymbol x_i) \delta^3(\boldsymbol k - \boldsymbol k_i) \delta_{p,p_i}\]
 
-<p>其中 \(\varepsilon_\text{eff}\) 定义为每个模拟粒子携带的有效能量 \(\varepsilon_\text{eff}=N_\text{eff}\hbar\omega\) 。这里定义的能量粒子 \(\varepsilon_\text{eff}\) 所代表的声子的有效数量是可变的。</p>
+<p>其中 $\varepsilon_\text{eff}$ 定义为每个模拟粒子携带的有效能量 $\varepsilon_\text{eff}=N_\text{eff}\hbar\omega$。这里定义的能量粒子 $\varepsilon_\text{eff}$ 所代表的声子的有效数量是可变的。</p>
 
 <h3 id="13-基于偏差能量玻尔兹曼输运方程-deviational-energy-based-bte">1.3 基于偏差能量玻尔兹曼输运方程 (deviational energy-based BTE)：</h3>
 
@@ -625,17 +625,16 @@ Gamma                          # 选择 Gamma 点中心网格
 
 \[e^{\text{eq}}_{T_\text{eq}}(\omega) = \frac{\hbar\omega}{\exp\left(\frac{\hbar\omega}{k_BT_\text{eq}}\right)-1}\]
 
-<p>这里，模拟粒子为能量偏差：\(e^d =e - e^{\text{eq}}_{T_\text{eq}}\) 。</p>
+<p>这里，模拟粒子为能量偏差：$e^d =e - e^{\text{eq}}<em>{T</em>\text{eq}}$。</p>
 
 \[e^d \approx 8\pi^3\varepsilon_\text{eff}^d\sum_i s(i) \delta^3(\boldsymbol x - \boldsymbol x_i) \delta^3(\boldsymbol k - \boldsymbol k_i) \delta_{p,p_i}\]
 
-<p>\(s(i)=+1\) 的粒子代表相对于参考状态增加的偏差能量份额（即较高温度区的“超额”声子群）。</p>
+<p>$s(i)=+1$ 的粒子代表相对于参考状态增加的偏差能量份额（即较高温度区的“超额”声子群）。</p>
 
-<p>\(s(i)=-1\) 的粒子则代表相对于参考状态的负偏差能量份额（即较低温度区的“欠额”声子群）。</p>
+<p>$s(i)=-1$ 的粒子则代表相对于参考状态的负偏差能量份额（即较低温度区的“欠额”声子群）。</p>
 
-<div class="row">
-    <div class="col-md-6 text-center">
-        
+<div class="text-center">
+  
 
 
 
@@ -647,18 +646,19 @@ Gamma                          # 选择 Gamma 点中心网格
       https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
     -->
     
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/detaE-480.webp 480w,/assets/img/blog/detaE-800.webp 800w,/assets/img/blog/detaE-1400.webp 1400w," type="image/webp" sizes="95vw" />
+      <source class="responsive-img-srcset" srcset="/assets/img/blog/peri_bond-480.webp 480w,/assets/img/blog/peri_bond-800.webp 800w,/assets/img/blog/peri_bond-1400.webp 1400w," type="image/webp" sizes="95vw" />
     
-    <img src="/assets/img/blog/detaE.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/blog/peri_bond.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
   </picture>
 
   
+    <figcaption class="caption">图 1: 偏差能量示意图</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
-<p>偏差能量方法通过引入参考平衡温度 \(T_\text{eq}\)，将计算聚焦于非平衡态的能量偏差，而不是完整的声子分布函数。这减少了计算中对大量平衡态声子的无效模拟，尤其在小温差或接近平衡态的情况下，显著提高了模拟效率。</p>
+<p>偏差能量方法通过引入参考平衡温度 $T_\text{eq}$，将计算聚焦于非平衡态的能量偏差，而不是完整的声子分布函数。这减少了计算中对大量平衡态声子的无效模拟，尤其在小温差或接近平衡态的情况下，显著提高了模拟效率。</p>
 
 <p>偏差能量方法中，模拟粒子的数量和符号（正负）直接对应偏差能量的变化，减少了添加或删除粒子时可能引入的能量误差。同时，其计算机制天然遵循能量守恒原则。</p>
 
@@ -668,27 +668,32 @@ Gamma                          # 选择 Gamma 点中心网格
 
 <h3 id="初始化"><strong>初始化:</strong></h3>
 
-<p>在初始温度 \(T\) 下，使用 BE 统计计算体积 \(V\) 中的声子数量：
-\(N=V\int_{\omega=0}^{\omega_\text{max}}\sum_p D(\omega,p) f_T^\text{eq}(\omega) d\omega\)
-模拟粒子（每个代表一个声子束）的数量由 \(N/N_\text{eff}\) 给出。</p>
+<p>在初始温度 $T$ 下，使用 BE 统计计算体积 $V$ 中的声子数量：</p>
 
-<p>\(N_\text{eff}\) 的值是通过平衡计算成本与获得具有统计意义的结果所需的粒子数量来确定的。</p>
+\[N=V\int_{\omega=0}^{\omega_\text{max}}\sum_p D(\omega,p) f_T^\text{eq}(\omega) d\omega\]
+
+<p>模拟粒子（每个代表一个声子束）的数量由 $N/N_\text{eff}$ 给出。</p>
+
+<p>$N_\text{eff}$ 的值是通过平衡计算成本与获得具有统计意义的结果所需的粒子数量来确定的。</p>
 
 <h3 id="时间演化"><strong>时间演化:</strong></h3>
 
-<p>系统初始化后，将通过应用时间步长为 \(\Delta t\) 的分割算法来进行模拟。
+<p>系统初始化后，将通过应用时间步长为 $\Delta t$ 的分割算法来进行模拟。
 每一个时间步长由三个子步骤组成：</p>
 
 <p>1). <strong>声子 Drift</strong></p>
 
-<p>在此期间模拟粒子 \(i\) 移动 \(\boldsymbol v_{g,i}\Delta t\) 。</p>
+<p>在此期间模拟粒子 $i$ 移动 $\boldsymbol v_{g,i}\Delta t$。</p>
 
 <p>2). <strong>采样</strong></p>
 
-<p>记录温度 (\(T\)) 和伪温度 (\(T_\text{loc}\))，它们是通过反转能量 (\(E\)) 和赝能量 (\(\widetilde E\)) 关系来计算的：
-\(E=N_\text{eff}\sum_i\hbar\omega_i=V\int_{\omega=0}^{\omega_\text{max}}\sum_p \frac{D(\omega,p) \hbar\omega}{\exp\left(\frac{\hbar\omega}{k_BT}\right)-1} d\omega\)
-\(\widetilde E=N_\text{eff}\sum_i\frac{\hbar\omega_i}{\tau(\omega_i,p_i,T)}=V\int_{\omega=0}^{\omega_\text{max}}\sum_p \frac{D(\omega,p) \hbar\omega}{\tau(\omega,p,T)}\frac{1}{\exp\left(\frac{\hbar\omega}{k_BT_\text{loc}}\right)-1} d\omega\)
-温度 (\(T\)) 表示热平衡下的平均温度，伪温度 (\(T_\text{loc}\)) 与声子的散射过程有关，用于非平衡态下的声子行为分析。</p>
+<p>记录温度 ($T$) 和伪温度 ($T_\text{loc}$)，它们是通过反转能量 ($E$) 和赝能量 ($\widetilde E$) 关系来计算的：</p>
+
+\[E=N_\text{eff}\sum_i\hbar\omega_i=V\int_{\omega=0}^{\omega_\text{max}}\sum_p \frac{D(\omega,p) \hbar\omega}{\exp\left(\frac{\hbar\omega}{k_BT}\right)-1} d\omega\]
+
+\[\widetilde E=N_\text{eff}\sum_i\frac{\hbar\omega_i}{\tau(\omega_i,p_i,T)}=V\int_{\omega=0}^{\omega_\text{max}}\sum_p \frac{D(\omega,p) \hbar\omega}{\tau(\omega,p,T)}\frac{1}{\exp\left(\frac{\hbar\omega}{k_BT_\text{loc}}\right)-1} d\omega\]
+
+<p>温度 ($T$) 表示热平衡下的平均温度，伪温度 ($T_\text{loc}$) 与声子的散射过程有关，用于非平衡态下的声子行为分析。</p>
 
 <p>3). <strong>声子 Scatter</strong></p>
 
@@ -696,7 +701,7 @@ Gamma                          # 选择 Gamma 点中心网格
 
 \[P_i = 1-\exp\left(-\frac{\Delta t}{\tau(\omega_i,p_i,T)}\right)\]
 
-<p>散射通过采样新的频率、偏振和传播方向来完成。散射后的频率必须从分布 \(D(\omega,p)f^\text{loc}/\tau(\omega,p,T)\) 中得出。</p>
+<p>散射通过采样新的频率、偏振和传播方向来完成。散射后的频率必须从分布 $D(\omega,p)f^\text{loc}/\tau(\omega,p,T)$ 中得出。</p>
 
 <p>散射过程中要保证能量守恒。然而，由于散射声子的频率是随机采样的，因此需要添加或删除粒子，直到近似达到目标能量，强制实现能量守恒。</p>
 
@@ -707,8 +712,8 @@ Gamma                          # 选择 Gamma 点中心网格
 <p>以能量作为模拟粒子，算法与上述类似，但需要做出以下调整：</p>
 
 <ol>
-  <li>初始化、边界发射或散射期间，频率分布的采样需考虑乘以因子 \(\hbar\omega\) 的修正。</li>
-  <li>网格内能量的计算很简单，只需计算粒子的数量即可。 \(N\) 个粒子的能量由 \(\varepsilon_\text{eff} N\) 给出。</li>
+  <li>初始化、边界发射或散射期间，频率分布的采样需考虑乘以因子 $\hbar\omega$ 的修正。</li>
+  <li>网格内能量的计算很简单，只需计算粒子的数量即可。 $N$ 个粒子的能量由 $\varepsilon_\text{eff} N$ 给出。</li>
   <li>由于网格内的能量与粒子数量成正比，因此不需要添加或删除过程：只需保持粒子数量守恒，能量就严格自动守恒。</li>
 </ol>
 
@@ -768,8 +773,9 @@ Gamma                          # 选择 Gamma 点中心网格
 
 <p>其中，$\omega_i$ 是声子的频率，$p_i$ 是偏振，$\tau$ 是声子的散射时间，取决于频率、偏振和局部温度 $T_j$ 。</p>
 
-<p>散射过程中，单元格 $j$ 中的声子群代表了一定的偏差能量：$E^d_\text{eff}(N^+<em>{s,j} - N^-</em>{s,j})$
-其中：</p>
+<p>散射过程中，单元格 $j$ 中的声子群代表了一定的偏差能量：$E^d_\text{eff}(N^+<em>{s,j} - N^-</em>{s,j})$</p>
+
+<p>其中：</p>
 <ul>
   <li>$N^+_{s,j}$ 表示单元格 $j$ 中正偏差粒子的数量；</li>
   <li>$N^-_{s,j}$ 表示单元格 $j$ 中负偏差粒子的数量。</li>
@@ -806,7 +812,7 @@ Gamma                          # 选择 Gamma 点中心网格
 
 \[q_{\omega,b}'' = \frac{1}{4} \sum_p \frac{D(\omega,p)v_g(\omega,p)\hbar\omega}{\exp\left(\frac{\hbar\omega}{k_B T_b}\right) - 1}\]
 
-<p>在偏差能量模拟中，需要考虑等温边界与参考平衡温度 \(T_\text{eq}\) 之间的热流差异，我们可以通过减去 \(T_\text{eq}\) 对应的热通量来得到修正的表达式：</p>
+<p>在偏差能量模拟中，需要考虑等温边界与参考平衡温度 $T_\text{eq}$ 之间的热流差异，我们可以通过减去 \(T_\text{eq}\) 对应的热通量来得到修正的表达式：</p>
 
 \[q_{\omega,b}'' = \frac{1}{4} \sum_p D(\omega,p)v_g(\omega,p)\hbar\omega \cdot \bigg[\frac{1}{\exp\left(\frac{\hbar\omega}{k_B T_b}\right) - 1} - \frac{1}{\exp\left(\frac{\hbar\omega}{k_B T_\text{eq}}\right) - 1} \bigg]\]
 
@@ -816,9 +822,8 @@ Gamma                          # 选择 Gamma 点中心网格
 
 <p>周期性边界条件允许我们仅通过考虑一个晶胞（周期）来有效模拟完整的结构。</p>
 
-<div class="row">
-    <div class="col-md-10 text-center">
-        
+<div class="text-center">
+  
 
 
 
@@ -832,13 +837,14 @@ Gamma                          # 选择 Gamma 点中心网格
     
       <source class="responsive-img-srcset" srcset="/assets/img/blog/peri_bond-480.webp 480w,/assets/img/blog/peri_bond-800.webp 800w,/assets/img/blog/peri_bond-1400.webp 1400w," type="image/webp" sizes="95vw" />
     
-    <img src="/assets/img/blog/peri_bond.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/blog/peri_bond.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
   </picture>
 
   
+    <figcaption class="caption">图 2: 周期性边界条件</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
 <p>在边界处，声子分布与局部平衡的偏差是周期性的，可以通过以下关系描述：</p>
@@ -847,7 +853,7 @@ Gamma                          # 选择 Gamma 点中心网格
 
 \[f_1^- - f_{T_1}^\text{eq} = f_2^- - f_{T_2}^\text{eq}\]
 
-<p>其中 \(f_{T_1}^\text{eq}\) 和 \(f_{T_2}^\text{eq}\) 指温度 \(T_1\) 和 \(T_2\) 下的平衡分布，上标 \(+\) 表示粒子向右移动，上标 \(-\) 表示粒子向左移动。该公式同时反映了热通量和温度梯度的周期性。</p>
+<p>其中 $f_{T_1}^\text{eq}$ 和 $f_{T_2}^\text{eq}$ 指温度 $T_1$ 和 $T_2$ 下的平衡分布，上标 $+$ 表示粒子向右移动，上标 $-$ 表示粒子向左移动。该公式同时反映了热通量和温度梯度的周期性。</p>
 
 <p>对于偏差能量分布，该关系变为</p>
 
@@ -877,12 +883,13 @@ Gamma                          # 选择 Gamma 点中心网格
 
 <p>[2] Q. Hao, G. Chen, M.-S. Jeng, Frequency-dependent Monte Carlo simulations of phonon transport in two-dimensional porous silicon with aligned pores, Journal of Applied Physics 106 (2009) 114321.</p>
 
-<p>[3] J.-P.M. Péraud, N.G. Hadjiconstantinou, Efficient simulation of multidimensional phonon transport using energy-based variance-reduced Monte Carlo formulations, Phys. Rev. B 84 (2011) 205331.</p>]]></content><author><name></name></author><category term="Method" /><summary type="html"><![CDATA[1. 玻尔兹曼输运方程]]></summary></entry><entry><title type="html">态密度的数值求解方法</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/dos-method/" rel="alternate" type="text/html" title="态密度的数值求解方法" /><published>2024-10-06T02:36:10+03:00</published><updated>2024-10-06T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/dos-method</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/dos-method/"><![CDATA[<p>晶格动力学研究中最重要的量之一是态密度 (DOS)，定义为在频率 \(\omega\) 和 \(\omega+d\omega\) 之间的简正模态的数量。</p>
+<p>[3] J.-P.M. Péraud, N.G. Hadjiconstantinou, Efficient simulation of multidimensional phonon transport using energy-based variance-reduced Monte Carlo formulations, Phys. Rev. B 84 (2011) 205331.</p>]]></content><author><name></name></author><category term="Monte-Carlo" /><summary type="html"><![CDATA[1. 玻尔兹曼输运方程]]></summary></entry><entry><title type="html">态密度的数值求解方法</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/dos-method/" rel="alternate" type="text/html" title="态密度的数值求解方法" /><published>2024-10-06T02:36:10+03:00</published><updated>2024-10-06T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/dos-method</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/dos-method/"><![CDATA[<p>晶格动力学研究中最重要的量之一是态密度 (DOS)，定义为在频率 $\omega$ 和 $\omega+d\omega$ 之间的简正模态的数量。</p>
 
-<p>态密度的表达式：
-\(\text{DOS}(\omega)=\frac{V}{8\pi^3}\sum_s\int\frac{dS_\omega}{|\Delta_{\boldsymbol k}\omega_s|}\)</p>
+<p>态密度的表达式：</p>
 
-<p>其中，\(S_\omega\) 是等频面。</p>
+\[\text{DOS}(\omega)=\frac{V}{8\pi^3}\sum_s\int\frac{dS_\omega}{|\Delta_{\boldsymbol k}\omega_s|}\]
+
+<p>其中，$S_\omega$ 是等频面。</p>
 
 <h2 id="根采样法">根采样法</h2>
 
@@ -890,19 +897,20 @@ Gamma                          # 选择 Gamma 点中心网格
 
 \[\text{DOS}(\omega)=\frac{V}{8\pi^3}\sum_{\boldsymbol qs} \delta(\omega-\omega(\boldsymbol qs))\]
 
-<p>根据此方法，我们可以统计位于 \(\Delta\omega\) 中的模态数量，从而得到态密度。但该方法需要布里渊区内大量的 \(\boldsymbol k\) 点（网格需要足够密）以得到准确的结果。</p>
+<p>根据此方法，我们可以统计位于 $\Delta\omega$ 中的模态数量，从而得到态密度。但该方法需要布里渊区内大量的 $\boldsymbol k$ 点（网格需要足够密）以得到准确的结果。</p>
 
 <h2 id="线性外推">线性外推</h2>
 
-<p>GR 方法将第一布里渊区的不可约部分划分为由点 \(\boldsymbol k_c\) 组成的均匀简单立方网格，点之间的距离为 \(2b\)。每个点 \(\boldsymbol k_c\) 都位于一个小立方体的中心。从包含每个 \(\boldsymbol k_c\) 的小立方体中提取 “所有” 频率，然后对所有立方体的贡献求和获得完整的频率分布。</p>
+<p>GR 方法将第一布里渊区的不可约部分划分为由点 $\boldsymbol k_c$ 组成的均匀简单立方网格，点之间的距离为 \(2b\)。每个点 $\boldsymbol k_c$ 都位于一个小立方体的中心。从包含每个 $\boldsymbol k_c$ 的小立方体中提取 “所有” 频率，然后对所有立方体的贡献求和获得完整的频率分布。</p>
 
-<p>在 \(\boldsymbol k_c\) 处对应的特征频率为 \(\omega(\boldsymbol k_c)\)。我们假设线性外推法在每个小立方体中都适用，所以，等频面可以表示为垂直于 \(\nabla\omega(\boldsymbol k_c)\) 的平行平面。两个这样的平行平面之间的体积元 \(dV\) 与 \(\omega\) 和 \(\omega+d\omega\) 之间的频率数量成正比。当 \(dV\) 接近 0 时，可以近似为
-\(dV=Sdk_\perp\)
-其中 \(S\) 是立方体限制的平面面积（即为截面积），\(dk_\perp\) 是体积单元的厚度。</p>
+<p>在 $\boldsymbol k_c$ 处对应的特征频率为 $\omega(\boldsymbol k_c)$。我们假设线性外推法在每个小立方体中都适用，所以，等频面可以表示为垂直于 $\nabla\omega(\boldsymbol k_c)$ 的平行平面。两个这样的平行平面之间的体积元 $dV$ 与 $\omega$ 和 $\omega+d\omega$ 之间的频率数量成正比。当 $dV$ 接近 0 时，可以近似为</p>
 
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        
+\[dV=Sdk_\perp\]
+
+<p>其中 $S$ 是立方体限制的平面面积（即为截面积），$dk_\perp$ 是体积单元的厚度。</p>
+
+<div class="text-center">
+  
 
 
 
@@ -916,20 +924,21 @@ Gamma                          # 选择 Gamma 点中心网格
     
       <source class="responsive-img-srcset" srcset="/assets/img/blog/GR_method-480.webp 480w,/assets/img/blog/GR_method-800.webp 800w,/assets/img/blog/GR_method-1400.webp 1400w," type="image/webp" sizes="95vw" />
     
-    <img src="/assets/img/blog/GR_method.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/blog/GR_method.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
   </picture>
 
   
+    <figcaption class="caption">图 1: 线性外推（GR方法）</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
-<p>接下来需要考虑这一组恒频平面在立方体中横截面积的大小。首先假设等频平面的法线的三个方向余弦从大到小分别为 \(l_1\)，\(l_2\) 和 \(l_3\)。</p>
+<p>接下来需要考虑这一组恒频平面在立方体中横截面积的大小。首先假设等频平面的法线的三个方向余弦从大到小分别为 $l_1$，$l_2$ 和 $l_3$。</p>
 
-<p>设任意截面与 \(\boldsymbol k_c\) 的距离为 \(h\)，截面积表示为 \(S(h)\)</p>
+<p>设任意截面与 $\boldsymbol k_c$ 的距离为 $h$，截面积表示为 $S(h)$</p>
 
-<p>而且必然满足 \(S(h) = S(-h)\), 所以我们只需考虑立方体的一半 (\(h&gt;0\))</p>
+<p>而且必然满足 $S(h) = S(-h)$, 所以我们只需考虑立方体的一半 ($h&gt;0$)</p>
 
 <p>以递增的顺序列出位于这半部分的四个角与通过立方体中心的平面的距离：</p>
 
@@ -938,7 +947,7 @@ Gamma                          # 选择 Gamma 点中心网格
 \(h_3 = b(l_1+l_2-l_3)\)
 \(h_4 = b(l_1+l_2+l_3)\)</p>
 
-<p>在第一个范围 \((0\leq h \leq h_1)\) 中有两种可能性，取决于 \((l_1-l_2-l_3)\) 的符号。如果符号为正，则横截面是平行四边形，面积为</p>
+<p>在第一个范围 $(0\leq h \leq h_1)$ 中有两种可能性，取决于 $(l_1-l_2-l_3)$ 的符号。如果符号为正，则横截面是平行四边形，面积为</p>
 
 \[S(h) = 4b^2/l_1\]
 
@@ -960,39 +969,42 @@ Gamma                          # 选择 Gamma 点中心网格
 
 <p>这些表达式及其导数在各自的边界处都是连续的，\(S(h)\) 在整个范围内积分可得到立方体的体积。</p>
 
-<p>对整个立方体进行线性外推可以获得频率变化
-\(\Omega = \omega(\boldsymbol k_c) \pm h\nabla\omega(\boldsymbol k_c)\)
-其中 \(0\leq h\leq h_4\)</p>
+<p>对整个立方体进行线性外推可以获得频率变化</p>
 
-<p>为了构造 \(\text{DOS}(\omega)\)，我们定义一个函数 \(g_s(\boldsymbol k_c,\omega)\)，它是通过线性外推整个以 \(\boldsymbol k_c\) 为中心的立方体而获得的频率分布:</p>
+\[\Omega = \omega(\boldsymbol k_c) \pm h\nabla\omega(\boldsymbol k_c)\]
+
+<p>其中 $0\leq h\leq h_4$</p>
+
+<p>为了构造 $\text{DOS}(\omega)$，我们定义一个函数 $g_s(\boldsymbol k_c,\omega)$，它是通过线性外推整个以 $\boldsymbol k_c$ 为中心的立方体而获得的频率分布:</p>
 
 \[g_s(\boldsymbol k_c,\omega) = CW(\boldsymbol k_c)S_s(h)dh = CW(\boldsymbol k_c)S_s(w) \frac{d\omega}{|\nabla\omega(\boldsymbol k_c)|}\]
 
-<p>其中, \(\omega(\boldsymbol k_c) - h_4\nabla\omega(\boldsymbol k_c) \leq \omega \leq \omega(\boldsymbol k_c) + h_4\nabla\omega(\boldsymbol k_cs)\)</p>
+<p>其中, $\omega(\boldsymbol k_c) - h_4\nabla\omega(\boldsymbol k_c) \leq \omega \leq \omega(\boldsymbol k_c) + h_4\nabla\omega(\boldsymbol k_cs)$</p>
 
-<p>这里 \(C\) 是归一化常数，\(W\boldsymbol k_c)\) 是点 \(\boldsymbol k_c\) 与对称性相关的权重因子</p>
+<p>这里 $C$ 是归一化常数，$W(\boldsymbol k_c)$ 是点 $\boldsymbol k_c$ 与对称性相关的权重因子</p>
 
 <p>最后, 完整的态密度</p>
 
 \[\text{DOS}(\omega) = \sum_{\boldsymbol k_c, s} g_s(\boldsymbol k_c,\omega)\]
 
 <p>GR 方法有两个实际困难：
-（i）它需要首先计算梯度 \(\nabla\omega(\boldsymbol k_c)\)，
+（i）它需要首先计算梯度 $\nabla\omega(\boldsymbol k_c)$，
 （ii）由于立方体通常不完全符合布里渊区，因此有必要确定区域不可约部分的立方体的统计权重。</p>
 
 <h2 id="线性外推的推广">线性外推的推广</h2>
 
 <p>GGR 方法的核心思想是使用仿射变换将平行六面体的布里渊区变换为立方体，从而使得原始 GR 方法可以用于任何格子。</p>
 
-<p>BZ是由三个倒易向量 \(\boldsymbol b_i(i=1,2,3)\) 构成的平行六面体。\(\boldsymbol k\) 点沿三个基向量 \(\boldsymbol b_i\) 均匀分布。</p>
+<p>BZ是由三个倒易向量 $\boldsymbol b_i(i=1,2,3)$ 构成的平行六面体。$\boldsymbol k$ 点沿三个基向量 $\boldsymbol b_i$ 均匀分布。</p>
 
-<p>仿射变换将平行六面体 BZ 的 \(\boldsymbol k\) 基变为立方的 \(\boldsymbol t=(t_1, t_2, t_3)\) 基：
-\(\boldsymbol k = \boldsymbol b_1 t_1 + \boldsymbol b_2 t_2 + \boldsymbol b_3 t_3\)
-其中 \(t_1, t_2, t_3 \in [0, 1]\)</p>
+<p>仿射变换将平行六面体 BZ 的 $\boldsymbol k$ 基变为立方的 $\boldsymbol t=(t_1, t_2, t_3)$ 基：</p>
 
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        
+\[\boldsymbol k = \boldsymbol b_1 t_1 + \boldsymbol b_2 t_2 + \boldsymbol b_3 t_3\]
+
+<p>其中 $t_1, t_2, t_3 \in [0, 1]$</p>
+
+<div class="text-center">
+  
 
 
 
@@ -1006,31 +1018,33 @@ Gamma                          # 选择 Gamma 点中心网格
     
       <source class="responsive-img-srcset" srcset="/assets/img/blog/GGR-480.webp 480w,/assets/img/blog/GGR-800.webp 800w,/assets/img/blog/GGR-1400.webp 1400w," type="image/webp" sizes="95vw" />
     
-    <img src="/assets/img/blog/GGR.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/blog/GGR.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
   </picture>
 
   
+    <figcaption class="caption">图 1: 线性外推的推广（GGR方法）</figcaption>
+  
 </figure>
 
-    </div>
 </div>
 
-<p>两组基底的体积元满足 \(dV_k = \det(B)dV_t = \Omega dV_t\)，其中 \(\Omega\) 为 BZ 的体积。</p>
+<p>两组基底的体积元满足 $dV_k = \det(B)dV_t = \Omega dV_t$，其中 $\Omega$ 为 BZ 的体积。</p>
 
-<p>我们将 \(\text{DOS}(\omega)\)（等频曲面 \(S_\omega\) 上的积分）从 \(\boldsymbol k\) 基变为立方的 \(\boldsymbol t\) 基：</p>
+<p>我们将 $\text{DOS}(\omega)$（等频曲面 $S_\omega$ 上的积分）从 $\boldsymbol k$ 基变为立方的 $\boldsymbol t$ 基：</p>
 
 \[\text{DOS}(\omega)=\frac{1}{\Omega} \sum_s\int_{S_\omega}\frac{dS_k}{|\Delta_{\boldsymbol k}\omega_s|} = \sum_s\int_{S_\omega}\frac{dS_t}{|\Delta_{\boldsymbol t}\omega_s|}\]
 
 <h2 id="线性内插">线性内插</h2>
 
-<p>将不可约部分内的立方体划分为多个等体积的四面体。在四面体的每个顶点处已知声子频率，然后四面体内部任意位置的声子频率 \(\nabla\omega(\boldsymbol k)\) 可以通过线性内插得到
-\(\omega(\boldsymbol k) = a_1\omega(\boldsymbol k_1) + a_2\omega(\boldsymbol k_2) + a_3\omega(\boldsymbol k_3) + a_4\omega(\boldsymbol k_4)\)</p>
+<p>将不可约部分内的立方体划分为多个等体积的四面体。在四面体的每个顶点处已知声子频率，然后四面体内部任意位置的声子频率 $\nabla\omega(\boldsymbol k)$ 可以通过线性内插得到</p>
 
-<p>其中，\(a_i\) 是四面体的顶点权重系数，满足 \(a_1+a_2+a_3+a_4 = 1\)，而这些权重系数依赖于点 \(\boldsymbol k\) 在四面体内的位置。</p>
+\[\omega(\boldsymbol k) = a_1\omega(\boldsymbol k_1) + a_2\omega(\boldsymbol k_2) + a_3\omega(\boldsymbol k_3) + a_4\omega(\boldsymbol k_4)\]
 
-<p>四面体法只需要粗网格下的 \(\omega(\boldsymbol k_i)\) 的分布，不需要频率梯度（群速度）。</p>
+<p>其中，$a_i$ 是四面体的顶点权重系数，满足 $a_1+a_2+a_3+a_4 = 1$，而这些权重系数依赖于点 $\boldsymbol k$ 在四面体内的位置。</p>
 
-<p>但是在带交叉处，即对简并性上的点进行采样，线性插值会导致误差增加。</p>]]></content><author><name></name></author><category term="Method" /><summary type="html"><![CDATA[晶格动力学研究中最重要的量之一是态密度 (DOS)，定义为在频率 \(\omega\) 和 \(\omega+d\omega\) 之间的简正模态的数量。]]></summary></entry><entry><title type="html">QE 计算硅的声子色散关系</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/qe-disp-si/" rel="alternate" type="text/html" title="QE 计算硅的声子色散关系" /><published>2024-04-06T02:36:10+03:00</published><updated>2024-04-06T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/qe-disp-si</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/qe-disp-si/"><![CDATA[<p>在 Quantum Espresso 中，声子色散是使用 <code class="language-plaintext highlighter-rouge">ph.x</code> 程序计算的，该程序基于密度泛函微扰理论 (DFPT) 。本文以单晶硅 (Si) 为例展开计算。</p>
+<p>四面体法只需要粗网格下的 $\omega(\boldsymbol k_i)$ 的分布，不需要频率梯度（群速度）。</p>
+
+<p>但是在带交叉处，即对简并性上的点进行采样，线性插值会导致误差增加。</p>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[晶格动力学研究中最重要的量之一是态密度 (DOS)，定义为在频率 $\omega$ 和 $\omega+d\omega$ 之间的简正模态的数量。]]></summary></entry><entry><title type="html">QE 计算硅的声子色散关系</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/qe-disp-si/" rel="alternate" type="text/html" title="QE 计算硅的声子色散关系" /><published>2024-04-06T02:36:10+03:00</published><updated>2024-04-06T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/qe-disp-si</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/qe-disp-si/"><![CDATA[<p>在 Quantum Espresso 中，声子色散是使用 <code class="language-plaintext highlighter-rouge">ph.x</code> 程序计算的，该程序基于密度泛函微扰理论 (DFPT) 。本文以单晶硅 (Si) 为例展开计算。</p>
 
 <h2 id="第一步-pwx">第一步 pw.x</h2>
 
@@ -1172,9 +1186,8 @@ K_POINTS <span class="o">{</span>automatic<span class="o">}</span>
 
 <p>然后根据得到的 <code class="language-plaintext highlighter-rouge">Si.freq.gp</code> 文件进行绘图：</p>
 
-<div class="row">
-    <div class="col-md-8 text-center">
-        
+<div class="text-center">
+  
 
 
 
@@ -1188,14 +1201,15 @@ K_POINTS <span class="o">{</span>automatic<span class="o">}</span>
     
       <source class="responsive-img-srcset" srcset="/assets/img/blog/Si-bulk-qe-480.webp 480w,/assets/img/blog/Si-bulk-qe-800.webp 800w,/assets/img/blog/Si-bulk-qe-1400.webp 1400w," type="image/webp" sizes="95vw" />
     
-    <img src="/assets/img/blog/Si-bulk-qe.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/blog/Si-bulk-qe.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
   </picture>
 
   
+    <figcaption class="caption">图: 硅的声子色散关系</figcaption>
+  
 </figure>
 
-    </div>
-</div>]]></content><author><name></name></author><category term="Method" /><summary type="html"><![CDATA[在 Quantum Espresso 中，声子色散是使用 ph.x 程序计算的，该程序基于密度泛函微扰理论 (DFPT) 。本文以单晶硅 (Si) 为例展开计算。]]></summary></entry><entry><title type="html">QE 进行能量自洽计算</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/qe-scf/" rel="alternate" type="text/html" title="QE 进行能量自洽计算" /><published>2024-03-17T02:36:10+03:00</published><updated>2024-03-17T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/qe-scf</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/qe-scf/"><![CDATA[<p>pw.x 处理的计算包括以下7种类型，在输入文件中用 <code class="language-plaintext highlighter-rouge">calculation</code> 设置：</p>
+</div>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[在 Quantum Espresso 中，声子色散是使用 ph.x 程序计算的，该程序基于密度泛函微扰理论 (DFPT) 。本文以单晶硅 (Si) 为例展开计算。]]></summary></entry><entry><title type="html">使用 QE 进行能量自洽计算</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/qe-scf/" rel="alternate" type="text/html" title="使用 QE 进行能量自洽计算" /><published>2024-03-17T02:36:10+03:00</published><updated>2024-03-17T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/qe-scf</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/qe-scf/"><![CDATA[<p>pw.x 处理的计算包括以下7种类型，在输入文件中用 <code class="language-plaintext highlighter-rouge">calculation</code> 设置：</p>
 
 <p><code class="language-plaintext highlighter-rouge">'scf'</code>：自洽计算，self-consistent field，通过迭代的方式数值求解微分-积分方程（Kohn-Sham方程），迭代收敛以电荷的变化足够小为准，最终得到自洽电荷。</p>
 
@@ -1390,34 +1404,34 @@ K_POINTS automatic  <span class="c"># K点自动分布</span>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">electrons</span><span class="w">       </span><span class="err">=</span><span class="w">         </span><span class="mf">8.00</span><span class="w">
 </span><span class="err">number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">Kohn-Sham</span><span class="w"> </span><span class="err">states=</span><span class="w">            </span><span class="mi">8</span><span class="w">
-</span></code></pre></div></div>]]></content><author><name></name></author><category term="Method" /><summary type="html"><![CDATA[pw.x 处理的计算包括以下7种类型，在输入文件中用 calculation 设置：]]></summary></entry><entry><title type="html">热物理学的微观描述</title><link href="https://lyushisyan.github.io/zh-CN/blog/2023/nano-micro-thermophysics/" rel="alternate" type="text/html" title="热物理学的微观描述" /><published>2023-10-08T03:32:13+03:00</published><updated>2023-10-08T03:32:13+03:00</updated><id>https://lyushisyan.github.io/blog/2023/nano-micro-thermophysics</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2023/nano-micro-thermophysics/"><![CDATA[<p>传热学中的宏观能量守恒方程描述热能的储存、传输（热传导 \(k\)、热对流 \(u\) 和热辐射 \(r\)）以及与其他形式的能量之间的转换。</p>
+</span></code></pre></div></div>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[pw.x 处理的计算包括以下7种类型，在输入文件中用 calculation 设置：]]></summary></entry><entry><title type="html">热物理学的微观描述</title><link href="https://lyushisyan.github.io/zh-CN/blog/2023/nano-micro-thermophysics/" rel="alternate" type="text/html" title="热物理学的微观描述" /><published>2023-10-08T03:32:13+03:00</published><updated>2023-10-08T03:32:13+03:00</updated><id>https://lyushisyan.github.io/blog/2023/nano-micro-thermophysics</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2023/nano-micro-thermophysics/"><![CDATA[<p>传热学中的宏观能量守恒方程描述热能的储存、传输（热传导 $k$、热对流 $u$ 和热辐射 $r$）以及与其他形式的能量之间的转换。</p>
 
 <h2 id="能量守恒方程">能量守恒方程</h2>
 
 \[\nabla\cdot \boldsymbol q=-\rho c_p\frac{\partial T}{\partial t}+\sum_{i,j}\dot s_{i-j},
 \nabla\cdot \boldsymbol q=\frac{\int_{\Delta A}(\boldsymbol q\cdot\boldsymbol s_{\boldsymbol n})dA}{\Delta V \to 0}\]
 
-<p>其中，\(\rho c_p\frac{\partial T}{\partial t}\) 被称为显热储存，\(\dot s_{i-j}\) 为热能的能量转换速率，由能量载流子 \(i\) 和 \(j\) 之间相互作用的性质和频率决定。</p>
+<p>其中，$\rho c_p\frac{\partial T}{\partial t}$ 被称为显热储存，$\dot s_{i-j}$ 为热能的能量转换速率，由能量载流子 $i$ 和 $j$ 之间相互作用的性质和频率决定。</p>
 
-<p>热流矢量 \(\boldsymbol q\) 是传导、对流和辐射热流矢量之和：</p>
+<p>热流矢量 $\boldsymbol q$ 是传导、对流和辐射热流矢量之和：</p>
 
 \[\boldsymbol q = \boldsymbol q_k + \boldsymbol q_u + \boldsymbol q_r\]
 
-<p><strong>传导热流矢量</strong> \(\boldsymbol q_k\) 是热导率 \(k\) 与温度梯度 \(\nabla T\) 乘积的负数，即傅立叶传导定律：</p>
+<p><strong>传导热流矢量</strong> $\boldsymbol q_k$ 是热导率 $k$ 与温度梯度 $\nabla T$ 乘积的负数，即傅立叶传导定律：</p>
 
 \[\boldsymbol q_k = -k\nabla T\]
 
-<p><strong>对流热流矢量</strong> \(\boldsymbol q_u\) 是 \(\rho c_p\)、局部速度矢量 \(\boldsymbol u\) 和温度 \(T\) 的乘积：</p>
+<p><strong>对流热流矢量</strong> $\boldsymbol q_u$ 是 $\rho c_p$、局部速度矢量 $\boldsymbol u$ 和温度 $T$ 的乘积：</p>
 
 \[\boldsymbol q_u = \rho c_p\boldsymbol u T\]
 
-<p><strong>辐射热流矢量</strong> \(\boldsymbol q_r\) 是对单位矢量 \(\boldsymbol s\) 与电磁谱的定向辐射强度 \(I_{ph,\omega}\) 乘积在空间上和电磁谱上的积分：</p>
+<p><strong>辐射热流矢量</strong> $\boldsymbol q_r$ 是对单位矢量 $\boldsymbol s$ 与电磁谱的定向辐射强度 $I_{ph,\omega}$ 乘积在空间上和电磁谱上的积分：</p>
 
 \[\boldsymbol q_r  = 2\pi\int_0^\infty\int_{-1}^1\boldsymbol s I_{ph,\omega}d\mu d\omega\]
 
 <h2 id="主要的能量载流子">主要的能量载流子</h2>
 
-<p>四种能量载流子，即：<strong>声子</strong> (\(p\))、<strong>电子</strong> (\(e\))、<strong>流体粒子</strong> (\(f\)) 和<strong>光子</strong> (\(ph\))，构建了热能存储、传输和相互作用的微观模型。</p>
+<p>四种能量载流子，即：<strong>声子</strong> ($p$)、<strong>电子</strong> ($e$)、<strong>流体粒子</strong> ($f$) 和<strong>光子</strong> ($ph$)，构建了热能存储、传输和相互作用的微观模型。</p>
 
 <h3 id="声子">声子</h3>
 
@@ -1452,10 +1466,10 @@ K_POINTS automatic  <span class="c"># K点自动分布</span>
   <li>声子决定了材料的许多物理特性，包括热容量和热/电导率（声子的传播负责绝缘体中的热传导）。</li>
   <li>在经典力学中，晶格的任何振动都可以分解为非局域简正振动模式的叠加。</li>
   <li>当使用量子力学分析这些模式时，发现它们具有一些类似粒子的特性（波粒二象性）。因此，声子是一种<strong>准粒子</strong>。</li>
-  <li>当声子被视为粒子时，声子被称为<strong>玻色子</strong>，具有零自旋。声子能量 \(E_p=\hbar\omega_p\) 是其势能和动能的总和，其中 \(\hbar= h/2\pi\)，\(h\) 是普朗克常数。</li>
-  <li>声子有两种类型：<strong>声学声子</strong>，用 \(A\) 表示，<strong>光学声子</strong>，用 \(O\) 表示。</li>
-  <li>声学声子的频率随着波长的增加而变小，对应于晶格中的声波。<strong>纵向</strong>声子和<strong>横向</strong>声子通常分别缩写为 \(LA\) 和 \(TA\)。</li>
-  <li>光学声子出现在一个晶胞含有多个原子的晶格中。它们之所以被称为光学的，是因为在离子晶体中很容易被光激发。光学声子通常缩写为 \(LO\) 和 \(TO\)，分别表示<strong>纵向</strong>和<strong>横向</strong>类型。</li>
+  <li>当声子被视为粒子时，声子被称为<strong>玻色子</strong>，具有零自旋。声子能量 $E_p=\hbar\omega_p$ 是其势能和动能的总和，其中 $\hbar= h/2\pi$，$h$ 是普朗克常数。</li>
+  <li>声子有两种类型：<strong>声学声子</strong>，用 $A$ 表示，<strong>光学声子</strong>，用 $O$ 表示。</li>
+  <li>声学声子的频率随着波长的增加而变小，对应于晶格中的声波。<strong>纵向</strong>声子和<strong>横向</strong>声子通常分别缩写为 $LA$ 和 $TA$。</li>
+  <li>光学声子出现在一个晶胞含有多个原子的晶格中。它们之所以被称为光学的，是因为在离子晶体中很容易被光激发。光学声子通常缩写为 $LO$ 和 $TO$，分别表示<strong>纵向</strong>和<strong>横向</strong>类型。</li>
 </ul>
 
 <h3 id="电子">电子</h3>
@@ -1486,7 +1500,7 @@ K_POINTS automatic  <span class="c"># K点自动分布</span>
 </div>
 
 <ul>
-  <li>电子是带负电的<strong>亚原子粒子</strong>。电子的自旋为 \(1/2\)，是<strong>费米子</strong>。</li>
+  <li>电子是带负电的<strong>亚原子粒子</strong>。电子的自旋为 $1/2$，是<strong>费米子</strong>。</li>
   <li>电子的反粒子是<strong>正电子</strong>。正电子与电子具有相同数量的电荷、质量和自旋，只是电荷是相反的。</li>
   <li>电子可以表现出粒子和波的特性，因此可以被视为<strong>准粒子</strong>。与原子核结合的电子表现为<strong>驻波</strong>，可以被观测到。</li>
   <li>固体中的电子分为核心电子和外层电子。核心电子不参与键合，并且被认为始终与原子核一起移动。</li>
@@ -1562,8 +1576,8 @@ K_POINTS automatic  <span class="c"># K点自动分布</span>
   <li>根据量子力学，光子具有波的特性。</li>
   <li>光子的<strong>静止质量</strong>为零，但能量是确定且有限的。由于光子具有能量，广义相对论指出它们受到重力的影响。</li>
   <li>光子的自旋为 1，是<strong>玻色子</strong>。单个光子由于其单位自旋而被圆偏振。</li>
-  <li>一般来说，电磁场由频率为 \(f_{ph}\)（角频率 \(\omega_{ph}=2\pi f_{ph}\)）、波长 \(\lambda_{ph}\) 和速度 \(u_{ph}\) 的<strong>平面单色波</strong>组成。</li>
-  <li>电磁波的量子特性由其能量 \(E_{ph} = \hbar \omega_{ph}\) 给出。光子还具有动量 \(\boldsymbol p_{ph} = \hbar \boldsymbol\kappa_{ph}\) ，其中 \(\boldsymbol\kappa_{ph}\) 是波矢。</li>
+  <li>一般来说，电磁场由频率为 $f_{ph}$（角频率 $\omega_{ph}=2\pi f_{ph}$）、波长 $\lambda_{ph}$ 和速度 $u_{ph}$ 的<strong>平面单色波</strong>组成。</li>
+  <li>电磁波的量子特性由其能量 $E_{ph} = \hbar \omega_{ph}$ 给出。光子还具有动量 $\boldsymbol p_{ph} = \hbar \boldsymbol\kappa_{ph}$，其中 $\boldsymbol\kappa_{ph}$ 是波矢。</li>
   <li>在真空中，光子的色散关系（角频率与波矢量之间的关系）是线性的，这个比例就是<strong>普朗克常数</strong>。</li>
   <li>物质激发具有非线性色散关系，其动量与其能量不成正比。因此，这些粒子在真空中的传播速度比光速慢。</li>
 </ul>
@@ -1578,7 +1592,7 @@ K_POINTS automatic  <span class="c"># K点自动分布</span>
 
 <p>这些粒子概率分布函数使我们能够描述晶格（声子）和电子比热容的温度依赖性、温度和气体动能之间的关系以及光子的黑体热发射。</p>
 
-<p>平衡概率分布函数 \(f_i^0\) 给出了零扰动下微观状态的最可能分布。</p>
+<p>平衡概率分布函数 $f_i^0$ 给出了零扰动下微观状态的最可能分布。</p>
 
 <ul>
   <li><strong>玻色-爱因斯坦分布</strong> (声子，光子)</li>
@@ -1624,17 +1638,12 @@ K_POINTS automatic  <span class="c"># K点自动分布</span>
 
 <p>热是能量的一种形式，表现为物质分子的运动，能够通过<strong>传导</strong>（通过声子、电子和流体粒子）、<strong>对流</strong>（通过流体粒子）和<strong>辐射</strong>（通过光子）从一个物体传递到另一个物体。</p>
 
-<p>与热物理学最相关的物理学领域有：</p>
+<p>与热物理学最相关的物理学领域有：原子/分子动力学；固态（凝聚态）和流体态物理学; 电磁学; 量子光学。</p>
+
 <ul>
-  <li>原子/分子动力学；</li>
-  <li>固态（凝聚态）和流体态物理学；</li>
-  <li>电磁学；</li>
-  <li>
-    <p>量子光学。</p>
-  </li>
-  <li><strong>玻尔兹曼</strong>提出：热容、熵和其他热力学性质是大量原子行为的结果，可以用力学和统计学来处理。他引入了玻尔兹曼常数 \(k_B\)，并与麦克斯韦一起提出了<strong>能量均分定律</strong>。</li>
+  <li><strong>玻尔兹曼</strong>提出：热容、熵和其他热力学性质是大量原子行为的结果，可以用力学和统计学来处理。他引入了玻尔兹曼常数 $k_B$，并与麦克斯韦一起提出了<strong>能量均分定律</strong>。</li>
   <li><strong>麦克斯韦</strong>创立了光的电磁理论，还对气体动力学理论、分子物理学和热力学做出了贡献。</li>
-  <li><strong>普朗克</strong>发现能量以<strong>离散</strong>的形式存在，后来被称为“量子”。他假设允许物体吸收或发射的能量是有选择性的，必须为 \(h\nu\) 的倍数，其中 \(\nu\) 是光子频率。</li>
+  <li><strong>普朗克</strong>发现能量以<strong>离散</strong>的形式存在，后来被称为“量子”。他假设允许物体吸收或发射的能量是有选择性的，必须为 $h\nu$ 的倍数，其中 $\nu$ 是光子频率。</li>
   <li><strong>玻耳</strong>在研究最简单的原子氢线谱时，假设原子只能吸收和发射对应于能级之间的能量差的<strong>量子能量</strong>。</li>
   <li><strong>泡利</strong>阐述了原子结构的规则（通常称为<strong>泡利不相容原理</strong>），单个原子中不能有两个或两个以上的电子处于完全相同的状态。</li>
   <li><strong>薛定谔</strong>方程描述了控制小粒子运动的概率波（或<strong>波函数</strong>）的形式，并指定了这些波如何受到外部影响的改变。这些波函数奠定了<strong>量子波力学</strong>的基础。</li>
@@ -1650,29 +1659,29 @@ K_POINTS automatic  <span class="c"># K点自动分布</span>
 
 \[k_\text B=1.38065\times10^{-23} ~ \text J/\text K\]
 
-<p>定义为能量载流子（声子、电子、光子或流体粒子）的平均热能与其绝对温度 \(T\) 之间的关系。</p>
+<p>定义为能量载流子（声子、电子、光子或流体粒子）的平均热能与其绝对温度 $T$ 之间的关系。</p>
 
-<p>当能量载流子被视为粒子时，该热能 \(k_\text BT\) 用于归一化能量载流子的能量。</p>
+<p>当能量载流子被视为粒子时，该热能 $k_\text BT$ 用于归一化能量载流子的能量。</p>
 
-<p>在统计力学中，\(N\) 个粒子系统的熵 \(S\) 定义为 \(S=k_\text BN\ln Z\)。这里，\(Z\) 称为配分函数，它是描述系统在给定宏观约束的情况下可用能态分布的概率函数。</p>
+<p>在统计力学中，$N$ 个粒子系统的熵 $S$ 定义为 $S=k_\text BN\ln Z$。这里，$Z$ 称为配分函数，它是描述系统在给定宏观约束的情况下可用能态分布的概率函数。</p>
 
-<p>在动力学理论中，根据能量均分，为每个运动度分配一个等于 \(k_\text BT/2\) 的能量。</p>
+<p>在动力学理论中，根据能量均分，为每个运动度分配一个等于 $k_\text BT/2$ 的能量。</p>
 
 <h3 id="普朗克常数">普朗克常数</h3>
 
 \[h=6.626069\times10^{−34} ~ \text J\cdot \text s\]
 
-<p>遵循量子力学，物体内的能量是其频率 \(\nu\) 和 \(h\) 的乘积。</p>
+<p>遵循量子力学，物体内的能量是其频率 $\nu$ 和 $h$ 的乘积。</p>
 
-<p>约化的普朗克常数（也称为狄拉克常数）为 \(\hbar = h/2\pi\)。</p>
+<p>约化的普朗克常数（也称为狄拉克常数）为 $\hbar = h/2\pi$。</p>
 
 <p>普朗克常数用于描述量子化，主要能量载体的某些物理属性以固定量出现，而不是连续范围的值。</p>
 
-<p>普朗克常数也出现在海森堡不确定性原理的陈述中，任何位置测量的不确定性 \(\Delta x\) 和沿同一方向的动量测量的不确定性 \(\Delta p_x\) 遵循关系 \(\Delta p_x \Delta x \le \hbar/2\)。</p>
+<p>普朗克常数也出现在海森堡不确定性原理的陈述中，任何位置测量的不确定性 $\Delta x$ 和沿同一方向的动量测量的不确定性 $\Delta p_x$ 遵循关系 $\Delta p_x \Delta x \le \hbar/2$。</p>
 
 <h3 id="原子单位">原子单位</h3>
 
-<p>四个基本常数，约化普朗克常数 \(\hbar\)、电子质量 \(m_e\)、库仑静电常数 \(1/4\pi\varepsilon_0\)（其中 \(\varepsilon_0\) 是自由空间介电常数）和电子电荷 \(e_c\) 用于定义原子单位。</p>
+<p>四个基本常数，约化普朗克常数 $\hbar$、电子质量 $m_e$、库仑静电常数 $1/4\pi\varepsilon_0$（其中 $\varepsilon_0$ 是自由空间介电常数）和电子电荷 $e_c$ 用于定义原子单位。</p>
 
 <ul>
   <li>原子长度：</li>
@@ -1708,7 +1717,7 @@ K_POINTS automatic  <span class="c"># K点自动分布</span>
 
 <p><strong>参考文献：</strong></p>
 
-<p>Kaviany M 《<em>Heat Transfer Physics</em>》 2008</p>]]></content><author><name></name></author><category term="Physics" /><summary type="html"><![CDATA[传热学中的宏观能量守恒方程描述热能的储存、传输（热传导 \(k\)、热对流 \(u\) 和热辐射 \(r\)）以及与其他形式的能量之间的转换。]]></summary></entry><entry><title type="html">圆棒中的弹性波色散关系</title><link href="https://lyushisyan.github.io/zh-CN/blog/2023/elastic-wave-in-wire/" rel="alternate" type="text/html" title="圆棒中的弹性波色散关系" /><published>2023-07-01T03:32:13+03:00</published><updated>2023-07-01T03:32:13+03:00</updated><id>https://lyushisyan.github.io/blog/2023/elastic-wave-in-wire</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2023/elastic-wave-in-wire/"><![CDATA[<h2 id="圆棒中的弹性方程">圆棒中的弹性方程</h2>
+<p>Kaviany M 《<em>Heat Transfer Physics</em>》 2008</p>]]></content><author><name></name></author><category term="Physics" /><category term="Heat-conduction" /><summary type="html"><![CDATA[传热学中的宏观能量守恒方程描述热能的储存、传输（热传导 $k$、热对流 $u$ 和热辐射 $r$）以及与其他形式的能量之间的转换。]]></summary></entry><entry><title type="html">圆棒中的弹性波色散关系</title><link href="https://lyushisyan.github.io/zh-CN/blog/2023/elastic-wave-in-wire/" rel="alternate" type="text/html" title="圆棒中的弹性波色散关系" /><published>2023-07-01T03:32:13+03:00</published><updated>2023-07-01T03:32:13+03:00</updated><id>https://lyushisyan.github.io/blog/2023/elastic-wave-in-wire</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2023/elastic-wave-in-wire/"><![CDATA[<h2 id="圆棒中的弹性方程">圆棒中的弹性方程</h2>
 
 <p>弹性波动的一般方程：</p>
 
@@ -2459,4 +2468,4 @@ K_POINTS automatic  <span class="c"># K点自动分布</span>
   <li>传热性质不仅取决于材料的本征参数（如比热、速度、自由程），还受结构尺寸和时间尺度的影响。</li>
   <li>当系统特征尺寸小于平均自由程时，傅里叶定律不再适用，应使用玻尔兹曼输运方程或分子动力学方法建模。</li>
   <li>若系统尺寸接近载流子波长，波动效应变得显著，需要引入波动传播模型（如声子干涉或局域化理论）进行分析。</li>
-</ul>]]></content><author><name></name></author><category term="Heat-conduction," /><category term="Physics" /><summary type="html"><![CDATA[气体动力学理论]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="Heat-conduction" /><category term="Physics" /><summary type="html"><![CDATA[气体动力学理论]]></summary></entry></feed>

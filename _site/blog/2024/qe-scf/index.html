@@ -181,24 +181,6 @@
     <script src="/assets/js/distillpub/transforms.v2.js"></script>
     <script src="/assets/js/distillpub/overrides.js"></script>
     
-      <!-- Page/Post style -->
-      <style type="text/css">
-        .fake-img {
-  background: #bbb;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 12px;
-} .fake-img p {
-  font-family: sans-serif;
-  color: white;
-  text-align: left;
-  margin: 12px 0;
-  text-align: center;
-  font-size: 16px;
-}
-
-      </style>
-    
   </head>
 
   <body>
@@ -260,7 +242,7 @@
 
           <!-- About -->
           <li class="nav-item ">
-            <a class="nav-link" href="/">🏠 Home
+            <a class="nav-link" href="/">Home
               
             </a>
           </li>
@@ -300,7 +282,7 @@
               
                 
                 <li class="nav-item active">
-                  <a class="nav-link" href="/blog/">📝 Blog
+                  <a class="nav-link" href="/blog/">Blog
                     
                       <span class="sr-only">(current)</span>
                     
@@ -313,7 +295,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/publications/">📚 Publications
+                  <a class="nav-link" href="/publications/">Publications
                     
                   </a>
                 </li>
@@ -324,7 +306,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/teaching/">🧑‍🏫 Teaching
+                  <a class="nav-link" href="/teaching/">Teaching
                     
                   </a>
                 </li>
@@ -522,12 +504,48 @@ K_POINTS automatic  <span class="c"># Automatic k-point grid</span>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">Self-consistent</span><span class="w"> </span><span class="err">Calculation</span><span class="w">
 
 </span><span class="err">iteration</span><span class="w"> </span><span class="err">#</span><span class="w">  </span><span class="mi">1</span><span class="w">     </span><span class="err">ecut=</span><span class="w">    </span><span class="mf">16.00</span><span class="w"> </span><span class="err">Ry</span><span class="w">     </span><span class="err">beta=</span><span class="w"> </span><span class="mf">0.70</span><span class="w">
+</span><span class="err">Davidson</span><span class="w"> </span><span class="err">diagonalization</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">overlap</span><span class="w">
+</span><span class="err">ethr</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">1.00E-02</span><span class="err">,</span><span class="w">  </span><span class="err">avg</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">iterations</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">2.0</span><span class="w">
+</span><span class="err">Threshold</span><span class="w"> </span><span class="err">(ethr)</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">eigenvalues</span><span class="w"> </span><span class="err">was</span><span class="w"> </span><span class="err">too</span><span class="w"> </span><span class="err">large:</span><span class="w">
+</span><span class="err">Diagonalizing</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">lowered</span><span class="w"> </span><span class="err">threshold</span><span class="w">
+</span><span class="err">Davidson</span><span class="w"> </span><span class="err">diagonalization</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">overlap</span><span class="w">
+</span><span class="err">ethr</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">6.93E-04</span><span class="err">,</span><span class="w">  </span><span class="err">avg</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">iterations</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">1.0</span><span class="w">
+</span><span class="err">total</span><span class="w"> </span><span class="err">cpu</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">spent</span><span class="w"> </span><span class="err">up</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">now</span><span class="w"> </span><span class="err">is</span><span class="w">        </span><span class="mf">0.3</span><span class="w"> </span><span class="err">secs</span><span class="w">
 </span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83539933</span><span class="w"> </span><span class="err">Ry</span><span class="w">
 </span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">       </span><span class="mf">0.06071141</span><span class="w"> </span><span class="err">Ry</span><span class="w">
 
+</span><span class="err">iteration</span><span class="w"> </span><span class="err">#</span><span class="w">  </span><span class="mi">2</span><span class="w">     </span><span class="err">ecut=</span><span class="w">    </span><span class="mf">16.00</span><span class="w"> </span><span class="err">Ry</span><span class="w">     </span><span class="err">beta=</span><span class="w"> </span><span class="mf">0.70</span><span class="w">
+</span><span class="err">Davidson</span><span class="w"> </span><span class="err">diagonalization</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">overlap</span><span class="w">
+</span><span class="err">ethr</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">7.59E-04</span><span class="err">,</span><span class="w">  </span><span class="err">avg</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">iterations</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">1.0</span><span class="w">
+</span><span class="err">total</span><span class="w"> </span><span class="err">cpu</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">spent</span><span class="w"> </span><span class="err">up</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">now</span><span class="w"> </span><span class="err">is</span><span class="w">        </span><span class="mf">0.4</span><span class="w"> </span><span class="err">secs</span><span class="w">
+</span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83851631</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+</span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">       </span><span class="mf">0.00218630</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+
+</span><span class="err">iteration</span><span class="w"> </span><span class="err">#</span><span class="w">  </span><span class="mi">3</span><span class="w">     </span><span class="err">ecut=</span><span class="w">    </span><span class="mf">16.00</span><span class="w"> </span><span class="err">Ry</span><span class="w">     </span><span class="err">beta=</span><span class="w"> </span><span class="mf">0.70</span><span class="w">
+</span><span class="err">Davidson</span><span class="w"> </span><span class="err">diagonalization</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">overlap</span><span class="w">
+</span><span class="err">ethr</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">2.73E-05</span><span class="err">,</span><span class="w">  </span><span class="err">avg</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">iterations</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">2.3</span><span class="w">
+</span><span class="err">total</span><span class="w"> </span><span class="err">cpu</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">spent</span><span class="w"> </span><span class="err">up</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">now</span><span class="w"> </span><span class="err">is</span><span class="w">        </span><span class="mf">0.4</span><span class="w"> </span><span class="err">secs</span><span class="w">
+</span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83897965</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+</span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">       </span><span class="mf">0.00007075</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+
+</span><span class="err">iteration</span><span class="w"> </span><span class="err">#</span><span class="w">  </span><span class="mi">4</span><span class="w">     </span><span class="err">ecut=</span><span class="w">    </span><span class="mf">16.00</span><span class="w"> </span><span class="err">Ry</span><span class="w">     </span><span class="err">beta=</span><span class="w"> </span><span class="mf">0.70</span><span class="w">
+</span><span class="err">Davidson</span><span class="w"> </span><span class="err">diagonalization</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">overlap</span><span class="w">
+</span><span class="err">ethr</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">8.84E-07</span><span class="err">,</span><span class="w">  </span><span class="err">avg</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">iterations</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">2.6</span><span class="w">
+</span><span class="err">total</span><span class="w"> </span><span class="err">cpu</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">spent</span><span class="w"> </span><span class="err">up</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">now</span><span class="w"> </span><span class="err">is</span><span class="w">        </span><span class="mf">0.4</span><span class="w"> </span><span class="err">secs</span><span class="w">
+</span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83900178</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+</span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">       </span><span class="mf">0.00000211</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+
 </span><span class="err">iteration</span><span class="w"> </span><span class="err">#</span><span class="w">  </span><span class="mi">5</span><span class="w">     </span><span class="err">ecut=</span><span class="w">    </span><span class="mf">16.00</span><span class="w"> </span><span class="err">Ry</span><span class="w">     </span><span class="err">beta=</span><span class="w"> </span><span class="mf">0.70</span><span class="w">
+</span><span class="err">Davidson</span><span class="w"> </span><span class="err">diagonalization</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">overlap</span><span class="w">
+</span><span class="err">ethr</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">2.64E-08</span><span class="err">,</span><span class="w">  </span><span class="err">avg</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">iterations</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">3.6</span><span class="w">
+</span><span class="err">total</span><span class="w"> </span><span class="err">cpu</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">spent</span><span class="w"> </span><span class="err">up</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">now</span><span class="w"> </span><span class="err">is</span><span class="w">        </span><span class="mf">0.4</span><span class="w"> </span><span class="err">secs</span><span class="w">
 </span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83900299</span><span class="w"> </span><span class="err">Ry</span><span class="w">
 </span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">       </span><span class="mf">0.00000012</span><span class="w"> </span><span class="err">Ry</span><span class="w">
+
+</span><span class="err">iteration</span><span class="w"> </span><span class="err">#</span><span class="w">  </span><span class="mi">6</span><span class="w">     </span><span class="err">ecut=</span><span class="w">    </span><span class="mf">16.00</span><span class="w"> </span><span class="err">Ry</span><span class="w">     </span><span class="err">beta=</span><span class="w"> </span><span class="mf">0.70</span><span class="w">
+</span><span class="err">Davidson</span><span class="w"> </span><span class="err">diagonalization</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">overlap</span><span class="w">
+</span><span class="err">ethr</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">1.46E-09</span><span class="err">,</span><span class="w">  </span><span class="err">avg</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">iterations</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">2.7</span><span class="w">
+</span><span class="err">total</span><span class="w"> </span><span class="err">cpu</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">spent</span><span class="w"> </span><span class="err">up</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">now</span><span class="w"> </span><span class="err">is</span><span class="w">        </span><span class="mf">0.4</span><span class="w"> </span><span class="err">secs</span><span class="w">
 
 </span><span class="err">End</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">self-consistent</span><span class="w"> </span><span class="err">calculation</span><span class="w">
 </span></code></pre></div></div>
@@ -777,27 +795,27 @@ K_POINTS automatic  <span class="c"># Automatic k-point grid</span>
     // add the home and posts menu items
     ninja.data = [{
         id: "nav-home",
-        title: "🏠 Home",
+        title: "Home",
         section: "Navigation menu",
         handler: () => {
           window.location.href = "/";
         },
       },{id: "nav-blog",
-              title: "📝 Blog",
+              title: "Blog",
               description: "",
               section: "Navigation menu",
               handler: () => {
                 window.location.href = "/blog/";
               },
             },{id: "nav-publications",
-              title: "📚 Publications",
+              title: "Publications",
               description: "Publications indexed in Scopus and Web of Science",
               section: "Navigation menu",
               handler: () => {
                 window.location.href = "/publications/";
               },
             },{id: "nav-teaching",
-              title: "🧑‍🏫 Teaching",
+              title: "Teaching",
               description: "Lectures",
               section: "Navigation menu",
               handler: () => {
@@ -869,9 +887,9 @@ K_POINTS automatic  <span class="c"># Automatic k-point grid</span>
               window.location.href = "/blog/2024/qe-scf/";
             
           },
-        },{id: "post-microscopic-description-of-thermal-physics",
+        },{id: "post-microscopic-description-of-thermophysics",
           
-            title: "Microscopic Description of Thermal Physics",
+            title: "Microscopic Description of Thermophysics",
           
           description: "",
           section: "Posts",

@@ -181,24 +181,6 @@
     <script src="/assets/js/distillpub/transforms.v2.js"></script>
     <script src="/assets/js/distillpub/overrides.js"></script>
     
-      <!-- Page/Post style -->
-      <style type="text/css">
-        .fake-img {
-  background: #bbb;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 12px;
-} .fake-img p {
-  font-family: sans-serif;
-  color: white;
-  text-align: left;
-  margin: 12px 0;
-  text-align: center;
-  font-size: 16px;
-}
-
-      </style>
-    
   </head>
 
   <body>
@@ -260,7 +242,7 @@
 
           <!-- About -->
           <li class="nav-item ">
-            <a class="nav-link" href="/">🏠 Home
+            <a class="nav-link" href="/">Home
               
             </a>
           </li>
@@ -300,7 +282,7 @@
               
                 
                 <li class="nav-item active">
-                  <a class="nav-link" href="/blog/">📝 Blog
+                  <a class="nav-link" href="/blog/">Blog
                     
                       <span class="sr-only">(current)</span>
                     
@@ -313,7 +295,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/publications/">📚 Publications
+                  <a class="nav-link" href="/publications/">Publications
                     
                   </a>
                 </li>
@@ -324,7 +306,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/teaching/">🧑‍🏫 Teaching
+                  <a class="nav-link" href="/teaching/">Teaching
                     
                   </a>
                 </li>
@@ -425,23 +407,23 @@
 
 \[\frac{\partial f}{\partial t} + \boldsymbol v_g(\omega,p)\nabla f = - \frac{f-f^{\text{loc}}}{\tau(\omega,p,T)}\]
 
-<p>where \(f=f(t,\boldsymbol x,\boldsymbol k,p)\) is the phonon distribution function in phase space, \(\omega=\omega(\boldsymbol k,p)\) is the phonon angular frequency, \(p\) is phonon polarization, and \(T\) is temperature. Moreover, \(f^\text{loc}\) is the BE equilibrium distribution parameterized by a local pseudo-temperature.</p>
+<p>where $f=f(t,\boldsymbol x,\boldsymbol k,p)$ is the phonon distribution function in phase space, $\omega=\omega(\boldsymbol k,p)$ is the phonon angular frequency, $p$ is phonon polarization, and $T$ is temperature. Moreover, $f^\text{loc}$ is the BE equilibrium distribution parameterized by a local pseudo-temperature.</p>
 
 <p>Using phonon bundles to represent simulated particles:</p>
 
 \[f(t,\boldsymbol x,\boldsymbol k,p) \approx 8\pi^3N_\text{eff}\sum_i \delta^3(\boldsymbol x - \boldsymbol x_i) \delta^3(\boldsymbol k - \boldsymbol k_i) \delta_{p,p_i}\]
 
-<p>where \(N_\text{eff}\) is the effective number of phonons in each phonon bundle.</p>
+<p>where $N_\text{eff}$ is the effective number of phonons in each phonon bundle.</p>
 
 <h3 id="12-energy-based-boltzmann-transport-equation-energy-based-bte">1.2 Energy-Based Boltzmann Transport Equation (Energy-Based BTE):</h3>
 
 \[\frac{\partial e}{\partial t} + \boldsymbol v_g\nabla e = - \frac{e-e^{\text{loc}}}{\tau}\]
 
-<p>Here, simulated particles represent energy \(e=\hbar\omega f\), and \(e^\text{loc}=\hbar\omega f^\text{loc}\).</p>
+<p>Here, simulated particles represent energy $e=\hbar\omega f$, and $e^\text{loc}=\hbar\omega f^\text{loc}$.</p>
 
 \[e \approx 8\pi^3\varepsilon_\text{eff}\sum_i \delta^3(\boldsymbol x - \boldsymbol x_i) \delta^3(\boldsymbol k - \boldsymbol k_i) \delta_{p,p_i}\]
 
-<p>where \(\varepsilon_\text{eff}\) is defined as the effective energy carried by each simulated particle, \(\varepsilon_\text{eff}=N_\text{eff}\hbar\omega\). The effective number of phonons represented by the energy particle \(\varepsilon_\text{eff}\) is variable.</p>
+<p>where $\varepsilon_\text{eff}$ is defined as the effective energy carried by each simulated particle, $\varepsilon_\text{eff}=N_\text{eff}\hbar\omega$. The effective number of phonons represented by the energy particle $\varepsilon_\text{eff}$ is variable.</p>
 
 <h3 id="13-deviational-energy-based-boltzmann-transport-equation-deviational-energy-based-bte">1.3 Deviational Energy-Based Boltzmann Transport Equation (Deviational Energy-Based BTE):</h3>
 
@@ -451,13 +433,13 @@
 
 \[e^{\text{eq}}_{T_\text{eq}}(\omega) = \frac{\hbar\omega}{\exp\left(\frac{\hbar\omega}{k_BT_\text{eq}}\right)-1}\]
 
-<p>Here, simulated particles represent deviational energy: \(e^d = e - e^{\text{eq}}_{T_\text{eq}}\).</p>
+<p>Here, simulated particles represent deviational energy: $e^d = e - e^{\text{eq}}<em>{T</em>\text{eq}}$.</p>
 
 \[e^d \approx 8\pi^3\varepsilon_\text{eff}^d\sum_i s(i) \delta^3(\boldsymbol x - \boldsymbol x_i) \delta^3(\boldsymbol k - \boldsymbol k_i) \delta_{p,p_i}\]
 
-<p>\(s(i)=+1\) represents a share of deviational energy increase relative to the reference state (the “excess” phonon group in higher-temperature regions).</p>
+<p>$s(i)=+1$ represents a share of deviational energy increase relative to the reference state (the “excess” phonon group in higher-temperature regions).</p>
 
-<p>\(s(i)=-1\) represents a share of deviational energy decrease relative to the reference state (the “deficient” phonon group in lower-temperature regions).</p>
+<p>$s(i)=-1$ represents a share of deviational energy decrease relative to the reference state (the “deficient” phonon group in lower-temperature regions).</p>
 
 <div class="row">
     <div class="col-md-6 text-center">
@@ -484,7 +466,7 @@
     </div>
 </div>
 
-<p>The deviational energy method focuses calculations on the non-equilibrium energy deviations by introducing a reference equilibrium temperature \(T_\text{eq}\), rather than the full phonon distribution function. This reduces the simulation of large numbers of equilibrium phonons, significantly improving simulation efficiency, especially in cases of small temperature differences or near-equilibrium states.</p>
+<p>The deviational energy method focuses calculations on the non-equilibrium energy deviations by introducing a reference equilibrium temperature $T_\text{eq}$, rather than the full phonon distribution function. This reduces the simulation of large numbers of equilibrium phonons, significantly improving simulation efficiency, especially in cases of small temperature differences or near-equilibrium states.</p>
 
 <p>In the deviational energy method, the number and sign (positive or negative) of simulated particles directly correspond to changes in deviational energy, reducing energy errors during particle addition or removal. Moreover, the computation inherently follows the principle of energy conservation.</p>
 
@@ -494,27 +476,32 @@
 
 <h3 id="initialization"><strong>Initialization:</strong></h3>
 
-<p>At the initial temperature \(T\), use BE statistics to calculate the number of phonons in volume \(V\):
-\(N=V\int_{\omega=0}^{\omega_\text{max}}\sum_p D(\omega,p) f_T^\text{eq}(\omega) d\omega\)
-The number of simulated particles (each representing a phonon bundle) is given by \(N/N_\text{eff}\).</p>
+<p>At the initial temperature $T$, use BE statistics to calculate the number of phonons in volume $V$:</p>
 
-<p>The value of \(N_\text{eff}\) is determined by balancing computational cost and the number of particles needed to obtain statistically meaningful results.</p>
+\[N=V\int_{\omega=0}^{\omega_\text{max}}\sum_p D(\omega,p) f_T^\text{eq}(\omega) d\omega\]
+
+<p>The number of simulated particles (each representing a phonon bundle) is given by $N/N_\text{eff}$.</p>
+
+<p>The value of $N_\text{eff}$ is determined by balancing computational cost and the number of particles needed to obtain statistically meaningful results.</p>
 
 <h3 id="time-evolution"><strong>Time Evolution:</strong></h3>
 
-<p>After system initialization, the simulation is performed using a time-stepping algorithm with time step \(\Delta t\).
+<p>After system initialization, the simulation is performed using a time-stepping algorithm with time step $\Delta t$.
 Each time step consists of three substeps:</p>
 
 <p>1). <strong>Phonon Drift</strong></p>
 
-<p>During this period, simulated particle \(i\) moves \(\boldsymbol v_{g,i}\Delta t\).</p>
+<p>During this period, simulated particle $i$ moves $\boldsymbol v_{g,i}\Delta t$.</p>
 
 <p>2). <strong>Sampling</strong></p>
 
-<p>Record temperature (\(T\)) and pseudo-temperature (\(T_\text{loc}\)), which are computed by inverting the energy (\(E\)) and pseudo-energy (\(\widetilde E\)) relations:
-\(E=N_\text{eff}\sum_i\hbar\omega_i=V\int_{\omega=0}^{\omega_\text{max}}\sum_p \frac{D(\omega,p) \hbar\omega}{\exp\left(\frac{\hbar\omega}{k_BT}\right)-1} d\omega\)
-\(\widetilde E=N_\text{eff}\sum_i\frac{\hbar\omega_i}{\tau(\omega_i,p_i,T)}=V\int_{\omega=0}^{\omega_\text{max}}\sum_p \frac{D(\omega,p) \hbar\omega}{\tau(\omega,p,T)}\frac{1}{\exp\left(\frac{\hbar\omega}{k_BT_\text{loc}}\right)-1} d\omega\)
-Temperature (\(T\)) represents the average temperature in thermal equilibrium, while pseudo-temperature (\(T_\text{loc}\)) is related to phonon scattering processes and used to analyze phonon behavior in non-equilibrium states.</p>
+<p>Record temperature ($T$) and pseudo-temperature ($T_\text{loc}$), which are computed by inverting the energy ($E$) and pseudo-energy ($\widetilde E$) relations:</p>
+
+\[E=N_\text{eff}\sum_i\hbar\omega_i=V\int_{\omega=0}^{\omega_\text{max}}\sum_p \frac{D(\omega,p) \hbar\omega}{\exp\left(\frac{\hbar\omega}{k_BT}\right)-1} d\omega\]
+
+\[\widetilde E=N_\text{eff}\sum_i\frac{\hbar\omega_i}{\tau(\omega_i,p_i,T)}=V\int_{\omega=0}^{\omega_\text{max}}\sum_p \frac{D(\omega,p) \hbar\omega}{\tau(\omega,p,T)}\frac{1}{\exp\left(\frac{\hbar\omega}{k_BT_\text{loc}}\right)-1} d\omega\]
+
+<p>Temperature ($T$) represents the average temperature in thermal equilibrium, while pseudo-temperature ($T_\text{loc}$) is related to phonon scattering processes and used to analyze phonon behavior in non-equilibrium states.</p>
 
 <p>3). <strong>Phonon Scatter</strong></p>
 
@@ -522,7 +509,7 @@ Temperature (\(T\)) represents the average temperature in thermal equilibrium, w
 
 \[P_i = 1-\exp\left(-\frac{\Delta t}{\tau(\omega_i,p_i,T)}\right)\]
 
-<p>Scattering is performed by sampling new frequencies, polarizations, and propagation directions. The post-scattering frequencies must be drawn from the distribution \(D(\omega,p)f^\text{loc}/\tau(\omega,p,T)\).</p>
+<p>Scattering is performed by sampling new frequencies, polarizations, and propagation directions. The post-scattering frequencies must be drawn from the distribution $D(\omega,p)f^\text{loc}/\tau(\omega,p,T)$.</p>
 
 <p>During scattering, energy conservation must be ensured. However, since the frequency of scattered phonons is randomly sampled, particles need to be added or removed to approximate the target energy, enforcing energy conservation.</p>
 
@@ -533,8 +520,8 @@ Temperature (\(T\)) represents the average temperature in thermal equilibrium, w
 <p>Using energy as the simulated particle, the algorithm is similar to the above but requires the following adjustments:</p>
 
 <ol>
-  <li>During initialization, boundary emission, or scattering, the sampling of frequency distribution must include a correction factor \(\hbar\omega\).</li>
-  <li>Calculating energy within a grid is straightforward: simply count the number of particles. The energy of \(N\) particles is given by \(\varepsilon_\text{eff} N\).</li>
+  <li>During initialization, boundary emission, or scattering, the sampling of frequency distribution must include a correction factor $\hbar\omega$.</li>
+  <li>Calculating energy within a grid is straightforward: simply count the number of particles. The energy of $N$ particles is given by $\varepsilon_\text{eff} N$.</li>
   <li>Since the energy within the grid is proportional to the number of particles, no addition or deletion process is needed: simply conserving the number of particles ensures strict energy conservation.</li>
 </ol>
 
@@ -542,23 +529,23 @@ Temperature (\(T\)) represents the average temperature in thermal equilibrium, w
 
 <h3 id="initialization-1"><strong>Initialization:</strong></h3>
 
-<p>First, select the equilibrium state at temperature \(T_\text{eq}\) as the reference.</p>
+<p>First, select the equilibrium state at temperature $T_\text{eq}$ as the reference.</p>
 
-<p>If the initial state \(f^0\) matches the equilibrium distribution, no particles exist at the start of the simulation. The system’s deviational energy can be estimated based on the maximum temperature deviation:</p>
+<p>If the initial state $f^0$ matches the equilibrium distribution, no particles exist at the start of the simulation. The system’s deviational energy can be estimated based on the maximum temperature deviation:</p>
 
 \[\Delta E = \int_{\omega=0}^{\omega_\text{max}}\sum_p\hbar\omega D(\omega,p)\times \bigg|\frac{1}{\exp(\frac{\hbar\omega}{k_BT})-1}-\frac{1}{\exp(\frac{\hbar\omega}{k_BT_\text{eq}})-1}\bigg| d\omega\]
 
-<p>The effective deviational energy \(\varepsilon_\text{eff}^d\) can be roughly determined based on the desired number of simulated particles.</p>
+<p>The effective deviational energy $\varepsilon_\text{eff}^d$ can be roughly determined based on the desired number of simulated particles.</p>
 
-<p>If the initial state \(f^0\) differs from the equilibrium distribution, particles must be initialized. Their frequencies and polarizations are drawn from the distribution:</p>
+<p>If the initial state $f^0$ differs from the equilibrium distribution, particles must be initialized. Their frequencies and polarizations are drawn from the distribution:</p>
 
 \[D(\omega,p)e^d(\omega) = \hbar\omega D(\omega,p)\bigg[f^0-\frac{1}{\exp(\frac{\hbar\omega}{k_BT_\text{eq}})-1}\bigg]\]
 
-<p>Typically, \(f^0\) is an equilibrium distribution at some temperature \(T\), simplifying the above expression to:</p>
+<p>Typically, $f^0$ is an equilibrium distribution at some temperature $T$, simplifying the above expression to:</p>
 
 \[D(\omega,p)e^d(\omega) = \hbar\omega D(\omega,p)\bigg[\frac{1}{\exp(\frac{\hbar\omega}{k_BT})-1}-\frac{1}{\exp(\frac{\hbar\omega}{k_BT_\text{eq}})-1}\bigg]\]
 
-<p>If \(T &gt; T_\text{eq}\), this function is positive; if \(T &lt; T_\text{eq}\), it is negative. In the latter case, particles are assigned a negative sign.</p>
+<p>If $T &gt; T_\text{eq}$, this function is positive; if $T &lt; T_\text{eq}$, it is negative. In the latter case, particles are assigned a negative sign.</p>
 
 <p>Frequency sampling: By subdividing the frequency range into bins, define a discretized and normalized cumulative distribution according to the above equation. Uniformly draw a random number between 0 and 1, and use it to find the corresponding bin in the normalized cumulative distribution.</p>
 
@@ -566,21 +553,21 @@ Temperature (\(T\)) represents the average temperature in thermal equilibrium, w
 
 <p><strong>(1) Phonon Drift:</strong></p>
 
-<p>During the time step \(\Delta t\), simulated particle \(i\) moves \(\boldsymbol v_{g,i}\Delta t\).</p>
+<p>During the time step $\Delta t$, simulated particle $i$ moves $\boldsymbol v_{g,i}\Delta t$.</p>
 
 <p><strong>(2) Sampling:</strong></p>
 
-<p>(a) Let \(C_j\) denote the set of particle indices in volume \(V_j\) of cell \(j\) at time \(t\). Since each particle represents the same amount of energy, the deviational energy is:</p>
+<p>(a) Let $C_j$ denote the set of particle indices in volume $V_j$ of cell $j$ at time $t$. Since each particle represents the same amount of energy, the deviational energy is:</p>
 
 \[\Delta E_j = \varepsilon_\text{eff}^d \sum_{i\in C_j} s(i) = \varepsilon_\text{eff}^d (N_j^+ - N_j^-)\]
 
-<p>where \(N_j^+\) and \(N_j^-\) are the numbers of positive and negative particles in cell \(j\), respectively.</p>
+<p>where $N_j^+$ and $N_j^-$ are the numbers of positive and negative particles in cell $j$, respectively.</p>
 
-<p>(b) The corresponding temperature \(T_j\) is calculated by numerically inverting the equation:</p>
+<p>(b) The corresponding temperature $T_j$ is calculated by numerically inverting the equation:</p>
 
 \[\frac{\Delta E_j}{V_j} = \int_0^{\omega_\text{max}}\sum_p D(\omega,p)\hbar\omega \bigg[\frac{1}{\exp(\frac{\hbar\omega}{k_BT_j})-1} - \frac{1}{\exp(\frac{\hbar\omega}{k_BT_\text{eq}})-1} \bigg] d\omega\]
 
-<p>(c) The pseudo-temperature \([T_\text{loc}]_j\) is calculated by numerically inverting:</p>
+<p>(c) The pseudo-temperature $[T_\text{loc}]_j$ is calculated by numerically inverting:</p>
 
 \[\frac{\Delta \widetilde E_j}{V_j} = \int_0^{\omega_\text{max}}\sum_p \frac{D(\omega,p)\hbar\omega}{\tau(\omega,p,T_j)} \bigg[\frac{1}{\exp(\frac{\hbar\omega}{k_B[T_\text{loc}]_j})-1} - \frac{1}{\exp(\frac{\hbar\omega}{k_BT_\text{eq}})-1} \bigg] d\omega\]
 
@@ -606,9 +593,11 @@ Temperature (\(T\)) represents the average temperature in thermal equilibrium, w
 
 <p>In both cases, it is assumed that the polarization and frequency of phonons remain unchanged upon reflection. The only parameter modified during this process is the direction of propagation.</p>
 
-<p>(i) Specular reflection ensures energy conservation, \(e^d(\boldsymbol x, \boldsymbol k) = e^d(\boldsymbol x, \boldsymbol k')\), with the direction given by:
-\(\boldsymbol k' = \boldsymbol k - 2(\boldsymbol k \cdot \boldsymbol n) \boldsymbol n\)
-where \(\boldsymbol n\) is the normal vector of the boundary.</p>
+<p>(i) Specular reflection ensures energy conservation, $e^d(\boldsymbol x, \boldsymbol k) = e^d(\boldsymbol x, \boldsymbol k’)$, with the direction given by:</p>
+
+\[\boldsymbol k' = \boldsymbol k - 2(\boldsymbol k \cdot \boldsymbol n) \boldsymbol n\]
+
+<p>where $\boldsymbol n$ is the normal vector of the boundary.</p>
 
 <p>(ii) Diffuse reflection randomizes the reflection direction of phonons incident on the boundary, similar to how scattered phonons are treated.</p>
 
@@ -618,17 +607,17 @@ where \(\boldsymbol n\) is the normal vector of the boundary.</p>
 
 <h3 id="32-isothermal-boundary">3.2 Isothermal Boundary</h3>
 
-<p>Under isothermal boundary conditions at temperature \(T_b\), phonons incident on the boundary are completely absorbed. The boundary then re-emits phonons according to its own temperature \(T_b\), following the equilibrium distribution.</p>
+<p>Under isothermal boundary conditions at temperature $T_b$, phonons incident on the boundary are completely absorbed. The boundary then re-emits phonons according to its own temperature $T_b$, following the equilibrium distribution.</p>
 
 <p>The emitted heat flux per unit angular frequency can be expressed as:</p>
 
 \[q_{\omega,b}'' = \frac{1}{4} \sum_p \frac{D(\omega,p)v_g(\omega,p)\hbar\omega}{\exp\left(\frac{\hbar\omega}{k_B T_b}\right) - 1}\]
 
-<p>In deviational energy-based simulations, the difference in heat flux between the isothermal boundary and the reference equilibrium temperature \(T_\text{eq}\) must be considered. The corrected expression is given by:</p>
+<p>In deviational energy-based simulations, the difference in heat flux between the isothermal boundary and the reference equilibrium temperature $T_\text{eq}$ must be considered. The corrected expression is given by:</p>
 
 \[q_{\omega,b}'' = \frac{1}{4} \sum_p D(\omega,p)v_g(\omega,p)\hbar\omega \cdot \bigg[\frac{1}{\exp\left(\frac{\hbar\omega}{k_B T_b}\right) - 1} - \frac{1}{\exp\left(\frac{\hbar\omega}{k_B T_\text{eq}}\right) - 1} \bigg]\]
 
-<p>This formula provides the frequency distribution of emitted particles under isothermal boundary conditions. Specifically, it reflects the non-equilibrium phonon transport characteristics of the boundary at temperature \(T_b\), i.e., how the boundary absorbs and re-emits phonons based on the temperature difference.</p>
+<p>This formula provides the frequency distribution of emitted particles under isothermal boundary conditions. Specifically, it reflects the non-equilibrium phonon transport characteristics of the boundary at temperature $T_b$, i.e., how the boundary absorbs and re-emits phonons based on the temperature difference.</p>
 
 <h3 id="33-periodic-boundary">3.3 Periodic Boundary</h3>
 
@@ -665,7 +654,7 @@ where \(\boldsymbol n\) is the normal vector of the boundary.</p>
 
 \[f_1^- - f_{T_1}^\text{eq} = f_2^- - f_{T_2}^\text{eq}\]
 
-<p>Here, \(f_{T_1}^\text{eq}\) and \(f_{T_2}^\text{eq}\) denote the equilibrium distributions at temperatures \(T_1\) and \(T_2\), respectively. The superscript \(+\) represents particles moving to the right, while \(-\) represents particles moving to the left. This formula reflects both the periodicity of heat flux and the temperature gradient.</p>
+<p>Here, $f_{T_1}^\text{eq}$ and $f_{T_2}^\text{eq}$ denote the equilibrium distributions at temperatures $T_1$ and $T_2$, respectively. The superscript $+$ represents particles moving to the right, while $-$ represents particles moving to the left. This formula reflects both the periodicity of heat flux and the temperature gradient.</p>
 
 <p>For deviational energy distribution, this relationship becomes:</p>
 
@@ -882,27 +871,27 @@ where \(\boldsymbol n\) is the normal vector of the boundary.</p>
     // add the home and posts menu items
     ninja.data = [{
         id: "nav-home",
-        title: "🏠 Home",
+        title: "Home",
         section: "Navigation menu",
         handler: () => {
           window.location.href = "/";
         },
       },{id: "nav-blog",
-              title: "📝 Blog",
+              title: "Blog",
               description: "",
               section: "Navigation menu",
               handler: () => {
                 window.location.href = "/blog/";
               },
             },{id: "nav-publications",
-              title: "📚 Publications",
+              title: "Publications",
               description: "Publications indexed in Scopus and Web of Science",
               section: "Navigation menu",
               handler: () => {
                 window.location.href = "/publications/";
               },
             },{id: "nav-teaching",
-              title: "🧑‍🏫 Teaching",
+              title: "Teaching",
               description: "Lectures",
               section: "Navigation menu",
               handler: () => {
@@ -974,9 +963,9 @@ where \(\boldsymbol n\) is the normal vector of the boundary.</p>
               window.location.href = "/blog/2024/qe-scf/";
             
           },
-        },{id: "post-microscopic-description-of-thermal-physics",
+        },{id: "post-microscopic-description-of-thermophysics",
           
-            title: "Microscopic Description of Thermal Physics",
+            title: "Microscopic Description of Thermophysics",
           
           description: "",
           section: "Posts",
