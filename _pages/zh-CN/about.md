@@ -19,7 +19,7 @@ social: true # 在页面底部包含社交图标
 📧  [sxliu98@gmail.com](mailto:sxliu98@gmail.com)  
 📍  白楼(УЛК) 547室 
 
-<i class="fas fa-file-pdf"></i>  <a href="https://lyushisyan.github.io/assets/pdf/en-US/CV_LIU_ZH.pdf">中文简历</a>
+<i class="fas fa-file-pdf"></i>  <a href="https://lyushisyan.github.io/assets/pdf/zh-CN/CV_LIU_ZH.pdf">中文简历</a>
 
 **研究兴趣：**  
 
@@ -37,10 +37,10 @@ social: true # 在页面底部包含社交图标
 **教育背景：**  
 
 - **2023年 – 至今：** 莫斯科鲍曼国立技术大学，博士研究生  
-  导师：V.I. Khvesyuk 教授，A.A. Barinov 教授
+  导师：V.I. Khvesyuk 教授
 
-- **2021年 – 2023年：** 莫斯科鲍曼国立技术大学，硕士研究生  
-  导师：V.I. Khvesyuk 教授，A.A. Barinov 教授
+- **2021年 – 2023年：** 莫斯科鲍曼国立技术大学，硕士 
+  导师：A.A. Barinov 教授
 
 - **2017年 – 2021年：** 华北电力大学 & 莫斯科动力工程学院，学士  
   导师：V.I. Melikhov 教授

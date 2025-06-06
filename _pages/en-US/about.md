@@ -37,10 +37,10 @@ Focused on **micro- and nanoscale heat transfer**, especially the physical mecha
 **Education :**
 
 - **2023 – Present:** Ph.D. Student, Bauman Moscow State Technical University  
-  *Supervisors: Prof. V.I. Khvesyuk, Prof. A.A. Barinov*
+  *Supervisors: Prof. V.I. Khvesyuk*
 
 - **2021 – 2023:** M.Sc. in Thermal Physics, Bauman Moscow State Technical University  
-  *Supervisors: Prof. V.I. Khvesyuk, Prof. A.A. Barinov*
+  *Supervisors: Prof. A.A. Barinov*
 
 - **2017 – 2021:** B.Sc., North China Electric Power University & Moscow Power Engineering Institute
   *Supervisor: Prof. V.I. Melikhov*
