@@ -19,7 +19,7 @@ social: true # 在页面底部包含社交图标
 📧  [sxliu98@gmail.com](mailto:sxliu98@gmail.com)  
 📍  白楼(УЛК) 547室 
 
-<i class="fas fa-file-pdf"></i>  <a href="https://lyushisyan.github.io/assets/pdf/zh-CN/CV_LIU_ZH.pdf">中文简历</a>
+<i class="fas fa-file-pdf"></i>  <a href="https://lyushisyan.github.io/assets/pdf/zh-CN/CV_LIU_ZH_2507.pdf">中文简历</a>
 
 **研究兴趣：**  
 
