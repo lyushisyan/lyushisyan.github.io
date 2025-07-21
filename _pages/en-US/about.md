@@ -18,7 +18,7 @@ social: true # Include social icons at the bottom
 📧  [sxliu98@gmail.com](mailto:sxliu98@gmail.com)   
 📍  Room 547, Educational and laboratory building (УЛК)
 
-📄  [CV (PDF)](https://lyushisyan.github.io/assets/pdf/zh-CN/CV_LIU_EN.pdf)
+📄  [CV (PDF)](https://lyushisyan.github.io/assets/pdf/en-US/CV_LIU_EN.pdf)
 
 **Research Interests:**  
 - Focused on **heat conduction at micro- and nanoscale**, with a particular emphasis on the physical mechanisms of phonon transport in low-dimensional structures.
