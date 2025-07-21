@@ -3,44 +3,42 @@ page_id: about
 layout: about
 title: Home
 permalink: /
-subtitle: <a href='#'>Bauman Moscow State Technical University</a> 
 
 profile:
   align: right
   image: liusx2.jpg
-  image_circular: true # crops the image to make it circular
+  image_circular: false # Crop the image into a circle
 
-news: true # includes a list of news items
-latest_posts: true # includes a list of the newest posts
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+news: true # Include news list
+latest_posts: true # Include latest posts
+selected_papers: true # Include papers marked as "selected={true}"
+social: true # Include social icons at the bottom
 ---
 
-📧  [sxliu98@gmail.com](mailto:sxliu98@gmail.com)  
-📍  Room 547, White Building (ULK)
+📧  [sxliu98@gmail.com](mailto:sxliu98@gmail.com)   
+📍  Room 547, Educational and laboratory building (УЛК)
 
-<i class="fas fa-file-pdf"></i>  <a href="https://lyushisyan.github.io/assets/pdf/en-US/CV_LIU_EN.pdf">Download CV</a>
+📄  [CV (PDF)](https://lyushisyan.github.io/assets/pdf/zh-CN/CV_LIU_EN.pdf)
 
-**Research Interests :**
+**Research Interests:**  
+- Focused on **heat conduction at micro- and nanoscale**, with a particular emphasis on the physical mechanisms of phonon transport in low-dimensional structures.
 
-Focused on **micro- and nanoscale heat transfer**, especially the physical mechanisms of phonon transport in low-dimensional materials.
+**Research Topics Include:**  
+- First-principles calculations
+- Machine-learning interatomic potentials
+- Monte Carlo simulations
+- Phonon confinement effects
+- Resonant hybridization mechanisms
+- Targeted phonon excitation
 
-**Research Areas :**
+**Professional Experience:**
+- **2025 – Present**: Engineer & Assistant, Department of Thermal Physics, Bauman Moscow State Technical University
 
-- Phonon confinement effects  
-- Resonant hybridization phenomena  
-- Targeted excitation mechanisms  
-- First-principles calculations  
-- Monte Carlo simulations  
-- Machine learning applications
+**Education:**
+- **2023 – Present**: Ph.D. Student, Bauman Moscow State Technical University, 
+  Advisor: Prof. V.I. Khvesyuk
+- **2021 – 2023**: M.Sc., Bauman Moscow State Technical University, 
+  Advisor: Prof. A.A. Barinov
+- **2017 – 2021**: B.Sc., North China Electric Power University & Moscow Power Engineering Institute (dual degree), 
+  Advisor: Prof. V.I. Melikhov
 
-**Education :**
-
-- **2023 – Present:** Ph.D. Student, Bauman Moscow State Technical University  
-  *Supervisors: Prof. V.I. Khvesyuk*
-
-- **2021 – 2023:** M.Sc. in Thermal Physics, Bauman Moscow State Technical University  
-  *Supervisors: Prof. A.A. Barinov*
-
-- **2017 – 2021:** B.Sc., North China Electric Power University & Moscow Power Engineering Institute
-  *Supervisor: Prof. V.I. Melikhov*
