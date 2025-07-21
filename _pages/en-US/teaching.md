@@ -14,6 +14,6 @@ nav_order: 6
 - Topics include Python scientific computing and introduction to machine learning.
 
 📄 **Lecture Preview**:  
-- [Lecture 1: Scientific Computing with Python (Вычисления на основе Python)](assets/teaching/numerical_methods_lecture1.pdf)  
-- [Lecture 2: Introduction to Machine Learning (Введение в машинное обучение)](assets/teaching/numerical_methods_lecture2.pdf)
+- [Lecture 1: Scientific Computing with Python (Вычисления на основе Python)](https://lyushisyan.github.io/assets/teaching/numerical_methods_lecture1.pdf)  
+- [Lecture 2: Introduction to Machine Learning (Введение в машинное обучение)](https://lyushisyan.github.io/assets/teaching/numerical_methods_lecture2.pdf)
 
