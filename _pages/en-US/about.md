@@ -31,7 +31,7 @@ social: true # Include social icons at the bottom
 - Resonant hybridization mechanisms
 - Targeted phonon excitation
 
-**Professional Experience:**
+**Employment:**
 - **2025 – Present**: Engineer & Assistant, Department of Thermal Physics, Bauman Moscow State Technical University
 
 **Education:**
