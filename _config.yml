@@ -46,7 +46,7 @@ socials_in_search: true
 bib_search: true
 
 # Dimensions
-max_width: 850px
+max_width: 1000px
 
 # TODO: add layout settings (single page vs. multi-page)
 
