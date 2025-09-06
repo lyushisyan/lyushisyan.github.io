@@ -18,7 +18,7 @@ social: true # 在页面底部包含社交图标
 📧  [sxliu98@gmail.com](mailto:sxliu98@gmail.com)  
 📍  白楼(УЛК) 547室 
 
-📄  [中文简历 PDF](https://lyushisyan.github.io/assets/pdf/zh-CN/CV_LIU_ZH_2507.pdf)
+📄  [中文简历 PDF](https://lyushisyan.github.io/assets/pdf/zh-CN/CV_LIU_ZH_0906.pdf)
 
 **研究兴趣：**  
 - 聚焦于**微纳尺度热传导**，尤其专注于低维结构中声子输运的物理机制。
