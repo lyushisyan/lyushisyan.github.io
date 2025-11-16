@@ -1,4 +1,142 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://lyushisyan.github.io/zh-CN/feed.xml" rel="self" type="application/atom+xml" /><link href="https://lyushisyan.github.io/zh-CN/" rel="alternate" type="text/html" /><updated>2025-11-13T22:05:33+03:00</updated><id>https://lyushisyan.github.io/feed.xml</id><title type="html">blank</title><entry><title type="html">VASP + Phono3py 计算热导率</title><link href="https://lyushisyan.github.io/zh-CN/blog/2025/vasp-phono3py/" rel="alternate" type="text/html" title="VASP + Phono3py 计算热导率" /><published>2025-05-21T02:36:10+03:00</published><updated>2025-05-21T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2025/vasp-phono3py</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2025/vasp-phono3py/"><![CDATA[<p>VASP 是第一性原理软件。
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://lyushisyan.github.io/zh-CN/feed.xml" rel="self" type="application/atom+xml" /><link href="https://lyushisyan.github.io/zh-CN/" rel="alternate" type="text/html" /><updated>2025-11-16T23:13:35+03:00</updated><id>https://lyushisyan.github.io/feed.xml</id><title type="html">blank</title><entry><title type="html">Wigner 输运方程 (WTE) 统一声子热传导的理论框架</title><link href="https://lyushisyan.github.io/zh-CN/blog/2025/wigner/" rel="alternate" type="text/html" title="Wigner 输运方程 (WTE) 统一声子热传导的理论框架" /><published>2025-10-06T01:36:10+03:00</published><updated>2025-10-06T01:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2025/wigner</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2025/wigner/"><![CDATA[<p>在固体中，热量的主要载体是声子。几十年来，研究者提出了两种经典理论来解释不同材料中的声子热输运：</p>
+
+<ul>
+  <li><strong>在晶体中</strong>，声子像小球一样飞行和散射，热传导由 <strong>Peierls–Boltzmann 方程 (BTE)</strong> 描述。</li>
+  <li><strong>在玻璃中</strong>，声子失去了“粒子”特征，振动模式局域化，热流依靠不同模态之间的 <strong>相干隧穿扩散</strong>，这就是 <strong>Allen–Feldman (AF) 方程</strong> 的物理图像。</li>
+</ul>
+
+<p>然而，在实际的复杂材料中，<strong>粒子机制和波动机制往往同时存在</strong>。传统的 BTE 和 AF 模型各自只适用于一个极端，缺乏统一。<br />
+<strong>Wigner 输运方程 (WTE)</strong> 的提出，正是为了在一个量子相空间的框架下，把两种极端情况都纳入进来，从而实现统一描述。</p>
+
+<h2 id="peierlsboltzmann-方程">Peierls–Boltzmann 方程</h2>
+
+<blockquote>
+  <p>BTE: 声子像小球一样传播</p>
+</blockquote>
+
+<p>适用体系：长程有序的晶体，声子能带分离明显、模态清晰。</p>
+
+<p>声子可以被看作局域波包，就像一个个小球在空间中飞行，它们具有明确的群速度，在传播过程中不断被散射。</p>
+
+<p>线性化 BTE：</p>
+
+\[\partial_t f_{\mathbf q s} + \mathbf v_{\mathbf q s}\cdot\nabla_{\mathbf r} f_{\mathbf q s}
+  = -\frac{f_{\mathbf q s} - f^{\text{eq}}_{\mathbf q s}}{\tau_{\mathbf q s}}\]
+
+<ul>
+  <li>$f_{\mathbf q s}$：声子占据函数</li>
+  <li>$\mathbf v_{\mathbf q s} = \nabla_{\mathbf q}\omega_{\mathbf q s}$：群速度</li>
+  <li>$\tau_{\mathbf q s}$：弛豫时间</li>
+</ul>
+
+<p><strong>热导率表达式（RTA 形式）</strong>：</p>
+
+\[\kappa_{\alpha\beta}^{\mathrm{BTE}}
+= \frac{1}{V}\sum_{\mathbf q s}
+C_{\mathbf q s}\, v_{\mathbf q s,\alpha}\, v_{\mathbf q s,\beta}\, \tau_{\mathbf q s},\]
+
+<h2 id="allenfeldman-方程">Allen–Feldman 方程</h2>
+
+<blockquote>
+  <p>AF: 能量不再依靠“小球飞行”，而是通过一个“音叉”带动另一个“音叉”的共振来传递。</p>
+</blockquote>
+
+<p>适用体系：玻璃和无序固体。</p>
+
+<p>在玻璃中，振动模式高度局域化，几乎没有有效的群速度。能量不是靠“声子小球”传播，而是通过不同局域态之间的 <strong>隧穿/共振</strong> 逐步扩散：</p>
+<ul>
+  <li>振动态之间能量间隔极小（准简并），彼此可以耦合。</li>
+  <li>类比为“一排音叉”：频率接近时，敲响一个音叉，相邻音叉会被带动，能量逐步传递下去。</li>
+</ul>
+
+<p><strong>数学表达</strong>：</p>
+
+\[\kappa_{\text{AF}} = \frac{\pi}{V} \sum_{i\neq j} (n_i - n_j)\, 
+  |\langle i | \hat v | j \rangle|^2 \, \delta(\omega_i - \omega_j)\]
+
+<ul>
+  <li>$\hat v$：热流（速度）算符</li>
+  <li>$\delta(\omega_i - \omega_j)$：能量守恒，只有准简并态才能相互耦合</li>
+</ul>
+
+<h2 id="wigner-输运方程">Wigner 输运方程</h2>
+
+<blockquote>
+  <p>WTE: 把“小球”和“音叉”放在同一舞台上的“总导演”</p>
+</blockquote>
+
+<p>从量子力学的 <strong>一体密度矩阵</strong> 出发，经过 <strong>Wigner 变换</strong>，可以在相空间（动量 $\mathbf q$ 和实空间 $\mathbf R$）中得到一个分布函数：</p>
+
+\[n_{s,s'}(\mathbf q, \mathbf R, t)\]
+
+<p><strong>对角元($s=s’$)</strong> ：(populations)，对应类粒子机制，类似 BTE。<br />
+<strong>非对角元($s\neq s’$)</strong> ：(coherences)，对应波动机制，类似 AF。</p>
+
+<p><strong>WTE 的独特之处在于，它既关注声子的数量，又捕捉不同声子态之间的相干性。</strong></p>
+
+<p>WTE 的通式为：</p>
+
+\[\frac{\partial}{\partial t} n_{s,s'} + i(\omega_{\mathbf q s}-\omega_{\mathbf q s'})\,n_{s,s'} + \tfrac{1}{2}\{\mathbf v(\mathbf q), \nabla_{\mathbf R} n\}_{s,s'} = \left.\frac{\partial n}{\partial t}\right|_{\text{scatt}}\]
+
+<p>其中：</p>
+<ul>
+  <li>第一项：时间演化（动力学变化）</li>
+  <li>第二项：相干振荡（波动性机制）</li>
+  <li>第三项：漂移项（粒子传播）</li>
+  <li>右端：散射项（非简谐效应）</li>
+</ul>
+
+<p>在<strong>晶体极限</strong>：模态分离大（$\Delta \omega \gg 1/\tau$），相干项快速振荡并平均掉，WTE → BTE。</p>
+
+<p>在<strong>玻璃极限</strong>：模态准简并（$\Delta \omega \ll 1/\tau$），粒子项无效，WTE → AF。</p>
+
+<p>在<strong>复杂晶体/中间态</strong>：$\Delta \omega \sim 1/\tau$，粒子与波动贡献不可分割，WTE 给出</p>
+
+\[\kappa = \kappa_P + \kappa_C\]
+
+<ul>
+  <li>
+    <p><strong>粒子项（populations）</strong>：在弱带间耦合近似下可写成与 BTE 类似的形式，</p>
+
+\[\kappa_{\alpha\beta}^{P}
+\simeq \frac{1}{V}\sum_{\mathbf q s}
+C_{\mathbf q s}\, v_{\mathbf q s,\alpha}\, v_{\mathbf q s,\beta}\, \tilde{\tau}_{\mathbf q s},\]
+
+    <p>其中 $\tilde{\tau}<em>{\mathbf q s}\approx \big(2\Gamma</em>{\mathbf q s}\big)^{-1}$ 与谱线宽 $\Gamma_{\mathbf q s}$（由非简谐/同位素散射等给出）相关，体现 WTE 中对“粒子寿命”的谱学修正。</p>
+  </li>
+  <li>
+    <p><strong>相干项（coherences）</strong>：刻画准简并模态间的波动耦合/隧穿，常见的频域洛伦兹型表达可写为</p>
+
+\[\kappa_{\alpha\beta}^{C}
+\simeq \frac{1}{V}\sum_{\mathbf q}\!\!\sum_{s\neq s'}
+\frac{\big[\hbar(\omega_{\mathbf q s}+\omega_{\mathbf q s'})/2\big]\,
+      \partial_T n^{\mathrm{eq}}_{\bar{\omega}}}
+     {(\omega_{\mathbf q s}-\omega_{\mathbf q s'})^{2}
+      +(\Gamma_{\mathbf q s}+\Gamma_{\mathbf q s'})^{2}}\,
+(v_{\alpha})_{s s'}(v_{\beta})_{s' s}\,
+\big(\Gamma_{\mathbf q s}+\Gamma_{\mathbf q s'}\big),\]
+
+    <p>其中 $(v_{\alpha})_{ss’}$ 是速度算符在模态基上的<strong>非对角元</strong>（决定相干耦合强度），$\bar{\omega}$ 为两模态频率的适当平均，用 $\Gamma$ 控制“相干退相位/去相干”的宽度。
+该式体现了 <strong>带模态间频差越小、非对角速度算符越大、线宽适中时，相干导热越显著</strong> 的特点。</p>
+  </li>
+</ul>
+
+<h2 id="三者的关系与统一">三者的关系与统一</h2>
+<ul>
+  <li><strong>BTE 极限</strong>：当能带分离远大于线宽时，相干效应可以忽略，WTE 自动退化为 BTE。</li>
+  <li><strong>AF 极限</strong>：在无序极限下，WTE 退化为 AF 方程。</li>
+  <li><strong>复杂晶体与中间情况</strong>：当能带间距和声子谱线宽度相当时，BTE 与 AF 都不足以描述，WTE 则能同时捕捉布居数和相干态的贡献，给出完整的热导率。</li>
+</ul>
+
+<p><strong>因此，WTE 不仅是数学上的统一，更是物理图像上的桥梁。</strong></p>
+
+<hr />
+
+<p>参考文献：</p>
+
+<p>[1] <em>Nat. Phys.</em> <strong>15</strong>, 809–813 (2019)</p>
+
+<p>[2] Phys. Rev. X. <strong>12</strong>, 041011 (2022)</p>]]></content><author><name></name></author><category term="Physics" /><category term="Heat-conduction" /><summary type="html"><![CDATA[在固体中，热量的主要载体是声子。几十年来，研究者提出了两种经典理论来解释不同材料中的声子热输运：]]></summary></entry><entry><title type="html">VASP + Phono3py 计算热导率</title><link href="https://lyushisyan.github.io/zh-CN/blog/2025/vasp-phono3py/" rel="alternate" type="text/html" title="VASP + Phono3py 计算热导率" /><published>2025-05-21T02:36:10+03:00</published><updated>2025-05-21T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2025/vasp-phono3py</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2025/vasp-phono3py/"><![CDATA[<p>VASP 是第一性原理软件。
 Phono3py可以通过<strong>三阶力常数</strong>计算<strong>声子-声子相互作用</strong>。从而计算晶格热导率、声子寿命/谱线宽度、自能的虚部（最低阶近似）、联合态密度（JDOS）和加权联合态密度（w-JDOS）。</p>
 
 <h2 id="1-生成带有位移的超胞的-poscar-文件">1. 生成带有位移的超胞的 <code class="language-plaintext highlighter-rouge">POSCAR</code> 文件</h2>
@@ -2066,199 +2204,4 @@ K_POINTS <span class="o">{</span>automatic<span class="o">}</span>
   
 </figure>
 
-</div>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[在 Quantum Espresso 中，声子色散是使用 ph.x 程序计算的，该程序基于密度泛函微扰理论 (DFPT) 。本文以单晶硅 (Si) 为例展开计算。]]></summary></entry><entry><title type="html">使用 QE 进行能量自洽计算</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/qe-scf/" rel="alternate" type="text/html" title="使用 QE 进行能量自洽计算" /><published>2024-03-17T02:36:10+03:00</published><updated>2024-03-17T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/qe-scf</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/qe-scf/"><![CDATA[<p>pw.x 处理的计算包括以下7种类型，在输入文件中用 <code class="language-plaintext highlighter-rouge">calculation</code> 设置：</p>
-
-<p><code class="language-plaintext highlighter-rouge">'scf'</code>：自洽计算，self-consistent field，通过迭代的方式数值求解微分-积分方程（Kohn-Sham方程），迭代收敛以电荷的变化足够小为准，最终得到自洽电荷。</p>
-
-<p><code class="language-plaintext highlighter-rouge">'nscf'</code>：非自洽计算，nscf 计算常在k空间的网格上进行，网格要足够密以完成 k 空间上的积分，在DOS等计算需要更密的 k 点，这时在自洽电荷基础上，计算这些更多的 k 点，nscf计算保持自洽电荷不变。</p>
-
-<p><code class="language-plaintext highlighter-rouge">'bands'</code>：也是一种 nscf 计算，k 点按照三维 k 空间中的特殊路径选取。</p>
-
-<p><code class="language-plaintext highlighter-rouge">'relax'</code>：一系列 scf 计算，通过 Hellman-Feynman 力计算离子坐标驰豫（通过优化算法找到受力为零的结构），relax计算时固定cell不变。</p>
-
-<p><code class="language-plaintext highlighter-rouge">'vc-relax'</code>: 允许cell变化的relax，通过应力的计算改变cell。</p>
-
-<p><code class="language-plaintext highlighter-rouge">'md'</code>：分子动力学，将电子对离子的作用看成离子感受到的势，根据势能和离子初始速度求解离子运动的经典力学方程。</p>
-
-<p><code class="language-plaintext highlighter-rouge">'vc-md'</code>：允许cell改变的md。</p>
-
-<h2 id="输入文件">输入文件</h2>
-
-<p>在 QE 的输入文件中，有 <code class="language-plaintext highlighter-rouge">NAMELISTS</code> 和 <code class="language-plaintext highlighter-rouge">INPUT_CARDS</code>。</p>
-
-<p><code class="language-plaintext highlighter-rouge">PWscf</code> 中有三个强制 <code class="language-plaintext highlighter-rouge">NAMELISTS</code>：</p>
-
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">&amp;CONTROL</code>：指定计算流，</li>
-  <li><code class="language-plaintext highlighter-rouge">&amp;SYSTEM</code>：指定系统，</li>
-  <li><code class="language-plaintext highlighter-rouge">&amp;ELECTRONS</code>：指定用于求解 Kohn-Sham 方程的算法。</li>
-</ol>
-
-<p>还有另外两个 <code class="language-plaintext highlighter-rouge">NAMELISTS</code>：<code class="language-plaintext highlighter-rouge">&amp;IONS</code> 和 <code class="language-plaintext highlighter-rouge">&amp;CELLS</code>，需要根据计算指定。</p>
-
-<p><code class="language-plaintext highlighter-rouge">PWscf</code> 中的三个 <code class="language-plaintext highlighter-rouge">INPUT_CARDS</code>：<code class="language-plaintext highlighter-rouge">ATOMIC_SPECIES</code>、<code class="language-plaintext highlighter-rouge">ATOMIC_POSITIONS</code> 和 <code class="language-plaintext highlighter-rouge">K_POINTS</code> 是必需的。 在某些计算中还必须提供其他一些信息。</p>
-
-<p><strong>示例：单晶硅的自洽计算  pw.scf.silicon.in</strong></p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;CONTROL
-<span class="nv">calculation</span><span class="o">=</span><span class="s1">'scf'</span>,   <span class="c"># self-consistent field 进行自洽计算</span>
-<span class="nv">prefix</span><span class="o">=</span><span class="s1">'silicon'</span>,   <span class="c"># 输出文件的前缀</span>
-<span class="nv">pseudo_dir</span><span class="o">=</span><span class="s1">'./pseudo/'</span>,   <span class="c"># 存放赝势的文件夹</span>
-<span class="nv">outdir</span><span class="o">=</span><span class="s1">'./out/'</span>,   <span class="c"># 指向输出文件的文件夹</span>
-/
-&amp;SYSTEM
-<span class="nv">ibrav</span><span class="o">=</span>2,   <span class="c"># 布拉维晶格类型 FCC结构</span>
-celldm<span class="o">(</span>1<span class="o">)=</span>10.2625,   <span class="c"># 晶格常数 （单位为波尔，1波尔=0.529A）</span>
-<span class="nv">nat</span><span class="o">=</span>2,   <span class="c"># 结构内原子个数</span>
-<span class="nv">ntyp</span><span class="o">=</span>1,   <span class="c"># 结构内原子种类数</span>
-<span class="nv">ecutwfc</span><span class="o">=</span>60.0,   <span class="c"># 波函数截断能 （单位为里德伯格，1Ry = 13.606 eV）</span>
-<span class="nv">ecutrho</span><span class="o">=</span>720.0,   <span class="c"># 电荷密度截断能</span>
-<span class="o">!</span> occupations <span class="o">=</span> <span class="s1">'smearing'</span>, smearing <span class="o">=</span> <span class="s1">'gauss'</span>, degauss <span class="o">=</span> 1.0d-9 <span class="c"># 高斯展宽</span>
-/
-&amp;ELECTRONS
-<span class="nv">mixing_beta</span><span class="o">=</span>0.7,   <span class="c"># 自洽计算过程中前后电荷密度混合比，默认0.7</span>
-<span class="nv">conv_thr</span><span class="o">=</span>1d-8,   <span class="c"># 自洽收敛阙值，默认为1d-6</span>
-/
-ATOMIC_SPECIES
-SI 28.0855 Si.pbe-rrkj.UPF   <span class="c"># 赝势</span>
-ATOMIC_POSITIONS <span class="o">(</span>alat<span class="o">)</span>   <span class="c"># 原子位置（alat 表示采用分子坐标）</span>
-Si 0.00 0.00 0.00
-Si 0.25 0.25 0.25
-K_POINTS automatic  <span class="c"># K点自动分布</span>
-4 4 4 1 1 1
-</code></pre></div></div>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">ibrav</code> - 取值 1-14 对应 14 个布拉维晶格，0对应自由晶格</li>
-  <li><code class="language-plaintext highlighter-rouge">ecutwfc</code> - 波函数截断能，选择不同的赝势，会有对应的建议值。</li>
-  <li><code class="language-plaintext highlighter-rouge">ecutrho</code> - 电荷密度截断能，与 ecutwfc 大小相关</li>
-  <li>赝势为 NC ，该值为 ecutwfc 的 4 倍</li>
-  <li>赝势为 US，该值为 ecutwfc 的 8-12 倍</li>
-  <li>赝势为 PAW，该值为 ecutwfc 的 4 倍</li>
-  <li><code class="language-plaintext highlighter-rouge">mixing</code> - 自洽计算过程中前后电荷密度混合比，默认0.7</li>
-  <li><code class="language-plaintext highlighter-rouge">conv_thr</code> - 自洽收敛阙值，默认1d-6</li>
-  <li>文件保存为 <code class="language-plaintext highlighter-rouge">pw.scf.silicon.in</code></li>
-  <li>建议设置 <code class="language-plaintext highlighter-rouge">occupations='smearing',smearing='gaussian'</code>，使用高斯展宽。高斯展宽对导体和绝缘体是通用的，对于不同的材料调整degauss的值：（1）对于有带隙的材料，<code class="language-plaintext highlighter-rouge">degauss=1d-9</code>，也就是接近0就可以；（2）对于没有带隙的导体材料，<code class="language-plaintext highlighter-rouge">degauss</code> 从小尝试到大。</li>
-</ul>
-
-<p>必须阅读 <a href="https://www.quantum-espresso.org/Doc/INPUT_PW.html"><strong>PWscf user manual</strong></a> 才能深入理解自洽计算的输入文件。</p>
-
-<p>https://www.quantum-espresso.org/Doc/INPUT_PW.html</p>
-
-<h2 id="运行">运行</h2>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 pw.x <span class="nt">-inp</span> pw.scf.silicon.in <span class="o">&gt;</span> pw.scf.silicon.out
-</code></pre></div></div>
-
-<h2 id="输出文件">输出文件</h2>
-
-<p>现在让我们看看输出文件 <code class="language-plaintext highlighter-rouge">pw.scf.silicon.out</code> 并看看如何达到收敛：</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">grep</span> <span class="nt">-e</span> <span class="s1">'total energy'</span> <span class="nt">-e</span> estimate pw.scf.silicon.out
-</code></pre></div></div>
-
-<p>之后我们会看到：</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">Self-consistent</span><span class="w"> </span><span class="err">Calculation</span><span class="w">
-
-</span><span class="err">iteration</span><span class="w"> </span><span class="err">#</span><span class="w">  </span><span class="mi">1</span><span class="w">     </span><span class="err">ecut=</span><span class="w">    </span><span class="mf">16.00</span><span class="w"> </span><span class="err">Ry</span><span class="w">     </span><span class="err">beta=</span><span class="w"> </span><span class="mf">0.70</span><span class="w">
-</span><span class="err">Davidson</span><span class="w"> </span><span class="err">diagonalization</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">overlap</span><span class="w">
-</span><span class="err">ethr</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">1.00E-02</span><span class="err">,</span><span class="w">  </span><span class="err">avg</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">iterations</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">2.0</span><span class="w">
-</span><span class="err">Threshold</span><span class="w"> </span><span class="err">(ethr)</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">eigenvalues</span><span class="w"> </span><span class="err">was</span><span class="w"> </span><span class="err">too</span><span class="w"> </span><span class="err">large:</span><span class="w">
-</span><span class="err">Diagonalizing</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">lowered</span><span class="w"> </span><span class="err">threshold</span><span class="w">
-</span><span class="err">Davidson</span><span class="w"> </span><span class="err">diagonalization</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">overlap</span><span class="w">
-</span><span class="err">ethr</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">6.93E-04</span><span class="err">,</span><span class="w">  </span><span class="err">avg</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">iterations</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">1.0</span><span class="w">
-</span><span class="err">total</span><span class="w"> </span><span class="err">cpu</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">spent</span><span class="w"> </span><span class="err">up</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">now</span><span class="w"> </span><span class="err">is</span><span class="w">        </span><span class="mf">0.3</span><span class="w"> </span><span class="err">secs</span><span class="w">
-</span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83539933</span><span class="w"> </span><span class="err">Ry</span><span class="w">
-</span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">       </span><span class="mf">0.06071141</span><span class="w"> </span><span class="err">Ry</span><span class="w">
-
-</span><span class="err">iteration</span><span class="w"> </span><span class="err">#</span><span class="w">  </span><span class="mi">2</span><span class="w">     </span><span class="err">ecut=</span><span class="w">    </span><span class="mf">16.00</span><span class="w"> </span><span class="err">Ry</span><span class="w">     </span><span class="err">beta=</span><span class="w"> </span><span class="mf">0.70</span><span class="w">
-</span><span class="err">Davidson</span><span class="w"> </span><span class="err">diagonalization</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">overlap</span><span class="w">
-</span><span class="err">ethr</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">7.59E-04</span><span class="err">,</span><span class="w">  </span><span class="err">avg</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">iterations</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">1.0</span><span class="w">
-</span><span class="err">total</span><span class="w"> </span><span class="err">cpu</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">spent</span><span class="w"> </span><span class="err">up</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">now</span><span class="w"> </span><span class="err">is</span><span class="w">        </span><span class="mf">0.4</span><span class="w"> </span><span class="err">secs</span><span class="w">
-</span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83851631</span><span class="w"> </span><span class="err">Ry</span><span class="w">
-</span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">       </span><span class="mf">0.00218630</span><span class="w"> </span><span class="err">Ry</span><span class="w">
-
-</span><span class="err">iteration</span><span class="w"> </span><span class="err">#</span><span class="w">  </span><span class="mi">3</span><span class="w">     </span><span class="err">ecut=</span><span class="w">    </span><span class="mf">16.00</span><span class="w"> </span><span class="err">Ry</span><span class="w">     </span><span class="err">beta=</span><span class="w"> </span><span class="mf">0.70</span><span class="w">
-</span><span class="err">Davidson</span><span class="w"> </span><span class="err">diagonalization</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">overlap</span><span class="w">
-</span><span class="err">ethr</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">2.73E-05</span><span class="err">,</span><span class="w">  </span><span class="err">avg</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">iterations</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">2.3</span><span class="w">
-</span><span class="err">total</span><span class="w"> </span><span class="err">cpu</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">spent</span><span class="w"> </span><span class="err">up</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">now</span><span class="w"> </span><span class="err">is</span><span class="w">        </span><span class="mf">0.4</span><span class="w"> </span><span class="err">secs</span><span class="w">
-</span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83897965</span><span class="w"> </span><span class="err">Ry</span><span class="w">
-</span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">       </span><span class="mf">0.00007075</span><span class="w"> </span><span class="err">Ry</span><span class="w">
-
-</span><span class="err">iteration</span><span class="w"> </span><span class="err">#</span><span class="w">  </span><span class="mi">4</span><span class="w">     </span><span class="err">ecut=</span><span class="w">    </span><span class="mf">16.00</span><span class="w"> </span><span class="err">Ry</span><span class="w">     </span><span class="err">beta=</span><span class="w"> </span><span class="mf">0.70</span><span class="w">
-</span><span class="err">Davidson</span><span class="w"> </span><span class="err">diagonalization</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">overlap</span><span class="w">
-</span><span class="err">ethr</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">8.84E-07</span><span class="err">,</span><span class="w">  </span><span class="err">avg</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">iterations</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">2.6</span><span class="w">
-</span><span class="err">total</span><span class="w"> </span><span class="err">cpu</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">spent</span><span class="w"> </span><span class="err">up</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">now</span><span class="w"> </span><span class="err">is</span><span class="w">        </span><span class="mf">0.4</span><span class="w"> </span><span class="err">secs</span><span class="w">
-</span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83900178</span><span class="w"> </span><span class="err">Ry</span><span class="w">
-</span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">       </span><span class="mf">0.00000211</span><span class="w"> </span><span class="err">Ry</span><span class="w">
-
-</span><span class="err">iteration</span><span class="w"> </span><span class="err">#</span><span class="w">  </span><span class="mi">5</span><span class="w">     </span><span class="err">ecut=</span><span class="w">    </span><span class="mf">16.00</span><span class="w"> </span><span class="err">Ry</span><span class="w">     </span><span class="err">beta=</span><span class="w"> </span><span class="mf">0.70</span><span class="w">
-</span><span class="err">Davidson</span><span class="w"> </span><span class="err">diagonalization</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">overlap</span><span class="w">
-</span><span class="err">ethr</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">2.64E-08</span><span class="err">,</span><span class="w">  </span><span class="err">avg</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">iterations</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">3.6</span><span class="w">
-</span><span class="err">total</span><span class="w"> </span><span class="err">cpu</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">spent</span><span class="w"> </span><span class="err">up</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">now</span><span class="w"> </span><span class="err">is</span><span class="w">        </span><span class="mf">0.4</span><span class="w"> </span><span class="err">secs</span><span class="w">
-</span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83900299</span><span class="w"> </span><span class="err">Ry</span><span class="w">
-</span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">       </span><span class="mf">0.00000012</span><span class="w"> </span><span class="err">Ry</span><span class="w">
-
-</span><span class="err">iteration</span><span class="w"> </span><span class="err">#</span><span class="w">  </span><span class="mi">6</span><span class="w">     </span><span class="err">ecut=</span><span class="w">    </span><span class="mf">16.00</span><span class="w"> </span><span class="err">Ry</span><span class="w">     </span><span class="err">beta=</span><span class="w"> </span><span class="mf">0.70</span><span class="w">
-</span><span class="err">Davidson</span><span class="w"> </span><span class="err">diagonalization</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">overlap</span><span class="w">
-</span><span class="err">ethr</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">1.46E-09</span><span class="err">,</span><span class="w">  </span><span class="err">avg</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">iterations</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="mf">2.7</span><span class="w">
-</span><span class="err">total</span><span class="w"> </span><span class="err">cpu</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">spent</span><span class="w"> </span><span class="err">up</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">now</span><span class="w"> </span><span class="err">is</span><span class="w">        </span><span class="mf">0.4</span><span class="w"> </span><span class="err">secs</span><span class="w">
-
-</span><span class="err">End</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">self-consistent</span><span class="w"> </span><span class="err">calculation</span><span class="w">
-</span></code></pre></div></div>
-
-<p>值得注意的是，DFT <strong>总能量</strong>的绝对值并不相对于真空参考，而是取决于所选的赝势。</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span><span class="w">    </span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w">              </span><span class="err">=</span><span class="w">     </span><span class="mf">-15.83900302</span><span class="w"> </span><span class="err">Ry</span><span class="w">
-     </span><span class="err">estimated</span><span class="w"> </span><span class="err">scf</span><span class="w"> </span><span class="err">accuracy</span><span class="w">    </span><span class="err">&lt;</span><span class="w">          </span><span class="mf">3.2E-10</span><span class="w"> </span><span class="err">Ry</span><span class="w">
-
-     </span><span class="err">The</span><span class="w"> </span><span class="err">total</span><span class="w"> </span><span class="err">energy</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">sum</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">terms:</span><span class="w">
-     </span><span class="err">one-electron</span><span class="w"> </span><span class="err">contribution</span><span class="w"> </span><span class="err">=</span><span class="w">       </span><span class="mf">4.79863652</span><span class="w"> </span><span class="err">Ry</span><span class="w">
-     </span><span class="err">hartree</span><span class="w"> </span><span class="err">contribution</span><span class="w">      </span><span class="err">=</span><span class="w">       </span><span class="mf">1.07565897</span><span class="w"> </span><span class="err">Ry</span><span class="w">
-     </span><span class="err">xc</span><span class="w"> </span><span class="err">contribution</span><span class="w">           </span><span class="err">=</span><span class="w">      </span><span class="mf">-4.81353993</span><span class="w"> </span><span class="err">Ry</span><span class="w">
-     </span><span class="err">ewald</span><span class="w"> </span><span class="err">contribution</span><span class="w">        </span><span class="err">=</span><span class="w">     </span><span class="mf">-16.89975858</span><span class="w"> </span><span class="err">Ry</span><span class="w">
-
-     </span><span class="err">convergence</span><span class="w"> </span><span class="err">has</span><span class="w"> </span><span class="err">been</span><span class="w"> </span><span class="err">achieved</span><span class="w"> </span><span class="err">in</span><span class="w">   </span><span class="mi">6</span><span class="w"> </span><span class="err">iterations</span><span class="w">
-</span></code></pre></div></div>
-
-<p>Tips</p>
-
-<ul>
-  <li>减少 <code class="language-plaintext highlighter-rouge">mixing_beta</code> 值，特别是当收敛能量周围存在振荡时。</li>
-  <li>增加能量和电荷密度截止值（确保它们足够）。</li>
-  <li>某些伪势文件有问题，可以尝试使用不同库中的伪势。</li>
-  <li><code class="language-plaintext highlighter-rouge">conv_thr</code> 的建议值：
-    <ul>
-      <li>能量和特征值（scf 计算）1.0d-7 Ry</li>
-      <li>受力（relax 计算）1.0e-8 Ry</li>
-      <li>应力（vc-relax 计算）1.0d-9 Ry</li>
-    </ul>
-  </li>
-  <li>能量和特征值（scf 计算）1.0d-7</li>
-</ul>
-
-<p>输出文件上还打印了其他几个重要信息。</p>
-
-<p>计算中使用的<strong>交换相关性</strong>：</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">Exchange-correlation=</span><span class="w"> </span><span class="err">SLA</span><span class="w">  </span><span class="err">PZ</span><span class="w">   </span><span class="err">NOGX</span><span class="w"> </span><span class="err">NOGC</span><span class="w">
-</span></code></pre></div></div>
-
-<p>其中 <code class="language-plaintext highlighter-rouge">SLA</code> — Slater交换； <code class="language-plaintext highlighter-rouge">PZ</code> — LDA 的 Perdew-Zunger 参数化； <code class="language-plaintext highlighter-rouge">NOGX</code> 和 <code class="language-plaintext highlighter-rouge">NOGC</code> 表示不考虑密度梯度。</p>
-
-<p>计算中使用的<strong>平面波总数</strong> (1067)：</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">Parallelization</span><span class="w"> </span><span class="err">info</span><span class="w">
-</span><span class="err">--------------------</span><span class="w">
-</span><span class="err">sticks:</span><span class="w">   </span><span class="err">dense</span><span class="w">  </span><span class="err">smooth</span><span class="w">     </span><span class="err">PW</span><span class="w">     </span><span class="err">G-vecs:</span><span class="w">    </span><span class="err">dense</span><span class="w">   </span><span class="err">smooth</span><span class="w">      </span><span class="err">PW</span><span class="w">
-</span><span class="err">Min</span><span class="w">         </span><span class="mi">108</span><span class="w">     </span><span class="mi">108</span><span class="w">     </span><span class="mi">34</span><span class="w">                 </span><span class="mi">1489</span><span class="w">     </span><span class="mi">1489</span><span class="w">     </span><span class="mi">266</span><span class="w">
-</span><span class="err">Max</span><span class="w">         </span><span class="mi">109</span><span class="w">     </span><span class="mi">109</span><span class="w">     </span><span class="mi">35</span><span class="w">                 </span><span class="mi">1492</span><span class="w">     </span><span class="mi">1492</span><span class="w">     </span><span class="mi">267</span><span class="w">
-</span><span class="err">Sum</span><span class="w">         </span><span class="mi">433</span><span class="w">     </span><span class="mi">433</span><span class="w">    </span><span class="mi">139</span><span class="w">                 </span><span class="mi">5961</span><span class="w">     </span><span class="mi">5961</span><span class="w">    </span><span class="mi">1067</span><span class="w">
-</span></code></pre></div></div>
-
-<p><strong>Kohn-Sham 态的数量</strong>：</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">electrons</span><span class="w">       </span><span class="err">=</span><span class="w">         </span><span class="mf">8.00</span><span class="w">
-</span><span class="err">number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">Kohn-Sham</span><span class="w"> </span><span class="err">states=</span><span class="w">            </span><span class="mi">8</span><span class="w">
-</span></code></pre></div></div>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[pw.x 处理的计算包括以下7种类型，在输入文件中用 calculation 设置：]]></summary></entry></feed>
+</div>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[在 Quantum Espresso 中，声子色散是使用 ph.x 程序计算的，该程序基于密度泛函微扰理论 (DFPT) 。本文以单晶硅 (Si) 为例展开计算。]]></summary></entry></feed>
