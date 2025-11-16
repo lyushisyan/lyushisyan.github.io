@@ -19,7 +19,7 @@
   
     
     
-      圆棒中的弹性波色散关系 | Shixian Liu
+      Wigner 输运方程 (WTE) 统一声子热传导的理论框架 | Shixian Liu
     
   
 </title>
@@ -63,7 +63,7 @@
   <link rel="shortcut icon" href="/assets/img/sliu.png?430c386d62d98184ee32047ee04ebc19">
 
 <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e">
-<link rel="canonical" href="https://lyushisyan.github.io/zh-CN/blog/2023/elastic-wave-in-wire/">
+<link rel="canonical" href="https://lyushisyan.github.io/zh-CN/blog/2025/wigner/">
 
 <!-- Dark Mode -->
 <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
@@ -187,9 +187,9 @@
 <d-front-matter>
     <script async type="text/json">
       {
-            "title": "圆棒中的弹性波色散关系",
+            "title": "Wigner 输运方程 (WTE) 统一声子热传导的理论框架",
             "description": "",
-            "published": "July 01, 2023",
+            "published": "October 06, 2025",
             "authors": [
               
             ],
@@ -327,7 +327,7 @@
               
               <li class="nav-item active">
                 
-                  <a class="nav-link" href="/blog/2023/elastic-wave-in-wire/">
+                  <a class="nav-link" href="/blog/2025/wigner/">
                     
                       EN-US</a>
                 
@@ -371,7 +371,7 @@
         margin-bottom: 0.1em;
         text-overflow: ellipsis;
       ">
-        圆棒中的弹性波色散关系
+        Wigner 输运方程 (WTE) 统一声子热传导的理论框架
       </h1>
       <p></p>
     </d-title>
@@ -384,276 +384,167 @@
               <h3>Contents</h3>
               
                 <div>
-                  <a href="#%E5%9C%86%E6%A3%92%E4%B8%AD%E7%9A%84%E5%BC%B9%E6%80%A7%E6%96%B9%E7%A8%8B">圆棒中的弹性方程</a>
+                  <a href="#peierls-boltzmann-%E6%96%B9%E7%A8%8B">Peierls–Boltzmann 方程</a>
                 </div>
                 
               
                 <div>
-                  <a href="#%E6%89%AD%E8%BD%AC%E6%B3%A2">扭转波</a>
+                  <a href="#allen-feldman-%E6%96%B9%E7%A8%8B">Allen–Feldman 方程</a>
                 </div>
                 
               
                 <div>
-                  <a href="#%E7%BA%B5%E6%B3%A2">纵波</a>
-                </div>
-                
-              
-                <div>
-                  <a href="#%E5%BC%AF%E6%9B%B2%E6%B3%A2">弯曲波</a>
-                </div>
-                
-              
-                <div>
-                  <a href="#%E6%95%B0%E5%80%BC%E6%B1%82%E8%A7%A3">数值求解</a>
+                  <a href="#wigner-%E8%BE%93%E8%BF%90%E6%96%B9%E7%A8%8B">Wigner 输运方程</a>
                 </div>
                 
               
             </nav>
           </d-contents>
         
-        <h2 id="圆棒中的弹性方程">圆棒中的弹性方程</h2>
+        <p>在固体中，热量的主要载体是声子。几十年来，研究者提出了两种经典理论来解释不同材料中的声子热输运：</p>
 
-<p>弹性波动的一般方程：</p>
+<ul>
+  <li>
+<strong>在晶体中</strong>，声子像小球一样飞行和散射，热传导由 <strong>Peierls–Boltzmann 方程 (BTE)</strong> 描述。</li>
+  <li>
+<strong>在玻璃中</strong>，声子失去了“粒子”特征，振动模式局域化，热流依靠不同模态之间的 <strong>相干隧穿扩散</strong>，这就是 <strong>Allen–Feldman (AF) 方程</strong> 的物理图像。</li>
+</ul>
 
-\[\mu \nabla^2\vec u=(\lambda+\mu)\nabla(\nabla\cdot\vec u)=\rho\frac{\partial^2\vec u}{\partial t^2}\]
+<p>然而，在实际的复杂材料中，<strong>粒子机制和波动机制往往同时存在</strong>。传统的 BTE 和 AF 模型各自只适用于一个极端，缺乏统一。<br>
+<strong>Wigner 输运方程 (WTE)</strong> 的提出，正是为了在一个量子相空间的框架下，把两种极端情况都纳入进来，从而实现统一描述。</p>
 
-<p>其中 $\vec u$ 是位移矢量； $\lambda$ , $\mu$ – 表征介质弹性特性的 Lame 常数； $\rho$ 是密度，$t$ 是时间。</p>
+<h2 id="peierlsboltzmann-方程">Peierls–Boltzmann 方程</h2>
 
-<p>将位移矢量 $\vec u$ 表示为标量势 $\varphi$ 和矢量势 $\vec\psi$ 的组合。</p>
+<blockquote>
+  <p>BTE: 声子像小球一样传播</p>
+</blockquote>
 
-\[\vec u=\nabla\varphi+\nabla\times\vec\psi\]
+<p>适用体系：长程有序的晶体，声子能带分离明显、模态清晰。</p>
 
-<p>将位移向量代入弹性波动方程，可得：</p>
+<p>声子可以被看作局域波包，就像一个个小球在空间中飞行，它们具有明确的群速度，在传播过程中不断被散射。</p>
 
-\[\nabla^2\varphi=\frac{1}{c_l^2}\frac{\partial^2\varphi}{\partial t^2},~
-\nabla^2\vec\psi=\frac{1}{c_t^2}\frac{\partial^2\vec\psi}{\partial t^2}\]
+<p>线性化 BTE：</p>
 
-<p>其中 $c_l=\sqrt{(\lambda+2\mu)/\rho}$ 是膨胀波的速度，$c_t=\sqrt{\mu/\rho}$ 是剪切波的速度。</p>
+\[\partial_t f_{\mathbf q s} + \mathbf v_{\mathbf q s}\cdot\nabla_{\mathbf r} f_{\mathbf q s}
+  = -\frac{f_{\mathbf q s} - f^{\text{eq}}_{\mathbf q s}}{\tau_{\mathbf q s}}\]
 
-<div class="text-center">
-  
+<ul>
+  <li>$f_{\mathbf q s}$：声子占据函数</li>
+  <li>$\mathbf v_{\mathbf q s} = \nabla_{\mathbf q}\omega_{\mathbf q s}$：群速度</li>
+  <li>$\tau_{\mathbf q s}$：弛豫时间</li>
+</ul>
 
+<p><strong>热导率表达式（RTA 形式）</strong>：</p>
 
+\[\kappa_{\alpha\beta}^{\mathrm{BTE}}
+= \frac{1}{V}\sum_{\mathbf q s}
+C_{\mathbf q s}\, v_{\mathbf q s,\alpha}\, v_{\mathbf q s,\beta}\, \tau_{\mathbf q s},\]
 
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/wire-480.webp 480w,/assets/img/blog/wire-800.webp 800w,/assets/img/blog/wire-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
-    
-    <img src="/assets/img/blog/wire.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
-  </picture>
+<h2 id="allenfeldman-方程">Allen–Feldman 方程</h2>
 
-  
-    <figcaption class="caption">图 1：在柱坐标系下圆棒的示意图</figcaption>
-  
-</figure>
+<blockquote>
+  <p>AF: 能量不再依靠“小球飞行”，而是通过一个“音叉”带动另一个“音叉”的共振来传递。</p>
+</blockquote>
 
-</div>
+<p>适用体系：玻璃和无序固体。</p>
 
-<p>在柱坐标系中，位移分量为：</p>
+<p>在玻璃中，振动模式高度局域化，几乎没有有效的群速度。能量不是靠“声子小球”传播，而是通过不同局域态之间的 <strong>隧穿/共振</strong> 逐步扩散：</p>
+<ul>
+  <li>振动态之间能量间隔极小（准简并），彼此可以耦合。</li>
+  <li>类比为“一排音叉”：频率接近时，敲响一个音叉，相邻音叉会被带动，能量逐步传递下去。</li>
+</ul>
 
-\[u_r=\frac{\partial\varphi}{\partial r}+\frac{1}{r}\frac{\partial\psi_z}{\partial\theta}-\frac{\partial\psi_\theta}{\partial z}\]
+<p><strong>数学表达</strong>：</p>
 
-\[u_\theta=\frac{1}{r}\frac{\partial\varphi}{\partial\theta}+\frac{\partial\psi_r}{\partial z}-\frac{\partial\psi_z}{\partial r}\]
+\[\kappa_{\text{AF}} = \frac{\pi}{V} \sum_{i\neq j} (n_i - n_j)\, 
+  |\langle i | \hat v | j \rangle|^2 \, \delta(\omega_i - \omega_j)\]
 
-\[u_z=\frac{\partial\varphi}{\partial z}+\frac{1}{r}\frac{\partial(\psi_\theta r)}{\partial r}-\frac{1}{r}\frac{\partial\psi_r}{\partial\theta}\]
+<ul>
+  <li>$\hat v$：热流（速度）算符</li>
+  <li>$\delta(\omega_i - \omega_j)$：能量守恒，只有准简并态才能相互耦合</li>
+</ul>
 
-<p>应力为：</p>
+<h2 id="wigner-输运方程">Wigner 输运方程</h2>
 
-\[\tau_{rr}=\lambda\left(\frac{\partial u_r}{\partial r}+\frac{u_r}{r}+\frac{1}{r}\frac{\partial u_\theta}{\partial\theta}+\frac{\partial u_z}{\partial z}\right)+2\mu\frac{\partial u_r}{\partial r}\]
+<blockquote>
+  <p>WTE: 把“小球”和“音叉”放在同一舞台上的“总导演”</p>
+</blockquote>
 
-\[\tau_{r\theta}=\mu\left(\frac{\partial u_\theta}{\partial r}-\frac{u_\theta}{r}+\frac{1}{r}\frac{\partial u_r}{\partial\theta}\right)\]
+<p>从量子力学的 <strong>一体密度矩阵</strong> 出发，经过 <strong>Wigner 变换</strong>，可以在相空间（动量 $\mathbf q$ 和实空间 $\mathbf R$）中得到一个分布函数：</p>
 
-\[\tau_{rz}=\mu\left(\frac{\partial u_r}{\partial z}+\frac{\partial u_z}{\partial r}\right)\]
+\[n_{s,s'}(\mathbf q, \mathbf R, t)\]
 
-<p>考虑半径为 $a$ 的实心无限长圆棒。 假设圆棒表面无应力，即边界条件如下：</p>
+<p><strong>对角元($s=s’$)</strong> ：(populations)，对应类粒子机制，类似 BTE。<br>
+<strong>非对角元($s\neq s’$)</strong> ：(coherences)，对应波动机制，类似 AF。</p>
 
-\[\tau_{rr}=\tau_{r\theta}=\tau_{rz}=0,~~~r=a\]
+<p><strong>WTE 的独特之处在于，它既关注声子的数量，又捕捉不同声子态之间的相干性。</strong></p>
 
-<h2 id="扭转波">扭转波</h2>
+<p>WTE 的通式为：</p>
 
-<div class="text-center">
-  
+\[\frac{\partial}{\partial t} n_{s,s'} + i(\omega_{\mathbf q s}-\omega_{\mathbf q s'})\,n_{s,s'} + \tfrac{1}{2}\{\mathbf v(\mathbf q), \nabla_{\mathbf R} n\}_{s,s'} = \left.\frac{\partial n}{\partial t}\right|_{\text{scatt}}\]
 
+<p>其中：</p>
+<ul>
+  <li>第一项：时间演化（动力学变化）</li>
+  <li>第二项：相干振荡（波动性机制）</li>
+  <li>第三项：漂移项（粒子传播）</li>
+  <li>右端：散射项（非简谐效应）</li>
+</ul>
 
+<p>在<strong>晶体极限</strong>：模态分离大（$\Delta \omega \gg 1/\tau$），相干项快速振荡并平均掉，WTE → BTE。</p>
 
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/wire-T-480.webp 480w,/assets/img/blog/wire-T-800.webp 800w,/assets/img/blog/wire-T-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
-    
-    <img src="/assets/img/blog/wire-T.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
-  </picture>
+<p>在<strong>玻璃极限</strong>：模态准简并（$\Delta \omega \ll 1/\tau$），粒子项无效，WTE → AF。</p>
 
-  
-    <figcaption class="caption">图 2：圆棒中扭转波示意图</figcaption>
-  
-</figure>
+<p>在<strong>复杂晶体/中间态</strong>：$\Delta \omega \sim 1/\tau$，粒子与波动贡献不可分割，WTE 给出</p>
 
-</div>
+\[\kappa = \kappa_P + \kappa_C\]
 
-<p>扭转波仅存在周向位移分量 $u_\theta$ ：</p>
-
-\[u_\theta=\frac{1}{\beta}BJ_1(\beta r)\exp[i(\xi z-\omega t)]\]
-
-<p>根据边界条件，得到扭转波的频率方程：</p>
-
-\[\beta a\cdot J_0(\beta a)-2J_1(\beta a)=0\]
-
-<p>色散关系：</p>
-
-\[\omega^2=c_t^2(\xi^2+\beta^2)\]
-
-<p>通过引入 $\overline\alpha=\alpha a$ $\overline\alpha=\alpha a$$\overline\beta=\beta a$，$\overline\xi=\xi a$ 和  $\Omega=\omega a/c_t$，得到无量纲色散关系：</p>
-
-\[\Omega^2=\overline\xi^2+\overline\beta^2\]
-
-<h2 id="纵波">纵波</h2>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/wire-L-480.webp 480w,/assets/img/blog/wire-L-800.webp 800w,/assets/img/blog/wire-L-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
-    
-    <img src="/assets/img/blog/wire-L.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
-  </picture>
-
-  
-    <figcaption class="caption">图 3：圆棒中纵波示意图</figcaption>
-  
-</figure>
-
-</div>
-
-<p>纵波是轴对称波，存在径向位移分量 $u_r$ 和轴向位移分量 $u_z$ ：</p>
-
-\[u_r=[-\alpha AJ_1(\alpha r)-ikCJ_1(\beta r)]\exp[i(\xi z-\omega t)]\]
-
-\[u_z=[ikAJ_0(\alpha r)+\beta CJ_0(\beta r)]\exp[i(\xi z-\omega t)]\]
-
-<p>根据边界条件，得到纵波的频率方程：</p>
-
-\[(\xi^2-\beta^2)^2\frac{(\alpha a)J_0(\alpha a)}{J_1(\alpha a)}+4k^2\alpha ^2\frac{(\beta a)J_0(\beta a)}{J_1(\beta a)}=2\alpha ^2(\xi^2+\beta ^2)\]
-
-<p>色散关系：</p>
-
-\[\omega^2=c_t^2(\xi^2+\beta^2)=c_l^2(\xi^2+\alpha^2)\]
-
-<p>通过引入 $\overline\alpha=\alpha a$ $\overline\alpha=\alpha a$$\overline\beta=\beta a$，$\overline\xi=\xi a$ 和  $\Omega=\omega a/c_t$，得到无量纲色散关系：</p>
-
-\[\Omega^2=\overline\xi^2+\overline\beta^2 = (c_l/c_t)^2(\overline\xi^2+\overline\alpha^2)\]
-
-<h2 id="弯曲波">弯曲波</h2>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/wire-F-480.webp 480w,/assets/img/blog/wire-F-800.webp 800w,/assets/img/blog/wire-F-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
-    
-    <img src="/assets/img/blog/wire-F.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
-  </picture>
-
-  
-    <figcaption class="caption">图 4：圆棒中弯曲波示意图</figcaption>
-  
-</figure>
-
-</div>
-
-<p>对于弯曲波，必须考虑所有三个位移分量：</p>
-
-\[u_r=\left[A\frac{\partial}{\partial r}J_1(\alpha r)+\frac{B}{r}J_1(\beta r)+ikCJ_2(\beta r)\right]\cos(\theta)\exp[i(\xi z-\omega t)]\]
-
-\[u_\theta=\left[-\frac{A}{r}J_1(\alpha r)+ikCJ_2(\beta r)-B\frac{\partial}{\partial r}J_1(\beta r)\right]\cos(\theta)\exp[i(\xi z-\omega t)]\]
-
-\[u_z=\left[ikAJ_1(\alpha r)-\frac{C}{r}\frac{\partial}{\partial r}[rJ_2(\beta r)]-\frac{C}{r}J_2(\beta r)\right]\cos(\theta)\exp[i(\xi z-\omega t)]\]
-
-<p>根据边界条件，得到弯曲波的频率方程：</p>
-
-\[J_1(\overline\alpha)J_1^2(\overline\beta)
-\begin{vmatrix}
-\overline\xi^2-\overline\beta^2+4-2\Psi_\alpha &amp; 2\overline\xi(\overline\beta^2-2+\Psi_\beta) &amp; 2\Psi_\beta-4 \\
-4-2\Psi_\alpha &amp; 2\overline\xi(\Psi_\beta-2) &amp; \overline\beta^2-4+2\Psi_\beta \\
-2\overline\xi(\Psi_\alpha-1) &amp; (\overline\beta^2-\overline\xi^2)(\Psi_\beta-1) &amp; \overline\xi
-\end{vmatrix}
-=0\]
-
-\[\Psi_\alpha = \overline\alpha J_0(\overline\alpha)/J_1(\overline\alpha)\]
-
-\[\Psi_\beta = \overline\beta J_0(\overline\beta)/J_1(\overline\beta)\]
-
-<p>无量纲色散关系：</p>
-
-\[\Omega^2=\overline\xi^2+\overline\beta^2 = (c_l/c_t)^2(\overline\xi^2+\overline\alpha^2)\]
-
-<h2 id="数值求解">数值求解</h2>
-
-<p>根据 $\alpha$ 是实数还是虚数，可以分为两个区域：</p>
-
-<p>区域 I：$\omega&gt;c_l\xi$， $\alpha$ 是实数</p>
-
-<p>区域 II：$\omega&lt;c_l\xi$， $\alpha$ 是虚数，用 $i\alpha’$代替 $\alpha$（其中，$\alpha’^2=-\alpha^2$）。</p>
-
-<p>针对不同的区域，采用下列寻根方法：</p>
-
-<p>第一步，在波矢值最小处通过遍历确定两组根。</p>
-
-<p>第二步，根据前两组根逐层自适应对方程进行求解。</p>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/mathmethod-480.webp 480w,/assets/img/blog/mathmethod-800.webp 800w,/assets/img/blog/mathmethod-1400.webp 1400w," type="image/webp" sizes="95vw"></source>
-    
-    <img src="/assets/img/blog/mathmethod.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
-  </picture>
-
-  
-    <figcaption class="caption">图 4：数值计算方法图示</figcaption>
-  
-</figure>
-
-</div>
+<ul>
+  <li>
+    <p><strong>粒子项（populations）</strong>：在弱带间耦合近似下可写成与 BTE 类似的形式，</p>
+
+\[\kappa_{\alpha\beta}^{P}
+\simeq \frac{1}{V}\sum_{\mathbf q s}
+C_{\mathbf q s}\, v_{\mathbf q s,\alpha}\, v_{\mathbf q s,\beta}\, \tilde{\tau}_{\mathbf q s},\]
+
+    <p>其中 $\tilde{\tau}<em>{\mathbf q s}\approx \big(2\Gamma</em>{\mathbf q s}\big)^{-1}$ 与谱线宽 $\Gamma_{\mathbf q s}$（由非简谐/同位素散射等给出）相关，体现 WTE 中对“粒子寿命”的谱学修正。</p>
+  </li>
+  <li>
+    <p><strong>相干项（coherences）</strong>：刻画准简并模态间的波动耦合/隧穿，常见的频域洛伦兹型表达可写为</p>
+
+\[\kappa_{\alpha\beta}^{C}
+\simeq \frac{1}{V}\sum_{\mathbf q}\!\!\sum_{s\neq s'}
+\frac{\big[\hbar(\omega_{\mathbf q s}+\omega_{\mathbf q s'})/2\big]\,
+      \partial_T n^{\mathrm{eq}}_{\bar{\omega}}}
+     {(\omega_{\mathbf q s}-\omega_{\mathbf q s'})^{2}
+      +(\Gamma_{\mathbf q s}+\Gamma_{\mathbf q s'})^{2}}\,
+(v_{\alpha})_{s s'}(v_{\beta})_{s' s}\,
+\big(\Gamma_{\mathbf q s}+\Gamma_{\mathbf q s'}\big),\]
+
+    <p>其中 $(v_{\alpha})_{ss’}$ 是速度算符在模态基上的<strong>非对角元</strong>（决定相干耦合强度），$\bar{\omega}$ 为两模态频率的适当平均，用 $\Gamma$ 控制“相干退相位/去相干”的宽度。
+该式体现了 <strong>带模态间频差越小、非对角速度算符越大、线宽适中时，相干导热越显著</strong> 的特点。</p>
+  </li>
+</ul>
+
+<h2 id="三者的关系与统一">三者的关系与统一</h2>
+<ul>
+  <li>
+<strong>BTE 极限</strong>：当能带分离远大于线宽时，相干效应可以忽略，WTE 自动退化为 BTE。</li>
+  <li>
+<strong>AF 极限</strong>：在无序极限下，WTE 退化为 AF 方程。</li>
+  <li>
+<strong>复杂晶体与中间情况</strong>：当能带间距和声子谱线宽度相当时，BTE 与 AF 都不足以描述，WTE 则能同时捕捉布居数和相干态的贡献，给出完整的热导率。</li>
+</ul>
+
+<p><strong>因此，WTE 不仅是数学上的统一，更是物理图像上的桥梁。</strong></p>
+
+<hr>
+
+<p>参考文献：</p>
+
+<p>[1] <em>Nat. Phys.</em> <strong>15</strong>, 809–813 (2019)</p>
+
+<p>[2] Phys. Rev. X. <strong>12</strong>, 041011 (2022)</p>
 
       </d-article>
 
@@ -1076,7 +967,7 @@
               title: 'en-US',
               section: '语言',
               handler: () => {
-                window.location.href = "/blog/2023/elastic-wave-in-wire/";
+                window.location.href = "/blog/2025/wigner/";
               },
             },{
           id: 'light-theme',
