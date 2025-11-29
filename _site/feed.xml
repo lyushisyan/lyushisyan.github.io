@@ -1,4 +1,310 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://lyushisyan.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://lyushisyan.github.io/" rel="alternate" type="text/html" /><updated>2025-11-23T16:20:25+03:00</updated><id>https://lyushisyan.github.io/feed.xml</id><title type="html">blank</title><entry><title type="html">A Unified Theoretical Framework for Phonon Heat Conduction (WTE)</title><link href="https://lyushisyan.github.io/blog/2025/wigner/" rel="alternate" type="text/html" title="A Unified Theoretical Framework for Phonon Heat Conduction (WTE)" /><published>2025-10-06T01:36:10+03:00</published><updated>2025-10-06T01:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2025/wigner</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2025/wigner/"><![CDATA[<p>In solids, the main carriers of heat are phonons. For decades, researchers have proposed two classic theories to explain phonon heat transport in different kinds of materials:</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://lyushisyan.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://lyushisyan.github.io/" rel="alternate" type="text/html" /><updated>2025-11-29T10:37:06+03:00</updated><id>https://lyushisyan.github.io/feed.xml</id><title type="html">blank</title><entry><title type="html">Callaway Two-Relaxation-Time Model</title><link href="https://lyushisyan.github.io/blog/2025/callaway/" rel="alternate" type="text/html" title="Callaway Two-Relaxation-Time Model" /><published>2025-11-17T01:36:10+03:00</published><updated>2025-11-17T01:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2025/callaway</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2025/callaway/"><![CDATA[<p>It is well known that normal processes (i.e., scattering processes that conserve the total crystal momentum) cannot by themselves produce a finite thermal conductivity. Therefore, one cannot simply add the inverse relaxation time of normal processes (N processes) to those of momentum-destroying processes. Examples of the latter include Umklapp processes, impurity scattering, and boundary scattering. Throughout this article, all such momentum-nonconserving processes will be collectively referred to as <strong>R processes</strong>.</p>
+
+<h2 id="1-phonons-distributions-and-scattering-classification">1. Phonons, distributions, and scattering classification</h2>
+
+<p>For a phonon mode $\lambda \equiv (\mathbf{q}, j)$, we have</p>
+<ul>
+  <li>frequency: $\omega_\lambda$</li>
+  <li>group velocity: $\mathbf{v}_\lambda$</li>
+  <li>wave vector: $\mathbf{k}_\lambda$</li>
+</ul>
+
+<p>The equilibrium Bose–Einstein distribution is</p>
+
+\[n_{\lambda}^{(0)}(T) =
+\frac{1}{\exp(\hbar\omega_\lambda/k_B T) - 1}.\]
+
+<p>In the presence of a temperature gradient $\nabla T$, the occupation becomes</p>
+
+\[n_\lambda = n_{\lambda}^{(0)} + n_{1,\lambda}, \qquad |n_{1,\lambda}|\ll n_{\lambda}^{(0)}.\]
+
+<p>Scattering is classified into two categories — the core of the Callaway model:</p>
+
+<ul>
+  <li><strong>N processes (normal)</strong>: conserve total momentum; relaxation time $\tau_{N,\lambda}$</li>
+  <li><strong>R processes (resistive)</strong>: destroy total momentum (Umklapp, impurity, boundary, etc.); relaxation time $\tau_{R,\lambda}$</li>
+</ul>
+
+<blockquote>
+  <p>Key point: <strong>N processes do not generate thermal resistance</strong>.<br />
+They merely establish a “drifting” equilibrium state of the phonon gas, while the actual dissipation of heat flux is governed by R processes.</p>
+</blockquote>
+
+<h2 id="2-bte-and-the-callaway-model">2. BTE and the Callaway model</h2>
+
+<p>In steady state, driven only by a temperature gradient, the linearized BTE can be written as</p>
+
+\[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T}
+=
+\left(\frac{\partial n_\lambda}{\partial t}\right)_{\text{coll}}.
+\tag{1}\]
+
+<p>Callaway splits the collision term into two parts:</p>
+
+\[\left(\frac{\partial n_\lambda}{\partial t}\right)_{\text{coll}}
+=
+-\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}}
+-\frac{n_\lambda - n_{\lambda}^{(0)}}{\tau_{R,\lambda}}.
+\tag{2}\]
+
+<ul>
+  <li>The first term: N processes drive the system toward a <strong>displaced equilibrium state</strong> $n_{\lambda}^{(d)}$</li>
+  <li>The second term: R processes push the system back to the <strong>ordinary equilibrium</strong> $n_{\lambda}^{(0)}$</li>
+</ul>
+
+<p>The “displaced Planck distribution” is</p>
+
+\[n_{\lambda}^{(d)}
+=
+\left[
+\exp\left(
+\frac{\hbar\omega_\lambda - \boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T}
+\right)
+-1
+\right]^{-1},
+\tag{3}\]
+
+<p>where $\boldsymbol{\Lambda}$ is a small vector describing the collective drift of the phonon system, aligned with $\nabla T$.</p>
+
+<h2 id="3-first-order-expansion-of-the-displaced-distribution-from-energy-derivative-to-temperature-derivative">3. First-order expansion of the displaced distribution: from energy derivative to temperature derivative</h2>
+
+<p>Introduce the dimensionless variable</p>
+
+\[x_\lambda = \frac{\hbar\omega_\lambda}{k_B T}.\]
+
+<p>Expanding Eq. (3) to first order in $\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda$, we obtain</p>
+
+\[n_{\lambda}^{(d)}
+\simeq
+n_{\lambda}^{(0)}
++
+\frac{\partial n_{\lambda}^{(0)}}{\partial(\hbar\omega_\lambda)}\,
+(\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda).
+\tag{4}\]
+
+<p>Convert the derivative with respect to energy into a temperature derivative:</p>
+
+\[n_{\lambda}^{(d)}
+\simeq
+n_{\lambda}^{(0)}
+-
+\frac{\partial n_{\lambda}^{(0)}}{\partial T}\,
+\frac{\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T}.
+\tag{5}\]
+
+<h2 id="4-linearized-bte">4. Linearized BTE</h2>
+
+<p>Insert</p>
+
+\[n_\lambda = n_{\lambda}^{(0)} + n_{1,\lambda}\]
+
+<p>and Eq. (5) into Eqs. (1) and (2), keeping only first-order terms.<br />
+Left-hand side:</p>
+
+\[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T}.\]
+
+<p>Right-hand side:</p>
+
+\[-\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}}
+-\frac{n_\lambda - n_{\lambda}^{(0)}}{\tau_{R,\lambda}}
+=
+-\left(\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}\right)n_{1,\lambda}
++
+\frac{n_{\lambda}^{(d)}-n_{\lambda}^{(0)}}{\tau_{N,\lambda}}.\]
+
+<p>Thus,</p>
+
+\[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T}
+=
+-\left(\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}\right)n_{1,\lambda}
++
+\frac{n_{\lambda}^{(d)}-n_{\lambda}^{(0)}}{\tau_{N,\lambda}}.
+\tag{6}\]
+
+<p>Define the combined relaxation time (“N+R combined”)</p>
+
+\[\frac{1}{\tau_{c,\lambda}}
+=
+\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}.
+\tag{7}\]
+
+<p>Solve for $n_{1,\lambda}$:</p>
+
+\[n_{1,\lambda}
+=
+\tau_{c,\lambda}\,\mathbf{v}_\lambda\cdot\nabla T\,
+\frac{\partial n_{\lambda}^{(0)}}{\partial T}
++
+\frac{\tau_{c,\lambda}}{\tau_{N,\lambda}}\left(n_{\lambda}^{(d)}-n_{\lambda}^{(0)}\right).
+\tag{8}\]
+
+<p>Insert Eq. (5):</p>
+
+\[n_{1,\lambda}
+=
+\tau_{c,\lambda}\,\frac{\partial n_{\lambda}^{(0)}}{\partial T}
+\left[
+\mathbf{v}_\lambda\cdot\nabla T
+-
+\frac{\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T}
+\frac{1}{\tau_{N,\lambda}}
+\right].
+\tag{9}\]
+
+<blockquote>
+  <p>Interpretation:</p>
+  <ul>
+    <li>First term: <strong>RTA-like</strong>, except the relaxation time becomes $\tau_c$.</li>
+    <li>Second term: the correction involving “$\boldsymbol{\Lambda}$”, originating entirely from <strong>momentum conservation of N processes</strong>.</li>
+  </ul>
+</blockquote>
+
+<h2 id="5-determining-the-drift-parameter-from-momentum-conservation-of-n-processes">5. Determining the drift parameter from momentum conservation of N processes</h2>
+
+<p>Physical condition: <strong>normal processes do not change the total crystal momentum</strong>, hence</p>
+
+\[\sum_\lambda \hbar \mathbf{k}_\lambda
+\left(\frac{\partial n_\lambda}{\partial t}\right)_{N}
+=
+-\sum_\lambda \hbar \mathbf{k}_\lambda
+\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}}
+=0.
+\tag{10}\]
+
+<p>When the temperature gradient is one-dimensional, $\boldsymbol{\Lambda}$ is parallel to $\nabla T$, so we write</p>
+
+\[\boldsymbol{\Lambda}
+= -\beta\,\nabla T,
+\tag{11}\]
+
+<p>where $\beta$ is an “effective time–like parameter”.</p>
+
+<p>Substituting Eqs. (9) and (11) into Eq. (10), and using</p>
+
+\[C_\lambda = \hbar\omega_\lambda\,\frac{\partial n_{\lambda}^{(0)}}{\partial T}\]
+
+<p>(the modal heat capacity), one can obtain $\beta$ in the discrete-sum form</p>
+
+\[\beta
+=
+\frac{
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2\,\tau_{c,\lambda}^2/\tau_{N,\lambda}
+}{
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2
+\left(1-\tau_{c,\lambda}/\tau_{N,\lambda}\right)
+}.
+\tag{12}\]
+
+<blockquote>
+  <p>This is the “locking mechanism” of the Callaway model, linking the drift strength $\beta$ to the modal relaxation times $\tau_N$ and $\tau_R$.</p>
+</blockquote>
+
+<h2 id="6-total-thermal-conductivity">6. Total thermal conductivity</h2>
+
+<p>The heat flux along the $x$ direction is</p>
+
+\[J_x
+=
+\frac{1}{V}\sum_\lambda
+\hbar\omega_\lambda v_{\lambda x}\,n_{1,\lambda}.\]
+
+<p>Together with Fourier’s law,</p>
+
+\[J_x = -\kappa\,\frac{\partial T}{\partial x},\]
+
+<p>Eqs. (9) and (11) lead to the decomposition</p>
+
+\[\kappa = \kappa_1 + \kappa_2.\]
+
+<h3 id="61-first-term-rta-with-the-combined-relaxation-time-tau_c">6.1 First term: RTA with the combined relaxation time $\tau_c$</h3>
+
+<p>This term resembles the conventional RTA expression, except that $\tau$ is replaced with $\tau_c$:</p>
+
+\[\kappa_1
+=
+\frac{1}{V}
+\sum_\lambda
+C_\lambda v_{\lambda x}^2 \tau_{c,\lambda}.
+\tag{13}\]
+
+<p>In the absence of N processes ($\tau_{N,\lambda}\to\infty$),<br />
+$\tau_{c,\lambda} \to \tau_{R,\lambda}$, and Eq. (13) reduces to the familiar RTA formula.</p>
+
+<h3 id="62-second-term-callaway-correction-kappa_2">6.2 Second term: Callaway correction $\kappa_2$</h3>
+
+<p>The contribution induced by normal processes is</p>
+
+\[\kappa_2
+=
+\frac{1}{V}
+\frac{
+\left[
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2\,\tau_{c,\lambda}^2/\tau_{N,\lambda}
+\right]^2
+}{
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2
+\left(1-\tau_{c,\lambda}/\tau_{N,\lambda}\right)
+}.
+\tag{14}\]
+
+<blockquote>
+  <p>Intuitive picture:</p>
+  <ul>
+    <li>Numerator: roughly the squared sum of all <strong>drift-type contributions</strong> enabled by N processes.</li>
+    <li>Denominator: the total strength of R processes that pull the distribution back from this drift.</li>
+    <li>When R is strong and N weak, the correction collapses, $\kappa_2\to 0$.</li>
+    <li>When N dominates and R is weak, $\kappa_2$ increases significantly, enhancing the total conductivity — reminiscent of <strong>phonon hydrodynamic behavior</strong>.</li>
+  </ul>
+</blockquote>
+
+<h2 id="7-summary">7. Summary</h2>
+
+<ul>
+  <li>
+    <p><strong>Starting point (BTE)</strong>:<br />
+A temperature gradient drives phonon occupations out of equilibrium; the collision term pulls the system toward some “equilibrium-like” state.</p>
+  </li>
+  <li><strong>Callaway’s key idea</strong>:<br />
+Split the notion of equilibrium into two levels:
+    <ul>
+      <li>N processes → create a drifted equilibrium $n_{\lambda}^{(d)}$;</li>
+      <li>R processes → provide actual dissipation, restoring the true equilibrium $n_{\lambda}^{(0)}$.</li>
+    </ul>
+  </li>
+  <li><strong>Mathematically</strong>:
+    <ul>
+      <li>Define the displaced distribution and perform a first-order expansion;</li>
+      <li>Introduce the combined relaxation time $\tau_c^{-1} = \tau_N^{-1} + \tau_R^{-1}$;</li>
+      <li>Use the momentum-conservation condition for N processes to determine the drift strength $\beta$;</li>
+      <li>Obtain $\kappa = \kappa_1 + \kappa_2$, where
+        <ul>
+          <li>$\kappa_1$: RTA-like term using $\tau_c$;</li>
+          <li>$\kappa_2$: additional contribution from N processes.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Limiting cases</strong>:
+    <ul>
+      <li>Weak N processes: $\tau_{N,\lambda} \to \infty$, $\kappa_2 \to 0$ → reduces to ordinary RTA;</li>
+      <li>Strong N and weak R processes: $\kappa_2$ becomes large → high thermal conductivity characteristic of <strong>hydrodynamic phonon transport</strong>.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p>References:</p>
+
+<p>[1] Phys. Rev. <em>113</em>, 1046–1051 (1959).</p>
+
+<p>[2] Phys. Rev. B <em>88</em>, 144302 (2013).</p>
+
+<p>[3] Phys. Rev. B <em>90</em>, 035203 (2014).</p>]]></content><author><name></name></author><category term="Physics" /><category term="Heat-conduction" /><summary type="html"><![CDATA[It is well known that normal processes (i.e., scattering processes that conserve the total crystal momentum) cannot by themselves produce a finite thermal conductivity. Therefore, one cannot simply add the inverse relaxation time of normal processes (N processes) to those of momentum-destroying processes. Examples of the latter include Umklapp processes, impurity scattering, and boundary scattering. Throughout this article, all such momentum-nonconserving processes will be collectively referred to as R processes.]]></summary></entry><entry><title type="html">A Unified Theoretical Framework for Phonon Heat Conduction (WTE)</title><link href="https://lyushisyan.github.io/blog/2025/wigner/" rel="alternate" type="text/html" title="A Unified Theoretical Framework for Phonon Heat Conduction (WTE)" /><published>2025-10-06T01:36:10+03:00</published><updated>2025-10-06T01:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2025/wigner</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2025/wigner/"><![CDATA[<p>In solids, the main carriers of heat are phonons. For decades, researchers have proposed two classic theories to explain phonon heat transport in different kinds of materials:</p>
 
 <ul>
   <li><strong>In crystals</strong>, phonons behave like little particles that fly and scatter, and heat conduction is described by the <strong>Peierls–Boltzmann Equation (BTE)</strong>.</li>
@@ -2122,168 +2428,4 @@ Each time step consists of three substeps:</p>
 
 <p>The tetrahedron method only requires the distribution of $\omega(\boldsymbol k_i)$ on a coarse grid and does not require frequency gradients (group velocity).</p>
 
-<p>However, at band crossings or degenerate points, linear interpolation introduces errors.</p>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[One of the most critical quantities in lattice dynamics studies is the density of states (DOS), defined as the number of normal modes within the frequency range $\omega$ and $\omega + d\omega$.]]></summary></entry><entry><title type="html">Phonon Dispersion Calculation of Silicon Using QE</title><link href="https://lyushisyan.github.io/blog/2024/qe-disp-si/" rel="alternate" type="text/html" title="Phonon Dispersion Calculation of Silicon Using QE" /><published>2024-04-06T02:36:10+03:00</published><updated>2024-04-06T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/qe-disp-si</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/qe-disp-si/"><![CDATA[<p>Phonon dispersion in Quantum Espresso is calculated using the <code class="language-plaintext highlighter-rouge">ph.x</code> program, based on Density Functional Perturbation Theory (DFPT). This article demonstrates the calculation process using monocrystalline silicon (Si) as an example.</p>
-
-<h2 id="step-1-pwx">Step 1 pw.x</h2>
-
-<p>Perform SCF calculation using <code class="language-plaintext highlighter-rouge">pw.x</code>.</p>
-
-<ul>
-  <li><strong>SCF Input File (<code class="language-plaintext highlighter-rouge">pw.scf.Si.in</code>)</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;control
-  calculation <span class="o">=</span> <span class="s1">'scf'</span>
-  restart_mode <span class="o">=</span> <span class="s1">'from_scratch'</span>
-  pseudo_dir <span class="o">=</span> <span class="s1">'./pseudos/'</span>
-  outdir <span class="o">=</span> <span class="s1">'./out/'</span>
-  prefix <span class="o">=</span> <span class="s1">'Si'</span>
-/
-&amp;system
-  ibrav <span class="o">=</span> 2
-  celldm<span class="o">(</span>1<span class="o">)</span> <span class="o">=</span> 10.20
-  nat <span class="o">=</span> 2
-  ntyp <span class="o">=</span> 1
-  ecutwfc <span class="o">=</span> 16
-/
-&amp;electrons
-  mixing_mode <span class="o">=</span> <span class="s1">'plain'</span>
-  mixing_beta <span class="o">=</span> 0.7
-  conv_thr <span class="o">=</span> 1.0e-8
-/
-ATOMIC_SPECIES
-  Si 28.0855 Si.vbc.UPF
-ATOMIC_POSITIONS
-  Si 0.00 0.00 0.00
-  Si 0.25 0.25 0.25
-K_POINTS <span class="o">{</span>automatic<span class="o">}</span>
-  8 8 8 0 0 0
-</code></pre></div></div>
-
-<ul>
-  <li><strong>Execute SCF Calculation</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 pw.x <span class="nt">-i</span> pw.scf.Si.in <span class="o">&gt;</span> pw.scf.Si.out
-</code></pre></div></div>
-
-<h2 id="step-2-phx">Step 2 ph.x</h2>
-
-<p>Compute dynamical matrices on a uniform <strong>q-point</strong> grid using <code class="language-plaintext highlighter-rouge">ph.x</code>.</p>
-
-<ul>
-  <li><strong>Input File (<code class="language-plaintext highlighter-rouge">ph.Si.in</code>)</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;INPUTPH
-  tr2_ph <span class="o">=</span> 1d-14
-  amass<span class="o">(</span>1<span class="o">)</span> <span class="o">=</span> 28.0855
-  ldisp <span class="o">=</span> .true.
-  nq1 <span class="o">=</span> 4
-  nq2 <span class="o">=</span> 4
-  nq3 <span class="o">=</span> 4
-  outdir <span class="o">=</span> <span class="s1">'./out/'</span>
-  prefix <span class="o">=</span> <span class="s1">'Si'</span>
-  fildyn <span class="o">=</span> <span class="s1">'Si.dyn'</span>
-/
-</code></pre></div></div>
-
-<ul>
-  <li><strong>Execute Calculation</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 ph.x <span class="nt">-i</span> ph.Si.in <span class="o">&gt;</span> ph.Si.out
-</code></pre></div></div>
-
-<ul>
-  <li><strong>Output Files</strong></li>
-</ul>
-
-<p><strong><code class="language-plaintext highlighter-rouge">Si.dyn0</code></strong> contains the coordinates of the q-point grid.<br />
-<strong><code class="language-plaintext highlighter-rouge">Si.dyn1-N</code></strong> contains force constants ( C(q_n) ), where ( n = 1,…N ), with ( N ) being the number of irreducible q-points in the Brillouin zone.</p>
-
-<h2 id="step-3-q2rx">Step 3 q2r.x</h2>
-
-<p>Use <code class="language-plaintext highlighter-rouge">q2r.x</code> to perform an inverse Fourier transform of the force constants in q-space to obtain real-space force constants.</p>
-
-<ul>
-  <li><strong>Input File (<code class="language-plaintext highlighter-rouge">q2r.Si.in</code>)</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;INPUT
-  fildyn <span class="o">=</span> <span class="s1">'Si.dyn'</span>
-  zasr <span class="o">=</span> <span class="s1">'simple'</span> 
-  flfrc <span class="o">=</span> <span class="s1">'Si444.fc'</span>
-/
-</code></pre></div></div>
-
-<ul>
-  <li><strong>Execute Calculation</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 q2r.x <span class="nt">-i</span> q2r.Si.in <span class="o">&gt;</span> q2r.Si.out
-</code></pre></div></div>
-
-<ul>
-  <li><strong>Output File</strong></li>
-</ul>
-
-<p><strong><code class="language-plaintext highlighter-rouge">Si444.fc</code></strong> contains real-space force constants for a <strong>4×4×4</strong> supercell.</p>
-
-<h2 id="step-4-matdynx">Step 4 matdyn.x</h2>
-
-<p>Use <code class="language-plaintext highlighter-rouge">matdyn.x</code> to perform a Fourier transform on real-space components to obtain the dynamical matrix and eigenvalues (frequencies) at arbitrary q-points.</p>
-
-<ul>
-  <li><strong>Input File (<code class="language-plaintext highlighter-rouge">matdyn.Si.in</code>)</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;INPUT
-  asr <span class="o">=</span> <span class="s1">'simple'</span>  
-  flfrc <span class="o">=</span> <span class="s1">'Si444.fc'</span>
-  flfrq <span class="o">=</span> <span class="s1">'Si.freq'</span>  
-  flvec <span class="o">=</span> <span class="s1">'Si.modes'</span> 
-  q_in_band_form <span class="o">=</span> .true.
-/
-6
-0.000 0.000 0.000   50
-0.500 0.000 0.500   50
-0.625 0.250 0.625   1
-0.375 0.375 0.750   50
-0.000 0.000 0.000   50
-0.500 0.500 0.500    1
-</code></pre></div></div>
-
-<ul>
-  <li><strong>Execute Calculation</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 matdyn.x <span class="nt">-i</span> matdyn.Si.in <span class="o">&gt;</span> matdyn.Si.out
-</code></pre></div></div>
-
-<p>Then, use the resulting <code class="language-plaintext highlighter-rouge">Si.freq.gp</code> file to generate plots.</p>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/Si-bulk-qe-480.webp 480w,/assets/img/blog/Si-bulk-qe-800.webp 800w,/assets/img/blog/Si-bulk-qe-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/Si-bulk-qe.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">Figure: Phonon Dispersion in Silicon</figcaption>
-  
-</figure>
-
-</div>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[Phonon dispersion in Quantum Espresso is calculated using the ph.x program, based on Density Functional Perturbation Theory (DFPT). This article demonstrates the calculation process using monocrystalline silicon (Si) as an example.]]></summary></entry></feed>
+<p>However, at band crossings or degenerate points, linear interpolation introduces errors.</p>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[One of the most critical quantities in lattice dynamics studies is the density of states (DOS), defined as the number of normal modes within the frequency range $\omega$ and $\omega + d\omega$.]]></summary></entry></feed>

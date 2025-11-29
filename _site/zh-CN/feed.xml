@@ -1,4 +1,308 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://lyushisyan.github.io/zh-CN/feed.xml" rel="self" type="application/atom+xml" /><link href="https://lyushisyan.github.io/zh-CN/" rel="alternate" type="text/html" /><updated>2025-11-23T16:20:26+03:00</updated><id>https://lyushisyan.github.io/feed.xml</id><title type="html">blank</title><entry><title type="html">Wigner 输运方程 (WTE) 统一声子热传导的理论框架</title><link href="https://lyushisyan.github.io/zh-CN/blog/2025/wigner/" rel="alternate" type="text/html" title="Wigner 输运方程 (WTE) 统一声子热传导的理论框架" /><published>2025-10-06T01:36:10+03:00</published><updated>2025-10-06T01:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2025/wigner</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2025/wigner/"><![CDATA[<p>在固体中，热量的主要载体是声子。几十年来，研究者提出了两种经典理论来解释不同材料中的声子热输运：</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://lyushisyan.github.io/zh-CN/feed.xml" rel="self" type="application/atom+xml" /><link href="https://lyushisyan.github.io/zh-CN/" rel="alternate" type="text/html" /><updated>2025-11-29T10:37:08+03:00</updated><id>https://lyushisyan.github.io/feed.xml</id><title type="html">blank</title><entry><title type="html">Callaway 双弛豫时间模型</title><link href="https://lyushisyan.github.io/zh-CN/blog/2025/callaway/" rel="alternate" type="text/html" title="Callaway 双弛豫时间模型" /><published>2025-11-17T01:36:10+03:00</published><updated>2025-11-17T01:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2025/callaway</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2025/callaway/"><![CDATA[<p>众所周知，正常过程（即保持总晶格动量守恒的散射过程）本身无法导致有限的热导率。因此，不能简单地将正常过程（N 过程）的倒数弛豫时间与那些不守恒晶体力学动量的过程相加。后一类过程的例子包括 Umklapp 过程、杂质散射和边界散射（本文将把所有这类破坏动量的过程统称为 <strong>R 过程</strong>）。</p>
+
+<h2 id="1-声子分布和散射分类">1. 声子、分布和散射分类</h2>
+
+<p>考虑声子模态 $\lambda \equiv (\mathbf{q}, j)$，有：</p>
+<ul>
+  <li>频率：$\omega_\lambda$</li>
+  <li>群速度：$\mathbf{v}_\lambda$</li>
+  <li>波矢：$\mathbf{k}_\lambda$</li>
+</ul>
+
+<p>平衡 Bose–Einstein 分布记为 $n_{\lambda}^{(0)}$：</p>
+
+\[n_{\lambda}^{(0)}(T) =
+\frac{1}{\exp\!\left(\hbar\omega_\lambda/k_B T\right) - 1}.\]
+
+<p>在温度梯度 $\nabla T$ 存在时，实际占据写成</p>
+
+\[n_\lambda = n_{\lambda}^{(0)} + n_{1,\lambda}, \qquad |n_{1,\lambda}|\ll n_{\lambda}^{(0)}.\]
+
+<p>散射分两大类（Callaway 核心思想）：</p>
+
+<ul>
+  <li><strong>N 过程 (Normal)</strong>：守总动量，弛豫时间 $\tau_{N,\lambda}$</li>
+  <li><strong>R 过程 (Resistive)</strong>：破坏总动量（Umklapp + 杂质 + 边界等），弛豫时间 $\tau_{R,\lambda}$</li>
+</ul>
+
+<blockquote>
+  <p>关键：<strong>N 过程本身不会产生有限热阻</strong>，它只是让声子气体形成一种“整体漂移”的平衡态，而真正耗散热流的是 R 过程。</p>
+</blockquote>
+
+<h2 id="2-bte-与-callaway-模型">2. BTE 与 Callaway 模型</h2>
+
+<p>稳态、只有温度梯度驱动时，线性化的 BTE 可以写为：</p>
+
+\[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T}
+=
+\left(\frac{\partial n_\lambda}{\partial t}\right)_{\\text{coll}}.
+\tag{1}\]
+
+<p>Callaway 把碰撞项拆成两部分：</p>
+
+\[\left(\frac{\partial n_\lambda}{\partial t}\right)_{\\text{coll}}
+=
+-\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}}
+-\frac{n_\lambda - n_{\lambda}^{(0)}}{\tau_{R,\lambda}}.
+\tag{2}\]
+
+<ul>
+  <li>第一项：N 过程把系统推向 <strong>位移平衡态</strong> $n_{\lambda}^{(d)}$</li>
+  <li>第二项：R 过程把系统推回 <strong>普通平衡态</strong> $n_{\lambda}^{(0)}$</li>
+</ul>
+
+<p>所谓“位移普朗克分布”（displaced Planck）为：</p>
+
+\[n_{\lambda}^{(d)}
+=
+\left[
+\exp\left(
+\frac{\hbar\omega_\lambda - \boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T}
+\right)
+-1
+\right]^{-1},
+\tag{3}\]
+
+<p>其中 $\boldsymbol{\Lambda}$ 是一个小矢量，表示声子系统的“整体漂移”，方向与 $\nabla T$ 一致。</p>
+
+<h2 id="3-位移分布的一阶展开从能量导数到温度导数">3. 位移分布的一阶展开：从能量导数到温度导数</h2>
+
+<p>引入无量纲变量：</p>
+
+\[x_\lambda = \frac{\hbar\omega_\lambda}{k_B T}.\]
+
+<p>对式 (3) 按 $\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda$ 做一阶泰勒展开：</p>
+
+\[n_{\lambda}^{(d)}
+\simeq
+n_{\lambda}^{(0)}
++
+\frac{\partial n_{\lambda}^{(0)}}{\partial(\hbar\omega_\lambda)}\,
+(\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda).
+\tag{4}\]
+
+<p>把能量导数换成温度导数：</p>
+
+\[n_{\lambda}^{(d)}
+\simeq
+n_{\lambda}^{(0)}
+-
+\frac{\partial n_{\lambda}^{(0)}}{\partial T}\,
+\frac{\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T}.
+\tag{5}\]
+
+<h2 id="4-线性化-bte">4. 线性化 BTE</h2>
+
+<p>把</p>
+
+\[n_\lambda = n_{\lambda}^{(0)} + n_{1,\lambda}\]
+
+<p>和式 (5) 代入 BTE (1)、碰撞项 (2)，只保留一阶小量：
+左边：</p>
+
+\[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T}.\]
+
+<p>右边：</p>
+
+\[-\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}}
+-\frac{n_\lambda - n_{\lambda}^{(0)}}{\tau_{R,\lambda}}
+=
+-\left(\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}\right)n_{1,\lambda}
++
+\frac{n_{\lambda}^{(d)}-n_{\lambda}^{(0)}}{\tau_{N,\lambda}}.\]
+
+<p>于是得到</p>
+
+\[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T}
+=
+-\left(\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}\right)n_{1,\lambda}
++
+\frac{n_{\lambda}^{(d)}-n_{\lambda}^{(0)}}{\tau_{N,\lambda}}.
+\tag{6}\]
+
+<p>定义组合弛豫时间（“合并 N+R”）：</p>
+
+\[\frac{1}{\tau_{c,\lambda}}
+=
+\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}.
+\tag{7}\]
+
+<p>从而解出 $n_{1,\lambda}$：</p>
+
+\[n_{1,\lambda}
+=
+\tau_{c,\lambda}\,\mathbf{v}_\lambda\cdot\nabla T\,
+\frac{\partial n_{\lambda}^{(0)}}{\partial T}
++
+\frac{\tau_{c,\lambda}}{\tau_{N,\lambda}}\left(n_{\lambda}^{(d)}-n_{\lambda}^{(0)}\right).
+\tag{8}\]
+
+<p>再把 (5) 代入：</p>
+
+\[n_{1,\lambda}
+=
+\tau_{c,\lambda}\,\frac{\partial n_{\lambda}^{(0)}}{\partial T}
+\left[
+\mathbf{v}_\lambda\cdot\nabla T
+-
+\frac{\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T}
+\frac{1}{\tau_{N,\lambda}}
+\right].
+\tag{9}\]
+
+<blockquote>
+  <p>解释一下：</p>
+  <ul>
+    <li>第一项：<strong>RTA 形式</strong>，只不过弛豫时间换成了合成的 $\tau_c$；</li>
+    <li>第二项：多出来的“$\boldsymbol{\Lambda}$”修正，完全来自 <strong>N 过程守动量</strong> 的约束。</li>
+  </ul>
+</blockquote>
+
+<h2 id="5-用-n-过程总动量守恒来确定漂移参数">5. 用 N 过程“总动量守恒”来确定漂移参数</h2>
+
+<p>物理条件：<strong>正常过程不改变晶格总动量</strong>，所以</p>
+
+\[\sum_\lambda \hbar \mathbf{k}_\lambda
+\left(\frac{\partial n_\lambda}{\partial t}\right)_{N}
+=
+-\sum_\lambda \hbar \mathbf{k}_\lambda
+\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}}
+=0.
+\tag{10}\]
+
+<p>在一维温度梯度条件下，$\boldsymbol{\Lambda}$ 与 $\nabla T$ 共线，我们写成</p>
+
+\[\boldsymbol{\Lambda}
+= -\beta\,\nabla T,
+\tag{11}\]
+
+<p>其中 $\beta$ 是一个“有效时间”参数（标量）。</p>
+
+<p>把 (9) 和 (11) 代入 (10)，并利用</p>
+
+\[C_\lambda = \hbar\omega_\lambda\,\frac{\partial n_{\lambda}^{(0)}}{\partial T}\]
+
+<p>是模态比热，经过代数运算，可以得到 $\beta$ 的离散求和形式：</p>
+
+\[\beta
+=
+\frac{
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2\,\tau_{c,\lambda}^2/\tau_{N,\lambda}
+}{
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2
+\left(1-\tau_{c,\lambda}/\tau_{N,\lambda}\right)
+}.
+\tag{12}\]
+
+<blockquote>
+  <p>这一条是整个 Callaway 模型的“关键锁”，把漂移强度 $\beta$ 和各模态的 $\tau_N, \tau_R$ 联系起来。</p>
+</blockquote>
+
+<h2 id="6-总热导率">6. 总热导率</h2>
+
+<p>热流沿 $x$ 方向：</p>
+
+\[J_x
+=
+\frac{1}{V}\sum_\lambda
+\hbar\omega_\lambda v_{\lambda x}\,n_{1,\lambda}.\]
+
+<p>满足傅里叶定律：</p>
+
+\[J_x = -\kappa\,\frac{\partial T}{\partial x}.\]
+
+<p>把 (9) 和 (11) 代入，整理后可以把热导率拆成两部分：</p>
+
+\[\kappa = \kappa_1 + \kappa_2.\]
+
+<h3 id="61-第一项rta--合成弛豫时间-tau_c">6.1 第一项：RTA + 合成弛豫时间 $\tau_c$</h3>
+
+<p>这一项就是“常规 RTA 形式”，只不过 $\tau \to \tau_c$：</p>
+
+\[\kappa_1
+=
+\frac{1}{V}
+\sum_\lambda
+C_\lambda v_{\lambda x}^2 \tau_{c,\lambda}.
+\tag{13}\]
+
+<p>当没有 N 过程时（$\tau_{N,\lambda}\to\infty$），$\tau_{c,\lambda} \to \tau_{R,\lambda}$，这个式子就退化成我们熟悉的 RTA 热导率。</p>
+
+<h3 id="62-第二项callaway-修正项-kappa_2">6.2 第二项：Callaway 修正项 $\kappa_2$</h3>
+
+<p>正常过程导致的修正可以写成：</p>
+
+\[\kappa_2
+=
+\frac{1}{V}
+\frac{
+\left[
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2\,\tau_{c,\lambda}^2/\tau_{N,\lambda}
+\right]^2
+}{
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2
+\left(1-\tau_{c,\lambda}/\tau_{N,\lambda}\right)
+}.
+\tag{14}\]
+
+<blockquote>
+  <p>直观理解：</p>
+  <ul>
+    <li>分子：类似“所有模态上 N 过程参与的 <strong>漂移贡献</strong> 的加权和”的平方；</li>
+    <li>分母：类似“R 过程把这种漂移拉回来的总强度”；</li>
+    <li>当 R 很强、N 很弱时，这个修正就被压扁，$\kappa_2\to 0$；</li>
+    <li>当 N 占主导、R 很弱时，$\kappa_2$ 会显著抬高，总热导率大幅增强。</li>
+  </ul>
+</blockquote>
+
+<h2 id="7-小结">7. 小结</h2>
+
+<ul>
+  <li>
+    <p><strong>BTE 出发点</strong>：<br />
+温度梯度让声子分布偏离平衡，碰撞项把系统往某个“平衡态”拉回去。</p>
+  </li>
+  <li><strong>Callaway 的巧妙之处</strong>：<br />
+把“平衡态”分成两个层次：
+    <ul>
+      <li>N 过程 → 建立一个带漂移的平衡态 $n_{\lambda}^{(d)}$；</li>
+      <li>R 过程 → 真正负责耗散、把系统拉回真正的 $n_{\lambda}^{(0)}$。</li>
+    </ul>
+  </li>
+  <li><strong>数学上</strong>：
+    <ul>
+      <li>定义位移分布 $n_{\lambda}^{(d)}$，做一阶展开；</li>
+      <li>引入组合弛豫时间 $\tau_c^{-1} = \tau_N^{-1} + \tau_R^{-1}$；</li>
+      <li>用 N 过程“总动量守恒”条件解出漂移强度 $\beta$；</li>
+      <li>最后得到 $\kappa = \kappa_1 + \kappa_2$，其中
+        <ul>
+          <li>$\kappa_1$：RTA 形式（用 $\tau_c$）</li>
+          <li>$\kappa_2$：N 过程的额外修正项。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>极限情况</strong>：
+    <ul>
+      <li>N 很弱：$\tau_{N,\lambda} \to \infty$，$\kappa_2 \to 0$，退化为普通 RTA；</li>
+      <li>N 很强、R 较弱：$\kappa_2$ 明显变大，出现类似 <strong>声子水动力学</strong> 的高热导率行为。</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h4 id="参考文献">参考文献：</h4>
+
+<p>[1] Phys. Rev. <em>113</em>, 1046–1051 (1959).</p>
+
+<p>[2] Phys. Rev. B <em>88</em>, 144302 (2013).</p>
+
+<p>[3] Phys. Rev. B <em>90</em>, 035203 (2014).</p>]]></content><author><name></name></author><category term="Physics" /><category term="Heat-conduction" /><summary type="html"><![CDATA[众所周知，正常过程（即保持总晶格动量守恒的散射过程）本身无法导致有限的热导率。因此，不能简单地将正常过程（N 过程）的倒数弛豫时间与那些不守恒晶体力学动量的过程相加。后一类过程的例子包括 Umklapp 过程、杂质散射和边界散射（本文将把所有这类破坏动量的过程统称为 R 过程）。]]></summary></entry><entry><title type="html">Wigner 输运方程 (WTE) 统一声子热传导的理论框架</title><link href="https://lyushisyan.github.io/zh-CN/blog/2025/wigner/" rel="alternate" type="text/html" title="Wigner 输运方程 (WTE) 统一声子热传导的理论框架" /><published>2025-10-06T01:36:10+03:00</published><updated>2025-10-06T01:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2025/wigner</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2025/wigner/"><![CDATA[<p>在固体中，热量的主要载体是声子。几十年来，研究者提出了两种经典理论来解释不同材料中的声子热输运：</p>
 
 <ul>
   <li><strong>在晶体中</strong>，声子像小球一样飞行和散射，热传导由 <strong>Peierls–Boltzmann 方程 (BTE)</strong> 描述。</li>
@@ -2039,169 +2343,4 @@ Gamma                          <span class="c"># 选择 Gamma 点中心网格</s
 
 <p>四面体法只需要粗网格下的 $\omega(\boldsymbol k_i)$ 的分布，不需要频率梯度（群速度）。</p>
 
-<p>但是在带交叉处，即对简并性上的点进行采样，线性插值会导致误差增加。</p>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[晶格动力学研究中最重要的量之一是态密度 (DOS)，定义为在频率 $\omega$ 和 $\omega+d\omega$ 之间的简正模态的数量。]]></summary></entry><entry><title type="html">QE 计算硅的声子色散关系</title><link href="https://lyushisyan.github.io/zh-CN/blog/2024/qe-disp-si/" rel="alternate" type="text/html" title="QE 计算硅的声子色散关系" /><published>2024-04-06T02:36:10+03:00</published><updated>2024-04-06T02:36:10+03:00</updated><id>https://lyushisyan.github.io/blog/2024/qe-disp-si</id><content type="html" xml:base="https://lyushisyan.github.io/blog/2024/qe-disp-si/"><![CDATA[<p>在 Quantum Espresso 中，声子色散是使用 <code class="language-plaintext highlighter-rouge">ph.x</code> 程序计算的，该程序基于密度泛函微扰理论 (DFPT) 。本文以单晶硅 (Si) 为例展开计算。</p>
-
-<h2 id="第一步-pwx">第一步 pw.x</h2>
-
-<p>使用 <code class="language-plaintext highlighter-rouge">pw.x</code> 进行SCF计算</p>
-
-<ul>
-  <li><strong>SCF 输入文件 (<code class="language-plaintext highlighter-rouge">pw.scf.Si.in</code>)</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;control
-  calculation <span class="o">=</span> <span class="s1">'scf'</span>
-  restart_mode <span class="o">=</span> <span class="s1">'from_scratch'</span>
-  pseudo_dir <span class="o">=</span> <span class="s1">'./pseudos/'</span>
-  outdir <span class="o">=</span> <span class="s1">'./out/'</span>
-  prefix <span class="o">=</span> <span class="s1">'Si'</span>
-/
-&amp;system
-  ibrav <span class="o">=</span> 2
-  celldm<span class="o">(</span>1<span class="o">)</span> <span class="o">=</span> 10.20
-  nat <span class="o">=</span> 2
-  ntyp <span class="o">=</span> 1
-  ecutwfc <span class="o">=</span> 16
-/
-&amp;electrons
-  mixing_mode <span class="o">=</span> <span class="s1">'plain'</span>
-  mixing_beta <span class="o">=</span> 0.7
-  conv_thr <span class="o">=</span> 1.0e-8
-/
-ATOMIC_SPECIES
-  Si 28.0855 Si.vbc.UPF
-ATOMIC_POSITIONS
-  Si 0.00 0.00 0.00
-  Si 0.25 0.25 0.25
-K_POINTS <span class="o">{</span>automatic<span class="o">}</span>
-  8 8 8 0 0 0
-</code></pre></div></div>
-
-<ul>
-  <li><strong>执行 SCF 计算</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 pw.x <span class="nt">-i</span> pw.scf.Si.in <span class="o">&gt;</span> pw.scf.Si.out
-</code></pre></div></div>
-
-<h2 id="第二步-phx">第二步 ph.x</h2>
-
-<p>使用 <code class="language-plaintext highlighter-rouge">ph.x</code> 计算 q 点均匀网格上的动力学矩阵</p>
-
-<ul>
-  <li><strong>输入文件 (<code class="language-plaintext highlighter-rouge">ph.Si.in</code>)</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;INPUTPH
-  tr2_ph <span class="o">=</span> 1d-14
-  amass<span class="o">(</span>1<span class="o">)</span> <span class="o">=</span> 28.0855
-  ldisp <span class="o">=</span> .true.
-  nq1 <span class="o">=</span> 4
-  nq2 <span class="o">=</span> 4
-  nq3 <span class="o">=</span> 4
-  outdir <span class="o">=</span> <span class="s1">'./out/'</span>
-  prefix <span class="o">=</span> <span class="s1">'Si'</span>
-  fildyn <span class="o">=</span> <span class="s1">'Si.dyn'</span>
-/
-</code></pre></div></div>
-
-<ul>
-  <li><strong>执行计算</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 ph.x <span class="nt">-i</span> ph.Si.in <span class="o">&gt;</span> ph.Si.out
-</code></pre></div></div>
-
-<ul>
-  <li><strong>输出文件</strong></li>
-</ul>
-
-<p><strong><code class="language-plaintext highlighter-rouge">Si.dyn0</code></strong> 包含有关 q 点网格的坐标</p>
-
-<p><strong><code class="language-plaintext highlighter-rouge">Si.dyn1-N</code></strong> 包含力常数 C(q_n)，其中 n = 1,…N，其中 N 是不可约布里渊区中 <strong>q</strong> 点数量</p>
-
-<h2 id="第三步-q2rx">第三步 q2r.x</h2>
-
-<p>使用 <code class="language-plaintext highlighter-rouge">q2r.x</code> 对 q 空间的力常数进行逆傅里叶变换以获得实空间中的力常数。</p>
-
-<ul>
-  <li><strong>输入文件 (<code class="language-plaintext highlighter-rouge">q2r.graphene.in</code>)</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;INPUT
-  fildyn <span class="o">=</span> <span class="s1">'Si.dyn'</span>
-  zasr <span class="o">=</span> <span class="s1">'simple'</span> 
-  flfrc <span class="o">=</span> <span class="s1">'Si444.fc'</span>
-/
-</code></pre></div></div>
-
-<ul>
-  <li><strong>执行计算</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 q2r.x <span class="nt">-i</span> q2r.Si.in <span class="o">&gt;</span> q2r.Si.out
-</code></pre></div></div>
-
-<ul>
-  <li><strong>输出文件</strong></li>
-</ul>
-
-<p><strong><code class="language-plaintext highlighter-rouge">Si444.fc</code></strong> 包含实空间 <strong>4<em>4</em>4</strong> 超胞的原子间力常数</p>
-
-<h2 id="第四步-matdynx">第四步 matdyn.x</h2>
-
-<p>使用 <strong><code class="language-plaintext highlighter-rouge">matdyn.x</code></strong> 对实空间分量进行傅里叶变换，得到任意 q 处的动力学矩阵，进而得到任意 q 处的特征值（频率）。</p>
-
-<ul>
-  <li><strong>输入文件 (<code class="language-plaintext highlighter-rouge">matdyn.Si.in</code>)</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&amp;INPUT
-  asr <span class="o">=</span> <span class="s1">'simple'</span>  
-  flfrc <span class="o">=</span> <span class="s1">'Si444.fc'</span>
-  flfrq <span class="o">=</span> <span class="s1">'Si.freq'</span>  
-  flvec <span class="o">=</span> <span class="s1">'Si.modes'</span> 
-  q_in_band_form <span class="o">=</span> .true.
-/
-6
-0.000 0.000 0.000   50
-0.500 0.000 0.500   50
-0.625 0.250 0.625   1
-0.375 0.375 0.750   50
-0.000 0.000 0.000   50
-0.500 0.500 0.500    1
-</code></pre></div></div>
-
-<ul>
-  <li><strong>执行计算</strong></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 4 matdyn.x <span class="nt">-i</span> matdyn.Si.in <span class="o">&gt;</span> matdyn.Si.out
-</code></pre></div></div>
-
-<p>然后根据得到的 <code class="language-plaintext highlighter-rouge">Si.freq.gp</code> 文件进行绘图：</p>
-
-<div class="text-center">
-  
-
-
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/blog/Si-bulk-qe-480.webp 480w,/assets/img/blog/Si-bulk-qe-800.webp 800w,/assets/img/blog/Si-bulk-qe-1400.webp 1400w," type="image/webp" sizes="95vw" />
-    
-    <img src="/assets/img/blog/Si-bulk-qe.png" class="w-75" width="100%" height="auto" data-zoomable="" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-  </picture>
-
-  
-    <figcaption class="caption">图: 硅的声子色散关系</figcaption>
-  
-</figure>
-
-</div>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[在 Quantum Espresso 中，声子色散是使用 ph.x 程序计算的，该程序基于密度泛函微扰理论 (DFPT) 。本文以单晶硅 (Si) 为例展开计算。]]></summary></entry></feed>
+<p>但是在带交叉处，即对简并性上的点进行采样，线性插值会导致误差增加。</p>]]></content><author><name></name></author><category term="Calculation" /><summary type="html"><![CDATA[晶格动力学研究中最重要的量之一是态密度 (DOS)，定义为在频率 $\omega$ 和 $\omega+d\omega$ 之间的简正模态的数量。]]></summary></entry></feed>

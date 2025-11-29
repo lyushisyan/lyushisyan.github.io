@@ -19,12 +19,12 @@
   
     
     
-      Wigner 输运方程 (WTE) 统一声子热传导的理论框架 | Shixian Liu
+      Callaway Two-Relaxation-Time Model | Shixian Liu
     
   
 </title>
 <meta name="author" content="Shixian Liu">
-<meta name="description" content="">
+<meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.">
 
   <meta name="keywords" content="thermophysics, phonon, heat transfer">
 
@@ -63,7 +63,7 @@
   <link rel="shortcut icon" href="/assets/img/sliu.png?430c386d62d98184ee32047ee04ebc19">
 
 <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e">
-<link rel="canonical" href="https://lyushisyan.github.io/zh-CN/blog/2025/wigner/">
+<link rel="canonical" href="https://lyushisyan.github.io/blog/2025/callaway/">
 
 <!-- Dark Mode -->
 <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
@@ -187,9 +187,9 @@
 <d-front-matter>
     <script async type="text/json">
       {
-            "title": "Wigner 输运方程 (WTE) 统一声子热传导的理论框架",
+            "title": "Callaway Two-Relaxation-Time Model",
             "description": "",
-            "published": "October 06, 2025",
+            "published": "November 17, 2025",
             "authors": [
               
             ],
@@ -218,7 +218,7 @@
   <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation">
     <div class="container">
       
-        <a class="navbar-brand title font-weight-lighter" href="/zh-CN/">
+        <a class="navbar-brand title font-weight-lighter" href="/">
           
             
               <span class="font-weight-bold">Shixian</span>
@@ -242,7 +242,7 @@
 
           <!-- About -->
           <li class="nav-item ">
-            <a class="nav-link" href="/zh-CN/">首页
+            <a class="nav-link" href="/">Home
               
             </a>
           </li>
@@ -279,10 +279,14 @@
             
           
             
+          
+            
+          
+            
               
                 
                 <li class="nav-item active">
-                  <a class="nav-link" href="/zh-CN/blog/">博客
+                  <a class="nav-link" href="/blog/">Blog
                     
                       <span class="sr-only">(current)</span>
                     
@@ -295,7 +299,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/zh-CN/publications/">发表
+                  <a class="nav-link" href="/publications/">Publications
                     
                   </a>
                 </li>
@@ -306,7 +310,7 @@
               
                 
                 <li class="nav-item ">
-                  <a class="nav-link" href="/zh-CN/teaching/">教学
+                  <a class="nav-link" href="/teaching/">Teaching
                     
                   </a>
                 </li>
@@ -327,9 +331,9 @@
               
               <li class="nav-item active">
                 
-                  <a class="nav-link" href="/blog/2025/wigner/">
+                  <a class="nav-link" href="/zh-CN/blog/2025/callaway/">
                     
-                      EN-US</a>
+                      ZH-CN</a>
                 
               </li>
             
@@ -371,7 +375,7 @@
         margin-bottom: 0.1em;
         text-overflow: ellipsis;
       ">
-        Wigner 输运方程 (WTE) 统一声子热传导的理论框架
+        Callaway Two-Relaxation-Time Model
       </h1>
       <p></p>
     </d-title>
@@ -384,167 +388,355 @@
               <h3>Contents</h3>
               
                 <div>
-                  <a href="#peierls-boltzmann-%E6%96%B9%E7%A8%8B">Peierls–Boltzmann 方程</a>
+                  <a href="#1-phonons-distributions-and-scattering-classification">1. Phonons, distributions, and scattering classification</a>
                 </div>
                 
               
                 <div>
-                  <a href="#allen-feldman-%E6%96%B9%E7%A8%8B">Allen–Feldman 方程</a>
+                  <a href="#2-bte-and-the-callaway-model">2. BTE and the Callaway model</a>
                 </div>
                 
               
                 <div>
-                  <a href="#wigner-%E8%BE%93%E8%BF%90%E6%96%B9%E7%A8%8B">Wigner 输运方程</a>
+                  <a href="#3-first-order-expansion-of-the-displaced-distribution">3. First-order expansion of the displaced distribution</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#4-linearized-bte">4. Linearized BTE</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#5-determining-the-drift-parameter-from-momentum-conservation">5. Determining the drift parameter from momentum conservation</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#6-total-thermal-conductivity">6. Total thermal conductivity</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#7-summary">7. Summary</a>
                 </div>
                 
               
             </nav>
           </d-contents>
         
-        <p>在固体中，热量的主要载体是声子。几十年来，研究者提出了两种经典理论来解释不同材料中的声子热输运：</p>
+        <p>It is well known that normal processes (i.e., scattering processes that conserve the total crystal momentum) cannot by themselves produce a finite thermal conductivity. Therefore, one cannot simply add the inverse relaxation time of normal processes (N processes) to those of momentum-destroying processes. Examples of the latter include Umklapp processes, impurity scattering, and boundary scattering. Throughout this article, all such momentum-nonconserving processes will be collectively referred to as <strong>R processes</strong>.</p>
+
+<h2 id="1-phonons-distributions-and-scattering-classification">1. Phonons, distributions, and scattering classification</h2>
+
+<p>For a phonon mode $\lambda \equiv (\mathbf{q}, j)$, we have</p>
+<ul>
+  <li>frequency: $\omega_\lambda$</li>
+  <li>group velocity: $\mathbf{v}_\lambda$</li>
+  <li>wave vector: $\mathbf{k}_\lambda$</li>
+</ul>
+
+<p>The equilibrium Bose–Einstein distribution is</p>
+
+\[n_{\lambda}^{(0)}(T) =
+\frac{1}{\exp(\hbar\omega_\lambda/k_B T) - 1}.\]
+
+<p>In the presence of a temperature gradient $\nabla T$, the occupation becomes</p>
+
+\[n_\lambda = n_{\lambda}^{(0)} + n_{1,\lambda}, \qquad |n_{1,\lambda}|\ll n_{\lambda}^{(0)}.\]
+
+<p>Scattering is classified into two categories — the core of the Callaway model:</p>
 
 <ul>
   <li>
-<strong>在晶体中</strong>，声子像小球一样飞行和散射，热传导由 <strong>Peierls–Boltzmann 方程 (BTE)</strong> 描述。</li>
+<strong>N processes (normal)</strong>: conserve total momentum; relaxation time $\tau_{N,\lambda}$</li>
   <li>
-<strong>在玻璃中</strong>，声子失去了“粒子”特征，振动模式局域化，热流依靠不同模态之间的 <strong>相干隧穿扩散</strong>，这就是 <strong>Allen–Feldman (AF) 方程</strong> 的物理图像。</li>
+<strong>R processes (resistive)</strong>: destroy total momentum (Umklapp, impurity, boundary, etc.); relaxation time $\tau_{R,\lambda}$</li>
 </ul>
-
-<p>然而，在实际的复杂材料中，<strong>粒子机制和波动机制往往同时存在</strong>。传统的 BTE 和 AF 模型各自只适用于一个极端，缺乏统一。<br>
-<strong>Wigner 输运方程 (WTE)</strong> 的提出，正是为了在一个量子相空间的框架下，把两种极端情况都纳入进来，从而实现统一描述。</p>
-
-<h2 id="peierlsboltzmann-方程">Peierls–Boltzmann 方程</h2>
 
 <blockquote>
-  <p>BTE: 声子像小球一样传播</p>
+  <p>Key point: <strong>N processes do not generate thermal resistance</strong>.<br>
+They merely establish a “drifting” equilibrium state of the phonon gas, while the actual dissipation of heat flux is governed by R processes.</p>
 </blockquote>
 
-<p>适用体系：长程有序的晶体，声子能带分离明显、模态清晰。</p>
+<h2 id="2-bte-and-the-callaway-model">2. BTE and the Callaway model</h2>
 
-<p>声子可以被看作局域波包，就像一个个小球在空间中飞行，它们具有明确的群速度，在传播过程中不断被散射。</p>
+<p>In steady state, driven only by a temperature gradient, the linearized BTE can be written as</p>
 
-<p>线性化 BTE：</p>
+\[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T}
+=
+\left(\frac{\partial n_\lambda}{\partial t}\right)_{\text{coll}}.
+\tag{1}\]
 
-\[\partial_t f_{\mathbf q s} + \mathbf v_{\mathbf q s}\cdot\nabla_{\mathbf r} f_{\mathbf q s}
-  = -\frac{f_{\mathbf q s} - f^{\text{eq}}_{\mathbf q s}}{\tau_{\mathbf q s}}\]
+<p>Callaway splits the collision term into two parts:</p>
+
+\[\left(\frac{\partial n_\lambda}{\partial t}\right)_{\text{coll}}
+=
+-\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}}
+-\frac{n_\lambda - n_{\lambda}^{(0)}}{\tau_{R,\lambda}}.
+\tag{2}\]
 
 <ul>
-  <li>$f_{\mathbf q s}$：声子占据函数</li>
-  <li>$\mathbf v_{\mathbf q s} = \nabla_{\mathbf q}\omega_{\mathbf q s}$：群速度</li>
-  <li>$\tau_{\mathbf q s}$：弛豫时间</li>
+  <li>The first term: N processes drive the system toward a <strong>displaced equilibrium state</strong> $n_{\lambda}^{(d)}$</li>
+  <li>The second term: R processes push the system back to the <strong>ordinary equilibrium</strong> $n_{\lambda}^{(0)}$</li>
 </ul>
 
-<p><strong>热导率表达式（RTA 形式）</strong>：</p>
+<p>The “displaced Planck distribution” is</p>
 
-\[\kappa_{\alpha\beta}^{\mathrm{BTE}}
-= \frac{1}{V}\sum_{\mathbf q s}
-C_{\mathbf q s}\, v_{\mathbf q s,\alpha}\, v_{\mathbf q s,\beta}\, \tau_{\mathbf q s},\]
+\[n_{\lambda}^{(d)}
+=
+\left[
+\exp\left(
+\frac{\hbar\omega_\lambda - \boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T}
+\right)
+-1
+\right]^{-1},
+\tag{3}\]
 
-<h2 id="allenfeldman-方程">Allen–Feldman 方程</h2>
+<p>where $\boldsymbol{\Lambda}$ is a small vector describing the collective drift of the phonon system, aligned with $\nabla T$.</p>
+
+<h2 id="3-first-order-expansion-of-the-displaced-distribution-from-energy-derivative-to-temperature-derivative">3. First-order expansion of the displaced distribution: from energy derivative to temperature derivative</h2>
+
+<p>Introduce the dimensionless variable</p>
+
+\[x_\lambda = \frac{\hbar\omega_\lambda}{k_B T}.\]
+
+<p>Expanding Eq. (3) to first order in $\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda$, we obtain</p>
+
+\[n_{\lambda}^{(d)}
+\simeq
+n_{\lambda}^{(0)}
++
+\frac{\partial n_{\lambda}^{(0)}}{\partial(\hbar\omega_\lambda)}\,
+(\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda).
+\tag{4}\]
+
+<p>Convert the derivative with respect to energy into a temperature derivative:</p>
+
+\[n_{\lambda}^{(d)}
+\simeq
+n_{\lambda}^{(0)}
+-
+\frac{\partial n_{\lambda}^{(0)}}{\partial T}\,
+\frac{\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T}.
+\tag{5}\]
+
+<h2 id="4-linearized-bte">4. Linearized BTE</h2>
+
+<p>Insert</p>
+
+\[n_\lambda = n_{\lambda}^{(0)} + n_{1,\lambda}\]
+
+<p>and Eq. (5) into Eqs. (1) and (2), keeping only first-order terms.<br>
+Left-hand side:</p>
+
+\[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T}.\]
+
+<p>Right-hand side:</p>
+
+\[-\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}}
+-\frac{n_\lambda - n_{\lambda}^{(0)}}{\tau_{R,\lambda}}
+=
+-\left(\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}\right)n_{1,\lambda}
++
+\frac{n_{\lambda}^{(d)}-n_{\lambda}^{(0)}}{\tau_{N,\lambda}}.\]
+
+<p>Thus,</p>
+
+\[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T}
+=
+-\left(\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}\right)n_{1,\lambda}
++
+\frac{n_{\lambda}^{(d)}-n_{\lambda}^{(0)}}{\tau_{N,\lambda}}.
+\tag{6}\]
+
+<p>Define the combined relaxation time (“N+R combined”)</p>
+
+\[\frac{1}{\tau_{c,\lambda}}
+=
+\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}.
+\tag{7}\]
+
+<p>Solve for $n_{1,\lambda}$:</p>
+
+\[n_{1,\lambda}
+=
+\tau_{c,\lambda}\,\mathbf{v}_\lambda\cdot\nabla T\,
+\frac{\partial n_{\lambda}^{(0)}}{\partial T}
++
+\frac{\tau_{c,\lambda}}{\tau_{N,\lambda}}\left(n_{\lambda}^{(d)}-n_{\lambda}^{(0)}\right).
+\tag{8}\]
+
+<p>Insert Eq. (5):</p>
+
+\[n_{1,\lambda}
+=
+\tau_{c,\lambda}\,\frac{\partial n_{\lambda}^{(0)}}{\partial T}
+\left[
+\mathbf{v}_\lambda\cdot\nabla T
+-
+\frac{\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T}
+\frac{1}{\tau_{N,\lambda}}
+\right].
+\tag{9}\]
 
 <blockquote>
-  <p>AF: 能量不再依靠“小球飞行”，而是通过一个“音叉”带动另一个“音叉”的共振来传递。</p>
+  <p>Interpretation:</p>
+  <ul>
+    <li>First term: <strong>RTA-like</strong>, except the relaxation time becomes $\tau_c$.</li>
+    <li>Second term: the correction involving “$\boldsymbol{\Lambda}$”, originating entirely from <strong>momentum conservation of N processes</strong>.</li>
+  </ul>
 </blockquote>
 
-<p>适用体系：玻璃和无序固体。</p>
+<h2 id="5-determining-the-drift-parameter-from-momentum-conservation-of-n-processes">5. Determining the drift parameter from momentum conservation of N processes</h2>
 
-<p>在玻璃中，振动模式高度局域化，几乎没有有效的群速度。能量不是靠“声子小球”传播，而是通过不同局域态之间的 <strong>隧穿/共振</strong> 逐步扩散：</p>
-<ul>
-  <li>振动态之间能量间隔极小（准简并），彼此可以耦合。</li>
-  <li>类比为“一排音叉”：频率接近时，敲响一个音叉，相邻音叉会被带动，能量逐步传递下去。</li>
-</ul>
+<p>Physical condition: <strong>normal processes do not change the total crystal momentum</strong>, hence</p>
 
-<p><strong>数学表达</strong>：</p>
+\[\sum_\lambda \hbar \mathbf{k}_\lambda
+\left(\frac{\partial n_\lambda}{\partial t}\right)_{N}
+=
+-\sum_\lambda \hbar \mathbf{k}_\lambda
+\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}}
+=0.
+\tag{10}\]
 
-\[\kappa_{\text{AF}} = \frac{\pi}{V} \sum_{i\neq j} (n_i - n_j)\, 
-  |\langle i | \hat v | j \rangle|^2 \, \delta(\omega_i - \omega_j)\]
+<p>When the temperature gradient is one-dimensional, $\boldsymbol{\Lambda}$ is parallel to $\nabla T$, so we write</p>
 
-<ul>
-  <li>$\hat v$：热流（速度）算符</li>
-  <li>$\delta(\omega_i - \omega_j)$：能量守恒，只有准简并态才能相互耦合</li>
-</ul>
+\[\boldsymbol{\Lambda}
+= -\beta\,\nabla T,
+\tag{11}\]
 
-<h2 id="wigner-输运方程">Wigner 输运方程</h2>
+<p>where $\beta$ is an “effective time–like parameter”.</p>
+
+<p>Substituting Eqs. (9) and (11) into Eq. (10), and using</p>
+
+\[C_\lambda = \hbar\omega_\lambda\,\frac{\partial n_{\lambda}^{(0)}}{\partial T}\]
+
+<p>(the modal heat capacity), one can obtain $\beta$ in the discrete-sum form</p>
+
+\[\beta
+=
+\frac{
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2\,\tau_{c,\lambda}^2/\tau_{N,\lambda}
+}{
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2
+\left(1-\tau_{c,\lambda}/\tau_{N,\lambda}\right)
+}.
+\tag{12}\]
 
 <blockquote>
-  <p>WTE: 把“小球”和“音叉”放在同一舞台上的“总导演”</p>
+  <p>This is the “locking mechanism” of the Callaway model, linking the drift strength $\beta$ to the modal relaxation times $\tau_N$ and $\tau_R$.</p>
 </blockquote>
 
-<p>从量子力学的 <strong>一体密度矩阵</strong> 出发，经过 <strong>Wigner 变换</strong>，可以在相空间（动量 $\mathbf q$ 和实空间 $\mathbf R$）中得到一个分布函数：</p>
+<h2 id="6-total-thermal-conductivity">6. Total thermal conductivity</h2>
 
-\[n_{s,s'}(\mathbf q, \mathbf R, t)\]
+<p>The heat flux along the $x$ direction is</p>
 
-<p><strong>对角元($s=s’$)</strong> ：(populations)，对应类粒子机制，类似 BTE。<br>
-<strong>非对角元($s\neq s’$)</strong> ：(coherences)，对应波动机制，类似 AF。</p>
+\[J_x
+=
+\frac{1}{V}\sum_\lambda
+\hbar\omega_\lambda v_{\lambda x}\,n_{1,\lambda}.\]
 
-<p><strong>WTE 的独特之处在于，它既关注声子的数量，又捕捉不同声子态之间的相干性。</strong></p>
+<p>Together with Fourier’s law,</p>
 
-<p>WTE 的通式为：</p>
+\[J_x = -\kappa\,\frac{\partial T}{\partial x},\]
 
-\[\frac{\partial}{\partial t} n_{s,s'} + i(\omega_{\mathbf q s}-\omega_{\mathbf q s'})\,n_{s,s'} + \tfrac{1}{2}\{\mathbf v(\mathbf q), \nabla_{\mathbf R} n\}_{s,s'} = \left.\frac{\partial n}{\partial t}\right|_{\text{scatt}}\]
+<p>Eqs. (9) and (11) lead to the decomposition</p>
 
-<p>其中：</p>
-<ul>
-  <li>第一项：时间演化（动力学变化）</li>
-  <li>第二项：相干振荡（波动性机制）</li>
-  <li>第三项：漂移项（粒子传播）</li>
-  <li>右端：散射项（非简谐效应）</li>
-</ul>
+\[\kappa = \kappa_1 + \kappa_2.\]
 
-<p>在<strong>晶体极限</strong>：模态分离大（$\Delta \omega \gg 1/\tau$），相干项快速振荡并平均掉，WTE → BTE。</p>
+<h3 id="61-first-term-rta-with-the-combined-relaxation-time-tau_c">6.1 First term: RTA with the combined relaxation time $\tau_c$</h3>
 
-<p>在<strong>玻璃极限</strong>：模态准简并（$\Delta \omega \ll 1/\tau$），粒子项无效，WTE → AF。</p>
+<p>This term resembles the conventional RTA expression, except that $\tau$ is replaced with $\tau_c$:</p>
 
-<p>在<strong>复杂晶体/中间态</strong>：$\Delta \omega \sim 1/\tau$，粒子与波动贡献不可分割，WTE 给出</p>
+\[\kappa_1
+=
+\frac{1}{V}
+\sum_\lambda
+C_\lambda v_{\lambda x}^2 \tau_{c,\lambda}.
+\tag{13}\]
 
-\[\kappa = \kappa_P + \kappa_C\]
+<p>In the absence of N processes ($\tau_{N,\lambda}\to\infty$),<br>
+$\tau_{c,\lambda} \to \tau_{R,\lambda}$, and Eq. (13) reduces to the familiar RTA formula.</p>
+
+<h3 id="62-second-term-callaway-correction-kappa_2">6.2 Second term: Callaway correction $\kappa_2$</h3>
+
+<p>The contribution induced by normal processes is</p>
+
+\[\kappa_2
+=
+\frac{1}{V}
+\frac{
+\left[
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2\,\tau_{c,\lambda}^2/\tau_{N,\lambda}
+\right]^2
+}{
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2
+\left(1-\tau_{c,\lambda}/\tau_{N,\lambda}\right)
+}.
+\tag{14}\]
+
+<blockquote>
+  <p>Intuitive picture:</p>
+  <ul>
+    <li>Numerator: roughly the squared sum of all <strong>drift-type contributions</strong> enabled by N processes.</li>
+    <li>Denominator: the total strength of R processes that pull the distribution back from this drift.</li>
+    <li>When R is strong and N weak, the correction collapses, $\kappa_2\to 0$.</li>
+    <li>When N dominates and R is weak, $\kappa_2$ increases significantly, enhancing the total conductivity — reminiscent of <strong>phonon hydrodynamic behavior</strong>.</li>
+  </ul>
+</blockquote>
+
+<h2 id="7-summary">7. Summary</h2>
 
 <ul>
   <li>
-    <p><strong>粒子项（populations）</strong>：在弱带间耦合近似下可写成与 BTE 类似的形式，</p>
-
-\[\kappa_{\alpha\beta}^{P}
-\simeq \frac{1}{V}\sum_{\mathbf q s}
-C_{\mathbf q s}\, v_{\mathbf q s,\alpha}\, v_{\mathbf q s,\beta}\, \tilde{\tau}_{\mathbf q s},\]
-
-    <p>其中 $\tilde{\tau}<em>{\mathbf q s}\approx \big(2\Gamma</em>{\mathbf q s}\big)^{-1}$ 与谱线宽 $\Gamma_{\mathbf q s}$（由非简谐/同位素散射等给出）相关，体现 WTE 中对“粒子寿命”的谱学修正。</p>
+    <p><strong>Starting point (BTE)</strong>:<br>
+A temperature gradient drives phonon occupations out of equilibrium; the collision term pulls the system toward some “equilibrium-like” state.</p>
   </li>
   <li>
-    <p><strong>相干项（coherences）</strong>：刻画准简并模态间的波动耦合/隧穿，常见的频域洛伦兹型表达可写为</p>
-
-\[\kappa_{\alpha\beta}^{C}
-\simeq \frac{1}{V}\sum_{\mathbf q}\!\!\sum_{s\neq s'}
-\frac{\big[\hbar(\omega_{\mathbf q s}+\omega_{\mathbf q s'})/2\big]\,
-      \partial_T n^{\mathrm{eq}}_{\bar{\omega}}}
-     {(\omega_{\mathbf q s}-\omega_{\mathbf q s'})^{2}
-      +(\Gamma_{\mathbf q s}+\Gamma_{\mathbf q s'})^{2}}\,
-(v_{\alpha})_{s s'}(v_{\beta})_{s' s}\,
-\big(\Gamma_{\mathbf q s}+\Gamma_{\mathbf q s'}\big),\]
-
-    <p>其中 $(v_{\alpha})_{ss’}$ 是速度算符在模态基上的<strong>非对角元</strong>（决定相干耦合强度），$\bar{\omega}$ 为两模态频率的适当平均，用 $\Gamma$ 控制“相干退相位/去相干”的宽度。
-该式体现了 <strong>带模态间频差越小、非对角速度算符越大、线宽适中时，相干导热越显著</strong> 的特点。</p>
+<strong>Callaway’s key idea</strong>:<br>
+Split the notion of equilibrium into two levels:
+    <ul>
+      <li>N processes → create a drifted equilibrium $n_{\lambda}^{(d)}$;</li>
+      <li>R processes → provide actual dissipation, restoring the true equilibrium $n_{\lambda}^{(0)}$.</li>
+    </ul>
+  </li>
+  <li>
+<strong>Mathematically</strong>:
+    <ul>
+      <li>Define the displaced distribution and perform a first-order expansion;</li>
+      <li>Introduce the combined relaxation time $\tau_c^{-1} = \tau_N^{-1} + \tau_R^{-1}$;</li>
+      <li>Use the momentum-conservation condition for N processes to determine the drift strength $\beta$;</li>
+      <li>Obtain $\kappa = \kappa_1 + \kappa_2$, where
+        <ul>
+          <li>$\kappa_1$: RTA-like term using $\tau_c$;</li>
+          <li>$\kappa_2$: additional contribution from N processes.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+<strong>Limiting cases</strong>:
+    <ul>
+      <li>Weak N processes: $\tau_{N,\lambda} \to \infty$, $\kappa_2 \to 0$ → reduces to ordinary RTA;</li>
+      <li>Strong N and weak R processes: $\kappa_2$ becomes large → high thermal conductivity characteristic of <strong>hydrodynamic phonon transport</strong>.</li>
+    </ul>
   </li>
 </ul>
-
-<h2 id="三者的关系与统一">三者的关系与统一</h2>
-<ul>
-  <li>
-<strong>BTE 极限</strong>：当能带分离远大于线宽时，相干效应可以忽略，WTE 自动退化为 BTE。</li>
-  <li>
-<strong>AF 极限</strong>：在无序极限下，WTE 退化为 AF 方程。</li>
-  <li>
-<strong>复杂晶体与中间情况</strong>：当能带间距和声子谱线宽度相当时，BTE 与 AF 都不足以描述，WTE 则能同时捕捉布居数和相干态的贡献，给出完整的热导率。</li>
-</ul>
-
-<p><strong>因此，WTE 不仅是数学上的统一，更是物理图像上的桥梁。</strong></p>
 
 <hr>
 
-<p>参考文献：</p>
+<p>References:</p>
 
-<p>[1] <em>Nat. Phys.</em> <strong>15</strong>, 809–813 (2019)</p>
+<p>[1] Phys. Rev. <em>113</em>, 1046–1051 (1959).</p>
 
-<p>[2] Phys. Rev. X. <strong>12</strong>, 041011 (2022)</p>
+<p>[2] Phys. Rev. B <em>88</em>, 144302 (2013).</p>
+
+<p>[3] Phys. Rev. B <em>90</em>, 035203 (2014).</p>
 
       </d-article>
 
@@ -566,7 +758,7 @@ C_{\mathbf q s}\, v_{\mathbf q s,\alpha}\, v_{\mathbf q s,\beta}\, \tilde{\tau}_
       © Copyright 2025
       Shixian
       
-      Liu. 由 <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> 提供支持. 由 <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a> 托管.
+      Liu. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> . Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>.
 
       
       
@@ -672,14 +864,14 @@ C_{\mathbf q s}\, v_{\mathbf q s,\alpha}\, v_{\mathbf q s,\beta}\, \tilde{\tau}_
 
     
   <script type="module" src="/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script>
-  <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="输入以开始搜索">
+  <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching">
     
     <div class="modal-footer" slot="footer">
       <span class="help">
         <svg version="1.0" class="ninja-examplekey" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1280 1280">
           <path d="M1013 376c0 73.4-.4 113.3-1.1 120.2a159.9 159.9 0 0 1-90.2 127.3c-20 9.6-36.7 14-59.2 15.5-7.1.5-121.9.9-255 1h-242l95.5-95.5 95.5-95.5-38.3-38.2-38.2-38.3-160 160c-88 88-160 160.4-160 161 0 .6 72 73 160 161l160 160 38.2-38.3 38.3-38.2-95.5-95.5-95.5-95.5h251.1c252.9 0 259.8-.1 281.4-3.6 72.1-11.8 136.9-54.1 178.5-116.4 8.6-12.9 22.6-40.5 28-55.4 4.4-12 10.7-36.1 13.1-50.6 1.6-9.6 1.8-21 2.1-132.8l.4-122.2H1013v110z"></path>
         </svg>
-        选择
+        to select
       </span>
       <span class="help">
         <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24">
@@ -690,17 +882,17 @@ C_{\mathbf q s}\, v_{\mathbf q s,\alpha}\, v_{\mathbf q s,\beta}\, \tilde{\tau}_
           <path d="M0 0h24v24H0V0z" fill="none"></path>
           <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path>
         </svg>
-        导航
+        to navigate
       </span>
       <span class="help">
         <span class="ninja-examplekey esc">esc</span>
-        关闭
+        to close
       </span>
       <span class="help">
         <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey backspace" viewbox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M6.707 4.879A3 3 0 018.828 4H15a3 3 0 013 3v6a3 3 0 01-3 3H8.828a3 3 0 01-2.12-.879l-4.415-4.414a1 1 0 010-1.414l4.414-4.414zm4 2.414a1 1 0 00-1.414 1.414L10.586 10l-1.293 1.293a1 1 0 101.414 1.414L12 11.414l1.293 1.293a1 1 0 001.414-1.414L13.414 10l1.293-1.293a1 1 0 00-1.414-1.414L12 8.586l-1.293-1.293z" clip-rule="evenodd"></path>
         </svg>
-        返回上一级
+        move to parent
       </span>
     </div>
   </ninja-keys>
@@ -730,279 +922,279 @@ C_{\mathbf q s}\, v_{\mathbf q s,\alpha}\, v_{\mathbf q s,\beta}\, \tilde{\tau}_
 
     // add the home and posts menu items
     ninja.data = [{
-        id: "nav-首页",
-        title: "首页",
-        section: "导航菜单",
+        id: "nav-home",
+        title: "Home",
+        section: "Navigation menu",
         handler: () => {
-          window.location.href = "/zh-CN/";
+          window.location.href = "/";
         },
-      },{id: "nav-博客",
-              title: "博客",
+      },{id: "nav-blog",
+              title: "Blog",
               description: "",
-              section: "导航菜单",
+              section: "Navigation menu",
               handler: () => {
-                window.location.href = "/zh-CN/blog/";
+                window.location.href = "/blog/";
               },
-            },{id: "nav-发表",
-              title: "发表",
-              description: "Scopus和WoS检索的论文发表清单",
-              section: "导航菜单",
+            },{id: "nav-publications",
+              title: "Publications",
+              description: "Publications indexed in Scopus and Web of Science",
+              section: "Navigation menu",
               handler: () => {
-                window.location.href = "/zh-CN/publications/";
+                window.location.href = "/publications/";
               },
-            },{id: "nav-教学",
-              title: "教学",
-              description: "课件",
-              section: "导航菜单",
+            },{id: "nav-teaching",
+              title: "Teaching",
+              description: "Lectures",
+              section: "Navigation menu",
               handler: () => {
-                window.location.href = "/zh-CN/teaching/";
+                window.location.href = "/teaching/";
               },
-            },{id: "post-callaway-双弛豫时间模型",
+            },{id: "post-callaway-two-relaxation-time-model",
           
-            title: "Callaway 双弛豫时间模型",
-          
-          description: "",
-          section: "文章",
-          handler: () => {
-            
-              window.location.href = "/zh-CN/blog/2025/callaway/";
-            
-          },
-        },{id: "post-wigner-输运方程-wte-统一声子热传导的理论框架",
-          
-            title: "Wigner 输运方程 (WTE) 统一声子热传导的理论框架",
+            title: "Callaway Two-Relaxation-Time Model",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2025/wigner/";
+              window.location.href = "/blog/2025/callaway/";
             
           },
-        },{id: "post-vasp-phono3py-计算热导率",
+        },{id: "post-a-unified-theoretical-framework-for-phonon-heat-conduction-wte",
           
-            title: "VASP + Phono3py 计算热导率",
+            title: "A Unified Theoretical Framework for Phonon Heat Conduction (WTE)",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2025/vasp-phono3py/";
+              window.location.href = "/blog/2025/wigner/";
             
           },
-        },{id: "post-训练神经进化机器学习势",
+        },{id: "post-thermal-conductivity-calculation-using-vasp-phono3py",
           
-            title: "训练神经进化机器学习势",
+            title: "Thermal Conductivity Calculation using VASP + Phono3py",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2025/nep-train/";
+              window.location.href = "/blog/2025/vasp-phono3py/";
             
           },
-        },{id: "post-电子和声子的兰道尔理论",
+        },{id: "post-training-neural-evolution-machine-learning-potentials",
           
-            title: "电子和声子的兰道尔理论",
+            title: "Training Neural-Evolution Machine Learning Potentials",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2025/el-ph-landauer/";
+              window.location.href = "/blog/2025/nep-train/";
             
           },
-        },{id: "post-基于第一性原理的-pbte-方法",
+        },{id: "post-landauer-theory-for-electrons-and-phonons",
           
-            title: "基于第一性原理的 PBTE 方法",
+            title: "Landauer Theory for Electrons and Phonons",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2025/abinitio-bte/";
+              window.location.href = "/blog/2025/el-ph-landauer/";
             
           },
-        },{id: "post-拓扑声子的物理量与性质",
+        },{id: "post-first-principles-based-pbte-method",
           
-            title: "拓扑声子的物理量与性质",
+            title: "First-Principles-Based PBTE Method",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2024/topology/";
+              window.location.href = "/blog/2025/abinitio-bte/";
             
           },
-        },{id: "post-使用-vasp-进行结构优化计算",
+        },{id: "post-topological-quantities-and-properties-of-phonons",
           
-            title: "使用 VASP 进行结构优化计算",
+            title: "Topological Quantities and Properties of Phonons",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2024/vasp-relax/";
+              window.location.href = "/blog/2024/topology/";
             
           },
-        },{id: "post-声子蒙特卡罗模拟的理论基础",
+        },{id: "post-vasp-structure-optimization",
           
-            title: "声子蒙特卡罗模拟的理论基础",
+            title: "VASP Structure Optimization",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2024/MC-phononBTE/";
+              window.location.href = "/blog/2024/vasp-relax/";
             
           },
-        },{id: "post-态密度的数值求解方法",
+        },{id: "post-theoretical-framework-for-phonon-monte-carlo-simulations",
           
-            title: "态密度的数值求解方法",
+            title: "Theoretical framework for phonon Monte Carlo simulations",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2024/dos-method/";
+              window.location.href = "/blog/2024/MC-phononBTE/";
             
           },
-        },{id: "post-qe-计算硅的声子色散关系",
+        },{id: "post-numerical-methods-for-density-of-states-dos-calculation",
           
-            title: "QE 计算硅的声子色散关系",
+            title: "Numerical Methods for Density of States (DOS) Calculation",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2024/qe-disp-si/";
+              window.location.href = "/blog/2024/dos-method/";
             
           },
-        },{id: "post-使用-qe-进行能量自洽计算",
+        },{id: "post-phonon-dispersion-calculation-of-silicon-using-qe",
           
-            title: "使用 QE 进行能量自洽计算",
+            title: "Phonon Dispersion Calculation of Silicon Using QE",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2024/qe-scf/";
+              window.location.href = "/blog/2024/qe-disp-si/";
             
           },
-        },{id: "post-热物理学的微观描述",
+        },{id: "post-self-consistent-energy-calculations-with-qe",
           
-            title: "热物理学的微观描述",
+            title: "Self-Consistent Energy Calculations with QE",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2023/nano-micro-thermophysics/";
+              window.location.href = "/blog/2024/qe-scf/";
             
           },
-        },{id: "post-圆棒中的弹性波色散关系",
+        },{id: "post-microscopic-description-of-thermophysics",
           
-            title: "圆棒中的弹性波色散关系",
+            title: "Microscopic Description of Thermophysics",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2023/elastic-wave-in-wire/";
+              window.location.href = "/blog/2023/nano-micro-thermophysics/";
             
           },
-        },{id: "post-平板中的弹性波色散关系",
+        },{id: "post-dispersion-relations-of-elastic-waves-in-rods",
           
-            title: "平板中的弹性波色散关系",
+            title: "Dispersion Relations of Elastic Waves in Rods",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2023/elastic-wave-in-plate/";
+              window.location.href = "/blog/2023/elastic-wave-in-wire/";
             
           },
-        },{id: "post-热传递的经典动力学理论",
+        },{id: "post-dispersion-relations-of-elastic-waves-in-plates",
           
-            title: "热传递的经典动力学理论",
+            title: "Dispersion Relations of Elastic Waves in Plates",
           
           description: "",
-          section: "文章",
+          section: "Posts",
           handler: () => {
             
-              window.location.href = "/zh-CN/blog/2023/classical-kinetic-theory/";
+              window.location.href = "/blog/2023/elastic-wave-in-plate/";
             
           },
-        },{id: "news-毕业于鲍曼莫斯科国立技术大学-获得核能与热物理专业的硕士学位-并荣获荣誉徽章-新闻-https-bmstu-ru-news-kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery",
-              title: '毕业于鲍曼莫斯科国立技术大学，获得核能与热物理专业的硕士学位，并荣获荣誉徽章。[新闻](https://bmstu.ru/news/kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery)',
+        },{id: "post-classical-kinetic-theory-of-heat-conduction",
+          
+            title: "Classical Kinetic Theory of Heat Conduction",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2023/classical-kinetic-theory/";
+            
+          },
+        },{id: "news-graduated-from-bauman-moscow-state-technical-university-with-a-master-39-s-degree-in-nuclear-energy-and-thermophysics-and-received-a-badge-with-honors-media-https-bmstu-ru-news-kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery",
+              title: 'Graduated from Bauman Moscow State Technical University with a Master&amp;#39;s degree in Nuclear...',
               description: "",
-              section: "新闻",},{id: "news-开始了我的博士研究-研究课题为-考虑声子和电子的量子力学特性对纳米结构热物理性质的确定",
-              title: '开始了我的博士研究，研究课题为“考虑声子和电子的量子力学特性对纳米结构热物理性质的确定”。',
+              section: "News",},{id: "news-started-my-phd-research-on-the-topic-quot-determination-of-the-thermophysical-properties-of-nanostructures-taking-into-account-the-quantum-mechanical-properties-of-phonons-and-electrons-quot",
+              title: 'Started my PhD research on the topic &amp;quot;Determination of the thermophysical properties of...',
               description: "",
-              section: "新闻",},{id: "news-受邀参加国际论坛-atomexpo-2024-上的主题为-绿色科技与年轻一代-的俄罗斯高校校友会议-新闻-https-www-rudn-ru-media-news-international-cooperation-rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo-2024",
-              title: '受邀参加国际论坛 ATOMEXPO-2024 上的主题为“绿色科技与年轻一代”的俄罗斯高校校友会议。 [新闻](https://www.rudn.ru/media/news/international-cooperation/rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo--2024)',
+              section: "News",},{id: "news-invited-to-participate-in-the-russian-universities-alumni-meeting-on-quot-green-technology-for-the-younger-generation-quot-at-the-international-forum-atomexpo-2024-media-https-www-rudn-ru-media-news-international-cooperation-rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo-2024",
+              title: 'Invited to participate in the Russian universities alumni meeting on &amp;quot;Green technology for...',
               description: "",
-              section: "新闻",},{id: "news-参加第十八届全俄学校-会议-热物理与物理气体动力学中的热点问题-avtifg-进行了口头报告-并获得一等奖",
-              title: '参加第十八届全俄学校-会议“热物理与物理气体动力学中的热点问题”（AVTiFG），进行了口头报告，并获得一等奖。',
+              section: "News",},{id: "news-participated-in-the-xviii-all-russian-school-conference-quot-topical-issues-of-thermophysics-and-physical-hydrogas-dynamics-quot-avtifg-gave-an-oral-presentation-and-was-awarded-first-prize",
+              title: 'Participated in the XVIII All-Russian School-Conference &amp;quot;Topical Issues of Thermophysics and Physical Hydrogas...',
               description: "",
-              section: "新闻",},{
+              section: "News",},{
             id: 'social-email',
-            title: '发送邮件',
-            section: '社交媒体',
+            title: 'Send an email',
+            section: 'Socials',
             handler: () => {
               window.open("mailto:%73%78%6C%69%75%39%38@%67%6D%61%69%6C.%63%6F%6D", "_blank");
             },
           },{
             id: 'social-github',
             title: 'GitHub',
-            section: '社交媒体',
+            section: 'Socials',
             handler: () => {
               window.open("https://github.com/lyushisyan# your GitHub user name", "_blank");
             },
           },{
             id: 'social-orcid',
             title: 'ORCID',
-            section: '社交媒体',
+            section: 'Socials',
             handler: () => {
               window.open("https://orcid.org/0000-0003-3042-7817", "_blank");
             },
           },{
             id: 'social-scholar',
             title: 'Google Scholar',
-            section: '社交媒体',
+            section: 'Socials',
             handler: () => {
               window.open("https://scholar.google.com/citations?user=bLVSRuUAAAAJ", "_blank");
             },
           },{
-              id: 'lang-en-US',
-              title: 'en-US',
-              section: '语言',
+              id: 'lang-zh-CN',
+              title: 'zh-CN',
+              section: 'Languages',
               handler: () => {
-                window.location.href = "/blog/2025/wigner/";
+                window.location.href = "/zh-CN/blog/2025/callaway/";
               },
             },{
           id: 'light-theme',
-          title: '切换到浅色主题',
-          description: '将网站主题更改为浅色',
-          section: '主题',
+          title: 'Change theme to light',
+          description: 'Change the theme of the site to Light',
+          section: 'Theme',
           handler: () => {
             setThemeSetting("light");
           },
         },
         {
           id: 'dark-theme',
-          title: '切换到深色主题',
-          description: '将网站主题更改为深色',
-          section: '主题',
+          title: 'Change theme to dark',
+          description: 'Change the theme of the site to Dark',
+          section: 'Theme',
           handler: () => {
             setThemeSetting("dark");
           },
         },
         {
           id: 'system-theme',
-          title: '使用系统默认主题',
-          description: '将网站主题更改为系统默认',
-          section: '主题',
+          title: 'Use system default theme',
+          description: 'Change the theme of the site to System Default',
+          section: 'Theme',
           handler: () => {
             setThemeSetting("system");
           },

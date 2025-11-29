@@ -19,7 +19,7 @@
   
     
     
-      Wigner 输运方程 (WTE) 统一声子热传导的理论框架 | Shixian Liu
+      Callaway 双弛豫时间模型 | Shixian Liu
     
   
 </title>
@@ -63,7 +63,7 @@
   <link rel="shortcut icon" href="/assets/img/sliu.png?430c386d62d98184ee32047ee04ebc19">
 
 <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e">
-<link rel="canonical" href="https://lyushisyan.github.io/zh-CN/blog/2025/wigner/">
+<link rel="canonical" href="https://lyushisyan.github.io/zh-CN/blog/2025/callaway/">
 
 <!-- Dark Mode -->
 <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
@@ -187,9 +187,9 @@
 <d-front-matter>
     <script async type="text/json">
       {
-            "title": "Wigner 输运方程 (WTE) 统一声子热传导的理论框架",
+            "title": "Callaway 双弛豫时间模型",
             "description": "",
-            "published": "October 06, 2025",
+            "published": "November 17, 2025",
             "authors": [
               
             ],
@@ -327,7 +327,7 @@
               
               <li class="nav-item active">
                 
-                  <a class="nav-link" href="/blog/2025/wigner/">
+                  <a class="nav-link" href="/blog/2025/callaway/">
                     
                       EN-US</a>
                 
@@ -371,7 +371,7 @@
         margin-bottom: 0.1em;
         text-overflow: ellipsis;
       ">
-        Wigner 输运方程 (WTE) 统一声子热传导的理论框架
+        Callaway 双弛豫时间模型
       </h1>
       <p></p>
     </d-title>
@@ -384,167 +384,353 @@
               <h3>Contents</h3>
               
                 <div>
-                  <a href="#peierls-boltzmann-%E6%96%B9%E7%A8%8B">Peierls–Boltzmann 方程</a>
+                  <a href="#1-%E5%A3%B0%E5%AD%90-%E5%88%86%E5%B8%83%E5%92%8C%E6%95%A3%E5%B0%84%E5%88%86%E7%B1%BB">1. 声子、分布和散射分类</a>
                 </div>
                 
               
                 <div>
-                  <a href="#allen-feldman-%E6%96%B9%E7%A8%8B">Allen–Feldman 方程</a>
+                  <a href="#2-bte-%E4%B8%8E-callaway-%E6%A8%A1%E5%9E%8B">2. BTE 与 Callaway 模型</a>
                 </div>
                 
               
                 <div>
-                  <a href="#wigner-%E8%BE%93%E8%BF%90%E6%96%B9%E7%A8%8B">Wigner 输运方程</a>
+                  <a href="#3-%E4%BD%8D%E7%A7%BB%E5%88%86%E5%B8%83%E7%9A%84%E4%B8%80%E9%98%B6%E5%B1%95%E5%BC%80-%E4%BB%8E%E8%83%BD%E9%87%8F%E5%AF%BC%E6%95%B0%E5%88%B0%E6%B8%A9%E5%BA%A6%E5%AF%BC%E6%95%B0">3. 位移分布的一阶展开：从能量导数到温度导数</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#4-%E7%BA%BF%E6%80%A7%E5%8C%96-bte">4. 线性化 BTE</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#5-%E7%94%A8-n-%E8%BF%87%E7%A8%8B-%E6%80%BB%E5%8A%A8%E9%87%8F%E5%AE%88%E6%81%92-%E6%9D%A5%E7%A1%AE%E5%AE%9A%E6%BC%82%E7%A7%BB%E5%8F%82%E6%95%B0">5. 用 N 过程“总动量守恒”来确定漂移参数</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#6-%E6%80%BB%E7%83%AD%E5%AF%BC%E7%8E%87">6. 总热导率</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#7-%E5%B0%8F%E7%BB%93">7. 小结</a>
                 </div>
                 
               
             </nav>
           </d-contents>
         
-        <p>在固体中，热量的主要载体是声子。几十年来，研究者提出了两种经典理论来解释不同材料中的声子热输运：</p>
+        <p>众所周知，正常过程（即保持总晶格动量守恒的散射过程）本身无法导致有限的热导率。因此，不能简单地将正常过程（N 过程）的倒数弛豫时间与那些不守恒晶体力学动量的过程相加。后一类过程的例子包括 Umklapp 过程、杂质散射和边界散射（本文将把所有这类破坏动量的过程统称为 <strong>R 过程</strong>）。</p>
+
+<h2 id="1-声子分布和散射分类">1. 声子、分布和散射分类</h2>
+
+<p>考虑声子模态 $\lambda \equiv (\mathbf{q}, j)$，有：</p>
+<ul>
+  <li>频率：$\omega_\lambda$</li>
+  <li>群速度：$\mathbf{v}_\lambda$</li>
+  <li>波矢：$\mathbf{k}_\lambda$</li>
+</ul>
+
+<p>平衡 Bose–Einstein 分布记为 $n_{\lambda}^{(0)}$：</p>
+
+\[n_{\lambda}^{(0)}(T) =
+\frac{1}{\exp\!\left(\hbar\omega_\lambda/k_B T\right) - 1}.\]
+
+<p>在温度梯度 $\nabla T$ 存在时，实际占据写成</p>
+
+\[n_\lambda = n_{\lambda}^{(0)} + n_{1,\lambda}, \qquad |n_{1,\lambda}|\ll n_{\lambda}^{(0)}.\]
+
+<p>散射分两大类（Callaway 核心思想）：</p>
 
 <ul>
   <li>
-<strong>在晶体中</strong>，声子像小球一样飞行和散射，热传导由 <strong>Peierls–Boltzmann 方程 (BTE)</strong> 描述。</li>
+<strong>N 过程 (Normal)</strong>：守总动量，弛豫时间 $\tau_{N,\lambda}$</li>
   <li>
-<strong>在玻璃中</strong>，声子失去了“粒子”特征，振动模式局域化，热流依靠不同模态之间的 <strong>相干隧穿扩散</strong>，这就是 <strong>Allen–Feldman (AF) 方程</strong> 的物理图像。</li>
+<strong>R 过程 (Resistive)</strong>：破坏总动量（Umklapp + 杂质 + 边界等），弛豫时间 $\tau_{R,\lambda}$</li>
 </ul>
-
-<p>然而，在实际的复杂材料中，<strong>粒子机制和波动机制往往同时存在</strong>。传统的 BTE 和 AF 模型各自只适用于一个极端，缺乏统一。<br>
-<strong>Wigner 输运方程 (WTE)</strong> 的提出，正是为了在一个量子相空间的框架下，把两种极端情况都纳入进来，从而实现统一描述。</p>
-
-<h2 id="peierlsboltzmann-方程">Peierls–Boltzmann 方程</h2>
 
 <blockquote>
-  <p>BTE: 声子像小球一样传播</p>
+  <p>关键：<strong>N 过程本身不会产生有限热阻</strong>，它只是让声子气体形成一种“整体漂移”的平衡态，而真正耗散热流的是 R 过程。</p>
 </blockquote>
 
-<p>适用体系：长程有序的晶体，声子能带分离明显、模态清晰。</p>
+<h2 id="2-bte-与-callaway-模型">2. BTE 与 Callaway 模型</h2>
 
-<p>声子可以被看作局域波包，就像一个个小球在空间中飞行，它们具有明确的群速度，在传播过程中不断被散射。</p>
+<p>稳态、只有温度梯度驱动时，线性化的 BTE 可以写为：</p>
 
-<p>线性化 BTE：</p>
+\[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T}
+=
+\left(\frac{\partial n_\lambda}{\partial t}\right)_{\\text{coll}}.
+\tag{1}\]
 
-\[\partial_t f_{\mathbf q s} + \mathbf v_{\mathbf q s}\cdot\nabla_{\mathbf r} f_{\mathbf q s}
-  = -\frac{f_{\mathbf q s} - f^{\text{eq}}_{\mathbf q s}}{\tau_{\mathbf q s}}\]
+<p>Callaway 把碰撞项拆成两部分：</p>
+
+\[\left(\frac{\partial n_\lambda}{\partial t}\right)_{\\text{coll}}
+=
+-\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}}
+-\frac{n_\lambda - n_{\lambda}^{(0)}}{\tau_{R,\lambda}}.
+\tag{2}\]
 
 <ul>
-  <li>$f_{\mathbf q s}$：声子占据函数</li>
-  <li>$\mathbf v_{\mathbf q s} = \nabla_{\mathbf q}\omega_{\mathbf q s}$：群速度</li>
-  <li>$\tau_{\mathbf q s}$：弛豫时间</li>
+  <li>第一项：N 过程把系统推向 <strong>位移平衡态</strong> $n_{\lambda}^{(d)}$</li>
+  <li>第二项：R 过程把系统推回 <strong>普通平衡态</strong> $n_{\lambda}^{(0)}$</li>
 </ul>
 
-<p><strong>热导率表达式（RTA 形式）</strong>：</p>
+<p>所谓“位移普朗克分布”（displaced Planck）为：</p>
 
-\[\kappa_{\alpha\beta}^{\mathrm{BTE}}
-= \frac{1}{V}\sum_{\mathbf q s}
-C_{\mathbf q s}\, v_{\mathbf q s,\alpha}\, v_{\mathbf q s,\beta}\, \tau_{\mathbf q s},\]
+\[n_{\lambda}^{(d)}
+=
+\left[
+\exp\left(
+\frac{\hbar\omega_\lambda - \boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T}
+\right)
+-1
+\right]^{-1},
+\tag{3}\]
 
-<h2 id="allenfeldman-方程">Allen–Feldman 方程</h2>
+<p>其中 $\boldsymbol{\Lambda}$ 是一个小矢量，表示声子系统的“整体漂移”，方向与 $\nabla T$ 一致。</p>
+
+<h2 id="3-位移分布的一阶展开从能量导数到温度导数">3. 位移分布的一阶展开：从能量导数到温度导数</h2>
+
+<p>引入无量纲变量：</p>
+
+\[x_\lambda = \frac{\hbar\omega_\lambda}{k_B T}.\]
+
+<p>对式 (3) 按 $\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda$ 做一阶泰勒展开：</p>
+
+\[n_{\lambda}^{(d)}
+\simeq
+n_{\lambda}^{(0)}
++
+\frac{\partial n_{\lambda}^{(0)}}{\partial(\hbar\omega_\lambda)}\,
+(\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda).
+\tag{4}\]
+
+<p>把能量导数换成温度导数：</p>
+
+\[n_{\lambda}^{(d)}
+\simeq
+n_{\lambda}^{(0)}
+-
+\frac{\partial n_{\lambda}^{(0)}}{\partial T}\,
+\frac{\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T}.
+\tag{5}\]
+
+<h2 id="4-线性化-bte">4. 线性化 BTE</h2>
+
+<p>把</p>
+
+\[n_\lambda = n_{\lambda}^{(0)} + n_{1,\lambda}\]
+
+<p>和式 (5) 代入 BTE (1)、碰撞项 (2)，只保留一阶小量：
+左边：</p>
+
+\[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T}.\]
+
+<p>右边：</p>
+
+\[-\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}}
+-\frac{n_\lambda - n_{\lambda}^{(0)}}{\tau_{R,\lambda}}
+=
+-\left(\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}\right)n_{1,\lambda}
++
+\frac{n_{\lambda}^{(d)}-n_{\lambda}^{(0)}}{\tau_{N,\lambda}}.\]
+
+<p>于是得到</p>
+
+\[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T}
+=
+-\left(\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}\right)n_{1,\lambda}
++
+\frac{n_{\lambda}^{(d)}-n_{\lambda}^{(0)}}{\tau_{N,\lambda}}.
+\tag{6}\]
+
+<p>定义组合弛豫时间（“合并 N+R”）：</p>
+
+\[\frac{1}{\tau_{c,\lambda}}
+=
+\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}.
+\tag{7}\]
+
+<p>从而解出 $n_{1,\lambda}$：</p>
+
+\[n_{1,\lambda}
+=
+\tau_{c,\lambda}\,\mathbf{v}_\lambda\cdot\nabla T\,
+\frac{\partial n_{\lambda}^{(0)}}{\partial T}
++
+\frac{\tau_{c,\lambda}}{\tau_{N,\lambda}}\left(n_{\lambda}^{(d)}-n_{\lambda}^{(0)}\right).
+\tag{8}\]
+
+<p>再把 (5) 代入：</p>
+
+\[n_{1,\lambda}
+=
+\tau_{c,\lambda}\,\frac{\partial n_{\lambda}^{(0)}}{\partial T}
+\left[
+\mathbf{v}_\lambda\cdot\nabla T
+-
+\frac{\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T}
+\frac{1}{\tau_{N,\lambda}}
+\right].
+\tag{9}\]
 
 <blockquote>
-  <p>AF: 能量不再依靠“小球飞行”，而是通过一个“音叉”带动另一个“音叉”的共振来传递。</p>
+  <p>解释一下：</p>
+  <ul>
+    <li>第一项：<strong>RTA 形式</strong>，只不过弛豫时间换成了合成的 $\tau_c$；</li>
+    <li>第二项：多出来的“$\boldsymbol{\Lambda}$”修正，完全来自 <strong>N 过程守动量</strong> 的约束。</li>
+  </ul>
 </blockquote>
 
-<p>适用体系：玻璃和无序固体。</p>
+<h2 id="5-用-n-过程总动量守恒来确定漂移参数">5. 用 N 过程“总动量守恒”来确定漂移参数</h2>
 
-<p>在玻璃中，振动模式高度局域化，几乎没有有效的群速度。能量不是靠“声子小球”传播，而是通过不同局域态之间的 <strong>隧穿/共振</strong> 逐步扩散：</p>
-<ul>
-  <li>振动态之间能量间隔极小（准简并），彼此可以耦合。</li>
-  <li>类比为“一排音叉”：频率接近时，敲响一个音叉，相邻音叉会被带动，能量逐步传递下去。</li>
-</ul>
+<p>物理条件：<strong>正常过程不改变晶格总动量</strong>，所以</p>
 
-<p><strong>数学表达</strong>：</p>
+\[\sum_\lambda \hbar \mathbf{k}_\lambda
+\left(\frac{\partial n_\lambda}{\partial t}\right)_{N}
+=
+-\sum_\lambda \hbar \mathbf{k}_\lambda
+\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}}
+=0.
+\tag{10}\]
 
-\[\kappa_{\text{AF}} = \frac{\pi}{V} \sum_{i\neq j} (n_i - n_j)\, 
-  |\langle i | \hat v | j \rangle|^2 \, \delta(\omega_i - \omega_j)\]
+<p>在一维温度梯度条件下，$\boldsymbol{\Lambda}$ 与 $\nabla T$ 共线，我们写成</p>
 
-<ul>
-  <li>$\hat v$：热流（速度）算符</li>
-  <li>$\delta(\omega_i - \omega_j)$：能量守恒，只有准简并态才能相互耦合</li>
-</ul>
+\[\boldsymbol{\Lambda}
+= -\beta\,\nabla T,
+\tag{11}\]
 
-<h2 id="wigner-输运方程">Wigner 输运方程</h2>
+<p>其中 $\beta$ 是一个“有效时间”参数（标量）。</p>
+
+<p>把 (9) 和 (11) 代入 (10)，并利用</p>
+
+\[C_\lambda = \hbar\omega_\lambda\,\frac{\partial n_{\lambda}^{(0)}}{\partial T}\]
+
+<p>是模态比热，经过代数运算，可以得到 $\beta$ 的离散求和形式：</p>
+
+\[\beta
+=
+\frac{
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2\,\tau_{c,\lambda}^2/\tau_{N,\lambda}
+}{
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2
+\left(1-\tau_{c,\lambda}/\tau_{N,\lambda}\right)
+}.
+\tag{12}\]
 
 <blockquote>
-  <p>WTE: 把“小球”和“音叉”放在同一舞台上的“总导演”</p>
+  <p>这一条是整个 Callaway 模型的“关键锁”，把漂移强度 $\beta$ 和各模态的 $\tau_N, \tau_R$ 联系起来。</p>
 </blockquote>
 
-<p>从量子力学的 <strong>一体密度矩阵</strong> 出发，经过 <strong>Wigner 变换</strong>，可以在相空间（动量 $\mathbf q$ 和实空间 $\mathbf R$）中得到一个分布函数：</p>
+<h2 id="6-总热导率">6. 总热导率</h2>
 
-\[n_{s,s'}(\mathbf q, \mathbf R, t)\]
+<p>热流沿 $x$ 方向：</p>
 
-<p><strong>对角元($s=s’$)</strong> ：(populations)，对应类粒子机制，类似 BTE。<br>
-<strong>非对角元($s\neq s’$)</strong> ：(coherences)，对应波动机制，类似 AF。</p>
+\[J_x
+=
+\frac{1}{V}\sum_\lambda
+\hbar\omega_\lambda v_{\lambda x}\,n_{1,\lambda}.\]
 
-<p><strong>WTE 的独特之处在于，它既关注声子的数量，又捕捉不同声子态之间的相干性。</strong></p>
+<p>满足傅里叶定律：</p>
 
-<p>WTE 的通式为：</p>
+\[J_x = -\kappa\,\frac{\partial T}{\partial x}.\]
 
-\[\frac{\partial}{\partial t} n_{s,s'} + i(\omega_{\mathbf q s}-\omega_{\mathbf q s'})\,n_{s,s'} + \tfrac{1}{2}\{\mathbf v(\mathbf q), \nabla_{\mathbf R} n\}_{s,s'} = \left.\frac{\partial n}{\partial t}\right|_{\text{scatt}}\]
+<p>把 (9) 和 (11) 代入，整理后可以把热导率拆成两部分：</p>
 
-<p>其中：</p>
-<ul>
-  <li>第一项：时间演化（动力学变化）</li>
-  <li>第二项：相干振荡（波动性机制）</li>
-  <li>第三项：漂移项（粒子传播）</li>
-  <li>右端：散射项（非简谐效应）</li>
-</ul>
+\[\kappa = \kappa_1 + \kappa_2.\]
 
-<p>在<strong>晶体极限</strong>：模态分离大（$\Delta \omega \gg 1/\tau$），相干项快速振荡并平均掉，WTE → BTE。</p>
+<h3 id="61-第一项rta--合成弛豫时间-tau_c">6.1 第一项：RTA + 合成弛豫时间 $\tau_c$</h3>
 
-<p>在<strong>玻璃极限</strong>：模态准简并（$\Delta \omega \ll 1/\tau$），粒子项无效，WTE → AF。</p>
+<p>这一项就是“常规 RTA 形式”，只不过 $\tau \to \tau_c$：</p>
 
-<p>在<strong>复杂晶体/中间态</strong>：$\Delta \omega \sim 1/\tau$，粒子与波动贡献不可分割，WTE 给出</p>
+\[\kappa_1
+=
+\frac{1}{V}
+\sum_\lambda
+C_\lambda v_{\lambda x}^2 \tau_{c,\lambda}.
+\tag{13}\]
 
-\[\kappa = \kappa_P + \kappa_C\]
+<p>当没有 N 过程时（$\tau_{N,\lambda}\to\infty$），$\tau_{c,\lambda} \to \tau_{R,\lambda}$，这个式子就退化成我们熟悉的 RTA 热导率。</p>
+
+<h3 id="62-第二项callaway-修正项-kappa_2">6.2 第二项：Callaway 修正项 $\kappa_2$</h3>
+
+<p>正常过程导致的修正可以写成：</p>
+
+\[\kappa_2
+=
+\frac{1}{V}
+\frac{
+\left[
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2\,\tau_{c,\lambda}^2/\tau_{N,\lambda}
+\right]^2
+}{
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2
+\left(1-\tau_{c,\lambda}/\tau_{N,\lambda}\right)
+}.
+\tag{14}\]
+
+<blockquote>
+  <p>直观理解：</p>
+  <ul>
+    <li>分子：类似“所有模态上 N 过程参与的 <strong>漂移贡献</strong> 的加权和”的平方；</li>
+    <li>分母：类似“R 过程把这种漂移拉回来的总强度”；</li>
+    <li>当 R 很强、N 很弱时，这个修正就被压扁，$\kappa_2\to 0$；</li>
+    <li>当 N 占主导、R 很弱时，$\kappa_2$ 会显著抬高，总热导率大幅增强。</li>
+  </ul>
+</blockquote>
+
+<h2 id="7-小结">7. 小结</h2>
 
 <ul>
   <li>
-    <p><strong>粒子项（populations）</strong>：在弱带间耦合近似下可写成与 BTE 类似的形式，</p>
-
-\[\kappa_{\alpha\beta}^{P}
-\simeq \frac{1}{V}\sum_{\mathbf q s}
-C_{\mathbf q s}\, v_{\mathbf q s,\alpha}\, v_{\mathbf q s,\beta}\, \tilde{\tau}_{\mathbf q s},\]
-
-    <p>其中 $\tilde{\tau}<em>{\mathbf q s}\approx \big(2\Gamma</em>{\mathbf q s}\big)^{-1}$ 与谱线宽 $\Gamma_{\mathbf q s}$（由非简谐/同位素散射等给出）相关，体现 WTE 中对“粒子寿命”的谱学修正。</p>
+    <p><strong>BTE 出发点</strong>：<br>
+温度梯度让声子分布偏离平衡，碰撞项把系统往某个“平衡态”拉回去。</p>
   </li>
   <li>
-    <p><strong>相干项（coherences）</strong>：刻画准简并模态间的波动耦合/隧穿，常见的频域洛伦兹型表达可写为</p>
-
-\[\kappa_{\alpha\beta}^{C}
-\simeq \frac{1}{V}\sum_{\mathbf q}\!\!\sum_{s\neq s'}
-\frac{\big[\hbar(\omega_{\mathbf q s}+\omega_{\mathbf q s'})/2\big]\,
-      \partial_T n^{\mathrm{eq}}_{\bar{\omega}}}
-     {(\omega_{\mathbf q s}-\omega_{\mathbf q s'})^{2}
-      +(\Gamma_{\mathbf q s}+\Gamma_{\mathbf q s'})^{2}}\,
-(v_{\alpha})_{s s'}(v_{\beta})_{s' s}\,
-\big(\Gamma_{\mathbf q s}+\Gamma_{\mathbf q s'}\big),\]
-
-    <p>其中 $(v_{\alpha})_{ss’}$ 是速度算符在模态基上的<strong>非对角元</strong>（决定相干耦合强度），$\bar{\omega}$ 为两模态频率的适当平均，用 $\Gamma$ 控制“相干退相位/去相干”的宽度。
-该式体现了 <strong>带模态间频差越小、非对角速度算符越大、线宽适中时，相干导热越显著</strong> 的特点。</p>
+<strong>Callaway 的巧妙之处</strong>：<br>
+把“平衡态”分成两个层次：
+    <ul>
+      <li>N 过程 → 建立一个带漂移的平衡态 $n_{\lambda}^{(d)}$；</li>
+      <li>R 过程 → 真正负责耗散、把系统拉回真正的 $n_{\lambda}^{(0)}$。</li>
+    </ul>
+  </li>
+  <li>
+<strong>数学上</strong>：
+    <ul>
+      <li>定义位移分布 $n_{\lambda}^{(d)}$，做一阶展开；</li>
+      <li>引入组合弛豫时间 $\tau_c^{-1} = \tau_N^{-1} + \tau_R^{-1}$；</li>
+      <li>用 N 过程“总动量守恒”条件解出漂移强度 $\beta$；</li>
+      <li>最后得到 $\kappa = \kappa_1 + \kappa_2$，其中
+        <ul>
+          <li>$\kappa_1$：RTA 形式（用 $\tau_c$）</li>
+          <li>$\kappa_2$：N 过程的额外修正项。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+<strong>极限情况</strong>：
+    <ul>
+      <li>N 很弱：$\tau_{N,\lambda} \to \infty$，$\kappa_2 \to 0$，退化为普通 RTA；</li>
+      <li>N 很强、R 较弱：$\kappa_2$ 明显变大，出现类似 <strong>声子水动力学</strong> 的高热导率行为。</li>
+    </ul>
   </li>
 </ul>
-
-<h2 id="三者的关系与统一">三者的关系与统一</h2>
-<ul>
-  <li>
-<strong>BTE 极限</strong>：当能带分离远大于线宽时，相干效应可以忽略，WTE 自动退化为 BTE。</li>
-  <li>
-<strong>AF 极限</strong>：在无序极限下，WTE 退化为 AF 方程。</li>
-  <li>
-<strong>复杂晶体与中间情况</strong>：当能带间距和声子谱线宽度相当时，BTE 与 AF 都不足以描述，WTE 则能同时捕捉布居数和相干态的贡献，给出完整的热导率。</li>
-</ul>
-
-<p><strong>因此，WTE 不仅是数学上的统一，更是物理图像上的桥梁。</strong></p>
 
 <hr>
 
-<p>参考文献：</p>
+<h4 id="参考文献">参考文献：</h4>
 
-<p>[1] <em>Nat. Phys.</em> <strong>15</strong>, 809–813 (2019)</p>
+<p>[1] Phys. Rev. <em>113</em>, 1046–1051 (1959).</p>
 
-<p>[2] Phys. Rev. X. <strong>12</strong>, 041011 (2022)</p>
+<p>[2] Phys. Rev. B <em>88</em>, 144302 (2013).</p>
+
+<p>[3] Phys. Rev. B <em>90</em>, 035203 (2014).</p>
 
       </d-article>
 
@@ -978,7 +1164,7 @@ C_{\mathbf q s}\, v_{\mathbf q s,\alpha}\, v_{\mathbf q s,\beta}\, \tilde{\tau}_
               title: 'en-US',
               section: '语言',
               handler: () => {
-                window.location.href = "/blog/2025/wigner/";
+                window.location.href = "/blog/2025/callaway/";
               },
             },{
           id: 'light-theme',
