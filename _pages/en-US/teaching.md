@@ -8,12 +8,16 @@ nav: true
 nav_order: 6
 ---
 
-#### **Numerical Simulation Methods (in Russian)**
+### 🗓️ Academic Year 2025–2026
 
-- Semester: Fall 2025  
-- Topics include Python scientific computing and introduction to machine learning.
+##### **Numerical Simulation Methods** (in Russian)
+- First-year Master's course  
+- Topics: Python scientific computing, numerical methods, fundamentals of machine learning, and practical applications  
+- 📄 [Lecture 1](https://lyushisyan.github.io/assets/teaching/Lecture_1_Python.pdf) | 📄 [Lecture 2](https://lyushisyan.github.io/assets/teaching/Lecture_2_Learning.pdf) | 📄 [Lecture 3](https://lyushisyan.github.io/assets/teaching/Lecture_3_Application.pdf)  
+- 💻 Code repository: [python-ml-course](https://github.com/lyushisyan/python-ml-course)
 
-📄 **Lecture Preview**:  
-- [Lecture 1: Scientific Computing with Python (Вычисления на основе Python)](https://lyushisyan.github.io/assets/teaching/numerical_methods_lecture1.pdf)  
-- [Lecture 2: Introduction to Machine Learning (Введение в машинное обучение)](https://lyushisyan.github.io/assets/teaching/numerical_methods_lecture2.pdf)
+##### **Thermal Physics of Nanosystems** (in Russian)
+- Undergraduate / Graduate course  
+- 📄 [Lecture 1](#) | 📄 [Lecture 2](#)  
+- 💻 Code repository: [nano-heat-course](#)
 
