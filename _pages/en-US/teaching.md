@@ -17,7 +17,7 @@ nav_order: 6
 - 💻 Code repository: [python-ml-course](https://github.com/lyushisyan/python-ml-course)
 
 ##### **Thermal Physics of Nanosystems** (in Russian)
-- Undergraduate / Graduate course  
+- First-year Master's course  
 - 📄 [Lecture 1](#) | 📄 [Lecture 2](#)  
 - 💻 Code repository: [nano-heat-course](#)
 

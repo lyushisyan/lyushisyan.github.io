@@ -18,6 +18,6 @@ nav_order: 6
 - 💻 [python-ml-course](https://github.com/lyushisyan/python-ml-course)
 
 ##### **纳米系统热物理**
-- 本科/研究生  
+- 研究生一年级  
 - 📄 [Lecture 1](#) | 📄 [Lecture 2](#)  
 - 💻 [nano-heat-course](#)
