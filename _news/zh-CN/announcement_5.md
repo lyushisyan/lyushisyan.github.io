@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-参加第九届全国热传导研讨会（WTT-2025），获得海报优秀奖。[奖状](https://lyushisyan.github.io/assets/pdf/award/award_wtt9.jpg)
+参加第九届全国热传导研讨会（WTT-2025），获得海报优秀奖。[PDF](https://lyushisyan.github.io/assets/pdf/award/wtt9.jpg)

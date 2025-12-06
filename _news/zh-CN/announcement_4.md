@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-参加第十八届全俄学校-会议“热物理与物理气体动力学中的热点问题”（AVTiFG），进行了口头报告，并获得一等奖。
+参加第十八届全俄学校-会议“热物理与物理气体动力学中的热点问题”（AVTiFG），进行了口头报告，并获得一等奖。[PDF](https://lyushisyan.github.io/assets/pdf/award/avtifg2025.jpg)

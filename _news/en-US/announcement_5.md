@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Participated in the 9th National Workshop on Thermal Transport (WTT-2025) and received the Outstanding Poster Award. [Award](https://lyushisyan.github.io/assets/pdf/award/award_wtt9.jpg)
+Participated in the 9th National Workshop on Thermal Transport (WTT-2025) and received the Outstanding Poster Award. [PDF](https://lyushisyan.github.io/assets/pdf/award/wtt9.jpg)
