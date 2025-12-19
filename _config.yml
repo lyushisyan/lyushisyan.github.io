@@ -178,7 +178,6 @@ exclude:
   - docker-compose-slim.yml
   - FAQ.md
   - Gemfile
-  - Gemfile.lock
   - INSTALL.md
   - LICENSE
   - lighthouse_results/
