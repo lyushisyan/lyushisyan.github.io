@@ -1,8 +1,195 @@
-<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Callaway 双弛豫时间模型 | Shixian Liu </title> <meta name="author" content="Shixian Liu"> <meta name="description" content=""> <meta name="keywords" content="thermophysics, phonon, heat transfer"> <link rel="stylesheet" href="/assets/css/bootstrap.min.css?41faab39e5144b07a9384ecf47eac8c3"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5"> <link defer rel="stylesheet" href="/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="/assets/img/sliu.png?430c386d62d98184ee32047ee04ebc19"> <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e"> <link rel="canonical" href="https://lyushisyan.github.io/blog/2025/callaway/"> <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>initTheme();</script> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" integrity="sha256-q9ba7o845pMPFU+zcAll8rv+gC+fSovKsOoNQ6cynuQ=" crossorigin="anonymous"> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script> <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script type="text/javascript">window.MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],tags:"ams"}};</script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js" integrity="sha256-MgH13bFTTNqsnuEoqNPBLDaqxjGH+lCpqrukmXc8Ppg=" crossorigin="anonymous"></script> <script>document.addEventListener("readystatechange",()=>{"complete"===document.readyState&&document.querySelectorAll("pre>code.language-geojson").forEach(e=>{const t=e.textContent,a=e.parentElement;a.classList.add("unloaded");let o=document.createElement("div");o.classList.add("map"),a.after(o);var n=L.map(o);L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(n);let d=L.geoJSON(JSON.parse(t)).addTo(n);n.fitBounds(d.getBounds())})});</script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script> <script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script> <script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script> <script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script> <script src="/assets/js/distillpub/template.v2.js"></script> <script src="/assets/js/distillpub/transforms.v2.js"></script> <script src="/assets/js/distillpub/overrides.js"></script> </head> <body> <d-front-matter> <script async type="text/json">
+<!DOCTYPE html>
+<html>
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Metadata, OpenGraph and Schema.org -->
+
+
+
+
+<!-- Standard metadata -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+
+<title>
+  
+    
+    
+      Callaway 双弛豫时间模型 | Shixian Liu
+    
+  
+</title>
+<meta name="author" content="Shixian Liu">
+<meta name="description" content="">
+
+  <meta name="keywords" content="thermophysics, phonon, heat transfer">
+
+
+
+
+
+
+
+
+
+
+<!-- Bootstrap & MDB -->
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css?41faab39e5144b07a9384ecf47eac8c3">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
+
+<!-- Bootstrap Table -->
+
+
+<!-- Fonts & Icons -->
+<link defer rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5">
+<link defer rel="stylesheet" href="/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772">
+<link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
+
+<!-- Code Syntax Highlighting -->
+<link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light">
+
+
+
+<!-- Styles -->
+
+<!-- pseudocode -->
+
+
+
+  <link rel="shortcut icon" href="/assets/img/sliu.png?430c386d62d98184ee32047ee04ebc19">
+
+<link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e">
+<link rel="canonical" href="http://localhost:4000/zh-CN/blog/2025/callaway/">
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
+
+  <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark">
+  <script>
+    initTheme();
+  </script>
+
+
+<!-- GeoJSON support via Leaflet -->
+
+  <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" integrity="sha256-q9ba7o845pMPFU+zcAll8rv+gC+fSovKsOoNQ6cynuQ=" crossorigin="anonymous">
+
+
+<!-- diff2html -->
+
+
+
+
+
+
+    
+      <!-- Medium Zoom JS -->
+      <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+      <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script>
+    
+    <!-- jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    
+  
+    <!-- MathJax -->
+    <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        tags: 'ams',
+      }
+    };
+    </script>
+    <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script>
+  
+
+
+    
+
+    
+
+    
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js" integrity="sha256-MgH13bFTTNqsnuEoqNPBLDaqxjGH+lCpqrukmXc8Ppg=" crossorigin="anonymous"></script>
+  <script>
+    /* Create leaflet map as another node and hide the code block, appending the leaflet node after it */
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'complete') {
+        document.querySelectorAll('pre>code.language-geojson').forEach((elem) => {
+          const jsonData = elem.textContent;
+          const backup = elem.parentElement;
+          backup.classList.add('unloaded');
+          /* create leaflet node */
+          let mapElement = document.createElement('div');
+          mapElement.classList.add('map');
+          backup.after(mapElement);
+
+          var map = L.map(mapElement);
+          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          }).addTo(map);
+          let geoJSON = L.geoJSON(JSON.parse(jsonData)).addTo(map);
+          map.fitBounds(geoJSON.getBounds());
+        });
+      }
+    });
+  </script>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script>
+
+
+
+<!-- Bootstrap Table -->
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script>
+<script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script>
+<script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script>
+
+<!-- Jupyter Open External Links New Tab -->
+<script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script>
+
+
+
+    
+
+    <!-- Distill js -->
+    <script src="/assets/js/distillpub/template.v2.js"></script>
+    <script src="/assets/js/distillpub/transforms.v2.js"></script>
+    <script src="/assets/js/distillpub/overrides.js"></script>
+    
+  </head>
+
+  <body>
+<d-front-matter>
+    <script async type="text/json">
       {
             "title": "Callaway 双弛豫时间模型",
             "description": "",
-            "published": "November 16, 2025",
+            "published": "November 17, 2025",
             "authors": [
               
             ],
@@ -21,4 +208,998 @@
               ]
             }
           }
-    </script> </d-front-matter> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/zh-CN/"> <span class="font-weight-bold">Shixian</span> Liu </a> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/zh-CN/">首页 </a> </li> <li class="nav-item active"> <a class="nav-link" href="/zh-CN/blog/">博客 <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/zh-CN/publications/">发表 </a> </li> <li class="nav-item "> <a class="nav-link" href="/zh-CN/teaching/">教学 </a> </li> <li class="nav-item"> <button id="search-toggle" title="Search" onclick="openSearchModal()"> <span class="nav-link">ctrl k <i class="ti ti-search"></i></span> </button> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/2025/callaway/"> EN-US</a> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="ti ti-sun-moon" id="light-toggle-system"></i> <i class="ti ti-moon-filled" id="light-toggle-dark"></i> <i class="ti ti-sun-filled" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="post distill"> <d-title> <h1 style=" font-size: 1.8rem; font-weight: 600; text-align: center; overflow: hidden; margin-top: 0.2em; margin-bottom: 0.1em; text-overflow: ellipsis; "> Callaway 双弛豫时间模型 </h1> <p></p> </d-title> <d-article> <d-contents> <nav class="l-text figcaption"> <h3>Contents</h3> <div> <a href="#1-%E5%A3%B0%E5%AD%90-%E5%88%86%E5%B8%83%E5%92%8C%E6%95%A3%E5%B0%84%E5%88%86%E7%B1%BB">1. 声子、分布和散射分类</a> </div> <div> <a href="#2-bte-%E4%B8%8E-callaway-%E6%A8%A1%E5%9E%8B">2. BTE 与 Callaway 模型</a> </div> <div> <a href="#3-%E4%BD%8D%E7%A7%BB%E5%88%86%E5%B8%83%E7%9A%84%E4%B8%80%E9%98%B6%E5%B1%95%E5%BC%80-%E4%BB%8E%E8%83%BD%E9%87%8F%E5%AF%BC%E6%95%B0%E5%88%B0%E6%B8%A9%E5%BA%A6%E5%AF%BC%E6%95%B0">3. 位移分布的一阶展开：从能量导数到温度导数</a> </div> <div> <a href="#4-%E7%BA%BF%E6%80%A7%E5%8C%96-bte">4. 线性化 BTE</a> </div> <div> <a href="#5-%E7%94%A8-n-%E8%BF%87%E7%A8%8B-%E6%80%BB%E5%8A%A8%E9%87%8F%E5%AE%88%E6%81%92-%E6%9D%A5%E7%A1%AE%E5%AE%9A%E6%BC%82%E7%A7%BB%E5%8F%82%E6%95%B0">5. 用 N 过程“总动量守恒”来确定漂移参数</a> </div> <div> <a href="#6-%E6%80%BB%E7%83%AD%E5%AF%BC%E7%8E%87">6. 总热导率</a> </div> <div> <a href="#7-%E5%B0%8F%E7%BB%93">7. 小结</a> </div> </nav> </d-contents> <p>众所周知，正常过程（即保持总晶格动量守恒的散射过程）本身无法导致有限的热导率。因此，不能简单地将正常过程（N 过程）的倒数弛豫时间与那些不守恒晶体力学动量的过程相加。后一类过程的例子包括 Umklapp 过程、杂质散射和边界散射（本文将把所有这类破坏动量的过程统称为 <strong>R 过程</strong>）。</p> <h2 id="1-声子分布和散射分类">1. 声子、分布和散射分类</h2> <p>考虑声子模态 $\lambda \equiv (\mathbf{q}, j)$，有：</p> <ul> <li>频率：$\omega_\lambda$</li> <li>群速度：$\mathbf{v}_\lambda$</li> <li>波矢：$\mathbf{k}_\lambda$</li> </ul> <p>平衡 Bose–Einstein 分布记为 $n_{\lambda}^{(0)}$：</p> \[n_{\lambda}^{(0)}(T) = \frac{1}{\exp\!\left(\hbar\omega_\lambda/k_B T\right) - 1}.\] <p>在温度梯度 $\nabla T$ 存在时，实际占据写成</p> \[n_\lambda = n_{\lambda}^{(0)} + n_{1,\lambda}, \qquad |n_{1,\lambda}|\ll n_{\lambda}^{(0)}.\] <p>散射分两大类（Callaway 核心思想）：</p> <ul> <li> <strong>N 过程 (Normal)</strong>：守总动量，弛豫时间 $\tau_{N,\lambda}$</li> <li> <strong>R 过程 (Resistive)</strong>：破坏总动量（Umklapp + 杂质 + 边界等），弛豫时间 $\tau_{R,\lambda}$</li> </ul> <blockquote> <p>关键：<strong>N 过程本身不会产生有限热阻</strong>，它只是让声子气体形成一种“整体漂移”的平衡态，而真正耗散热流的是 R 过程。</p> </blockquote> <h2 id="2-bte-与-callaway-模型">2. BTE 与 Callaway 模型</h2> <p>稳态、只有温度梯度驱动时，线性化的 BTE 可以写为：</p> \[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T} = \left(\frac{\partial n_\lambda}{\partial t}\right)_{\\text{coll}}. \tag{1}\] <p>Callaway 把碰撞项拆成两部分：</p> \[\left(\frac{\partial n_\lambda}{\partial t}\right)_{\\text{coll}} = -\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}} -\frac{n_\lambda - n_{\lambda}^{(0)}}{\tau_{R,\lambda}}. \tag{2}\] <ul> <li>第一项：N 过程把系统推向 <strong>位移平衡态</strong> $n_{\lambda}^{(d)}$</li> <li>第二项：R 过程把系统推回 <strong>普通平衡态</strong> $n_{\lambda}^{(0)}$</li> </ul> <p>所谓“位移普朗克分布”（displaced Planck）为：</p> \[n_{\lambda}^{(d)} = \left[ \exp\left( \frac{\hbar\omega_\lambda - \boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T} \right) -1 \right]^{-1}, \tag{3}\] <p>其中 $\boldsymbol{\Lambda}$ 是一个小矢量，表示声子系统的“整体漂移”，方向与 $\nabla T$ 一致。</p> <h2 id="3-位移分布的一阶展开从能量导数到温度导数">3. 位移分布的一阶展开：从能量导数到温度导数</h2> <p>引入无量纲变量：</p> \[x_\lambda = \frac{\hbar\omega_\lambda}{k_B T}.\] <p>对式 (3) 按 $\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda$ 做一阶泰勒展开：</p> \[n_{\lambda}^{(d)} \simeq n_{\lambda}^{(0)} + \frac{\partial n_{\lambda}^{(0)}}{\partial(\hbar\omega_\lambda)}\, (\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda). \tag{4}\] <p>把能量导数换成温度导数：</p> \[n_{\lambda}^{(d)} \simeq n_{\lambda}^{(0)} - \frac{\partial n_{\lambda}^{(0)}}{\partial T}\, \frac{\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T}. \tag{5}\] <h2 id="4-线性化-bte">4. 线性化 BTE</h2> <p>把</p> \[n_\lambda = n_{\lambda}^{(0)} + n_{1,\lambda}\] <p>和式 (5) 代入 BTE (1)、碰撞项 (2)，只保留一阶小量： 左边：</p> \[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T}.\] <p>右边：</p> \[-\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}} -\frac{n_\lambda - n_{\lambda}^{(0)}}{\tau_{R,\lambda}} = -\left(\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}\right)n_{1,\lambda} + \frac{n_{\lambda}^{(d)}-n_{\lambda}^{(0)}}{\tau_{N,\lambda}}.\] <p>于是得到</p> \[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T} = -\left(\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}\right)n_{1,\lambda} + \frac{n_{\lambda}^{(d)}-n_{\lambda}^{(0)}}{\tau_{N,\lambda}}. \tag{6}\] <p>定义组合弛豫时间（“合并 N+R”）：</p> \[\frac{1}{\tau_{c,\lambda}} = \frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}. \tag{7}\] <p>从而解出 $n_{1,\lambda}$：</p> \[n_{1,\lambda} = \tau_{c,\lambda}\,\mathbf{v}_\lambda\cdot\nabla T\, \frac{\partial n_{\lambda}^{(0)}}{\partial T} + \frac{\tau_{c,\lambda}}{\tau_{N,\lambda}}\left(n_{\lambda}^{(d)}-n_{\lambda}^{(0)}\right). \tag{8}\] <p>再把 (5) 代入：</p> \[n_{1,\lambda} = \tau_{c,\lambda}\,\frac{\partial n_{\lambda}^{(0)}}{\partial T} \left[ \mathbf{v}_\lambda\cdot\nabla T - \frac{\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T} \frac{1}{\tau_{N,\lambda}} \right]. \tag{9}\] <blockquote> <p>解释一下：</p> <ul> <li>第一项：<strong>RTA 形式</strong>，只不过弛豫时间换成了合成的 $\tau_c$；</li> <li>第二项：多出来的“$\boldsymbol{\Lambda}$”修正，完全来自 <strong>N 过程守动量</strong> 的约束。</li> </ul> </blockquote> <h2 id="5-用-n-过程总动量守恒来确定漂移参数">5. 用 N 过程“总动量守恒”来确定漂移参数</h2> <p>物理条件：<strong>正常过程不改变晶格总动量</strong>，所以</p> \[\sum_\lambda \hbar \mathbf{k}_\lambda \left(\frac{\partial n_\lambda}{\partial t}\right)_{N} = -\sum_\lambda \hbar \mathbf{k}_\lambda \frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}} =0. \tag{10}\] <p>在一维温度梯度条件下，$\boldsymbol{\Lambda}$ 与 $\nabla T$ 共线，我们写成</p> \[\boldsymbol{\Lambda} = -\beta\,\nabla T, \tag{11}\] <p>其中 $\beta$ 是一个“有效时间”参数（标量）。</p> <p>把 (9) 和 (11) 代入 (10)，并利用</p> \[C_\lambda = \hbar\omega_\lambda\,\frac{\partial n_{\lambda}^{(0)}}{\partial T}\] <p>是模态比热，经过代数运算，可以得到 $\beta$ 的离散求和形式：</p> \[\beta = \frac{ \displaystyle\sum_\lambda C_\lambda v_{\lambda x}^2\,\tau_{c,\lambda}^2/\tau_{N,\lambda} }{ \displaystyle\sum_\lambda C_\lambda v_{\lambda x}^2 \left(1-\tau_{c,\lambda}/\tau_{N,\lambda}\right) }. \tag{12}\] <blockquote> <p>这一条是整个 Callaway 模型的“关键锁”，把漂移强度 $\beta$ 和各模态的 $\tau_N, \tau_R$ 联系起来。</p> </blockquote> <h2 id="6-总热导率">6. 总热导率</h2> <p>热流沿 $x$ 方向：</p> \[J_x = \frac{1}{V}\sum_\lambda \hbar\omega_\lambda v_{\lambda x}\,n_{1,\lambda}.\] <p>满足傅里叶定律：</p> \[J_x = -\kappa\,\frac{\partial T}{\partial x}.\] <p>把 (9) 和 (11) 代入，整理后可以把热导率拆成两部分：</p> \[\kappa = \kappa_1 + \kappa_2.\] <h3 id="61-第一项rta--合成弛豫时间-tau_c">6.1 第一项：RTA + 合成弛豫时间 $\tau_c$</h3> <p>这一项就是“常规 RTA 形式”，只不过 $\tau \to \tau_c$：</p> \[\kappa_1 = \frac{1}{V} \sum_\lambda C_\lambda v_{\lambda x}^2 \tau_{c,\lambda}. \tag{13}\] <p>当没有 N 过程时（$\tau_{N,\lambda}\to\infty$），$\tau_{c,\lambda} \to \tau_{R,\lambda}$，这个式子就退化成我们熟悉的 RTA 热导率。</p> <h3 id="62-第二项callaway-修正项-kappa_2">6.2 第二项：Callaway 修正项 $\kappa_2$</h3> <p>正常过程导致的修正可以写成：</p> \[\kappa_2 = \frac{1}{V} \frac{ \left[ \displaystyle\sum_\lambda C_\lambda v_{\lambda x}^2\,\tau_{c,\lambda}^2/\tau_{N,\lambda} \right]^2 }{ \displaystyle\sum_\lambda C_\lambda v_{\lambda x}^2 \left(1-\tau_{c,\lambda}/\tau_{N,\lambda}\right) }. \tag{14}\] <blockquote> <p>直观理解：</p> <ul> <li>分子：类似“所有模态上 N 过程参与的 <strong>漂移贡献</strong> 的加权和”的平方；</li> <li>分母：类似“R 过程把这种漂移拉回来的总强度”；</li> <li>当 R 很强、N 很弱时，这个修正就被压扁，$\kappa_2\to 0$；</li> <li>当 N 占主导、R 很弱时，$\kappa_2$ 会显著抬高，总热导率大幅增强。</li> </ul> </blockquote> <h2 id="7-小结">7. 小结</h2> <ul> <li> <p><strong>BTE 出发点</strong>：<br> 温度梯度让声子分布偏离平衡，碰撞项把系统往某个“平衡态”拉回去。</p> </li> <li> <strong>Callaway 的巧妙之处</strong>：<br> 把“平衡态”分成两个层次： <ul> <li>N 过程 → 建立一个带漂移的平衡态 $n_{\lambda}^{(d)}$；</li> <li>R 过程 → 真正负责耗散、把系统拉回真正的 $n_{\lambda}^{(0)}$。</li> </ul> </li> <li> <strong>数学上</strong>： <ul> <li>定义位移分布 $n_{\lambda}^{(d)}$，做一阶展开；</li> <li>引入组合弛豫时间 $\tau_c^{-1} = \tau_N^{-1} + \tau_R^{-1}$；</li> <li>用 N 过程“总动量守恒”条件解出漂移强度 $\beta$；</li> <li>最后得到 $\kappa = \kappa_1 + \kappa_2$，其中 <ul> <li>$\kappa_1$：RTA 形式（用 $\tau_c$）</li> <li>$\kappa_2$：N 过程的额外修正项。</li> </ul> </li> </ul> </li> <li> <strong>极限情况</strong>： <ul> <li>N 很弱：$\tau_{N,\lambda} \to \infty$，$\kappa_2 \to 0$，退化为普通 RTA；</li> <li>N 很强、R 较弱：$\kappa_2$ 明显变大，出现类似 <strong>声子水动力学</strong> 的高热导率行为。</li> </ul> </li> </ul> <hr> <h4 id="参考文献">参考文献：</h4> <p>[1] Phys. Rev. <em>113</em>, 1046–1051 (1959).</p> <p>[2] Phys. Rev. B <em>88</em>, 144302 (2013).</p> <p>[3] Phys. Rev. B <em>90</em>, 035203 (2014).</p> </d-article> <d-appendix> <d-footnote-list></d-footnote-list> <d-citation-list></d-citation-list> </d-appendix> <d-bibliography src="/assets/bibliography/"></d-bibliography> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2025 Shixian Liu. 由 <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> 提供支持. 由 <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a> 托管. </div> </footer> <script src="/assets/js/bootstrap.bundle.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script> <script type="text/javascript">function progressBarSetup(){"max"in document.createElement("progress")?(initializeProgressElement(),$(document).on("scroll",function(){progressBar.attr({value:getCurrentScrollPosition()})}),$(window).on("resize",initializeProgressElement)):(resizeProgressBar(),$(document).on("scroll",resizeProgressBar),$(window).on("resize",resizeProgressBar))}function getCurrentScrollPosition(){return $(window).scrollTop()}function initializeProgressElement(){let e=$("#navbar").outerHeight(!0);$("body").css({"padding-top":e}),$("progress-container").css({"padding-top":e}),progressBar.css({top:e}),progressBar.attr({max:getDistanceToScroll(),value:getCurrentScrollPosition()})}function getDistanceToScroll(){return $(document).height()-$(window).height()}function resizeProgressBar(){progressBar.css({width:getWidthPercentage()+"%"})}function getWidthPercentage(){return getCurrentScrollPosition()/getDistanceToScroll()*100}const progressBar=$("#progress");window.onload=function(){setTimeout(progressBarSetup,50)};</script> <script src="/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script> <script>addBackToTop();</script> <script type="module" src="/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="输入以开始搜索"> <div class="modal-footer" slot="footer"> <span class="help"> <svg version="1.0" class="ninja-examplekey" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1280 1280"> <path d="M1013 376c0 73.4-.4 113.3-1.1 120.2a159.9 159.9 0 0 1-90.2 127.3c-20 9.6-36.7 14-59.2 15.5-7.1.5-121.9.9-255 1h-242l95.5-95.5 95.5-95.5-38.3-38.2-38.2-38.3-160 160c-88 88-160 160.4-160 161 0 .6 72 73 160 161l160 160 38.2-38.3 38.3-38.2-95.5-95.5-95.5-95.5h251.1c252.9 0 259.8-.1 281.4-3.6 72.1-11.8 136.9-54.1 178.5-116.4 8.6-12.9 22.6-40.5 28-55.4 4.4-12 10.7-36.1 13.1-50.6 1.6-9.6 1.8-21 2.1-132.8l.4-122.2H1013v110z"></path> </svg> 选择 </span> <span class="help"> <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24"> <path d="M0 0h24v24H0V0z" fill="none"></path> <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path> </svg> <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24"> <path d="M0 0h24v24H0V0z" fill="none"></path> <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path> </svg> 导航 </span> <span class="help"> <span class="ninja-examplekey esc">esc</span> 关闭 </span> <span class="help"> <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey backspace" viewbox="0 0 20 20" fill="currentColor"> <path fill-rule="evenodd" d="M6.707 4.879A3 3 0 018.828 4H15a3 3 0 013 3v6a3 3 0 01-3 3H8.828a3 3 0 01-2.12-.879l-4.415-4.414a1 1 0 010-1.414l4.414-4.414zm4 2.414a1 1 0 00-1.414 1.414L10.586 10l-1.293 1.293a1 1 0 101.414 1.414L12 11.414l1.293 1.293a1 1 0 001.414-1.414L13.414 10l1.293-1.293a1 1 0 00-1.414-1.414L12 8.586l-1.293-1.293z" clip-rule="evenodd"></path> </svg> 返回上一级 </span> </div> </ninja-keys> <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script> <script>const ninja=document.querySelector("ninja-keys");ninja.data=[{id:"nav-\u9996\u9875",title:"\u9996\u9875",section:"\u5bfc\u822a\u83dc\u5355",handler:()=>{window.location.href="/zh-CN/"}},{id:"nav-\u535a\u5ba2",title:"\u535a\u5ba2",description:"",section:"\u5bfc\u822a\u83dc\u5355",handler:()=>{window.location.href="/zh-CN/blog/"}},{id:"nav-\u53d1\u8868",title:"\u53d1\u8868",description:"Scopus\u548cWoS\u68c0\u7d22\u7684\u8bba\u6587\u53d1\u8868\u6e05\u5355",section:"\u5bfc\u822a\u83dc\u5355",handler:()=>{window.location.href="/zh-CN/publications/"}},{id:"nav-\u6559\u5b66",title:"\u6559\u5b66",description:"\u8bfe\u4ef6",section:"\u5bfc\u822a\u83dc\u5355",handler:()=>{window.location.href="/zh-CN/teaching/"}},{id:"post-callaway-\u53cc\u5f1b\u8c6b\u65f6\u95f4\u6a21\u578b",title:"Callaway \u53cc\u5f1b\u8c6b\u65f6\u95f4\u6a21\u578b",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2025/callaway/"}},{id:"post-wigner-\u8f93\u8fd0\u65b9\u7a0b-wte-\u7edf\u4e00\u58f0\u5b50\u70ed\u4f20\u5bfc\u7684\u7406\u8bba\u6846\u67b6",title:"Wigner \u8f93\u8fd0\u65b9\u7a0b (WTE) \u7edf\u4e00\u58f0\u5b50\u70ed\u4f20\u5bfc\u7684\u7406\u8bba\u6846\u67b6",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2025/wigner/"}},{id:"post-vasp-phono3py-\u8ba1\u7b97\u70ed\u5bfc\u7387",title:"VASP + Phono3py \u8ba1\u7b97\u70ed\u5bfc\u7387",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2025/vasp-phono3py/"}},{id:"post-\u8bad\u7ec3\u795e\u7ecf\u8fdb\u5316\u673a\u5668\u5b66\u4e60\u52bf",title:"\u8bad\u7ec3\u795e\u7ecf\u8fdb\u5316\u673a\u5668\u5b66\u4e60\u52bf",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2025/nep-train/"}},{id:"post-\u7535\u5b50\u548c\u58f0\u5b50\u7684\u5170\u9053\u5c14\u7406\u8bba",title:"\u7535\u5b50\u548c\u58f0\u5b50\u7684\u5170\u9053\u5c14\u7406\u8bba",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2025/el-ph-landauer/"}},{id:"post-\u57fa\u4e8e\u7b2c\u4e00\u6027\u539f\u7406\u7684-pbte-\u65b9\u6cd5",title:"\u57fa\u4e8e\u7b2c\u4e00\u6027\u539f\u7406\u7684 PBTE \u65b9\u6cd5",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2025/abinitio-bte/"}},{id:"post-\u62d3\u6251\u58f0\u5b50\u7684\u7269\u7406\u91cf\u4e0e\u6027\u8d28",title:"\u62d3\u6251\u58f0\u5b50\u7684\u7269\u7406\u91cf\u4e0e\u6027\u8d28",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2024/topology/"}},{id:"post-\u4f7f\u7528-vasp-\u8fdb\u884c\u7ed3\u6784\u4f18\u5316\u8ba1\u7b97",title:"\u4f7f\u7528 VASP \u8fdb\u884c\u7ed3\u6784\u4f18\u5316\u8ba1\u7b97",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2024/vasp-relax/"}},{id:"post-\u58f0\u5b50\u8499\u7279\u5361\u7f57\u6a21\u62df\u7684\u7406\u8bba\u57fa\u7840",title:"\u58f0\u5b50\u8499\u7279\u5361\u7f57\u6a21\u62df\u7684\u7406\u8bba\u57fa\u7840",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2024/MC-phononBTE/"}},{id:"post-\u6001\u5bc6\u5ea6\u7684\u6570\u503c\u6c42\u89e3\u65b9\u6cd5",title:"\u6001\u5bc6\u5ea6\u7684\u6570\u503c\u6c42\u89e3\u65b9\u6cd5",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2024/dos-method/"}},{id:"post-qe-\u8ba1\u7b97\u7845\u7684\u58f0\u5b50\u8272\u6563\u5173\u7cfb",title:"QE \u8ba1\u7b97\u7845\u7684\u58f0\u5b50\u8272\u6563\u5173\u7cfb",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2024/qe-disp-si/"}},{id:"post-\u4f7f\u7528-qe-\u8fdb\u884c\u80fd\u91cf\u81ea\u6d3d\u8ba1\u7b97",title:"\u4f7f\u7528 QE \u8fdb\u884c\u80fd\u91cf\u81ea\u6d3d\u8ba1\u7b97",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2024/qe-scf/"}},{id:"post-\u70ed\u7269\u7406\u5b66\u7684\u5fae\u89c2\u63cf\u8ff0",title:"\u70ed\u7269\u7406\u5b66\u7684\u5fae\u89c2\u63cf\u8ff0",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2023/nano-micro-thermophysics/"}},{id:"post-\u5706\u68d2\u4e2d\u7684\u5f39\u6027\u6ce2\u8272\u6563\u5173\u7cfb",title:"\u5706\u68d2\u4e2d\u7684\u5f39\u6027\u6ce2\u8272\u6563\u5173\u7cfb",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2023/elastic-wave-in-wire/"}},{id:"post-\u5e73\u677f\u4e2d\u7684\u5f39\u6027\u6ce2\u8272\u6563\u5173\u7cfb",title:"\u5e73\u677f\u4e2d\u7684\u5f39\u6027\u6ce2\u8272\u6563\u5173\u7cfb",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2023/elastic-wave-in-plate/"}},{id:"post-\u70ed\u4f20\u9012\u7684\u7ecf\u5178\u52a8\u529b\u5b66\u7406\u8bba",title:"\u70ed\u4f20\u9012\u7684\u7ecf\u5178\u52a8\u529b\u5b66\u7406\u8bba",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2023/classical-kinetic-theory/"}},{id:"news-\u53c2\u52a0\u83ab\u65af\u79d1\u7269\u7406\u6280\u672f\u5b66\u9662-mipt-\u7b2c65\u5c4a\u5168\u4fc4\u79d1\u5b66\u4f1a\u8bae-\u5e76\u83b7\u5f97\u6700\u4f73\u5b66\u751f\u53e3\u5934\u62a5\u544a\u5956-pdf-https-lyushisyan-github-io-assets-pdf-award-mipt2023-jpg",title:"\u53c2\u52a0\u83ab\u65af\u79d1\u7269\u7406\u6280\u672f\u5b66\u9662(MIPT)\u7b2c65\u5c4a\u5168\u4fc4\u79d1\u5b66\u4f1a\u8bae\uff0c\u5e76\u83b7\u5f97\u6700\u4f73\u5b66\u751f\u53e3\u5934\u62a5\u544a\u5956\u3002[PDF](https://lyushisyan.github.io/assets/pdf/award/mipt2023.jpg)",description:"",section:"\u65b0\u95fb"},{id:"news-\u6bd5\u4e1a\u4e8e\u9c8d\u66fc\u83ab\u65af\u79d1\u56fd\u7acb\u6280\u672f\u5927\u5b66-\u83b7\u5f97\u6838\u80fd\u4e0e\u70ed\u7269\u7406\u4e13\u4e1a\u7684\u7855\u58eb\u5b66\u4f4d-\u5e76\u83b7\u5f97\u8363\u8a89\u5fbd\u7ae0-\u65b0\u95fb-https-bmstu-ru-news-kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery",title:"\u6bd5\u4e1a\u4e8e\u9c8d\u66fc\u83ab\u65af\u79d1\u56fd\u7acb\u6280\u672f\u5927\u5b66\uff0c\u83b7\u5f97\u6838\u80fd\u4e0e\u70ed\u7269\u7406\u4e13\u4e1a\u7684\u7855\u58eb\u5b66\u4f4d\uff0c\u5e76\u83b7\u5f97\u8363\u8a89\u5fbd\u7ae0\u3002[\u65b0\u95fb](https://bmstu.ru/news/kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery)",description:"",section:"\u65b0\u95fb"},{id:"news-\u53d7\u9080\u53c2\u52a0\u56fd\u9645\u8bba\u575b-atomexpo-2024-\u4e0a\u7684\u4e3b\u9898\u4e3a-\u7eff\u8272\u79d1\u6280\u4e0e\u5e74\u8f7b\u4e00\u4ee3-\u7684\u4fc4\u7f57\u65af\u9ad8\u6821\u6821\u53cb\u4f1a\u8bae-\u65b0\u95fb-https-www-rudn-ru-media-news-international-cooperation-rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo-2024",title:"\u53d7\u9080\u53c2\u52a0\u56fd\u9645\u8bba\u575b ATOMEXPO-2024 \u4e0a\u7684\u4e3b\u9898\u4e3a\u201c\u7eff\u8272\u79d1\u6280\u4e0e\u5e74\u8f7b\u4e00\u4ee3\u201d\u7684\u4fc4\u7f57\u65af\u9ad8\u6821\u6821\u53cb\u4f1a\u8bae\u3002 [\u65b0\u95fb](https://www.rudn.ru/media/news/international-cooperation/rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo--2024)",description:"",section:"\u65b0\u95fb"},{id:"news-\u53c2\u52a0\u7b2c\u5341\u516b\u5c4a\u5168\u4fc4\u5b66\u6821-\u4f1a\u8bae-\u70ed\u7269\u7406\u4e0e\u7269\u7406\u6c14\u4f53\u52a8\u529b\u5b66\u4e2d\u7684\u70ed\u70b9\u95ee\u9898-avtifg-\u8fdb\u884c\u4e86\u53e3\u5934\u62a5\u544a-\u5e76\u83b7\u5f97\u4e00\u7b49\u5956-pdf-https-lyushisyan-github-io-assets-pdf-award-avtifg2025-jpg",title:"\u53c2\u52a0\u7b2c\u5341\u516b\u5c4a\u5168\u4fc4\u5b66\u6821-\u4f1a\u8bae\u201c\u70ed\u7269\u7406\u4e0e\u7269\u7406\u6c14\u4f53\u52a8\u529b\u5b66\u4e2d\u7684\u70ed\u70b9\u95ee\u9898\u201d\uff08AVTiFG\uff09\uff0c\u8fdb\u884c\u4e86\u53e3\u5934\u62a5\u544a\uff0c\u5e76\u83b7\u5f97\u4e00\u7b49\u5956\u3002[PDF](https://lyushisyan.github.io/assets/pdf/award/avtifg2025.jpg)",description:"",section:"\u65b0\u95fb"},{id:"news-\u53c2\u52a0\u7b2c\u4e5d\u5c4a\u5168\u56fd\u70ed\u4f20\u5bfc\u7814\u8ba8\u4f1a-wtt-2025-\u83b7\u5f97\u6d77\u62a5\u4f18\u79c0\u5956-pdf-https-lyushisyan-github-io-assets-pdf-award-wtt9-jpg",title:"\u53c2\u52a0\u7b2c\u4e5d\u5c4a\u5168\u56fd\u70ed\u4f20\u5bfc\u7814\u8ba8\u4f1a\uff08WTT-2025\uff09\uff0c\u83b7\u5f97\u6d77\u62a5\u4f18\u79c0\u5956\u3002[PDF](https://lyushisyan.github.io/assets/pdf/award/wtt9.jpg)",description:"",section:"\u65b0\u95fb"},{id:"social-email",title:"\u53d1\u9001\u90ae\u4ef6",section:"\u793e\u4ea4\u5a92\u4f53",handler:()=>{window.open("mailto:%73%78%6C%69%75%39%38@%67%6D%61%69%6C.%63%6F%6D","_blank")}},{id:"social-github",title:"GitHub",section:"\u793e\u4ea4\u5a92\u4f53",handler:()=>{window.open("https://github.com/lyushisyan# your GitHub user name","_blank")}},{id:"social-orcid",title:"ORCID",section:"\u793e\u4ea4\u5a92\u4f53",handler:()=>{window.open("https://orcid.org/0000-0003-3042-7817","_blank")}},{id:"social-scholar",title:"Google Scholar",section:"\u793e\u4ea4\u5a92\u4f53",handler:()=>{window.open("https://scholar.google.com/citations?user=bLVSRuUAAAAJ","_blank")}},{id:"lang-en-US",title:"en-US",section:"\u8bed\u8a00",handler:()=>{window.location.href="/blog/2025/callaway/"}},{id:"light-theme",title:"\u5207\u6362\u5230\u6d45\u8272\u4e3b\u9898",description:"\u5c06\u7f51\u7ad9\u4e3b\u9898\u66f4\u6539\u4e3a\u6d45\u8272",section:"\u4e3b\u9898",handler:()=>{setThemeSetting("light")}},{id:"dark-theme",title:"\u5207\u6362\u5230\u6df1\u8272\u4e3b\u9898",description:"\u5c06\u7f51\u7ad9\u4e3b\u9898\u66f4\u6539\u4e3a\u6df1\u8272",section:"\u4e3b\u9898",handler:()=>{setThemeSetting("dark")}},{id:"system-theme",title:"\u4f7f\u7528\u7cfb\u7edf\u9ed8\u8ba4\u4e3b\u9898",description:"\u5c06\u7f51\u7ad9\u4e3b\u9898\u66f4\u6539\u4e3a\u7cfb\u7edf\u9ed8\u8ba4",section:"\u4e3b\u9898",handler:()=>{setThemeSetting("system")}}];</script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script> </body> </html>
+    </script>
+  </d-front-matter>
+
+  
+    <!-- Header -->
+    <header>
+  <!-- Nav Bar -->
+  <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation">
+    <div class="container">
+      
+        <a class="navbar-brand title font-weight-lighter" href="/zh-CN/">
+          
+            
+              <span class="font-weight-bold">Shixian</span>
+            
+            
+            Liu
+          
+        </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          
+
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/zh-CN/">首页
+              
+            </a>
+          </li>
+
+          <!-- Other pages -->
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+              
+                
+                <li class="nav-item active">
+                  <a class="nav-link" href="/zh-CN/blog/">博客
+                    
+                      <span class="sr-only">(current)</span>
+                    
+                  </a>
+                </li>
+              
+            
+          
+            
+              
+                
+                <li class="nav-item ">
+                  <a class="nav-link" href="/zh-CN/publications/">发表
+                    
+                  </a>
+                </li>
+              
+            
+          
+            
+              
+                
+                <li class="nav-item ">
+                  <a class="nav-link" href="/zh-CN/teaching/">教学
+                    
+                  </a>
+                </li>
+              
+            
+          
+          
+            <!-- Search -->
+            <li class="nav-item">
+              <button id="search-toggle" title="Search" onclick="openSearchModal()">
+                <span class="nav-link">ctrl k <i class="ti ti-search"></i></span>
+              </button>
+            </li>
+          
+          <!-- Toogle language -->
+          
+            
+              
+              <li class="nav-item active">
+                
+                  <a class="nav-link" href="/blog/2025/callaway/">
+                    
+                      EN-US</a>
+                
+              </li>
+            
+          
+          
+            <!-- Toogle theme mode -->
+            <li class="toggle-container">
+              <button id="light-toggle" title="Change theme">
+                <i class="ti ti-sun-moon" id="light-toggle-system"></i>
+                <i class="ti ti-moon-filled" id="light-toggle-dark"></i>
+                <i class="ti ti-sun-filled" id="light-toggle-light"></i>
+              </button>
+            </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+    <!-- Scrolling Progress Bar -->
+    <progress id="progress" value="0">
+      <div class="progress-container">
+        <span class="progress-bar"></span>
+      </div>
+    </progress>
+  
+</header>
+
+
+    <!-- Content -->
+    <div class="post distill">
+    <d-title>
+      <h1 style="
+        font-size: 1.8rem;
+        font-weight: 600;
+        text-align: center;
+        overflow: hidden;
+        margin-top: 0.2em;
+        margin-bottom: 0.1em;
+        text-overflow: ellipsis;
+      ">
+        Callaway 双弛豫时间模型
+      </h1>
+      <p></p>
+    </d-title>
+      
+
+      <d-article>
+        
+          <d-contents>
+            <nav class="l-text figcaption">
+              <h3>Contents</h3>
+              
+                <div>
+                  <a href="#1-%E5%A3%B0%E5%AD%90-%E5%88%86%E5%B8%83%E5%92%8C%E6%95%A3%E5%B0%84%E5%88%86%E7%B1%BB">1. 声子、分布和散射分类</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#2-bte-%E4%B8%8E-callaway-%E6%A8%A1%E5%9E%8B">2. BTE 与 Callaway 模型</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#3-%E4%BD%8D%E7%A7%BB%E5%88%86%E5%B8%83%E7%9A%84%E4%B8%80%E9%98%B6%E5%B1%95%E5%BC%80-%E4%BB%8E%E8%83%BD%E9%87%8F%E5%AF%BC%E6%95%B0%E5%88%B0%E6%B8%A9%E5%BA%A6%E5%AF%BC%E6%95%B0">3. 位移分布的一阶展开：从能量导数到温度导数</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#4-%E7%BA%BF%E6%80%A7%E5%8C%96-bte">4. 线性化 BTE</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#5-%E7%94%A8-n-%E8%BF%87%E7%A8%8B-%E6%80%BB%E5%8A%A8%E9%87%8F%E5%AE%88%E6%81%92-%E6%9D%A5%E7%A1%AE%E5%AE%9A%E6%BC%82%E7%A7%BB%E5%8F%82%E6%95%B0">5. 用 N 过程“总动量守恒”来确定漂移参数</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#6-%E6%80%BB%E7%83%AD%E5%AF%BC%E7%8E%87">6. 总热导率</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#7-%E5%B0%8F%E7%BB%93">7. 小结</a>
+                </div>
+                
+              
+            </nav>
+          </d-contents>
+        
+        <p>众所周知，正常过程（即保持总晶格动量守恒的散射过程）本身无法导致有限的热导率。因此，不能简单地将正常过程（N 过程）的倒数弛豫时间与那些不守恒晶体力学动量的过程相加。后一类过程的例子包括 Umklapp 过程、杂质散射和边界散射（本文将把所有这类破坏动量的过程统称为 <strong>R 过程</strong>）。</p>
+
+<h2 id="1-声子分布和散射分类">1. 声子、分布和散射分类</h2>
+
+<p>考虑声子模态 $\lambda \equiv (\mathbf{q}, j)$，有：</p>
+<ul>
+  <li>频率：$\omega_\lambda$</li>
+  <li>群速度：$\mathbf{v}_\lambda$</li>
+  <li>波矢：$\mathbf{k}_\lambda$</li>
+</ul>
+
+<p>平衡 Bose–Einstein 分布记为 $n_{\lambda}^{(0)}$：</p>
+
+\[n_{\lambda}^{(0)}(T) =
+\frac{1}{\exp\!\left(\hbar\omega_\lambda/k_B T\right) - 1}.\]
+
+<p>在温度梯度 $\nabla T$ 存在时，实际占据写成</p>
+
+\[n_\lambda = n_{\lambda}^{(0)} + n_{1,\lambda}, \qquad |n_{1,\lambda}|\ll n_{\lambda}^{(0)}.\]
+
+<p>散射分两大类（Callaway 核心思想）：</p>
+
+<ul>
+  <li>
+<strong>N 过程 (Normal)</strong>：守总动量，弛豫时间 $\tau_{N,\lambda}$</li>
+  <li>
+<strong>R 过程 (Resistive)</strong>：破坏总动量（Umklapp + 杂质 + 边界等），弛豫时间 $\tau_{R,\lambda}$</li>
+</ul>
+
+<blockquote>
+  <p>关键：<strong>N 过程本身不会产生有限热阻</strong>，它只是让声子气体形成一种“整体漂移”的平衡态，而真正耗散热流的是 R 过程。</p>
+</blockquote>
+
+<h2 id="2-bte-与-callaway-模型">2. BTE 与 Callaway 模型</h2>
+
+<p>稳态、只有温度梯度驱动时，线性化的 BTE 可以写为：</p>
+
+\[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T}
+=
+\left(\frac{\partial n_\lambda}{\partial t}\right)_{\\text{coll}}.
+\tag{1}\]
+
+<p>Callaway 把碰撞项拆成两部分：</p>
+
+\[\left(\frac{\partial n_\lambda}{\partial t}\right)_{\\text{coll}}
+=
+-\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}}
+-\frac{n_\lambda - n_{\lambda}^{(0)}}{\tau_{R,\lambda}}.
+\tag{2}\]
+
+<ul>
+  <li>第一项：N 过程把系统推向 <strong>位移平衡态</strong> $n_{\lambda}^{(d)}$</li>
+  <li>第二项：R 过程把系统推回 <strong>普通平衡态</strong> $n_{\lambda}^{(0)}$</li>
+</ul>
+
+<p>所谓“位移普朗克分布”（displaced Planck）为：</p>
+
+\[n_{\lambda}^{(d)}
+=
+\left[
+\exp\left(
+\frac{\hbar\omega_\lambda - \boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T}
+\right)
+-1
+\right]^{-1},
+\tag{3}\]
+
+<p>其中 $\boldsymbol{\Lambda}$ 是一个小矢量，表示声子系统的“整体漂移”，方向与 $\nabla T$ 一致。</p>
+
+<h2 id="3-位移分布的一阶展开从能量导数到温度导数">3. 位移分布的一阶展开：从能量导数到温度导数</h2>
+
+<p>引入无量纲变量：</p>
+
+\[x_\lambda = \frac{\hbar\omega_\lambda}{k_B T}.\]
+
+<p>对式 (3) 按 $\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda$ 做一阶泰勒展开：</p>
+
+\[n_{\lambda}^{(d)}
+\simeq
+n_{\lambda}^{(0)}
++
+\frac{\partial n_{\lambda}^{(0)}}{\partial(\hbar\omega_\lambda)}\,
+(\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda).
+\tag{4}\]
+
+<p>把能量导数换成温度导数：</p>
+
+\[n_{\lambda}^{(d)}
+\simeq
+n_{\lambda}^{(0)}
+-
+\frac{\partial n_{\lambda}^{(0)}}{\partial T}\,
+\frac{\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T}.
+\tag{5}\]
+
+<h2 id="4-线性化-bte">4. 线性化 BTE</h2>
+
+<p>把</p>
+
+\[n_\lambda = n_{\lambda}^{(0)} + n_{1,\lambda}\]
+
+<p>和式 (5) 代入 BTE (1)、碰撞项 (2)，只保留一阶小量：
+左边：</p>
+
+\[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T}.\]
+
+<p>右边：</p>
+
+\[-\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}}
+-\frac{n_\lambda - n_{\lambda}^{(0)}}{\tau_{R,\lambda}}
+=
+-\left(\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}\right)n_{1,\lambda}
++
+\frac{n_{\lambda}^{(d)}-n_{\lambda}^{(0)}}{\tau_{N,\lambda}}.\]
+
+<p>于是得到</p>
+
+\[\mathbf{v}_\lambda \cdot \nabla T \,\frac{\partial n_{\lambda}^{(0)}}{\partial T}
+=
+-\left(\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}\right)n_{1,\lambda}
++
+\frac{n_{\lambda}^{(d)}-n_{\lambda}^{(0)}}{\tau_{N,\lambda}}.
+\tag{6}\]
+
+<p>定义组合弛豫时间（“合并 N+R”）：</p>
+
+\[\frac{1}{\tau_{c,\lambda}}
+=
+\frac{1}{\tau_{N,\lambda}}+\frac{1}{\tau_{R,\lambda}}.
+\tag{7}\]
+
+<p>从而解出 $n_{1,\lambda}$：</p>
+
+\[n_{1,\lambda}
+=
+\tau_{c,\lambda}\,\mathbf{v}_\lambda\cdot\nabla T\,
+\frac{\partial n_{\lambda}^{(0)}}{\partial T}
++
+\frac{\tau_{c,\lambda}}{\tau_{N,\lambda}}\left(n_{\lambda}^{(d)}-n_{\lambda}^{(0)}\right).
+\tag{8}\]
+
+<p>再把 (5) 代入：</p>
+
+\[n_{1,\lambda}
+=
+\tau_{c,\lambda}\,\frac{\partial n_{\lambda}^{(0)}}{\partial T}
+\left[
+\mathbf{v}_\lambda\cdot\nabla T
+-
+\frac{\boldsymbol{\Lambda}\cdot\mathbf{k}_\lambda}{k_B T}
+\frac{1}{\tau_{N,\lambda}}
+\right].
+\tag{9}\]
+
+<blockquote>
+  <p>解释一下：</p>
+  <ul>
+    <li>第一项：<strong>RTA 形式</strong>，只不过弛豫时间换成了合成的 $\tau_c$；</li>
+    <li>第二项：多出来的“$\boldsymbol{\Lambda}$”修正，完全来自 <strong>N 过程守动量</strong> 的约束。</li>
+  </ul>
+</blockquote>
+
+<h2 id="5-用-n-过程总动量守恒来确定漂移参数">5. 用 N 过程“总动量守恒”来确定漂移参数</h2>
+
+<p>物理条件：<strong>正常过程不改变晶格总动量</strong>，所以</p>
+
+\[\sum_\lambda \hbar \mathbf{k}_\lambda
+\left(\frac{\partial n_\lambda}{\partial t}\right)_{N}
+=
+-\sum_\lambda \hbar \mathbf{k}_\lambda
+\frac{n_\lambda - n_{\lambda}^{(d)}}{\tau_{N,\lambda}}
+=0.
+\tag{10}\]
+
+<p>在一维温度梯度条件下，$\boldsymbol{\Lambda}$ 与 $\nabla T$ 共线，我们写成</p>
+
+\[\boldsymbol{\Lambda}
+= -\beta\,\nabla T,
+\tag{11}\]
+
+<p>其中 $\beta$ 是一个“有效时间”参数（标量）。</p>
+
+<p>把 (9) 和 (11) 代入 (10)，并利用</p>
+
+\[C_\lambda = \hbar\omega_\lambda\,\frac{\partial n_{\lambda}^{(0)}}{\partial T}\]
+
+<p>是模态比热，经过代数运算，可以得到 $\beta$ 的离散求和形式：</p>
+
+\[\beta
+=
+\frac{
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2\,\tau_{c,\lambda}^2/\tau_{N,\lambda}
+}{
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2
+\left(1-\tau_{c,\lambda}/\tau_{N,\lambda}\right)
+}.
+\tag{12}\]
+
+<blockquote>
+  <p>这一条是整个 Callaway 模型的“关键锁”，把漂移强度 $\beta$ 和各模态的 $\tau_N, \tau_R$ 联系起来。</p>
+</blockquote>
+
+<h2 id="6-总热导率">6. 总热导率</h2>
+
+<p>热流沿 $x$ 方向：</p>
+
+\[J_x
+=
+\frac{1}{V}\sum_\lambda
+\hbar\omega_\lambda v_{\lambda x}\,n_{1,\lambda}.\]
+
+<p>满足傅里叶定律：</p>
+
+\[J_x = -\kappa\,\frac{\partial T}{\partial x}.\]
+
+<p>把 (9) 和 (11) 代入，整理后可以把热导率拆成两部分：</p>
+
+\[\kappa = \kappa_1 + \kappa_2.\]
+
+<h3 id="61-第一项rta--合成弛豫时间-tau_c">6.1 第一项：RTA + 合成弛豫时间 $\tau_c$</h3>
+
+<p>这一项就是“常规 RTA 形式”，只不过 $\tau \to \tau_c$：</p>
+
+\[\kappa_1
+=
+\frac{1}{V}
+\sum_\lambda
+C_\lambda v_{\lambda x}^2 \tau_{c,\lambda}.
+\tag{13}\]
+
+<p>当没有 N 过程时（$\tau_{N,\lambda}\to\infty$），$\tau_{c,\lambda} \to \tau_{R,\lambda}$，这个式子就退化成我们熟悉的 RTA 热导率。</p>
+
+<h3 id="62-第二项callaway-修正项-kappa_2">6.2 第二项：Callaway 修正项 $\kappa_2$</h3>
+
+<p>正常过程导致的修正可以写成：</p>
+
+\[\kappa_2
+=
+\frac{1}{V}
+\frac{
+\left[
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2\,\tau_{c,\lambda}^2/\tau_{N,\lambda}
+\right]^2
+}{
+\displaystyle\sum_\lambda
+C_\lambda v_{\lambda x}^2
+\left(1-\tau_{c,\lambda}/\tau_{N,\lambda}\right)
+}.
+\tag{14}\]
+
+<blockquote>
+  <p>直观理解：</p>
+  <ul>
+    <li>分子：类似“所有模态上 N 过程参与的 <strong>漂移贡献</strong> 的加权和”的平方；</li>
+    <li>分母：类似“R 过程把这种漂移拉回来的总强度”；</li>
+    <li>当 R 很强、N 很弱时，这个修正就被压扁，$\kappa_2\to 0$；</li>
+    <li>当 N 占主导、R 很弱时，$\kappa_2$ 会显著抬高，总热导率大幅增强。</li>
+  </ul>
+</blockquote>
+
+<h2 id="7-小结">7. 小结</h2>
+
+<ul>
+  <li>
+    <p><strong>BTE 出发点</strong>：<br>
+温度梯度让声子分布偏离平衡，碰撞项把系统往某个“平衡态”拉回去。</p>
+  </li>
+  <li>
+<strong>Callaway 的巧妙之处</strong>：<br>
+把“平衡态”分成两个层次：
+    <ul>
+      <li>N 过程 → 建立一个带漂移的平衡态 $n_{\lambda}^{(d)}$；</li>
+      <li>R 过程 → 真正负责耗散、把系统拉回真正的 $n_{\lambda}^{(0)}$。</li>
+    </ul>
+  </li>
+  <li>
+<strong>数学上</strong>：
+    <ul>
+      <li>定义位移分布 $n_{\lambda}^{(d)}$，做一阶展开；</li>
+      <li>引入组合弛豫时间 $\tau_c^{-1} = \tau_N^{-1} + \tau_R^{-1}$；</li>
+      <li>用 N 过程“总动量守恒”条件解出漂移强度 $\beta$；</li>
+      <li>最后得到 $\kappa = \kappa_1 + \kappa_2$，其中
+        <ul>
+          <li>$\kappa_1$：RTA 形式（用 $\tau_c$）</li>
+          <li>$\kappa_2$：N 过程的额外修正项。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+<strong>极限情况</strong>：
+    <ul>
+      <li>N 很弱：$\tau_{N,\lambda} \to \infty$，$\kappa_2 \to 0$，退化为普通 RTA；</li>
+      <li>N 很强、R 较弱：$\kappa_2$ 明显变大，出现类似 <strong>声子水动力学</strong> 的高热导率行为。</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+
+<h4 id="参考文献">参考文献：</h4>
+
+<p>[1] Phys. Rev. <em>113</em>, 1046–1051 (1959).</p>
+
+<p>[2] Phys. Rev. B <em>88</em>, 144302 (2013).</p>
+
+<p>[3] Phys. Rev. B <em>90</em>, 035203 (2014).</p>
+
+      </d-article>
+
+      <d-appendix>
+        <d-footnote-list></d-footnote-list>
+        <d-citation-list></d-citation-list>
+      </d-appendix>
+
+      <d-bibliography src="/assets/bibliography/"></d-bibliography>
+
+      
+      
+    </div>
+
+    <!-- Footer -->
+    
+  <footer class="fixed-bottom" role="contentinfo">
+    <div class="container mt-0">
+      © Copyright 2025
+      Shixian
+      
+      Liu. 由 <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> 提供支持. 由 <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a> 托管.
+
+      
+      
+    </div>
+  </footer>
+
+
+    <!-- Bootsrap & MDB scripts -->
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="/assets/js/mdb.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    
+
+
+
+
+    
+  <!-- Scrolling Progress Bar -->
+  <script type="text/javascript">
+    /*
+     * This JavaScript code has been adapted from the article
+     * https://css-tricks.com/reading-position-indicator/ authored by Pankaj Parashar,
+     * published on the website https://css-tricks.com on the 7th of May, 2014.
+     * Couple of changes were made to the original code to make it compatible
+     * with the `al-foio` theme.
+     */
+    const progressBar = $('#progress');
+    /*
+     * We set up the bar after all elements are done loading.
+     * In some cases, if the images in the page are larger than the intended
+     * size they'll have on the page, they'll be resized via CSS to accomodate
+     * the desired size. This mistake, however, breaks the computations as the
+     * scroll size is computed as soon as the elements finish loading.
+     * To account for this, a minimal delay was introduced before computing the
+     * values.
+     */
+    window.onload = function () {
+      setTimeout(progressBarSetup, 50);
+    };
+    /*
+     * We set up the bar according to the browser.
+     * If the browser supports the progress element we use that.
+     * Otherwise, we resize the bar thru CSS styling
+     */
+    function progressBarSetup() {
+      if ('max' in document.createElement('progress')) {
+        initializeProgressElement();
+        $(document).on('scroll', function () {
+          progressBar.attr({ value: getCurrentScrollPosition() });
+        });
+        $(window).on('resize', initializeProgressElement);
+      } else {
+        resizeProgressBar();
+        $(document).on('scroll', resizeProgressBar);
+        $(window).on('resize', resizeProgressBar);
+      }
+    }
+    /*
+     * The vertical scroll position is the same as the number of pixels that
+     * are hidden from view above the scrollable area. Thus, a value > 0 is
+     * how much the user has scrolled from the top
+     */
+    function getCurrentScrollPosition() {
+      return $(window).scrollTop();
+    }
+
+    function initializeProgressElement() {
+      let navbarHeight = $('#navbar').outerHeight(true);
+      $('body').css({ 'padding-top': navbarHeight });
+      $('progress-container').css({ 'padding-top': navbarHeight });
+      progressBar.css({ top: navbarHeight });
+      progressBar.attr({
+        max: getDistanceToScroll(),
+        value: getCurrentScrollPosition(),
+      });
+    }
+    /*
+     * The offset between the html document height and the browser viewport
+     * height will be greater than zero if vertical scroll is possible.
+     * This is the distance the user can scroll
+     */
+    function getDistanceToScroll() {
+      return $(document).height() - $(window).height();
+    }
+
+    function resizeProgressBar() {
+      progressBar.css({ width: getWidthPercentage() + '%' });
+    }
+    // The scroll ratio equals the percentage to resize the bar
+    function getWidthPercentage() {
+      return (getCurrentScrollPosition() / getDistanceToScroll()) * 100;
+    }
+  </script>
+
+
+    
+  <script src="/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script>
+  <script>
+    addBackToTop();
+  </script>
+
+
+    
+  <script type="module" src="/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script>
+  <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="输入以开始搜索">
+    
+    <div class="modal-footer" slot="footer">
+      <span class="help">
+        <svg version="1.0" class="ninja-examplekey" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1280 1280">
+          <path d="M1013 376c0 73.4-.4 113.3-1.1 120.2a159.9 159.9 0 0 1-90.2 127.3c-20 9.6-36.7 14-59.2 15.5-7.1.5-121.9.9-255 1h-242l95.5-95.5 95.5-95.5-38.3-38.2-38.2-38.3-160 160c-88 88-160 160.4-160 161 0 .6 72 73 160 161l160 160 38.2-38.3 38.3-38.2-95.5-95.5-95.5-95.5h251.1c252.9 0 259.8-.1 281.4-3.6 72.1-11.8 136.9-54.1 178.5-116.4 8.6-12.9 22.6-40.5 28-55.4 4.4-12 10.7-36.1 13.1-50.6 1.6-9.6 1.8-21 2.1-132.8l.4-122.2H1013v110z"></path>
+        </svg>
+        选择
+      </span>
+      <span class="help">
+        <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24">
+          <path d="M0 0h24v24H0V0z" fill="none"></path>
+          <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24">
+          <path d="M0 0h24v24H0V0z" fill="none"></path>
+          <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path>
+        </svg>
+        导航
+      </span>
+      <span class="help">
+        <span class="ninja-examplekey esc">esc</span>
+        关闭
+      </span>
+      <span class="help">
+        <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey backspace" viewbox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M6.707 4.879A3 3 0 018.828 4H15a3 3 0 013 3v6a3 3 0 01-3 3H8.828a3 3 0 01-2.12-.879l-4.415-4.414a1 1 0 010-1.414l4.414-4.414zm4 2.414a1 1 0 00-1.414 1.414L10.586 10l-1.293 1.293a1 1 0 101.414 1.414L12 11.414l1.293 1.293a1 1 0 001.414-1.414L13.414 10l1.293-1.293a1 1 0 00-1.414-1.414L12 8.586l-1.293-1.293z" clip-rule="evenodd"></path>
+        </svg>
+        返回上一级
+      </span>
+    </div>
+  </ninja-keys>
+  <script>
+    let searchTheme = determineComputedTheme();
+    const ninjaKeys = document.querySelector('ninja-keys');
+
+    if (searchTheme === 'dark') {
+      ninjaKeys.classList.add('dark');
+    } else {
+      ninjaKeys.classList.remove('dark');
+    }
+
+    const openSearchModal = () => {
+      // collapse navbarNav if expanded on mobile
+      const $navbarNav = $('#navbarNav');
+      if ($navbarNav.hasClass('show')) {
+        $navbarNav.collapse('hide');
+      }
+      ninjaKeys.open();
+    };
+  </script>
+  
+  <script>
+    // get the ninja-keys element
+    const ninja = document.querySelector('ninja-keys');
+
+    // add the home and posts menu items
+    ninja.data = [{
+        id: "nav-首页",
+        title: "首页",
+        section: "导航菜单",
+        handler: () => {
+          window.location.href = "/zh-CN/";
+        },
+      },{id: "nav-博客",
+              title: "博客",
+              description: "",
+              section: "导航菜单",
+              handler: () => {
+                window.location.href = "/zh-CN/blog/";
+              },
+            },{id: "nav-发表",
+              title: "发表",
+              description: "Scopus和WoS检索的论文发表清单",
+              section: "导航菜单",
+              handler: () => {
+                window.location.href = "/zh-CN/publications/";
+              },
+            },{id: "nav-教学",
+              title: "教学",
+              description: "课件",
+              section: "导航菜单",
+              handler: () => {
+                window.location.href = "/zh-CN/teaching/";
+              },
+            },{id: "post-callaway-双弛豫时间模型",
+          
+            title: "Callaway 双弛豫时间模型",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2025/callaway/";
+            
+          },
+        },{id: "post-wigner-输运方程-wte-统一声子热传导的理论框架",
+          
+            title: "Wigner 输运方程 (WTE) 统一声子热传导的理论框架",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2025/wigner/";
+            
+          },
+        },{id: "post-vasp-phono3py-计算热导率",
+          
+            title: "VASP + Phono3py 计算热导率",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2025/vasp-phono3py/";
+            
+          },
+        },{id: "post-训练神经进化机器学习势",
+          
+            title: "训练神经进化机器学习势",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2025/nep-train/";
+            
+          },
+        },{id: "post-电子和声子的兰道尔理论",
+          
+            title: "电子和声子的兰道尔理论",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2025/el-ph-landauer/";
+            
+          },
+        },{id: "post-基于第一性原理的-pbte-方法",
+          
+            title: "基于第一性原理的 PBTE 方法",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2025/abinitio-bte/";
+            
+          },
+        },{id: "post-拓扑声子的物理量与性质",
+          
+            title: "拓扑声子的物理量与性质",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2024/topology/";
+            
+          },
+        },{id: "post-使用-vasp-进行结构优化计算",
+          
+            title: "使用 VASP 进行结构优化计算",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2024/vasp-relax/";
+            
+          },
+        },{id: "post-声子蒙特卡罗模拟的理论基础",
+          
+            title: "声子蒙特卡罗模拟的理论基础",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2024/MC-phononBTE/";
+            
+          },
+        },{id: "post-态密度的数值求解方法",
+          
+            title: "态密度的数值求解方法",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2024/dos-method/";
+            
+          },
+        },{id: "post-qe-计算硅的声子色散关系",
+          
+            title: "QE 计算硅的声子色散关系",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2024/qe-disp-si/";
+            
+          },
+        },{id: "post-使用-qe-进行能量自洽计算",
+          
+            title: "使用 QE 进行能量自洽计算",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2024/qe-scf/";
+            
+          },
+        },{id: "post-热物理学的微观描述",
+          
+            title: "热物理学的微观描述",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2023/nano-micro-thermophysics/";
+            
+          },
+        },{id: "post-圆棒中的弹性波色散关系",
+          
+            title: "圆棒中的弹性波色散关系",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2023/elastic-wave-in-wire/";
+            
+          },
+        },{id: "post-平板中的弹性波色散关系",
+          
+            title: "平板中的弹性波色散关系",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2023/elastic-wave-in-plate/";
+            
+          },
+        },{id: "post-热传递的经典动力学理论",
+          
+            title: "热传递的经典动力学理论",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2023/classical-kinetic-theory/";
+            
+          },
+        },{id: "news-参加莫斯科物理技术学院-mipt-第65届全俄科学会议-并获得最佳学生口头报告奖-pdf-https-lyushisyan-github-io-assets-pdf-award-mipt2023-jpg",
+              title: '参加莫斯科物理技术学院(MIPT)第65届全俄科学会议，并获得最佳学生口头报告奖。[PDF](https://lyushisyan.github.io/assets/pdf/award/mipt2023.jpg)',
+              description: "",
+              section: "新闻",},{id: "news-毕业于鲍曼莫斯科国立技术大学-获得核能与热物理专业的硕士学位-并获得荣誉徽章-新闻-https-bmstu-ru-news-kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery",
+              title: '毕业于鲍曼莫斯科国立技术大学，获得核能与热物理专业的硕士学位，并获得荣誉徽章。[新闻](https://bmstu.ru/news/kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery)',
+              description: "",
+              section: "新闻",},{id: "news-受邀参加国际论坛-atomexpo-2024-上的主题为-绿色科技与年轻一代-的俄罗斯高校校友会议-新闻-https-www-rudn-ru-media-news-international-cooperation-rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo-2024",
+              title: '受邀参加国际论坛 ATOMEXPO-2024 上的主题为“绿色科技与年轻一代”的俄罗斯高校校友会议。 [新闻](https://www.rudn.ru/media/news/international-cooperation/rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo--2024)',
+              description: "",
+              section: "新闻",},{id: "news-参加第十八届全俄学校-会议-热物理与物理气体动力学中的热点问题-avtifg-进行了口头报告-并获得一等奖-pdf-https-lyushisyan-github-io-assets-pdf-award-avtifg2025-jpg",
+              title: '参加第十八届全俄学校-会议“热物理与物理气体动力学中的热点问题”（AVTiFG），进行了口头报告，并获得一等奖。[PDF](https://lyushisyan.github.io/assets/pdf/award/avtifg2025.jpg)',
+              description: "",
+              section: "新闻",},{id: "news-参加第九届全国热传导研讨会-wtt-2025-获得海报优秀奖-pdf-https-lyushisyan-github-io-assets-pdf-award-wtt9-jpg",
+              title: '参加第九届全国热传导研讨会（WTT-2025），获得海报优秀奖。[PDF](https://lyushisyan.github.io/assets/pdf/award/wtt9.jpg)',
+              description: "",
+              section: "新闻",},{
+            id: 'social-email',
+            title: '发送邮件',
+            section: '社交媒体',
+            handler: () => {
+              window.open("mailto:%73%78%6C%69%75%39%38@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+            },
+          },{
+            id: 'social-github',
+            title: 'GitHub',
+            section: '社交媒体',
+            handler: () => {
+              window.open("https://github.com/lyushisyan# your GitHub user name", "_blank");
+            },
+          },{
+            id: 'social-orcid',
+            title: 'ORCID',
+            section: '社交媒体',
+            handler: () => {
+              window.open("https://orcid.org/0000-0003-3042-7817", "_blank");
+            },
+          },{
+            id: 'social-scholar',
+            title: 'Google Scholar',
+            section: '社交媒体',
+            handler: () => {
+              window.open("https://scholar.google.com/citations?user=bLVSRuUAAAAJ", "_blank");
+            },
+          },{
+              id: 'lang-en-US',
+              title: 'en-US',
+              section: '语言',
+              handler: () => {
+                window.location.href = "/blog/2025/callaway/";
+              },
+            },{
+          id: 'light-theme',
+          title: '切换到浅色主题',
+          description: '将网站主题更改为浅色',
+          section: '主题',
+          handler: () => {
+            setThemeSetting("light");
+          },
+        },
+        {
+          id: 'dark-theme',
+          title: '切换到深色主题',
+          description: '将网站主题更改为深色',
+          section: '主题',
+          handler: () => {
+            setThemeSetting("dark");
+          },
+        },
+        {
+          id: 'system-theme',
+          title: '使用系统默认主题',
+          description: '将网站主题更改为系统默认',
+          section: '主题',
+          handler: () => {
+            setThemeSetting("system");
+          },
+        },];
+  </script>
+  <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script>
+
+
+  
+</body>
+</html>

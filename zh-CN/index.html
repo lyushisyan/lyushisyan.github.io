@@ -1,4 +1,653 @@
-<!DOCTYPE html> <html lang="zh-CN"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Shixian Liu </title> <meta name="author" content="Shixian Liu"> <meta name="description" content=""> <meta name="keywords" content="thermophysics, phonon, heat transfer"> <link rel="stylesheet" href="/assets/css/bootstrap.min.css?41faab39e5144b07a9384ecf47eac8c3"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5"> <link defer rel="stylesheet" href="/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="/assets/img/sliu.png?430c386d62d98184ee32047ee04ebc19"> <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e"> <link rel="canonical" href="https://lyushisyan.github.io/"> <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>initTheme();</script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item active"> <a class="nav-link" href="/zh-CN/">首页 <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/zh-CN/blog/">博客 </a> </li> <li class="nav-item "> <a class="nav-link" href="/zh-CN/publications/">发表 </a> </li> <li class="nav-item "> <a class="nav-link" href="/zh-CN/teaching/">教学 </a> </li> <li class="nav-item"> <button id="search-toggle" title="Search" onclick="openSearchModal()"> <span class="nav-link">ctrl k <i class="ti ti-search"></i></span> </button> </li> <li class="nav-item active"> <a class="nav-link" href="/"> EN-US</a> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="ti ti-sun-moon" id="light-toggle-system"></i> <i class="ti ti-moon-filled" id="light-toggle-dark"></i> <i class="ti ti-sun-filled" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title"> <span class="font-weight-bold">Shixian</span> Liu </h1> <p class="desc"></p> </header> <article> <div class="profile float-right"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/liusx2-480.webp 480w,/assets/img/liusx2-800.webp 800w,/assets/img/liusx2-1400.webp 1400w," type="image/webp" sizes="(min-width: 1000px) 291.0px, (min-width: 576px) 30vw, 95vw"> <img src="/assets/img/liusx2.jpg?f1b626447d6db61df40e0d02152db7c4" class="img-fluid z-depth-1 rounded" width="100%" height="auto" alt="liusx2.jpg" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </source></picture> </figure> </div> <div class="clearfix"> <p>📧  <a href="mailto:sxliu98@gmail.com">sxliu98@gmail.com</a><br> 📍  白楼(УЛК) 547室</p> <p>📄  <a href="https://lyushisyan.github.io/assets/pdf/zh-CN/CV_LIU_ZH_0906.pdf">中文简历 PDF</a></p> <p><strong>研究兴趣：</strong></p> <ul> <li>聚焦于<strong>微纳尺度热传导</strong>，尤其专注于低维结构中声子输运的物理机制。</li> </ul> <p><strong>研究方向涵盖：</strong></p> <ul> <li>第一性原理计算</li> <li>机器学习势函数</li> <li>蒙特卡洛模拟</li> <li>声子限制效应</li> <li>共振杂化效应</li> <li>靶向声子激发</li> </ul> <p><strong>工作经历：</strong></p> <ul> <li> <strong>2025 – 至今</strong>：莫斯科鲍曼国立技术大学，热物理系，工程师 &amp; 初级讲师</li> </ul> <p><strong>教育背景：</strong></p> <ul> <li> <strong>2023 – 至今</strong>：博士研究生，莫斯科鲍曼国立技术大学， 导师：V.I. Khvesyuk 教授</li> <li> <strong>2021 – 2023</strong>：硕士，莫斯科鲍曼国立技术大学， 导师：A.A. Barinov 教授</li> <li> <strong>2017 – 2021</strong>：学士，华北电力大学 &amp; 莫斯科动力工程学院（双学位）， 导师：V.I. Melikhov 教授</li> </ul> </div> <h3 style="font-weight: bold; border-bottom: 2px solid #ccc; padding-bottom: 4px; margin-top: 2em;"> 📅 <a href="/zh-CN/news/" style="color: inherit; text-decoration: none;"> 新闻 </a> </h3> <div class="news"> <div class="table-responsive" style="max-height: 60vw"> <table class="table table-sm table-borderless"> <tr> <th scope="row" style="width: 20%"> 17 10月 2025</th> <td> 参加第九届全国热传导研讨会（WTT-2025），获得海报优秀奖。<a href="https://lyushisyan.github.io/assets/pdf/award/wtt9.jpg">PDF</a> </td> </tr> <tr> <th scope="row" style="width: 20%"> 02 7月 2025</th> <td> 参加第十八届全俄学校-会议“热物理与物理气体动力学中的热点问题”（AVTiFG），进行了口头报告，并获得一等奖。<a href="https://lyushisyan.github.io/assets/pdf/award/avtifg2025.jpg">PDF</a> </td> </tr> <tr> <th scope="row" style="width: 20%"> 26 3月 2024</th> <td> 受邀参加国际论坛 ATOMEXPO-2024 上的主题为“绿色科技与年轻一代”的俄罗斯高校校友会议。 <a href="https://www.rudn.ru/media/news/international-cooperation/rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo--2024" rel="external nofollow noopener" target="_blank">新闻</a> </td> </tr> <tr> <th scope="row" style="width: 20%"> 30 6月 2023</th> <td> 毕业于鲍曼莫斯科国立技术大学，获得核能与热物理专业的硕士学位，并获得荣誉徽章。<a href="https://bmstu.ru/news/kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery" rel="external nofollow noopener" target="_blank">新闻</a> </td> </tr> <tr> <th scope="row" style="width: 20%"> 13 4月 2023</th> <td> 参加莫斯科物理技术学院(MIPT)第65届全俄科学会议，并获得最佳学生口头报告奖。<a href="https://lyushisyan.github.io/assets/pdf/award/mipt2023.jpg">PDF</a> </td> </tr> </table> </div> </div> <h3 style="font-weight: bold; border-bottom: 2px solid #ccc; padding-bottom: 4px; margin-top: 2em;"> ✍️  <a href="/zh-CN/blog/" style="color: inherit; text-decoration: none;"> 最新笔记 </a> </h3> <div class="news"> <div class="table-responsive" style="max-height: 60vw"> <table class="table table-sm table-borderless"> <tr> <th scope="row" style="width: 20%"> 16 11月 2025</th> <td> <a class="news-title" href="/zh-CN/blog/2025/callaway/">Callaway 双弛豫时间模型</a> </td> </tr> <tr> <th scope="row" style="width: 20%"> 05 10月 2025</th> <td> <a class="news-title" href="/zh-CN/blog/2025/wigner/">Wigner 输运方程 (WTE) 统一声子热传导的理论框架</a> </td> </tr> <tr> <th scope="row" style="width: 20%"> 20 5月 2025</th> <td> <a class="news-title" href="/zh-CN/blog/2025/vasp-phono3py/">VASP + Phono3py 计算热导率</a> </td> </tr> </table> </div> </div> <h3 style="font-weight: bold; border-bottom: 2px solid #ccc; padding-bottom: 4px; margin-top: 2em;"> 📚  <a href="/zh-CN/publications/" style="color: inherit; text-decoration: none;"> 代表作 </a> </h3> <div class="publications"> <ol class="bibliography"> <li> <div class="row"> <div class="col col-sm-2 abbr"> <abbr class="badge rounded w-100">J. Appl. Phys.</abbr> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/publication_preview/jap_2025-480.webp 480w,/assets/img/publication_preview/jap_2025-800.webp 800w,/assets/img/publication_preview/jap_2025-1400.webp 1400w," type="image/webp" sizes="300px"> <img src="/assets/img/publication_preview/jap_2025.png" class="preview z-depth-1 rounded" width="100%" height="auto" alt="jap_2025.png" data-zoomable loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </source></picture> </figure> </div> <div id="shixian2025jap" class="col-sm-8"> <div class="title">Temperature Dependence of Specific Heat Capacity of Nanostructures via Neuroevolution Machine-learned Potential</div> <div class="author"> <em>Shixian Liu</em>, Ge Zhang, Fei Yin, A.A. Barinov, V.I. Khvesyuk, and Nuo Yang </div> <div class="periodical"> <em>Journal of Applied Physics</em>, 2025 </div> <div class="periodical"> </div> <div class="links"> <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a> <a href="https://doi.org/10.1063/5.0284002" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">DOI</a> <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a> <a href="/assets/pdf/JAP_2025_Liu.pdf" class="btn btn-sm z-depth-0" role="button">PDF</a> </div> <div class="badges"> <span class="__dimensions_badge_embed__" data-doi="10.1063/5.0284002" data-style="small_rectangle" data-legend="hover-right" style="margin-bottom: 3px;"></span> </div> <div class="abstract hidden"> <p>In this study, lattice dynamics calculations based on the Neuroevolution Machine-learned Potential (NEP) were performed for three types of silicon nanostructures: thin films, nanowires, and quantum dots. The temperature and size dependence of the specific heat capacity was systematically examined. The results reveal a significant enhancement in the specific heat capacity of nanostructures at low temperatures compared to bulk silicon, primarily due to phonon confinement, discrete energy spectra, and the emergence of low-frequency surface vibrational modes. These findings underscore the dominant role of nonlinear acoustic phonons at low temperatures, with increasing contributions from optical modes as the temperature rises. Notably, this work reports the temperature-dependent evolution of local fitting exponents in the specific heat scaling relation C_v ∼T^n(T) for nanostructured systems. The high accuracy and computational efficiency of the NEP model allow for detailed characterization of the complex phonon behaviors that govern thermal properties at the nanoscale.</p> </div> <div class="bibtex hidden"> <figure class="highlight"><pre><code class="language-bibtex" data-lang="bibtex"><span class="nc">@article</span><span class="p">{</span><span class="nl">shixian2025jap</span><span class="p">,</span>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <!-- Head -->
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <!-- Metadata, OpenGraph and Schema.org -->
+
+
+
+
+<!-- Standard metadata -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+
+<title>
+  
+    Shixian Liu
+  
+</title>
+<meta name="author" content="Shixian Liu">
+<meta name="description" content="">
+
+  <meta name="keywords" content="thermophysics, phonon, heat transfer">
+
+
+
+
+
+
+
+
+
+
+<!-- Bootstrap & MDB -->
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css?41faab39e5144b07a9384ecf47eac8c3">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
+
+<!-- Bootstrap Table -->
+
+
+<!-- Fonts & Icons -->
+<link defer rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5">
+<link defer rel="stylesheet" href="/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772">
+<link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
+
+<!-- Code Syntax Highlighting -->
+<link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light">
+
+
+
+<!-- Styles -->
+
+<!-- pseudocode -->
+
+
+
+  <link rel="shortcut icon" href="/assets/img/sliu.png?430c386d62d98184ee32047ee04ebc19">
+
+<link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e">
+<link rel="canonical" href="http://localhost:4000/zh-CN/">
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
+
+  <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark">
+  <script>
+    initTheme();
+  </script>
+
+
+<!-- GeoJSON support via Leaflet -->
+
+
+<!-- diff2html -->
+
+
+
+
+
+
+  </head>
+
+  <!-- Body -->
+  <body class="fixed-top-nav ">
+    <!-- Header -->
+    <header>
+  <!-- Nav Bar -->
+  <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation">
+    <div class="container">
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          
+
+          <!-- About -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/zh-CN/">首页
+              
+                <span class="sr-only">(current)</span>
+              
+            </a>
+          </li>
+
+          <!-- Other pages -->
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+              
+                
+                <li class="nav-item ">
+                  <a class="nav-link" href="/zh-CN/blog/">博客
+                    
+                  </a>
+                </li>
+              
+            
+          
+            
+              
+                
+                <li class="nav-item ">
+                  <a class="nav-link" href="/zh-CN/publications/">发表
+                    
+                  </a>
+                </li>
+              
+            
+          
+            
+              
+                
+                <li class="nav-item ">
+                  <a class="nav-link" href="/zh-CN/teaching/">教学
+                    
+                  </a>
+                </li>
+              
+            
+          
+          
+            <!-- Search -->
+            <li class="nav-item">
+              <button id="search-toggle" title="Search" onclick="openSearchModal()">
+                <span class="nav-link">ctrl k <i class="ti ti-search"></i></span>
+              </button>
+            </li>
+          
+          <!-- Toogle language -->
+          
+            
+              
+              <li class="nav-item active">
+                
+                  <a class="nav-link" href="/">
+                    
+                      EN-US</a>
+                
+              </li>
+            
+          
+          
+            <!-- Toogle theme mode -->
+            <li class="toggle-container">
+              <button id="light-toggle" title="Change theme">
+                <i class="ti ti-sun-moon" id="light-toggle-system"></i>
+                <i class="ti ti-moon-filled" id="light-toggle-dark"></i>
+                <i class="ti ti-sun-filled" id="light-toggle-light"></i>
+              </button>
+            </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+    <!-- Scrolling Progress Bar -->
+    <progress id="progress" value="0">
+      <div class="progress-container">
+        <span class="progress-bar"></span>
+      </div>
+    </progress>
+  
+</header>
+
+
+    <!-- Content -->
+    <div class="container mt-5" role="main">
+      
+        <div class="post">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+        <span class="font-weight-bold">Shixian</span> 
+        Liu
+      
+    </h1>
+    <p class="desc"></p>
+  </header>
+
+  <article>
+    
+      <div class="profile float-right">
+        
+          
+          
+          
+          
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/liusx2-480.webp 480w,/assets/img/liusx2-800.webp 800w,/assets/img/liusx2-1400.webp 1400w," type="image/webp" sizes="(min-width: 1000px) 291.0px, (min-width: 576px)
+      30vw, 95vw">
+    
+    <img src="/assets/img/liusx2.jpg?f1b626447d6db61df40e0d02152db7c4" class="img-fluid z-depth-1 rounded" width="100%" height="auto" alt="liusx2.jpg" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+  </source></picture>
+
+  
+</figure>
+
+        
+        
+      </div>
+    
+
+    <div class="clearfix">
+<p>📧  <a href="mailto:sxliu98@gmail.com">sxliu98@gmail.com</a><br>
+📍  白楼(УЛК) 547室</p>
+
+<p>📄  <a href="https://lyushisyan.github.io/assets/pdf/zh-CN/CV_LIU_ZH_0906.pdf" rel="external nofollow noopener" target="_blank">中文简历 PDF</a></p>
+
+<p><strong>研究兴趣：</strong></p>
+<ul>
+  <li>聚焦于<strong>微纳尺度热传导</strong>，尤其专注于低维结构中声子输运的物理机制。</li>
+</ul>
+
+<p><strong>研究方向涵盖：</strong></p>
+<ul>
+  <li>第一性原理计算</li>
+  <li>机器学习势函数</li>
+  <li>蒙特卡洛模拟</li>
+  <li>声子限制效应</li>
+  <li>共振杂化效应</li>
+  <li>靶向声子激发</li>
+</ul>
+
+<p><strong>工作经历：</strong></p>
+<ul>
+  <li>
+<strong>2025 – 至今</strong>：莫斯科鲍曼国立技术大学，热物理系，工程师 &amp; 初级讲师</li>
+</ul>
+
+<p><strong>教育背景：</strong></p>
+<ul>
+  <li>
+<strong>2023 – 至今</strong>：博士研究生，莫斯科鲍曼国立技术大学，  导师：V.I. Khvesyuk 教授</li>
+  <li>
+<strong>2021 – 2023</strong>：硕士，莫斯科鲍曼国立技术大学，  导师：A.A. Barinov 教授</li>
+  <li>
+<strong>2017 – 2021</strong>：学士，华北电力大学 &amp; 莫斯科动力工程学院（双学位），  导师：V.I. Melikhov 教授</li>
+</ul>
+
+</div>
+
+    <!-- News Section -->
+    <h3 style="font-weight: bold; border-bottom: 2px solid #ccc; padding-bottom: 4px; margin-top: 2em;">
+      📅
+      <a href="/zh-CN/news/" style="color: inherit; text-decoration: none;">
+        新闻
+      </a>
+    </h3>
+    <div class="news">
+  
+    
+    <div class="table-responsive" style="max-height: 60vw">
+      <table class="table table-sm table-borderless">
+        
+        
+        
+          <tr>
+            <th scope="row" style="width: 20%">
+
+
+
+
+
+
+17
+  10月
+  2025</th>
+            <td>
+              
+                参加第九届全国热传导研讨会（WTT-2025），获得海报优秀奖。<a href="https://lyushisyan.github.io/assets/pdf/award/wtt9.jpg" rel="external nofollow noopener" target="_blank">PDF</a>
+
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th scope="row" style="width: 20%">
+
+
+
+
+
+
+02
+  7月
+  2025</th>
+            <td>
+              
+                参加第十八届全俄学校-会议“热物理与物理气体动力学中的热点问题”（AVTiFG），进行了口头报告，并获得一等奖。<a href="https://lyushisyan.github.io/assets/pdf/award/avtifg2025.jpg" rel="external nofollow noopener" target="_blank">PDF</a>
+
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th scope="row" style="width: 20%">
+
+
+
+
+
+
+26
+  3月
+  2024</th>
+            <td>
+              
+                受邀参加国际论坛 ATOMEXPO-2024 上的主题为“绿色科技与年轻一代”的俄罗斯高校校友会议。 <a href="https://www.rudn.ru/media/news/international-cooperation/rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo--2024" rel="external nofollow noopener" target="_blank">新闻</a>
+
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th scope="row" style="width: 20%">
+
+
+
+
+
+
+30
+  6月
+  2023</th>
+            <td>
+              
+                毕业于鲍曼莫斯科国立技术大学，获得核能与热物理专业的硕士学位，并获得荣誉徽章。<a href="https://bmstu.ru/news/kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery" rel="external nofollow noopener" target="_blank">新闻</a>
+
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th scope="row" style="width: 20%">
+
+
+
+
+
+
+13
+  4月
+  2023</th>
+            <td>
+              
+                参加莫斯科物理技术学院(MIPT)第65届全俄科学会议，并获得最佳学生口头报告奖。<a href="https://lyushisyan.github.io/assets/pdf/award/mipt2023.jpg" rel="external nofollow noopener" target="_blank">PDF</a>
+
+              
+            </td>
+          </tr>
+        
+      </table>
+    </div>
+  
+</div>
+
+
+
+    <!-- Latest Posts Section -->
+    <h3 style="font-weight: bold; border-bottom: 2px solid #ccc; padding-bottom: 4px; margin-top: 2em;">
+      ✍️ 
+      <a href="/zh-CN/blog/" style="color: inherit; text-decoration: none;">
+        最新笔记
+      </a>
+    </h3>
+    <div class="news">
+  
+    
+    <div class="table-responsive" style="max-height: 60vw">
+      <table class="table table-sm table-borderless">
+        
+        
+        
+          <tr>
+            <th scope="row" style="width: 20%">
+
+
+
+
+
+
+17
+  11月
+  2025</th>
+            <td>
+              
+                <a class="news-title" href="/zh-CN/blog/2025/callaway/">Callaway 双弛豫时间模型</a>
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th scope="row" style="width: 20%">
+
+
+
+
+
+
+06
+  10月
+  2025</th>
+            <td>
+              
+                <a class="news-title" href="/zh-CN/blog/2025/wigner/">Wigner 输运方程 (WTE) 统一声子热传导的理论框架</a>
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th scope="row" style="width: 20%">
+
+
+
+
+
+
+21
+  5月
+  2025</th>
+            <td>
+              
+                <a class="news-title" href="/zh-CN/blog/2025/vasp-phono3py/">VASP + Phono3py 计算热导率</a>
+              
+            </td>
+          </tr>
+        
+      </table>
+    </div>
+  
+</div>
+
+
+
+    <!-- Selected Publications Section -->
+    <h3 style="font-weight: bold; border-bottom: 2px solid #ccc; padding-bottom: 4px; margin-top: 2em;">
+      📚 
+      <a href="/zh-CN/publications/" style="color: inherit; text-decoration: none;">
+        代表作
+      </a>
+    </h3>
+    <div class="publications">
+  <ol class="bibliography">
+<li>
+<div class="row">
+  
+    <div class="col col-sm-2 abbr">
+          <abbr class="badge rounded w-100">J. Appl. Phys.</abbr>
+        
+      
+      
+        
+          
+          
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/publication_preview/jap_2025-480.webp 480w,/assets/img/publication_preview/jap_2025-800.webp 800w,/assets/img/publication_preview/jap_2025-1400.webp 1400w," type="image/webp" sizes="300px">
+    
+    <img src="/assets/img/publication_preview/jap_2025.png" class="preview z-depth-1 rounded" width="100%" height="auto" alt="jap_2025.png" data-zoomable loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+  </source></picture>
+
+  
+</figure>
+
+        
+      
+    </div>
+  
+
+  <!-- Entry bib key -->
+  <div id="shixian2025jap" class="col-sm-8">
+    <!-- Title -->
+    <div class="title">Temperature Dependence of Specific Heat Capacity of Nanostructures via Neuroevolution Machine-learned Potential</div>
+    <!-- Author -->
+    <div class="author">
+      
+
+      
+      <em>Shixian
+            Liu</em>, Ge
+            Zhang, Fei
+            Yin, A.A.
+            Barinov, V.I.
+            Khvesyuk, and Nuo
+            Yang
+      
+    </div>
+
+    <!-- Journal/Book title and date -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="periodical">
+      <em>Journal of Applied Physics</em>,  2025
+    </div>
+    <div class="periodical">
+      
+    </div>
+
+    <!-- Links/Buttons -->
+    <div class="links">
+      
+      
+        <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
+      
+      
+        <a href="https://doi.org/10.1063/5.0284002" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">DOI</a>
+      
+      
+      
+        <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a>
+      
+      
+      
+        
+          <a href="/assets/pdf/JAP_2025_Liu.pdf" class="btn btn-sm z-depth-0" role="button">PDF</a>
+        
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+    
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+      
+        <div class="badges">
+          
+          
+            <span class="__dimensions_badge_embed__" data-doi="10.1063/5.0284002" data-style="small_rectangle" data-legend="hover-right" style="margin-bottom: 3px;"></span>
+          
+          
+          
+        </div>
+      
+    
+
+    
+
+    
+      <!-- Hidden abstract block -->
+      <div class="abstract hidden">
+        <p>In this study, lattice dynamics calculations based on the Neuroevolution Machine-learned Potential (NEP) were performed for three types of silicon nanostructures: thin films, nanowires, and quantum dots. The temperature and size dependence of the specific heat capacity was systematically examined. The results reveal a significant enhancement in the specific heat capacity of nanostructures at low temperatures compared to bulk silicon, primarily due to phonon confinement, discrete energy spectra, and the emergence of low-frequency surface vibrational modes. These findings underscore the dominant role of nonlinear acoustic phonons at low temperatures, with increasing contributions from optical modes as the temperature rises. Notably, this work reports the temperature-dependent evolution of local fitting exponents in the specific heat scaling relation C_v ∼T^n(T) for nanostructured systems. The high accuracy and computational efficiency of the NEP model allow for detailed characterization of the complex phonon behaviors that govern thermal properties at the nanoscale.</p>
+      </div>
+    
+
+    
+      <!-- Hidden bibtex block -->
+      <div class="bibtex hidden">
+        <figure class="highlight"><pre><code class="language-bibtex" data-lang="bibtex"><span class="nc">@article</span><span class="p">{</span><span class="nl">shixian2025jap</span><span class="p">,</span>
   <span class="na">title</span> <span class="p">=</span> <span class="s">{Temperature Dependence of Specific Heat Capacity of Nanostructures via Neuroevolution Machine-learned Potential}</span><span class="p">,</span>
   <span class="na">author</span> <span class="p">=</span> <span class="s">{Liu, Shixian and Zhang, Ge and Yin, Fei and Barinov, A.A. and Khvesyuk, V.I. and Yang, Nuo}</span><span class="p">,</span>
   <span class="na">journal</span> <span class="p">=</span> <span class="s">{Journal of Applied Physics}</span><span class="p">,</span>
@@ -7,7 +656,149 @@
   <span class="na">year</span> <span class="p">=</span> <span class="s">{2025}</span><span class="p">,</span>
   <span class="na">doi</span> <span class="p">=</span> <span class="s">{10.1063/5.0284002}</span><span class="p">,</span>
   <span class="na">dimensions</span> <span class="p">=</span> <span class="s">{true}</span><span class="p">,</span>
-<span class="p">}</span></code></pre></figure> </div> </div> </div> </li> <li> <div class="row"> <div class="col col-sm-2 abbr"> <abbr class="badge rounded w-100">Int. J. Therm. Sci.</abbr> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/publication_preview/ijts_2025-480.webp 480w,/assets/img/publication_preview/ijts_2025-800.webp 800w,/assets/img/publication_preview/ijts_2025-1400.webp 1400w," type="image/webp" sizes="300px"> <img src="/assets/img/publication_preview/ijts_2025.png" class="preview z-depth-1 rounded" width="100%" height="auto" alt="ijts_2025.png" data-zoomable loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </source></picture> </figure> </div> <div id="shixian2025wave" class="col-sm-8"> <div class="title">Quantifying Particle and Wave Effects in Phonon Transport of Pillared Graphene Nanoribbons</div> <div class="author"> <em>Shixian Liu</em>, Zhicheng Zong, Fei Yin, V.I. Khvesyuk, and Nuo Yang </div> <div class="periodical"> <em>International Journal of Thermal Sciences</em>, 2025 </div> <div class="periodical"> </div> <div class="links"> <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a> <a href="https://doi.org/10.1016/j.ijthermalsci.2025.110067" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">DOI</a> <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a> <a href="/assets/pdf/IJTS_2025_Liu.pdf" class="btn btn-sm z-depth-0" role="button">PDF</a> </div> <div class="badges"> <span class="__dimensions_badge_embed__" data-doi="10.1016/j.ijthermalsci.2025.110067" data-style="small_rectangle" data-legend="hover-right" style="margin-bottom: 3px;"></span> </div> <div class="abstract hidden"> <p>This study investigates the dual nature of phonons—encompassing both particle-like and wave-like behaviors—and their roles in thermal transport within pillared graphene nanoribbons (PGNRs). Monte Carlo simulations are employed to evaluate how the presence of pillars affects the thermal conductivity of graphene nanoribbons (GNRs), revealing that pillars significantly reduce thermal conductivity by enhancing phonon-boundary scattering, thereby emphasizing particle effects. A comparison with molecular dynamics simulations enables quantitative assessment of the respective contributions of particle and wave phenomena to the observed reduction in thermal conductivity. Notably, as the width of PGNRs decreases, the influence of wave effects initially increases and then diminishes, suggesting a saturation behavior. Furthermore, this study introduces and evaluates the concept of phonon resonance hybridization depth in PGNRs.</p> </div> <div class="bibtex hidden"> <figure class="highlight"><pre><code class="language-bibtex" data-lang="bibtex"><span class="nc">@article</span><span class="p">{</span><span class="nl">shixian2025wave</span><span class="p">,</span>
+<span class="p">}</span></code></pre></figure>
+      </div>
+    
+
+    
+  </div>
+</div>
+</li>
+<li>
+<div class="row">
+  
+    <div class="col col-sm-2 abbr">
+          <abbr class="badge rounded w-100">Int. J. Therm. Sci.</abbr>
+        
+      
+      
+        
+          
+          
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/publication_preview/ijts_2025-480.webp 480w,/assets/img/publication_preview/ijts_2025-800.webp 800w,/assets/img/publication_preview/ijts_2025-1400.webp 1400w," type="image/webp" sizes="300px">
+    
+    <img src="/assets/img/publication_preview/ijts_2025.png" class="preview z-depth-1 rounded" width="100%" height="auto" alt="ijts_2025.png" data-zoomable loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+  </source></picture>
+
+  
+</figure>
+
+        
+      
+    </div>
+  
+
+  <!-- Entry bib key -->
+  <div id="shixian2025wave" class="col-sm-8">
+    <!-- Title -->
+    <div class="title">Quantifying Particle and Wave Effects in Phonon Transport of Pillared Graphene Nanoribbons</div>
+    <!-- Author -->
+    <div class="author">
+      
+
+      
+      <em>Shixian
+            Liu</em>, Zhicheng
+            Zong, Fei
+            Yin, V.I.
+            Khvesyuk, and Nuo
+            Yang
+      
+    </div>
+
+    <!-- Journal/Book title and date -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="periodical">
+      <em>International Journal of Thermal Sciences</em>,  2025
+    </div>
+    <div class="periodical">
+      
+    </div>
+
+    <!-- Links/Buttons -->
+    <div class="links">
+      
+      
+        <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
+      
+      
+        <a href="https://doi.org/10.1016/j.ijthermalsci.2025.110067" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">DOI</a>
+      
+      
+      
+        <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a>
+      
+      
+      
+        
+          <a href="/assets/pdf/IJTS_2025_Liu.pdf" class="btn btn-sm z-depth-0" role="button">PDF</a>
+        
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+    
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+      
+        <div class="badges">
+          
+          
+            <span class="__dimensions_badge_embed__" data-doi="10.1016/j.ijthermalsci.2025.110067" data-style="small_rectangle" data-legend="hover-right" style="margin-bottom: 3px;"></span>
+          
+          
+          
+        </div>
+      
+    
+
+    
+
+    
+      <!-- Hidden abstract block -->
+      <div class="abstract hidden">
+        <p>This study investigates the dual nature of phonons—encompassing both particle-like and wave-like behaviors—and their roles in thermal transport within pillared graphene nanoribbons (PGNRs). Monte Carlo simulations are employed to evaluate how the presence of pillars affects the thermal conductivity of graphene nanoribbons (GNRs), revealing that pillars significantly reduce thermal conductivity by enhancing phonon-boundary scattering, thereby emphasizing particle effects. A comparison with molecular dynamics simulations enables quantitative assessment of the respective contributions of particle and wave phenomena to the observed reduction in thermal conductivity. Notably, as the width of PGNRs decreases, the influence of wave effects initially increases and then diminishes, suggesting a saturation behavior. Furthermore, this study introduces and evaluates the concept of phonon resonance hybridization depth in PGNRs.</p>
+      </div>
+    
+
+    
+      <!-- Hidden bibtex block -->
+      <div class="bibtex hidden">
+        <figure class="highlight"><pre><code class="language-bibtex" data-lang="bibtex"><span class="nc">@article</span><span class="p">{</span><span class="nl">shixian2025wave</span><span class="p">,</span>
   <span class="na">title</span> <span class="p">=</span> <span class="s">{Quantifying Particle and Wave Effects in Phonon Transport of Pillared Graphene Nanoribbons}</span><span class="p">,</span>
   <span class="na">author</span> <span class="p">=</span> <span class="s">{Liu, Shixian and Zong, Zhicheng and Yin, Fei and Khvesyuk, V.I. and Yang, Nuo}</span><span class="p">,</span>
   <span class="na">journal</span> <span class="p">=</span> <span class="s">{International Journal of Thermal Sciences}</span><span class="p">,</span>
@@ -16,7 +807,152 @@
   <span class="na">year</span> <span class="p">=</span> <span class="s">{2025}</span><span class="p">,</span>
   <span class="na">doi</span> <span class="p">=</span> <span class="s">{10.1016/j.ijthermalsci.2025.110067}</span><span class="p">,</span>
   <span class="na">dimensions</span> <span class="p">=</span> <span class="s">{true}</span><span class="p">,</span>
-<span class="p">}</span></code></pre></figure> </div> </div> </div> </li> <li> <div class="row"> <div class="col col-sm-2 abbr"> <abbr class="badge rounded w-100">Chin. Phys. Lett.</abbr> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/publication_preview/cpl_2024-480.webp 480w,/assets/img/publication_preview/cpl_2024-800.webp 800w,/assets/img/publication_preview/cpl_2024-1400.webp 1400w," type="image/webp" sizes="300px"> <img src="/assets/img/publication_preview/cpl_2024.png" class="preview z-depth-1 rounded" width="100%" height="auto" alt="cpl_2024.png" data-zoomable loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </source></picture> </figure> </div> <div id="shixian2024determination" class="col-sm-8"> <div class="title">Determination of Thermal Properties of Unsmooth Si Nanowires</div> <div class="author"> <em>Shixian Liu</em>, A.A. Barinov, Fei Yin, and V.I. Khvesyuk </div> <div class="periodical"> <em>Chinese Physics Letters</em>, 2024 </div> <div class="periodical"> </div> <div class="links"> <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a> <a href="https://doi.org/10.1088/0256-307X/41/1/016301" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">DOI</a> <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a> <a href="https://cpl.iphy.ac.cn/article/10.1088/0256-307X/41/1/016301" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">HTML</a> <a href="/assets/pdf/CPL_2024_Liu.pdf" class="btn btn-sm z-depth-0" role="button">PDF</a> </div> <div class="badges"> <span class="__dimensions_badge_embed__" data-doi="10.1088/0256-307X/41/1/016301" data-style="small_rectangle" data-legend="hover-right" style="margin-bottom: 3px;"></span> </div> <div class="abstract hidden"> <p>We estimate the thermal properties of unsmooth Si nanowires, considering key factors such as size (diameter), surface texture (roughness) and quantum size effects (phonon states) at different temperatures. For nanowires with a diameter of less than 20 nm, we highlight the importance of quantum size effects in heat capacity calculations, using dispersion relations derived from the modified frequency equation for the elasticity of a rod. The thermal conductivities of nanowires with diameters of 37, 56, and 115nm are predicted using the Fuchs– Sondheimer model and Soffer’s specular parameter. Notably, the roughness parameters are chosen to reflect the technological characteristics of the real surfaces. Our findings reveal that surface texture plays a significant role in thermal conductivity, particularly in the realm of ballistic heat transfer within nanowires. This study provides practical recommendations for developing new thermal management materials.</p> </div> <div class="bibtex hidden"> <figure class="highlight"><pre><code class="language-bibtex" data-lang="bibtex"><span class="nc">@article</span><span class="p">{</span><span class="nl">shixian2024determination</span><span class="p">,</span>
+<span class="p">}</span></code></pre></figure>
+      </div>
+    
+
+    
+  </div>
+</div>
+</li>
+<li>
+<div class="row">
+  
+    <div class="col col-sm-2 abbr">
+          <abbr class="badge rounded w-100">Chin. Phys. Lett.</abbr>
+        
+      
+      
+        
+          
+          
+
+
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/publication_preview/cpl_2024-480.webp 480w,/assets/img/publication_preview/cpl_2024-800.webp 800w,/assets/img/publication_preview/cpl_2024-1400.webp 1400w," type="image/webp" sizes="300px">
+    
+    <img src="/assets/img/publication_preview/cpl_2024.png" class="preview z-depth-1 rounded" width="100%" height="auto" alt="cpl_2024.png" data-zoomable loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+  </source></picture>
+
+  
+</figure>
+
+        
+      
+    </div>
+  
+
+  <!-- Entry bib key -->
+  <div id="shixian2024determination" class="col-sm-8">
+    <!-- Title -->
+    <div class="title">Determination of Thermal Properties of Unsmooth Si Nanowires</div>
+    <!-- Author -->
+    <div class="author">
+      
+
+      
+      <em>Shixian
+            Liu</em>, A.A.
+            Barinov, Fei
+            Yin, and V.I.
+            Khvesyuk
+      
+    </div>
+
+    <!-- Journal/Book title and date -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="periodical">
+      <em>Chinese Physics Letters</em>,  2024
+    </div>
+    <div class="periodical">
+      
+    </div>
+
+    <!-- Links/Buttons -->
+    <div class="links">
+      
+      
+        <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
+      
+      
+        <a href="https://doi.org/10.1088/0256-307X/41/1/016301" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">DOI</a>
+      
+      
+      
+        <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a>
+      
+      
+        
+          <a href="https://cpl.iphy.ac.cn/article/10.1088/0256-307X/41/1/016301" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">HTML</a>
+        
+      
+      
+        
+          <a href="/assets/pdf/CPL_2024_Liu.pdf" class="btn btn-sm z-depth-0" role="button">PDF</a>
+        
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+    
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+      
+        <div class="badges">
+          
+          
+            <span class="__dimensions_badge_embed__" data-doi="10.1088/0256-307X/41/1/016301" data-style="small_rectangle" data-legend="hover-right" style="margin-bottom: 3px;"></span>
+          
+          
+          
+        </div>
+      
+    
+
+    
+
+    
+      <!-- Hidden abstract block -->
+      <div class="abstract hidden">
+        <p>We estimate the thermal properties of unsmooth Si nanowires, considering key factors such as size (diameter), surface texture (roughness) and quantum size effects (phonon states) at different temperatures. For nanowires with a diameter of less than 20 nm, we highlight the importance of quantum size effects in heat capacity calculations, using dispersion relations derived from the modified frequency equation for the elasticity of a rod. The thermal conductivities of nanowires with diameters of 37, 56, and 115nm are predicted using the Fuchs– Sondheimer model and Soffer’s specular parameter. Notably, the roughness parameters are chosen to reflect the technological characteristics of the real surfaces. Our findings reveal that surface texture plays a significant role in thermal conductivity, particularly in the realm of ballistic heat transfer within nanowires. This study provides practical recommendations for developing new thermal management materials.</p>
+      </div>
+    
+
+    
+      <!-- Hidden bibtex block -->
+      <div class="bibtex hidden">
+        <figure class="highlight"><pre><code class="language-bibtex" data-lang="bibtex"><span class="nc">@article</span><span class="p">{</span><span class="nl">shixian2024determination</span><span class="p">,</span>
   <span class="na">title</span> <span class="p">=</span> <span class="s">{Determination of Thermal Properties of Unsmooth Si Nanowires}</span><span class="p">,</span>
   <span class="na">author</span> <span class="p">=</span> <span class="s">{Liu, Shixian and Barinov, A.A. and Yin, Fei and Khvesyuk, V.I.}</span><span class="p">,</span>
   <span class="na">journal</span> <span class="p">=</span> <span class="s">{Chinese Physics Letters}</span><span class="p">,</span>
@@ -26,4 +962,586 @@
   <span class="na">year</span> <span class="p">=</span> <span class="s">{2024}</span><span class="p">,</span>
   <span class="na">doi</span> <span class="p">=</span> <span class="s">{10.1088/0256-307X/41/1/016301}</span><span class="p">,</span>
   <span class="na">dimensions</span> <span class="p">=</span> <span class="s">{true}</span><span class="p">,</span>
-<span class="p">}</span></code></pre></figure> </div> </div> </div> </li> </ol> </div> <div class="social"> <div class="contact-icons"> <a href="mailto:%73%78%6C%69%75%39%38@%67%6D%61%69%6C.%63%6F%6D" title="email"><i class="fa-solid fa-envelope"></i></a> <a href="https://github.com/lyushisyan#%20your%20GitHub%20user%20name" title="GitHub" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-github"></i></a> <a href="https://orcid.org/0000-0003-3042-7817" title="ORCID" rel="external nofollow noopener" target="_blank"><i class="ai ai-orcid"></i></a> <a href="https://scholar.google.com/citations?user=bLVSRuUAAAAJ" title="Google Scholar" rel="external nofollow noopener" target="_blank"><i class="ai ai-google-scholar"></i></a> </div> <div class="contact-note"></div> </div> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2025 Shixian Liu. 由 <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> 提供支持. 由 <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a> 托管. </div> </footer> <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script> <script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script> <script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script> <script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script type="text/javascript">window.MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],tags:"ams"}};</script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script type="text/javascript">function progressBarSetup(){"max"in document.createElement("progress")?(initializeProgressElement(),$(document).on("scroll",function(){progressBar.attr({value:getCurrentScrollPosition()})}),$(window).on("resize",initializeProgressElement)):(resizeProgressBar(),$(document).on("scroll",resizeProgressBar),$(window).on("resize",resizeProgressBar))}function getCurrentScrollPosition(){return $(window).scrollTop()}function initializeProgressElement(){let e=$("#navbar").outerHeight(!0);$("body").css({"padding-top":e}),$("progress-container").css({"padding-top":e}),progressBar.css({top:e}),progressBar.attr({max:getDistanceToScroll(),value:getCurrentScrollPosition()})}function getDistanceToScroll(){return $(document).height()-$(window).height()}function resizeProgressBar(){progressBar.css({width:getWidthPercentage()+"%"})}function getWidthPercentage(){return getCurrentScrollPosition()/getDistanceToScroll()*100}const progressBar=$("#progress");window.onload=function(){setTimeout(progressBarSetup,50)};</script> <script src="/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script> <script>addBackToTop();</script> <script type="module" src="/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="输入以开始搜索"> <div class="modal-footer" slot="footer"> <span class="help"> <svg version="1.0" class="ninja-examplekey" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1280 1280"> <path d="M1013 376c0 73.4-.4 113.3-1.1 120.2a159.9 159.9 0 0 1-90.2 127.3c-20 9.6-36.7 14-59.2 15.5-7.1.5-121.9.9-255 1h-242l95.5-95.5 95.5-95.5-38.3-38.2-38.2-38.3-160 160c-88 88-160 160.4-160 161 0 .6 72 73 160 161l160 160 38.2-38.3 38.3-38.2-95.5-95.5-95.5-95.5h251.1c252.9 0 259.8-.1 281.4-3.6 72.1-11.8 136.9-54.1 178.5-116.4 8.6-12.9 22.6-40.5 28-55.4 4.4-12 10.7-36.1 13.1-50.6 1.6-9.6 1.8-21 2.1-132.8l.4-122.2H1013v110z"></path> </svg> 选择 </span> <span class="help"> <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24"> <path d="M0 0h24v24H0V0z" fill="none"></path> <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path> </svg> <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24"> <path d="M0 0h24v24H0V0z" fill="none"></path> <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path> </svg> 导航 </span> <span class="help"> <span class="ninja-examplekey esc">esc</span> 关闭 </span> <span class="help"> <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey backspace" viewbox="0 0 20 20" fill="currentColor"> <path fill-rule="evenodd" d="M6.707 4.879A3 3 0 018.828 4H15a3 3 0 013 3v6a3 3 0 01-3 3H8.828a3 3 0 01-2.12-.879l-4.415-4.414a1 1 0 010-1.414l4.414-4.414zm4 2.414a1 1 0 00-1.414 1.414L10.586 10l-1.293 1.293a1 1 0 101.414 1.414L12 11.414l1.293 1.293a1 1 0 001.414-1.414L13.414 10l1.293-1.293a1 1 0 00-1.414-1.414L12 8.586l-1.293-1.293z" clip-rule="evenodd"></path> </svg> 返回上一级 </span> </div> </ninja-keys> <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script> <script>const ninja=document.querySelector("ninja-keys");ninja.data=[{id:"nav-\u9996\u9875",title:"\u9996\u9875",section:"\u5bfc\u822a\u83dc\u5355",handler:()=>{window.location.href="/zh-CN/"}},{id:"nav-\u535a\u5ba2",title:"\u535a\u5ba2",description:"",section:"\u5bfc\u822a\u83dc\u5355",handler:()=>{window.location.href="/zh-CN/blog/"}},{id:"nav-\u53d1\u8868",title:"\u53d1\u8868",description:"Scopus\u548cWoS\u68c0\u7d22\u7684\u8bba\u6587\u53d1\u8868\u6e05\u5355",section:"\u5bfc\u822a\u83dc\u5355",handler:()=>{window.location.href="/zh-CN/publications/"}},{id:"nav-\u6559\u5b66",title:"\u6559\u5b66",description:"\u8bfe\u4ef6",section:"\u5bfc\u822a\u83dc\u5355",handler:()=>{window.location.href="/zh-CN/teaching/"}},{id:"post-callaway-\u53cc\u5f1b\u8c6b\u65f6\u95f4\u6a21\u578b",title:"Callaway \u53cc\u5f1b\u8c6b\u65f6\u95f4\u6a21\u578b",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2025/callaway/"}},{id:"post-wigner-\u8f93\u8fd0\u65b9\u7a0b-wte-\u7edf\u4e00\u58f0\u5b50\u70ed\u4f20\u5bfc\u7684\u7406\u8bba\u6846\u67b6",title:"Wigner \u8f93\u8fd0\u65b9\u7a0b (WTE) \u7edf\u4e00\u58f0\u5b50\u70ed\u4f20\u5bfc\u7684\u7406\u8bba\u6846\u67b6",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2025/wigner/"}},{id:"post-vasp-phono3py-\u8ba1\u7b97\u70ed\u5bfc\u7387",title:"VASP + Phono3py \u8ba1\u7b97\u70ed\u5bfc\u7387",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2025/vasp-phono3py/"}},{id:"post-\u8bad\u7ec3\u795e\u7ecf\u8fdb\u5316\u673a\u5668\u5b66\u4e60\u52bf",title:"\u8bad\u7ec3\u795e\u7ecf\u8fdb\u5316\u673a\u5668\u5b66\u4e60\u52bf",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2025/nep-train/"}},{id:"post-\u7535\u5b50\u548c\u58f0\u5b50\u7684\u5170\u9053\u5c14\u7406\u8bba",title:"\u7535\u5b50\u548c\u58f0\u5b50\u7684\u5170\u9053\u5c14\u7406\u8bba",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2025/el-ph-landauer/"}},{id:"post-\u57fa\u4e8e\u7b2c\u4e00\u6027\u539f\u7406\u7684-pbte-\u65b9\u6cd5",title:"\u57fa\u4e8e\u7b2c\u4e00\u6027\u539f\u7406\u7684 PBTE \u65b9\u6cd5",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2025/abinitio-bte/"}},{id:"post-\u62d3\u6251\u58f0\u5b50\u7684\u7269\u7406\u91cf\u4e0e\u6027\u8d28",title:"\u62d3\u6251\u58f0\u5b50\u7684\u7269\u7406\u91cf\u4e0e\u6027\u8d28",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2024/topology/"}},{id:"post-\u4f7f\u7528-vasp-\u8fdb\u884c\u7ed3\u6784\u4f18\u5316\u8ba1\u7b97",title:"\u4f7f\u7528 VASP \u8fdb\u884c\u7ed3\u6784\u4f18\u5316\u8ba1\u7b97",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2024/vasp-relax/"}},{id:"post-\u58f0\u5b50\u8499\u7279\u5361\u7f57\u6a21\u62df\u7684\u7406\u8bba\u57fa\u7840",title:"\u58f0\u5b50\u8499\u7279\u5361\u7f57\u6a21\u62df\u7684\u7406\u8bba\u57fa\u7840",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2024/MC-phononBTE/"}},{id:"post-\u6001\u5bc6\u5ea6\u7684\u6570\u503c\u6c42\u89e3\u65b9\u6cd5",title:"\u6001\u5bc6\u5ea6\u7684\u6570\u503c\u6c42\u89e3\u65b9\u6cd5",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2024/dos-method/"}},{id:"post-qe-\u8ba1\u7b97\u7845\u7684\u58f0\u5b50\u8272\u6563\u5173\u7cfb",title:"QE \u8ba1\u7b97\u7845\u7684\u58f0\u5b50\u8272\u6563\u5173\u7cfb",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2024/qe-disp-si/"}},{id:"post-\u4f7f\u7528-qe-\u8fdb\u884c\u80fd\u91cf\u81ea\u6d3d\u8ba1\u7b97",title:"\u4f7f\u7528 QE \u8fdb\u884c\u80fd\u91cf\u81ea\u6d3d\u8ba1\u7b97",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2024/qe-scf/"}},{id:"post-\u70ed\u7269\u7406\u5b66\u7684\u5fae\u89c2\u63cf\u8ff0",title:"\u70ed\u7269\u7406\u5b66\u7684\u5fae\u89c2\u63cf\u8ff0",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2023/nano-micro-thermophysics/"}},{id:"post-\u5706\u68d2\u4e2d\u7684\u5f39\u6027\u6ce2\u8272\u6563\u5173\u7cfb",title:"\u5706\u68d2\u4e2d\u7684\u5f39\u6027\u6ce2\u8272\u6563\u5173\u7cfb",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2023/elastic-wave-in-wire/"}},{id:"post-\u5e73\u677f\u4e2d\u7684\u5f39\u6027\u6ce2\u8272\u6563\u5173\u7cfb",title:"\u5e73\u677f\u4e2d\u7684\u5f39\u6027\u6ce2\u8272\u6563\u5173\u7cfb",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2023/elastic-wave-in-plate/"}},{id:"post-\u70ed\u4f20\u9012\u7684\u7ecf\u5178\u52a8\u529b\u5b66\u7406\u8bba",title:"\u70ed\u4f20\u9012\u7684\u7ecf\u5178\u52a8\u529b\u5b66\u7406\u8bba",description:"",section:"\u6587\u7ae0",handler:()=>{window.location.href="/zh-CN/blog/2023/classical-kinetic-theory/"}},{id:"news-\u53c2\u52a0\u83ab\u65af\u79d1\u7269\u7406\u6280\u672f\u5b66\u9662-mipt-\u7b2c65\u5c4a\u5168\u4fc4\u79d1\u5b66\u4f1a\u8bae-\u5e76\u83b7\u5f97\u6700\u4f73\u5b66\u751f\u53e3\u5934\u62a5\u544a\u5956-pdf",title:"\u53c2\u52a0\u83ab\u65af\u79d1\u7269\u7406\u6280\u672f\u5b66\u9662(MIPT)\u7b2c65\u5c4a\u5168\u4fc4\u79d1\u5b66\u4f1a\u8bae\uff0c\u5e76\u83b7\u5f97\u6700\u4f73\u5b66\u751f\u53e3\u5934\u62a5\u544a\u5956\u3002PDF",description:"",section:"\u65b0\u95fb"},{id:"news-\u6bd5\u4e1a\u4e8e\u9c8d\u66fc\u83ab\u65af\u79d1\u56fd\u7acb\u6280\u672f\u5927\u5b66-\u83b7\u5f97\u6838\u80fd\u4e0e\u70ed\u7269\u7406\u4e13\u4e1a\u7684\u7855\u58eb\u5b66\u4f4d-\u5e76\u83b7\u5f97\u8363\u8a89\u5fbd\u7ae0-\u65b0\u95fb",title:"\u6bd5\u4e1a\u4e8e\u9c8d\u66fc\u83ab\u65af\u79d1\u56fd\u7acb\u6280\u672f\u5927\u5b66\uff0c\u83b7\u5f97\u6838\u80fd\u4e0e\u70ed\u7269\u7406\u4e13\u4e1a\u7684\u7855\u58eb\u5b66\u4f4d\uff0c\u5e76\u83b7\u5f97\u8363\u8a89\u5fbd\u7ae0\u3002\u65b0\u95fb",description:"",section:"\u65b0\u95fb"},{id:"news-\u53d7\u9080\u53c2\u52a0\u56fd\u9645\u8bba\u575b-atomexpo-2024-\u4e0a\u7684\u4e3b\u9898\u4e3a-\u7eff\u8272\u79d1\u6280\u4e0e\u5e74\u8f7b\u4e00\u4ee3-\u7684\u4fc4\u7f57\u65af\u9ad8\u6821\u6821\u53cb\u4f1a\u8bae-\u65b0\u95fb",title:"\u53d7\u9080\u53c2\u52a0\u56fd\u9645\u8bba\u575b ATOMEXPO-2024 \u4e0a\u7684\u4e3b\u9898\u4e3a\u201c\u7eff\u8272\u79d1\u6280\u4e0e\u5e74\u8f7b\u4e00\u4ee3\u201d\u7684\u4fc4\u7f57\u65af\u9ad8\u6821\u6821\u53cb\u4f1a\u8bae\u3002 \u65b0\u95fb",description:"",section:"\u65b0\u95fb"},{id:"news-\u53c2\u52a0\u7b2c\u5341\u516b\u5c4a\u5168\u4fc4\u5b66\u6821-\u4f1a\u8bae-\u70ed\u7269\u7406\u4e0e\u7269\u7406\u6c14\u4f53\u52a8\u529b\u5b66\u4e2d\u7684\u70ed\u70b9\u95ee\u9898-avtifg-\u8fdb\u884c\u4e86\u53e3\u5934\u62a5\u544a-\u5e76\u83b7\u5f97\u4e00\u7b49\u5956-pdf",title:"\u53c2\u52a0\u7b2c\u5341\u516b\u5c4a\u5168\u4fc4\u5b66\u6821-\u4f1a\u8bae\u201c\u70ed\u7269\u7406\u4e0e\u7269\u7406\u6c14\u4f53\u52a8\u529b\u5b66\u4e2d\u7684\u70ed\u70b9\u95ee\u9898\u201d\uff08AVTiFG\uff09\uff0c\u8fdb\u884c\u4e86\u53e3\u5934\u62a5\u544a\uff0c\u5e76\u83b7\u5f97\u4e00\u7b49\u5956\u3002PDF",description:"",section:"\u65b0\u95fb"},{id:"news-\u53c2\u52a0\u7b2c\u4e5d\u5c4a\u5168\u56fd\u70ed\u4f20\u5bfc\u7814\u8ba8\u4f1a-wtt-2025-\u83b7\u5f97\u6d77\u62a5\u4f18\u79c0\u5956-pdf",title:"\u53c2\u52a0\u7b2c\u4e5d\u5c4a\u5168\u56fd\u70ed\u4f20\u5bfc\u7814\u8ba8\u4f1a\uff08WTT-2025\uff09\uff0c\u83b7\u5f97\u6d77\u62a5\u4f18\u79c0\u5956\u3002PDF",description:"",section:"\u65b0\u95fb"},{id:"social-email",title:"\u53d1\u9001\u90ae\u4ef6",section:"\u793e\u4ea4\u5a92\u4f53",handler:()=>{window.open("mailto:%73%78%6C%69%75%39%38@%67%6D%61%69%6C.%63%6F%6D","_blank")}},{id:"social-github",title:"GitHub",section:"\u793e\u4ea4\u5a92\u4f53",handler:()=>{window.open("https://github.com/lyushisyan# your GitHub user name","_blank")}},{id:"social-orcid",title:"ORCID",section:"\u793e\u4ea4\u5a92\u4f53",handler:()=>{window.open("https://orcid.org/0000-0003-3042-7817","_blank")}},{id:"social-scholar",title:"Google Scholar",section:"\u793e\u4ea4\u5a92\u4f53",handler:()=>{window.open("https://scholar.google.com/citations?user=bLVSRuUAAAAJ","_blank")}},{id:"lang-en-US",title:"en-US",section:"\u8bed\u8a00",handler:()=>{window.location.href="/"}},{id:"light-theme",title:"\u5207\u6362\u5230\u6d45\u8272\u4e3b\u9898",description:"\u5c06\u7f51\u7ad9\u4e3b\u9898\u66f4\u6539\u4e3a\u6d45\u8272",section:"\u4e3b\u9898",handler:()=>{setThemeSetting("light")}},{id:"dark-theme",title:"\u5207\u6362\u5230\u6df1\u8272\u4e3b\u9898",description:"\u5c06\u7f51\u7ad9\u4e3b\u9898\u66f4\u6539\u4e3a\u6df1\u8272",section:"\u4e3b\u9898",handler:()=>{setThemeSetting("dark")}},{id:"system-theme",title:"\u4f7f\u7528\u7cfb\u7edf\u9ed8\u8ba4\u4e3b\u9898",description:"\u5c06\u7f51\u7ad9\u4e3b\u9898\u66f4\u6539\u4e3a\u7cfb\u7edf\u9ed8\u8ba4",section:"\u4e3b\u9898",handler:()=>{setThemeSetting("system")}}];</script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script> </body> </html>
+<span class="p">}</span></code></pre></figure>
+      </div>
+    
+
+    
+  </div>
+</div>
+</li>
+</ol>
+</div>
+
+
+    <!-- Social -->
+    
+      <div class="social">
+        <div class="contact-icons">
+  
+      <a href="mailto:%73%78%6C%69%75%39%38@%67%6D%61%69%6C.%63%6F%6D" title="email"><i class="fa-solid fa-envelope"></i></a>
+    
+
+  
+      <a href="https://github.com/lyushisyan#%20your%20GitHub%20user%20name" title="GitHub" rel="external nofollow noopener" target="_blank"><i class="fa-brands fa-github"></i></a>
+    
+
+  
+      <a href="https://orcid.org/0000-0003-3042-7817" title="ORCID" rel="external nofollow noopener" target="_blank"><i class="ai ai-orcid"></i></a>
+    
+
+  
+      <a href="https://scholar.google.com/citations?user=bLVSRuUAAAAJ" title="Google Scholar" rel="external nofollow noopener" target="_blank"><i class="ai ai-google-scholar"></i></a>
+    
+
+</div>
+
+        <div class="contact-note"></div>
+      </div>
+    
+
+    
+  </article>
+</div>
+
+      
+    </div>
+
+    <!-- Footer -->
+    
+  <footer class="fixed-bottom" role="contentinfo">
+    <div class="container mt-0">
+      © Copyright 2025
+      Shixian
+      
+      Liu. 由 <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> 提供支持. 由 <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a> 托管.
+
+      
+      
+    </div>
+  </footer>
+
+
+
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Bootsrap & MDB scripts -->
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="/assets/js/mdb.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    
+  <!-- Masonry & imagesLoaded -->
+  <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/masonry.js" type="text/javascript"></script>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script>
+
+
+
+<!-- Bootstrap Table -->
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script>
+<script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script>
+<script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script>
+
+<!-- Jupyter Open External Links New Tab -->
+<script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script>
+
+
+
+    
+  <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+
+
+  <script async src="https://badge.dimensions.ai/badge.js"></script>
+
+
+    
+  
+    <!-- MathJax -->
+    <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        tags: 'ams',
+      }
+    };
+    </script>
+    <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script>
+  
+
+
+    
+
+    
+
+
+
+
+    
+  <!-- Scrolling Progress Bar -->
+  <script type="text/javascript">
+    /*
+     * This JavaScript code has been adapted from the article
+     * https://css-tricks.com/reading-position-indicator/ authored by Pankaj Parashar,
+     * published on the website https://css-tricks.com on the 7th of May, 2014.
+     * Couple of changes were made to the original code to make it compatible
+     * with the `al-foio` theme.
+     */
+    const progressBar = $('#progress');
+    /*
+     * We set up the bar after all elements are done loading.
+     * In some cases, if the images in the page are larger than the intended
+     * size they'll have on the page, they'll be resized via CSS to accomodate
+     * the desired size. This mistake, however, breaks the computations as the
+     * scroll size is computed as soon as the elements finish loading.
+     * To account for this, a minimal delay was introduced before computing the
+     * values.
+     */
+    window.onload = function () {
+      setTimeout(progressBarSetup, 50);
+    };
+    /*
+     * We set up the bar according to the browser.
+     * If the browser supports the progress element we use that.
+     * Otherwise, we resize the bar thru CSS styling
+     */
+    function progressBarSetup() {
+      if ('max' in document.createElement('progress')) {
+        initializeProgressElement();
+        $(document).on('scroll', function () {
+          progressBar.attr({ value: getCurrentScrollPosition() });
+        });
+        $(window).on('resize', initializeProgressElement);
+      } else {
+        resizeProgressBar();
+        $(document).on('scroll', resizeProgressBar);
+        $(window).on('resize', resizeProgressBar);
+      }
+    }
+    /*
+     * The vertical scroll position is the same as the number of pixels that
+     * are hidden from view above the scrollable area. Thus, a value > 0 is
+     * how much the user has scrolled from the top
+     */
+    function getCurrentScrollPosition() {
+      return $(window).scrollTop();
+    }
+
+    function initializeProgressElement() {
+      let navbarHeight = $('#navbar').outerHeight(true);
+      $('body').css({ 'padding-top': navbarHeight });
+      $('progress-container').css({ 'padding-top': navbarHeight });
+      progressBar.css({ top: navbarHeight });
+      progressBar.attr({
+        max: getDistanceToScroll(),
+        value: getCurrentScrollPosition(),
+      });
+    }
+    /*
+     * The offset between the html document height and the browser viewport
+     * height will be greater than zero if vertical scroll is possible.
+     * This is the distance the user can scroll
+     */
+    function getDistanceToScroll() {
+      return $(document).height() - $(window).height();
+    }
+
+    function resizeProgressBar() {
+      progressBar.css({ width: getWidthPercentage() + '%' });
+    }
+    // The scroll ratio equals the percentage to resize the bar
+    function getWidthPercentage() {
+      return (getCurrentScrollPosition() / getDistanceToScroll()) * 100;
+    }
+  </script>
+
+
+    
+
+    
+
+    
+
+    
+  <script src="/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script>
+  <script>
+    addBackToTop();
+  </script>
+
+
+    
+  <script type="module" src="/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script>
+  <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="输入以开始搜索">
+    
+    <div class="modal-footer" slot="footer">
+      <span class="help">
+        <svg version="1.0" class="ninja-examplekey" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1280 1280">
+          <path d="M1013 376c0 73.4-.4 113.3-1.1 120.2a159.9 159.9 0 0 1-90.2 127.3c-20 9.6-36.7 14-59.2 15.5-7.1.5-121.9.9-255 1h-242l95.5-95.5 95.5-95.5-38.3-38.2-38.2-38.3-160 160c-88 88-160 160.4-160 161 0 .6 72 73 160 161l160 160 38.2-38.3 38.3-38.2-95.5-95.5-95.5-95.5h251.1c252.9 0 259.8-.1 281.4-3.6 72.1-11.8 136.9-54.1 178.5-116.4 8.6-12.9 22.6-40.5 28-55.4 4.4-12 10.7-36.1 13.1-50.6 1.6-9.6 1.8-21 2.1-132.8l.4-122.2H1013v110z"></path>
+        </svg>
+        选择
+      </span>
+      <span class="help">
+        <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24">
+          <path d="M0 0h24v24H0V0z" fill="none"></path>
+          <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24">
+          <path d="M0 0h24v24H0V0z" fill="none"></path>
+          <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path>
+        </svg>
+        导航
+      </span>
+      <span class="help">
+        <span class="ninja-examplekey esc">esc</span>
+        关闭
+      </span>
+      <span class="help">
+        <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey backspace" viewbox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M6.707 4.879A3 3 0 018.828 4H15a3 3 0 013 3v6a3 3 0 01-3 3H8.828a3 3 0 01-2.12-.879l-4.415-4.414a1 1 0 010-1.414l4.414-4.414zm4 2.414a1 1 0 00-1.414 1.414L10.586 10l-1.293 1.293a1 1 0 101.414 1.414L12 11.414l1.293 1.293a1 1 0 001.414-1.414L13.414 10l1.293-1.293a1 1 0 00-1.414-1.414L12 8.586l-1.293-1.293z" clip-rule="evenodd"></path>
+        </svg>
+        返回上一级
+      </span>
+    </div>
+  </ninja-keys>
+  <script>
+    let searchTheme = determineComputedTheme();
+    const ninjaKeys = document.querySelector('ninja-keys');
+
+    if (searchTheme === 'dark') {
+      ninjaKeys.classList.add('dark');
+    } else {
+      ninjaKeys.classList.remove('dark');
+    }
+
+    const openSearchModal = () => {
+      // collapse navbarNav if expanded on mobile
+      const $navbarNav = $('#navbarNav');
+      if ($navbarNav.hasClass('show')) {
+        $navbarNav.collapse('hide');
+      }
+      ninjaKeys.open();
+    };
+  </script>
+  
+  <script>
+    // get the ninja-keys element
+    const ninja = document.querySelector('ninja-keys');
+
+    // add the home and posts menu items
+    ninja.data = [{
+        id: "nav-首页",
+        title: "首页",
+        section: "导航菜单",
+        handler: () => {
+          window.location.href = "/zh-CN/";
+        },
+      },{id: "nav-博客",
+              title: "博客",
+              description: "",
+              section: "导航菜单",
+              handler: () => {
+                window.location.href = "/zh-CN/blog/";
+              },
+            },{id: "nav-发表",
+              title: "发表",
+              description: "Scopus和WoS检索的论文发表清单",
+              section: "导航菜单",
+              handler: () => {
+                window.location.href = "/zh-CN/publications/";
+              },
+            },{id: "nav-教学",
+              title: "教学",
+              description: "课件",
+              section: "导航菜单",
+              handler: () => {
+                window.location.href = "/zh-CN/teaching/";
+              },
+            },{id: "post-callaway-双弛豫时间模型",
+          
+            title: "Callaway 双弛豫时间模型",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2025/callaway/";
+            
+          },
+        },{id: "post-wigner-输运方程-wte-统一声子热传导的理论框架",
+          
+            title: "Wigner 输运方程 (WTE) 统一声子热传导的理论框架",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2025/wigner/";
+            
+          },
+        },{id: "post-vasp-phono3py-计算热导率",
+          
+            title: "VASP + Phono3py 计算热导率",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2025/vasp-phono3py/";
+            
+          },
+        },{id: "post-训练神经进化机器学习势",
+          
+            title: "训练神经进化机器学习势",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2025/nep-train/";
+            
+          },
+        },{id: "post-电子和声子的兰道尔理论",
+          
+            title: "电子和声子的兰道尔理论",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2025/el-ph-landauer/";
+            
+          },
+        },{id: "post-基于第一性原理的-pbte-方法",
+          
+            title: "基于第一性原理的 PBTE 方法",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2025/abinitio-bte/";
+            
+          },
+        },{id: "post-拓扑声子的物理量与性质",
+          
+            title: "拓扑声子的物理量与性质",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2024/topology/";
+            
+          },
+        },{id: "post-使用-vasp-进行结构优化计算",
+          
+            title: "使用 VASP 进行结构优化计算",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2024/vasp-relax/";
+            
+          },
+        },{id: "post-声子蒙特卡罗模拟的理论基础",
+          
+            title: "声子蒙特卡罗模拟的理论基础",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2024/MC-phononBTE/";
+            
+          },
+        },{id: "post-态密度的数值求解方法",
+          
+            title: "态密度的数值求解方法",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2024/dos-method/";
+            
+          },
+        },{id: "post-qe-计算硅的声子色散关系",
+          
+            title: "QE 计算硅的声子色散关系",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2024/qe-disp-si/";
+            
+          },
+        },{id: "post-使用-qe-进行能量自洽计算",
+          
+            title: "使用 QE 进行能量自洽计算",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2024/qe-scf/";
+            
+          },
+        },{id: "post-热物理学的微观描述",
+          
+            title: "热物理学的微观描述",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2023/nano-micro-thermophysics/";
+            
+          },
+        },{id: "post-圆棒中的弹性波色散关系",
+          
+            title: "圆棒中的弹性波色散关系",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2023/elastic-wave-in-wire/";
+            
+          },
+        },{id: "post-平板中的弹性波色散关系",
+          
+            title: "平板中的弹性波色散关系",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2023/elastic-wave-in-plate/";
+            
+          },
+        },{id: "post-热传递的经典动力学理论",
+          
+            title: "热传递的经典动力学理论",
+          
+          description: "",
+          section: "文章",
+          handler: () => {
+            
+              window.location.href = "/zh-CN/blog/2023/classical-kinetic-theory/";
+            
+          },
+        },{id: "news-参加莫斯科物理技术学院-mipt-第65届全俄科学会议-并获得最佳学生口头报告奖-pdf",
+              title: '参加莫斯科物理技术学院(MIPT)第65届全俄科学会议，并获得最佳学生口头报告奖。PDF',
+              description: "",
+              section: "新闻",},{id: "news-毕业于鲍曼莫斯科国立技术大学-获得核能与热物理专业的硕士学位-并获得荣誉徽章-新闻",
+              title: '毕业于鲍曼莫斯科国立技术大学，获得核能与热物理专业的硕士学位，并获得荣誉徽章。新闻',
+              description: "",
+              section: "新闻",},{id: "news-受邀参加国际论坛-atomexpo-2024-上的主题为-绿色科技与年轻一代-的俄罗斯高校校友会议-新闻",
+              title: '受邀参加国际论坛 ATOMEXPO-2024 上的主题为“绿色科技与年轻一代”的俄罗斯高校校友会议。 新闻',
+              description: "",
+              section: "新闻",},{id: "news-参加第十八届全俄学校-会议-热物理与物理气体动力学中的热点问题-avtifg-进行了口头报告-并获得一等奖-pdf",
+              title: '参加第十八届全俄学校-会议“热物理与物理气体动力学中的热点问题”（AVTiFG），进行了口头报告，并获得一等奖。PDF',
+              description: "",
+              section: "新闻",},{id: "news-参加第九届全国热传导研讨会-wtt-2025-获得海报优秀奖-pdf",
+              title: '参加第九届全国热传导研讨会（WTT-2025），获得海报优秀奖。PDF',
+              description: "",
+              section: "新闻",},{
+            id: 'social-email',
+            title: '发送邮件',
+            section: '社交媒体',
+            handler: () => {
+              window.open("mailto:%73%78%6C%69%75%39%38@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+            },
+          },{
+            id: 'social-github',
+            title: 'GitHub',
+            section: '社交媒体',
+            handler: () => {
+              window.open("https://github.com/lyushisyan# your GitHub user name", "_blank");
+            },
+          },{
+            id: 'social-orcid',
+            title: 'ORCID',
+            section: '社交媒体',
+            handler: () => {
+              window.open("https://orcid.org/0000-0003-3042-7817", "_blank");
+            },
+          },{
+            id: 'social-scholar',
+            title: 'Google Scholar',
+            section: '社交媒体',
+            handler: () => {
+              window.open("https://scholar.google.com/citations?user=bLVSRuUAAAAJ", "_blank");
+            },
+          },{
+              id: 'lang-en-US',
+              title: 'en-US',
+              section: '语言',
+              handler: () => {
+                window.location.href = "/";
+              },
+            },{
+          id: 'light-theme',
+          title: '切换到浅色主题',
+          description: '将网站主题更改为浅色',
+          section: '主题',
+          handler: () => {
+            setThemeSetting("light");
+          },
+        },
+        {
+          id: 'dark-theme',
+          title: '切换到深色主题',
+          description: '将网站主题更改为深色',
+          section: '主题',
+          handler: () => {
+            setThemeSetting("dark");
+          },
+        },
+        {
+          id: 'system-theme',
+          title: '使用系统默认主题',
+          description: '将网站主题更改为系统默认',
+          section: '主题',
+          handler: () => {
+            setThemeSetting("system");
+          },
+        },];
+  </script>
+  <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script>
+
+
+  </body>
+</html>

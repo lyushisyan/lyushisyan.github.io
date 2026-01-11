@@ -1,8 +1,195 @@
-<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> VASP Structure Optimization | Shixian Liu </title> <meta name="author" content="Shixian Liu"> <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design."> <meta name="keywords" content="thermophysics, phonon, heat transfer"> <link rel="stylesheet" href="/assets/css/bootstrap.min.css?41faab39e5144b07a9384ecf47eac8c3"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5"> <link defer rel="stylesheet" href="/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="/assets/img/sliu.png?430c386d62d98184ee32047ee04ebc19"> <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e"> <link rel="canonical" href="https://lyushisyan.github.io/blog/2024/vasp-relax/"> <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>initTheme();</script> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" integrity="sha256-q9ba7o845pMPFU+zcAll8rv+gC+fSovKsOoNQ6cynuQ=" crossorigin="anonymous"> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script> <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script type="text/javascript">window.MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],tags:"ams"}};</script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js" integrity="sha256-MgH13bFTTNqsnuEoqNPBLDaqxjGH+lCpqrukmXc8Ppg=" crossorigin="anonymous"></script> <script>document.addEventListener("readystatechange",()=>{"complete"===document.readyState&&document.querySelectorAll("pre>code.language-geojson").forEach(e=>{const t=e.textContent,a=e.parentElement;a.classList.add("unloaded");let o=document.createElement("div");o.classList.add("map"),a.after(o);var n=L.map(o);L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(n);let d=L.geoJSON(JSON.parse(t)).addTo(n);n.fitBounds(d.getBounds())})});</script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script> <script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script> <script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script> <script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script> <script src="/assets/js/distillpub/template.v2.js"></script> <script src="/assets/js/distillpub/transforms.v2.js"></script> <script src="/assets/js/distillpub/overrides.js"></script> </head> <body> <d-front-matter> <script async type="text/json">
+<!DOCTYPE html>
+<html>
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Metadata, OpenGraph and Schema.org -->
+
+
+
+
+<!-- Standard metadata -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+
+<title>
+  
+    
+    
+      VASP Structure Optimization | Shixian Liu
+    
+  
+</title>
+<meta name="author" content="Shixian Liu">
+<meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.">
+
+  <meta name="keywords" content="thermophysics, phonon, heat transfer">
+
+
+
+
+
+
+
+
+
+
+<!-- Bootstrap & MDB -->
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css?41faab39e5144b07a9384ecf47eac8c3">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
+
+<!-- Bootstrap Table -->
+
+
+<!-- Fonts & Icons -->
+<link defer rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5">
+<link defer rel="stylesheet" href="/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772">
+<link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
+
+<!-- Code Syntax Highlighting -->
+<link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light">
+
+
+
+<!-- Styles -->
+
+<!-- pseudocode -->
+
+
+
+  <link rel="shortcut icon" href="/assets/img/sliu.png?430c386d62d98184ee32047ee04ebc19">
+
+<link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e">
+<link rel="canonical" href="http://localhost:4000/blog/2024/vasp-relax/">
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
+
+  <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark">
+  <script>
+    initTheme();
+  </script>
+
+
+<!-- GeoJSON support via Leaflet -->
+
+  <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" integrity="sha256-q9ba7o845pMPFU+zcAll8rv+gC+fSovKsOoNQ6cynuQ=" crossorigin="anonymous">
+
+
+<!-- diff2html -->
+
+
+
+
+
+
+    
+      <!-- Medium Zoom JS -->
+      <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+      <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script>
+    
+    <!-- jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    
+  
+    <!-- MathJax -->
+    <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        tags: 'ams',
+      }
+    };
+    </script>
+    <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script>
+  
+
+
+    
+
+    
+
+    
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js" integrity="sha256-MgH13bFTTNqsnuEoqNPBLDaqxjGH+lCpqrukmXc8Ppg=" crossorigin="anonymous"></script>
+  <script>
+    /* Create leaflet map as another node and hide the code block, appending the leaflet node after it */
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'complete') {
+        document.querySelectorAll('pre>code.language-geojson').forEach((elem) => {
+          const jsonData = elem.textContent;
+          const backup = elem.parentElement;
+          backup.classList.add('unloaded');
+          /* create leaflet node */
+          let mapElement = document.createElement('div');
+          mapElement.classList.add('map');
+          backup.after(mapElement);
+
+          var map = L.map(mapElement);
+          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          }).addTo(map);
+          let geoJSON = L.geoJSON(JSON.parse(jsonData)).addTo(map);
+          map.fitBounds(geoJSON.getBounds());
+        });
+      }
+    });
+  </script>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script>
+
+
+
+<!-- Bootstrap Table -->
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script>
+<script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script>
+<script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script>
+
+<!-- Jupyter Open External Links New Tab -->
+<script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script>
+
+
+
+    
+
+    <!-- Distill js -->
+    <script src="/assets/js/distillpub/template.v2.js"></script>
+    <script src="/assets/js/distillpub/transforms.v2.js"></script>
+    <script src="/assets/js/distillpub/overrides.js"></script>
+    
+  </head>
+
+  <body>
+<d-front-matter>
+    <script async type="text/json">
       {
             "title": "VASP Structure Optimization",
             "description": "",
-            "published": "December 01, 2024",
+            "published": "December 02, 2024",
             "authors": [
               
             ],
@@ -21,7 +208,209 @@
               ]
             }
           }
-    </script> </d-front-matter> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Shixian</span> Liu </a> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">Home </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">Blog <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">Publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/teaching/">Teaching </a> </li> <li class="nav-item"> <button id="search-toggle" title="Search" onclick="openSearchModal()"> <span class="nav-link">ctrl k <i class="ti ti-search"></i></span> </button> </li> <li class="nav-item active"> <a class="nav-link" href="/zh-CN/blog/2024/vasp-relax/"> ZH-CN</a> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="ti ti-sun-moon" id="light-toggle-system"></i> <i class="ti ti-moon-filled" id="light-toggle-dark"></i> <i class="ti ti-sun-filled" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="post distill"> <d-title> <h1 style=" font-size: 1.8rem; font-weight: 600; text-align: center; overflow: hidden; margin-top: 0.2em; margin-bottom: 0.1em; text-overflow: ellipsis; "> VASP Structure Optimization </h1> <p></p> </d-title> <d-article> <d-contents> <nav class="l-text figcaption"> <h3>Contents</h3> <div> <a href="#1-input-files">1. Input Files</a> </div> <div> <a href="#2-output-files">2. Output Files</a> </div> <div> <a href="#3-optimization-process-and-convergence-criteria">3. Optimization Process and Convergence Criteria</a> </div> </nav> </d-contents> <h2 id="1-input-files">1. Input Files</h2> <p>The input files for VASP are the four basic files: <code class="language-plaintext highlighter-rouge">INCAR</code>, <code class="language-plaintext highlighter-rouge">POSCAR</code>, <code class="language-plaintext highlighter-rouge">POTCAR</code>, <code class="language-plaintext highlighter-rouge">KPOINTS</code>.</p> <h3 id="11-incar-parameter-settings">1.1 <code class="language-plaintext highlighter-rouge">INCAR</code> Parameter Settings</h3> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>System <span class="o">=</span> Si-film    <span class="c"># System name, can be freely defined to identify the current calculation system.</span>
+    </script>
+  </d-front-matter>
+
+  
+    <!-- Header -->
+    <header>
+  <!-- Nav Bar -->
+  <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation">
+    <div class="container">
+      
+        <a class="navbar-brand title font-weight-lighter" href="/">
+          
+            
+              <span class="font-weight-bold">Shixian</span>
+            
+            
+            Liu
+          
+        </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          
+
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">Home
+              
+            </a>
+          </li>
+
+          <!-- Other pages -->
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+              
+                
+                <li class="nav-item active">
+                  <a class="nav-link" href="/blog/">Blog
+                    
+                      <span class="sr-only">(current)</span>
+                    
+                  </a>
+                </li>
+              
+            
+          
+            
+              
+                
+                <li class="nav-item ">
+                  <a class="nav-link" href="/publications/">Publications
+                    
+                  </a>
+                </li>
+              
+            
+          
+            
+              
+                
+                <li class="nav-item ">
+                  <a class="nav-link" href="/teaching/">Teaching
+                    
+                  </a>
+                </li>
+              
+            
+          
+          
+            <!-- Search -->
+            <li class="nav-item">
+              <button id="search-toggle" title="Search" onclick="openSearchModal()">
+                <span class="nav-link">ctrl k <i class="ti ti-search"></i></span>
+              </button>
+            </li>
+          
+          <!-- Toogle language -->
+          
+            
+              
+              <li class="nav-item active">
+                
+                  <a class="nav-link" href="/zh-CN/blog/2024/vasp-relax/">
+                    
+                      ZH-CN</a>
+                
+              </li>
+            
+          
+          
+            <!-- Toogle theme mode -->
+            <li class="toggle-container">
+              <button id="light-toggle" title="Change theme">
+                <i class="ti ti-sun-moon" id="light-toggle-system"></i>
+                <i class="ti ti-moon-filled" id="light-toggle-dark"></i>
+                <i class="ti ti-sun-filled" id="light-toggle-light"></i>
+              </button>
+            </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+    <!-- Scrolling Progress Bar -->
+    <progress id="progress" value="0">
+      <div class="progress-container">
+        <span class="progress-bar"></span>
+      </div>
+    </progress>
+  
+</header>
+
+
+    <!-- Content -->
+    <div class="post distill">
+    <d-title>
+      <h1 style="
+        font-size: 1.8rem;
+        font-weight: 600;
+        text-align: center;
+        overflow: hidden;
+        margin-top: 0.2em;
+        margin-bottom: 0.1em;
+        text-overflow: ellipsis;
+      ">
+        VASP Structure Optimization
+      </h1>
+      <p></p>
+    </d-title>
+      
+
+      <d-article>
+        
+          <d-contents>
+            <nav class="l-text figcaption">
+              <h3>Contents</h3>
+              
+                <div>
+                  <a href="#1-input-files">1. Input Files</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#2-output-files">2. Output Files</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#3-optimization-process-and-convergence-criteria">3. Optimization Process and Convergence Criteria</a>
+                </div>
+                
+              
+            </nav>
+          </d-contents>
+        
+        <h2 id="1-input-files">1. Input Files</h2>
+<p>The input files for VASP are the four basic files: <code class="language-plaintext highlighter-rouge">INCAR</code>, <code class="language-plaintext highlighter-rouge">POSCAR</code>, <code class="language-plaintext highlighter-rouge">POTCAR</code>, <code class="language-plaintext highlighter-rouge">KPOINTS</code>.</p>
+
+<h3 id="11-incar-parameter-settings">1.1 <code class="language-plaintext highlighter-rouge">INCAR</code> Parameter Settings</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>System <span class="o">=</span> Si-film    <span class="c"># System name, can be freely defined to identify the current calculation system.</span>
 
 <span class="c"># Job Control</span>
 ISTART <span class="o">=</span> 0          <span class="c"># Initial state setup:</span>
@@ -76,7 +465,142 @@ NSW <span class="o">=</span> 200           <span class="c"># Maximum number of i
 NPAR <span class="o">=</span> 4            <span class="c"># FFT grid parallelization dimension (recommended: sqrt(total cores)).</span>
 KPAR <span class="o">=</span> 2            <span class="c"># Number of parallel k-points (total cores should be divisible by NPAR \u00d7 KPAR \u00d7 NCORE).</span>
 NCORE <span class="o">=</span> 12          <span class="c"># Number of cores per task.</span>
-</code></pre></div></div> <p>For structural optimization, key parameters in <code class="language-plaintext highlighter-rouge">INCAR</code> include <code class="language-plaintext highlighter-rouge">IBRION</code>, <code class="language-plaintext highlighter-rouge">ISIF</code>, <code class="language-plaintext highlighter-rouge">NSW</code>, <code class="language-plaintext highlighter-rouge">EDIFF</code>, and <code class="language-plaintext highlighter-rouge">EDIFFG</code>.</p> <h4 id="111-common-ibrion-settings-and-applications">1.1.1 Common <code class="language-plaintext highlighter-rouge">IBRION</code> Settings and Applications</h4> <h5 id="1-single-point-energy-calculation">(1) Single-Point Energy Calculation</h5> <ul> <li> <strong><code class="language-plaintext highlighter-rouge">IBRION = -1</code></strong><br> <strong>Usage</strong>: Used for single-point energy calculations such as fixed lattice, electronic structure, or DOS analysis.<br> <strong>Note</strong>: Avoid setting <code class="language-plaintext highlighter-rouge">NSW &gt; 0</code> to prevent wasting resources.</li> </ul> <h5 id="2-structure-optimization">(2) Structure Optimization</h5> <ul> <li> <p><strong><code class="language-plaintext highlighter-rouge">IBRION = 1</code></strong> (RMM-DIIS)<br> <strong>Usage</strong>: Suitable for smooth potential energy surfaces in simple systems.<br> <strong>Limitation</strong>: May encounter convergence issues for complex or unstable surfaces.</p> </li> <li> <p><strong><code class="language-plaintext highlighter-rouge">IBRION = 2</code></strong> (Conjugate Gradient)<br> <strong>Usage</strong>: Most commonly used method, suitable for most systems.<br> <strong>Advantage</strong>: Performs well for steep and complex surfaces.</p> </li> <li> <p><strong><code class="language-plaintext highlighter-rouge">IBRION = 3</code></strong> (Damped Molecular Dynamics)<br> <strong>Usage</strong>: Stabilizes optimization paths that oscillate or diverge.</p> </li> </ul> <h5 id="3-molecular-dynamics">(3) Molecular Dynamics</h5> <ul> <li> <strong><code class="language-plaintext highlighter-rouge">IBRION = 0</code></strong><br> <strong>Usage</strong>: For studying dynamic behavior of systems at different temperatures, such as diffusion or vibrational modes.</li> </ul> <h5 id="4-phonon-calculations">(4) Phonon Calculations</h5> <p>a. <strong>Finite Difference Method</strong> <strong><code class="language-plaintext highlighter-rouge">IBRION = 5, 6</code></strong><br> Calculates phonon modes using finite difference:</p> <ul> <li> <strong><code class="language-plaintext highlighter-rouge">5</code></strong>: Without symmetry, suitable for defective or low-symmetry structures.</li> <li> <strong><code class="language-plaintext highlighter-rouge">6</code></strong>: Exploits symmetry for efficient calculations in high-symmetry systems.</li> </ul> <p>b. <strong>Perturbation Theory (DFPT)</strong> <strong><code class="language-plaintext highlighter-rouge">IBRION = 7, 8</code></strong><br> Calculates phonon modes using density functional perturbation theory (DFPT):</p> <ul> <li> <strong><code class="language-plaintext highlighter-rouge">7</code></strong>: Without symmetry optimization, suitable for low-symmetry structures.</li> <li> <strong><code class="language-plaintext highlighter-rouge">8</code></strong>: Utilizes symmetry for faster computation.</li> </ul> <h4 id="112-common-isif-settings-and-applications">1.1.2 Common <code class="language-plaintext highlighter-rouge">ISIF</code> Settings and Applications</h4> <ul> <li> <p>Default value (if not set): <code class="language-plaintext highlighter-rouge">ISIF = 2</code> (Optimize atomic positions only, keep lattice shape and volume fixed).</p> </li> <li>Special Cases: <ul> <li> <code class="language-plaintext highlighter-rouge">IBRION = 0</code> (molecular dynamics) or <code class="language-plaintext highlighter-rouge">LHFCALC = .TRUE.</code> (hybrid functional): <code class="language-plaintext highlighter-rouge">ISIF = 0</code>.</li> </ul> </li> <li> <p><strong><code class="language-plaintext highlighter-rouge">ISIF = 2</code> (Most Common)</strong><br> Optimizes atomic positions only, suitable for 2D materials, fixed lattice constants, or surface/interface systems.</p> </li> <li> <p><strong><code class="language-plaintext highlighter-rouge">ISIF = 3</code> (Bulk Optimization)</strong><br> Optimizes atomic positions, lattice shape, and volume, suitable for bulk material relaxations.</p> </li> <li> <p><strong><code class="language-plaintext highlighter-rouge">ISIF = 4</code> (Fixed Volume Optimization)</strong><br> Optimizes atomic positions and lattice shape while keeping the volume fixed, useful for pressure tests.</p> </li> <li> <p><strong><code class="language-plaintext highlighter-rouge">ISIF = 6</code> (Lattice-Only Optimization)</strong><br> Optimizes lattice shape and volume without relaxing atomic positions, useful for testing lattice parameters.</p> </li> <li> <strong><code class="language-plaintext highlighter-rouge">ISIF = 0</code> (Position Optimization, No Stress Calculation)</strong><br> Optimizes atomic positions without calculating stress, for fixed cell optimizations.</li> </ul> <h4 id="113-recommended-settings-for-nsw-ediff-and-ediffg">1.1.3 Recommended Settings for <code class="language-plaintext highlighter-rouge">NSW</code>, <code class="language-plaintext highlighter-rouge">EDIFF</code>, and <code class="language-plaintext highlighter-rouge">EDIFFG</code> </h4> <table> <thead> <tr> <th>Parameter</th> <th>Function</th> <th>Initial Optimization</th> <th>High-Precision Optimization</th> <th>Single Point</th> </tr> </thead> <tbody> <tr> <td><code class="language-plaintext highlighter-rouge">NSW</code></td> <td>Max ionic steps</td> <td>100-200</td> <td>200-500</td> <td>0</td> </tr> <tr> <td><code class="language-plaintext highlighter-rouge">EDIFF</code></td> <td>SCF convergence (eV)</td> <td>1e-05</td> <td>1e-08</td> <td>1e-06</td> </tr> <tr> <td><code class="language-plaintext highlighter-rouge">EDIFFG</code></td> <td>Ionic convergence (eV/\u00c5)</td> <td>-0.1</td> <td>-0.01</td> <td>Not required</td> </tr> </tbody> </table> <h3 id="12-example-poscar">1.2 Example <code class="language-plaintext highlighter-rouge">POSCAR</code> </h3> <p>Below is an example <code class="language-plaintext highlighter-rouge">POSCAR</code> file describing the structure of bulk silicon:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si-bulk   <span class="c"># System name, customizable</span>
+</code></pre></div></div>
+
+<p>For structural optimization, key parameters in <code class="language-plaintext highlighter-rouge">INCAR</code> include <code class="language-plaintext highlighter-rouge">IBRION</code>, <code class="language-plaintext highlighter-rouge">ISIF</code>, <code class="language-plaintext highlighter-rouge">NSW</code>, <code class="language-plaintext highlighter-rouge">EDIFF</code>, and <code class="language-plaintext highlighter-rouge">EDIFFG</code>.</p>
+
+<h4 id="111-common-ibrion-settings-and-applications">1.1.1 Common <code class="language-plaintext highlighter-rouge">IBRION</code> Settings and Applications</h4>
+
+<h5 id="1-single-point-energy-calculation">(1) Single-Point Energy Calculation</h5>
+<ul>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">IBRION = -1</code></strong><br>
+<strong>Usage</strong>: Used for single-point energy calculations such as fixed lattice, electronic structure, or DOS analysis.<br>
+<strong>Note</strong>: Avoid setting <code class="language-plaintext highlighter-rouge">NSW &gt; 0</code> to prevent wasting resources.</li>
+</ul>
+
+<h5 id="2-structure-optimization">(2) Structure Optimization</h5>
+<ul>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">IBRION = 1</code></strong> (RMM-DIIS)<br>
+<strong>Usage</strong>: Suitable for smooth potential energy surfaces in simple systems.<br>
+<strong>Limitation</strong>: May encounter convergence issues for complex or unstable surfaces.</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">IBRION = 2</code></strong> (Conjugate Gradient)<br>
+<strong>Usage</strong>: Most commonly used method, suitable for most systems.<br>
+<strong>Advantage</strong>: Performs well for steep and complex surfaces.</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">IBRION = 3</code></strong> (Damped Molecular Dynamics)<br>
+<strong>Usage</strong>: Stabilizes optimization paths that oscillate or diverge.</p>
+  </li>
+</ul>
+
+<h5 id="3-molecular-dynamics">(3) Molecular Dynamics</h5>
+<ul>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">IBRION = 0</code></strong><br>
+<strong>Usage</strong>: For studying dynamic behavior of systems at different temperatures, such as diffusion or vibrational modes.</li>
+</ul>
+
+<h5 id="4-phonon-calculations">(4) Phonon Calculations</h5>
+
+<p>a. <strong>Finite Difference Method</strong> <strong><code class="language-plaintext highlighter-rouge">IBRION = 5, 6</code></strong><br>
+Calculates phonon modes using finite difference:</p>
+<ul>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">5</code></strong>: Without symmetry, suitable for defective or low-symmetry structures.</li>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">6</code></strong>: Exploits symmetry for efficient calculations in high-symmetry systems.</li>
+</ul>
+
+<p>b. <strong>Perturbation Theory (DFPT)</strong> <strong><code class="language-plaintext highlighter-rouge">IBRION = 7, 8</code></strong><br>
+Calculates phonon modes using density functional perturbation theory (DFPT):</p>
+<ul>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">7</code></strong>: Without symmetry optimization, suitable for low-symmetry structures.</li>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">8</code></strong>: Utilizes symmetry for faster computation.</li>
+</ul>
+
+<h4 id="112-common-isif-settings-and-applications">1.1.2 Common <code class="language-plaintext highlighter-rouge">ISIF</code> Settings and Applications</h4>
+
+<ul>
+  <li>
+    <p>Default value (if not set): <code class="language-plaintext highlighter-rouge">ISIF = 2</code> (Optimize atomic positions only, keep lattice shape and volume fixed).</p>
+  </li>
+  <li>Special Cases:
+    <ul>
+      <li>
+<code class="language-plaintext highlighter-rouge">IBRION = 0</code> (molecular dynamics) or <code class="language-plaintext highlighter-rouge">LHFCALC = .TRUE.</code> (hybrid functional): <code class="language-plaintext highlighter-rouge">ISIF = 0</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">ISIF = 2</code> (Most Common)</strong><br>
+Optimizes atomic positions only, suitable for 2D materials, fixed lattice constants, or surface/interface systems.</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">ISIF = 3</code> (Bulk Optimization)</strong><br>
+Optimizes atomic positions, lattice shape, and volume, suitable for bulk material relaxations.</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">ISIF = 4</code> (Fixed Volume Optimization)</strong><br>
+Optimizes atomic positions and lattice shape while keeping the volume fixed, useful for pressure tests.</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">ISIF = 6</code> (Lattice-Only Optimization)</strong><br>
+Optimizes lattice shape and volume without relaxing atomic positions, useful for testing lattice parameters.</p>
+  </li>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">ISIF = 0</code> (Position Optimization, No Stress Calculation)</strong><br>
+Optimizes atomic positions without calculating stress, for fixed cell optimizations.</li>
+</ul>
+
+<h4 id="113-recommended-settings-for-nsw-ediff-and-ediffg">1.1.3 Recommended Settings for <code class="language-plaintext highlighter-rouge">NSW</code>, <code class="language-plaintext highlighter-rouge">EDIFF</code>, and <code class="language-plaintext highlighter-rouge">EDIFFG</code>
+</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Function</th>
+      <th>Initial Optimization</th>
+      <th>High-Precision Optimization</th>
+      <th>Single Point</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">NSW</code></td>
+      <td>Max ionic steps</td>
+      <td>100-200</td>
+      <td>200-500</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">EDIFF</code></td>
+      <td>SCF convergence (eV)</td>
+      <td>1e-05</td>
+      <td>1e-08</td>
+      <td>1e-06</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">EDIFFG</code></td>
+      <td>Ionic convergence (eV/\u00c5)</td>
+      <td>-0.1</td>
+      <td>-0.01</td>
+      <td>Not required</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="12-example-poscar">1.2 Example <code class="language-plaintext highlighter-rouge">POSCAR</code>
+</h3>
+
+<p>Below is an example <code class="language-plaintext highlighter-rouge">POSCAR</code> file describing the structure of bulk silicon:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si-bulk   <span class="c"># System name, customizable</span>
 1.0       <span class="c"># Global scaling factor (can be used to scale the lattice)</span>
    5.430    0.000    0.000  <span class="c"># Lattice vector a</span>
    0.000    5.430    0.000  <span class="c"># Lattice vector b</span>
@@ -86,7 +610,11 @@ Si           <span class="c"># Atom types</span>
 Direct       <span class="c"># Coordinate type (Direct: fractional; Cartesian: cartesian)</span>
   0.000  0.000  0.000  <span class="c"># Coordinates for atom 1</span>
   0.250  0.250  0.250  <span class="c"># Coordinates for atom 2</span>
-</code></pre></div></div> <p>Example POSCAR File for Silicon Thin Film (Si-film):</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si Thin Film                            
+</code></pre></div></div>
+
+<p>Example POSCAR File for Silicon Thin Film (Si-film):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si Thin Film                            
    1.00000000000000     
      5.4299999999999997    0.0000000000000000    0.0000000000000000
      0.0000000000000000    5.4299999999999997    0.0000000000000000
@@ -111,15 +639,742 @@ Direct
 0.750000 0.750000 0.525384 T T T
 0.750000 0.250000 0.655537 T T T
 0.250000 0.750000 0.655537 T T T
-</code></pre></div></div> <h3 id="13-kpoints-file">1.3 KPOINTS File</h3> <h4 id="1-monkhorst-pack-grid">(1) Monkhorst-Pack Grid</h4> <p>Monkhorst-Pack grids provide a uniform k-point distribution for periodic crystal calculations.</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   <span class="c"># Automatic k-point generation method (comment)</span>
+</code></pre></div></div>
+
+<h3 id="13-kpoints-file">1.3 KPOINTS File</h3>
+
+<h4 id="1-monkhorst-pack-grid">(1) Monkhorst-Pack Grid</h4>
+<p>Monkhorst-Pack grids provide a uniform k-point distribution for periodic crystal calculations.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   <span class="c"># Automatic k-point generation method (comment)</span>
 0                              <span class="c"># Ignore total k-point count, use automatic generation</span>
 Monkhorst-Pack                 <span class="c"># Choose Monkhorst-Pack grid</span>
 4 4 4                          <span class="c"># Grid density in x, y, z directions</span>
 0 0 0                          <span class="c"># No grid shift</span>
-</code></pre></div></div> <p><strong>Use Case:</strong> Periodic crystals, optimization, DOS calculations, and electronic structure analysis.</p> <h4 id="2-gamma-grid">(2) Gamma Grid</h4> <p>Gamma grids center the k-point grid at the Gamma point, suitable for small or asymmetric lattices.</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   <span class="c"># Automatic k-point generation method (comment)</span>
+</code></pre></div></div>
+
+<p><strong>Use Case:</strong> Periodic crystals, optimization, DOS calculations, and electronic structure analysis.</p>
+
+<h4 id="2-gamma-grid">(2) Gamma Grid</h4>
+<p>Gamma grids center the k-point grid at the Gamma point, suitable for small or asymmetric lattices.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Automatic k-point generation   <span class="c"># Automatic k-point generation method (comment)</span>
 0                              <span class="c"># Ignore total k-point count, use automatic generation</span>
 Gamma                          <span class="c"># Choose Gamma-centered grid</span>
 4 4 4                          <span class="c"># Grid density in x, y, z directions</span>
 0 0 0                          <span class="c"># No grid shift</span>
-</code></pre></div></div> <p><strong>Use Case:</strong> Small systems, asymmetric lattices, or fast calculation optimization tasks.</p> <h3 id="14-potcar-file-usage">1.4 POTCAR File Usage</h3> <p>POTCAR contains pseudopotential information required to describe atomic properties in the system.</p> <h4 id="vasp-provides-multiple-types-of-pseudopotentials">VASP Provides Multiple Types of Pseudopotentials:</h4> <ul> <li> <strong>POT_GGA_PAW:</strong> PAW pseudopotentials with GGA functional.</li> <li> <strong>POT_LDA_PAW:</strong> PAW pseudopotentials with LDA functional.</li> </ul> <h4 id="generating-the-potcar-file">Generating the POTCAR File:</h4> <p>For a system with atoms like Si and H, concatenate the pseudopotential files:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /POT_GGA_PAW/POTCAR_Si /POT_GGA_PAW/POTCAR_H <span class="o">&gt;</span> POTCAR
-</code></pre></div></div> <ul> <li>Ensure the functional type in POTCAR matches the INCAR settings.</li> <li>Maintain the atom order in POTCAR consistent with the element order in POSCAR.</li> </ul> <h2 id="2-output-files">2. Output Files</h2> <h3 id="21-contcar-file">2.1 CONTCAR File</h3> <p><strong>Content:</strong> Optimized crystal structure, including updated atomic coordinates and lattice parameters. <strong>Format:</strong> Same as POSCAR, can directly serve as input for further calculations. <strong>Use Case:</strong></p> <ul> <li>Review the final optimized crystal structure.</li> <li>Use for further calculations (e.g., band structure, DOS).</li> </ul> <h3 id="22-oszicar-file">2.2 OSZICAR File</h3> <p><strong>Content:</strong></p> <ul> <li>Brief record of SCF (Self-Consistent Field) iteration energy changes.</li> <li>Energy (E0, dE) for each SCF step.</li> <li>Convergence information for SCF.</li> <li>Total energy changes per ion step during optimization.</li> </ul> <p><strong>Use Case:</strong></p> <ul> <li>Quickly check SCF calculation or optimization convergence.</li> <li>Decide if adjustments to EDIFF or optimization steps are necessary.</li> </ul> <h3 id="23-outcar-file">2.3 OUTCAR File</h3> <p><strong>Content:</strong></p> <ul> <li>Most detailed output file with complete calculation history.</li> <li>Includes parameters like electronic relaxation, iteration info, convergence criteria, etc.</li> <li>Energy, force, stress, atomic coordinates for each optimization step.</li> <li>Charge density info (if applicable).</li> </ul> <p><strong>Use Case:</strong></p> <ul> <li>Analyze convergence details and energy/force variations during optimization.</li> </ul> <h3 id="24-xdatcar-file">2.4 XDATCAR File</h3> <p><strong>Content:</strong></p> <ul> <li>Atomic coordinates for each ionic step during optimization or molecular dynamics (MD).</li> </ul> <p><strong>Use Case:</strong></p> <ul> <li>Analyze atomic movement paths during optimization.</li> <li>Perform trajectory analysis for structural changes.</li> </ul> <h3 id="25-vasprunxml-file">2.5 vasprun.xml File</h3> <p><strong>Content:</strong> XML-formatted record of all calculation data, suitable for parsing and post-processing.</p> <ul> <li>Includes electronic iteration, ionic optimization parameters, and results.</li> <li>Data for energy, force, stress, atomic coordinates, etc.</li> </ul> <p><strong>Use Case:</strong></p> <ul> <li>Extract key information using tools like pymatgen or ASE.</li> </ul> <h2 id="3-optimization-process-and-convergence-criteria">3. Optimization Process and Convergence Criteria</h2> <h3 id="31-optimization-process">3.1 Optimization Process</h3> <ol> <li> <strong>Initialization of the Structure:</strong> <ul> <li>The initial structure is provided through the <code class="language-plaintext highlighter-rouge">POSCAR</code> file.</li> <li>The optimization conditions are configured using the <code class="language-plaintext highlighter-rouge">POTCAR</code>, <code class="language-plaintext highlighter-rouge">KPOINTS</code>, and <code class="language-plaintext highlighter-rouge">INCAR</code> files.</li> </ul> </li> <li> <strong>Stepwise Optimization:</strong> <ul> <li>After each ionic optimization step, the total energy, atomic forces, and lattice stress of the system are recalculated.</li> <li>The optimization continues until convergence criteria (e.g., <code class="language-plaintext highlighter-rouge">EDIFFG</code>) are satisfied or the maximum number of steps (<code class="language-plaintext highlighter-rouge">NSW</code>) is reached.</li> </ul> </li> <li> <strong>Structure Updates:</strong> <ul> <li>Intermediate results of each optimization step are stored in the <code class="language-plaintext highlighter-rouge">XDATCAR</code> file.</li> <li>The final structure after optimization is saved in the <code class="language-plaintext highlighter-rouge">CONTCAR</code> file.</li> </ul> </li> </ol> <h3 id="32-convergence-criteria">3.2 Convergence Criteria</h3> <p>The convergence of the optimization process can be determined using the following methods:</p> <ol> <li> <strong><code class="language-plaintext highlighter-rouge">OUTCAR</code> File:</strong> <ul> <li> <table> <tbody> <tr> <td>Check whether the force on each atom is less than</td> <td><code class="language-plaintext highlighter-rouge">EDIFFG</code></td> <td>.</td> </tr> </tbody> </table> </li> <li>Verify whether the total energy change is less than <code class="language-plaintext highlighter-rouge">EDIFF</code>.</li> </ul> </li> <li> <strong><code class="language-plaintext highlighter-rouge">OSZICAR</code> File:</strong> <ul> <li>Review the energy changes (<code class="language-plaintext highlighter-rouge">E0</code> and <code class="language-plaintext highlighter-rouge">dE</code>) during the SCF iterations.</li> <li>Determine whether the SCF process has stabilized and converged.</li> </ul> </li> <li> <strong><code class="language-plaintext highlighter-rouge">CONTCAR</code> File:</strong> <ul> <li>Extract the final optimized atomic positions and lattice parameters.</li> <li>If the optimization has not converged, the <code class="language-plaintext highlighter-rouge">CONTCAR</code> file contains the structure from the last step.</li> </ul> </li> <li> <strong>Using Tools:</strong> <ul> <li>Use tools like <code class="language-plaintext highlighter-rouge">pymatgen</code> or <code class="language-plaintext highlighter-rouge">ASE</code> to parse the <code class="language-plaintext highlighter-rouge">vasprun.xml</code> file and evaluate convergence.</li> </ul> </li> </ol> <h3 id="33-common-issues-and-solutions">3.3 Common Issues and Solutions</h3> <h4 id="331-scf-not-converging"><strong>3.3.1 SCF Not Converging</strong></h4> <p><strong>Issue:</strong> SCF iterations show energy oscillations or divergence.</p> <p><strong>Possible Causes:</strong></p> <ul> <li>The initial electronic density is poorly set.</li> <li>Insufficient cutoff energy (<code class="language-plaintext highlighter-rouge">ENCUT</code>).</li> </ul> <p><strong>Solutions:</strong></p> <ul> <li>Increase the maximum number of SCF iterations by setting <code class="language-plaintext highlighter-rouge">NELM=200</code>.</li> <li>Raise the cutoff energy: increase <code class="language-plaintext highlighter-rouge">ENCUT</code> to 520 eV or higher.</li> </ul> <h4 id="332-optimization-not-converging"><strong>3.3.2 Optimization Not Converging</strong></h4> <p><strong>Issue:</strong> Optimization reaches the maximum steps (<code class="language-plaintext highlighter-rouge">NSW</code>) but does not meet convergence criteria for force or energy.</p> <p><strong>Possible Causes:</strong></p> <ul> <li>The initial structure is far from the energy minimum.</li> <li>Convergence criteria (<code class="language-plaintext highlighter-rouge">EDIFFG</code>) are too strict.</li> <li>The optimization step size (<code class="language-plaintext highlighter-rouge">POTIM</code>) is too large.</li> </ul> <p><strong>Solutions:</strong></p> <ul> <li>Provide a reasonable initial structure or pre-optimize using external tools.</li> <li>Relax the convergence criteria: adjust <code class="language-plaintext highlighter-rouge">EDIFFG</code> from <code class="language-plaintext highlighter-rouge">-0.01</code> to <code class="language-plaintext highlighter-rouge">-0.02</code>.</li> <li>Reduce the optimization step size: adjust <code class="language-plaintext highlighter-rouge">POTIM</code> from <code class="language-plaintext highlighter-rouge">0.5</code> to <code class="language-plaintext highlighter-rouge">0.2</code>.</li> </ul> <h4 id="333-oscillations-during-optimization"><strong>3.3.3 Oscillations During Optimization</strong></h4> <p><strong>Issue:</strong> Energy and forces oscillate repeatedly during optimization, preventing stable convergence.</p> <p><strong>Possible Causes:</strong></p> <ul> <li>The optimization step size (<code class="language-plaintext highlighter-rouge">POTIM</code>) is too large.</li> <li>The optimization algorithm is unsuitable for the system.</li> </ul> <p><strong>Solutions:</strong></p> <ul> <li>Decrease the optimization step size: set <code class="language-plaintext highlighter-rouge">POTIM</code> to <code class="language-plaintext highlighter-rouge">0.2</code> or smaller.</li> <li>Change the optimization algorithm: <ul> <li>Use the conjugate gradient method by setting <code class="language-plaintext highlighter-rouge">IBRION=2</code>.</li> <li>Use damped molecular dynamics by setting <code class="language-plaintext highlighter-rouge">IBRION=3</code>.</li> </ul> </li> </ul> <h4 id="334-divergence-during-optimization"><strong>3.3.4 Divergence During Optimization</strong></h4> <p><strong>Issue:</strong> Severe deformation of the structure occurs during optimization, leading to significant energy increases.</p> <p><strong>Possible Causes:</strong></p> <ul> <li>Atomic distances are too short due to an unreasonable initial structure.</li> <li>Inadequate vacuum spacing (for low-dimensional systems such as thin films or nanostructures).</li> <li>Incorrect pseudopotential files.</li> </ul> <p><strong>Solutions:</strong></p> <ul> <li>Ensure reasonable initial atomic distances to avoid overly close atoms.</li> <li>Increase the vacuum spacing: for low-dimensional systems, set the vacuum layer thickness to at least 15 Å.</li> <li>Verify the <code class="language-plaintext highlighter-rouge">POTCAR</code> file to ensure the pseudopotential matches the atomic species.</li> </ul> </d-article> <d-appendix> <d-footnote-list></d-footnote-list> <d-citation-list></d-citation-list> </d-appendix> <d-bibliography src="/assets/bibliography/"></d-bibliography> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2025 Shixian Liu. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> . Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script src="/assets/js/bootstrap.bundle.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script> <script type="text/javascript">function progressBarSetup(){"max"in document.createElement("progress")?(initializeProgressElement(),$(document).on("scroll",function(){progressBar.attr({value:getCurrentScrollPosition()})}),$(window).on("resize",initializeProgressElement)):(resizeProgressBar(),$(document).on("scroll",resizeProgressBar),$(window).on("resize",resizeProgressBar))}function getCurrentScrollPosition(){return $(window).scrollTop()}function initializeProgressElement(){let e=$("#navbar").outerHeight(!0);$("body").css({"padding-top":e}),$("progress-container").css({"padding-top":e}),progressBar.css({top:e}),progressBar.attr({max:getDistanceToScroll(),value:getCurrentScrollPosition()})}function getDistanceToScroll(){return $(document).height()-$(window).height()}function resizeProgressBar(){progressBar.css({width:getWidthPercentage()+"%"})}function getWidthPercentage(){return getCurrentScrollPosition()/getDistanceToScroll()*100}const progressBar=$("#progress");window.onload=function(){setTimeout(progressBarSetup,50)};</script> <script src="/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script> <script>addBackToTop();</script> <script type="module" src="/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"> <div class="modal-footer" slot="footer"> <span class="help"> <svg version="1.0" class="ninja-examplekey" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1280 1280"> <path d="M1013 376c0 73.4-.4 113.3-1.1 120.2a159.9 159.9 0 0 1-90.2 127.3c-20 9.6-36.7 14-59.2 15.5-7.1.5-121.9.9-255 1h-242l95.5-95.5 95.5-95.5-38.3-38.2-38.2-38.3-160 160c-88 88-160 160.4-160 161 0 .6 72 73 160 161l160 160 38.2-38.3 38.3-38.2-95.5-95.5-95.5-95.5h251.1c252.9 0 259.8-.1 281.4-3.6 72.1-11.8 136.9-54.1 178.5-116.4 8.6-12.9 22.6-40.5 28-55.4 4.4-12 10.7-36.1 13.1-50.6 1.6-9.6 1.8-21 2.1-132.8l.4-122.2H1013v110z"></path> </svg> to select </span> <span class="help"> <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24"> <path d="M0 0h24v24H0V0z" fill="none"></path> <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path> </svg> <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24"> <path d="M0 0h24v24H0V0z" fill="none"></path> <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path> </svg> to navigate </span> <span class="help"> <span class="ninja-examplekey esc">esc</span> to close </span> <span class="help"> <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey backspace" viewbox="0 0 20 20" fill="currentColor"> <path fill-rule="evenodd" d="M6.707 4.879A3 3 0 018.828 4H15a3 3 0 013 3v6a3 3 0 01-3 3H8.828a3 3 0 01-2.12-.879l-4.415-4.414a1 1 0 010-1.414l4.414-4.414zm4 2.414a1 1 0 00-1.414 1.414L10.586 10l-1.293 1.293a1 1 0 101.414 1.414L12 11.414l1.293 1.293a1 1 0 001.414-1.414L13.414 10l1.293-1.293a1 1 0 00-1.414-1.414L12 8.586l-1.293-1.293z" clip-rule="evenodd"></path> </svg> move to parent </span> </div> </ninja-keys> <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script> <script>const ninja=document.querySelector("ninja-keys");ninja.data=[{id:"nav-home",title:"Home",section:"Navigation menu",handler:()=>{window.location.href="/"}},{id:"nav-blog",title:"Blog",description:"",section:"Navigation menu",handler:()=>{window.location.href="/blog/"}},{id:"nav-publications",title:"Publications",description:"Publications indexed in Scopus and Web of Science",section:"Navigation menu",handler:()=>{window.location.href="/publications/"}},{id:"nav-teaching",title:"Teaching",description:"Lectures",section:"Navigation menu",handler:()=>{window.location.href="/teaching/"}},{id:"post-callaway-two-relaxation-time-model",title:"Callaway Two-Relaxation-Time Model",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2025/callaway/"}},{id:"post-a-unified-theoretical-framework-for-phonon-heat-conduction-wte",title:"A Unified Theoretical Framework for Phonon Heat Conduction (WTE)",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2025/wigner/"}},{id:"post-thermal-conductivity-calculation-using-vasp-phono3py",title:"Thermal Conductivity Calculation using VASP + Phono3py",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2025/vasp-phono3py/"}},{id:"post-training-neural-evolution-machine-learning-potentials",title:"Training Neural-Evolution Machine Learning Potentials",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2025/nep-train/"}},{id:"post-landauer-theory-for-electrons-and-phonons",title:"Landauer Theory for Electrons and Phonons",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2025/el-ph-landauer/"}},{id:"post-first-principles-based-pbte-method",title:"First-Principles-Based PBTE Method",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2025/abinitio-bte/"}},{id:"post-topological-quantities-and-properties-of-phonons",title:"Topological Quantities and Properties of Phonons",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2024/topology/"}},{id:"post-vasp-structure-optimization",title:"VASP Structure Optimization",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2024/vasp-relax/"}},{id:"post-theoretical-framework-for-phonon-monte-carlo-simulations",title:"Theoretical framework for phonon Monte Carlo simulations",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2024/MC-phononBTE/"}},{id:"post-numerical-methods-for-density-of-states-dos-calculation",title:"Numerical Methods for Density of States (DOS) Calculation",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2024/dos-method/"}},{id:"post-phonon-dispersion-calculation-of-silicon-using-qe",title:"Phonon Dispersion Calculation of Silicon Using QE",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2024/qe-disp-si/"}},{id:"post-self-consistent-energy-calculations-with-qe",title:"Self-Consistent Energy Calculations with QE",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2024/qe-scf/"}},{id:"post-microscopic-description-of-thermophysics",title:"Microscopic Description of Thermophysics",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2023/nano-micro-thermophysics/"}},{id:"post-dispersion-relations-of-elastic-waves-in-rods",title:"Dispersion Relations of Elastic Waves in Rods",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2023/elastic-wave-in-wire/"}},{id:"post-dispersion-relations-of-elastic-waves-in-plates",title:"Dispersion Relations of Elastic Waves in Plates",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2023/elastic-wave-in-plate/"}},{id:"post-classical-kinetic-theory-of-heat-conduction",title:"Classical Kinetic Theory of Heat Conduction",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2023/classical-kinetic-theory/"}},{id:"news-participated-in-the-65th-all-russian-scientific-conference-at-the-moscow-institute-of-physics-and-technology-mipt-and-received-the-award-for-best-student-oral-presentation-pdf-https-lyushisyan-github-io-assets-pdf-award-mipt2023-jpg",title:"Participated in the 65th All-Russian Scientific Conference at the Moscow Institute of Physics...",description:"",section:"News"},{id:"news-graduated-from-bauman-moscow-state-technical-university-with-a-master-39-s-degree-in-nuclear-energy-and-thermophysics-and-received-a-badge-with-honors-media-https-bmstu-ru-news-kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery",title:"Graduated from Bauman Moscow State Technical University with a Master&amp;#39;s degree in Nuclear...",description:"",section:"News"},{id:"news-invited-to-participate-in-the-russian-universities-alumni-meeting-on-quot-green-technology-for-the-younger-generation-quot-at-the-international-forum-atomexpo-2024-media-https-www-rudn-ru-media-news-international-cooperation-rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo-2024",title:"Invited to participate in the Russian universities alumni meeting on &amp;quot;Green technology for...",description:"",section:"News"},{id:"news-participated-in-the-xviii-all-russian-school-conference-quot-topical-issues-of-thermophysics-and-physical-hydrogas-dynamics-quot-avtifg-gave-an-oral-presentation-and-was-awarded-first-prize-pdf-https-lyushisyan-github-io-assets-pdf-award-avtifg2025-jpg",title:"Participated in the XVIII All-Russian School-Conference &amp;quot;Topical Issues of Thermophysics and Physical Hydrogas...",description:"",section:"News"},{id:"news-participated-in-the-9th-national-workshop-on-thermal-transport-wtt-2025-and-received-the-outstanding-poster-award-pdf-https-lyushisyan-github-io-assets-pdf-award-wtt9-jpg",title:"Participated in the 9th National Workshop on Thermal Transport (WTT-2025) and received the...",description:"",section:"News"},{id:"social-email",title:"Send an email",section:"Socials",handler:()=>{window.open("mailto:%73%78%6C%69%75%39%38@%67%6D%61%69%6C.%63%6F%6D","_blank")}},{id:"social-github",title:"GitHub",section:"Socials",handler:()=>{window.open("https://github.com/lyushisyan# your GitHub user name","_blank")}},{id:"social-orcid",title:"ORCID",section:"Socials",handler:()=>{window.open("https://orcid.org/0000-0003-3042-7817","_blank")}},{id:"social-scholar",title:"Google Scholar",section:"Socials",handler:()=>{window.open("https://scholar.google.com/citations?user=bLVSRuUAAAAJ","_blank")}},{id:"lang-zh-CN",title:"zh-CN",section:"Languages",handler:()=>{window.location.href="/zh-CN/blog/2024/vasp-relax/"}},{id:"light-theme",title:"Change theme to light",description:"Change the theme of the site to Light",section:"Theme",handler:()=>{setThemeSetting("light")}},{id:"dark-theme",title:"Change theme to dark",description:"Change the theme of the site to Dark",section:"Theme",handler:()=>{setThemeSetting("dark")}},{id:"system-theme",title:"Use system default theme",description:"Change the theme of the site to System Default",section:"Theme",handler:()=>{setThemeSetting("system")}}];</script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script> </body> </html>
+</code></pre></div></div>
+
+<p><strong>Use Case:</strong> Small systems, asymmetric lattices, or fast calculation optimization tasks.</p>
+
+<h3 id="14-potcar-file-usage">1.4 POTCAR File Usage</h3>
+
+<p>POTCAR contains pseudopotential information required to describe atomic properties in the system.</p>
+
+<h4 id="vasp-provides-multiple-types-of-pseudopotentials">VASP Provides Multiple Types of Pseudopotentials:</h4>
+<ul>
+  <li>
+<strong>POT_GGA_PAW:</strong> PAW pseudopotentials with GGA functional.</li>
+  <li>
+<strong>POT_LDA_PAW:</strong> PAW pseudopotentials with LDA functional.</li>
+</ul>
+
+<h4 id="generating-the-potcar-file">Generating the POTCAR File:</h4>
+<p>For a system with atoms like Si and H, concatenate the pseudopotential files:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /POT_GGA_PAW/POTCAR_Si /POT_GGA_PAW/POTCAR_H <span class="o">&gt;</span> POTCAR
+</code></pre></div></div>
+
+<ul>
+  <li>Ensure the functional type in POTCAR matches the INCAR settings.</li>
+  <li>Maintain the atom order in POTCAR consistent with the element order in POSCAR.</li>
+</ul>
+
+<h2 id="2-output-files">2. Output Files</h2>
+
+<h3 id="21-contcar-file">2.1 CONTCAR File</h3>
+
+<p><strong>Content:</strong> Optimized crystal structure, including updated atomic coordinates and lattice parameters.
+<strong>Format:</strong> Same as POSCAR, can directly serve as input for further calculations.
+<strong>Use Case:</strong></p>
+<ul>
+  <li>Review the final optimized crystal structure.</li>
+  <li>Use for further calculations (e.g., band structure, DOS).</li>
+</ul>
+
+<h3 id="22-oszicar-file">2.2 OSZICAR File</h3>
+
+<p><strong>Content:</strong></p>
+<ul>
+  <li>Brief record of SCF (Self-Consistent Field) iteration energy changes.</li>
+  <li>Energy (E0, dE) for each SCF step.</li>
+  <li>Convergence information for SCF.</li>
+  <li>Total energy changes per ion step during optimization.</li>
+</ul>
+
+<p><strong>Use Case:</strong></p>
+<ul>
+  <li>Quickly check SCF calculation or optimization convergence.</li>
+  <li>Decide if adjustments to EDIFF or optimization steps are necessary.</li>
+</ul>
+
+<h3 id="23-outcar-file">2.3 OUTCAR File</h3>
+
+<p><strong>Content:</strong></p>
+<ul>
+  <li>Most detailed output file with complete calculation history.</li>
+  <li>Includes parameters like electronic relaxation, iteration info, convergence criteria, etc.</li>
+  <li>Energy, force, stress, atomic coordinates for each optimization step.</li>
+  <li>Charge density info (if applicable).</li>
+</ul>
+
+<p><strong>Use Case:</strong></p>
+<ul>
+  <li>Analyze convergence details and energy/force variations during optimization.</li>
+</ul>
+
+<h3 id="24-xdatcar-file">2.4 XDATCAR File</h3>
+
+<p><strong>Content:</strong></p>
+<ul>
+  <li>Atomic coordinates for each ionic step during optimization or molecular dynamics (MD).</li>
+</ul>
+
+<p><strong>Use Case:</strong></p>
+<ul>
+  <li>Analyze atomic movement paths during optimization.</li>
+  <li>Perform trajectory analysis for structural changes.</li>
+</ul>
+
+<h3 id="25-vasprunxml-file">2.5 vasprun.xml File</h3>
+
+<p><strong>Content:</strong> XML-formatted record of all calculation data, suitable for parsing and post-processing.</p>
+<ul>
+  <li>Includes electronic iteration, ionic optimization parameters, and results.</li>
+  <li>Data for energy, force, stress, atomic coordinates, etc.</li>
+</ul>
+
+<p><strong>Use Case:</strong></p>
+<ul>
+  <li>Extract key information using tools like pymatgen or ASE.</li>
+</ul>
+
+<h2 id="3-optimization-process-and-convergence-criteria">3. Optimization Process and Convergence Criteria</h2>
+
+<h3 id="31-optimization-process">3.1 Optimization Process</h3>
+
+<ol>
+  <li>
+<strong>Initialization of the Structure:</strong>
+    <ul>
+      <li>The initial structure is provided through the <code class="language-plaintext highlighter-rouge">POSCAR</code> file.</li>
+      <li>The optimization conditions are configured using the <code class="language-plaintext highlighter-rouge">POTCAR</code>, <code class="language-plaintext highlighter-rouge">KPOINTS</code>, and <code class="language-plaintext highlighter-rouge">INCAR</code> files.</li>
+    </ul>
+  </li>
+  <li>
+<strong>Stepwise Optimization:</strong>
+    <ul>
+      <li>After each ionic optimization step, the total energy, atomic forces, and lattice stress of the system are recalculated.</li>
+      <li>The optimization continues until convergence criteria (e.g., <code class="language-plaintext highlighter-rouge">EDIFFG</code>) are satisfied or the maximum number of steps (<code class="language-plaintext highlighter-rouge">NSW</code>) is reached.</li>
+    </ul>
+  </li>
+  <li>
+<strong>Structure Updates:</strong>
+    <ul>
+      <li>Intermediate results of each optimization step are stored in the <code class="language-plaintext highlighter-rouge">XDATCAR</code> file.</li>
+      <li>The final structure after optimization is saved in the <code class="language-plaintext highlighter-rouge">CONTCAR</code> file.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="32-convergence-criteria">3.2 Convergence Criteria</h3>
+
+<p>The convergence of the optimization process can be determined using the following methods:</p>
+
+<ol>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">OUTCAR</code> File:</strong>
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Check whether the force on each atom is less than</td>
+              <td><code class="language-plaintext highlighter-rouge">EDIFFG</code></td>
+              <td>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>Verify whether the total energy change is less than <code class="language-plaintext highlighter-rouge">EDIFF</code>.</li>
+    </ul>
+  </li>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">OSZICAR</code> File:</strong>
+    <ul>
+      <li>Review the energy changes (<code class="language-plaintext highlighter-rouge">E0</code> and <code class="language-plaintext highlighter-rouge">dE</code>) during the SCF iterations.</li>
+      <li>Determine whether the SCF process has stabilized and converged.</li>
+    </ul>
+  </li>
+  <li>
+<strong><code class="language-plaintext highlighter-rouge">CONTCAR</code> File:</strong>
+    <ul>
+      <li>Extract the final optimized atomic positions and lattice parameters.</li>
+      <li>If the optimization has not converged, the <code class="language-plaintext highlighter-rouge">CONTCAR</code> file contains the structure from the last step.</li>
+    </ul>
+  </li>
+  <li>
+<strong>Using Tools:</strong>
+    <ul>
+      <li>Use tools like <code class="language-plaintext highlighter-rouge">pymatgen</code> or <code class="language-plaintext highlighter-rouge">ASE</code> to parse the <code class="language-plaintext highlighter-rouge">vasprun.xml</code> file and evaluate convergence.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="33-common-issues-and-solutions">3.3 Common Issues and Solutions</h3>
+
+<h4 id="331-scf-not-converging"><strong>3.3.1 SCF Not Converging</strong></h4>
+
+<p><strong>Issue:</strong> SCF iterations show energy oscillations or divergence.</p>
+
+<p><strong>Possible Causes:</strong></p>
+<ul>
+  <li>The initial electronic density is poorly set.</li>
+  <li>Insufficient cutoff energy (<code class="language-plaintext highlighter-rouge">ENCUT</code>).</li>
+</ul>
+
+<p><strong>Solutions:</strong></p>
+<ul>
+  <li>Increase the maximum number of SCF iterations by setting <code class="language-plaintext highlighter-rouge">NELM=200</code>.</li>
+  <li>Raise the cutoff energy: increase <code class="language-plaintext highlighter-rouge">ENCUT</code> to 520 eV or higher.</li>
+</ul>
+
+<h4 id="332-optimization-not-converging"><strong>3.3.2 Optimization Not Converging</strong></h4>
+
+<p><strong>Issue:</strong> Optimization reaches the maximum steps (<code class="language-plaintext highlighter-rouge">NSW</code>) but does not meet convergence criteria for force or energy.</p>
+
+<p><strong>Possible Causes:</strong></p>
+<ul>
+  <li>The initial structure is far from the energy minimum.</li>
+  <li>Convergence criteria (<code class="language-plaintext highlighter-rouge">EDIFFG</code>) are too strict.</li>
+  <li>The optimization step size (<code class="language-plaintext highlighter-rouge">POTIM</code>) is too large.</li>
+</ul>
+
+<p><strong>Solutions:</strong></p>
+<ul>
+  <li>Provide a reasonable initial structure or pre-optimize using external tools.</li>
+  <li>Relax the convergence criteria: adjust <code class="language-plaintext highlighter-rouge">EDIFFG</code> from <code class="language-plaintext highlighter-rouge">-0.01</code> to <code class="language-plaintext highlighter-rouge">-0.02</code>.</li>
+  <li>Reduce the optimization step size: adjust <code class="language-plaintext highlighter-rouge">POTIM</code> from <code class="language-plaintext highlighter-rouge">0.5</code> to <code class="language-plaintext highlighter-rouge">0.2</code>.</li>
+</ul>
+
+<h4 id="333-oscillations-during-optimization"><strong>3.3.3 Oscillations During Optimization</strong></h4>
+
+<p><strong>Issue:</strong> Energy and forces oscillate repeatedly during optimization, preventing stable convergence.</p>
+
+<p><strong>Possible Causes:</strong></p>
+<ul>
+  <li>The optimization step size (<code class="language-plaintext highlighter-rouge">POTIM</code>) is too large.</li>
+  <li>The optimization algorithm is unsuitable for the system.</li>
+</ul>
+
+<p><strong>Solutions:</strong></p>
+<ul>
+  <li>Decrease the optimization step size: set <code class="language-plaintext highlighter-rouge">POTIM</code> to <code class="language-plaintext highlighter-rouge">0.2</code> or smaller.</li>
+  <li>Change the optimization algorithm:
+    <ul>
+      <li>Use the conjugate gradient method by setting <code class="language-plaintext highlighter-rouge">IBRION=2</code>.</li>
+      <li>Use damped molecular dynamics by setting <code class="language-plaintext highlighter-rouge">IBRION=3</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="334-divergence-during-optimization"><strong>3.3.4 Divergence During Optimization</strong></h4>
+
+<p><strong>Issue:</strong> Severe deformation of the structure occurs during optimization, leading to significant energy increases.</p>
+
+<p><strong>Possible Causes:</strong></p>
+<ul>
+  <li>Atomic distances are too short due to an unreasonable initial structure.</li>
+  <li>Inadequate vacuum spacing (for low-dimensional systems such as thin films or nanostructures).</li>
+  <li>Incorrect pseudopotential files.</li>
+</ul>
+
+<p><strong>Solutions:</strong></p>
+<ul>
+  <li>Ensure reasonable initial atomic distances to avoid overly close atoms.</li>
+  <li>Increase the vacuum spacing: for low-dimensional systems, set the vacuum layer thickness to at least 15 Å.</li>
+  <li>Verify the <code class="language-plaintext highlighter-rouge">POTCAR</code> file to ensure the pseudopotential matches the atomic species.</li>
+</ul>
+
+
+      </d-article>
+
+      <d-appendix>
+        <d-footnote-list></d-footnote-list>
+        <d-citation-list></d-citation-list>
+      </d-appendix>
+
+      <d-bibliography src="/assets/bibliography/"></d-bibliography>
+
+      
+      
+    </div>
+
+    <!-- Footer -->
+    
+  <footer class="fixed-bottom" role="contentinfo">
+    <div class="container mt-0">
+      © Copyright 2025
+      Shixian
+      
+      Liu. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> . Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>.
+
+      
+      
+    </div>
+  </footer>
+
+
+    <!-- Bootsrap & MDB scripts -->
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="/assets/js/mdb.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    
+
+
+
+
+    
+  <!-- Scrolling Progress Bar -->
+  <script type="text/javascript">
+    /*
+     * This JavaScript code has been adapted from the article
+     * https://css-tricks.com/reading-position-indicator/ authored by Pankaj Parashar,
+     * published on the website https://css-tricks.com on the 7th of May, 2014.
+     * Couple of changes were made to the original code to make it compatible
+     * with the `al-foio` theme.
+     */
+    const progressBar = $('#progress');
+    /*
+     * We set up the bar after all elements are done loading.
+     * In some cases, if the images in the page are larger than the intended
+     * size they'll have on the page, they'll be resized via CSS to accomodate
+     * the desired size. This mistake, however, breaks the computations as the
+     * scroll size is computed as soon as the elements finish loading.
+     * To account for this, a minimal delay was introduced before computing the
+     * values.
+     */
+    window.onload = function () {
+      setTimeout(progressBarSetup, 50);
+    };
+    /*
+     * We set up the bar according to the browser.
+     * If the browser supports the progress element we use that.
+     * Otherwise, we resize the bar thru CSS styling
+     */
+    function progressBarSetup() {
+      if ('max' in document.createElement('progress')) {
+        initializeProgressElement();
+        $(document).on('scroll', function () {
+          progressBar.attr({ value: getCurrentScrollPosition() });
+        });
+        $(window).on('resize', initializeProgressElement);
+      } else {
+        resizeProgressBar();
+        $(document).on('scroll', resizeProgressBar);
+        $(window).on('resize', resizeProgressBar);
+      }
+    }
+    /*
+     * The vertical scroll position is the same as the number of pixels that
+     * are hidden from view above the scrollable area. Thus, a value > 0 is
+     * how much the user has scrolled from the top
+     */
+    function getCurrentScrollPosition() {
+      return $(window).scrollTop();
+    }
+
+    function initializeProgressElement() {
+      let navbarHeight = $('#navbar').outerHeight(true);
+      $('body').css({ 'padding-top': navbarHeight });
+      $('progress-container').css({ 'padding-top': navbarHeight });
+      progressBar.css({ top: navbarHeight });
+      progressBar.attr({
+        max: getDistanceToScroll(),
+        value: getCurrentScrollPosition(),
+      });
+    }
+    /*
+     * The offset between the html document height and the browser viewport
+     * height will be greater than zero if vertical scroll is possible.
+     * This is the distance the user can scroll
+     */
+    function getDistanceToScroll() {
+      return $(document).height() - $(window).height();
+    }
+
+    function resizeProgressBar() {
+      progressBar.css({ width: getWidthPercentage() + '%' });
+    }
+    // The scroll ratio equals the percentage to resize the bar
+    function getWidthPercentage() {
+      return (getCurrentScrollPosition() / getDistanceToScroll()) * 100;
+    }
+  </script>
+
+
+    
+  <script src="/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script>
+  <script>
+    addBackToTop();
+  </script>
+
+
+    
+  <script type="module" src="/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script>
+  <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching">
+    
+    <div class="modal-footer" slot="footer">
+      <span class="help">
+        <svg version="1.0" class="ninja-examplekey" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1280 1280">
+          <path d="M1013 376c0 73.4-.4 113.3-1.1 120.2a159.9 159.9 0 0 1-90.2 127.3c-20 9.6-36.7 14-59.2 15.5-7.1.5-121.9.9-255 1h-242l95.5-95.5 95.5-95.5-38.3-38.2-38.2-38.3-160 160c-88 88-160 160.4-160 161 0 .6 72 73 160 161l160 160 38.2-38.3 38.3-38.2-95.5-95.5-95.5-95.5h251.1c252.9 0 259.8-.1 281.4-3.6 72.1-11.8 136.9-54.1 178.5-116.4 8.6-12.9 22.6-40.5 28-55.4 4.4-12 10.7-36.1 13.1-50.6 1.6-9.6 1.8-21 2.1-132.8l.4-122.2H1013v110z"></path>
+        </svg>
+        to select
+      </span>
+      <span class="help">
+        <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24">
+          <path d="M0 0h24v24H0V0z" fill="none"></path>
+          <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24">
+          <path d="M0 0h24v24H0V0z" fill="none"></path>
+          <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path>
+        </svg>
+        to navigate
+      </span>
+      <span class="help">
+        <span class="ninja-examplekey esc">esc</span>
+        to close
+      </span>
+      <span class="help">
+        <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey backspace" viewbox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M6.707 4.879A3 3 0 018.828 4H15a3 3 0 013 3v6a3 3 0 01-3 3H8.828a3 3 0 01-2.12-.879l-4.415-4.414a1 1 0 010-1.414l4.414-4.414zm4 2.414a1 1 0 00-1.414 1.414L10.586 10l-1.293 1.293a1 1 0 101.414 1.414L12 11.414l1.293 1.293a1 1 0 001.414-1.414L13.414 10l1.293-1.293a1 1 0 00-1.414-1.414L12 8.586l-1.293-1.293z" clip-rule="evenodd"></path>
+        </svg>
+        move to parent
+      </span>
+    </div>
+  </ninja-keys>
+  <script>
+    let searchTheme = determineComputedTheme();
+    const ninjaKeys = document.querySelector('ninja-keys');
+
+    if (searchTheme === 'dark') {
+      ninjaKeys.classList.add('dark');
+    } else {
+      ninjaKeys.classList.remove('dark');
+    }
+
+    const openSearchModal = () => {
+      // collapse navbarNav if expanded on mobile
+      const $navbarNav = $('#navbarNav');
+      if ($navbarNav.hasClass('show')) {
+        $navbarNav.collapse('hide');
+      }
+      ninjaKeys.open();
+    };
+  </script>
+  
+  <script>
+    // get the ninja-keys element
+    const ninja = document.querySelector('ninja-keys');
+
+    // add the home and posts menu items
+    ninja.data = [{
+        id: "nav-home",
+        title: "Home",
+        section: "Navigation menu",
+        handler: () => {
+          window.location.href = "/";
+        },
+      },{id: "nav-blog",
+              title: "Blog",
+              description: "",
+              section: "Navigation menu",
+              handler: () => {
+                window.location.href = "/blog/";
+              },
+            },{id: "nav-publications",
+              title: "Publications",
+              description: "Publications indexed in Scopus and Web of Science",
+              section: "Navigation menu",
+              handler: () => {
+                window.location.href = "/publications/";
+              },
+            },{id: "nav-teaching",
+              title: "Teaching",
+              description: "Lectures",
+              section: "Navigation menu",
+              handler: () => {
+                window.location.href = "/teaching/";
+              },
+            },{id: "post-callaway-two-relaxation-time-model",
+          
+            title: "Callaway Two-Relaxation-Time Model",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2025/callaway/";
+            
+          },
+        },{id: "post-a-unified-theoretical-framework-for-phonon-heat-conduction-wte",
+          
+            title: "A Unified Theoretical Framework for Phonon Heat Conduction (WTE)",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2025/wigner/";
+            
+          },
+        },{id: "post-thermal-conductivity-calculation-using-vasp-phono3py",
+          
+            title: "Thermal Conductivity Calculation using VASP + Phono3py",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2025/vasp-phono3py/";
+            
+          },
+        },{id: "post-training-neural-evolution-machine-learning-potentials",
+          
+            title: "Training Neural-Evolution Machine Learning Potentials",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2025/nep-train/";
+            
+          },
+        },{id: "post-landauer-theory-for-electrons-and-phonons",
+          
+            title: "Landauer Theory for Electrons and Phonons",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2025/el-ph-landauer/";
+            
+          },
+        },{id: "post-first-principles-based-pbte-method",
+          
+            title: "First-Principles-Based PBTE Method",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2025/abinitio-bte/";
+            
+          },
+        },{id: "post-topological-quantities-and-properties-of-phonons",
+          
+            title: "Topological Quantities and Properties of Phonons",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2024/topology/";
+            
+          },
+        },{id: "post-vasp-structure-optimization",
+          
+            title: "VASP Structure Optimization",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2024/vasp-relax/";
+            
+          },
+        },{id: "post-theoretical-framework-for-phonon-monte-carlo-simulations",
+          
+            title: "Theoretical framework for phonon Monte Carlo simulations",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2024/MC-phononBTE/";
+            
+          },
+        },{id: "post-numerical-methods-for-density-of-states-dos-calculation",
+          
+            title: "Numerical Methods for Density of States (DOS) Calculation",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2024/dos-method/";
+            
+          },
+        },{id: "post-phonon-dispersion-calculation-of-silicon-using-qe",
+          
+            title: "Phonon Dispersion Calculation of Silicon Using QE",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2024/qe-disp-si/";
+            
+          },
+        },{id: "post-self-consistent-energy-calculations-with-qe",
+          
+            title: "Self-Consistent Energy Calculations with QE",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2024/qe-scf/";
+            
+          },
+        },{id: "post-microscopic-description-of-thermophysics",
+          
+            title: "Microscopic Description of Thermophysics",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2023/nano-micro-thermophysics/";
+            
+          },
+        },{id: "post-dispersion-relations-of-elastic-waves-in-rods",
+          
+            title: "Dispersion Relations of Elastic Waves in Rods",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2023/elastic-wave-in-wire/";
+            
+          },
+        },{id: "post-dispersion-relations-of-elastic-waves-in-plates",
+          
+            title: "Dispersion Relations of Elastic Waves in Plates",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2023/elastic-wave-in-plate/";
+            
+          },
+        },{id: "post-classical-kinetic-theory-of-heat-conduction",
+          
+            title: "Classical Kinetic Theory of Heat Conduction",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2023/classical-kinetic-theory/";
+            
+          },
+        },{id: "news-participated-in-the-65th-all-russian-scientific-conference-at-the-moscow-institute-of-physics-and-technology-mipt-and-received-the-award-for-best-student-oral-presentation-pdf-https-lyushisyan-github-io-assets-pdf-award-mipt2023-jpg",
+              title: 'Participated in the 65th All-Russian Scientific Conference at the Moscow Institute of Physics...',
+              description: "",
+              section: "News",},{id: "news-graduated-from-bauman-moscow-state-technical-university-with-a-master-39-s-degree-in-nuclear-energy-and-thermophysics-and-received-a-badge-with-honors-media-https-bmstu-ru-news-kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery",
+              title: 'Graduated from Bauman Moscow State Technical University with a Master&amp;#39;s degree in Nuclear...',
+              description: "",
+              section: "News",},{id: "news-invited-to-participate-in-the-russian-universities-alumni-meeting-on-quot-green-technology-for-the-younger-generation-quot-at-the-international-forum-atomexpo-2024-media-https-www-rudn-ru-media-news-international-cooperation-rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo-2024",
+              title: 'Invited to participate in the Russian universities alumni meeting on &amp;quot;Green technology for...',
+              description: "",
+              section: "News",},{id: "news-participated-in-the-xviii-all-russian-school-conference-quot-topical-issues-of-thermophysics-and-physical-hydrogas-dynamics-quot-avtifg-gave-an-oral-presentation-and-was-awarded-first-prize-pdf-https-lyushisyan-github-io-assets-pdf-award-avtifg2025-jpg",
+              title: 'Participated in the XVIII All-Russian School-Conference &amp;quot;Topical Issues of Thermophysics and Physical Hydrogas...',
+              description: "",
+              section: "News",},{id: "news-participated-in-the-9th-national-workshop-on-thermal-transport-wtt-2025-and-received-the-outstanding-poster-award-pdf-https-lyushisyan-github-io-assets-pdf-award-wtt9-jpg",
+              title: 'Participated in the 9th National Workshop on Thermal Transport (WTT-2025) and received the...',
+              description: "",
+              section: "News",},{
+            id: 'social-email',
+            title: 'Send an email',
+            section: 'Socials',
+            handler: () => {
+              window.open("mailto:%73%78%6C%69%75%39%38@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+            },
+          },{
+            id: 'social-github',
+            title: 'GitHub',
+            section: 'Socials',
+            handler: () => {
+              window.open("https://github.com/lyushisyan# your GitHub user name", "_blank");
+            },
+          },{
+            id: 'social-orcid',
+            title: 'ORCID',
+            section: 'Socials',
+            handler: () => {
+              window.open("https://orcid.org/0000-0003-3042-7817", "_blank");
+            },
+          },{
+            id: 'social-scholar',
+            title: 'Google Scholar',
+            section: 'Socials',
+            handler: () => {
+              window.open("https://scholar.google.com/citations?user=bLVSRuUAAAAJ", "_blank");
+            },
+          },{
+              id: 'lang-zh-CN',
+              title: 'zh-CN',
+              section: 'Languages',
+              handler: () => {
+                window.location.href = "/zh-CN/blog/2024/vasp-relax/";
+              },
+            },{
+          id: 'light-theme',
+          title: 'Change theme to light',
+          description: 'Change the theme of the site to Light',
+          section: 'Theme',
+          handler: () => {
+            setThemeSetting("light");
+          },
+        },
+        {
+          id: 'dark-theme',
+          title: 'Change theme to dark',
+          description: 'Change the theme of the site to Dark',
+          section: 'Theme',
+          handler: () => {
+            setThemeSetting("dark");
+          },
+        },
+        {
+          id: 'system-theme',
+          title: 'Use system default theme',
+          description: 'Change the theme of the site to System Default',
+          section: 'Theme',
+          handler: () => {
+            setThemeSetting("system");
+          },
+        },];
+  </script>
+  <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script>
+
+
+  
+</body>
+</html>

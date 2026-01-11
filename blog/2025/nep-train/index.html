@@ -1,8 +1,195 @@
-<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Training Neural-Evolution Machine Learning Potentials | Shixian Liu </title> <meta name="author" content="Shixian Liu"> <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design."> <meta name="keywords" content="thermophysics, phonon, heat transfer"> <link rel="stylesheet" href="/assets/css/bootstrap.min.css?41faab39e5144b07a9384ecf47eac8c3"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5"> <link defer rel="stylesheet" href="/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="/assets/img/sliu.png?430c386d62d98184ee32047ee04ebc19"> <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e"> <link rel="canonical" href="https://lyushisyan.github.io/blog/2025/nep-train/"> <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>initTheme();</script> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" integrity="sha256-q9ba7o845pMPFU+zcAll8rv+gC+fSovKsOoNQ6cynuQ=" crossorigin="anonymous"> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script> <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script type="text/javascript">window.MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],tags:"ams"}};</script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js" integrity="sha256-MgH13bFTTNqsnuEoqNPBLDaqxjGH+lCpqrukmXc8Ppg=" crossorigin="anonymous"></script> <script>document.addEventListener("readystatechange",()=>{"complete"===document.readyState&&document.querySelectorAll("pre>code.language-geojson").forEach(e=>{const t=e.textContent,a=e.parentElement;a.classList.add("unloaded");let o=document.createElement("div");o.classList.add("map"),a.after(o);var n=L.map(o);L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(n);let d=L.geoJSON(JSON.parse(t)).addTo(n);n.fitBounds(d.getBounds())})});</script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script> <script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script> <script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script> <script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script> <script src="/assets/js/distillpub/template.v2.js"></script> <script src="/assets/js/distillpub/transforms.v2.js"></script> <script src="/assets/js/distillpub/overrides.js"></script> </head> <body> <d-front-matter> <script async type="text/json">
+<!DOCTYPE html>
+<html>
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Metadata, OpenGraph and Schema.org -->
+
+
+
+
+<!-- Standard metadata -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+
+<title>
+  
+    
+    
+      Training Neural-Evolution Machine Learning Potentials | Shixian Liu
+    
+  
+</title>
+<meta name="author" content="Shixian Liu">
+<meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.">
+
+  <meta name="keywords" content="thermophysics, phonon, heat transfer">
+
+
+
+
+
+
+
+
+
+
+<!-- Bootstrap & MDB -->
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css?41faab39e5144b07a9384ecf47eac8c3">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
+
+<!-- Bootstrap Table -->
+
+
+<!-- Fonts & Icons -->
+<link defer rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5">
+<link defer rel="stylesheet" href="/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772">
+<link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
+
+<!-- Code Syntax Highlighting -->
+<link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light">
+
+
+
+<!-- Styles -->
+
+<!-- pseudocode -->
+
+
+
+  <link rel="shortcut icon" href="/assets/img/sliu.png?430c386d62d98184ee32047ee04ebc19">
+
+<link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e">
+<link rel="canonical" href="http://localhost:4000/blog/2025/nep-train/">
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
+
+  <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark">
+  <script>
+    initTheme();
+  </script>
+
+
+<!-- GeoJSON support via Leaflet -->
+
+  <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" integrity="sha256-q9ba7o845pMPFU+zcAll8rv+gC+fSovKsOoNQ6cynuQ=" crossorigin="anonymous">
+
+
+<!-- diff2html -->
+
+
+
+
+
+
+    
+      <!-- Medium Zoom JS -->
+      <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+      <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script>
+    
+    <!-- jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    
+  
+    <!-- MathJax -->
+    <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        tags: 'ams',
+      }
+    };
+    </script>
+    <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script>
+  
+
+
+    
+
+    
+
+    
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js" integrity="sha256-MgH13bFTTNqsnuEoqNPBLDaqxjGH+lCpqrukmXc8Ppg=" crossorigin="anonymous"></script>
+  <script>
+    /* Create leaflet map as another node and hide the code block, appending the leaflet node after it */
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'complete') {
+        document.querySelectorAll('pre>code.language-geojson').forEach((elem) => {
+          const jsonData = elem.textContent;
+          const backup = elem.parentElement;
+          backup.classList.add('unloaded');
+          /* create leaflet node */
+          let mapElement = document.createElement('div');
+          mapElement.classList.add('map');
+          backup.after(mapElement);
+
+          var map = L.map(mapElement);
+          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          }).addTo(map);
+          let geoJSON = L.geoJSON(JSON.parse(jsonData)).addTo(map);
+          map.fitBounds(geoJSON.getBounds());
+        });
+      }
+    });
+  </script>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script>
+
+
+
+<!-- Bootstrap Table -->
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script>
+<script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script>
+<script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script>
+
+<!-- Jupyter Open External Links New Tab -->
+<script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script>
+
+
+
+    
+
+    <!-- Distill js -->
+    <script src="/assets/js/distillpub/template.v2.js"></script>
+    <script src="/assets/js/distillpub/transforms.v2.js"></script>
+    <script src="/assets/js/distillpub/overrides.js"></script>
+    
+  </head>
+
+  <body>
+<d-front-matter>
+    <script async type="text/json">
       {
             "title": "Training Neural-Evolution Machine Learning Potentials",
             "description": "",
-            "published": "April 17, 2025",
+            "published": "April 18, 2025",
             "authors": [
               
             ],
@@ -21,4 +208,931 @@
               ]
             }
           }
-    </script> </d-front-matter> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Shixian</span> Liu </a> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">Home </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">Blog <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">Publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/teaching/">Teaching </a> </li> <li class="nav-item"> <button id="search-toggle" title="Search" onclick="openSearchModal()"> <span class="nav-link">ctrl k <i class="ti ti-search"></i></span> </button> </li> <li class="nav-item active"> <a class="nav-link" href="/zh-CN/blog/2025/nep-train/"> ZH-CN</a> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="ti ti-sun-moon" id="light-toggle-system"></i> <i class="ti ti-moon-filled" id="light-toggle-dark"></i> <i class="ti ti-sun-filled" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="post distill"> <d-title> <h1 style=" font-size: 1.8rem; font-weight: 600; text-align: center; overflow: hidden; margin-top: 0.2em; margin-bottom: 0.1em; text-overflow: ellipsis; "> Training Neural-Evolution Machine Learning Potentials </h1> <p></p> </d-title> <d-article> <d-contents> <nav class="l-text figcaption"> <h3>Contents</h3> <div> <a href="#1-from-coordinates-to-descriptor-vectors">1. From Coordinates to Descriptor Vectors</a> </div> <div> <a href="#2-from-descriptors-to-site-energy">2. From Descriptors to Site Energy</a> </div> <div> <a href="#3-training-the-machine-learning-potential">3. Training the Machine Learning Potential</a> </div> </nav> </d-contents> <p>Classical interatomic potentials play a critical role in atomic simulations by enabling efficient calculation of various material properties. Machine learning-based interatomic potentials can achieve quantum-level accuracy while significantly reducing computational cost.</p> <p>To date, a variety of machine learning models have been used to construct interatomic potentials, including:</p> <ul> <li>Artificial neural networks [Phys. Rev. Lett. 98, 146401 (2007)]</li> <li>Gaussian regression [Phys. Rev. Lett. 104, 136403 (2010)]</li> <li>Linear regression [J. Comput. Phys. 285, 316 (2015)]</li> </ul> <p>For any model, many fitting parameters need to be determined by training on quantum mechanical data. This abundance of parameters gives machine learning potentials their superior interpolation capability over traditional empirical potentials.</p> <p>However, finding an optimized set of parameters is not easy. Traditional training of neural network potentials relies on gradient descent, which can get trapped in local minima of the loss function and result in suboptimal solutions.</p> <p>A better approach is based on <strong>evolutionary algorithms</strong>, a global search method. When combined with neural networks, this is referred to as <strong>neuroevolution</strong>.</p> <p>The state-of-the-art evolutionary algorithm, <strong>separable natural evolution strategies</strong> (SNES), is particularly suitable for evolving large-scale neural networks. [J. Mach. Learn. Res. 15, 949 (2014)]</p> <p>Although evolutionary algorithms are less likely to get stuck in local minima, these population-based methods require many evaluations of the loss function per iteration and are usually more computationally expensive than gradient-based methods.</p> <h2 id="1-from-coordinates-to-descriptor-vectors">1. From Coordinates to Descriptor Vectors</h2> <p>In machine learning potentials, the site energy $U_i$ is not modeled directly as a function of relative coordinates ${\mathbf r_{ij}}$, but rather as a function of a <strong>high-dimensional descriptor vector</strong>, whose components are invariant to spatial translation, 3D rotation and inversion, and permutation of identical atoms.</p> <p>Numerous descriptors have been proposed, such as:</p> <ul> <li>Behler’s symmetry functions [J. Chem. Phys. 134, 074106 (2011)]</li> <li>Smooth overlap of atomic positions (SOAP) [Phys. Rev. B 87, 184115 (2013)]</li> <li>Bispectrum [Phys. Rev. Lett. 104, 136403 (2010)]</li> <li>Coulomb matrix [Phys. Rev. Lett. 108, 058301 (2012)]</li> <li>Moment tensor [Multiscale Model. Simul. 14, 1153 (2016)]</li> <li>Atomic cluster expansions [Phys. Rev. B 99, 014104 (2019)]</li> <li>Embedded atom descriptor [J. Phys. Chem. Lett. 10, 4962 (2019)]</li> <li>Gaussian moments [J. Chem. Theory Comput. 16, 5410 (2020)]</li> <li>Atomic permutationally invariant polynomials [Mach. Learn.: Sci. Technol. 1, 015004 (2020)]</li> </ul> <p>Several libraries implement these descriptors: [Comput. Phys. Commun. 207, 310 (2016)] [Comput. Phys. Commun. 247, 106949 (2020)] [Mach. Learn.: Sci. Technol. 2, 027001 (2021)]</p> <p>An overview of atomic environment descriptors can be found in: [J. Chem. Phys. 150, 154110 (2019)]</p> <h3 id="11-single-component-systems">1.1 Single-Component Systems</h3> <p>The following descriptors are inspired by <strong>Behler’s symmetry functions</strong> and <strong>optimized SOAP</strong>.</p> <p>For a central atom $i$ in a single-component system, a set of <strong>radial descriptor components</strong> ($n \geq 0$) is defined as:</p> \[q_n^i = \sum_{j\neq i} g_n(r_{ij}) \tag{1}\] <p>And a set of <strong>angular descriptor components</strong> ($n \geq 0$ and $l \geq 1$):</p> \[q_{nl}^i = \sum_{j\neq i}\sum_{k\neq i} g_n(r_{ij}) g_n(r_{ik}) P_l(\cos\theta_{ijk}) \tag{2}\] <p>where $P_l(\cos\theta_{ijk})$ is the Legendre polynomial of degree $l$, and $\theta_{ijk}$ is the angle formed between bonds $ij$ and $ik$.</p> <p>The function $g_n(r_{ij})$ is a <strong>radial function</strong>, defined using the Chebyshev polynomials of the first kind as a function of $x \equiv 2(r_{ij}/r_c − 1)^2 − 1$:</p> \[g_n(r_{ij}) = \frac{T_n(x)+1}{2} f_c(r_{ij}) \tag{3}\] <p>Here, $x$ ranges from -1 to 1.</p> <p>The function $f_c(r_{ij})$ is a <strong>cutoff function</strong>:</p> \[f_c(r_{ij}) = \begin{cases} (1+\cos(\pi r_{ij}/r_c))/2 &amp;\quad r\leq r_c \\ 0 &amp;\quad r &gt; r_c \\ \end{cases} \tag{4}\] <p>Note that radial functions are used in both radial and angular descriptors:</p> <ul> <li>Radial components are expanded up to $n_\text{max}^\text R$, i.e., $n = 0, 1, …, n_\text{max}^\text R$</li> <li>Angular components are expanded up to $n_\text{max}^\text A$ in radial terms and up to $l_\text{max}$ in angular terms</li> </ul> <p>The dimension of the full descriptor vector is:</p> \[N_\text{des} = (n_\text{max}^{\text R} + 1) + (n_\text{max}^{\text A} + 1) l_\text{max} \tag{5}\] <p>Note: cutoff radii for radial and angular components can differ, denoted $r_c^\text R$ and $r_c^\text A$.</p> <ul> <li>Radial components capture longer-range interactions (e.g., Coulomb and van der Waals),</li> <li>Angular components capture mid-range interactions.</li> </ul> <h3 id="12-multi-component-systems">1.2 Multi-Component Systems</h3> <p>The above discussion omits atom species. For multi-component systems, descriptors are constructed by:</p> <ul> <li>Multiplying terms in Eq. (1) with weights like $Z_j$</li> <li>Multiplying terms in Eq. (2) with weights like $Z_jZ_k$</li> </ul> <p>This method is used in the PyXtal_FF package and applies to all implemented descriptors.</p> <p>With our definition of $g_n(r_{ij})$ in Eq. (3), the cutoff function is modified as: $f_c(r_{ij})Z_j$ or $f_c(r_{ij})\sqrt{Z_iZ_j}$.</p> <h2 id="2-from-descriptors-to-site-energy">2. From Descriptors to Site Energy</h2> <p>In machine learning potentials, the site energy is modeled as a function of descriptor components:</p> \[U_i = U_i(\{q_{nl}^i\}) \tag{6}\] <p>This is a multivariable scalar function.</p> <p>Different machine learning models have been used to construct this function, including <strong>neural networks</strong>, <strong>Gaussian regression</strong>, and <strong>linear regression</strong>. In NEP, we choose a <strong>feedforward neural network</strong>.</p> <p>The descriptor vector forms the input layer, and the site energy is the output layer. One or more hidden layers may lie in between.</p> <p>Let $q_\nu^i$ be the descriptor vector (merging $n$ and $l$ into $\nu$). Let $x_\mu$ denote the hidden layer neuron states ($1 \leq \mu \leq N_\text{neu}$).</p> <p>Then the hidden layer state is computed as:</p> \[x_\mu = \tanh\left(\sum_{\nu=1}^{N_\text{des}} w_{\mu\nu}^{(1)} q_\nu^i - b_\mu^{(1)}\right) \tag{7}\] <p>Here, $w_{\mu\nu}^{(1)}$ is the weight between input $\nu$ and neuron $\mu$, and $b_\mu^{(1)}$ is the bias.</p> <p>We use the hyperbolic tangent as the activation function.</p> <p>The output (site energy) is computed as a linear combination of hidden neurons:</p> \[U_i = \sum_{\mu=1}^{N_\text{neu}} w_\mu^{(2)} x_\mu - b^{(2)} \tag{8}\] <h2 id="3-training-the-machine-learning-potential">3. Training the Machine Learning Potential</h2> <h3 id="31-defining-the-loss-function">3.1 Defining the Loss Function</h3> <p>The goal is to determine the weights and biases that minimize a <strong>loss function</strong> measuring error between the ML-predicted quantities (energy, forces, stress) and quantum target data.</p> <p>Let $\mathbf z$ be the vector of all network parameters, of dimension $N_\text{par}$. For a single-hidden-layer network:</p> \[N_\text{par} = (N_\text{des}+2)N_\text{neu} + 1 \tag{9}\] <p>The <strong>loss function</strong> $L$ is a function of $\mathbf z$:</p> \[L = L(\mathbf z) \tag{10}\] <p>Training becomes a <strong>real-valued optimization problem</strong>:</p> \[\mathbf z^* = \min L(\mathbf z) \tag{11}\] <p>Here, $\mathbf z^*$ are the optimal parameters.</p> <p>The total loss combines several weighted terms:</p> <ul> <li>Energy loss $L_\text{e}(\mathbf z)$</li> <li>Force loss $L_\text{f}(\mathbf z)$</li> <li>Stress loss $L_\text{v}(\mathbf z)$</li> <li>Regularization losses $L_1(\mathbf z)$ and $L_2(\mathbf z)$</li> </ul> <p>The total loss is:</p> \[L(\mathbf z) = \lambda_\text{e} L_\text{e} + \lambda_\text{f} L_\text{f} + \lambda_\text{v} L_\text{v} + \lambda_1 L_1 + \lambda_2 L_2 \tag{12}\] <ul> <li> <strong>Energy loss</strong> (RMSE):</li> </ul> \[L_\text{e}(\mathbf z) = \left( \frac{1}{N_\text{str}} \sum_{n=1}^{N_\text{str}} (U^\text{NEP}(n,\mathbf z) - U^\text{tar}(n))^2 \right)^{1/2} \tag{13}\] \[U = \sum_i U_i \tag{14}\] <ul> <li> <strong>Force loss</strong> (RMSE):</li> </ul> \[L_\text{f}(\mathbf z) = \left( \frac{1}{3N} \sum_{i=1}^{3N} (\mathbf F_i^\text{NEP} - \mathbf F_i^\text{tar})^2 \right)^{1/2} \tag{15}\] \[\mathbf F_i = \sum_{j\neq i} \mathbf F_{ij} \tag{16}\] \[\mathbf F_{ij} = \frac{\partial U_i}{\partial \mathbf r_{ij}} - \frac{\partial U_j}{\partial \mathbf r_{ji}} \tag{17}\] <ul> <li> <strong>Stress loss</strong> (RMSE):</li> </ul> \[L_\text{v}(\mathbf z) = \left( \frac{1}{6N_\text{str}} \sum_{n=1}^{N_\text{str}} \sum_{\mu\nu} (W^\text{NEP}_{\mu\nu}(n) - W^\text{tar}_{\mu\nu}(n))^2 \right)^{1/2} \tag{18}\] \[\mathbf W_i = \sum_{j\neq i} \mathbf r_{ij} \otimes \frac{\partial U_j}{\partial \mathbf r_{ji}} \tag{19}\] <ul> <li> <strong>Regularization terms</strong>:</li> </ul> \[L_1(\mathbf z) = \frac{1}{N_\text{par}} \sum_{n=1}^{N_\text{par}} |z_n| \tag{20}\] \[L_2(\mathbf z) = \left( \frac{1}{N_\text{par}} \sum_{n=1}^{N_\text{par}} z_n^2 \right)^{1/2} \tag{21}\] <p>Regularization helps prevent overfitting by keeping weights small.</p> <p>Recommended weights:</p> <ul> <li>$\lambda_\text{e} = \lambda_\text{f} = \lambda_\text{v} = 1$ for eV/atom (energy), eV/Å (force)</li> <li>Tune $\lambda_1$, $\lambda_2$ for balance between overfitting and underfitting</li> </ul> <h3 id="32-separable-natural-evolution-strategies-as-training-algorithm">3.2 Separable Natural Evolution Strategies as Training Algorithm</h3> <p>SNES is a derivative-free black-box optimizer that follows the <strong>natural gradient</strong> of the loss function.</p> <p><strong>Workflow</strong>:</p> <ol> <li> <p><strong>Initialization</strong>: Create an initial search distribution with mean $\mathbf m$ and standard deviation $\mathbf s$ (e.g., $\mathbf m \in [-0.5, 0.5]$, $\mathbf s = 0.1$)</p> </li> <li> <p><strong>Iterations</strong> for $N_\text{gen}$ generations:</p> </li> </ol> <ul> <li>a. Generate population of candidate solutions:</li> </ul> \[\mathbf z_k \leftarrow \mathbf m + \mathbf s \odot \mathbf r_k \tag{22}\] <p>where $\mathbf r_k$ is drawn from a standard normal distribution.</p> <ul> <li> <p>b. Evaluate all $L(\mathbf z_k)$ and sort candidates</p> </li> <li> <p>c. Update natural gradients:</p> </li> </ul> \[\nabla_{\mathbf m} \mathbf J \leftarrow \sum_k u_k \mathbf r_k \tag{23}\] \[\nabla_{\mathbf s} \mathbf J \leftarrow \sum_k u_k (\mathbf r_k \odot \mathbf r_k - 1) \tag{24}\] <p>where $u_k$ are rank-based utility values.</p> <ul> <li>d. Update search distribution:</li> </ul> \[\mathbf m \leftarrow \mathbf m + \eta_\mathbf{m} (\mathbf s \odot \nabla_{\mathbf m} \mathbf J) \tag{25}\] \[\mathbf s \leftarrow \mathbf s + \exp\left(\frac{\eta_\mathbf{s}}{2} \nabla_{\mathbf s} \mathbf J\right) \tag{25}\] <p>where $\eta_\mathbf{m}$ and $\eta_\mathbf{s}$ are learning rates.</p> </d-article> <d-appendix> <d-footnote-list></d-footnote-list> <d-citation-list></d-citation-list> </d-appendix> <d-bibliography src="/assets/bibliography/"></d-bibliography> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2025 Shixian Liu. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> . Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script src="/assets/js/bootstrap.bundle.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script> <script type="text/javascript">function progressBarSetup(){"max"in document.createElement("progress")?(initializeProgressElement(),$(document).on("scroll",function(){progressBar.attr({value:getCurrentScrollPosition()})}),$(window).on("resize",initializeProgressElement)):(resizeProgressBar(),$(document).on("scroll",resizeProgressBar),$(window).on("resize",resizeProgressBar))}function getCurrentScrollPosition(){return $(window).scrollTop()}function initializeProgressElement(){let e=$("#navbar").outerHeight(!0);$("body").css({"padding-top":e}),$("progress-container").css({"padding-top":e}),progressBar.css({top:e}),progressBar.attr({max:getDistanceToScroll(),value:getCurrentScrollPosition()})}function getDistanceToScroll(){return $(document).height()-$(window).height()}function resizeProgressBar(){progressBar.css({width:getWidthPercentage()+"%"})}function getWidthPercentage(){return getCurrentScrollPosition()/getDistanceToScroll()*100}const progressBar=$("#progress");window.onload=function(){setTimeout(progressBarSetup,50)};</script> <script src="/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script> <script>addBackToTop();</script> <script type="module" src="/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"> <div class="modal-footer" slot="footer"> <span class="help"> <svg version="1.0" class="ninja-examplekey" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1280 1280"> <path d="M1013 376c0 73.4-.4 113.3-1.1 120.2a159.9 159.9 0 0 1-90.2 127.3c-20 9.6-36.7 14-59.2 15.5-7.1.5-121.9.9-255 1h-242l95.5-95.5 95.5-95.5-38.3-38.2-38.2-38.3-160 160c-88 88-160 160.4-160 161 0 .6 72 73 160 161l160 160 38.2-38.3 38.3-38.2-95.5-95.5-95.5-95.5h251.1c252.9 0 259.8-.1 281.4-3.6 72.1-11.8 136.9-54.1 178.5-116.4 8.6-12.9 22.6-40.5 28-55.4 4.4-12 10.7-36.1 13.1-50.6 1.6-9.6 1.8-21 2.1-132.8l.4-122.2H1013v110z"></path> </svg> to select </span> <span class="help"> <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24"> <path d="M0 0h24v24H0V0z" fill="none"></path> <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path> </svg> <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24"> <path d="M0 0h24v24H0V0z" fill="none"></path> <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path> </svg> to navigate </span> <span class="help"> <span class="ninja-examplekey esc">esc</span> to close </span> <span class="help"> <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey backspace" viewbox="0 0 20 20" fill="currentColor"> <path fill-rule="evenodd" d="M6.707 4.879A3 3 0 018.828 4H15a3 3 0 013 3v6a3 3 0 01-3 3H8.828a3 3 0 01-2.12-.879l-4.415-4.414a1 1 0 010-1.414l4.414-4.414zm4 2.414a1 1 0 00-1.414 1.414L10.586 10l-1.293 1.293a1 1 0 101.414 1.414L12 11.414l1.293 1.293a1 1 0 001.414-1.414L13.414 10l1.293-1.293a1 1 0 00-1.414-1.414L12 8.586l-1.293-1.293z" clip-rule="evenodd"></path> </svg> move to parent </span> </div> </ninja-keys> <script>let searchTheme=determineComputedTheme();const ninjaKeys=document.querySelector("ninja-keys");"dark"===searchTheme?ninjaKeys.classList.add("dark"):ninjaKeys.classList.remove("dark");const openSearchModal=()=>{const e=$("#navbarNav");e.hasClass("show")&&e.collapse("hide"),ninjaKeys.open()};</script> <script>const ninja=document.querySelector("ninja-keys");ninja.data=[{id:"nav-home",title:"Home",section:"Navigation menu",handler:()=>{window.location.href="/"}},{id:"nav-blog",title:"Blog",description:"",section:"Navigation menu",handler:()=>{window.location.href="/blog/"}},{id:"nav-publications",title:"Publications",description:"Publications indexed in Scopus and Web of Science",section:"Navigation menu",handler:()=>{window.location.href="/publications/"}},{id:"nav-teaching",title:"Teaching",description:"Lectures",section:"Navigation menu",handler:()=>{window.location.href="/teaching/"}},{id:"post-callaway-two-relaxation-time-model",title:"Callaway Two-Relaxation-Time Model",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2025/callaway/"}},{id:"post-a-unified-theoretical-framework-for-phonon-heat-conduction-wte",title:"A Unified Theoretical Framework for Phonon Heat Conduction (WTE)",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2025/wigner/"}},{id:"post-thermal-conductivity-calculation-using-vasp-phono3py",title:"Thermal Conductivity Calculation using VASP + Phono3py",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2025/vasp-phono3py/"}},{id:"post-training-neural-evolution-machine-learning-potentials",title:"Training Neural-Evolution Machine Learning Potentials",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2025/nep-train/"}},{id:"post-landauer-theory-for-electrons-and-phonons",title:"Landauer Theory for Electrons and Phonons",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2025/el-ph-landauer/"}},{id:"post-first-principles-based-pbte-method",title:"First-Principles-Based PBTE Method",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2025/abinitio-bte/"}},{id:"post-topological-quantities-and-properties-of-phonons",title:"Topological Quantities and Properties of Phonons",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2024/topology/"}},{id:"post-vasp-structure-optimization",title:"VASP Structure Optimization",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2024/vasp-relax/"}},{id:"post-theoretical-framework-for-phonon-monte-carlo-simulations",title:"Theoretical framework for phonon Monte Carlo simulations",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2024/MC-phononBTE/"}},{id:"post-numerical-methods-for-density-of-states-dos-calculation",title:"Numerical Methods for Density of States (DOS) Calculation",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2024/dos-method/"}},{id:"post-phonon-dispersion-calculation-of-silicon-using-qe",title:"Phonon Dispersion Calculation of Silicon Using QE",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2024/qe-disp-si/"}},{id:"post-self-consistent-energy-calculations-with-qe",title:"Self-Consistent Energy Calculations with QE",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2024/qe-scf/"}},{id:"post-microscopic-description-of-thermophysics",title:"Microscopic Description of Thermophysics",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2023/nano-micro-thermophysics/"}},{id:"post-dispersion-relations-of-elastic-waves-in-rods",title:"Dispersion Relations of Elastic Waves in Rods",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2023/elastic-wave-in-wire/"}},{id:"post-dispersion-relations-of-elastic-waves-in-plates",title:"Dispersion Relations of Elastic Waves in Plates",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2023/elastic-wave-in-plate/"}},{id:"post-classical-kinetic-theory-of-heat-conduction",title:"Classical Kinetic Theory of Heat Conduction",description:"",section:"Posts",handler:()=>{window.location.href="/blog/2023/classical-kinetic-theory/"}},{id:"news-participated-in-the-65th-all-russian-scientific-conference-at-the-moscow-institute-of-physics-and-technology-mipt-and-received-the-award-for-best-student-oral-presentation-pdf-https-lyushisyan-github-io-assets-pdf-award-mipt2023-jpg",title:"Participated in the 65th All-Russian Scientific Conference at the Moscow Institute of Physics...",description:"",section:"News"},{id:"news-graduated-from-bauman-moscow-state-technical-university-with-a-master-39-s-degree-in-nuclear-energy-and-thermophysics-and-received-a-badge-with-honors-media-https-bmstu-ru-news-kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery",title:"Graduated from Bauman Moscow State Technical University with a Master&amp;#39;s degree in Nuclear...",description:"",section:"News"},{id:"news-invited-to-participate-in-the-russian-universities-alumni-meeting-on-quot-green-technology-for-the-younger-generation-quot-at-the-international-forum-atomexpo-2024-media-https-www-rudn-ru-media-news-international-cooperation-rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo-2024",title:"Invited to participate in the Russian universities alumni meeting on &amp;quot;Green technology for...",description:"",section:"News"},{id:"news-participated-in-the-xviii-all-russian-school-conference-quot-topical-issues-of-thermophysics-and-physical-hydrogas-dynamics-quot-avtifg-gave-an-oral-presentation-and-was-awarded-first-prize-pdf-https-lyushisyan-github-io-assets-pdf-award-avtifg2025-jpg",title:"Participated in the XVIII All-Russian School-Conference &amp;quot;Topical Issues of Thermophysics and Physical Hydrogas...",description:"",section:"News"},{id:"news-participated-in-the-9th-national-workshop-on-thermal-transport-wtt-2025-and-received-the-outstanding-poster-award-pdf-https-lyushisyan-github-io-assets-pdf-award-wtt9-jpg",title:"Participated in the 9th National Workshop on Thermal Transport (WTT-2025) and received the...",description:"",section:"News"},{id:"social-email",title:"Send an email",section:"Socials",handler:()=>{window.open("mailto:%73%78%6C%69%75%39%38@%67%6D%61%69%6C.%63%6F%6D","_blank")}},{id:"social-github",title:"GitHub",section:"Socials",handler:()=>{window.open("https://github.com/lyushisyan# your GitHub user name","_blank")}},{id:"social-orcid",title:"ORCID",section:"Socials",handler:()=>{window.open("https://orcid.org/0000-0003-3042-7817","_blank")}},{id:"social-scholar",title:"Google Scholar",section:"Socials",handler:()=>{window.open("https://scholar.google.com/citations?user=bLVSRuUAAAAJ","_blank")}},{id:"lang-zh-CN",title:"zh-CN",section:"Languages",handler:()=>{window.location.href="/zh-CN/blog/2025/nep-train/"}},{id:"light-theme",title:"Change theme to light",description:"Change the theme of the site to Light",section:"Theme",handler:()=>{setThemeSetting("light")}},{id:"dark-theme",title:"Change theme to dark",description:"Change the theme of the site to Dark",section:"Theme",handler:()=>{setThemeSetting("dark")}},{id:"system-theme",title:"Use system default theme",description:"Change the theme of the site to System Default",section:"Theme",handler:()=>{setThemeSetting("system")}}];</script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script> </body> </html>
+    </script>
+  </d-front-matter>
+
+  
+    <!-- Header -->
+    <header>
+  <!-- Nav Bar -->
+  <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation">
+    <div class="container">
+      
+        <a class="navbar-brand title font-weight-lighter" href="/">
+          
+            
+              <span class="font-weight-bold">Shixian</span>
+            
+            
+            Liu
+          
+        </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          
+
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">Home
+              
+            </a>
+          </li>
+
+          <!-- Other pages -->
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+              
+                
+                <li class="nav-item active">
+                  <a class="nav-link" href="/blog/">Blog
+                    
+                      <span class="sr-only">(current)</span>
+                    
+                  </a>
+                </li>
+              
+            
+          
+            
+              
+                
+                <li class="nav-item ">
+                  <a class="nav-link" href="/publications/">Publications
+                    
+                  </a>
+                </li>
+              
+            
+          
+            
+              
+                
+                <li class="nav-item ">
+                  <a class="nav-link" href="/teaching/">Teaching
+                    
+                  </a>
+                </li>
+              
+            
+          
+          
+            <!-- Search -->
+            <li class="nav-item">
+              <button id="search-toggle" title="Search" onclick="openSearchModal()">
+                <span class="nav-link">ctrl k <i class="ti ti-search"></i></span>
+              </button>
+            </li>
+          
+          <!-- Toogle language -->
+          
+            
+              
+              <li class="nav-item active">
+                
+                  <a class="nav-link" href="/zh-CN/blog/2025/nep-train/">
+                    
+                      ZH-CN</a>
+                
+              </li>
+            
+          
+          
+            <!-- Toogle theme mode -->
+            <li class="toggle-container">
+              <button id="light-toggle" title="Change theme">
+                <i class="ti ti-sun-moon" id="light-toggle-system"></i>
+                <i class="ti ti-moon-filled" id="light-toggle-dark"></i>
+                <i class="ti ti-sun-filled" id="light-toggle-light"></i>
+              </button>
+            </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+    <!-- Scrolling Progress Bar -->
+    <progress id="progress" value="0">
+      <div class="progress-container">
+        <span class="progress-bar"></span>
+      </div>
+    </progress>
+  
+</header>
+
+
+    <!-- Content -->
+    <div class="post distill">
+    <d-title>
+      <h1 style="
+        font-size: 1.8rem;
+        font-weight: 600;
+        text-align: center;
+        overflow: hidden;
+        margin-top: 0.2em;
+        margin-bottom: 0.1em;
+        text-overflow: ellipsis;
+      ">
+        Training Neural-Evolution Machine Learning Potentials
+      </h1>
+      <p></p>
+    </d-title>
+      
+
+      <d-article>
+        
+          <d-contents>
+            <nav class="l-text figcaption">
+              <h3>Contents</h3>
+              
+                <div>
+                  <a href="#1-from-coordinates-to-descriptor-vectors">1. From Coordinates to Descriptor Vectors</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#2-from-descriptors-to-site-energy">2. From Descriptors to Site Energy</a>
+                </div>
+                
+              
+                <div>
+                  <a href="#3-training-the-machine-learning-potential">3. Training the Machine Learning Potential</a>
+                </div>
+                
+              
+            </nav>
+          </d-contents>
+        
+        <p>Classical interatomic potentials play a critical role in atomic simulations by enabling efficient calculation of various material properties. Machine learning-based interatomic potentials can achieve quantum-level accuracy while significantly reducing computational cost.</p>
+
+<p>To date, a variety of machine learning models have been used to construct interatomic potentials, including:</p>
+
+<ul>
+  <li>Artificial neural networks [Phys. Rev. Lett. 98, 146401 (2007)]</li>
+  <li>Gaussian regression [Phys. Rev. Lett. 104, 136403 (2010)]</li>
+  <li>Linear regression [J. Comput. Phys. 285, 316 (2015)]</li>
+</ul>
+
+<p>For any model, many fitting parameters need to be determined by training on quantum mechanical data. This abundance of parameters gives machine learning potentials their superior interpolation capability over traditional empirical potentials.</p>
+
+<p>However, finding an optimized set of parameters is not easy. Traditional training of neural network potentials relies on gradient descent, which can get trapped in local minima of the loss function and result in suboptimal solutions.</p>
+
+<p>A better approach is based on <strong>evolutionary algorithms</strong>, a global search method. When combined with neural networks, this is referred to as <strong>neuroevolution</strong>.</p>
+
+<p>The state-of-the-art evolutionary algorithm, <strong>separable natural evolution strategies</strong> (SNES), is particularly suitable for evolving large-scale neural networks.
+[J. Mach. Learn. Res. 15, 949 (2014)]</p>
+
+<p>Although evolutionary algorithms are less likely to get stuck in local minima, these population-based methods require many evaluations of the loss function per iteration and are usually more computationally expensive than gradient-based methods.</p>
+
+<h2 id="1-from-coordinates-to-descriptor-vectors">1. From Coordinates to Descriptor Vectors</h2>
+
+<p>In machine learning potentials, the site energy $U_i$ is not modeled directly as a function of relative coordinates ${\mathbf r_{ij}}$, but rather as a function of a <strong>high-dimensional descriptor vector</strong>, whose components are invariant to spatial translation, 3D rotation and inversion, and permutation of identical atoms.</p>
+
+<p>Numerous descriptors have been proposed, such as:</p>
+
+<ul>
+  <li>Behler’s symmetry functions [J. Chem. Phys. 134, 074106 (2011)]</li>
+  <li>Smooth overlap of atomic positions (SOAP) [Phys. Rev. B 87, 184115 (2013)]</li>
+  <li>Bispectrum [Phys. Rev. Lett. 104, 136403 (2010)]</li>
+  <li>Coulomb matrix [Phys. Rev. Lett. 108, 058301 (2012)]</li>
+  <li>Moment tensor [Multiscale Model. Simul. 14, 1153 (2016)]</li>
+  <li>Atomic cluster expansions [Phys. Rev. B 99, 014104 (2019)]</li>
+  <li>Embedded atom descriptor [J. Phys. Chem. Lett. 10, 4962 (2019)]</li>
+  <li>Gaussian moments [J. Chem. Theory Comput. 16, 5410 (2020)]</li>
+  <li>Atomic permutationally invariant polynomials [Mach. Learn.: Sci. Technol. 1, 015004 (2020)]</li>
+</ul>
+
+<p>Several libraries implement these descriptors:
+[Comput. Phys. Commun. 207, 310 (2016)]
+[Comput. Phys. Commun. 247, 106949 (2020)]
+[Mach. Learn.: Sci. Technol. 2, 027001 (2021)]</p>
+
+<p>An overview of atomic environment descriptors can be found in: [J. Chem. Phys. 150, 154110 (2019)]</p>
+
+<h3 id="11-single-component-systems">1.1 Single-Component Systems</h3>
+
+<p>The following descriptors are inspired by <strong>Behler’s symmetry functions</strong> and <strong>optimized SOAP</strong>.</p>
+
+<p>For a central atom $i$ in a single-component system, a set of <strong>radial descriptor components</strong> ($n \geq 0$) is defined as:</p>
+
+\[q_n^i = \sum_{j\neq i} g_n(r_{ij}) \tag{1}\]
+
+<p>And a set of <strong>angular descriptor components</strong> ($n \geq 0$ and $l \geq 1$):</p>
+
+\[q_{nl}^i = \sum_{j\neq i}\sum_{k\neq i} g_n(r_{ij}) g_n(r_{ik}) P_l(\cos\theta_{ijk}) \tag{2}\]
+
+<p>where $P_l(\cos\theta_{ijk})$ is the Legendre polynomial of degree $l$, and $\theta_{ijk}$ is the angle formed between bonds $ij$ and $ik$.</p>
+
+<p>The function $g_n(r_{ij})$ is a <strong>radial function</strong>, defined using the Chebyshev polynomials of the first kind as a function of $x \equiv 2(r_{ij}/r_c − 1)^2 − 1$:</p>
+
+\[g_n(r_{ij}) = \frac{T_n(x)+1}{2} f_c(r_{ij}) \tag{3}\]
+
+<p>Here, $x$ ranges from -1 to 1.</p>
+
+<p>The function $f_c(r_{ij})$ is a <strong>cutoff function</strong>:</p>
+
+\[f_c(r_{ij}) =
+\begin{cases}
+(1+\cos(\pi r_{ij}/r_c))/2 &amp;\quad r\leq r_c \\
+0 &amp;\quad r &gt; r_c \\
+\end{cases} \tag{4}\]
+
+<p>Note that radial functions are used in both radial and angular descriptors:</p>
+
+<ul>
+  <li>Radial components are expanded up to $n_\text{max}^\text R$, i.e., $n = 0, 1, …, n_\text{max}^\text R$</li>
+  <li>Angular components are expanded up to $n_\text{max}^\text A$ in radial terms and up to $l_\text{max}$ in angular terms</li>
+</ul>
+
+<p>The dimension of the full descriptor vector is:</p>
+
+\[N_\text{des} = (n_\text{max}^{\text R} + 1) + (n_\text{max}^{\text A} + 1) l_\text{max} \tag{5}\]
+
+<p>Note: cutoff radii for radial and angular components can differ, denoted $r_c^\text R$ and $r_c^\text A$.</p>
+
+<ul>
+  <li>Radial components capture longer-range interactions (e.g., Coulomb and van der Waals),</li>
+  <li>Angular components capture mid-range interactions.</li>
+</ul>
+
+<h3 id="12-multi-component-systems">1.2 Multi-Component Systems</h3>
+
+<p>The above discussion omits atom species. For multi-component systems, descriptors are constructed by:</p>
+
+<ul>
+  <li>Multiplying terms in Eq. (1) with weights like $Z_j$</li>
+  <li>Multiplying terms in Eq. (2) with weights like $Z_jZ_k$</li>
+</ul>
+
+<p>This method is used in the PyXtal_FF package and applies to all implemented descriptors.</p>
+
+<p>With our definition of $g_n(r_{ij})$ in Eq. (3), the cutoff function is modified as: $f_c(r_{ij})Z_j$ or $f_c(r_{ij})\sqrt{Z_iZ_j}$.</p>
+
+<h2 id="2-from-descriptors-to-site-energy">2. From Descriptors to Site Energy</h2>
+
+<p>In machine learning potentials, the site energy is modeled as a function of descriptor components:</p>
+
+\[U_i = U_i(\{q_{nl}^i\}) \tag{6}\]
+
+<p>This is a multivariable scalar function.</p>
+
+<p>Different machine learning models have been used to construct this function, including <strong>neural networks</strong>, <strong>Gaussian regression</strong>, and <strong>linear regression</strong>. In NEP, we choose a <strong>feedforward neural network</strong>.</p>
+
+<p>The descriptor vector forms the input layer, and the site energy is the output layer. One or more hidden layers may lie in between.</p>
+
+<p>Let $q_\nu^i$ be the descriptor vector (merging $n$ and $l$ into $\nu$). Let $x_\mu$ denote the hidden layer neuron states ($1 \leq \mu \leq N_\text{neu}$).</p>
+
+<p>Then the hidden layer state is computed as:</p>
+
+\[x_\mu = \tanh\left(\sum_{\nu=1}^{N_\text{des}} w_{\mu\nu}^{(1)} q_\nu^i - b_\mu^{(1)}\right) \tag{7}\]
+
+<p>Here, $w_{\mu\nu}^{(1)}$ is the weight between input $\nu$ and neuron $\mu$, and $b_\mu^{(1)}$ is the bias.</p>
+
+<p>We use the hyperbolic tangent as the activation function.</p>
+
+<p>The output (site energy) is computed as a linear combination of hidden neurons:</p>
+
+\[U_i = \sum_{\mu=1}^{N_\text{neu}} w_\mu^{(2)} x_\mu - b^{(2)} \tag{8}\]
+
+<h2 id="3-training-the-machine-learning-potential">3. Training the Machine Learning Potential</h2>
+
+<h3 id="31-defining-the-loss-function">3.1 Defining the Loss Function</h3>
+
+<p>The goal is to determine the weights and biases that minimize a <strong>loss function</strong> measuring error between the ML-predicted quantities (energy, forces, stress) and quantum target data.</p>
+
+<p>Let $\mathbf z$ be the vector of all network parameters, of dimension $N_\text{par}$. For a single-hidden-layer network:</p>
+
+\[N_\text{par} = (N_\text{des}+2)N_\text{neu} + 1 \tag{9}\]
+
+<p>The <strong>loss function</strong> $L$ is a function of $\mathbf z$:</p>
+
+\[L = L(\mathbf z) \tag{10}\]
+
+<p>Training becomes a <strong>real-valued optimization problem</strong>:</p>
+
+\[\mathbf z^* = \min L(\mathbf z) \tag{11}\]
+
+<p>Here, $\mathbf z^*$ are the optimal parameters.</p>
+
+<p>The total loss combines several weighted terms:</p>
+
+<ul>
+  <li>Energy loss $L_\text{e}(\mathbf z)$</li>
+  <li>Force loss $L_\text{f}(\mathbf z)$</li>
+  <li>Stress loss $L_\text{v}(\mathbf z)$</li>
+  <li>Regularization losses $L_1(\mathbf z)$ and $L_2(\mathbf z)$</li>
+</ul>
+
+<p>The total loss is:</p>
+
+\[L(\mathbf z) = \lambda_\text{e} L_\text{e} + \lambda_\text{f} L_\text{f} + \lambda_\text{v} L_\text{v} + \lambda_1 L_1 + \lambda_2 L_2 \tag{12}\]
+
+<ul>
+  <li>
+<strong>Energy loss</strong> (RMSE):</li>
+</ul>
+
+\[L_\text{e}(\mathbf z) = \left( \frac{1}{N_\text{str}} \sum_{n=1}^{N_\text{str}} (U^\text{NEP}(n,\mathbf z) - U^\text{tar}(n))^2 \right)^{1/2} \tag{13}\]
+
+\[U = \sum_i U_i \tag{14}\]
+
+<ul>
+  <li>
+<strong>Force loss</strong> (RMSE):</li>
+</ul>
+
+\[L_\text{f}(\mathbf z) = \left( \frac{1}{3N} \sum_{i=1}^{3N} (\mathbf F_i^\text{NEP} - \mathbf F_i^\text{tar})^2 \right)^{1/2} \tag{15}\]
+
+\[\mathbf F_i = \sum_{j\neq i} \mathbf F_{ij} \tag{16}\]
+
+\[\mathbf F_{ij} = \frac{\partial U_i}{\partial \mathbf r_{ij}} - \frac{\partial U_j}{\partial \mathbf r_{ji}} \tag{17}\]
+
+<ul>
+  <li>
+<strong>Stress loss</strong> (RMSE):</li>
+</ul>
+
+\[L_\text{v}(\mathbf z) = \left( \frac{1}{6N_\text{str}} \sum_{n=1}^{N_\text{str}} \sum_{\mu\nu} (W^\text{NEP}_{\mu\nu}(n) - W^\text{tar}_{\mu\nu}(n))^2 \right)^{1/2} \tag{18}\]
+
+\[\mathbf W_i = \sum_{j\neq i} \mathbf r_{ij} \otimes \frac{\partial U_j}{\partial \mathbf r_{ji}} \tag{19}\]
+
+<ul>
+  <li>
+<strong>Regularization terms</strong>:</li>
+</ul>
+
+\[L_1(\mathbf z) = \frac{1}{N_\text{par}} \sum_{n=1}^{N_\text{par}} |z_n| \tag{20}\]
+
+\[L_2(\mathbf z) = \left( \frac{1}{N_\text{par}} \sum_{n=1}^{N_\text{par}} z_n^2 \right)^{1/2} \tag{21}\]
+
+<p>Regularization helps prevent overfitting by keeping weights small.</p>
+
+<p>Recommended weights:</p>
+
+<ul>
+  <li>$\lambda_\text{e} = \lambda_\text{f} = \lambda_\text{v} = 1$ for eV/atom (energy), eV/Å (force)</li>
+  <li>Tune $\lambda_1$, $\lambda_2$ for balance between overfitting and underfitting</li>
+</ul>
+
+<h3 id="32-separable-natural-evolution-strategies-as-training-algorithm">3.2 Separable Natural Evolution Strategies as Training Algorithm</h3>
+
+<p>SNES is a derivative-free black-box optimizer that follows the <strong>natural gradient</strong> of the loss function.</p>
+
+<p><strong>Workflow</strong>:</p>
+
+<ol>
+  <li>
+    <p><strong>Initialization</strong>:
+Create an initial search distribution with mean $\mathbf m$ and standard deviation $\mathbf s$ (e.g., $\mathbf m \in [-0.5, 0.5]$, $\mathbf s = 0.1$)</p>
+  </li>
+  <li>
+    <p><strong>Iterations</strong> for $N_\text{gen}$ generations:</p>
+  </li>
+</ol>
+
+<ul>
+  <li>a. Generate population of candidate solutions:</li>
+</ul>
+
+\[\mathbf z_k \leftarrow \mathbf m + \mathbf s \odot \mathbf r_k \tag{22}\]
+
+<p>where $\mathbf r_k$ is drawn from a standard normal distribution.</p>
+
+<ul>
+  <li>
+    <p>b. Evaluate all $L(\mathbf z_k)$ and sort candidates</p>
+  </li>
+  <li>
+    <p>c. Update natural gradients:</p>
+  </li>
+</ul>
+
+\[\nabla_{\mathbf m} \mathbf J \leftarrow \sum_k u_k \mathbf r_k \tag{23}\]
+
+\[\nabla_{\mathbf s} \mathbf J \leftarrow \sum_k u_k (\mathbf r_k \odot \mathbf r_k - 1) \tag{24}\]
+
+<p>where $u_k$ are rank-based utility values.</p>
+
+<ul>
+  <li>d. Update search distribution:</li>
+</ul>
+
+\[\mathbf m \leftarrow \mathbf m + \eta_\mathbf{m} (\mathbf s \odot \nabla_{\mathbf m} \mathbf J) \tag{25}\]
+
+\[\mathbf s \leftarrow \mathbf s + \exp\left(\frac{\eta_\mathbf{s}}{2} \nabla_{\mathbf s} \mathbf J\right) \tag{25}\]
+
+<p>where $\eta_\mathbf{m}$ and $\eta_\mathbf{s}$ are learning rates.</p>
+
+      </d-article>
+
+      <d-appendix>
+        <d-footnote-list></d-footnote-list>
+        <d-citation-list></d-citation-list>
+      </d-appendix>
+
+      <d-bibliography src="/assets/bibliography/"></d-bibliography>
+
+      
+      
+    </div>
+
+    <!-- Footer -->
+    
+  <footer class="fixed-bottom" role="contentinfo">
+    <div class="container mt-0">
+      © Copyright 2025
+      Shixian
+      
+      Liu. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> . Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>.
+
+      
+      
+    </div>
+  </footer>
+
+
+    <!-- Bootsrap & MDB scripts -->
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="/assets/js/mdb.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    
+
+
+
+
+    
+  <!-- Scrolling Progress Bar -->
+  <script type="text/javascript">
+    /*
+     * This JavaScript code has been adapted from the article
+     * https://css-tricks.com/reading-position-indicator/ authored by Pankaj Parashar,
+     * published on the website https://css-tricks.com on the 7th of May, 2014.
+     * Couple of changes were made to the original code to make it compatible
+     * with the `al-foio` theme.
+     */
+    const progressBar = $('#progress');
+    /*
+     * We set up the bar after all elements are done loading.
+     * In some cases, if the images in the page are larger than the intended
+     * size they'll have on the page, they'll be resized via CSS to accomodate
+     * the desired size. This mistake, however, breaks the computations as the
+     * scroll size is computed as soon as the elements finish loading.
+     * To account for this, a minimal delay was introduced before computing the
+     * values.
+     */
+    window.onload = function () {
+      setTimeout(progressBarSetup, 50);
+    };
+    /*
+     * We set up the bar according to the browser.
+     * If the browser supports the progress element we use that.
+     * Otherwise, we resize the bar thru CSS styling
+     */
+    function progressBarSetup() {
+      if ('max' in document.createElement('progress')) {
+        initializeProgressElement();
+        $(document).on('scroll', function () {
+          progressBar.attr({ value: getCurrentScrollPosition() });
+        });
+        $(window).on('resize', initializeProgressElement);
+      } else {
+        resizeProgressBar();
+        $(document).on('scroll', resizeProgressBar);
+        $(window).on('resize', resizeProgressBar);
+      }
+    }
+    /*
+     * The vertical scroll position is the same as the number of pixels that
+     * are hidden from view above the scrollable area. Thus, a value > 0 is
+     * how much the user has scrolled from the top
+     */
+    function getCurrentScrollPosition() {
+      return $(window).scrollTop();
+    }
+
+    function initializeProgressElement() {
+      let navbarHeight = $('#navbar').outerHeight(true);
+      $('body').css({ 'padding-top': navbarHeight });
+      $('progress-container').css({ 'padding-top': navbarHeight });
+      progressBar.css({ top: navbarHeight });
+      progressBar.attr({
+        max: getDistanceToScroll(),
+        value: getCurrentScrollPosition(),
+      });
+    }
+    /*
+     * The offset between the html document height and the browser viewport
+     * height will be greater than zero if vertical scroll is possible.
+     * This is the distance the user can scroll
+     */
+    function getDistanceToScroll() {
+      return $(document).height() - $(window).height();
+    }
+
+    function resizeProgressBar() {
+      progressBar.css({ width: getWidthPercentage() + '%' });
+    }
+    // The scroll ratio equals the percentage to resize the bar
+    function getWidthPercentage() {
+      return (getCurrentScrollPosition() / getDistanceToScroll()) * 100;
+    }
+  </script>
+
+
+    
+  <script src="/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script>
+  <script>
+    addBackToTop();
+  </script>
+
+
+    
+  <script type="module" src="/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script>
+  <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching">
+    
+    <div class="modal-footer" slot="footer">
+      <span class="help">
+        <svg version="1.0" class="ninja-examplekey" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1280 1280">
+          <path d="M1013 376c0 73.4-.4 113.3-1.1 120.2a159.9 159.9 0 0 1-90.2 127.3c-20 9.6-36.7 14-59.2 15.5-7.1.5-121.9.9-255 1h-242l95.5-95.5 95.5-95.5-38.3-38.2-38.2-38.3-160 160c-88 88-160 160.4-160 161 0 .6 72 73 160 161l160 160 38.2-38.3 38.3-38.2-95.5-95.5-95.5-95.5h251.1c252.9 0 259.8-.1 281.4-3.6 72.1-11.8 136.9-54.1 178.5-116.4 8.6-12.9 22.6-40.5 28-55.4 4.4-12 10.7-36.1 13.1-50.6 1.6-9.6 1.8-21 2.1-132.8l.4-122.2H1013v110z"></path>
+        </svg>
+        to select
+      </span>
+      <span class="help">
+        <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24">
+          <path d="M0 0h24v24H0V0z" fill="none"></path>
+          <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey" viewbox="0 0 24 24">
+          <path d="M0 0h24v24H0V0z" fill="none"></path>
+          <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path>
+        </svg>
+        to navigate
+      </span>
+      <span class="help">
+        <span class="ninja-examplekey esc">esc</span>
+        to close
+      </span>
+      <span class="help">
+        <svg xmlns="http://www.w3.org/2000/svg" class="ninja-examplekey backspace" viewbox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M6.707 4.879A3 3 0 018.828 4H15a3 3 0 013 3v6a3 3 0 01-3 3H8.828a3 3 0 01-2.12-.879l-4.415-4.414a1 1 0 010-1.414l4.414-4.414zm4 2.414a1 1 0 00-1.414 1.414L10.586 10l-1.293 1.293a1 1 0 101.414 1.414L12 11.414l1.293 1.293a1 1 0 001.414-1.414L13.414 10l1.293-1.293a1 1 0 00-1.414-1.414L12 8.586l-1.293-1.293z" clip-rule="evenodd"></path>
+        </svg>
+        move to parent
+      </span>
+    </div>
+  </ninja-keys>
+  <script>
+    let searchTheme = determineComputedTheme();
+    const ninjaKeys = document.querySelector('ninja-keys');
+
+    if (searchTheme === 'dark') {
+      ninjaKeys.classList.add('dark');
+    } else {
+      ninjaKeys.classList.remove('dark');
+    }
+
+    const openSearchModal = () => {
+      // collapse navbarNav if expanded on mobile
+      const $navbarNav = $('#navbarNav');
+      if ($navbarNav.hasClass('show')) {
+        $navbarNav.collapse('hide');
+      }
+      ninjaKeys.open();
+    };
+  </script>
+  
+  <script>
+    // get the ninja-keys element
+    const ninja = document.querySelector('ninja-keys');
+
+    // add the home and posts menu items
+    ninja.data = [{
+        id: "nav-home",
+        title: "Home",
+        section: "Navigation menu",
+        handler: () => {
+          window.location.href = "/";
+        },
+      },{id: "nav-blog",
+              title: "Blog",
+              description: "",
+              section: "Navigation menu",
+              handler: () => {
+                window.location.href = "/blog/";
+              },
+            },{id: "nav-publications",
+              title: "Publications",
+              description: "Publications indexed in Scopus and Web of Science",
+              section: "Navigation menu",
+              handler: () => {
+                window.location.href = "/publications/";
+              },
+            },{id: "nav-teaching",
+              title: "Teaching",
+              description: "Lectures",
+              section: "Navigation menu",
+              handler: () => {
+                window.location.href = "/teaching/";
+              },
+            },{id: "post-callaway-two-relaxation-time-model",
+          
+            title: "Callaway Two-Relaxation-Time Model",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2025/callaway/";
+            
+          },
+        },{id: "post-a-unified-theoretical-framework-for-phonon-heat-conduction-wte",
+          
+            title: "A Unified Theoretical Framework for Phonon Heat Conduction (WTE)",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2025/wigner/";
+            
+          },
+        },{id: "post-thermal-conductivity-calculation-using-vasp-phono3py",
+          
+            title: "Thermal Conductivity Calculation using VASP + Phono3py",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2025/vasp-phono3py/";
+            
+          },
+        },{id: "post-training-neural-evolution-machine-learning-potentials",
+          
+            title: "Training Neural-Evolution Machine Learning Potentials",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2025/nep-train/";
+            
+          },
+        },{id: "post-landauer-theory-for-electrons-and-phonons",
+          
+            title: "Landauer Theory for Electrons and Phonons",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2025/el-ph-landauer/";
+            
+          },
+        },{id: "post-first-principles-based-pbte-method",
+          
+            title: "First-Principles-Based PBTE Method",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2025/abinitio-bte/";
+            
+          },
+        },{id: "post-topological-quantities-and-properties-of-phonons",
+          
+            title: "Topological Quantities and Properties of Phonons",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2024/topology/";
+            
+          },
+        },{id: "post-vasp-structure-optimization",
+          
+            title: "VASP Structure Optimization",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2024/vasp-relax/";
+            
+          },
+        },{id: "post-theoretical-framework-for-phonon-monte-carlo-simulations",
+          
+            title: "Theoretical framework for phonon Monte Carlo simulations",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2024/MC-phononBTE/";
+            
+          },
+        },{id: "post-numerical-methods-for-density-of-states-dos-calculation",
+          
+            title: "Numerical Methods for Density of States (DOS) Calculation",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2024/dos-method/";
+            
+          },
+        },{id: "post-phonon-dispersion-calculation-of-silicon-using-qe",
+          
+            title: "Phonon Dispersion Calculation of Silicon Using QE",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2024/qe-disp-si/";
+            
+          },
+        },{id: "post-self-consistent-energy-calculations-with-qe",
+          
+            title: "Self-Consistent Energy Calculations with QE",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2024/qe-scf/";
+            
+          },
+        },{id: "post-microscopic-description-of-thermophysics",
+          
+            title: "Microscopic Description of Thermophysics",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2023/nano-micro-thermophysics/";
+            
+          },
+        },{id: "post-dispersion-relations-of-elastic-waves-in-rods",
+          
+            title: "Dispersion Relations of Elastic Waves in Rods",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2023/elastic-wave-in-wire/";
+            
+          },
+        },{id: "post-dispersion-relations-of-elastic-waves-in-plates",
+          
+            title: "Dispersion Relations of Elastic Waves in Plates",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2023/elastic-wave-in-plate/";
+            
+          },
+        },{id: "post-classical-kinetic-theory-of-heat-conduction",
+          
+            title: "Classical Kinetic Theory of Heat Conduction",
+          
+          description: "",
+          section: "Posts",
+          handler: () => {
+            
+              window.location.href = "/blog/2023/classical-kinetic-theory/";
+            
+          },
+        },{id: "news-participated-in-the-65th-all-russian-scientific-conference-at-the-moscow-institute-of-physics-and-technology-mipt-and-received-the-award-for-best-student-oral-presentation-pdf-https-lyushisyan-github-io-assets-pdf-award-mipt2023-jpg",
+              title: 'Participated in the 65th All-Russian Scientific Conference at the Moscow Institute of Physics...',
+              description: "",
+              section: "News",},{id: "news-graduated-from-bauman-moscow-state-technical-university-with-a-master-39-s-degree-in-nuclear-energy-and-thermophysics-and-received-a-badge-with-honors-media-https-bmstu-ru-news-kto-inzhener-ya-inzhener-v-baumanke-proshlo-posvyashenie-v-inzhenery",
+              title: 'Graduated from Bauman Moscow State Technical University with a Master&amp;#39;s degree in Nuclear...',
+              description: "",
+              section: "News",},{id: "news-invited-to-participate-in-the-russian-universities-alumni-meeting-on-quot-green-technology-for-the-younger-generation-quot-at-the-international-forum-atomexpo-2024-media-https-www-rudn-ru-media-news-international-cooperation-rudn-provel-vstrechu-vypusknikov-partnerskih-vuzov-gk-rosatom-na-mejdunarodnom-forume-atomekspo-2024",
+              title: 'Invited to participate in the Russian universities alumni meeting on &amp;quot;Green technology for...',
+              description: "",
+              section: "News",},{id: "news-participated-in-the-xviii-all-russian-school-conference-quot-topical-issues-of-thermophysics-and-physical-hydrogas-dynamics-quot-avtifg-gave-an-oral-presentation-and-was-awarded-first-prize-pdf-https-lyushisyan-github-io-assets-pdf-award-avtifg2025-jpg",
+              title: 'Participated in the XVIII All-Russian School-Conference &amp;quot;Topical Issues of Thermophysics and Physical Hydrogas...',
+              description: "",
+              section: "News",},{id: "news-participated-in-the-9th-national-workshop-on-thermal-transport-wtt-2025-and-received-the-outstanding-poster-award-pdf-https-lyushisyan-github-io-assets-pdf-award-wtt9-jpg",
+              title: 'Participated in the 9th National Workshop on Thermal Transport (WTT-2025) and received the...',
+              description: "",
+              section: "News",},{
+            id: 'social-email',
+            title: 'Send an email',
+            section: 'Socials',
+            handler: () => {
+              window.open("mailto:%73%78%6C%69%75%39%38@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+            },
+          },{
+            id: 'social-github',
+            title: 'GitHub',
+            section: 'Socials',
+            handler: () => {
+              window.open("https://github.com/lyushisyan# your GitHub user name", "_blank");
+            },
+          },{
+            id: 'social-orcid',
+            title: 'ORCID',
+            section: 'Socials',
+            handler: () => {
+              window.open("https://orcid.org/0000-0003-3042-7817", "_blank");
+            },
+          },{
+            id: 'social-scholar',
+            title: 'Google Scholar',
+            section: 'Socials',
+            handler: () => {
+              window.open("https://scholar.google.com/citations?user=bLVSRuUAAAAJ", "_blank");
+            },
+          },{
+              id: 'lang-zh-CN',
+              title: 'zh-CN',
+              section: 'Languages',
+              handler: () => {
+                window.location.href = "/zh-CN/blog/2025/nep-train/";
+              },
+            },{
+          id: 'light-theme',
+          title: 'Change theme to light',
+          description: 'Change the theme of the site to Light',
+          section: 'Theme',
+          handler: () => {
+            setThemeSetting("light");
+          },
+        },
+        {
+          id: 'dark-theme',
+          title: 'Change theme to dark',
+          description: 'Change the theme of the site to Dark',
+          section: 'Theme',
+          handler: () => {
+            setThemeSetting("dark");
+          },
+        },
+        {
+          id: 'system-theme',
+          title: 'Use system default theme',
+          description: 'Change the theme of the site to System Default',
+          section: 'Theme',
+          handler: () => {
+            setThemeSetting("system");
+          },
+        },];
+  </script>
+  <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script>
+
+
+  
+</body>
+</html>
