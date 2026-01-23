@@ -23,20 +23,6 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
-        },{id: "nav-projects",
-          title: "projects",
-          description: "A growing collection of your cool projects.",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/projects/";
-          },
-        },{id: "nav-repositories",
-          title: "repositories",
-          description: "Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to include your own GitHub profile and repositories.",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/repositories/";
-          },
         },{id: "nav-cv",
           title: "cv",
           description: "This is a description of the page. You can modify it in &#39;_pages/cv.md&#39;. You can also change or remove the top pdf download button.",
@@ -58,381 +44,125 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/people/";
           },
-        },{id: "dropdown-bookshelf",
-              title: "bookshelf",
-              description: "",
-              section: "Dropdown",
-              handler: () => {
-                window.location.href = "/books/";
-              },
-            },{id: "dropdown-blog",
-              title: "blog",
-              description: "",
-              section: "Dropdown",
-              handler: () => {
-                window.location.href = "/blog/";
-              },
-            },{id: "post-a-post-with-plotly-js",
+        },{id: "post-callaway-two-relaxation-time-model",
         
-          title: "a post with plotly.js",
+          title: "Callaway Two-Relaxation-Time Model",
         
-        description: "this is what included plotly.js code could look like",
+        description: "A theoretical derivation of the Callaway model, separating Normal and Resistive scattering processes to calculate thermal conductivity.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2025/plotly/";
+            window.location.href = "/blog/2025/callaway/";
           
         },
-      },{id: "post-a-post-with-image-galleries",
+      },{id: "post-thermal-conductivity-calculation-using-vasp-phono3py",
         
-          title: "a post with image galleries",
+          title: "Thermal Conductivity Calculation using VASP + Phono3py",
         
-        description: "this is what included image galleries could look like",
+        description: "A step-by-step guide to calculating lattice thermal conductivity using VASP and Phono3py, covering supercell generation, force calculations, and BTE solutions.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2024/photo-gallery/";
+            window.location.href = "/blog/2025/vasp-phono3py/";
           
         },
-      },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
+      },{id: "post-thermal-conductivity-calculation-using-vasp-phono3py",
         
-          title: 'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+          title: "Thermal Conductivity Calculation using VASP + Phono3py",
         
-        description: "We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",
+        description: "A step-by-step guide to calculating lattice thermal conductivity using VASP and Phono3py, covering supercell generation, force calculations, and BTE solutions.",
         section: "Posts",
         handler: () => {
           
-            window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/", "_blank");
+            window.location.href = "/blog/2025/wigner/";
           
         },
-      },{id: "post-a-post-with-tabs",
+      },{id: "post-landauer-theory-for-electrons-and-phonons",
         
-          title: "a post with tabs",
+          title: "Landauer Theory for Electrons and Phonons",
         
-        description: "this is what included tabs in a post could look like",
+        description: "A detailed exploration of Landauer theory in nanoscale thermal transport, comparing electron and phonon transport mechanisms, mode counting, and spectral conductance.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2024/tabs/";
+            window.location.href = "/blog/2025/el-ph-landauer/";
           
         },
-      },{id: "post-a-post-with-typograms",
+      },{id: "post-first-principles-based-pbte-method",
         
-          title: "a post with typograms",
+          title: "First-Principles-Based PBTE Method",
         
-        description: "this is what included typograms code could look like",
+        description: "An introduction to the First-Principles Phonon Boltzmann Transport Equation (PBTE) method, covering DFT, lattice dynamics, and thermal conductivity calculations.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2024/typograms/";
+            window.location.href = "/blog/2025/abinitio-bte/";
           
         },
-      },{id: "post-a-post-that-can-be-cited",
+      },{id: "post-vasp-structure-optimization",
         
-          title: "a post that can be cited",
+          title: "VASP Structure Optimization",
         
-        description: "this is what a post that can be cited looks like",
+        description: "A comprehensive guide to structure optimization using VASP, covering input parameters, file formats, output analysis, and convergence strategies.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2024/post-citation/";
+            window.location.href = "/blog/2024/vasp-relax/";
           
         },
-      },{id: "post-a-post-with-pseudo-code",
+      },{id: "post-numerical-methods-for-density-of-states-dos-calculation",
         
-          title: "a post with pseudo code",
+          title: "Numerical Methods for Density of States (DOS) Calculation",
         
-        description: "this is what included pseudo code could look like",
+        description: "An overview of numerical techniques for calculating Density of States (DOS), including Root Sampling, Linear Extrapolation (GR/GGR methods), and Linear Interpolation.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2024/pseudocode/";
+            window.location.href = "/blog/2024/dos-method/";
           
         },
-      },{id: "post-a-post-with-code-diff",
+      },{id: "post-phonon-dispersion-calculation-of-silicon-using-qe",
         
-          title: "a post with code diff",
+          title: "Phonon Dispersion Calculation of Silicon Using QE",
         
-        description: "this is how you can display code diffs",
+        description: "A step-by-step tutorial on calculating phonon dispersion for Silicon using Density Functional Perturbation Theory (DFPT) in Quantum Espresso.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2024/code-diff/";
+            window.location.href = "/blog/2024/qe-disp-si/";
           
         },
-      },{id: "post-a-post-with-advanced-image-components",
+      },{id: "post-self-consistent-energy-calculations-with-qe",
         
-          title: "a post with advanced image components",
+          title: "Self-Consistent Energy Calculations with QE",
         
-        description: "this is what advanced image components could look like",
+        description: "A guide to performing self-consistent field (SCF) calculations using Quantum ESPRESSO, covering input files, execution, and output analysis.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2024/advanced-images/";
+            window.location.href = "/blog/2024/qe-scf/";
           
         },
-      },{id: "post-a-post-with-vega-lite",
+      },{id: "post-microscopic-description-of-thermophysics",
         
-          title: "a post with vega lite",
+          title: "Microscopic Description of Thermophysics",
         
-        description: "this is what included vega lite code could look like",
+        description: "A microscopic view of heat transfer, covering energy carriers, distribution functions, and fundamental constants.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2024/vega-lite/";
+            window.location.href = "/blog/2023/nano-micro-thermophysics/";
           
         },
-      },{id: "post-a-post-with-geojson",
+      },{id: "post-classical-kinetic-theory-of-heat-conduction",
         
-          title: "a post with geojson",
+          title: "Classical Kinetic Theory of Heat Conduction",
         
-        description: "this is what included geojson code could look like",
+        description: "A summary of classical kinetic theory, phonon transport, and macroscopic heat equations.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2024/geojson-map/";
-          
-        },
-      },{id: "post-a-post-with-echarts",
-        
-          title: "a post with echarts",
-        
-        description: "this is what included echarts code could look like",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2024/echarts/";
-          
-        },
-      },{id: "post-a-post-with-chart-js",
-        
-          title: "a post with chart.js",
-        
-        description: "this is what included chart.js code could look like",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2024/chartjs/";
-          
-        },
-      },{id: "post-a-post-with-tikzjax",
-        
-          title: "a post with TikZJax",
-        
-        description: "this is what included TikZ code could look like",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2023/tikzjax/";
-          
-        },
-      },{id: "post-a-post-with-bibliography",
-        
-          title: "a post with bibliography",
-        
-        description: "an example of a blog post with bibliography",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2023/post-bibliography/";
-          
-        },
-      },{id: "post-a-post-with-jupyter-notebook",
-        
-          title: "a post with jupyter notebook",
-        
-        description: "an example of a blog post with jupyter notebook",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2023/jupyter-notebook/";
-          
-        },
-      },{id: "post-a-post-with-custom-blockquotes",
-        
-          title: "a post with custom blockquotes",
-        
-        description: "an example of a blog post with custom blockquotes",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2023/custom-blockquotes/";
-          
-        },
-      },{id: "post-a-post-with-table-of-contents-on-a-sidebar",
-        
-          title: "a post with table of contents on a sidebar",
-        
-        description: "an example of a blog post with table of contents on a sidebar",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2023/sidebar-table-of-contents/";
-          
-        },
-      },{id: "post-a-post-with-audios",
-        
-          title: "a post with audios",
-        
-        description: "this is what included audios could look like",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2023/audios/";
-          
-        },
-      },{id: "post-a-post-with-videos",
-        
-          title: "a post with videos",
-        
-        description: "this is what included videos could look like",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2023/videos/";
-          
-        },
-      },{id: "post-displaying-beautiful-tables-with-bootstrap-tables",
-        
-          title: "displaying beautiful tables with Bootstrap Tables",
-        
-        description: "an example of how to use Bootstrap Tables",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2023/tables/";
-          
-        },
-      },{id: "post-a-post-with-table-of-contents",
-        
-          title: "a post with table of contents",
-        
-        description: "an example of a blog post with table of contents",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2023/table-of-contents/";
-          
-        },
-      },{id: "post-a-post-with-giscus-comments",
-        
-          title: "a post with giscus comments",
-        
-        description: "an example of a blog post with giscus comments",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2022/giscus-comments/";
-          
-        },
-      },{id: "post-displaying-external-posts-on-your-al-folio-blog",
-        
-          title: 'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
-        
-        description: "",
-        section: "Posts",
-        handler: () => {
-          
-            window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
-          
-        },
-      },{id: "post-a-post-with-redirect",
-        
-          title: "a post with redirect",
-        
-        description: "you can also redirect to assets like pdf",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/assets/pdf/example_pdf.pdf";
-          
-        },
-      },{id: "post-a-post-with-diagrams",
-        
-          title: "a post with diagrams",
-        
-        description: "an example of a blog post with diagrams",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2021/diagrams/";
-          
-        },
-      },{id: "post-a-distill-style-blog-post",
-        
-          title: "a distill-style blog post",
-        
-        description: "an example of a distill-style blog post and main elements",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2021/distill/";
-          
-        },
-      },{id: "post-a-post-with-twitter",
-        
-          title: "a post with twitter",
-        
-        description: "an example of a blog post with twitter",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2020/twitter/";
-          
-        },
-      },{id: "post-a-post-with-disqus-comments",
-        
-          title: "a post with disqus comments",
-        
-        description: "an example of a blog post with disqus comments",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2015/disqus-comments/";
-          
-        },
-      },{id: "post-a-post-with-math",
-        
-          title: "a post with math",
-        
-        description: "an example of a blog post with some math",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2015/math/";
-          
-        },
-      },{id: "post-a-post-with-code",
-        
-          title: "a post with code",
-        
-        description: "an example of a blog post with some code",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2015/code/";
-          
-        },
-      },{id: "post-a-post-with-images",
-        
-          title: "a post with images",
-        
-        description: "this is what included images could look like",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2015/images/";
-          
-        },
-      },{id: "post-a-post-with-formatting-and-links",
-        
-          title: "a post with formatting and links",
-        
-        description: "march &amp; april, looking forward to summer",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2015/formatting-and-links/";
+            window.location.href = "/blog/2023/classical-kinetic-theory/";
           
         },
       },{id: "books-the-godfather",
