@@ -25,7 +25,7 @@ ninja.data = [{
           },
         },{id: "nav-cv",
           title: "cv",
-          description: "This is a description of the page. You can modify it in &#39;_pages/cv.md&#39;. You can also change or remove the top pdf download button.",
+          description: "Academic Curriculum Vitae of Shixian Liu - Ph.D. Candidate at BMSTU.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/cv/";
@@ -170,16 +170,20 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-a-simple-inline-announcement",
-          title: 'A simple inline announcement.',
+            },},{id: "news-participated-in-the-65th-all-russian-scientific-conference-at-the-moscow-institute-of-physics-and-technology-mipt-and-received-the-award-for-best-student-oral-presentation-pdf",
+          title: 'Participated in the 65th All-Russian Scientific Conference at the Moscow Institute of Physics...',
           description: "",
-          section: "News",},{id: "news-a-long-announcement-with-details",
-          title: 'A long announcement with details',
+          section: "News",},{id: "news-graduated-from-bauman-moscow-state-technical-university-with-a-master-s-degree-in-nuclear-energy-and-thermophysics-and-received-a-badge-with-honors-media",
+          title: 'Graduated from Bauman Moscow State Technical University with a Master’s degree in Nuclear...',
           description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/announcement_2/";
-            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
-          title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
+          section: "News",},{id: "news-invited-to-participate-in-the-russian-universities-alumni-meeting-on-green-technology-for-the-younger-generation-at-the-international-forum-atomexpo-2024-media",
+          title: 'Invited to participate in the Russian universities alumni meeting on “Green technology for...',
+          description: "",
+          section: "News",},{id: "news-participated-in-the-xviii-all-russian-school-conference-topical-issues-of-thermophysics-and-physical-hydrogas-dynamics-avtifg-gave-an-oral-presentation-and-was-awarded-first-prize-pdf",
+          title: 'Participated in the XVIII All-Russian School-Conference “Topical Issues of Thermophysics and Physical Hydrogas...',
+          description: "",
+          section: "News",},{id: "news-participated-in-the-9th-national-workshop-on-thermal-transport-wtt-2025-and-received-the-outstanding-poster-award-pdf",
+          title: 'Participated in the 9th National Workshop on Thermal Transport (WTT-2025) and received the...',
           description: "",
           section: "News",},{id: "projects-project-1",
           title: 'project 1',
