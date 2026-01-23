@@ -1,15 +1,15 @@
 ---
 layout: page
 permalink: /teaching/
-title: teaching
-description: Course materials, schedules, and resources for classes taught.
+title: Teaching
+description: Course materials, lecture notes, and computational resources.
 nav: true
-nav_order: 6
+nav_order: 3
 calendar: true
 ---
 
-This page displays a collection of courses with detailed schedules, materials, and resources. You can organize your courses by years, terms, or topics.
+I am dedicated to teaching graduate-level courses that integrate fundamental physics with advanced computational tools. 
 
-{% include calendar.liquid calendar_id='test@gmail.com' timezone='Asia/Shanghai' %}
+Currently, I serve as an instructor for courses on **Numerical Simulation Methods** and **Thermal Physics of Nanosystems**. These courses are designed to equip Master's students with the skills to apply Python, Machine Learning, and Ab Initio methods (DFT/MD) to solve complex thermophysical problems.
 
 {% include courses.liquid %}
