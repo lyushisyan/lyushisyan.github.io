@@ -1,6 +1,6 @@
 <div class="list-groups">
   {% for content in data[1] %}
-    <div class="list-group col-md-6" title="{{ content.level }}">
+    <div class="list-group col-md-4" title="{{ content.level }}">
       <table class="table-cv list-group-table">
         <tbody>
           <tr>
@@ -11,7 +11,6 @@
             {% else %}
               <td class="list-group-category-icon"></td>
             {% endif %}
-            <!-- Calculate colspan number for category title -->
             {% assign i = 1 %}
             {% for item in content.items %}
               {% assign i = i | plus: 1 %}

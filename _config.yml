@@ -93,7 +93,7 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # -----------------------------------------------------------------------------
 
 blog_name: Shixian's Blog
-blog_description: Notes on Thermophysics, Phonon Transport, and First-Principles Calculations.
+blog_description: Notes on Thermophysics and Phonon Transport Calculation.
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
 
