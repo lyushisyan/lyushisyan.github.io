@@ -1,7 +1,6 @@
 ---
 layout: course
 title: Thermal Physics of Nanosystems (in Russian)
-description: Master's course covering phonon transport, lattice dynamics, BTE, and ab initio calculations.
 instructor: Shixian Liu
 year: 2025-2026
 term: Spring
@@ -127,15 +126,3 @@ schedule:
 ## Course Overview
 
 This course provides a comprehensive study of heat transport in nanostructured materials. It bridges the gap between continuum mechanics (Theory of Elasticity) and atomistic simulation methods.
-
-**Key Topics:**
-* **Lattice Dynamics**: From 1D chains to 3D crystals and ab initio force constants.
-* **Thermal Properties**: Heat capacity (Debye/Einstein) and Thermal Conductivity.
-* **Boltzmann Transport Equation**: RTA, iterative solutions, and scattering mechanisms.
-* **Computational Methods**: Practical experience with VASP, Quantum Espresso, Phonopy, and Machine Learning (NEP).
-
-## Prerequisites
-
-- Quantum Mechanics basics
-- Solid State Physics
-- Python programming (for data analysis)

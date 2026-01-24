@@ -14,61 +14,97 @@ layout: default
     <p class="desc">{{ page.subtitle }}</p>
   </header>
 
-  <article>
-    {% if page.profile %}
-      <div class="profile float-{% if page.profile.align == 'left' %}left{% else %}right{% endif %}">
-        {% if page.profile.image %}
-          {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
-          {% if page.profile.image_circular %}
-            {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
-          {% else %}
-            {% assign profile_image_class = 'img-fluid z-depth-1
-      rounded' %}
-          {% endif %}
-          {% capture sizes %}(min-width: {{ site.max_width }}) {{ site.max_width | minus: 30 | times: 0.3}}px, (min-width: 576px)
-      30vw, 95vw"{% endcapture %}
-          {%
-            include figure.liquid loading="eager" path=profile_image_path class=profile_image_class sizes=sizes alt=page.profile.image
-            cache_bust=true
-          %}
+<article>
+    <div class="row align-items-center">
+      
+      <div class="col-md-8 col-sm-12 pr-md-4">
+        
+        {% if page.intro %}
+        <div class="mb-4">
+          {% assign citation_count = site.data.google_scholar_stats.total_citations | default: "100+" %}
+          
+          <p class="font-weight-normal mb-3" style="font-size: 1.1rem;">
+            {{ page.intro | replace: '%CITATIONS%', citation_count }}
+          </p>
+        </div>
         {% endif %}
-        {% if page.profile.more_info %}
-          <div class="more-info">{{ page.profile.more_info }}</div>
+
+        {% if page.research_interests %}
+        <div class="mb-4">
+          <h6 class="mb-3 font-weight-bold text-uppercase" style="letter-spacing: 0.05em; font-size: 1.0rem;">
+            <i class="fa-solid fa-atom mr-2" style="color: var(--global-theme-color);"></i>Research Interests
+          </h6>
+          <div class="d-flex flex-wrap" style="gap: 10px;">
+            {% for interest in page.research_interests %}
+            <span class="badge p-2 border font-weight-normal shadow-sm" style="color: #000 !important; background-color: #fff;">
+              {{ interest }}
+            </span>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+
+      {% if page.profile_image %}
+      <div class="col-md-4 col-sm-12 mt-4 mt-md-0">
+        <div class="ml-auto text-center" style="max-width: 280px; width: 100%;">
+          <img class="img-fluid z-depth-1 rounded" src="{{ page.profile_image | prepend: '/assets/img/' | relative_url }}" alt="{{ site.title }}" style="width: 100%;">
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+    <hr class="my-5">
+
+    <div class="clearfix">{{ content }}</div>
+
+    {% if page.announcements and page.announcements.enabled %}
+      <h3 class="mt-5 mb-4 pl-3" style="border-left: 4px solid var(--global-theme-color); line-height: 1;">
+        <a href="{{ '/news/' | relative_url }}" style="color: inherit;">News</a>
+      </h3>
+      <div class="news mb-5">
+        {% if page.announcements.scrollable %}
+          <div class="table-responsive" style="max-height: 200px; border: none;">
+            {% include news.liquid limit=true %}
+          </div>
+        {% else %}
+          <div class="table-responsive">
+            {% include news.liquid limit=true %}
+          </div>
         {% endif %}
       </div>
     {% endif %}
 
-    <div class="clearfix">{{ content }}</div>
-
-    <!-- News -->
-    {% if page.announcements and page.announcements.enabled %}
-      <h2>
-        <a href="{{ '/news/' | relative_url }}" style="color: inherit">news</a>
-      </h2>
-      {% include news.liquid limit=true %}
-    {% endif %}
-
-    <!-- Latest posts -->
     {% if page.latest_posts and page.latest_posts.enabled %}
-      <h2>
-        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest posts</a>
-      </h2>
-      {% include latest_posts.liquid %}
+      <h3 class="mt-5 mb-4 pl-3" style="border-left: 4px solid var(--global-theme-color); line-height: 1;">
+        <a href="{{ '/blog/' | relative_url }}" style="color: inherit;">Latest Posts</a>
+      </h3>
+      <div class="news mb-5">
+        {% if page.latest_posts.scrollable %}
+          <div class="table-responsive" style="max-height: 60vw">
+            {% include latest_posts.liquid %}
+          </div>
+        {% else %}
+          <div class="table-responsive">
+            {% include latest_posts.liquid %}
+          </div>
+        {% endif %}
+      </div>
     {% endif %}
 
-    <!-- Selected papers -->
     {% if page.selected_papers %}
-      <h2>
-        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">selected publications</a>
-      </h2>
-      {% include selected_papers.liquid %}
+      <h3 class="mt-5 mb-4 pl-3" style="border-left: 4px solid var(--global-theme-color); line-height: 1;">
+        <a href="{{ '/publications/' | relative_url }}" style="color: inherit;">Selected Publications</a>
+      </h3>
+      <div class="publications mb-5">
+        {% include selected_papers.liquid %}
+      </div>
     {% endif %}
 
-    <!-- Social -->
     {% if page.social %}
       <div class="social">
         <div class="contact-icons">{% social_links %}</div>
-
         <div class="contact-note">{{ site.contact_note }}</div>
       </div>
     {% endif %}

@@ -1,75 +1,125 @@
 ---
-layout: page
+layout: default
 ---
-<div class="course">
-  {% if page.instructor or page.term or page.location or page.time %}
-    <div class="course-info">
-      {% if page.instructor %}
-        <p><strong>Instructor:</strong> {{ page.instructor }}</p>
-      {% endif %}
+<div class="post">
+  
+  <header class="post-header mb-5">
+    <h1 class="post-title font-weight-bold mb-3" style="color: #000;">
+      {{ page.title }}
+    </h1>
+    <p class="desc lead text-muted font-weight-normal">
+      {{ page.description }}
+    </p>
+  </header>
 
-      {% if page.term %}
-        <p><strong>Term:</strong> {{ page.term }}</p>
-      {% endif %}
-
-      {% if page.location %}
-        <p><strong>Location:</strong> {{ page.location }}</p>
-      {% endif %}
-
-      {% if page.time %}
-        <p><strong>Time:</strong> {{ page.time }}</p>
-      {% endif %}
+  <article>
+    
+    {% if page.instructor or page.term or page.location or page.time %}
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="card z-depth-0 shadow-sm" style="background-color: #f8f9fa; border: none; border-left: 4px solid var(--global-theme-color);">
+          <div class="card-body p-4"> <div class="row">
+              <div class="col-md-4 mb-3 mb-md-0">
+                <strong class="text-dark"><i class="fa-solid fa-chalkboard-user mr-2 text-muted"></i>Instructor:</strong><br>
+                {{ page.instructor }}
+              </div>
+              <div class="col-md-4 mb-3 mb-md-0">
+                <strong class="text-dark"><i class="fa-regular fa-clock mr-2 text-muted"></i>Time & Location:</strong><br>
+                {% if page.time %}{{ page.time }}<br>{% endif %}
+                {% if page.location %}<span class="text-muted small">{{ page.location }}</span>{% endif %}
+              </div>
+              <div class="col-md-4">
+                <strong class="text-dark"><i class="fa-regular fa-calendar mr-2 text-muted"></i>Term:</strong><br>
+                {{ page.term }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  {% endif %}
+    {% endif %}
 
-  {{ content }}
+    <div class="content clearfix mb-5 text-justify">
+      {{ content }}
+    </div>
 
-  {% if page.schedule %}
-    <h2>Schedule</h2>
-    <table class="table table-sm table-responsive">
-      <thead>
-        <tr>
-          <th>Week</th>
-          <th>Date</th>
-          <th>Topic</th>
-          <th>Materials</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for entry in page.schedule %}
+    {% if page.repository %}
+    <div class="alert alert-light border shadow-sm mb-5 d-flex flex-wrap align-items-center justify-content-between" role="alert" style="background-color: #fff;">
+      <div class="d-flex align-items-center">
+        <i class="fa-solid fa-code-branch fa-lg mr-3" style="color: var(--global-theme-color);"></i>
+        <div>
+          <strong>Course Resources</strong><br>
+          <span class="small text-muted">Access the companion computational code and notebooks.</span>
+        </div>
+      </div>
+      
+      <a href="{{ page.repository }}" target="_blank" class="btn btn-sm z-depth-0 mt-3 mt-md-0" style="color: #fff; background-color: var(--global-theme-color);">
+        <i class="fa-brands fa-github mr-2"></i>GitHub Repository
+      </a>
+    </div>
+    {% endif %}
+
+    {% if page.schedule %}
+    <h3 class="mb-4 pl-3" style="border-left: 4px solid var(--global-theme-color); line-height: 1;">
+      Syllabus
+    </h3>
+    
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="thead-light">
           <tr>
-            <td>{{ entry.week }}</td>
-            <td>{{ entry.date }}</td>
-            <td>
-              {% if entry.topic %}
-                <strong>{{ entry.topic }}</strong>
-              {% endif %}
-              {% if entry.description %}
-                <div class="schedule-description">{{ entry.description | markdownify }}</div>
-              {% endif %}
+            <th scope="col" style="width: 15%;">Date / Week</th>
+            <th scope="col" style="width: 25%;">Topic</th>
+            <th scope="col" style="width: 40%;">Description</th>
+            <th scope="col" style="width: 20%;">Materials</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for entry in page.schedule %}
+          <tr>
+            <td class="align-middle" style="white-space: nowrap;">
+              <span class="font-weight-bold text-dark" style="font-size: 1.05rem;">{{ entry.date }}</span>
+              <br>
+              <span class="text-muted small text-uppercase" style="letter-spacing: 0.5px;">Week {{ entry.week }}</span>
             </td>
-            <td>
+            
+            <td class="align-middle font-weight-bold text-dark">
+              {{ entry.topic }}
+            </td>
+            
+            <td class="align-middle text-muted">
+              {{ entry.description | markdownify }}
+            </td>
+            
+            <td class="align-middle">
               {% if entry.materials %}
-                <ul class="schedule-materials">
-                  {% for material in entry.materials %}
-                    <li>
-                      {% if material.url %}
-                        {% if material.url contains '://' %}
-                          <a href="{{ material.url }}" target="_blank">{{ material.name }}</a>
-                        {% else %}
-                          <a href="{{ material.url | relative_url }}" target="_blank">{{ material.name }}</a>
-                        {% endif %}
-                      {% else %}
-                        {{ material.name }}
-                      {% endif %}
-                    </li>
-                  {% endfor %}
-                </ul>
+                {% for material in entry.materials %}
+                  {% if material.url %}
+                    {% assign mat_url = material.url %}
+                    {% unless material.url contains '://' %}
+                      {% assign mat_url = material.url | relative_url %}
+                    {% endunless %}
+                    
+                    <a href="{{ mat_url }}" target="_blank" class="badge badge-light border text-primary mb-1 p-2 shadow-sm" style="font-weight: 500; display: inline-block; transition: all 0.2s;">
+                      <i class="fa-solid fa-file-arrow-down mr-1"></i> {{ material.name }}
+                    </a>
+                  {% else %}
+                    <span class="badge badge-light border text-muted mb-1 p-2">
+                      {{ material.name }}
+                    </span>
+                  {% endif %}
+                  <br>
+                {% endfor %}
+              {% else %}
+                <span class="text-muted small">-</span>
               {% endif %}
             </td>
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+
+  </article>
 </div>

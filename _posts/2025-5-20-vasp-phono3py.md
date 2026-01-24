@@ -6,6 +6,7 @@ description: A step-by-step guide to calculating lattice thermal conductivity us
 tags: vasp phono3py thermal-conductivity phonon
 categories: calculation
 related_posts: true
+featured: true
 toc:
   sidebar: left
 ---
@@ -96,11 +97,11 @@ for i in $(seq -f "%05g" 1 111); do
     exit_code=$?
 
     if [[ $exit_code -ne 0 ]]; then
-        echo -e "❌ disp-$i FAILED (exit code $exit_code)"
+        echo -e "disp-$i FAILED (exit code $exit_code)"
     elif grep -q "F= " log.vasp; then
-        echo -e "✅ disp-$i completed successfully"
+        echo -e "disp-$i completed successfully"
     else
-        echo -e "⚠️  disp-$i might be incomplete (check log.vasp)"
+        echo -e "disp-$i might be incomplete (check log.vasp)"
     fi
 
     cd "$P"

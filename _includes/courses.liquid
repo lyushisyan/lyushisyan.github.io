@@ -3,35 +3,60 @@
     {% assign courses_by_year = site.teachings | sort: 'year' | reverse | group_by: 'year' %}
 
     {% for year_group in courses_by_year %}
-      <h2 class="year">{{ year_group.name }}</h2>
+      <h5 class="mt-4 mb-3 text-muted font-weight-bold">
+        <i class="fa-regular fa-calendar mr-2"></i>{{ year_group.name }}
+      </h5>
+      
       <div class="course-list">
         {% assign year_courses = year_group.items | sort: 'term' %}
+        
         {% for course in year_courses %}
-          <div class="course-item">
-            <h3 class="course-title">
-              <a href="{{ course.url | relative_url }}">{{ course.title }}</a>
-            </h3>
+          <div class="card mb-3 hoverable shadow-sm" style="border: none; background-color: #fff;">
+            <div class="card-body p-4">
+              <div class="row align-items-center">
+                
+                <div class="col-md-9">
+                  <h5 class="card-title font-weight-bold mb-1">
+                    <a href="{{ course.url | relative_url }}" class="text-dark">{{ course.title }}</a>
+                  </h5>
+                  
+                  <div class="course-meta small text-muted mb-2">
+                     {% if course.course_id %}
+                       <span class="mr-2"><i class="fa-solid fa-tag mr-1"></i>{{ course.course_id }}</span>
+                     {% endif %}
+                     {% if course.instructor %}
+                       <span><i class="fa-solid fa-user-tie mr-1"></i>{{ course.instructor }}</span>
+                     {% endif %}
+                  </div>
 
-            <div class="course-meta">
-              {% if course.term %}
-                <span class="course-term">{{ course.term }}</span>
-              {% endif %}
+                  {% if course.description %}
+                    <p class="card-text text-muted" style="font-size: 0.95rem;">
+                      {{ course.description }}
+                    </p>
+                  {% endif %}
+                </div>
 
-              {% if course.instructor %}
-                <span class="course-instructor">{{ course.instructor }}</span>
-              {% endif %}
-            </div>
+                <div class="col-md-3 text-md-right mt-3 mt-md-0">
+                  {% if course.term %}
+                    <span class="badge p-2 mb-2" style="background-color: var(--global-theme-color); color: #fff; font-weight: normal;">
+                      {{ course.term }}
+                    </span>
+                  {% endif %}
+                  <br>
+                  <a href="{{ course.url | relative_url }}" class="stretched-link d-none d-md-inline-block text-decoration-none" style="color: var(--global-theme-color);">
+                    Details <i class="fa-solid fa-arrow-right ml-1"></i>
+                  </a>
+                </div>
 
-            {% if course.description %}
-              <div class="course-description">
-                {{ course.description | markdownify }}
               </div>
-            {% endif %}
+            </div>
           </div>
         {% endfor %}
       </div>
     {% endfor %}
   </div>
 {% else %}
-  <p>No courses available yet.</p>
+  <div class="alert alert-light text-center" role="alert">
+    No courses available yet.
+  </div>
 {% endif %}

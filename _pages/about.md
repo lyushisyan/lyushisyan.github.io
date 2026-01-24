@@ -1,45 +1,36 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 
-profile:
-  align: right
-  image: liusx2.jpg
-  image_circular: false # crops the image to make it circular
-  more_info: >
-    <p>Department of Thermophysics </p>
-    <p>BMSTU, Moscow 105005, Russia</p>
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+intro: >
+  I am currently a Ph.D. candidate and <strong>Assistant</strong> at Bauman Moscow State Technical University. 
+  <br><br>
+  My research focuses on <strong>heat conduction at micro- and nanoscale</strong>, combining <strong>numerical computational methods</strong> with theoretical analysis to explore phonon transport in complex systems.
+  <br><br>
+  To date, I have published <strong>8 SCI papers</strong> with over <strong>%CITATIONS% citations</strong> and an <strong>H-index of 4</strong>. My work aims to bridge the gap between microscopic physical mechanisms and macroscopic thermal engineering applications.
+
+profile_image: liusx2.jpg
+
+research_interests:
+  - Micro/Nanoscale Heat Conduction
+  - Density Functional Theory
+  - Machine Learning Potentials
+  - Molecular Dynamics
+  - Monte Carlo Simulations
+  - Phonon Hydrodynamics
+
+selected_papers: true
+social: true
 
 announcements:
-  enabled: true # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
+  enabled: true
+  scrollable: true
+  limit: 5
 
 latest_posts:
   enabled: true
-  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
+  scrollable: true
+  limit: 3
 ---
-
-Focused on **heat conduction at micro- and nanoscale**, with a particular emphasis on the physical mechanisms of phonon transport in low-dimensional structures.
-
-**Research Topics Include:**  
-- First-principles calculations
-- Machine-learning interatomic potentials
-- Monte Carlo simulations
-- Phonon confinement effects
-- Resonant hybridization mechanisms
-- Targeted phonon excitation
-
-**Employment:**
-- **2025 – Present**: Engineer & Assistant, Department of Thermal Physics, Bauman Moscow State Technical University
-
-**Education:**
-- **2023 – Present**: Ph.D. Student, Bauman Moscow State Technical University
-- **2021 – 2023**: M.Sc., Bauman Moscow State Technical University
-- **2019 – 2021**: B.Sc., Moscow Power Engineering Institute (dual degree)
-- **2017 – 2021**: B.Sc., North China Electric Power University

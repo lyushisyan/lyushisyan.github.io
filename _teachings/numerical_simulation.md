@@ -1,13 +1,15 @@
 ---
 layout: course
 title: Numerical Simulation Methods (in Russian)
-description: First-year Master's course covering Python scientific computing, numerical methods, and machine learning fundamentals.
 instructor: Shixian Liu
 year: 2025-2026
 term: Fall
 location: Department of Thermophysics
 time: Wednesdays, 13:30-15:00
 course_id: num-sim-methods
+
+repository: https://github.com/lyushisyan/python-ml-course
+
 schedule:
   - week: 1
     date: December 10
@@ -32,17 +34,8 @@ schedule:
     materials:
       - name: Lecture 3 (Slides)
         url: https://lyushisyan.github.io/assets/teaching/python/Lecture_3_Application_v2.pdf
-      - name: GitHub Repository
-        url: https://github.com/lyushisyan/python-ml-course
-
 ---
 
 ## Course Overview
 
 This course is designed for **First-year Master's students** and is taught in **Russian**. The goal is to bridge the gap between theoretical physics and modern computational tools.
-
-**Key Learning Objectives:**
-- Mastering **Python** for scientific computing.
-- Understanding classical **numerical methods** for solving physical equations.
-- Gaining a foundational understanding of **Machine Learning** (ML).
-- Applying these tools to solve real-world problems in thermophysics.
