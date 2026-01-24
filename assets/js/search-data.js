@@ -4,13 +4,13 @@ const ninja = document.querySelector('ninja-keys');
 // add the home and posts menu items
 ninja.data = [{
     id: "nav-about",
-    title: "about",
+    title: "About",
     section: "Navigation",
     handler: () => {
       window.location.href = "/";
     },
   },{id: "nav-blog",
-          title: "blog",
+          title: "Blog",
           description: "",
           section: "Navigation",
           handler: () => {
@@ -31,7 +31,7 @@ ninja.data = [{
             window.location.href = "/teaching/";
           },
         },{id: "nav-cv",
-          title: "cv",
+          title: "CV",
           description: "Academic Curriculum Vitae of Shixian Liu - Ph.D. Candidate at BMSTU.",
           section: "Navigation",
           handler: () => {
@@ -48,15 +48,15 @@ ninja.data = [{
             window.location.href = "/blog/2025/callaway/";
           
         },
-      },{id: "post-thermal-conductivity-calculation-using-vasp-phono3py",
+      },{id: "post-a-unified-theoretical-framework-for-phonon-heat-conduction-wte",
         
-          title: "Thermal Conductivity Calculation using VASP + Phono3py",
+          title: "A Unified Theoretical Framework for Phonon Heat Conduction (WTE)",
         
-        description: "A step-by-step guide to calculating lattice thermal conductivity using VASP and Phono3py, covering supercell generation, force calculations, and BTE solutions.",
+        description: "An overview of the Wigner Transport Equation (WTE) as a unified framework for phonon heat transport, bridging the gap between the particle-like Peierls-Boltzmann (BTE) model for crystals and the wave-like Allen-Feldman (AF) theory for glasses.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2025/vasp-phono3py/";
+            window.location.href = "/blog/2025/wigner/";
           
         },
       },{id: "post-thermal-conductivity-calculation-using-vasp-phono3py",
@@ -67,7 +67,7 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2025/wigner/";
+            window.location.href = "/blog/2025/vasp-phono3py/";
           
         },
       },{id: "post-landauer-theory-for-electrons-and-phonons",
@@ -225,12 +225,12 @@ ninja.data = [{
               window.location.href = "/projects/9_project/";
             },},{id: "teachings-thermal-physics-of-nanosystems-in-russian",
           title: 'Thermal Physics of Nanosystems (in Russian)',
-          description: "Master&#39;s course covering phonon transport, lattice dynamics, BTE, and ab initio calculations.",
+          description: "",
           section: "Teachings",handler: () => {
               window.location.href = "/teachings/nano_thermophysics/";
             },},{id: "teachings-numerical-simulation-methods-in-russian",
           title: 'Numerical Simulation Methods (in Russian)',
-          description: "First-year Master&#39;s course covering Python scientific computing, numerical methods, and machine learning fundamentals.",
+          description: "",
           section: "Teachings",handler: () => {
               window.location.href = "/teachings/numerical_simulation/";
             },},{
