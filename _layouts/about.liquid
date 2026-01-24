@@ -21,7 +21,7 @@ layout: default
         
         {% if page.intro %}
         <div class="mb-4">
-          {% assign citation_count = site.data.google_scholar_stats.total_citations | default: "100+" %}
+          {% assign citation_count = site.data.google_scholar_stats.total_citations | default: "30+" %}
           
           <p class="font-weight-normal mb-3" style="font-size: 1.1rem;">
             {{ page.intro | replace: '%CITATIONS%', citation_count }}
