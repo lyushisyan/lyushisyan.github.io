@@ -1,4 +1,9 @@
 {% if site.bib_search %}
   <script src="{{ '/assets/js/bibsearch.js' | relative_url | bust_file_cache }}" type="module"></script>
-  <input type="text" id="bibsearch" spellcheck="false" autocomplete="off" class="search bibsearch-form-input" placeholder="Type to filter">
+  
+  <div class="d-flex justify-content-end mb-3">
+    <div class="input-group" style="width: 400px;"> <span class="input-group-text"><i class="fa-solid fa-filter"></i></span>
+      <input type="text" id="bibsearch" spellcheck="false" autocomplete="off" class="form-control" placeholder="Filter papers...">
+    </div>
+  </div>
 {% endif %}

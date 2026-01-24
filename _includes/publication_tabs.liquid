@@ -1,0 +1,46 @@
+<ul class="nav nav-pills mb-4" id="pills-tab" role="tablist" style="gap: 10px;">
+  
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-selected="true">All</a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" id="pills-2026-tab" data-toggle="pill" href="#pills-2026" role="tab" aria-selected="false">2026</a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" id="pills-2025-tab" data-toggle="pill" href="#pills-2025" role="tab" aria-selected="false">2025</a>
+  </li>
+  
+  <li class="nav-item">
+    <a class="nav-link" id="pills-older-tab" data-toggle="pill" href="#pills-older" role="tab" aria-selected="false">Older</a>
+  </li>
+</ul>
+
+<div class="tab-content" id="pills-tabContent">
+
+  <div class="tab-pane fade show active" id="pills-all" role="tabpanel">
+    <div class="publications">
+      {% bibliography %}
+    </div>
+  </div>
+
+  <div class="tab-pane fade" id="pills-2026" role="tabpanel">
+    <div class="publications">
+      {% bibliography --query @*[year=2026] %}
+    </div>
+  </div>
+
+  <div class="tab-pane fade" id="pills-2025" role="tabpanel">
+    <div class="publications">
+      {% bibliography --query @*[year=2025] %}
+    </div>
+  </div>
+
+  <div class="tab-pane fade" id="pills-older" role="tabpanel">
+    <div class="publications">
+      {% bibliography --query @*[year<2025] %}
+    </div>
+  </div>
+
+</div>

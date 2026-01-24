@@ -1,20 +1,14 @@
 ---
-layout: page
+layout: default
 permalink: /publications/
-title: publications
+title: Publications
 description: A chronological list of my research papers.
 nav: true
 nav_order: 2
 ---
 
-<!-- _pages/publications.md -->
-
-<!-- Bibsearch Feature -->
-
 {% include bib_search.liquid %}
 
-<div class="publications">
+<br>
 
-{% bibliography %}
-
-</div>
+{% include publication_tabs.liquid %}

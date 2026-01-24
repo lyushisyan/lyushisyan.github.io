@@ -45,11 +45,8 @@
     </div>
   {% endif %}
 
-  <!-- Entry bib key -->
-  <div id="{{ entry.key }}" class="{% if site.enable_publication_thumbnails %}col-sm-8{% else %}col-sm-10{% endif %}">
-    <!-- Title -->
+  <div id="{{ entry.key }}" class="{% if site.enable_publication_thumbnails %}col-sm-9{% else %}col-sm-11{% endif %}">
     <div class="title">{{ entry.title }}</div>
-    <!-- Author -->
     <div class="author">
       {% assign author_array_size = entry.author_array | size %}
 
@@ -148,7 +145,6 @@
       {% endif %}
     </div>
 
-    <!-- Journal/Book title and date -->
     {% assign proceedings = 'inproceedings,incollection' | split: ',' %}
     {% assign thesis = 'thesis,mastersthesis,phdthesis' | split: ',' %}
     {% if entry.type == 'article' %}
@@ -187,7 +183,6 @@
       {{ entry.note | strip }}
     </div>
 
-    <!-- Links/Buttons -->
     <div class="links">
       {% if entry.award %}
         <a class="award btn btn-sm z-depth-0" role="button">
@@ -258,126 +253,129 @@
       {% if entry.website %}
         <a href="{{ entry.website }}" class="btn btn-sm z-depth-0" role="button">Website</a>
       {% endif %}
+
+      {% if site.enable_publication_badges %}
+        {% assign entry_has_altmetric_badge = false %}
+        {% if entry.altmetric and entry.altmetric != 'false' %}
+          {% assign entry_has_altmetric_badge = true %}
+        {% endif %}
+
+        {% assign entry_has_dimensions_badge = false %}
+        {% if entry.dimensions and entry.dimensions != 'false' %}
+          {% assign entry_has_dimensions_badge = true %}
+        {% endif %}
+
+        {% assign entry_has_google_scholar_badge = false %}
+        {% if entry.google_scholar_id %}
+          {% assign entry_has_google_scholar_badge = true %}
+        {% endif %}
+
+        {% assign entry_has_inspirehep_badge = false %}
+        {% if entry.inspirehep_id %}
+          {% assign entry_has_inspirehep_badge = true %}
+        {% endif %}
+
+        {% if entry_has_altmetric_badge or entry_has_dimensions_badge or entry_has_google_scholar_badge or entry_has_inspirehep_badge %}
+          <span class="badges" style="vertical-align: middle; margin-left: 5px;">
+            {% if site.enable_publication_badges.altmetric and entry_has_altmetric_badge %}
+              <span
+                class="altmetric-embed"
+                data-badge-type="2"
+                data-badge-popover="right"
+                {% if entry.altmetric != blank and entry.altmetric != 'true' %}
+                  data-altmetric-id="{{ entry.altmetric }}"
+                {% elsif entry.arxiv %}
+                  data-arxiv-id="{{ entry.arxiv }}"
+                {% elsif entry.eprint %}
+                  data-arxiv-id="{{ entry.eprint }}"
+                {% elsif entry.doi %}
+                  data-doi="{{ entry.doi }}"
+                {% elsif entry.pmid %}
+                  data-pmid="{{ entry.pmid }}"
+                {% elsif entry.isbn %}
+                  data-isbn="{{ entry.isbn }}"
+                {% endif %}
+              ></span>
+            {% endif %}
+            {% if site.enable_publication_badges.dimensions and entry_has_dimensions_badge %}
+              <span
+                class="__dimensions_badge_embed__"
+                {% if entry.dimensions != blank and entry.dimensions != 'true' %}
+                  data-id="{{ entry.dimensions }}"
+                {% elsif entry.doi %}
+                  data-doi="{{ entry.doi }}"
+                {% else %}
+                  data-pmid="{{ entry.pmid }}"
+                {% endif %}
+                data-style="small_rectangle"
+                data-legend="hover-right"
+                style="margin-bottom: 3px;"
+              ></span>
+            {% endif %}
+            {% if site.enable_publication_badges.google_scholar and entry_has_google_scholar_badge %}
+              <a
+                href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user={{ site.data.socials.scholar_userid }}&citation_for_view={{ site.data.socials.scholar_userid }}:{{ entry.google_scholar_id }}"
+                aria-label="Google Scholar link"
+                role="button"
+                style="display: inline-block; vertical-align: middle;"
+              >
+                {% assign citation_count = 0 %}
+                {% assign scholar_id_key = site.scholar_userid | append: ':' | append: entry.google_scholar_id %}
+                {% assign publication_key = entry.google_scholar_id %}
+
+                {% if site.data.citations.papers[scholar_id_key] %}
+                  {% assign citation_count = site.data.citations.papers[scholar_id_key].citations %}
+                {% elsif site.data.citations.papers[publication_key] %}
+                  {% assign citation_count = site.data.citations.papers[publication_key].citations %}
+                {% else %}
+                  {% for paper in site.data.citations.papers %}
+                    {% assign paper_key = paper[0] %}
+                    {% if paper_key contains entry.google_scholar_id %}
+                      {% assign citation_count = paper[1].citations %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+
+                <img
+                  src="https://img.shields.io/badge/scholar-{{ citation_count }}-4285F4?logo=googlescholar&labelColor=beige"
+                  alt="{{ citation_count }} Google Scholar citations"
+                  style="vertical-align: middle;"
+                >
+              </a>
+            {% endif %}
+            {% if site.enable_publication_badges.inspirehep and entry_has_inspirehep_badge %}
+              <a
+                href="https://inspirehep.net/literature/{{ entry.inspirehep_id }}"
+                aria-label="Inspirehep link"
+                role="button"
+                style="display: inline-block; vertical-align: middle;"
+              >
+                <img
+                  src="https://img.shields.io/badge/inspire-{% inspirehep_citations entry.inspirehep_id %}-001628?logo=inspire&logoColor=001628&labelColor=beige"
+                  alt="{% inspirehep_citations entry.inspirehep_id %} InspireHEP citations"
+                  style="vertical-align: middle;"
+                >
+              </a>
+            {% endif %}
+          </span>
+        {% endif %}
+      {% endif %}
     </div>
-    {% if site.enable_publication_badges %}
-      {% assign entry_has_altmetric_badge = false %}
-      {% if entry.altmetric and entry.altmetric != 'false' %}
-        {% assign entry_has_altmetric_badge = true %}
-      {% endif %}
-
-      {% assign entry_has_dimensions_badge = false %}
-      {% if entry.dimensions and entry.dimensions != 'false' %}
-        {% assign entry_has_dimensions_badge = true %}
-      {% endif %}
-
-      {% assign entry_has_google_scholar_badge = false %}
-      {% if entry.google_scholar_id %}
-        {% assign entry_has_google_scholar_badge = true %}
-      {% endif %}
-
-      {% assign entry_has_inspirehep_badge = false %}
-      {% if entry.inspirehep_id %}
-        {% assign entry_has_inspirehep_badge = true %}
-      {% endif %}
-      {% if entry_has_altmetric_badge or entry_has_dimensions_badge or entry_has_google_scholar_badge or entry_has_inspirehep_badge %}
-        <div class="badges">
-          {% if site.enable_publication_badges.altmetric and entry_has_altmetric_badge %}
-            <span
-              class="altmetric-embed"
-              data-badge-type="2"
-              data-badge-popover="right"
-              {% if entry.altmetric != blank and entry.altmetric != 'true' %}
-                data-altmetric-id="{{ entry.altmetric }}"
-              {% elsif entry.arxiv %}
-                data-arxiv-id="{{ entry.arxiv }}"
-              {% elsif entry.eprint %}
-                data-arxiv-id="{{ entry.eprint }}"
-              {% elsif entry.doi %}
-                data-doi="{{ entry.doi }}"
-              {% elsif entry.pmid %}
-                data-pmid="{{ entry.pmid }}"
-              {% elsif entry.isbn %}
-                data-isbn="{{ entry.isbn }}"
-              {% endif %}
-            ></span>
-          {% endif %}
-          {% if site.enable_publication_badges.dimensions and entry_has_dimensions_badge %}
-            <span
-              class="__dimensions_badge_embed__"
-              {% if entry.dimensions != blank and entry.dimensions != 'true' %}
-                data-id="{{ entry.dimensions }}"
-              {% elsif entry.doi %}
-                data-doi="{{ entry.doi }}"
-              {% else %}
-                data-pmid="{{ entry.pmid }}"
-              {% endif %}
-              data-style="small_rectangle"
-              data-legend="hover-right"
-              style="margin-bottom: 3px;"
-            ></span>
-          {% endif %}
-          {% if site.enable_publication_badges.google_scholar and entry_has_google_scholar_badge %}
-            <a
-              href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user={{ site.data.socials.scholar_userid }}&citation_for_view={{ site.data.socials.scholar_userid }}:{{ entry.google_scholar_id }}"
-              aria-label="Google Scholar link"
-              role="button"
-            >
-              {% assign citation_count = 0 %}
-              {% assign scholar_id_key = site.scholar_userid | append: ':' | append: entry.google_scholar_id %}
-              {% assign publication_key = entry.google_scholar_id %}
-
-              {% if site.data.citations.papers[scholar_id_key] %}
-                {% assign citation_count = site.data.citations.papers[scholar_id_key].citations %}
-              {% elsif site.data.citations.papers[publication_key] %}
-                {% assign citation_count = site.data.citations.papers[publication_key].citations %}
-              {% else %}
-                {% for paper in site.data.citations.papers %}
-                  {% assign paper_key = paper[0] %}
-                  {% if paper_key contains entry.google_scholar_id %}
-                    {% assign citation_count = paper[1].citations %}
-                    {% break %}
-                  {% endif %}
-                {% endfor %}
-              {% endif %}
-
-              <img
-                src="https://img.shields.io/badge/scholar-{{ citation_count }}-4285F4?logo=googlescholar&labelColor=beige"
-                alt="{{ citation_count }} Google Scholar citations"
-              >
-            </a>
-          {% endif %}
-          {% if site.enable_publication_badges.inspirehep and entry_has_inspirehep_badge %}
-            <a
-              href="https://inspirehep.net/literature/{{ entry.inspirehep_id }}"
-              aria-label="Inspirehep link"
-              role="button"
-            >
-              <img
-                src="https://img.shields.io/badge/inspire-{% inspirehep_citations entry.inspirehep_id %}-001628?logo=inspire&logoColor=001628&labelColor=beige"
-                alt="{% inspirehep_citations entry.inspirehep_id %} InspireHEP citations"
-              >
-            </a>
-          {% endif %}
-        </div>
-      {% endif %}
-    {% endif %}
 
     {% if entry.award %}
-      <!-- Hidden Award block -->
       <div class="award hidden d-print-inline">
         <p>{{ entry.award | markdownify }}</p>
       </div>
     {% endif %}
 
     {% if entry.abstract %}
-      <!-- Hidden abstract block -->
       <div class="abstract hidden">
         <p>{{ entry.abstract }}</p>
       </div>
     {% endif %}
 
     {% if entry.bibtex_show %}
-      <!-- Hidden bibtex block -->
       <div class="bibtex hidden">
         {% highlight bibtex %}
         {{- entry.bibtex | hideCustomBibtex -}}
@@ -386,7 +384,6 @@
     {% endif %}
 
     {% if entry.video and site.enable_video_embedding %}
-      <!-- Hidden video block -->
       <div class="abstract hidden">
         <div style="text-align: center;">{% include video.liquid path=entry.video class="img-fluid rounded z-depth-1" controls=true %}</div>
       </div>
