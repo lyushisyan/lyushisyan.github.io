@@ -69,7 +69,7 @@ pagination:
               <div class="float-right text-danger">
                 <i class="fa-solid fa-thumbtack fa-xs"></i>
               </div>
-              <h4 class="card-title text-dark font-weight-bold">{{ post.title }}</h4>
+              <h4 class="card-title font-weight-bold">{{ post.title }}</h4>
               <p class="card-text text-muted" style="font-size: 0.9rem;">{{ post.description }}</p>
 
               {% if post.external_source == blank %}
@@ -123,7 +123,7 @@ pagination:
           
           <h3 class="mb-2">
             {% if post.redirect == blank %}
-              <a class="post-title text-dark font-weight-bold" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              <a class="post-title font-weight-bold" href="{{ post.url | relative_url }}">{{ post.title }}</a>
             {% elsif post.redirect contains '://' %}
               <a class="post-title text-dark font-weight-bold" href="{{ post.redirect }}" target="_blank">{{ post.title }}</a>
               <svg width="1.5rem" height="1.5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
@@ -178,6 +178,27 @@ pagination:
 </div>
 
 <style>
+
+  /* 1. 默认情况 (Light Mode): 标题为纯黑 */
+  .post-title, 
+  .card-title {
+    color: #000000;
+    transition: color 0.2s ease; /* 增加颜色过渡动画 */
+  }
+
+  /* 2. 暗黑模式 (Dark Mode): 标题为浅灰/白 */
+  body.dark .post-title,
+  body.dark .card-title {
+    color: #e0e0e0 !important; /* 使用亮灰色，比纯白柔和一点 */
+  }
+
+  /* 3. 鼠标悬停 (Hover): 变为主题色 */
+  .post-title:hover,
+  a:hover .card-title { /* 让卡片标题在hover时也变色 */
+    color: var(--global-theme-color) !important;
+    text-decoration: none;
+  }
+
   /* 基础 Hover 动画 */
   .hoverable {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s;
