@@ -38,4 +38,6 @@ schedule:
 
 ## Course Overview
 
-This course is designed for **First-year Master's students** and is taught in **Russian**. The goal is to bridge the gap between theoretical physics and modern computational tools.
+This course provides a fast-paced introduction to scientific computing using **Python**. It covers the essential tools required for modern research in thermophysics, ranging from basic numerical analysis with **NumPy** and **SciPy** to introductory **Machine Learning** techniques.
+
+The goal is to provide students with a practical toolkit for data analysis and numerical simulation, enabling them to automate calculations and uncover insights in their future research projects.

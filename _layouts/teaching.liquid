@@ -1,62 +1,40 @@
 ---
 layout: default
 ---
-<div class="post">
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="desc">{{ page.description }}</p>
+<div class="post" style="max-width: 100% !important; width: 100% !important;">
+
+  <header class="post-header mb-5">
+    <h1 class="post-title font-weight-bold mb-3">{{ page.title }}</h1>
+    <p class="desc lead">{{ page.description }}</p>
   </header>
 
   <article>
-    
-    {% if page.teaching_intro %}
-    <div class="row mb-5">
-      <div class="col-12">
-        <div class="p-4 rounded" style="background-color: rgba(0,0,0,0.03); border-left: 4px solid var(--global-theme-color);">
-          {{ page.teaching_intro }}
-        </div>
-      </div>
-    </div>
-    {% endif %}
-
-    {% if page.teaching_modules %}
-    <div class="row mb-5">
-      {% for module in page.teaching_modules %}
-      <div class="col-md-4 mb-4 mb-md-0">
-        <div class="text-center">
-          <div class="mb-3">
-            <i class="{{ module.icon }} fa-2x" style="color: var(--global-theme-color);"></i>
-          </div>
-          <h5 class="font-weight-bold">{{ module.title }}</h5>
-          <p class="small text-muted">
-            {{ module.desc }}
-          </p>
-          {% if module.tags %}
-            {% for tag in module.tags %}
-            <span class="badge badge-light border">{{ tag }}</span>
-            {% endfor %}
-          {% endif %}
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-    {% endif %}
-
-    <hr class="mb-5">
-
-    <div class="courses-section">
-      <h3 class="mb-4 pl-3" style="border-left: 4px solid var(--global-theme-color); line-height: 1;">
-        Active Courses
-      </h3>
+    <div class="courses-container">
       
       {% if page.active_courses_intro %}
-      <p class="mb-4">
+      <div class="mb-5 text-muted font-italic pl-3" style="border-left: 3px solid var(--global-theme-color);">
         {{ page.active_courses_intro }}
-      </p>
+      </div>
       {% endif %}
 
+      <div class="clearfix">
+        {{ content }}
+      </div>
     </div>
-
-    <div class="clearfix">{{ content }}</div>
   </article>
+
 </div>
+
+<style>
+  /* 标题颜色 */
+  .post-title { color: #000; transition: color 0.2s ease; }
+  body.dark .post-title { color: #e0e0e0 !important; }
+
+  /* 课程标题链接颜色 */
+  .course-link { color: #000 !important; text-decoration: none; }
+  body.dark .course-link { color: #e0e0e0 !important; }
+  .course-link:hover { color: var(--global-theme-color) !important; }
+
+  /* 卡片背景适配 */
+  body.dark .card { background-color: #252525 !important; }
+</style>

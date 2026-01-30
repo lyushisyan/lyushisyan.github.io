@@ -7,6 +7,7 @@ term: Spring
 location: Department of Thermophysics
 time: Wednesdays, 12:00-13:30
 course_id: nano-thermal-physics
+repository: https://github.com/your-username/nano-thermal-physics
 schedule:
   - week: 1
     date: February 11
@@ -125,4 +126,6 @@ schedule:
 
 ## Course Overview
 
-This course provides a comprehensive study of heat transport in nanostructured materials. It bridges the gap between continuum mechanics (Theory of Elasticity) and atomistic simulation methods.
+This course offers a systematic exploration of thermal physics at the nanoscale. It integrates classical continuum theories with cutting-edge atomistic simulations to explain heat transport mechanisms in solids. 
+
+Students will master the theoretical framework of **Lattice Dynamics** and **Phonon Transport**, while developing practical skills in **First-Principles Calculations**. By the end of the course, students will be proficient in calculating phonon spectra, density of states, and thermal conductivity for bulk and low-dimensional materials using industry-standard computational tools.

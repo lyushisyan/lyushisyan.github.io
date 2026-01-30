@@ -3,7 +3,7 @@
 {% if course %}
   <div class="course-schedule mb-5">
     
-    <h3 class="mb-4 pl-3" style="border-left: 4px solid var(--global-theme-color); line-height: 1;">
+    <h3 class="mb-4 pl-3 schedule-title" style="border-left: 4px solid var(--global-theme-color); line-height: 1;">
       {{ course.title }} - Schedule
     </h3>
 
@@ -39,12 +39,12 @@
             {% for entry in course.schedule %}
             <tr>
               <td class="align-middle" style="white-space: nowrap;">
-                <span class="font-weight-bold">{{ entry.date }}</span>
+                <span class="font-weight-bold table-text-primary" style="font-size: 1.05rem;">{{ entry.date }}</span>
                 <br>
-                <span class="text-muted small">Week {{ entry.week }}</span>
+                <span class="text-muted small text-uppercase" style="letter-spacing: 0.5px;">Week {{ entry.week }}</span>
               </td>
               
-              <td class="align-middle font-weight-bold text-dark">
+              <td class="align-middle font-weight-bold table-text-primary">
                 {{ entry.topic }}
               </td>
               
@@ -61,7 +61,7 @@
                         {% assign mat_url = material.url | relative_url %}
                       {% endunless %}
                       
-                      <a href="{{ mat_url }}" target="_blank" class="badge badge-light border text-primary mb-1 p-2" style="font-weight: 500; display: inline-block;">
+                      <a href="{{ mat_url }}" target="_blank" class="badge badge-light border text-primary mb-1 p-2 shadow-sm material-btn" style="font-weight: 500; display: inline-block;">
                         <i class="fa-solid fa-file-arrow-down mr-1"></i> {{ material.name }}
                       </a>
                     {% else %}
@@ -69,7 +69,8 @@
                         {{ material.name }}
                       </span>
                     {% endif %}
-                    <br> {% endfor %}
+                    <br> 
+                  {% endfor %}
                 {% else %}
                   <span class="text-muted small">-</span>
                 {% endif %}
@@ -85,4 +86,32 @@
       </div>
     {% endif %}
   </div>
+
+  <style>
+    /* 默认 Light Mode */
+    .table-text-primary {
+      color: #000;
+    }
+    .schedule-title {
+      color: #000;
+    }
+
+    /* Dark Mode 适配 */
+    body.dark .table-text-primary {
+      color: #e0e0e0 !important; /* 变白 */
+    }
+    body.dark .schedule-title {
+      color: #e0e0e0 !important; /* 变白 */
+    }
+
+    /* 按钮微交互 */
+    .material-btn {
+      transition: all 0.2s;
+    }
+    .material-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+    }
+  </style>
+
 {% endif %}

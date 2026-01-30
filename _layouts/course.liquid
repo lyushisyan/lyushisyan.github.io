@@ -13,31 +13,6 @@ layout: default
   </header>
 
   <article>
-    
-    {% if page.instructor or page.term or page.location or page.time %}
-    <div class="row mb-5">
-      <div class="col-12">
-        <div class="card z-depth-0 shadow-sm" style="background-color: #f8f9fa; border: none; border-left: 4px solid var(--global-theme-color);">
-          <div class="card-body p-4"> <div class="row">
-              <div class="col-md-4 mb-3 mb-md-0">
-                <strong class="text-dark"><i class="fa-solid fa-chalkboard-user mr-2 text-muted"></i>Instructor:</strong><br>
-                {{ page.instructor }}
-              </div>
-              <div class="col-md-4 mb-3 mb-md-0">
-                <strong class="text-dark"><i class="fa-regular fa-clock mr-2 text-muted"></i>Time & Location:</strong><br>
-                {% if page.time %}{{ page.time }}<br>{% endif %}
-                {% if page.location %}<span class="text-muted small">{{ page.location }}</span>{% endif %}
-              </div>
-              <div class="col-md-4">
-                <strong class="text-dark"><i class="fa-regular fa-calendar mr-2 text-muted"></i>Term:</strong><br>
-                {{ page.term }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endif %}
 
     <div class="content clearfix mb-5 text-justify">
       {{ content }}
