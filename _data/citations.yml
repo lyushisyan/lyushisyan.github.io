@@ -1,35 +1,39 @@
 metadata:
-  last_updated: '2026-01-25'
+  last_updated: '2026-02-04'
 papers:
-  bLVSRuUAAAAJ:hqOjcs7Dif8C:
-    citations: 1
-    title: Effect of Non-Fourier Heat Transport on Temperature Distribution in High Bandwidth Memory
-    year: '2026'
-  bLVSRuUAAAAJ:roLk4NBRz8UC:
-    citations: 2
-    title: Temperature Dependence of Specific Heat Capacity of Nanostructures via Neuroevolution Machine-learned Potential
-    year: '2025'
   bLVSRuUAAAAJ:LkGwnXOMwfcC:
     citations: 2
-    title: An Enhanced Framework for Wave Reflection from a Periodically Rough Boundary
+    title: An enhanced framework for wave reflection from a periodically rough boundary
     year: '2025'
-  bLVSRuUAAAAJ:WF5omc3nYNoC:
-    citations: 5
-    title: Quantifying Particle and Wave Effects in Phonon Transport of Pillared Graphene Nanoribbons
+  bLVSRuUAAAAJ:UebtZRa9Y70C:
+    citations: 1
+    title: An optimized force constant model for accurate phonon dispersion in graphene
     year: '2025'
   bLVSRuUAAAAJ:W7OEmFMy1HYC:
     citations: 2
-    title: "Temperature Fluctuations in Quantum Dots: Insights from a T^{3/2} Heat Capacity Model"
+    title: 'Temperature fluctuations in quantum dots: Insights from a T3/2 heat capacity model'
+    year: '2025'
+  bLVSRuUAAAAJ:WF5omc3nYNoC:
+    citations: 5
+    title: Quantifying particle and wave effects in phonon transport of pillared graphene nanoribbons
     year: '2025'
   bLVSRuUAAAAJ:YsMSGLbcyi4C:
     citations: 4
-    title: Investigating Anisotropic Three-Phonon Interactions in Graphene's Thermal Conductivity Using Monte Carlo Method
+    title: "Investigating Anisotropic Three-Phonon Interactions in Graphene\u2019s Thermal Conductivity Using Monte Carlo Method"
     year: '2025'
   bLVSRuUAAAAJ:eQOLeE2rZwMC:
     citations: 5
     title: Determination of Thermal Properties of Unsmooth Si Nanowires
     year: '2024'
+  bLVSRuUAAAAJ:hqOjcs7Dif8C:
+    citations: 1
+    title: Effect of non-Fourier heat transport on temperature distribution in High Bandwidth Memory
+    year: '2025'
+  bLVSRuUAAAAJ:roLk4NBRz8UC:
+    citations: 2
+    title: Temperature dependence of specific heat capacity of nanostructures via neuroevolution machine-learned potential
+    year: '2025'
   bLVSRuUAAAAJ:u-x6o8ySG0sC:
     citations: 10
-    title: Validation of the STEG code using experiments on two-phase flow across horizontal tube bundles
+    title: Validation of the STEG code using experiments on Two-Phase flow across horizontal tube bundles
     year: '2022'
