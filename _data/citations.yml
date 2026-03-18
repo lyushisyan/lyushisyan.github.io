@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-02-13'
+  last_updated: '2026-03-18'
 papers:
   bLVSRuUAAAAJ:LkGwnXOMwfcC:
     citations: 2
@@ -19,7 +19,7 @@ papers:
     year: '2025'
   bLVSRuUAAAAJ:YsMSGLbcyi4C:
     citations: 4
-    title: "Investigating Anisotropic Three-Phonon Interactions in Graphene\u2019s Thermal Conductivity Using Monte Carlo Method"
+    title: "Investigating anisotropic three-phonon interactions in graphene\u2019s thermal conductivity using Monte Carlo method"
     year: '2025'
   bLVSRuUAAAAJ:eQOLeE2rZwMC:
     citations: 5
@@ -34,6 +34,6 @@ papers:
     title: Temperature dependence of specific heat capacity of nanostructures via neuroevolution machine-learned potential
     year: '2025'
   bLVSRuUAAAAJ:u-x6o8ySG0sC:
-    citations: 10
+    citations: 11
     title: Validation of the STEG code using experiments on Two-Phase flow across horizontal tube bundles
     year: '2022'
