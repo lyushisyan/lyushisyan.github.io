@@ -1,10 +1,23 @@
-require "active_support/all"
 require 'net/http'
 require 'json'
 require 'uri'
 
 module Helpers
-  extend ActiveSupport::NumberHelper
+  def self.compact_count(value)
+    n = value.to_f
+    return n.to_i.to_s if n < 1_000
+
+    units = [
+      [1_000_000_000.0, "B"],
+      [1_000_000.0, "M"],
+      [1_000.0, "K"]
+    ]
+
+    base, suffix = units.find { |unit, _| n >= unit }
+    scaled = n / base
+    formatted = scaled >= 100 ? scaled.round(0).to_s : format("%.1f", scaled)
+    "#{formatted.sub(/\.0$/, "")}#{suffix}"
+  end
 end
 
 module Jekyll
@@ -38,7 +51,7 @@ module Jekyll
         citation_count = data["hits"]["hits"][0]["metadata"]["citation_count"].to_i
 
         # Format the citation count for readability
-        citation_count = Helpers.number_to_human(citation_count, format: '%n%u', precision: 2, units: { thousand: 'K', million: 'M', billion: 'B' })
+        citation_count = Helpers.compact_count(citation_count)
 
       rescue Exception => e
         # Handle any errors that may occur during fetching
