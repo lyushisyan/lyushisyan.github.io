@@ -238,7 +238,7 @@ ninja.data = [{
         title: 'CV',
         section: 'Socials',
         handler: () => {
-          window.open("/assets/pdf/CV_LIU_EN_0906.pdf", "_blank");
+          window.open("/assets/pdf/CV_LIU_SHIXIAN_2025.pdf", "_blank");
         },
       },{
         id: 'social-email',
