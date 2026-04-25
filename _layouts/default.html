@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ page.lang | default: 'en' }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,6 +21,11 @@
             {% assign is_current = false %}
             {% if page.url == item.url %}
               {% assign is_current = true %}
+            {% endif %}
+            {% if item.url == '/blog/' %}
+              {% if page.url contains '/blog/' or page.url contains '/zh/blog/' %}
+                {% assign is_current = true %}
+              {% endif %}
             {% endif %}
             <a class="nav-link{% if is_current %} is-active{% endif %}" href="{{ item.url | relative_url }}">{{ item.title }}</a>
           {% endfor %}

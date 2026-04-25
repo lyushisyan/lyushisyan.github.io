@@ -1,6 +1,9 @@
 ---
 layout: post
 title: Landauer Theory for Electrons and Phonons
+lang: en
+translation_key: el-ph-landauer
+permalink: /blog/2025/03/05/el-ph-landauer/
 date: 2025-03-05 06:36:10
 description: A detailed exploration of Landauer theory in nanoscale thermal transport, comparing electron and phonon transport mechanisms, mode counting, and spectral conductance.
 tags: theory phonon thermal-transport

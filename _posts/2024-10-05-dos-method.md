@@ -1,6 +1,9 @@
 ---
 layout: post
 title: Numerical Methods for Density of States (DOS) Calculation
+lang: en
+translation_key: dos-method
+permalink: /blog/2024/10/05/dos-method/
 date: 2024-10-05 23:36:10
 description: An overview of numerical techniques for calculating Density of States (DOS), including Root Sampling, Linear Extrapolation (GR/GGR methods), and Linear Interpolation.
 tags: theory phonon

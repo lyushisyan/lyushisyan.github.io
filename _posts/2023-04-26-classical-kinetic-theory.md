@@ -1,9 +1,12 @@
 ---
 layout: post
 title: Classical Kinetic Theory of Heat Conduction
+lang: en
+translation_key: classical-kinetic-theory
+permalink: /blog/2023/04/26/classical-kinetic-theory/
 date: 2023-04-26 00:32:13
 description: A summary of classical kinetic theory, phonon transport, and macroscopic heat equations.
-tags: fundamentals thermal-transport
+tags: theory thermal-transport
 categories: physics
 related_posts: true
 toc:

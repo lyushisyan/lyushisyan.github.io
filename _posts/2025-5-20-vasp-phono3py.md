@@ -1,6 +1,9 @@
 ---
 layout: post
 title: Thermal Conductivity Calculation using VASP + Phono3py
+lang: en
+translation_key: vasp-phono3py
+permalink: /blog/2025/05/20/vasp-phono3py/
 date: 2025-05-20 23:36:10
 description: A step-by-step guide to calculating lattice thermal conductivity using VASP and Phono3py, covering supercell generation, force calculations, and BTE solutions.
 tags: tutorial phonon

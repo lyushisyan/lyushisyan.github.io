@@ -123,7 +123,8 @@ h1 {
 }
 
 .post {
-  max-width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
 }
 
 .post img,
@@ -222,6 +223,24 @@ h1 {
 .blog-intro {
   margin: 0 0 0.9rem;
   color: var(--muted);
+}
+
+.blog-page-narrow {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.blog-language-switch,
+.post-language-switch {
+  display: flex;
+  gap: 0.45rem;
+  margin: 0 0 0.65rem;
+}
+
+.pub-btn.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
 }
 
 .blog-tag-cloud-wrap {

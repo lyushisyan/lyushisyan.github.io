@@ -1,9 +1,9 @@
 ---
-title: Blog
-permalink: /blog/
-lang: en
+title: 博客
+permalink: /zh/blog/
+lang: zh
 ---
-{% assign blog_posts = site.posts | where_exp: "post", "post.lang != 'zh'" %}
+{% assign blog_posts = site.posts | where: "lang", "zh" %}
 {% assign tags_csv = "" %}
 {% for post in blog_posts %}
   {% for tag in post.tags %}
@@ -14,14 +14,14 @@ lang: en
 
 <div class="blog-page-narrow">
 <div class="blog-language-switch" role="group" aria-label="Blog language switch">
-  <a class="pub-btn is-active" href="{{ '/blog/' | relative_url }}">EN</a>
-  <a class="pub-btn" href="{{ '/zh/blog/' | relative_url }}">中文</a>
+  <a class="pub-btn" href="{{ '/blog/' | relative_url }}">EN</a>
+  <a class="pub-btn is-active" href="{{ '/zh/blog/' | relative_url }}">中文</a>
 </div>
 
 {% if sorted_tags.size > 0 %}
 <div class="blog-tag-cloud-wrap">
-  <div id="blog-tag-cloud" class="blog-tag-cloud" role="group" aria-label="Blog tags">
-    <button type="button" class="blog-tag-chip is-active" data-tag="all">All</button>
+  <div id="blog-tag-cloud" class="blog-tag-cloud" role="group" aria-label="博客标签">
+    <button type="button" class="blog-tag-chip is-active" data-tag="all">全部</button>
     {% for tag_name in sorted_tags %}
       {% assign clean_tag = tag_name | strip %}
       {% if clean_tag != "" %}
@@ -73,7 +73,7 @@ lang: en
   {% endfor %}
 </ul>
 {% else %}
-<p>No posts yet. Add Markdown files under <code>_posts/</code>.</p>
+<p>暂无中文文章。你可以在 <code>_posts/zh/</code> 下添加中文文章。</p>
 {% endif %}
 </div>
 

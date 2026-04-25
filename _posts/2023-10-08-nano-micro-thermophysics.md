@@ -1,9 +1,12 @@
 ---
 layout: post
 title: Microscopic Description of Thermophysics
+lang: en
+translation_key: nano-micro-thermophysics
+permalink: /blog/2023/10/08/nano-micro-thermophysics/
 date: 2023-10-08 00:32:13
 description: A microscopic view of heat transfer, covering energy carriers, distribution functions, and fundamental constants.
-tags: fundamentals thermal-transport
+tags: theory thermal-transport
 categories: physics
 related_posts: true
 toc:

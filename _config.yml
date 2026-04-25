@@ -26,6 +26,12 @@ nav:
 
 defaults:
   - scope:
+      path: "_posts/zh"
+      type: "posts"
+    values:
+      lang: zh
+      permalink: /zh/blog/:year/:month/:day/:title/
+  - scope:
       path: ""
       type: "posts"
     values:

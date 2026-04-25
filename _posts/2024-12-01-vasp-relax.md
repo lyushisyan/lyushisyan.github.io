@@ -1,6 +1,9 @@
 ---
 layout: post
 title: VASP Structure Optimization
+lang: en
+translation_key: vasp-relax
+permalink: /blog/2024/12/01/vasp-relax/
 date: 2024-12-01 23:36:10
 description: A comprehensive guide to structure optimization using VASP, covering input parameters, file formats, output analysis, and convergence strategies.
 tags: tutorial dft

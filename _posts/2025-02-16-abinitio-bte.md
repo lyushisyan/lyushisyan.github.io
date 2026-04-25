@@ -1,6 +1,9 @@
 ---
 layout: post
 title: First-Principles-Based PBTE Method
+lang: en
+translation_key: abinitio-bte
+permalink: /blog/2025/02/16/abinitio-bte/
 date: 2025-02-16 06:36:10
 description: An introduction to the First-Principles Phonon Boltzmann Transport Equation (PBTE) method, covering DFT, lattice dynamics, and thermal conductivity calculations.
 tags: theory phonon
