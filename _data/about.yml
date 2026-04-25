@@ -1,0 +1,43 @@
+hero:
+  avatar: "/assets/img/profile/lsx_900.png"
+  role: "Ph.D. Candidate · Assistant"
+  name: "Shixian Liu"
+  cv_label: "Download CV"
+  cv_url: "/assets/pdf/CV_LIU_SHIXIAN_2025.pdf"
+  social_links:
+    - label: "Google Scholar"
+      value: "Google Scholar"
+      url: "https://scholar.google.com/citations?user=bLVSRuUAAAAJ"
+    - label: "ORCID"
+      value: "ORCID"
+      url: "https://orcid.org/0000-0003-3042-7817"
+    - label: "GitHub"
+      value: "GitHub"
+      url: "https://github.com/lyushisyan"
+    - label: "Email"
+      value: "Email"
+      url: "mailto:sxliu98@gmail.com"
+  paragraphs:
+    - "I am currently a Ph.D. candidate and Assistant at Bauman Moscow State Technical University. My research focuses on heat conduction at micro- and nanoscale, combining computational methods with theoretical analysis."
+    - "I mainly investigate phonon transport in nanostructures and low-dimensional systems, with an emphasis on bridging microscopic mechanisms and practical thermal management in electronic and energy devices."
+  interests:
+    - "Micro/Nanoscale Heat Conduction"
+    - "Phonon Transport"
+    - "Density Functional Theory"
+    - "Molecular & Lattice Dynamics"
+    - "Machine Learning Potentials"
+    - "Monte Carlo for BTE"
+
+experience:
+  - time: "2025 -- present"
+    detail: "Assistant, Bauman Moscow State Technical University, Moscow, Russia"
+
+education:
+  - time: "2023 -- 2027"
+    detail: "Ph.D. in Thermophysics, Bauman Moscow State Technical University, Moscow, Russia"
+  - time: "2021 -- 2023"
+    detail: "Master in Thermophysics, Bauman Moscow State Technical University, Moscow, Russia"
+  - time: "2019 -- 2021"
+    detail: "Bachelor in Nuclear Power Engineering, Moscow Power Engineering Institute, Moscow, Russia"
+  - time: "2017 -- 2021"
+    detail: "Bachelor in Nuclear Engineering, North China Electric Power University, Beijing, China"

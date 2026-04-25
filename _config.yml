@@ -1,0 +1,36 @@
+title: "Shixian Liu"
+description: "Personal academic website on thermophysics and phonon transport"
+url: "https://lyushisyan.github.io"
+baseurl: ""
+timezone: Europe/Moscow
+markdown: kramdown
+
+sass:
+  style: compressed
+  sass_dir: _sass
+permalink: /blog/:year/:month/:day/:title/
+
+nav:
+  - title: About
+    url: /about/
+  - title: News
+    url: /news/
+  - title: Blog
+    url: /blog/
+  - title: Publications
+    url: /publications/
+  - title: Software
+    url: /software/
+  - title: Teaching
+    url: /teaching/
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+  - scope:
+      path: ""
+    values:
+      layout: page

@@ -1,0 +1,76 @@
+---
+layout: default
+---
+<article class="page">
+  <div class="teaching-back">
+    <a href="{{ '/teaching/' | relative_url }}">← Back to Teaching</a>
+  </div>
+
+  <h1>{{ page.title }}</h1>
+  {% if page.subtitle %}
+    <p class="teaching-subtitle">{{ page.subtitle }}</p>
+  {% endif %}
+
+  <div class="teaching-meta-grid">
+    {% if page.year %}
+    <div class="teaching-meta-item">
+      <span class="teaching-meta-label">Year</span>
+      <span class="teaching-meta-value">{{ page.year }}</span>
+    </div>
+    {% endif %}
+    {% if page.term %}
+    <div class="teaching-meta-item">
+      <span class="teaching-meta-label">Semester</span>
+      <span class="teaching-meta-value">{{ page.term }}</span>
+    </div>
+    {% endif %}
+    {% if page.time %}
+    <div class="teaching-meta-item">
+      <span class="teaching-meta-label">Time</span>
+      <span class="teaching-meta-value">{{ page.time }}</span>
+    </div>
+    {% endif %}
+    {% if page.location %}
+    <div class="teaching-meta-item">
+      <span class="teaching-meta-label">Location</span>
+      <span class="teaching-meta-value">{{ page.location }}</span>
+    </div>
+    {% endif %}
+  </div>
+
+  {% if page.repository %}
+    <div class="teaching-repo">
+      <a class="pub-btn" href="{{ page.repository }}" target="_blank" rel="noopener noreferrer">
+        ⌨ Repository
+      </a>
+    </div>
+  {% endif %}
+
+  {{ content }}
+
+  {% if page.schedule %}
+  <h2 class="teaching-schedule-heading">Schedule</h2>
+  <div class="teaching-schedule">
+    {% for lecture in page.schedule %}
+    <div class="teaching-lecture-item card">
+      <div class="teaching-lecture-header">
+        <span class="teaching-lecture-num">{{ lecture.num }}</span>
+        <div>
+          <span class="teaching-lecture-topic">{{ lecture.topic }}</span>
+          <p class="teaching-lecture-desc">{{ lecture.description }}</p>
+        </div>
+      </div>
+      {% if lecture.materials %}
+      <div class="teaching-lecture-materials">
+        {% for mat in lecture.materials %}
+          <a class="pub-btn" href="{{ mat.url | relative_url }}" {% if mat.url == "#" %}aria-disabled="true"{% else %}target="_blank" rel="noopener noreferrer"{% endif %}>
+            {% if mat.url == "#" %}🔒{% else %}📄{% endif%} {{ mat.name }}
+          </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</article>

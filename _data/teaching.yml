@@ -1,0 +1,79 @@
+- title: "Numerical Simulation Methods"
+  title_ru: "Численные методы моделирования"
+  subtitle: "Численные методы моделирования"
+  url: /teaching/numerical-simulation-methods/
+  year: "2025-2026"
+  term: "Fall"
+  term_ru: "Осень"
+  location: "Department of Thermophysics"
+  location_ru: "Кафедра теплофизики"
+  time: "Thursdays, 14:00–15:35"
+  time_ru: "Четверг, 14:00–15:35"
+  repository: "https://github.com/lyushisyan/python-ml-course"
+  overview: "A fast-paced introduction to scientific computing using Python. Covers essential tools for modern research in thermophysics, from basic numerical analysis with NumPy and SciPy to introductory Machine Learning techniques."
+  overview_ru: "Интенсивный курс по научным вычислениям на Python. Охватывает ключевые инструменты для современных исследований в теплофизике: от базового численного анализа с NumPy и SciPy до вводных методов машинного обучения."
+  topics:
+    - num: 1
+      topic: "Python-Based Computing"
+      topic_ru: "Вычисления на основе Python"
+      materials:
+        - name: "Lecture 1 (Slides)"
+          url: "/assets/teaching/python/Lecture_1_Python_v2.pdf"
+    - num: 2
+      topic: "Introduction to Machine Learning"
+      topic_ru: "Введение в машинное обучение"
+      materials:
+        - name: "Lecture 2 (Slides)"
+          url: "/assets/teaching/python/Lecture_2_Learning_v2.pdf"
+    - num: 3
+      topic: "Machine Learning Applications"
+      topic_ru: "Применение машинного обучения"
+      materials:
+        - name: "Lecture 3 (Slides)"
+          url: "/assets/teaching/python/Lecture_3_Application_v2.pdf"
+
+- title: "Thermal Physics of Nanosystems"
+  title_ru: "Теплофизика наносистем"
+  subtitle: "Теплофизика наносистем"
+  url: /teaching/thermal-physics-nanosystems/
+  year: "2025-2026"
+  term: "Spring"
+  term_ru: "Весна"
+  location: "Department of Thermophysics"
+  location_ru: "Кафедра теплофизики"
+  time: "Thursdays, 15:50–17:25"
+  time_ru: "Четверг, 15:50–17:25"
+  repository: "https://github.com/lyushisyan"
+  overview: "A systematic exploration of thermal physics at the nanoscale. Integrates classical continuum theories with atomistic simulations to explain heat transport mechanisms in solids."
+  overview_ru: "Систематический курс по теплофизике на наноуровне. Объединяет классические континуальные теории и атомистическое моделирование для объяснения механизмов теплопереноса в твердых телах."
+  topics:
+    - num: 1
+      topic: "Introduction to Nanothermophysics"
+      topic_ru: "Введение в нанотеплофизику"
+      materials:
+        - name: "Lecture 1 (Slides)"
+          url: "/assets/teaching/nanoheat/Lecture1_introduction.pdf"
+    - num: 2
+      topic: "Fundamentals of Crystal Structure"
+      topic_ru: "Основы кристаллической структуры"
+      materials:
+        - name: "Lecture 2 (Slides)"
+          url: "/assets/teaching/nanoheat/Lecture2_structure.pdf"
+    - num: 3
+      topic: "Theory of Elastic Waves"
+      topic_ru: "Теория упругих волн"
+      materials:
+        - name: "Lecture 3 (Slides)"
+          url: "/assets/teaching/nanoheat/Lecture3_elasticity.pdf"
+    - num: 4
+      topic: "Lattice Vibration Theory"
+      topic_ru: "Теория колебаний решетки"
+      materials:
+        - name: "Lecture 4 (Slides)"
+          url: "/assets/teaching/nanoheat/Lecture4_LD_DOS.pdf"
+    - num: 5
+      topic: "Heat Capacity of Crystals"
+      topic_ru: "Теплоемкость кристаллов"
+      materials:
+        - name: "Lecture 5 (Slides)"
+          url: "#"

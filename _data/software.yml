@@ -1,0 +1,5 @@
+- name: "NEP-kappa"
+  logo: "/assets/img/software/logo-kappa.png"
+  description: "NEP-kappa is a workflow for lattice thermal conductivity analysis using Neuroevolution Potential (NEP), focusing on efficient force-constant generation, transport post-processing, and reproducible phonon-thermal studies."
+  link: "https://github.com/lyushisyan/NEP-kappa"
+  docs: "https://nep-kappa.readthedocs.io"

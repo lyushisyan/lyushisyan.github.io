@@ -1,0 +1,20 @@
+{% assign fig_path = include.path | default: include.url %}
+{% assign fig_alt = include.alt | default: include.caption | default: "Figure" %}
+{% assign fig_class = include.class | default: "" %}
+
+{% if fig_path %}
+  {% assign is_external = false %}
+  {% if fig_path contains '://' %}
+    {% assign is_external = true %}
+  {% endif %}
+  <figure class="blog-figure {{ fig_class }}">
+    {% if is_external %}
+      <img src="{{ fig_path }}" alt="{{ fig_alt | escape }}" loading="lazy">
+    {% else %}
+      <img src="{{ fig_path | relative_url }}" alt="{{ fig_alt | escape }}" loading="lazy">
+    {% endif %}
+    {% if include.caption %}
+      <figcaption>{{ include.caption }}</figcaption>
+    {% endif %}
+  </figure>
+{% endif %}
