@@ -8,7 +8,7 @@ permalink: /publications/
   <noscript>Please enable JavaScript to load publications from BibTeX.</noscript>
 </div>
 
-<script src="{{ '/assets/js/publications.js?v=20260425' | relative_url }}"
+<script src="{{ '/assets/js/publications.js?v=20260425-oa1' | relative_url }}"
   data-bib-url="{{ '/assets/bibliography/publications.bib' | relative_url }}"
   data-fallback-preview="{{ '/assets/img/papers/phonon-preview.svg' | relative_url }}"
   data-site-base="{{ site.baseurl }}"></script>

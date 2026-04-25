@@ -18,6 +18,14 @@
     return normalizeSpace(value).replace(/[{}]/g, "");
   }
 
+  function normalizeDoi(value) {
+    return normalizeSpace(value)
+      .replace(/[{}]/g, "")
+      .replace(/^https?:\/\/(dx\.)?doi\.org\//i, "")
+      .replace(/^doi:\s*/i, "")
+      .toLowerCase();
+  }
+
   function formatAuthorMarkers(text) {
     return String(text || "")
       .replace(/\$\^#\$/g, "<sup>#</sup>")
@@ -193,7 +201,7 @@
     if (fields.website) return fields.website;
     if (fields.paper) return fields.paper;
     if (fields.url) return fields.url;
-    if (fields.doi) return "https://doi.org/" + fields.doi.replace(/^https?:\/\/doi.org\//i, "");
+    if (fields.doi) return "https://doi.org/" + normalizeDoi(fields.doi);
     return "";
   }
 
@@ -228,6 +236,7 @@
     var pdfLink = buildPdfLink(fields, basePath);
     var abstractText = cleanDisplay(fields.abstract || "");
     var bibtexText = buildBibTeXForDisplay(entry);
+    var normalizedDoi = normalizeDoi(fields.doi || "");
     var impactFactor = cleanDisplay(fields.if || fields.impact_factor || fields.jif || "");
     var scopusQuartile = cleanDisplay(fields.scopus || fields.scopus_quartile || fields.quartile || fields.q || "");
     var impactFactorText = impactFactor || "--";
@@ -254,6 +263,7 @@
       '<div class="publication-controls">',
       '<span class="publication-tag"><span class="publication-tag-label">IF</span><span class="publication-tag-value">' + escapeHtml(impactFactorText) + '</span></span>',
       '<span class="publication-tag"><span class="publication-tag-label">Scopus</span><span class="publication-tag-value">' + escapeHtml(scopusQuartileText) + '</span></span>',
+      '<span class="publication-tag publication-citation"' + (normalizedDoi ? ' data-doi="' + escapeHtml(normalizedDoi) + '"' : "") + '><span class="publication-tag-label">Cited by</span><span class="publication-tag-value">--</span></span>',
       (linkUrl
         ? '<a class="pub-btn" href="' + escapeHtml(linkUrl) + '" target="_blank" rel="noopener noreferrer">Link</a>'
         : '<span class="pub-btn is-disabled" aria-disabled="true">Link</span>'),
@@ -288,6 +298,52 @@
       var open = panel.classList.toggle("is-open");
       trigger.setAttribute("aria-expanded", open ? "true" : "false");
     });
+  }
+
+  async function fetchOpenAlexCitedByCount(doi) {
+    if (!doi) return null;
+    var endpoint = "https://api.openalex.org/works/https://doi.org/" + encodeURIComponent(doi) + "?select=cited_by_count";
+
+    try {
+      var response = await fetch(endpoint, {
+        headers: { Accept: "application/json" },
+      });
+      if (!response.ok) return null;
+
+      var payload = await response.json();
+      if (typeof payload.cited_by_count === "number") return payload.cited_by_count;
+    } catch (error) {
+      return null;
+    }
+
+    return null;
+  }
+
+  async function hydrateOpenAlexCitationCounts(list) {
+    if (!list) return;
+
+    var citationTags = Array.prototype.slice.call(list.querySelectorAll(".publication-citation[data-doi]"));
+    if (citationTags.length === 0) return;
+
+    var doiToTags = {};
+    citationTags.forEach(function (tag) {
+      var doi = normalizeSpace(tag.getAttribute("data-doi") || "");
+      if (!doi) return;
+      if (!doiToTags[doi]) doiToTags[doi] = [];
+      doiToTags[doi].push(tag);
+    });
+
+    var doiList = Object.keys(doiToTags);
+    for (var i = 0; i < doiList.length; i += 1) {
+      var doi = doiList[i];
+      var citedBy = await fetchOpenAlexCitedByCount(doi);
+      var displayCount = (typeof citedBy === "number") ? String(citedBy) : "--";
+
+      doiToTags[doi].forEach(function (tag) {
+        var valueEl = tag.querySelector(".publication-tag-value");
+        if (valueEl) valueEl.textContent = displayCount;
+      });
+    }
   }
 
   function getYearLabel(entry) {
@@ -395,6 +451,8 @@
           if (fallbackPreview) img.src = fallbackPreview;
         });
       });
+
+      hydrateOpenAlexCitationCounts(list).catch(function () {});
 
       setStatus("Loaded " + entries.length + " publications from BibTeX.");
     } catch (error) {
