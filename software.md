@@ -19,6 +19,9 @@ permalink: /software/
       {% if project.docs %}
         <a class="pub-btn" href="{{ project.docs }}" target="_blank" rel="noopener noreferrer">Documentation</a>
       {% endif %}
+      {% if project.paper %}
+        <a class="pub-btn" href="{{ project.paper }}" target="_blank" rel="noopener noreferrer">Paper</a>
+      {% endif %}
     </div>
   </div>
 </article>

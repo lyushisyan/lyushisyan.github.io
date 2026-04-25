@@ -80,7 +80,7 @@ extra_css:
   <p id="about-selected-status" class="meta">Loading selected publications from BibTeX...</p>
   <ol id="about-selected-list" class="about-featured-pubs"></ol>
   <p><a class="elegant-link" href="{{ '/publications/' | relative_url }}">View full publication list</a></p>
-  <script src="{{ '/assets/js/about-selected.js?v=20260425' | relative_url }}"
+  <script src="{{ '/assets/js/about-selected.js?v=20260425-pdf2' | relative_url }}"
     data-bib-url="{{ '/assets/bibliography/publications.bib' | relative_url }}"
     data-site-base="{{ site.baseurl }}"></script>
 </section>

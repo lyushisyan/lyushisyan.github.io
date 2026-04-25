@@ -35,7 +35,10 @@ permalink: /teaching/
                 <ul class="teaching-topic-list">
                   {% for topic in course.topics %}
                     <li>
-                      <strong>L{{ topic.num }}:</strong>
+                      <strong>
+                        <span class="teaching-lang-en">L{{ topic.num }}:</span>
+                        <span class="teaching-lang-ru">Л{{ topic.num }}:</span>
+                      </strong>
                       <span class="teaching-lang-en">{{ topic.topic }}</span>
                       <span class="teaching-lang-ru">{{ topic.topic_ru | default: topic.topic }}</span>
                       {% if topic.materials %}
@@ -47,6 +50,29 @@ permalink: /teaching/
                       {% endif %}
                     </li>
                   {% endfor %}
+                  {% if course.homeworks %}
+                    {% for homework in course.homeworks %}
+                      <li>
+                        <strong>
+                          <span class="teaching-lang-en">HW{{ homework.num }}:</span>
+                          <span class="teaching-lang-ru">ДЗ{{ homework.num }}:</span>
+                        </strong>
+                        <span class="teaching-lang-en">{{ homework.title | default: "Homework" }}</span>
+                        <span class="teaching-lang-ru">{{ homework.title_ru | default: "Домашнее задание" }}</span>
+                        {% if homework.url contains "://" %}
+                          <a class="teaching-topic-link" href="{{ homework.url }}" target="_blank" rel="noopener noreferrer">
+                            <span class="teaching-lang-en">File</span>
+                            <span class="teaching-lang-ru">Файл</span>
+                          </a>
+                        {% else %}
+                          <a class="teaching-topic-link" href="{{ homework.url | relative_url }}" target="_blank" rel="noopener noreferrer">
+                            <span class="teaching-lang-en">File</span>
+                            <span class="teaching-lang-ru">Файл</span>
+                          </a>
+                        {% endif %}
+                      </li>
+                    {% endfor %}
+                  {% endif %}
                 </ul>
               {% endif %}
             </td>

@@ -79,8 +79,14 @@
     var raw = fields.pdf || fields.file || "";
     if (!raw) return "";
     if (/^(https?:)?\/\//i.test(raw)) return raw;
-    if (hasDirectoryPath(raw)) return resolvePath(raw, basePath);
-    return resolvePath("assets/pdf/" + raw, basePath);
+    if (/^\//.test(raw)) return resolvePath(raw, basePath);
+
+    var cleanRaw = normalizeSpace(raw)
+      .replace(/^\/+/, "");
+
+    if (/^assets\//i.test(cleanRaw)) return resolvePath(cleanRaw, basePath);
+    if (/^papers\//i.test(cleanRaw)) return resolvePath("assets/pdf/" + cleanRaw, basePath);
+    return resolvePath("assets/pdf/papers/" + cleanRaw, basePath);
   }
 
   function buildBibTeXForDisplay(entry) {

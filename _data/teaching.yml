@@ -77,3 +77,8 @@
       materials:
         - name: "Lecture 5 (Slides)"
           url: "#"
+  homeworks:
+    - num: 1
+      title: "Homework 1"
+      title_ru: "Домашнее задание 1"
+      url: "/assets/teaching/nanoheat/Homework-1.pdf"
