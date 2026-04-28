@@ -44,7 +44,7 @@ permalink: /teaching/
                       {% if topic.materials %}
                         {% for material in topic.materials %}
                           {% if material.url and material.url != "#" %}
-                            <a class="teaching-topic-link" href="{{ material.url | relative_url }}" target="_blank" rel="noopener noreferrer">DFT</a>
+                            <a class="teaching-topic-link" href="{{ material.url | relative_url }}" target="_blank" rel="noopener noreferrer">PDF</a>
                           {% endif %}
                         {% endfor %}
                       {% endif %}
@@ -61,13 +61,13 @@ permalink: /teaching/
                         <span class="teaching-lang-ru">{{ homework.title_ru | default: "Домашнее задание" }}</span>
                         {% if homework.url contains "://" %}
                           <a class="teaching-topic-link" href="{{ homework.url }}" target="_blank" rel="noopener noreferrer">
-                            <span class="teaching-lang-en">File</span>
-                            <span class="teaching-lang-ru">Файл</span>
+                            <span class="teaching-lang-en">PDF</span>
+                            <span class="teaching-lang-ru">PDF</span>
                           </a>
                         {% else %}
                           <a class="teaching-topic-link" href="{{ homework.url | relative_url }}" target="_blank" rel="noopener noreferrer">
-                            <span class="teaching-lang-en">File</span>
-                            <span class="teaching-lang-ru">Файл</span>
+                            <span class="teaching-lang-en">PDF</span>
+                            <span class="teaching-lang-ru">PDF</span>
                           </a>
                         {% endif %}
                       </li>

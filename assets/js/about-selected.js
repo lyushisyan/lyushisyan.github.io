@@ -52,6 +52,12 @@
     return v === "true" || v === "1" || v === "yes" || v === "y";
   }
 
+  function parsePositiveInt(value, fallback) {
+    var parsed = parseInt(value, 10);
+    if (!Number.isFinite(parsed) || parsed < 1) return fallback;
+    return parsed;
+  }
+
   function hasDirectoryPath(value) {
     return String(value).indexOf("/") !== -1;
   }
@@ -283,11 +289,17 @@
   }
 
   async function init() {
-    var list = document.getElementById("about-selected-list");
-    var status = document.getElementById("about-selected-status");
+    var script = document.currentScript || document.querySelector('script[src*="about-selected.js"]');
+    var listId = script ? (script.getAttribute("data-list-id") || "about-selected-list") : "about-selected-list";
+    var statusId = script ? (script.getAttribute("data-status-id") || "about-selected-status") : "about-selected-status";
+    var limit = parsePositiveInt(script ? script.getAttribute("data-limit") : "", 3);
+    var onlySelected = script ? script.getAttribute("data-selected-only") !== "false" : true;
+    var noEntryText = script ? (script.getAttribute("data-empty-text") || "No selected publications found in BibTeX.") : "No selected publications found in BibTeX.";
+
+    var list = document.getElementById(listId);
+    var status = document.getElementById(statusId);
     if (!list || !status) return;
 
-    var script = document.currentScript || document.querySelector('script[src*="about-selected.js"]');
     var bibUrl = script ? script.getAttribute("data-bib-url") : "";
     var siteBase = script ? script.getAttribute("data-site-base") : "";
     if (!bibUrl) {
@@ -301,15 +313,16 @@
       var bibText = await response.text();
       var selected = parseBibTeX(bibText)
         .filter(function (entry) {
+          if (!onlySelected) return true;
           return isTruthy(entry.fields.selected);
         })
         .sort(function (a, b) {
           return getYear(b.fields) - getYear(a.fields);
         })
-        .slice(0, 3);
+        .slice(0, limit);
 
       if (selected.length === 0) {
-        status.textContent = "No selected publications found in BibTeX.";
+        status.textContent = noEntryText;
         list.innerHTML = "";
         return;
       }

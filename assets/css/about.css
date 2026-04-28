@@ -190,6 +190,29 @@
   background-color: #eff6ff;
 }
 
+.home-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.home-highlight-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 0.75rem;
+  background: #ffffff;
+}
+
+.home-highlight-date {
+  margin: 0.2rem 0 0.38rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.home-highlight-text {
+  margin: 0 0 0.52rem;
+}
+
 @media (max-width: 640px) {
   .about-hero {
     grid-template-columns: 1fr;
@@ -212,5 +235,9 @@
   .about-action-links {
     flex-wrap: wrap;
     overflow-x: visible;
+  }
+
+  .home-highlights-grid {
+    grid-template-columns: 1fr;
   }
 }
