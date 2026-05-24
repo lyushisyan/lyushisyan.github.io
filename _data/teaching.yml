@@ -72,8 +72,8 @@
         - name: "Lecture 4 (Slides)"
           url: "/assets/teaching/nanoheat/Lecture4_LD_DOS.pdf"
     - num: 5
-      topic: "Heat Capacity of Crystals"
-      topic_ru: "Теплоемкость кристаллов"
+      topic: "Thermophysical properties"
+      topic_ru: "Теплофизические свойства"
       materials:
         - name: "Lecture 5 (Slides)"
           url: "/assets/teaching/nanoheat/Lecture5_property.pdf"
