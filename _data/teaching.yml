@@ -76,7 +76,7 @@
       topic_ru: "Теплоемкость кристаллов"
       materials:
         - name: "Lecture 5 (Slides)"
-          url: "#"
+          url: "/assets/teaching/nanoheat/Lecture5_property.pdf"
   homeworks:
     - num: 1
       title: "Homework 1"
