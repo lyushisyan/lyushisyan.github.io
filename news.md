@@ -3,6 +3,9 @@ title: News
 description: "Academic news, awards, invited talks, and research activities by Shixian Liu."
 permalink: /news/
 hide_title: true
+extra_css:
+  - /assets/css/components/listing.css
+  - /assets/css/components/news.css
 ---
 {% assign sorted_news = site.data.news | sort: "date" | reverse %}
 {% assign latest_news = sorted_news | first %}
@@ -23,21 +26,25 @@ hide_title: true
 <ol class="news-timeline">
   {% for item in sorted_news %}
     {% assign news_text = item.text | default: item.title %}
-    <li class="news-timeline-item">
+    {% assign research_highlight = site.data.research_highlights | where: "publication_key", item.highlight_key | first %}
+    {% assign news_link_label = item.link_label | default: "View detail" %}
+    <li class="news-timeline-item{% if research_highlight %} is-highlight{% endif %}">
       <span class="news-timeline-marker" aria-hidden="true"></span>
       <article class="news-card">
         <header class="news-card-header">
           <time datetime="{{ item.date }}">{{ item.date | date: "%B %d, %Y" }}</time>
-          {% if item.type %}<span class="news-type">{{ item.type }}</span>{% endif %}
+          {% if item.type %}<span class="news-type{% if research_highlight %} news-type-highlight{% endif %}">{{ item.type }}</span>{% endif %}
         </header>
         <p class="news-card-title">{{ news_text }}</p>
-        {% if item.detail %}
-          <a class="news-card-link" href="{{ item.detail | relative_url }}" target="_blank" rel="noopener noreferrer">View detail <span aria-hidden="true">↗</span></a>
+        {% if research_highlight %}
+          <a class="news-card-link" href="{{ research_highlight.url }}" target="_blank" rel="noopener noreferrer">{{ news_link_label }} <span aria-hidden="true">↗</span></a>
+        {% elsif item.detail %}
+          <a class="news-card-link" href="{{ item.detail | relative_url }}" target="_blank" rel="noopener noreferrer">{{ news_link_label }} <span aria-hidden="true">↗</span></a>
         {% elsif item.link %}
           {% if item.link contains '://' %}
-            <a class="news-card-link" href="{{ item.link }}" target="_blank" rel="noopener noreferrer">View detail <span aria-hidden="true">↗</span></a>
+            <a class="news-card-link" href="{{ item.link }}" target="_blank" rel="noopener noreferrer">{{ news_link_label }} <span aria-hidden="true">↗</span></a>
           {% else %}
-            <a class="news-card-link" href="{{ item.link | relative_url }}" target="_blank" rel="noopener noreferrer">View detail <span aria-hidden="true">↗</span></a>
+            <a class="news-card-link" href="{{ item.link | relative_url }}" target="_blank" rel="noopener noreferrer">{{ news_link_label }} <span aria-hidden="true">↗</span></a>
           {% endif %}
         {% endif %}
       </article>

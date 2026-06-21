@@ -1,0 +1,39 @@
+/* Error component */
+
+.error-page {
+  max-width: 680px;
+  margin: clamp(2rem, 8vh, 5rem) auto;
+  padding: clamp(1.5rem, 5vw, 2.75rem);
+  border: 1px solid rgba(23, 92, 144, 0.15);
+  border-radius: 18px;
+  background: linear-gradient(145deg, #ffffff, #f5f9fc);
+  box-shadow: 0 14px 38px rgba(30, 71, 101, 0.07);
+  text-align: center;
+}
+
+.error-code {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 850;
+  letter-spacing: 0.18em;
+}
+
+.error-page h1 {
+  margin: 0.3rem 0 0;
+  color: var(--heading);
+  font-size: clamp(2rem, 6vw, 3rem);
+}
+
+.error-page > p:not(.error-code) {
+  margin: 0.65rem 0 0;
+  color: var(--muted);
+}
+
+.error-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+}

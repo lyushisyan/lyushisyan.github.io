@@ -60,6 +60,8 @@ defaults:
     values:
       layout: post
       math: true
+      extra_css:
+        - /assets/css/components/post.css
   - scope:
       path: ""
     values:

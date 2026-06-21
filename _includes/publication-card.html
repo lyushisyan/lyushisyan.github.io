@@ -1,4 +1,5 @@
 {% assign publication = include.publication %}
+{% assign research_highlight = site.data.research_highlights | where: "publication_key", publication.key | first %}
 <article id="publication-{{ publication.key }}" class="card publication-card">
   <img class="publication-preview"
     src="{{ publication.preview | relative_url }}"
@@ -27,6 +28,9 @@
       {% endif %}
       {% if publication.pdf %}
         <a class="pub-btn" href="{{ publication.pdf | relative_url }}" target="_blank" rel="noopener noreferrer">PDF</a>
+      {% endif %}
+      {% if research_highlight %}
+        <a class="pub-btn publication-highlight-link" href="{{ research_highlight.url }}" target="_blank" rel="noopener noreferrer">{{ research_highlight.short_label }} <span aria-hidden="true">↗</span></a>
       {% endif %}
       {% if publication.abstract %}
         <details class="publication-native-detail">

@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     {% if page.extra_css %}
       {% for css_path in page.extra_css %}
-        <link rel="stylesheet" href="{{ css_path | relative_url }}">
+        <link rel="stylesheet" href="{{ css_path | relative_url }}?v={{ site.time | date: '%s' }}">
       {% endfor %}
     {% endif %}
   </head>

@@ -4,6 +4,8 @@ description: "Peer-reviewed publications by Shixian Liu on phonon transport, the
 permalink: /publications/
 math: true
 hide_title: true
+extra_css:
+  - /assets/css/components/publications.css
 ---
 {% assign publication_groups = site.data.publications | group_by: "year" %}
 {% assign first_or_cofirst_publications = site.data.publications | where: "self_first_or_cofirst", true %}
@@ -26,18 +28,19 @@ hide_title: true
       <span class="publication-stat-value">{{ first_or_cofirst_publications.size }} / {{ corresponding_publications.size }}</span>
       <span class="publication-stat-label">First or co-first / corresponding</span>
     </div>
-    <a class="publication-stat publication-stat-link" href="https://scholar.google.com/citations?user=bLVSRuUAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="View current citations on Google Scholar">
-      <span class="publication-stat-value">42 <span class="publication-stat-arrow" aria-hidden="true">↗</span></span>
+    <a class="publication-stat publication-stat-link" href="{{ site.data.site_stats.scholar_url }}" target="_blank" rel="noopener noreferrer" aria-label="View current citations on Google Scholar">
+      <span class="publication-stat-value">{{ site.data.site_stats.citations }} <span class="publication-stat-arrow" aria-hidden="true">↗</span></span>
       <span class="publication-stat-label">Citations</span>
     </a>
-    <a class="publication-stat publication-stat-link" href="https://scholar.google.com/citations?user=bLVSRuUAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="View current H-index on Google Scholar">
-      <span class="publication-stat-value">4 <span class="publication-stat-arrow" aria-hidden="true">↗</span></span>
+    <a class="publication-stat publication-stat-link" href="{{ site.data.site_stats.scholar_url }}" target="_blank" rel="noopener noreferrer" aria-label="View current H-index on Google Scholar">
+      <span class="publication-stat-value">{{ site.data.site_stats.h_index }} <span class="publication-stat-arrow" aria-hidden="true">↗</span></span>
       <span class="publication-stat-label">H-index</span>
     </a>
   </div>
+  <p class="publication-stats-updated">Google Scholar metrics updated {{ site.data.site_stats.updated | date: "%B %d, %Y" }}.</p>
 
   <div class="publication-resource-links">
-    <a class="publication-resource-link publication-resource-link-primary" href="https://scholar.google.com/citations?user=bLVSRuUAAAAJ" target="_blank" rel="noopener noreferrer">
+    <a class="publication-resource-link publication-resource-link-primary" href="{{ site.data.site_stats.scholar_url }}" target="_blank" rel="noopener noreferrer">
       Google Scholar <span aria-hidden="true">↗</span>
     </a>
     <a class="publication-resource-link" href="{{ '/assets/bibliography/publications.bib' | relative_url }}" download>

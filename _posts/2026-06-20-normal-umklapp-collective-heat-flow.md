@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Do Phonon Collisions Always Create Thermal Resistance? Normal, Umklapp, and Collective Heat Flow"
+title: "Do Phonon Collisions Always Create Thermal Resistance? Normal vs Umklapp"
 lang: en
 translation_key: normal-umklapp-collective-heat-flow
 permalink: /blog/2026/06/20/normal-umklapp-collective-heat-flow/
@@ -20,9 +20,9 @@ Scattering is often described as the microscopic origin of thermal resistance: a
 
 The central question is therefore not merely **how frequently phonons collide**, but **which quantities a collision conserves and which slow collective motions it relaxes**.
 
-This article builds on [From Microscopic Energy Transport to Fourier's Law]({{ '/blog/2026/06/20/from-energy-transport-to-fourier-law/' | relative_url }}) and asks a sharper question: does every phonon collision produce thermal resistance?
+The [previous article]({{ '/blog/2026/06/20/from-energy-transport-to-fourier-law/' | relative_url }}) treated collective momentum only as an additional slow variable beyond Fourier's law. Here the general non-Fourier criteria are not repeated; the focus is how that momentum is established, transported, and dissipated by collisions.
 
-## 1. Three-phonon scattering in reciprocal space
+## Collision kinematics and conserved quantities
 
 Anharmonicity allows phonons to be created and annihilated. For a three-phonon absorption process,
 
@@ -52,7 +52,7 @@ Because wave vectors that differ by $\boldsymbol G$ represent equivalent points 
 
 The familiar picture of an Umklapp event “flipping” the momentum is a useful geometric mnemonic, not a literal mechanical collision between particles. A phonon wave vector is a label of a lattice eigenmode, and crystal momentum is defined only modulo $\boldsymbol G$.
 
-## 2. Crystal momentum is not the same as mechanical momentum
+Before asking whether momentum is conserved, crystal momentum must be distinguished from the mechanical momentum of the solid.
 
 The total phonon crystal momentum may be written schematically as
 
@@ -79,7 +79,7 @@ This is the first important qualification:
 
 > A Normal process conserves total crystal momentum, but it can still redistribute and partially relax heat current because heat current is not generally proportional to crystal momentum.
 
-## 3. What Normal scattering actually does
+## Where Normal and resistive processes drive the distribution
 
 Normal collisions rapidly exchange energy and momentum among phonon modes while preserving the total energy and crystal momentum. Repeated N scattering does not drive the system directly toward the stationary Bose--Einstein distribution
 
@@ -105,7 +105,7 @@ In this sense, N processes are analogous to momentum-conserving collisions among
 
 This analogy also explains a subtle point: frequent N collisions can make individual phonon mean free paths short while allowing a collective heat-carrying drift to remain long-lived. A linewidth or single-mode lifetime is therefore not automatically a transport relaxation time.
 
-## 4. What makes a process resistive?
+Once Normal processes establish a drifting distribution, steady resistance is controlled by mechanisms that can destroy that drift.
 
 A process is resistive if it relaxes the slow collective motion that overlaps with the heat current. Important mechanisms include
 
@@ -119,7 +119,7 @@ Umklapp processes are usually resistive because the phonon system transfers a re
 
 Thermal resistance is most precisely connected to entropy production and decay of the driven non-equilibrium distribution—not merely to the number of scattering events.
 
-## 5. The collision operator, not a list of lifetimes
+## Why the collision operator matters
 
 After linearization, the steady phonon BTE can be written schematically as
 
@@ -141,7 +141,7 @@ The single-mode relaxation-time approximation replaces $\boldsymbol\Omega$ by a 
 
 The iterative BTE solution is not merely a numerical refinement. It restores the coupled response between modes.
 
-## 6. Two relaxation tendencies
+The Callaway picture compresses this operator structure into two distinct relaxation tendencies.
 
 The Callaway picture separates two tendencies:
 
@@ -159,7 +159,7 @@ N processes relax the distribution toward the drifting state $n^d$, whereas resi
 
 This model is physically illuminating, although a modern first-principles collision operator need not be exactly representable by two scalar relaxation times.
 
-## 7. From ballistic motion to phonon hydrodynamics
+## From scale windows to observable signals
 
 Define representative lengths
 
@@ -171,69 +171,68 @@ $$
 
 where $\ell_N$ is the distance needed to establish collective local equilibrium and $\ell_R$ is the distance over which collective momentum is destroyed. For a channel of width $W$, three regimes can be distinguished schematically:
 
-### Ballistic: $W\ll\ell_N$
+**For $W\ll\ell_N$, transport is close to ballistic.**
 
 Phonons reach the boundary before enough N collisions occur to establish a local drifting distribution. Boundary injection and transmission dominate.
 
-### Hydrodynamic: $\ell_N\ll W\ll\ell_R$
+**For $\ell_N\ll W\ll\ell_R$, a hydrodynamic window opens.**
 
 Many N collisions establish local collective equilibrium, while resistive scattering remains weak across the device. Momentum is redistributed internally and is lost mainly at boundaries. A viscous, Poiseuille-like heat-flow profile can emerge.
 
-### Diffusive: $W\gg\ell_R$
+**For $W\gg\ell_R$, resistive processes restore diffusion.**
 
 Resistive events destroy the collective drift well inside the sample. Local Fourier behavior is recovered at sufficiently large scales.
 
 These inequalities are a regime map rather than sharp universal boundaries. A real phonon spectrum contains many velocities and relaxation lengths, and boundary specularity can substantially shift the crossover.
 
-## 8. Observable signatures of collective flow
+The scale inequalities are not yet experimental conclusions; they must appear in observables.
 
 Strong N scattering can produce phenomena that cannot be understood as a gas of independently relaxing phonons:
 
-### Poiseuille heat flow
+**Poiseuille heat flow.**
 
 Momentum-conserving collisions redistribute momentum across a channel. With momentum loss at the walls, the heat-flux profile can become largest at the center and suppressed near the boundaries, analogous to viscous fluid flow.
 
-### Second sound
+**Second sound.**
 
 If momentum relaxes slowly enough, temperature and heat flux can propagate as a damped wave rather than diffuse monotonically. N processes help establish the local drifting state that supports this collective mode; resistive processes damp it.
 
-### Non-monotonic size dependence
+**Non-monotonic size dependence.**
 
 Moving from ballistic to hydrodynamic transport can produce a Knudsen minimum or a faster-than-ballistic growth of effective conductivity with width over a limited range. The precise signature depends on geometry and scattering spectra.
 
 None of these effects follows from the statement “N scattering is non-resistive” alone. They arise from the hierarchy of N, resistive, and boundary time scales.
 
-## 9. Four common misconceptions
+## Avoiding false positives and building an evidence chain
 
-### “Every collision lowers thermal conductivity”
+**“Every collision lowers thermal conductivity.”**
 
 False. Momentum-conserving collisions can establish collective local equilibrium and redistribute momentum without directly destroying the drift.
 
-### “Normal scattering never relaxes heat current”
+**“Normal scattering never relaxes heat current.”**
 
 Also false in general. It conserves crystal momentum, not heat current. With nonlinear, multibranch dispersions, the two are not proportional.
 
-### “Umklapp rate is the transport resistance”
+**“Umklapp rate is the transport resistance.”**
 
 Incomplete. U scattering is an important momentum-relaxing mechanism, but conductivity depends on how the complete collision operator acts on the driven distribution.
 
-### “The shortest phonon lifetime controls heat transport”
+**“The shortest phonon lifetime controls heat transport.”**
 
 Not necessarily. A short single-mode lifetime can result from rapid N redistribution while a collective drift remains long-lived.
 
-## 10. Consequences for first-principles calculations
+After avoiding these misconceptions, the claim of collective transport still needs a testable chain of evidence.
 
-When N processes are important, several computational choices become physically significant:
+A difference between RTA and the full PBTE is a clue, not proof of phonon hydrodynamics. A stronger case connects four types of evidence:
 
-1. **Compare RTA and iterative BTE results.** A large difference signals strong mode repopulation and possible collective transport.
-2. **Separate scattering channels.** Inspect N, U, isotope, defect, and boundary contributions rather than only total linewidths.
-3. **Converge long-wavelength modes carefully.** Hydrodynamic transport is often sensitive to fine $\boldsymbol q$ meshes and rare resistive events.
-4. **Do not equate linewidth with transport relaxation.** Spectroscopic decay and heat-current decay probe different projections of the collision operator.
-5. **Include geometry explicitly.** A bulk conductivity alone cannot predict Poiseuille flow or boundary-controlled momentum loss.
+1. **Operator evidence:** the thermal driving term overlaps strongly with slowly decaying collective eigenmodes of the collision operator;
+2. **Scale evidence:** a window $\ell_N\ll W\ll\ell_R$ exists, with boundary specularity included in the momentum-loss analysis;
+3. **Spectral evidence:** the conclusion is converged with respect to long-wavelength modes, fine $\boldsymbol q$ meshes, and rare resistive events;
+4. **Observable evidence:** the model predicts a Poiseuille-like profile, second sound, or a non-monotonic size trend—not merely a large bulk conductivity.
 
-## 11. The physical answer
+The purpose here is to identify collective flow, not to repeat the complete DFT-to-conductivity workflow. That workflow is developed in [From First Principles to Lattice Thermal Conductivity: The PBTE Method]({{ '/blog/2025/02/16/abinitio-bte/' | relative_url }}).
 
-Do phonon collisions always create thermal resistance? **No.**
+The evidence returns us to the opening question: do phonon collisions always create thermal resistance? **No.**
 
 Normal scattering conserves crystal momentum and can drive phonons toward a collectively drifting distribution. It often redistributes heat current rather than directly eliminating it. Resistive mechanisms are needed to destroy that drift and produce entropy associated with steady thermal resistance.
 

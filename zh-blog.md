@@ -4,6 +4,9 @@ description: "刘世贤关于声子输运、热物理、第一性原理计算、
 permalink: /zh/blog/
 lang: zh
 hide_title: true
+extra_css:
+  - /assets/css/components/listing.css
+  - /assets/css/components/blog.css
 ---
 {% assign blog_posts = site.posts | where: "lang", "zh" %}
 {% assign featured_posts = blog_posts | where: "featured", true %}

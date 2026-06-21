@@ -1,0 +1,222 @@
+/* Software component */
+
+.software-card {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.72fr) minmax(0, 1.8fr);
+  gap: clamp(1.2rem, 3vw, 2rem);
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid rgba(219, 226, 234, 0.92);
+  border-radius: 16px;
+  background: var(--card);
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  box-shadow: 0 10px 30px rgba(30, 71, 101, 0.055);
+}
+
+.software-logo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 220px;
+  border: 1px solid rgba(23, 92, 144, 0.1);
+  border-radius: 12px;
+  background: linear-gradient(145deg, #f6fafc, #ffffff);
+  padding: 1.15rem;
+}
+
+.software-logo {
+  width: 100%;
+  max-width: 210px;
+  height: auto;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+}
+
+.software-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(100%, 210px);
+  aspect-ratio: 1.45;
+  overflow: hidden;
+  border: 1px solid rgba(23, 92, 144, 0.16);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 22% 20%, rgba(85, 172, 210, 0.24), transparent 34%),
+    linear-gradient(145deg, #153d5a, #21749a);
+  color: #ffffff;
+  box-shadow: 0 14px 30px rgba(24, 76, 107, 0.16);
+}
+
+.software-mark::before,
+.software-mark::after {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  content: "";
+}
+
+.software-mark::before {
+  width: 8.5rem;
+  height: 8.5rem;
+  right: -3.6rem;
+  bottom: -4.8rem;
+}
+
+.software-mark::after {
+  width: 5rem;
+  height: 5rem;
+  right: -2rem;
+  bottom: -3rem;
+}
+
+.software-mark strong {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-sans, sans-serif);
+  font-size: clamp(2.2rem, 5vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+.software-mark small {
+  position: relative;
+  z-index: 1;
+  margin-top: -0.8rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.software-mark-wave {
+  position: absolute;
+  top: 50%;
+  left: 12%;
+  width: 76%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.38), transparent);
+  transform: rotate(-9deg);
+}
+
+.software-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.software-heading-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.software-kicker {
+  margin: 0 0 0.2rem;
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.software-name {
+  margin: 0;
+  color: var(--heading);
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
+}
+
+.software-status {
+  flex: none;
+  border-radius: 999px;
+  background: #eaf7ef;
+  color: #237044;
+  padding: 0.22rem 0.62rem;
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.software-description {
+  margin: 0.65rem 0 0;
+  color: var(--muted);
+  line-height: 1.68;
+}
+
+.software-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+}
+
+.software-tags span {
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 0.2rem 0.58rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.software-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.software-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  min-height: 2.3rem;
+  border: 1px solid rgba(23, 92, 144, 0.23);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--accent);
+  padding: 0.42rem 0.72rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.software-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(30, 71, 101, 0.09);
+}
+
+.software-link-primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+.software-card {
+    grid-template-columns: 1fr;
+  }
+
+.software-logo-wrap {
+    min-height: 170px;
+  }
+
+.software-logo {
+    max-width: 190px;
+  }
+
+.software-heading-row {
+    align-items: flex-start;
+  }
+
+.software-link {
+    flex: 1 1 9rem;
+  }
+
+}

@@ -7,7 +7,7 @@
     - "Graphene"
 
 - publication_key: "shixian2025jap"
-  label: "Machine-learned nanostructure thermophysics"
+  label: "ML-based nanothermophysics"
   summary: "Uses neuroevolution machine-learned potentials and lattice dynamics to study how confinement, size, and temperature shape the heat capacity of silicon nanostructures."
   methods:
     - "NEP"
@@ -15,7 +15,7 @@
     - "Nanostructures"
 
 - publication_key: "shixian2024determination"
-  label: "Boundary-limited transport in silicon nanowires"
+  label: "Roughness-dependent size effects"
   summary: "Examines how diameter, surface roughness, and quantum size effects jointly govern heat capacity and thermal conductivity in unsmooth silicon nanowires."
   methods:
     - "Surface roughness"

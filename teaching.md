@@ -3,6 +3,9 @@ title: Teaching
 description: "Course materials and schedules for numerical simulation methods and nanoscale thermal physics taught by Shixian Liu."
 permalink: /teaching/
 hide_title: true
+extra_css:
+  - /assets/css/components/listing.css
+  - /assets/css/components/teaching.css
 ---
 {% assign lecture_count = 0 %}
 {% for course in site.data.teaching %}

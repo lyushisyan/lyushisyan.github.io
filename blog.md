@@ -4,6 +4,9 @@ description: "Technical notes by Shixian Liu on phonon transport, thermophysics,
 permalink: /blog/
 lang: en
 hide_title: true
+extra_css:
+  - /assets/css/components/listing.css
+  - /assets/css/components/blog.css
 ---
 {% assign blog_posts = site.posts | where_exp: "post", "post.lang != 'zh'" %}
 {% assign featured_posts = blog_posts | where: "featured", true %}

@@ -28,7 +28,7 @@ The method is powerful because it exposes microscopic transport mechanisms rathe
 
 This article complements the earlier discussions of [the emergence of Fourier's law]({{ '/blog/2026/06/20/from-energy-transport-to-fourier-law/' | relative_url }}) and [Normal versus Umklapp scattering]({{ '/blog/2026/06/20/normal-umklapp-collective-heat-flow/' | relative_url }}). Here the focus is methodological: how does an atomic structure become a prediction of $\boldsymbol\kappa$?
 
-## 1. Scope of the first-principles PBTE
+## Method boundaries and first-principles input
 
 The conventional PBTE workflow is designed primarily for near-equilibrium lattice heat transport in periodic crystals whose vibrations can be described by reasonably well-defined phonon quasiparticles.
 
@@ -42,7 +42,7 @@ Its natural output is the intrinsic lattice thermal conductivity of a bulk cryst
 
 The method does not automatically describe an interface, a finite device, or strongly nonlocal heat flow. Those problems require additional boundary conditions or transport formalisms even when the bulk phonon properties come from first principles.
 
-## 2. What “first principles” contributes
+Once the scope is clear, the next question is what “first principles” actually contributes to the transport calculation.
 
 In this context, first-principles calculations do not simply “solve the Schrödinger equation.” In practice, density functional theory (DFT) provides an approximate electronic ground-state energy and atomic forces for a chosen exchange-correlation functional, pseudopotential or all-electron treatment, basis set, and Brillouin-zone sampling.
 
@@ -63,7 +63,7 @@ For lattice dynamics, the most important result is not usually the electronic ba
 
 The phrase “without empirical fitting” should therefore be used carefully. Standard DFT-based PBTE calculations may not fit thermal conductivity to experiment, but they still contain modeling choices and approximations. The exchange-correlation functional, equilibrium volume, pseudopotential, treatment of long-range electrostatics, and magnetic or relativistic effects can all propagate into the phonon spectrum and scattering rates.
 
-## 3. Interatomic force constants: derivatives of the energy surface
+## From energy derivatives to phonon modes
 
 Let $u_{lb}^{\alpha}$ be the displacement of atom $b$ in unit cell $l$ along Cartesian direction $\alpha$. Expanding the potential energy around equilibrium gives
 
@@ -92,7 +92,7 @@ $$
 
 Second-order IFCs determine harmonic phonons. Third-order IFCs generate the leading three-phonon interaction. Fourth- and higher-order terms contribute to frequency renormalization and higher-order scattering, which can be important at elevated temperature or in strongly anharmonic materials.
 
-### 3.1 Finite displacements
+**Finite displacements.**
 
 In a supercell finite-displacement calculation, selected atoms are displaced and the resulting forces are evaluated. Symmetry reduces the number of required configurations, and the IFCs are obtained from finite differences or regression.
 
@@ -100,13 +100,13 @@ The displacement amplitude must be large enough to overcome numerical force nois
 
 Third- and higher-order IFCs require many more displacement patterns. Compressive sensing, systematic regression, and machine-learning potentials can reduce the cost, but they introduce their own training, regularization, and validation requirements.
 
-### 3.2 Density functional perturbation theory
+**Density functional perturbation theory.**
 
 Density functional perturbation theory (DFPT) computes the response to periodic perturbations by solving linearized self-consistent equations. It is particularly established for harmonic phonons, dielectric tensors, and Born effective charges in reciprocal space.
 
 Higher-order response theory exists, but third-order IFC workflows are not equally available or equally convenient in every electronic-structure package. In practice, many PBTE calculations combine DFPT or finite displacements for harmonic IFCs with finite-displacement forces for third-order IFCs.
 
-## 4. Harmonic lattice dynamics
+Once second-order IFCs are available, harmonic lattice dynamics converts real-space interactions into reciprocal-space phonon modes.
 
 The harmonic equations of motion are
 
@@ -156,7 +156,9 @@ $$
 
 Before any transport calculation, the harmonic model should reproduce basic physical constraints. Imaginary modes may indicate a genuinely unstable structure, an unconverged calculation, an inappropriate reference phase, or broken invariance in the fitted IFCs. They should not simply be removed without diagnosis.
 
-## 5. Anharmonicity and phonon scattering
+## From anharmonic scattering to the linearized PBTE
+
+This section keeps only the ingredients needed to construct the numerical collision matrix. The distinct resistive roles of Normal and Umklapp processes are developed in the companion article on [phonon collisions and collective heat flow]({{ '/blog/2026/06/20/normal-umklapp-collective-heat-flow/' | relative_url }}) and are not repeated here.
 
 Third-order IFCs determine matrix elements $V_{\lambda\lambda'\lambda''}$ for three-phonon absorption and decay. Allowed processes satisfy energy conservation and crystal-momentum selection rules:
 
@@ -191,7 +193,7 @@ The energy delta function must be integrated numerically on a discrete $\boldsym
 
 Isotope scattering is commonly treated as elastic mass-disorder scattering. Defects, boundaries, electrons, and four-phonon interactions require additional models or matrix elements. Adding rates with Matthiessen's rule can be useful, but it can obscure mode coupling and correlations when the underlying collision mechanisms are not independent.
 
-## 6. From equilibrium phonons to the linearized PBTE
+With scattering matrix elements in hand, the problem moves from an equilibrium spectrum to the non-equilibrium response driven by a temperature gradient.
 
 Under a small temperature gradient, write the phonon distribution as
 
@@ -230,7 +232,7 @@ $$
 
 $\boldsymbol\Omega$ is the linearized collision operator. Its diagonal terms describe loss from a mode; its off-diagonal terms describe repopulation of other modes. The precise normalization of $\boldsymbol\Omega$, the driving term, and $\boldsymbol F$ varies among derivations and software packages, but the physical content is the same: thermal conductivity is controlled by the inverse collision operator projected onto the heat-current-carrying response.
 
-## 7. RTA versus the full collision-operator solution
+Solving that linear system requires a direct modeling choice: whether to retain or discard repopulation between modes.
 
 In the single-mode relaxation-time approximation (RTA), the off-diagonal mode coupling is neglected:
 
@@ -256,39 +258,37 @@ $$
 C_\lambda |\boldsymbol v_\lambda|^2\tau_\lambda.
 $$
 
-RTA is inexpensive and often physically informative, but it treats every scattering event as an independent tendency toward the stationary equilibrium distribution. It therefore misses much of the collective repopulation produced by momentum-conserving Normal processes.
+RTA is inexpensive and useful for decomposing modal contributions, but it discards off-diagonal repopulation in the collision operator. Iterative, variational, or direct solvers retain that coupling, so the difference between the two solutions is a numerical and modeling choice that should be reported. Deciding whether the difference signals collective transport requires separate evidence from slow modes, scale windows, and geometry rather than another discussion inside this workflow article.
 
-Iterative, variational, or direct solvers retain the coupled collision operator. The difference between the full solution and RTA is especially important when Normal scattering is strong, although a large difference alone does not prove hydrodynamic transport. As discussed in the previous article, one must also examine the slow collective modes, resistive length scales, boundaries, and experimental geometry.
-
-## 8. A defensible computational workflow
+## A workflow is not a single command
 
 A reliable PBTE calculation is a sequence of convergence and validation problems, not a single command.
 
-### 8.1 Relax the reference structure
+**First relax the reference structure.**
 
 Converge the equilibrium volume, cell shape, atomic positions, and—where relevant—magnetic state. Residual stress or forces alter the harmonic spectrum and can strongly affect low-frequency modes.
 
-### 8.2 Converge the electronic calculation
+**Then converge the electronic calculation.**
 
 Test the basis cutoff, electronic $\boldsymbol k$ mesh, smearing scheme, self-consistency threshold, pseudopotential or PAW dataset, and exchange-correlation functional. Convergence should be judged using forces, stress, and phonon-sensitive observables, not total energy alone.
 
-### 8.3 Determine harmonic IFCs
+**Next determine the harmonic IFCs.**
 
 Choose a supercell or reciprocal-space grid that captures the interaction range. Check translational and rotational invariance, acoustic modes near $\Gamma$, non-analytic corrections in polar materials, and agreement with measured or independently calculated dispersions when available.
 
-### 8.4 Determine anharmonic IFCs
+**Then determine the anharmonic IFCs.**
 
 Converge supercell size, displacement magnitude, interaction cutoff, and regression settings. Enforce symmetry and sum rules carefully: corrections should reduce numerical noise without concealing an inadequate supercell or incomplete model.
 
-### 8.5 Construct the collision operator
+**Now construct the collision operator.**
 
 Include the scattering mechanisms required by the material and temperature range. Three-phonon plus isotope scattering is a common baseline, not a universal endpoint. Four-phonon scattering, temperature-renormalized phonons, electron--phonon scattering, defects, or boundaries may be necessary.
 
-### 8.6 Solve and converge the PBTE
+**Finally solve and converge the PBTE.**
 
 Converge the phonon $\boldsymbol q$ mesh, energy-conservation integration, and iterative-solver tolerance. Compare RTA and full solutions, and inspect tensor symmetry as well as scalar averages.
 
-### 8.7 Validate more than total conductivity
+**Validation must go beyond total conductivity.**
 
 Agreement in total $\kappa$ can result from compensating errors. Whenever possible, compare several quantities:
 
@@ -300,7 +300,7 @@ Agreement in total $\kappa$ can result from compensating errors. Whenever possib
 - directional anisotropy,
 - and cumulative conductivity versus frequency or mean free path.
 
-## 9. The numerical error budget
+## Convergence errors and model boundaries
 
 PBTE results should be reported with a convergence narrative. The dominant uncertainty can arise at several levels.
 
@@ -315,7 +315,7 @@ PBTE results should be reported with a convergence narrative. The dominant uncer
 
 Reporting only the final value—for example, “$\kappa=150$ W m$^{-1}$ K$^{-1}$”—does not establish predictive accuracy. A convincing result shows that the important intermediate physics is stable and interpretable.
 
-## 10. When the conventional PBTE is not enough
+Numerical convergence does not guarantee a complete physical model, so the limits of the conventional PBTE must also be tested.
 
 The standard phonon-gas PBTE relies on separable quasiparticle populations. It may need extension when:
 
@@ -331,7 +331,7 @@ Finite devices may require spatially resolved BTE, Monte Carlo, deterministic tr
 
 The appropriate question is therefore not “Is PBTE accurate?” in isolation, but “Does the chosen PBTE contain the slow variables and scattering mechanisms relevant to this material, temperature, and geometry?”
 
-## 11. Software as an implementation, not a substitute for validation
+## Reproducible implementation and the physical output
 
 Widely used tools include **phonopy/phono3py**, **ShengBTE**, and related interfaces to electronic-structure codes such as VASP, Quantum ESPRESSO, ABINIT, and others. They automate important algebra and data handling, but they cannot decide whether an IFC cutoff is adequate, an imaginary mode is physical, or an omitted scattering mechanism matters.
 
@@ -348,9 +348,7 @@ A reproducible calculation should record at least:
 
 The goal is not merely to rerun the workflow, but to make the physical approximations auditable.
 
-## 12. What the method really predicts
-
-The first-principles PBTE is best understood as a chain of controlled reductions:
+The reason to record the full workflow is not to accumulate input parameters, but to make the final physical inference traceable. The first-principles PBTE is best understood as a chain of controlled reductions:
 
 $$
 \text{electronic ground state}
@@ -380,4 +378,3 @@ The deepest result is not a single value of $\kappa$. It is an explanation of wh
 6. W. Li, J. Carrete, N. A. Katcho, and N. Mingo, “ShengBTE: A solver of the Boltzmann transport equation for phonons,” *Computer Physics Communications* **185**, 1747–1758 (2014).
 7. A. Togo, L. Chaput, and I. Tanaka, “Distributions of phonon lifetimes in Brillouin zones,” *Physical Review B* **91**, 094306 (2015).
 8. M. Simoncelli, N. Marzari, and F. Mauri, “Unified theory of thermal transport in crystals and glasses,” *Nature Physics* **15**, 809–813 (2019).
-

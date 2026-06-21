@@ -3,6 +3,9 @@ title: Software
 description: "Open-source scientific software developed by Shixian Liu for thermal transport and computational materials research."
 permalink: /software/
 hide_title: true
+extra_css:
+  - /assets/css/components/listing.css
+  - /assets/css/components/software.css
 ---
 <section class="listing-hero software-hero" aria-labelledby="software-heading">
   <p class="listing-hero-eyebrow">Scientific computing</p>
@@ -20,6 +23,12 @@ hide_title: true
     <div class="software-logo-wrap">
       {% if project.logo %}
         <img class="software-logo" src="{{ project.logo | relative_url }}" alt="{{ project.name }} logo">
+      {% else %}
+        <div class="software-mark" aria-label="{{ project.mark_label | default: project.name }}">
+          <span class="software-mark-wave" aria-hidden="true"></span>
+          <strong>{{ project.mark | default: project.name | slice: 0, 2 }}</strong>
+          <small>{{ project.name }}</small>
+        </div>
       {% endif %}
     </div>
     <div class="software-body">

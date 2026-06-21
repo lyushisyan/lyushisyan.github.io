@@ -58,6 +58,7 @@
   <div class="featured-research-grid">
     {% for feature in site.data.featured_research %}
       {% assign featured_publication = site.data.publications | where: "key", feature.publication_key | first %}
+      {% assign research_highlight = site.data.research_highlights | where: "publication_key", feature.publication_key | first %}
       {% if featured_publication %}
         <article class="featured-research-card">
           <a class="featured-research-image-link" href="https://doi.org/{{ featured_publication.doi }}" target="_blank" rel="noopener noreferrer" aria-label="Read {{ featured_publication.title }}">
@@ -70,6 +71,11 @@
             <ul class="featured-method-list" aria-label="Research methods">
               {% for method in feature.methods %}<li>{{ method }}</li>{% endfor %}
             </ul>
+            {% if research_highlight %}
+              <a class="research-highlight-badge" href="{{ research_highlight.url }}" target="_blank" rel="noopener noreferrer">
+                {{ research_highlight.label }} <span aria-hidden="true">↗</span>
+              </a>
+            {% endif %}
             <div class="featured-research-meta">
               <span>{{ featured_publication.journal }}</span>
               <span>{{ featured_publication.year }}</span>

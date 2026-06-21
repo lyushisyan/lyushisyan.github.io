@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "From Microscopic Energy Transport to Fourier's Law: When Does It Work, and When Does It Fail?"
+title: "From Microscopic Transport to Fourier's Law: When Does It Work—or Fail?"
 lang: en
 translation_key: microscopic-energy-transport-fourier-law
 permalink: /blog/2026/06/20/from-energy-transport-to-fourier-law/
 date: 2026-06-20 12:00:00
 last_updated: 2026-06-20
-reading_time: "14 min"
-description: "A physical derivation of Fourier's law from microscopic carrier transport, with clear criteria for diffusive, ballistic, hydrodynamic, transient, and coherent heat conduction."
+reading_time: "12 min"
+description: "A microscopic account of Fourier's law as a local constitutive relation, the scale separations it requires, and practical criteria for recognizing its breakdown."
 tags: theory thermal-transport nonequilibrium
 categories: physics
 related_posts: true
@@ -26,7 +26,7 @@ It says that the heat-flux density $\boldsymbol q$ is proportional and opposite 
 
 This distinction matters. When Fourier's law fails, energy is not violated. What fails is the assumption that the heat flux at one point and one instant is determined only by the temperature gradient at that same point and instant.
 
-## 1. Conservation law versus constitutive law
+## From conservation to a local constitutive law
 
 Local energy conservation is
 
@@ -60,7 +60,7 @@ $$
 
 Only the first term in this chain is fundamental. The other two require physical justification.
 
-## 2. The microscopic meaning of heat flux
+To see why that constitutive law has a limited domain, begin with the microscopic heat flux.
 
 In a dielectric crystal, heat is carried mainly by collective lattice excitations. In the phonon quasiparticle picture, a mode $\lambda=(\boldsymbol q,j)$ has frequency $\omega_\lambda$, group velocity $\boldsymbol v_\lambda$, and occupation $n_\lambda$. The heat flux is
 
@@ -100,15 +100,15 @@ $$
 
 with a representative mean free path $\Lambda=\bar v\tau$. This equation is useful, but a real material has a broad spectrum of mean free paths rather than a single $\Lambda$.
 
-## 3. Why Fourier's law works
+Because carriers propagate over finite distances and retain memory, the more general response is nonlocal.
 
 Fourier transport requires several forms of scale separation.
 
-### 3.1 Local equilibrium
+**Local equilibrium.**
 
 A small volume must contain enough internal scattering to relax toward an equilibrium-like distribution. Only then does a single scalar temperature characterize its energy. A strongly non-equilibrium distribution may have a well-defined total energy while not having a unique thermodynamic temperature.
 
-### 3.2 Separation of length scales
+**Separation of length scales.**
 
 Let $L$ be the characteristic scale over which temperature or geometry changes. The Knudsen number is
 
@@ -118,7 +118,7 @@ $$
 
 When the heat-carrying mean free paths are much smaller than $L$, carriers lose memory of their previous locations before the macroscopic field changes appreciably. The flux is then approximately local.
 
-### 3.3 Separation of time scales
+**Separation of time scales.**
 
 Let $t_{\mathrm{obs}}$ be the observation or heating time. If the relevant relaxation times satisfy
 
@@ -128,7 +128,7 @@ $$
 
 the carrier distribution can follow the changing temperature field quasi-statically. At ultrashort times, heat flux retains memory of earlier states.
 
-### 3.4 Linear response
+**Linear response.**
 
 Fourier's law is the first-order response to a weak thermodynamic driving force. If the temperature changes substantially over one mean free path,
 
@@ -140,19 +140,19 @@ higher-order and nonlocal effects may become important.
 
 These criteria are spectral: different modes have different $\Lambda_\lambda$ and $\tau_\lambda$. A sample can therefore be diffusive for some phonons and ballistic for others.
 
-## 4. Diffusive, quasiballistic, and ballistic transport
+## How spatial scale changes heat transport
 
-### Diffusive regime
+**Diffusive regime.**
 
 For $\mathrm{Kn}\ll1$, many momentum-randomizing events occur across the characteristic length. The microscopic distribution is close to local equilibrium, thermal conductivity is approximately independent of sample size, and Fourier's law is normally reliable.
 
-### Quasiballistic regime
+**Quasiballistic regime.**
 
 When $\mathrm{Kn}$ is no longer small for a significant part of the heat-carrying spectrum, boundaries and nonlocality suppress the contribution of long-mean-free-path modes. The measured effective conductivity becomes dependent on geometry and experimental length scale.
 
 In this regime it is misleading to ask only, “What is the thermal conductivity of the material?” A better question is, “What conductivity does this material exhibit for this geometry, size, and heating profile?”
 
-### Ballistic regime
+**Ballistic regime.**
 
 For $\mathrm{Kn}\gg1$, carriers cross the system with few internal collisions. Transport is controlled by injection from contacts, transmission probabilities, and boundary scattering. A Landauer description is more natural than a local gradient law:
 
@@ -165,7 +165,7 @@ $$
 
 Here $G$ is thermal conductance and $\mathcal T_m$ is the transmission of mode $m$. Conductance, rather than a size-independent conductivity, is the direct transport quantity.
 
-## 5. Memory and transient heat transport
+## Temporal memory and interfaces
 
 Fourier's law responds instantaneously to $\nabla T$. This mathematical idealization leads to a diffusion equation with nonzero response at arbitrarily large distance for any $t>0$. It does not imply physically infinite carrier speed; it indicates that microscopic relaxation time has been removed from the model.
 
@@ -178,28 +178,15 @@ $$
 
 which introduces heat-flux memory and produces a hyperbolic temperature equation. It can describe finite-time relaxation and wave-like temperature propagation phenomenologically. However, the fitted $\tau_q$ should not automatically be identified with one microscopic phonon lifetime; the microscopic BTE contains an entire spectrum of relaxation processes.
 
-## 6. Phonon hydrodynamics
+## What variables remain beyond Fourier's description
 
-Not all collisions destroy heat-current momentum in the same way.
+The criteria above assume that temperature is the only slow variable that must be retained. Two important classes of transport violate that assumption.
 
-- **Normal processes** conserve crystal momentum within the first Brillouin zone and rapidly redistribute momentum among phonons.
-- **Resistive processes**, including Umklapp scattering, isotope scattering, defects, and momentum-relaxing boundaries, degrade the collective drift.
+First, **collective crystal momentum** can relax much more slowly than local energy. Frequent collisions may then produce hydrodynamic rather than ordinary diffusive transport. The relevant question is what Normal and resistive processes conserve, not simply how often phonons collide. The collision-operator physics, displaced distributions, Poiseuille flow, and second sound are developed separately in [Do Phonon Collisions Always Create Thermal Resistance?]({{ '/blog/2026/06/20/normal-umklapp-collective-heat-flow/' | relative_url }}).
 
-When Normal scattering is much faster than Resistive scattering, phonons can establish a drifting local equilibrium before their momentum is destroyed. Heat flow then resembles a viscous fluid. Possible signatures include Poiseuille-like profiles, nonlocal heat flow, and second sound.
+Second, **intermode coherence** may survive on the transport time scale. A population-only BTE may then need a density-matrix or Wigner extension. The point needed here is narrower: whether Fourier's law emerges macroscopically and which microscopic variables are required to compute its conductivity are distinct questions.
 
-A schematic Guyer--Krumhansl form is
-
-$$
-\tau_R\frac{\partial\boldsymbol q}{\partial t}
-+\boldsymbol q
--\ell^2\left[\nabla^2\boldsymbol q
-+\alpha\nabla(\nabla\cdot\boldsymbol q)\right]
-=-\boldsymbol\kappa\nabla T,
-$$
-
-where $\ell$ is a nonlocal viscous length and the precise coefficients depend on material symmetry and the microscopic collision operator. The spatial-derivative term means that the flux at one point is influenced by its surroundings—exactly the locality assumption absent from Fourier's law.
-
-## 7. Interfaces and temperature jumps
+Spatial nonlocality becomes especially visible near an interface, where incident carriers from the two sides generally have different non-equilibrium distributions.
 
 At an interface, incident carriers from the two materials can have different non-equilibrium distributions. A temperature discontinuity may appear even in steady state:
 
@@ -211,13 +198,7 @@ where $R_K$ is the thermal boundary resistance and $q_n$ is the normal heat flux
 
 Near a strongly scattering interface, the apparent temperature may also depend on how it is defined—from local energy, a probe response, or a fitted distribution. “Temperature at a point” is itself a coarse-grained concept outside local equilibrium.
 
-## 8. When the phonon particle picture is incomplete
-
-The BTE treats heat carriers as populations of distinguishable modes. This is highly successful when vibrational modes are well separated compared with their linewidths. In complex crystals and disordered solids, nearly degenerate modes can retain off-diagonal coherences. Energy transfer then contains both population and coherence contributions.
-
-Wigner transport provides a density-matrix description that connects particle-like propagation in crystals with wave-like mode coupling in disordered systems. This does not necessarily eliminate Fourier behavior at large scales: a macroscopic relation $\boldsymbol q=-\boldsymbol\kappa\nabla T$ may still emerge, but the microscopic origin of $\boldsymbol\kappa$ is no longer captured by a population-only kinetic formula.
-
-## 9. A practical regime map
+## How to decide, and what the decision means
 
 Before applying Fourier's law, ask four questions:
 
@@ -235,7 +216,7 @@ Before applying Fourier's law, ask four questions:
 
 As an illustration, suppose a group of heat-carrying modes has $\Lambda\sim100$ nm. In a $10\ \mu$m structure, its Knudsen number is about $10^{-2}$ and its contribution is likely diffusive. In a 100 nm structure, $\mathrm{Kn}\sim1$ and boundary-sensitive transport is expected. This estimate is diagnostic, not a universal cutoff, because the complete mean-free-path spectrum and boundary conditions matter.
 
-## 10. What does it mean for Fourier's law to fail?
+The regime map leads to a final distinction: “failure of Fourier's law” can mean several different things.
 
 There are at least three distinct possibilities:
 

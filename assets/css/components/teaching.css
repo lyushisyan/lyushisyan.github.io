@@ -1,0 +1,522 @@
+/* Teaching component */
+
+.teaching-back {
+  margin-bottom: 0.6rem;
+}
+
+.teaching-back a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.teaching-back a:hover {
+  color: var(--accent);
+}
+
+.teaching-subtitle {
+  margin: 0.1rem 0 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.teaching-meta-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.4rem;
+  margin: 0.9rem 0 0.5rem;
+}
+
+.teaching-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.teaching-meta-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.teaching-meta-value {
+  font-size: 0.95rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.teaching-repo {
+  margin: 0.6rem 0 0;
+}
+
+.teaching-schedule-heading {
+  margin: 1.8rem 0 0.6rem;
+  font-size: 1.15rem;
+}
+
+.teaching-schedule {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.teaching-lecture-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.teaching-lecture-num {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin-top: 0.1rem;
+}
+
+.teaching-lecture-topic {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.teaching-lecture-desc {
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.teaching-lecture-materials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.55rem;
+  padding-left: 3.5rem;
+}
+
+.teaching-hero-bottom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.05rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(23, 92, 144, 0.12);
+}
+
+.teaching-hero-bottom .listing-hero-meta,
+.teaching-hero-bottom .teaching-lang-toggle {
+  margin: 0;
+}
+
+.teaching-course-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.teaching-index-card {
+  overflow: hidden;
+  border: 1px solid rgba(219, 226, 234, 0.92);
+  border-radius: 15px;
+  background: var(--card);
+  box-shadow: 0 8px 26px rgba(30, 71, 101, 0.045);
+  padding: clamp(1rem, 2.5vw, 1.35rem);
+}
+
+.teaching-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.teaching-course-number {
+  margin: 0 0 0.22rem;
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.teaching-card-header .teaching-course-title {
+  margin: 0;
+  color: var(--heading);
+  font-family: var(--heading-font);
+  font-size: clamp(1.25rem, 2.6vw, 1.55rem);
+  line-height: 1.3;
+}
+
+.teaching-term-badge {
+  flex: none;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 0.22rem 0.62rem;
+  font-size: 0.74rem;
+  font-weight: 750;
+}
+
+.teaching-index-card .teaching-course-overview {
+  margin: 0.72rem 0 0;
+  max-width: 900px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.teaching-card-meta {
+  display: grid;
+  grid-template-columns: 0.65fr 1fr 1.35fr;
+  gap: 0.7rem;
+  margin-top: 0.9rem;
+}
+
+.teaching-card-meta > span {
+  display: grid;
+  align-content: start;
+  min-width: 0;
+  border: 1px solid rgba(219, 226, 234, 0.9);
+  border-radius: 9px;
+  background: #f8fafc;
+  padding: 0.58rem 0.68rem;
+  color: #475569;
+  font-size: 0.79rem;
+  line-height: 1.42;
+}
+
+.teaching-card-meta strong {
+  margin-bottom: 0.12rem;
+  color: var(--muted);
+  font-size: 0.64rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.teaching-syllabus {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+}
+
+.teaching-syllabus h3 {
+  margin: 0 0 0.58rem;
+  color: var(--heading);
+  font-size: 0.92rem;
+}
+
+.teaching-syllabus .teaching-topic-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.teaching-syllabus .teaching-topic-list li {
+  display: grid;
+  grid-template-columns: 1.75rem minmax(0, 1fr) auto;
+  gap: 0.65rem;
+  align-items: center;
+  min-height: 2.45rem;
+  border-top: 1px solid #edf1f5;
+  padding: 0.42rem 0;
+}
+
+.teaching-syllabus .teaching-topic-list li:first-child {
+  border-top: 0;
+}
+
+.teaching-topic-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.72rem;
+  height: 1.72rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.teaching-topic-name {
+  color: #334155;
+  font-size: 0.86rem;
+  line-height: 1.42;
+}
+
+.teaching-syllabus .teaching-topic-link {
+  margin-left: 0;
+}
+
+.teaching-card-footer {
+  margin-top: 0.85rem;
+  text-align: right;
+}
+
+.teaching-card-footer a {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.teaching-card-footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.teaching-course-card {
+  padding: 1.2rem 1.3rem;
+}
+
+.teaching-course-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.teaching-course-title:hover {
+  color: var(--accent);
+}
+
+.teaching-course-subtitle {
+  margin: 0.1rem 0 0.5rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.teaching-course-overview {
+  margin: 0 0 0.7rem;
+  color: #4b5563;
+  font-size: 0.94rem;
+  line-height: 1.58;
+}
+
+.teaching-course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.teaching-meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border: none;
+  border-radius: 8px;
+  background: #f3f4f6;
+  padding: 0.2rem 0.55rem;
+}
+
+.teaching-course-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.teaching-table-card {
+  padding: 0.9rem 1rem;
+}
+
+.teaching-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+}
+
+.teaching-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+}
+
+.teaching-table th,
+.teaching-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 0.75rem 0.7rem;
+  vertical-align: top;
+  text-align: left;
+}
+
+.teaching-table thead th {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: #f8fafc;
+}
+
+.teaching-table .teaching-course-overview {
+  margin: 0 0 0.45rem;
+}
+
+.teaching-topic-list {
+  margin: 0;
+  padding-left: 1rem;
+  display: grid;
+  gap: 0.2rem;
+  color: #334155;
+  font-size: 0.88rem;
+}
+
+.teaching-topic-link {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.38rem;
+  padding: 0.04rem 0.4rem;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1.4;
+  border: 1px solid #bfdbfe;
+}
+
+.teaching-topic-link:hover {
+  background: #dbeafe;
+  color: #1e3a8a;
+}
+
+.teaching-schedule-lines {
+  display: grid;
+  gap: 0.2rem;
+  color: #334155;
+  font-size: 0.9rem;
+}
+
+.teaching-table td .teaching-course-actions {
+  min-width: 150px;
+}
+
+.teaching-lang-toggle {
+  display: flex;
+  gap: 0.45rem;
+  margin: 0 0 0.5rem;
+}
+
+.teaching-lang-btn {
+  min-width: 3rem;
+}
+
+.teaching-lang-btn.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+#teaching-page .teaching-lang-ru {
+  display: none;
+}
+
+#teaching-page[data-teaching-lang="ru"] .teaching-lang-en {
+  display: none;
+}
+
+#teaching-page[data-teaching-lang="ru"] .teaching-lang-ru {
+  display: inline;
+}
+
+@media (max-width: 640px) {
+.teaching-meta-grid {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+.teaching-hero-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+.teaching-card-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+.teaching-card-meta {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+
+.teaching-syllabus .teaching-topic-list li {
+    grid-template-columns: 1.75rem minmax(0, 1fr) auto;
+    gap: 0.5rem;
+  }
+
+.teaching-lecture-header {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+.teaching-lecture-materials {
+    padding-left: 0;
+  }
+
+.teaching-table-card {
+    padding: 0.6rem 0.7rem;
+  }
+
+.teaching-table {
+    min-width: 0;
+  }
+
+.teaching-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+.teaching-table,
+  .teaching-table tbody,
+  .teaching-table tr,
+  .teaching-table td {
+    display: block;
+    width: 100%;
+  }
+
+.teaching-table tr {
+    padding: 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #ffffff;
+  }
+
+.teaching-table tr + tr {
+    margin-top: 0.75rem;
+  }
+
+.teaching-table td {
+    border: 0;
+    padding: 0;
+  }
+
+.teaching-table td + td {
+    margin-top: 0.65rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid var(--line);
+  }
+
+}

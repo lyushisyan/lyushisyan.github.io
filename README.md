@@ -30,6 +30,21 @@ This repository is a personal academic website built with Jekyll and deployed on
 - `_posts/*.md`
 - `_posts/zh/*.md`
 
+### CSS Structure
+
+- `assets/css/style.css`: site-wide foundations, navigation, buttons, and utilities
+- `assets/css/about.css`: Home and About profile sections
+- `assets/css/components/listing.css`: shared page-header component
+- `assets/css/components/blog.css`: Blog index pages
+- `assets/css/components/post.css`: Blog article pages
+- `assets/css/components/publications.css`: Publications page
+- `assets/css/components/news.css`: News page
+- `assets/css/components/software.css`: Software page
+- `assets/css/components/teaching.css`: Teaching page
+- `assets/css/components/error.css`: 404 page
+
+Page-specific stylesheets are declared through the `extra_css` front-matter field.
+
 ### Local Preview
 
 After editing `assets/bibliography/publications.bib`, regenerate the static publication data:
@@ -108,6 +123,21 @@ git push -u origin <your-branch-name>
 - `_data/featured_research.yml`
 - `_posts/*.md`
 - `_posts/zh/*.md`
+
+### CSS 结构
+
+- `assets/css/style.css`：全站基础、导航、按钮和通用工具样式
+- `assets/css/about.css`：Home 与 About 页面
+- `assets/css/components/listing.css`：页面顶部标题框组件
+- `assets/css/components/blog.css`：Blog 列表页
+- `assets/css/components/post.css`：Blog 文章页
+- `assets/css/components/publications.css`：Publications 页面
+- `assets/css/components/news.css`：News 页面
+- `assets/css/components/software.css`：Software 页面
+- `assets/css/components/teaching.css`：Teaching 页面
+- `assets/css/components/error.css`：404 页面
+
+页面通过 front matter 中的 `extra_css` 字段声明所需组件样式。
 
 ### 本地预览
 
