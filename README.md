@@ -25,10 +25,18 @@ This repository is a personal academic website built with Jekyll and deployed on
 - `_data/software.yml`
 - `_data/teaching.yml`
 - `assets/bibliography/publications.bib`
+- `_data/publications.json` (generated from BibTeX)
+- `_data/featured_research.yml`
 - `_posts/*.md`
 - `_posts/zh/*.md`
 
 ### Local Preview
+
+After editing `assets/bibliography/publications.bib`, regenerate the static publication data:
+
+```bash
+node scripts/sync-publications.mjs
+```
 
 1. Install Ruby and Bundler.
 2. Install dependencies:
@@ -96,10 +104,18 @@ git push -u origin <your-branch-name>
 - `_data/software.yml`
 - `_data/teaching.yml`
 - `assets/bibliography/publications.bib`
+- `_data/publications.json`（由 BibTeX 自动生成）
+- `_data/featured_research.yml`
 - `_posts/*.md`
 - `_posts/zh/*.md`
 
 ### 本地预览
+
+修改 `assets/bibliography/publications.bib` 后，先重新生成静态论文数据：
+
+```bash
+node scripts/sync-publications.mjs
+```
 
 1. 安装 Ruby 和 Bundler。
 2. 安装依赖：

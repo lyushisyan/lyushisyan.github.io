@@ -1,9 +1,10 @@
 hero:
-  avatar: "/assets/img/profile/lsx_900.png"
+  avatar: "/assets/img/profile/lsx_900.webp"
   role: "Ph.D. Candidate · Assistant"
   name: "Shixian Liu"
+  tagline: "Phonon transport and heat conduction from microscopic mechanisms to practical thermal management."
   cv_label: "Download CV"
-  cv_url: "/assets/pdf/CV_LIU_SHIXIAN_2025.pdf"
+  cv_url: "/assets/pdf/CV_LIU_SHIXIAN.pdf"
   social_links:
     - label: "Google Scholar"
       value: "Google Scholar"

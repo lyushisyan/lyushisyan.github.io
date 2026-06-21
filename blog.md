@@ -1,9 +1,12 @@
 ---
 title: Blog
+description: "Technical notes by Shixian Liu on phonon transport, thermophysics, DFT, molecular dynamics, and scientific computing."
 permalink: /blog/
 lang: en
+hide_title: true
 ---
 {% assign blog_posts = site.posts | where_exp: "post", "post.lang != 'zh'" %}
+{% assign featured_posts = blog_posts | where: "featured", true %}
 {% assign tags_csv = "" %}
 {% for post in blog_posts %}
   {% for tag in post.tags %}
@@ -13,10 +16,21 @@ lang: en
 {% assign sorted_tags = tags_csv | split: "||" | uniq | sort %}
 
 <div class="blog-page-narrow">
-<div class="blog-language-switch" role="group" aria-label="Blog language switch">
-  <a class="pub-btn is-active" href="{{ '/blog/' | relative_url }}">EN</a>
-  <a class="pub-btn" href="{{ '/zh/blog/' | relative_url }}">中文</a>
-</div>
+<section class="listing-hero blog-hero" aria-labelledby="blog-heading">
+  <p class="listing-hero-eyebrow">Research notes</p>
+  <h1 id="blog-heading">Blog</h1>
+  <p class="listing-hero-summary">Physics-first essays on phonon transport, nonequilibrium heat flow, and computational materials science.</p>
+  <div class="blog-hero-bottom">
+    <div class="listing-hero-meta" aria-label="Blog summary">
+      <span><strong>{{ blog_posts.size }}</strong> essays</span>
+      <span><strong>{{ featured_posts.size }}</strong> featured</span>
+    </div>
+    <div class="blog-language-switch" role="group" aria-label="Blog language switch">
+      <a class="pub-btn is-active" href="{{ '/blog/' | relative_url }}">EN</a>
+      <a class="pub-btn" href="{{ '/zh/blog/' | relative_url }}">中文</a>
+    </div>
+  </div>
+</section>
 
 {% if sorted_tags.size > 0 %}
 <div class="blog-tag-cloud-wrap">
@@ -52,11 +66,13 @@ lang: en
     {% endcapture %}
     <li>
       <article class="blog-post-item" data-tags="{{ post_tags_slug | strip }}">
-        <div class="blog-post-toc-row">
-          <a class="blog-post-toc-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          <span class="blog-post-toc-dots" aria-hidden="true"></span>
-          <span class="blog-post-toc-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+        <div class="blog-post-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
+          {% if post.reading_time %}<span class="blog-post-meta-dot">·</span><span>{{ post.reading_time }} read</span>{% endif %}
+          {% if post.featured %}<span class="blog-featured-label">Featured</span>{% endif %}
         </div>
+        <h2 class="blog-post-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        {% if post.description %}<p class="blog-post-excerpt">{{ post.description }}</p>{% endif %}
         <div class="blog-post-footer">
           <div class="blog-post-tags">
             {% for tag in post.tags %}
@@ -67,6 +83,7 @@ lang: en
               </button>
             {% endfor %}
           </div>
+          <a class="blog-read-link" href="{{ post.url | relative_url }}">Read essay <span aria-hidden="true">→</span></a>
         </div>
       </article>
     </li>

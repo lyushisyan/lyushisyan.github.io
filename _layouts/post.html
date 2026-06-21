@@ -17,21 +17,121 @@ layout: default
     {% endif %}
   {% endfor %}
 {% endif %}
-<article class="post">
-  <div class="post-language-switch" role="group" aria-label="Post language switch">
-    {% if en_post_url != "" %}
-      <a class="pub-btn{% if current_lang != 'zh' %} is-active{% endif %}" href="{{ en_post_url | relative_url }}">EN</a>
-    {% else %}
-      <a class="pub-btn{% if current_lang != 'zh' %} is-active{% endif %}" href="{{ '/blog/' | relative_url }}">EN</a>
+{% assign blog_home = '/blog/' %}
+{% if current_lang == 'zh' %}
+  {% assign blog_home = '/zh/blog/' %}
+{% endif %}
+<article class="post" data-post-lang="{{ current_lang }}">
+  <header class="post-hero">
+    <div class="post-hero-toolbar">
+      <a class="post-back-link" href="{{ blog_home | relative_url }}">
+        <span aria-hidden="true">←</span>
+        {% if current_lang == 'zh' %}返回 Blog{% else %}Back to Blog{% endif %}
+      </a>
+      <div class="post-language-switch" role="group" aria-label="Post language switch">
+        {% if en_post_url != "" %}
+          <a class="pub-btn{% if current_lang != 'zh' %} is-active{% endif %}" href="{{ en_post_url | relative_url }}">EN</a>
+        {% else %}
+          <a class="pub-btn{% if current_lang != 'zh' %} is-active{% endif %}" href="{{ '/blog/' | relative_url }}">EN</a>
+        {% endif %}
+
+        {% if zh_post_url != "" %}
+          <a class="pub-btn{% if current_lang == 'zh' %} is-active{% endif %}" href="{{ zh_post_url | relative_url }}">中文</a>
+        {% else %}
+          <a class="pub-btn{% if current_lang == 'zh' %} is-active{% endif %}" href="{{ '/zh/blog/' | relative_url }}">中文</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <p class="post-kicker">{% if current_lang == 'zh' %}研究笔记{% else %}Research Note{% endif %}</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}
+      <p class="post-deck">{{ page.description }}</p>
     {% endif %}
 
-    {% if zh_post_url != "" %}
-      <a class="pub-btn{% if current_lang == 'zh' %} is-active{% endif %}" href="{{ zh_post_url | relative_url }}">中文</a>
-    {% else %}
-      <a class="pub-btn{% if current_lang == 'zh' %} is-active{% endif %}" href="{{ '/zh/blog/' | relative_url }}">中文</a>
+    <div class="post-meta" aria-label="Article information">
+      <span>
+        {% if current_lang == 'zh' %}发布{% else %}Published{% endif %}
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+      </span>
+      {% if page.last_updated %}
+        <span>
+          {% if current_lang == 'zh' %}更新{% else %}Updated{% endif %}
+          <time datetime="{{ page.last_updated }}">{{ page.last_updated | date: "%Y-%m-%d" }}</time>
+        </span>
+      {% endif %}
+      {% if page.reading_time %}
+        <span>{{ page.reading_time }} {% if current_lang == 'zh' %}阅读{% else %}read{% endif %}</span>
+      {% endif %}
+    </div>
+
+    {% if page.tags.size > 0 %}
+      <div class="post-tag-list" aria-label="Article tags">
+        {% for tag in page.tags %}
+          <span class="post-tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
     {% endif %}
+  </header>
+
+  <div class="post-reading-layout">
+    <aside class="post-toc-card" aria-label="Table of contents">
+      <p class="post-toc-label">{% if current_lang == 'zh' %}本文目录{% else %}On this page{% endif %}</p>
+      <nav id="post-toc-desktop" class="post-toc" aria-label="{% if current_lang == 'zh' %}本文目录{% else %}On this page{% endif %}"></nav>
+    </aside>
+
+    <div class="post-main-column">
+      <details class="post-toc-mobile">
+        <summary>{% if current_lang == 'zh' %}本文目录{% else %}On this page{% endif %}</summary>
+        <nav id="post-toc-mobile" class="post-toc" aria-label="{% if current_lang == 'zh' %}本文目录{% else %}On this page{% endif %}"></nav>
+      </details>
+
+      <div id="post-content" class="post-content">
+        {{ content }}
+      </div>
+
+      <footer class="post-footer-nav">
+        <span>{% if current_lang == 'zh' %}继续阅读研究笔记{% else %}Continue reading research notes{% endif %}</span>
+        <a href="{{ blog_home | relative_url }}">{% if current_lang == 'zh' %}查看全部文章 →{% else %}View all posts →{% endif %}</a>
+      </footer>
+    </div>
   </div>
-  <h1>{{ page.title }}</h1>
-  <p class="meta">Published on {{ page.date | date: "%Y-%m-%d" }}</p>
-  {{ content }}
 </article>
+
+<script>
+  (function () {
+    var content = document.getElementById("post-content");
+    var desktop = document.getElementById("post-toc-desktop");
+    var mobile = document.getElementById("post-toc-mobile");
+    if (!content || !desktop || !mobile) return;
+
+    var headings = Array.prototype.slice.call(content.querySelectorAll("h2"));
+    if (!headings.length) return;
+
+    function makeLink(heading) {
+      var link = document.createElement("a");
+      link.href = "#" + heading.id;
+      link.textContent = heading.textContent;
+      return link;
+    }
+
+    headings.forEach(function (heading) {
+      if (!heading.id) return;
+      desktop.appendChild(makeLink(heading));
+      mobile.appendChild(makeLink(heading));
+    });
+
+    if ("IntersectionObserver" in window) {
+      var links = Array.prototype.slice.call(desktop.querySelectorAll("a"));
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          links.forEach(function (link) {
+            link.classList.toggle("is-active", link.getAttribute("href") === "#" + entry.target.id);
+          });
+        });
+      }, { rootMargin: "-18% 0px -72% 0px" });
+      headings.forEach(function (heading) { observer.observe(heading); });
+    }
+  })();
+</script>

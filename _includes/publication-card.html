@@ -1,0 +1,45 @@
+{% assign publication = include.publication %}
+<article id="publication-{{ publication.key }}" class="card publication-card">
+  <img class="publication-preview"
+    src="{{ publication.preview | relative_url }}"
+    alt="Visual preview for {{ publication.title }}"
+    width="750"
+    height="500"
+    loading="lazy">
+  <div class="publication-body">
+    <h3 class="publication-title">{{ publication.title }}</h3>
+    <p class="publication-authors">{{ publication.authors_html }}</p>
+    <p class="publication-venue-line">
+      <em>{{ publication.journal }}</em>{% if publication.year %}, {{ publication.year }}{% endif %}{% if publication.volume != "" %}, Vol. {{ publication.volume }}{% endif %}{% if publication.number != "" %}, No. {{ publication.number }}{% endif %}{% if publication.pages != "" %}, {{ publication.pages }}{% endif %}
+    </p>
+
+    <div class="publication-controls" aria-label="Publication links and metrics">
+      {% if publication.impact_factor %}
+        <span class="publication-tag"><span class="publication-tag-label">IF</span><span class="publication-tag-value">{{ publication.impact_factor }}</span></span>
+      {% endif %}
+      {% if publication.scopus %}
+        <span class="publication-tag"><span class="publication-tag-label">Scopus</span><span class="publication-tag-value">{{ publication.scopus }}</span></span>
+      {% endif %}
+      {% if publication.doi %}
+        <a class="pub-btn" href="https://doi.org/{{ publication.doi }}" target="_blank" rel="noopener noreferrer">DOI</a>
+      {% elsif publication.link %}
+        <a class="pub-btn" href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">Article</a>
+      {% endif %}
+      {% if publication.pdf %}
+        <a class="pub-btn" href="{{ publication.pdf | relative_url }}" target="_blank" rel="noopener noreferrer">PDF</a>
+      {% endif %}
+      {% if publication.abstract %}
+        <details class="publication-native-detail">
+          <summary>Abstract</summary>
+          <div class="publication-detail"><p>{{ publication.abstract }}</p></div>
+        </details>
+      {% endif %}
+      {% if publication.bibtex %}
+        <details class="publication-native-detail">
+          <summary>BibTeX</summary>
+          <div class="publication-detail bibtex"><pre>{{ publication.bibtex | escape }}</pre></div>
+        </details>
+      {% endif %}
+    </div>
+  </div>
+</article>

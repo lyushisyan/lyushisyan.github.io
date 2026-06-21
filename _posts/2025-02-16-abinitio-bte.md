@@ -1,303 +1,383 @@
 ---
 layout: post
-title: First-Principles-Based PBTE Method
+title: "From First Principles to Lattice Thermal Conductivity: The PBTE Method"
 lang: en
 translation_key: abinitio-bte
 permalink: /blog/2025/02/16/abinitio-bte/
 date: 2025-02-16 06:36:10
-description: An introduction to the First-Principles Phonon Boltzmann Transport Equation (PBTE) method, covering DFT, lattice dynamics, and thermal conductivity calculations.
-tags: theory phonon
+last_updated: 2026-06-21
+reading_time: "18 min"
+description: "A physically grounded guide to first-principles phonon Boltzmann transport, connecting DFT, interatomic force constants, collision operators, numerical convergence, and lattice thermal conductivity."
+tags: method phonon thermal-transport
 categories: calculation
 related_posts: true
+featured: false
 toc:
   sidebar: left
 ---
 
-In microscale and nanoscale heat conduction, size effects mainly involve two key length scales: **phonon wavelength** and **mean free path (MFP)**.
+Predicting lattice thermal conductivity from an atomic structure requires more than computing a phonon dispersion and assigning a lifetime to each mode. The central task is to determine how a temperature gradient drives the phonon population away from equilibrium, how scattering redistributes that perturbation across mode space, and which parts of the resulting heat current survive.
 
-* If the system’s characteristic size is much larger than the phonon MFP, heat conduction is in the **macroscopic diffusive regime**, and the classical heat diffusion equation is applicable.
-* If the size is comparable to the phonon MFP, **classical size effects** and **ballistic phonon transport** must be considered. In this case, the **Boltzmann Transport Equation (BTE)** should be used to describe energy transport.
-* If the size further shrinks to the scale of the phonon wavelength, **wave characteristics of phonons** become important.
+The first-principles phonon Boltzmann transport equation (PBTE) method connects three levels of description:
 
-The **First-Principles Phonon Boltzmann Transport Equation (PBTE)** method is essentially a combination of the following three techniques:
+1. **Electronic structure** determines the potential-energy surface and its derivatives.
+2. **Lattice dynamics** converts those derivatives into phonon frequencies, eigenvectors, velocities, and interaction matrix elements.
+3. **The linearized PBTE** determines the non-equilibrium phonon distribution and the lattice thermal-conductivity tensor.
 
-* **First-principles method (ab initio method)**: A numerical method for solving the **Schrödinger equation**.
-* **Lattice dynamics method**: A method to compute phonon dispersion and relaxation times based on interatomic force constants (IFCs).
-* **Boltzmann Transport Equation (BTE)**: A heat transport model that uses phonon dispersion and relaxation time as inputs to calculate the system’s total thermal conductivity.
+The method is powerful because it exposes microscopic transport mechanisms rather than returning only a fitted bulk number. It is not, however, exact or parameter-free in an absolute sense. Its predictions depend on the electronic-structure approximation, numerical convergence, the order at which anharmonicity is truncated, and whether the phonon quasiparticle picture is valid.
 
+This article complements the earlier discussions of [the emergence of Fourier's law]({{ '/blog/2026/06/20/from-energy-transport-to-fourier-law/' | relative_url }}) and [Normal versus Umklapp scattering]({{ '/blog/2026/06/20/normal-umklapp-collective-heat-flow/' | relative_url }}). Here the focus is methodological: how does an atomic structure become a prediction of $\boldsymbol\kappa$?
 
-## 1. First-Principles Methods
+## 1. Scope of the first-principles PBTE
 
-First-principles (ab initio) methods refer to techniques that solve the electronic structure and atomic interactions of materials within the framework of quantum mechanics, using **minimal empirical parameters**. They are primarily based on numerical solutions to the Schrödinger equation, yielding properties such as ground-state electron density, band structure, total energy, and other physical quantities.
-In solid-state physics and materials science, first-principles methods are typically based on **Density Functional Theory (DFT)**. As the full many-body Schrödinger equation is difficult to solve directly, DFT provides an efficient way to handle many-body problems via the electron density and is widely applied to metals, semiconductors, insulators, molecules, and surfaces.
+The conventional PBTE workflow is designed primarily for near-equilibrium lattice heat transport in periodic crystals whose vibrations can be described by reasonably well-defined phonon quasiparticles.
 
-### 1.1 Basic Concept of Density Functional Theory
+Its natural output is the intrinsic lattice thermal conductivity of a bulk crystal, possibly augmented by isotope, defect, electron--phonon, or boundary-scattering models. It is especially useful for answering questions such as:
 
-The core concepts of DFT originate from the Hohenberg-Kohn theorem and the Kohn-Sham equation:
+- Which frequencies, wave vectors, and polarizations carry most of the heat?
+- Which scattering channels limit the conductivity?
+- How does $\kappa$ vary with temperature, isotope composition, or crystal direction?
+- What phonon mean-free-path spectrum underlies the bulk result?
+- How different are the relaxation-time and full collision-operator solutions?
 
-1. The **Hohenberg-Kohn theorem** states that all ground-state physical quantities of a system are functionals of the electron density \$\rho(\mathbf{r})\$, i.e., the Hamiltonian and energy of the system are uniquely determined by the electron density.
-2. The **Kohn-Sham equation** maps the real many-electron system to an auxiliary system of non-interacting electrons, using an appropriate **exchange-correlation potential** to approximate electron–electron interactions. The multi-body problem thus becomes solving a set of single-particle-like equations:
+The method does not automatically describe an interface, a finite device, or strongly nonlocal heat flow. Those problems require additional boundary conditions or transport formalisms even when the bulk phonon properties come from first principles.
 
-$$
-\left[ -\frac{\hbar^2}{2m}\nabla^2 + V_\text{ext}(\mathbf{r}) + V_\text{H}(\mathbf{r}) + V_\text{xc}(\mathbf{r}) \right] \phi_i(\mathbf{r}) = \epsilon_i \phi_i(\mathbf{r})
-$$
+## 2. What “first principles” contributes
 
-Where:
+In this context, first-principles calculations do not simply “solve the Schrödinger equation.” In practice, density functional theory (DFT) provides an approximate electronic ground-state energy and atomic forces for a chosen exchange-correlation functional, pseudopotential or all-electron treatment, basis set, and Brillouin-zone sampling.
 
-* \$V_\text{ext}(\mathbf{r})\$: Coulomb potential from atomic nuclei
-* \$V_\text{H}(\mathbf{r})\$: classical Hartree potential
-* \$V_\text{xc}(\mathbf{r})\$: exchange-correlation potential that includes all complex many-body effects
-
-In practice, one must choose an exchange-correlation functional (e.g., LDA, GGA, or hybrid functionals) and adopt a method to treat real and reciprocal space (e.g., pseudopotentials, PAW, APW+lo, etc.).
-
-### 1.2 Obtaining Interatomic Force Constants (IFCs) from DFT
-
-A crucial step in thermal conductivity calculations is determining the **interatomic force constants (IFCs)** of the material. These constants are used to construct the dynamical matrix and calculate lattice dynamical properties such as phonon dispersion and phonon lifetimes. IFCs can be obtained from first-principles calculations using two main methods:
-
-#### 1.2.1 Density Functional Perturbation Theory (DFPT)
-
-In the DFPT framework, small periodic perturbations are applied to the periodic structure, and the linearized Kohn-Sham equations are solved to obtain the first-, second-, or third-order responses of the potential energy with respect to atomic displacements.
-
-* DFPT can directly calculate IFCs and phonon modes in \$\mathbf{q}\$-space.
-* Both second-order (harmonic) and third-order (anharmonic) IFCs can be obtained for phonon dispersion and scattering analysis.
-
-#### 1.2.2 Finite Displacement Method (FDM)
-
-In this method, small displacements (e.g., 0.01 Å) are applied to atoms in a supercell, and the resulting changes in energy or forces are used to compute second-order and higher-order IFCs:
-
-* A sufficiently large supercell is required to ensure negligible interaction across boundaries.
-* Multiple configurations with different displacements must be computed to extract complete IFCs.
-
-Both methods rely on DFT-level force or energy calculations. Since phonon properties are sensitive to calculation accuracy, careful choices of exchange-correlation functional, plane-wave cutoff energy, and k-point mesh are necessary to ensure accurate IFCs.
-
-## 2. Harmonic and Anharmonic Lattice Dynamics
-
-In **harmonic lattice dynamics**, the second-order IFCs are used to obtain the phonon dispersion relation \$\omega_\lambda(\mathbf{q})\$. Once dispersion is known, specific heat of each phonon mode \$\lambda\$ can be computed.
-The phonon group velocity is defined as the gradient of the frequency with respect to wave vector: \$\mathbf{v}*\lambda = \nabla*\mathbf{q} \omega_\lambda\$
-The **relaxation time** \$\tau_\lambda\$ is obtained through **anharmonic lattice dynamics**, which involves both second- and higher-order IFCs.
-
-### 2.1 Dispersion Relation
-
-For a periodic crystal with small displacements around equilibrium, the total potential energy \$U\$ can be expanded as a Taylor series:
+The Kohn--Sham equations are
 
 $$
-U = U_0 + \frac{1}{2!} \sum_{ij}\sum_{\alpha\beta} \Phi_{ij}^{\alpha\beta} u_i^\alpha u_j^\beta + \frac{1}{3!} \sum_{ijk}\sum_{\alpha\beta\gamma} \Psi_{ijk}^{\alpha\beta\gamma} u_i^\alpha u_j^\beta u_k^\gamma + \mathcal{O}(u^4)
+\left[
+-\frac{\hbar^2}{2m_e}\nabla^2
++V_{\mathrm{ext}}(\boldsymbol r)
++V_{\mathrm H}[\rho](\boldsymbol r)
++V_{\mathrm{xc}}[\rho](\boldsymbol r)
+\right]
+\phi_i(\boldsymbol r)
+=\varepsilon_i\phi_i(\boldsymbol r).
 $$
 
-Where:
+For lattice dynamics, the most important result is not usually the electronic band structure itself, but an accurate local representation of the Born--Oppenheimer potential-energy surface near the relevant atomic configurations.
 
-* \$U_0\$: potential energy at equilibrium
-* \$u_{i}^\alpha\$: displacement of atom \$i\$ in direction \$\alpha\$
-* \$\Phi_{ij}^{\alpha\beta}\$: second-order IFCs (harmonic)
-* \$\Psi_{ijk}^{\alpha\beta\gamma}\$: third-order IFCs (anharmonic)
-* \$\mathcal{O}(u^4)\$: higher-order terms
+The phrase “without empirical fitting” should therefore be used carefully. Standard DFT-based PBTE calculations may not fit thermal conductivity to experiment, but they still contain modeling choices and approximations. The exchange-correlation functional, equilibrium volume, pseudopotential, treatment of long-range electrostatics, and magnetic or relativistic effects can all propagate into the phonon spectrum and scattering rates.
 
-Due to force equilibrium, first-order terms are absent. Neglecting higher-order terms leads to the harmonic approximation.
+## 3. Interatomic force constants: derivatives of the energy surface
 
-If atom \$i\$ belongs to the \$b\$-th atom in the \$l\$-th unit cell and \$j\$ is in the \$l'\$-th cell, the equation of motion becomes:
+Let $u_{lb}^{\alpha}$ be the displacement of atom $b$ in unit cell $l$ along Cartesian direction $\alpha$. Expanding the potential energy around equilibrium gives
 
 $$
-m_b\frac{d^2 u_{lb}^\alpha (t)}{d t^2} = -\sum_{l'b',\beta} \Phi_{lb,l'b'}^{\alpha\beta} u_{l'b'}^{\beta} (t)
+U=U_0
++\frac{1}{2!}\sum_{lb,l'b'}\sum_{\alpha\beta}
+\Phi_{lb,l'b'}^{\alpha\beta}
+u_{lb}^{\alpha}u_{l'b'}^{\beta}
++\frac{1}{3!}\sum_{lb,l'b',l''b''}\sum_{\alpha\beta\gamma}
+\Psi_{lb,l'b',l''b''}^{\alpha\beta\gamma}
+u_{lb}^{\alpha}u_{l'b'}^{\beta}u_{l''b''}^{\gamma}
++\mathcal O(u^4).
 $$
 
-Assuming plane wave solutions:
+The first-order term vanishes at a fully relaxed equilibrium structure. The coefficients are interatomic force constants (IFCs):
 
 $$
-u_{lb}^\alpha (t) = \frac{1}{\sqrt{m_b}}\Lambda_\lambda e_{b,\lambda}^\alpha e^{i(\mathbf q\cdot\mathbf R_l - \omega_\lambda t)}
+\Phi_{ij}^{\alpha\beta}
+=\frac{\partial^2 U}
+{\partial u_i^{\alpha}\partial u_j^{\beta}},
+\qquad
+\Psi_{ijk}^{\alpha\beta\gamma}
+=\frac{\partial^3 U}
+{\partial u_i^{\alpha}\partial u_j^{\beta}\partial u_k^{\gamma}}.
 $$
 
-Substituting gives the eigenvalue equation:
+Second-order IFCs determine harmonic phonons. Third-order IFCs generate the leading three-phonon interaction. Fourth- and higher-order terms contribute to frequency renormalization and higher-order scattering, which can be important at elevated temperature or in strongly anharmonic materials.
+
+### 3.1 Finite displacements
+
+In a supercell finite-displacement calculation, selected atoms are displaced and the resulting forces are evaluated. Symmetry reduces the number of required configurations, and the IFCs are obtained from finite differences or regression.
+
+The displacement amplitude must be large enough to overcome numerical force noise but small enough to remain within the intended Taylor expansion. A value near $0.01$ Å is common for harmonic calculations, but it is not universal and should be tested.
+
+Third- and higher-order IFCs require many more displacement patterns. Compressive sensing, systematic regression, and machine-learning potentials can reduce the cost, but they introduce their own training, regularization, and validation requirements.
+
+### 3.2 Density functional perturbation theory
+
+Density functional perturbation theory (DFPT) computes the response to periodic perturbations by solving linearized self-consistent equations. It is particularly established for harmonic phonons, dielectric tensors, and Born effective charges in reciprocal space.
+
+Higher-order response theory exists, but third-order IFC workflows are not equally available or equally convenient in every electronic-structure package. In practice, many PBTE calculations combine DFPT or finite displacements for harmonic IFCs with finite-displacement forces for third-order IFCs.
+
+## 4. Harmonic lattice dynamics
+
+The harmonic equations of motion are
 
 $$
-\omega_\lambda^2 \mathbf e _{b,\lambda} = \mathbf D_{bb'}^{\alpha\beta}(\textbf q) \textbf e_{b,\lambda}
+m_b\frac{d^2u_{lb}^{\alpha}}{dt^2}
+=-\sum_{l'b'\beta}
+\Phi_{lb,l'b'}^{\alpha\beta}u_{l'b'}^{\beta}.
 $$
 
-Where the **dynamical matrix** is:
+Using a plane-wave form leads to the eigenvalue problem
 
 $$
-\mathbf D_{bb'}^{\alpha\beta}(\textbf q) =\frac{1}{\sqrt{m_bm_{b'}}}\sum_{l'}\Phi_{0b,l'b'}^{\alpha\beta} e^{i\mathbf q\cdot(\mathbf R_{l'} - \mathbf R_0)}
+\sum_{b'\beta}
+D_{bb'}^{\alpha\beta}(\boldsymbol q)
+e_{b'\beta}^{\lambda}
+=\omega_{\lambda}^2
+e_{b\alpha}^{\lambda},
 $$
 
-Solving gives the phonon dispersion \$\omega_\lambda(\mathbf{q})\$ and corresponding eigenvectors \${e_{b,\lambda}^\alpha}\$.
-
-### 2.2 Phonon Scattering Mechanisms and Relaxation Time
-
-In real materials, phonons have finite lifetimes due to various scattering mechanisms. Within the BTE framework, these are expressed as **scattering rates** \$\Gamma_\lambda\$ or equivalently **relaxation times** \$\tau_\lambda\$.
-
-#### 2.2.1 Phonon-Phonon Scattering
-
-In nonmetals, the dominant scattering is **phonon-phonon interactions**, i.e., anharmonic lattice effects. Quantum mechanically, the crystal Hamiltonian is divided into harmonic and anharmonic parts.
-Third-order scattering (three-phonon processes) includes combination and splitting processes. Energy and momentum conservation must be satisfied (including Umklapp processes):
+where $\lambda=(\boldsymbol q,j)$ labels a wave vector and phonon branch. The dynamical matrix is
 
 $$
-\Gamma_{\lambda\lambda'\lambda''}^{\pm} = \frac{\hbar\pi}{4}\begin{Bmatrix}n_{\lambda'}-n_{\lambda''} \\ n_{\lambda'} + n_{\lambda''}+1 \end{Bmatrix} \frac{\delta(\omega_\lambda\pm\omega_{\lambda'} - \omega_{\lambda''})}{\omega_{\lambda}\omega_{\lambda'}\omega_{\lambda''}}|V_{\lambda\lambda'\lambda''}^{\pm}|^2\Delta_{\mathbf{G}, \,\mathbf{q}\pm \mathbf{q}' - \mathbf{q}''}
+D_{bb'}^{\alpha\beta}(\boldsymbol q)
+=\frac{1}{\sqrt{m_bm_{b'}}}
+\sum_{l'}
+\Phi_{0b,l'b'}^{\alpha\beta}
+\exp\!\left[i\boldsymbol q\cdot
+(\boldsymbol R_{l'}-\boldsymbol R_0)\right].
 $$
 
-#### 2.2.2 Phonon-Impurity Scattering
-
-Caused by mass or bonding perturbations from impurities (e.g., isotopes, defects):
+Diagonalization gives the phonon frequencies $\omega_\lambda$ and eigenvectors $\boldsymbol e_\lambda$. The group velocity is
 
 $$
-\Gamma_{\lambda\lambda'} = \frac{\pi \omega_\lambda^2}{2}\delta(\omega_\lambda - \omega_{\lambda'})\sum_bg(b) |\mathbf e_{b,\lambda}^*\cdot \mathbf e_{b,\lambda'}|^2
+\boldsymbol v_\lambda=\nabla_{\boldsymbol q}\omega_\lambda.
 $$
 
-Where \$g(b) = \sum_s f_s(b)(1 - \frac{m_{b,s}}{\overline{m}_b})^2\$ and \$\overline{m}*b = \sum_s f_s(b) m*{b,s}\$.
-
-## 3. Thermal Conductivity and the Boltzmann Transport Equation (BTE)
-
-### 3.1 Thermal Conductivity
-
-According to Fourier's law, the thermal conductivity \$\kappa\$ characterizes the ability of a material to conduct heat:
+The modal heat capacity is
 
 $$
-\mathbf{J} = -\kappa \nabla T
+C_\lambda
+=\hbar\omega_\lambda
+\frac{\partial n_\lambda^0}{\partial T},
+\qquad
+n_\lambda^0
+=\frac{1}{\exp(\hbar\omega_\lambda/k_BT)-1}.
 $$
 
-Where \$\mathbf{J}\$ is the heat flux vector and \$\nabla T\$ is the temperature gradient. In anisotropic materials, \$\kappa\$ is a tensor.
+Before any transport calculation, the harmonic model should reproduce basic physical constraints. Imaginary modes may indicate a genuinely unstable structure, an unconverged calculation, an inappropriate reference phase, or broken invariance in the fitted IFCs. They should not simply be removed without diagnosis.
 
-To predict \$\kappa\$ from phonon properties, one must use the BTE to describe the non-equilibrium phonon distribution under a small temperature gradient. Assuming steady-state and small gradients, the linearized BTE is:
+## 5. Anharmonicity and phonon scattering
 
-$$
--\mathbf{v}_\lambda \nabla T \frac{\partial n_\lambda^0}{\partial T} = \frac{n_\lambda'}{\tau_\lambda}
-$$
-
-Where:
-
-* \$n_\lambda = n_\lambda^0 + n_\lambda'\$ is the phonon distribution
-* \$n_\lambda^0\$ is the equilibrium Bose–Einstein distribution
-* \$n_\lambda'\$ is the perturbation from equilibrium
-* \$\tau_\lambda\$ is the relaxation time
-* \$\mathbf{v}_\lambda\$ is the group velocity of mode \$\lambda\$
-
-The Bose–Einstein distribution:
+Third-order IFCs determine matrix elements $V_{\lambda\lambda'\lambda''}$ for three-phonon absorption and decay. Allowed processes satisfy energy conservation and crystal-momentum selection rules:
 
 $$
-n_\lambda^0 = \frac{1}{\exp\left(\frac{\hbar \omega_\lambda}{k_B T}\right) - 1}
+\omega_\lambda+\omega_{\lambda'}=\omega_{\lambda''},
+\qquad
+\boldsymbol q+\boldsymbol q'
+=\boldsymbol q''+\boldsymbol G,
 $$
 
-The heat flux contributed by phonons:
+or
 
 $$
-\mathbf{J} = \frac{1}{V} \sum_\lambda \hbar\omega_\lambda \mathbf{v}_\lambda n_\lambda
+\omega_\lambda=\omega_{\lambda'}+\omega_{\lambda''},
+\qquad
+\boldsymbol q
+=\boldsymbol q'+\boldsymbol q''+\boldsymbol G.
 $$
 
-Where \$V = N_0 \cdot \Omega\$ is the total volume (\$\Omega\$ = unit cell volume, \$N_0\$ = number of \$\mathbf{q}\$-points). Comparing with Fourier's law gives the thermal conductivity tensor:
+Fermi's golden rule gives rates with the schematic structure
 
 $$
-\kappa^{\alpha\beta} = \frac{1}{V}\sum_\lambda \hbar\omega_\lambda \frac{\partial n_\lambda^0}{\partial T} v_\lambda^\alpha v_\lambda^\beta \tau_\lambda = \sum_\lambda c_\lambda v_\lambda^\alpha v_\lambda^\beta \tau_\lambda
+\Gamma^{(3)}
+\propto
+|V_{\lambda\lambda'\lambda''}|^2
+\times\text{occupation factors}
+\times\delta(\Delta\omega)
+\times\Delta_{\boldsymbol q,\boldsymbol G}.
 $$
 
-Where \$c_\lambda = \frac{\hbar\omega_\lambda}{V}\frac{\partial n_\lambda^0}{\partial T}\$ is the mode heat capacity.
-For isotropic systems:
+The energy delta function must be integrated numerically on a discrete $\boldsymbol q$ mesh, using a broadening scheme or a tetrahedron-like treatment. The result can be sensitive to mesh density and integration parameters.
+
+Isotope scattering is commonly treated as elastic mass-disorder scattering. Defects, boundaries, electrons, and four-phonon interactions require additional models or matrix elements. Adding rates with Matthiessen's rule can be useful, but it can obscure mode coupling and correlations when the underlying collision mechanisms are not independent.
+
+## 6. From equilibrium phonons to the linearized PBTE
+
+Under a small temperature gradient, write the phonon distribution as
 
 $$
-\kappa = \frac{1}{3V}\sum_\lambda \hbar\omega_\lambda \frac{\partial n_\lambda^0}{\partial T} |\mathbf{v}_\lambda|^2 \tau_\lambda
+n_\lambda
+=n_\lambda^0
+-\frac{\partial n_\lambda^0}{\partial T}
+\boldsymbol F_\lambda\cdot\nabla T,
 $$
 
-### 3.2 Single-Mode Relaxation Time Approximation (SMRTA)
-
-The SMRTA assumes that all phonon modes except mode \$\lambda\$ remain in equilibrium:
+where $\boldsymbol F_\lambda$ is the unknown vector mean-free-displacement response. The heat flux is determined by the non-equilibrium part:
 
 $$
-\begin{cases}
-n_\lambda = n_\lambda^0 + n_\lambda' \\
-n_{\lambda'} = n_{\lambda'}^0 \\
-n_{\lambda''} = n_{\lambda''}^0
-\end{cases}
+\boldsymbol J_Q
+=-\frac{1}{V}\sum_\lambda
+C_\lambda\boldsymbol v_\lambda
+(\boldsymbol F_\lambda\cdot\nabla T).
 $$
 
-The SMRTA relaxation time becomes:
+Comparison with $J_Q^{\alpha}=-\kappa^{\alpha\beta}\nabla_\beta T$ gives
 
 $$
-\frac{1}{\tau_\lambda^0} = \sum_{\lambda'\lambda''}^+ \Gamma_{\lambda\lambda'\lambda''}^+ + \sum_{\lambda'\lambda''}^- \frac{1}{2} \Gamma_{\lambda\lambda'\lambda''}^- + \sum_{\lambda'}\Gamma_{\lambda\lambda'}
+\kappa^{\alpha\beta}
+=\frac{1}{V}\sum_\lambda
+C_\lambda v_\lambda^{\alpha}F_\lambda^{\beta}.
 $$
 
-Where superscript 0 indicates this is the zero-order approximation.
-
-### 3.3 Iterative Solution
-
-To overcome SMRTA limitations, the **Full Iterative Method** solves the BTE self-consistently:
+The response $\boldsymbol F$ is found from a linear system whose schematic form is
 
 $$
-\begin{cases}
-n_\lambda = n_\lambda^0 + n_\lambda' \\
-n_{\lambda'} = n_{\lambda'}^0 + n_{\lambda'}' \\
-n_{\lambda''} = n_{\lambda''}^0 + n_{\lambda''}'
-\end{cases}
+\sum_{\lambda'}
+\Omega_{\lambda\lambda'}
+\boldsymbol F_{\lambda'}
+=\boldsymbol v_\lambda.
 $$
 
-**Initial Guess**:
-Use \$\tau_\lambda^0\$ from SMRTA.
+$\boldsymbol\Omega$ is the linearized collision operator. Its diagonal terms describe loss from a mode; its off-diagonal terms describe repopulation of other modes. The precise normalization of $\boldsymbol\Omega$, the driving term, and $\boldsymbol F$ varies among derivations and software packages, but the physical content is the same: thermal conductivity is controlled by the inverse collision operator projected onto the heat-current-carrying response.
 
-**Self-Consistent Iteration**:
-Form a coupled system of equations for all \$n_\lambda'\$ and iterate until convergence.
+## 7. RTA versus the full collision-operator solution
 
-The relaxation time becomes:
+In the single-mode relaxation-time approximation (RTA), the off-diagonal mode coupling is neglected:
 
 $$
-\tau_\lambda = \tau_\lambda^0 + \tau_\lambda^0 \Delta_\lambda
+\boldsymbol F_\lambda^{\mathrm{RTA}}
+=\tau_\lambda\boldsymbol v_\lambda.
 $$
 
+The conductivity becomes
+
 $$
-\Delta_\lambda = \sum_{\lambda'\lambda''}^+ \Gamma_{\lambda\lambda'\lambda''}^+ (\xi_{\lambda\lambda''}\tau_{\lambda''} - \xi_{\lambda\lambda'}\tau_{\lambda'}) \\ + \sum_{\lambda'\lambda''}^- \frac{1}{2} \Gamma_{\lambda\lambda'\lambda''}^-(\xi_{\lambda\lambda''}\tau_{\lambda''} + \xi_{\lambda\lambda'}\tau_{\lambda'}) \\+ \sum_{\lambda'}\Gamma_{\lambda\lambda'}\xi_{\lambda\lambda'}\tau_{\lambda'}
+\kappa_{\mathrm{RTA}}^{\alpha\beta}
+=\frac{1}{V}\sum_\lambda
+C_\lambda v_\lambda^{\alpha}
+v_\lambda^{\beta}\tau_\lambda.
 $$
 
-This method includes more detailed interactions and better captures **phonon redistribution** caused by **Normal processes**, especially in high thermal conductivity or low-temperature systems. However, it is also more computationally intensive.
+For an isotropic material this reduces to the familiar kinetic form
 
-## 4. Computational Workflow and Software
+$$
+\kappa_{\mathrm{RTA}}
+=\frac{1}{3V}\sum_\lambda
+C_\lambda |\boldsymbol v_\lambda|^2\tau_\lambda.
+$$
 
-The general workflow for calculating phonon thermal conductivity includes:
+RTA is inexpensive and often physically informative, but it treats every scattering event as an independent tendency toward the stationary equilibrium distribution. It therefore misses much of the collective repopulation produced by momentum-conserving Normal processes.
 
-### (1) Extract Interatomic Force Constants (IFCs)
+Iterative, variational, or direct solvers retain the coupled collision operator. The difference between the full solution and RTA is especially important when Normal scattering is strong, although a large difference alone does not prove hydrodynamic transport. As discussed in the previous article, one must also examine the slow collective modes, resistive length scales, boundaries, and experimental geometry.
 
-IFCs are the basis for lattice dynamics and thermal transport. They can be obtained via:
+## 8. A defensible computational workflow
 
-* **Classical potentials**: for simple structures with known potentials
-* **Machine learning potentials (MLPs)**: recent development balancing accuracy and efficiency
-* **First-principles (DFT)**: most common and accurate method without empirical parameters
+A reliable PBTE calculation is a sequence of convergence and validation problems, not a single command.
 
-Two main extraction methods:
+### 8.1 Relax the reference structure
 
-* **Finite Displacement Method**: Apply small displacements in supercells and use numerical derivatives to obtain IFCs (supports classical/ML/DFT).
-* **DFPT**: Perturbative method within DFT framework; directly computes IFCs in reciprocal space.
+Converge the equilibrium volume, cell shape, atomic positions, and—where relevant—magnetic state. Residual stress or forces alter the harmonic spectrum and can strongly affect low-frequency modes.
 
-### (2) Truncation and Symmetry Correction
+### 8.2 Converge the electronic calculation
 
-IFCs theoretically exist between all atomic pairs. In practice, a **cutoff radius** is applied. The impact of different cutoffs should be tested.
+Test the basis cutoff, electronic $\boldsymbol k$ mesh, smearing scheme, self-consistency threshold, pseudopotential or PAW dataset, and exchange-correlation functional. Convergence should be judged using forces, stress, and phonon-sensitive observables, not total energy alone.
 
-Also, due to numerical noise and truncation, computed IFCs may violate **translational invariance** or crystal symmetry. These must be corrected to ensure accurate thermal conductivity.
+### 8.3 Determine harmonic IFCs
 
-### (3) Compute Thermal Conductivity
+Choose a supercell or reciprocal-space grid that captures the interaction range. Check translational and rotational invariance, acoustic modes near $\Gamma$, non-analytic corrections in polar materials, and agreement with measured or independently calculated dispersions when available.
 
-With second- and third-order IFCs, combine **anharmonic lattice dynamics** and **BTE** using:
+### 8.4 Determine anharmonic IFCs
 
-* **SMRTA**: fast estimation
-* **Full Iterative Solution**: more accurate, especially for high-κ or low-T systems
+Converge supercell size, displacement magnitude, interaction cutoff, and regression settings. Enforce symmetry and sum rules carefully: corrections should reduce numerical noise without concealing an inadequate supercell or incomplete model.
 
-This method requires **no fitting parameters**, only the initial atomic structure. It is highly predictive and widely validated against experiments.
+### 8.5 Construct the collision operator
 
-### (4) Numerical Error and Applicability
+Include the scattering mechanisms required by the material and temperature range. Three-phonon plus isotope scattering is a common baseline, not a universal endpoint. Four-phonon scattering, temperature-renormalized phonons, electron--phonon scattering, defects, or boundaries may be necessary.
 
-Despite its strength, this method is still sensitive to:
+### 8.6 Solve and converge the PBTE
 
-* DFT convergence, functional choice, and displacement size
-* IFC cutoff radius
-* Brillouin zone integration grid (q-mesh)
+Converge the phonon $\boldsymbol q$ mesh, energy-conservation integration, and iterative-solver tolerance. Compare RTA and full solutions, and inspect tensor symmetry as well as scalar averages.
 
-Nevertheless, PBTE is considered one of the most reliable methods for predicting lattice thermal conductivity. It not only yields **total κ**, but also **mode-resolved contributions**, enabling studies of interfacial thermal conductance and nanoscale transport.
+### 8.7 Validate more than total conductivity
 
-### (5) Software and Interfaces
+Agreement in total $\kappa$ can result from compensating errors. Whenever possible, compare several quantities:
 
-Several open-source packages support this workflow:
+- phonon dispersion and density of states,
+- mode Grüneisen parameters,
+- heat capacity,
+- phonon linewidths or lifetimes,
+- temperature dependence of $\kappa$,
+- directional anisotropy,
+- and cumulative conductivity versus frequency or mean free path.
 
-* **ShengBTE**
-* **phono3py**
+## 9. The numerical error budget
 
-These integrate well with major first-principles codes like:
+PBTE results should be reported with a convergence narrative. The dominant uncertainty can arise at several levels.
 
-* **VASP**
-* **Quantum ESPRESSO**
-* **ABINIT**
+| Level | Typical source of uncertainty | Useful diagnostic |
+| --- | --- | --- |
+| Electronic structure | Functional, volume, pseudopotential, $\boldsymbol k$ mesh | Forces, stress, elastic constants, phonon frequencies |
+| Harmonic IFCs | Supercell, long-range electrostatics, sum rules | Acoustic modes, dispersion, group velocities |
+| Anharmonic IFCs | Displacement size, cutoff, regression, supercell | Grüneisen parameters, linewidth stability |
+| BZ integration | $\boldsymbol q$ mesh, broadening or tetrahedra | $\kappa$ versus mesh and integration parameter |
+| Collision physics | Missing four-phonon, electron, defect, or boundary terms | Temperature trend and mode-resolved rates |
+| Transport model | RTA, iterative PBTE, coherence neglected | RTA/full comparison and mode-overlap analysis |
 
-They enable an end-to-end automated workflow from structure optimization to IFC extraction and thermal conductivity prediction.
+Reporting only the final value—for example, “$\kappa=150$ W m$^{-1}$ K$^{-1}$”—does not establish predictive accuracy. A convincing result shows that the important intermediate physics is stable and interpretable.
+
+## 10. When the conventional PBTE is not enough
+
+The standard phonon-gas PBTE relies on separable quasiparticle populations. It may need extension when:
+
+- the sample size is comparable to important mean free paths and transport is nonlocal;
+- boundaries and contacts control the distribution;
+- anharmonicity strongly renormalizes frequencies with temperature;
+- four-phonon scattering is comparable to three-phonon scattering;
+- electron--phonon coupling contributes appreciably to phonon resistance;
+- nearly degenerate modes carry heat through inter-mode coherence;
+- or disorder is strong enough that propagating phonons are no longer the only useful excitations.
+
+Finite devices may require spatially resolved BTE, Monte Carlo, deterministic transport, or Landauer approaches. Strongly anharmonic crystals may require self-consistent phonons or temperature-dependent effective potentials. Complex crystals and disordered solids may require a Wigner or density-matrix treatment that includes off-diagonal coherences.
+
+The appropriate question is therefore not “Is PBTE accurate?” in isolation, but “Does the chosen PBTE contain the slow variables and scattering mechanisms relevant to this material, temperature, and geometry?”
+
+## 11. Software as an implementation, not a substitute for validation
+
+Widely used tools include **phonopy/phono3py**, **ShengBTE**, and related interfaces to electronic-structure codes such as VASP, Quantum ESPRESSO, ABINIT, and others. They automate important algebra and data handling, but they cannot decide whether an IFC cutoff is adequate, an imaginary mode is physical, or an omitted scattering mechanism matters.
+
+A reproducible calculation should record at least:
+
+- software versions and relevant compilation options,
+- electronic-structure inputs and pseudopotential identifiers,
+- relaxed structure,
+- supercell matrices and displacement amplitudes,
+- IFC cutoffs and fitting procedure,
+- $\boldsymbol k$ and $\boldsymbol q$ meshes,
+- integration and solver settings,
+- and convergence data for the reported observables.
+
+The goal is not merely to rerun the workflow, but to make the physical approximations auditable.
+
+## 12. What the method really predicts
+
+The first-principles PBTE is best understood as a chain of controlled reductions:
+
+$$
+\text{electronic ground state}
+\longrightarrow
+\text{energy derivatives and IFCs}
+\longrightarrow
+\text{phonon modes and interactions}
+\longrightarrow
+\text{collision operator}
+\longrightarrow
+\text{non-equilibrium distribution}
+\longrightarrow
+\boldsymbol\kappa.
+$$
+
+Each arrow introduces numerical choices and physical assumptions. The strength of the method is that those choices can be tested systematically and that the final conductivity can be decomposed into interpretable microscopic contributions.
+
+The deepest result is not a single value of $\kappa$. It is an explanation of which excitations carry heat, which collisions destroy or redistribute their collective motion, and why a macroscopic transport coefficient emerges from the atomic-scale dynamics.
+
+## References
+
+1. S. Baroni, S. de Gironcoli, A. Dal Corso, and P. Giannozzi, “Phonons and related crystal properties from density-functional perturbation theory,” *Reviews of Modern Physics* **73**, 515–562 (2001).
+2. D. A. Broido, M. Malorny, G. Birner, N. Mingo, and D. A. Stewart, “Intrinsic lattice thermal conductivity of semiconductors from first principles,” *Applied Physics Letters* **91**, 231922 (2007).
+3. K. Esfarjani, G. Chen, and H. T. Stokes, “Heat transport in silicon from first-principles calculations,” *Physical Review B* **84**, 085204 (2011).
+4. M. Omini and A. Sparavigna, “Beyond the isotropic-model approximation in the theory of thermal conductivity,” *Physical Review B* **53**, 9064–9073 (1996).
+5. L. Chaput, “Direct solution to the linearized phonon Boltzmann equation,” *Physical Review Letters* **110**, 265506 (2013).
+6. W. Li, J. Carrete, N. A. Katcho, and N. Mingo, “ShengBTE: A solver of the Boltzmann transport equation for phonons,” *Computer Physics Communications* **185**, 1747–1758 (2014).
+7. A. Togo, L. Chaput, and I. Tanaka, “Distributions of phonon lifetimes in Brillouin zones,” *Physical Review B* **91**, 094306 (2015).
+8. M. Simoncelli, N. Marzari, and F. Mauri, “Unified theory of thermal transport in crystals and glasses,” *Nature Physics* **15**, 809–813 (2019).
 

@@ -1,0 +1,23 @@
+- publication_key: "shixian2025wave"
+  label: "Wave–particle phonon transport"
+  summary: "Combines Monte Carlo and molecular dynamics simulations to quantify particle-like and wave-like contributions to heat transport in pillared graphene nanoribbons."
+  methods:
+    - "Monte Carlo"
+    - "Molecular dynamics"
+    - "Graphene"
+
+- publication_key: "shixian2025jap"
+  label: "Machine-learned nanostructure thermophysics"
+  summary: "Uses neuroevolution machine-learned potentials and lattice dynamics to study how confinement, size, and temperature shape the heat capacity of silicon nanostructures."
+  methods:
+    - "NEP"
+    - "Lattice dynamics"
+    - "Nanostructures"
+
+- publication_key: "shixian2024determination"
+  label: "Boundary-limited transport in silicon nanowires"
+  summary: "Examines how diameter, surface roughness, and quantum size effects jointly govern heat capacity and thermal conductivity in unsmooth silicon nanowires."
+  methods:
+    - "Surface roughness"
+    - "Fuchs-Sondheimer"
+    - "Ballistic transport"

@@ -1,9 +1,32 @@
 title: "Shixian Liu"
 description: "Personal academic website on thermophysics and phonon transport"
-url: "sxliu.site"
+url: "https://sxliu.site"
 baseurl: ""
+lang: en
 timezone: Europe/Moscow
 markdown: kramdown
+
+author:
+  name: "Shixian Liu"
+  url: "https://sxliu.site"
+  links:
+    - "https://scholar.google.com/citations?user=bLVSRuUAAAAJ"
+    - "https://orcid.org/0000-0003-3042-7817"
+    - "https://github.com/lyushisyan"
+
+social:
+  name: "Shixian Liu"
+  links:
+    - "https://scholar.google.com/citations?user=bLVSRuUAAAAJ"
+    - "https://orcid.org/0000-0003-3042-7817"
+    - "https://github.com/lyushisyan"
+
+logo: "/assets/img/profile/favicon.png"
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
 
 sass:
   style: compressed
@@ -36,6 +59,7 @@ defaults:
       type: "posts"
     values:
       layout: post
+      math: true
   - scope:
       path: ""
     values:

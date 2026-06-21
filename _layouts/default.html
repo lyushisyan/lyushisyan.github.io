@@ -1,13 +1,29 @@
 <!doctype html>
-<html lang="{{ page.lang | default: 'en' }}">
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-    <meta name="description" content="{{ site.description }}">
-    <link rel="icon" type="image/png" href="{{ '/assets/img/profile/sliu.png' | relative_url }}">
-    <link rel="apple-touch-icon" href="{{ '/assets/img/profile/sliu.png' | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    {% seo %}
+    {% if page.translation_key %}
+      {% for translated_page in site.posts %}
+        {% if translated_page.translation_key == page.translation_key %}
+          <link rel="alternate" hreflang="{{ translated_page.lang | default: 'en' }}" href="{{ translated_page.url | absolute_url }}">
+          {% unless translated_page.lang == 'zh' %}<link rel="alternate" hreflang="x-default" href="{{ translated_page.url | absolute_url }}">{% endunless %}
+        {% endif %}
+      {% endfor %}
+    {% elsif page.url == '/blog/' %}
+      <link rel="alternate" hreflang="en" href="{{ '/blog/' | absolute_url }}">
+      <link rel="alternate" hreflang="zh" href="{{ '/zh/blog/' | absolute_url }}">
+      <link rel="alternate" hreflang="x-default" href="{{ '/blog/' | absolute_url }}">
+    {% elsif page.url == '/zh/blog/' %}
+      <link rel="alternate" hreflang="en" href="{{ '/blog/' | absolute_url }}">
+      <link rel="alternate" hreflang="zh" href="{{ '/zh/blog/' | absolute_url }}">
+      <link rel="alternate" hreflang="x-default" href="{{ '/blog/' | absolute_url }}">
+    {% endif %}
+    <link rel="icon" type="image/png" href="{{ '/assets/img/profile/favicon.png' | relative_url }}">
+    <link rel="apple-touch-icon" href="{{ '/assets/img/profile/favicon.png' | relative_url }}">
+    <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     {% if page.extra_css %}
       {% for css_path in page.extra_css %}
         <link rel="stylesheet" href="{{ css_path | relative_url }}">
@@ -15,6 +31,7 @@
     {% endif %}
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header">
       <div class="container header-inner">
         <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
@@ -29,13 +46,13 @@
                 {% assign is_current = true %}
               {% endif %}
             {% endif %}
-            <a class="nav-link{% if is_current %} is-active{% endif %}" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+            <a class="nav-link{% if is_current %} is-active{% endif %}" href="{{ item.url | relative_url }}"{% if is_current %} aria-current="page"{% endif %}>{{ item.title }}</a>
           {% endfor %}
         </nav>
       </div>
     </header>
 
-    <main class="container content">
+    <main id="main-content" class="container content">
       {{ content }}
     </main>
 
@@ -44,6 +61,7 @@
         <p>© {{ 'now' | date: '%Y' }} {{ site.title }}. Powered by Jekyll and GitHub Pages.</p>
       </div>
     </footer>
+    {% if page.math %}
     <script>
       window.MathJax = {
         tex: {
@@ -61,5 +79,6 @@
       id="MathJax-script"
       async
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    {% endif %}
   </body>
 </html>
