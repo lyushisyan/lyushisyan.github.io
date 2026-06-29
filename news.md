@@ -26,7 +26,10 @@ extra_css:
 <ol class="news-timeline">
   {% for item in sorted_news %}
     {% assign news_text = item.text | default: item.title %}
-    {% assign research_highlight = site.data.research_highlights | where: "publication_key", item.highlight_key | first %}
+    {% assign research_highlight = false %}
+    {% if item.highlight_key %}
+      {% assign research_highlight = site.data.research_highlights | where: "publication_key", item.highlight_key | first %}
+    {% endif %}
     {% assign news_link_label = item.link_label | default: "View detail" %}
     <li class="news-timeline-item{% if research_highlight %} is-highlight{% endif %}">
       <span class="news-timeline-marker" aria-hidden="true"></span>
