@@ -1,5 +1,5 @@
 - name: "NEP-kappa"
-  logo: "/assets/img/software/logo-kappa.png"
+  logo: "/assets/img/software/NEP-kappa-logo-880x740.png"
   description: "NEP-kappa is a workflow for lattice thermal conductivity analysis using Neuroevolution Potential (NEP), focusing on efficient force-constant generation, transport post-processing, and reproducible phonon-thermal studies."
   status: "Open source"
   tags:
@@ -11,8 +11,7 @@
   paper: "https://doi.org/10.1063/5.0324012"
 
 - name: "PhonoMC"
-  mark: "MC"
-  mark_label: "Phonon Monte Carlo"
+  logo: "/assets/img/software/PhonoMC-logo.png"
   description: "PhonoMC is a C++ phonon Monte Carlo simulator for semiconductor heat transport. It supports box and mesh geometries, HDF5 material data, rough and periodic boundaries, OpenMP parallelism, and thermal-conductivity estimation."
   status: "Open source"
   tags:
