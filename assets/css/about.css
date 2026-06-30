@@ -169,6 +169,10 @@
   align-items: center;
 }
 
+.about-software-item + .about-software-item {
+  margin-top: 1.5rem;
+}
+
 .about-software-logo {
   width: 100%;
   max-width: 120px;
