@@ -45,6 +45,14 @@ This repository is a personal academic website built with Jekyll and deployed on
 
 Page-specific stylesheets are declared through the `extra_css` front-matter field.
 
+CSS organization follows three layers:
+
+1. `assets/css/style.css` defines design tokens, base elements, site layout, shared components, and utilities.
+2. `assets/css/components/` contains styles owned by one page or reusable page component.
+3. Page-specific responsive rules stay with their component instead of being collected in a separate mobile file.
+
+Reuse the custom properties in `:root` for shared colors, typography, radii, motion, shadows, and layout widths. Add a new token when a visual value is repeated across components; keep one-off decorative values local.
+
 ### Local Preview
 
 After editing `assets/bibliography/publications.bib`, regenerate the static publication data:
@@ -140,6 +148,14 @@ git push -u origin <your-branch-name>
 - `assets/css/components/error.css`：404 页面
 
 页面通过 front matter 中的 `extra_css` 字段声明所需组件样式。
+
+CSS 按三层组织：
+
+1. `assets/css/style.css` 定义设计变量、基础元素、全站布局、共享组件和工具类。
+2. `assets/css/components/` 保存单个页面或可复用页面组件负责的样式。
+3. 各页面的响应式规则与对应组件放在一起，不再集中到单独的移动端文件中。
+
+全站共用的颜色、字体、圆角、动画、阴影和布局宽度应复用 `:root` 中的自定义属性。某个视觉值在多个组件中重复时再新增设计变量；一次性的装饰值保留在组件内部。
 
 ### 本地预览
 

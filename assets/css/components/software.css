@@ -20,7 +20,7 @@
   min-height: 220px;
   border: 1px solid rgba(23, 92, 144, 0.1);
   border-radius: 12px;
-  background: linear-gradient(145deg, #f6fafc, #ffffff);
+  background: linear-gradient(145deg, #f6fafc, var(--card));
   padding: 1.15rem;
 }
 
@@ -45,7 +45,7 @@
   background:
     radial-gradient(circle at 22% 20%, rgba(85, 172, 210, 0.24), transparent 34%),
     linear-gradient(145deg, #153d5a, #21749a);
-  color: #ffffff;
+  color: var(--card);
   box-shadow: 0 14px 30px rgba(24, 76, 107, 0.16);
 }
 
@@ -133,7 +133,7 @@
 
 .software-status {
   flex: none;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: #eaf7ef;
   color: #237044;
   padding: 0.22rem 0.62rem;
@@ -155,7 +155,7 @@
 }
 
 .software-tags span {
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: #f1f5f9;
   color: #475569;
   padding: 0.2rem 0.58rem;
@@ -178,7 +178,7 @@
   min-height: 2.3rem;
   border: 1px solid rgba(23, 92, 144, 0.23);
   border-radius: 8px;
-  background: #ffffff;
+  background: var(--card);
   color: var(--accent);
   padding: 0.42rem 0.72rem;
   font-size: 0.8rem;
@@ -195,7 +195,7 @@
 .software-link-primary {
   border-color: var(--accent);
   background: var(--accent);
-  color: #ffffff;
+  color: var(--card);
 }
 
 @media (max-width: 640px) {

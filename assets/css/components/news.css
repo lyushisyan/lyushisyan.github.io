@@ -3,7 +3,7 @@
 .news-type {
   display: inline-flex;
   align-items: center;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--accent-soft);
   color: var(--accent);
   padding: 0.16rem 0.5rem;
@@ -50,7 +50,7 @@
   left: -1.5rem;
   width: 0.78rem;
   height: 0.78rem;
-  border: 3px solid #ffffff;
+  border: 3px solid var(--card);
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 0 1px rgba(23, 92, 144, 0.22);
@@ -63,7 +63,7 @@
 
 .news-timeline-item.is-highlight .news-card {
   border-color: rgba(193, 132, 23, 0.25);
-  background: linear-gradient(135deg, #fffdf7, #ffffff 58%);
+  background: linear-gradient(135deg, #fffdf7, var(--card) 58%);
 }
 
 .news-card {

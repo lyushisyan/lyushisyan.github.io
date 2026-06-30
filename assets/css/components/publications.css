@@ -141,19 +141,19 @@
 
 .publication-resource-link:hover {
   transform: translateY(-1px);
-  background: #ffffff;
+  background: var(--card);
   box-shadow: 0 6px 16px rgba(30, 71, 101, 0.1);
 }
 
 .publication-resource-link-primary {
   border-color: var(--accent);
   background: var(--accent);
-  color: #ffffff;
+  color: var(--on-accent);
 }
 
 .publication-resource-link-primary:hover {
   background: #0f4f7a;
-  color: #ffffff;
+  color: var(--on-accent);
 }
 
 .publication-year-toc {
@@ -190,8 +190,8 @@
   gap: 0.35rem;
   text-decoration: none;
   color: var(--accent);
-  border: 1px solid #bfdbfe;
-  border-radius: 999px;
+  border: 1px solid var(--border-interactive);
+  border-radius: var(--radius-pill);
   background: #f8fbff;
   padding: 0.18rem 0.62rem;
   font-size: 0.85rem;
@@ -200,7 +200,7 @@
 .publication-year-link span {
   min-width: 1.2rem;
   padding: 0.04rem 0.28rem;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: rgba(23, 92, 144, 0.09);
   color: var(--accent);
   font-size: 0.68rem;
@@ -209,14 +209,14 @@
 }
 
 .publication-year-link:hover {
-  color: #ffffff;
+  color: var(--on-accent);
   background: var(--accent);
   border-color: var(--accent);
 }
 
 .publication-year-link:hover span {
   background: rgba(255, 255, 255, 0.18);
-  color: #ffffff;
+  color: var(--on-accent);
 }
 
 .publication-year-group + .publication-year-group {
@@ -263,7 +263,7 @@
   padding: 0.35rem;
   border-radius: 4px;
   border: 1px solid var(--line);
-  background: #f8fafc;
+  background: var(--surface-subtle);
 }
 
 .publication-body {
@@ -279,7 +279,7 @@
 .publication-highlight-link:hover {
   border-color: #a86d08;
   background: #a86d08;
-  color: #ffffff;
+  color: var(--on-accent);
 }
 
 .publication-title {
@@ -290,7 +290,7 @@
 
 .publication-authors {
   margin: 0.38rem 0 0;
-  color: #334155;
+  color: var(--text-soft);
   font-size: 0.92rem;
 }
 
@@ -321,9 +321,9 @@
 .publication-native-detail summary {
   display: inline-flex;
   align-items: center;
-  border: 1px solid #bfdbfe;
+  border: 1px solid var(--border-interactive);
   border-radius: 6px;
-  background: #ffffff;
+  background: var(--card);
   color: var(--accent);
   padding: 0.22rem 0.6rem;
   font-size: 0.8rem;
@@ -340,7 +340,7 @@
 .publication-native-detail[open] summary {
   background: var(--accent);
   border-color: var(--accent);
-  color: #ffffff;
+  color: var(--on-accent);
 }
 
 .publication-native-detail .publication-detail {
@@ -380,7 +380,7 @@
 }
 
 .publication-tag-value {
-  color: #334155;
+  color: var(--text-soft);
   font-weight: 600;
 }
 

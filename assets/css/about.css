@@ -1,3 +1,5 @@
+/* Profile hero */
+
 .about-hero {
   display: grid;
   grid-template-columns: 220px 1fr;
@@ -6,7 +8,7 @@
   padding: 1.5rem;
   background:
     radial-gradient(circle at 12% 18%, rgba(23, 63, 111, 0.1), transparent 36%),
-    linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+    linear-gradient(135deg, var(--card) 0%, #f8fbff 100%);
 }
 
 .about-hero-media {
@@ -21,7 +23,7 @@
   height: auto;
   border-radius: 8px;
   border: none;
-  background: #ffffff;
+  background: var(--card);
   box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
 }
 
@@ -78,9 +80,11 @@
   border-radius: 5px;
   padding: 0.18rem 0.62rem;
   font-size: 0.82rem;
-  color: #334155;
-  background: #ffffff;
+  color: var(--text-soft);
+  background: var(--card);
 }
+
+/* About page panels */
 
 .about-panel h3 {
   margin: 0 0 0.6rem;
@@ -130,7 +134,7 @@
   border: none;
   border-radius: 7px;
   padding: 0.65rem 0.72rem;
-  background: #f8fafc;
+  background: var(--surface-subtle);
 }
 
 .about-pub-title {
@@ -179,7 +183,7 @@
   height: auto;
   border: 1px solid var(--line);
   border-radius: 4px;
-  background: #ffffff;
+  background: var(--card);
 }
 
 .about-software-name {
@@ -202,9 +206,9 @@
 .elegant-link {
   color: var(--accent);
   text-decoration: none;
-  border-bottom: 1px solid #bfdbfe;
+  border-bottom: 1px solid var(--border-interactive);
   padding-bottom: 1px;
-  transition: color 150ms ease, border-color 150ms ease, background-color 150ms ease;
+  transition: color var(--motion-fast), border-color var(--motion-fast), background-color var(--motion-fast);
 }
 
 .elegant-link:hover {
@@ -223,7 +227,7 @@
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   padding: 1rem;
-  background: #ffffff;
+  background: var(--card);
   box-shadow: none;
 }
 
@@ -233,7 +237,7 @@
   margin: 0.95rem 0;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #ffffff;
+  background: var(--card);
 }
 
 .snapshot-item {
@@ -324,7 +328,7 @@
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #ffffff;
+  background: var(--card);
   box-shadow: none;
   transition: border-color 180ms ease, box-shadow 180ms ease;
 }
@@ -347,7 +351,7 @@
   aspect-ratio: 3 / 2;
   object-fit: contain;
   padding: 0.4rem;
-  background: #ffffff;
+  background: var(--card);
   transition: transform 220ms ease;
 }
 
@@ -366,7 +370,7 @@
   margin-bottom: 0.75rem;
   padding: 0.28rem 0.58rem;
   border: 1px solid rgba(180, 120, 16, 0.28);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: #fff8e7;
   color: #8a5a08;
   font-size: 0.69rem;
