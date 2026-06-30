@@ -33,7 +33,7 @@ jobs:
       - name: Verify generated publication data
         run: |
           node scripts/sync-publications.mjs
-          git diff --exit-code -- _data/publications.json
+          git diff --exit-code -- _data/publications.json assets/bibliography/publications-download.bib
 
       - name: Build Jekyll site
         env:

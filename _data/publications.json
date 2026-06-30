@@ -165,7 +165,7 @@
     "selected": false,
     "self_first_or_cofirst": true,
     "self_corresponding": false,
-    "bibtex": "@article{shixian2025graphene,\n  author={Liu, Shixian and Yin, Fei and Khvesyuk, V.I.},\n  title={Investigating Anisotropic Three-Phonon Interactions in Graphene's Thermal Conductivity Using Monte Carlo Method},\n  journal={International Journal of Thermophysics},\n  volume={46},\n  number={2},\n  pages={22},\n  year={2025},\n  doi={10.1007/s10765-024-03498-x}\n}"
+    "bibtex": "@article{shixian2025graphene,\n  author={Liu, Shixian and Yin, Fei and Khvesyuk, V.I.},\n  title={Investigating Anisotropic Three-Phonon Interactions in Graphene's Thermal Conductivity Using Monte Carlo Method},\n  journal={International Journal of Thermophysics},\n  volume={46},\n  pages={22},\n  year={2025},\n  doi={10.1007/s10765-024-03498-x}\n}"
   },
   {
     "key": "shixian2024determination",
@@ -189,7 +189,7 @@
     "selected": true,
     "self_first_or_cofirst": true,
     "self_corresponding": false,
-    "bibtex": "@article{shixian2024determination,\n  author={Liu, Shixian and Barinov, A.A. and Yin, Fei and Khvesyuk, V.I.},\n  title={Determination of Thermal Properties of Unsmooth Si Nanowires},\n  journal={Chinese Physics Letters},\n  volume={41},\n  number={1},\n  pages={016301},\n  year={2024},\n  doi={10.1088/0256-307X/41/1/016301}\n}"
+    "bibtex": "@article{shixian2024determination,\n  author={Liu, Shixian and Barinov, A.A. and Yin, Fei and Khvesyuk, V.I.},\n  title={Determination of Thermal Properties of Unsmooth Si Nanowires},\n  journal={Chinese Physics Letters},\n  volume={41},\n  pages={016301},\n  year={2024},\n  doi={10.1088/0256-307X/41/1/016301}\n}"
   },
   {
     "key": "liu2022validation",

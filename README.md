@@ -53,6 +53,8 @@ After editing `assets/bibliography/publications.bib`, regenerate the static publ
 node scripts/sync-publications.mjs
 ```
 
+This also regenerates the citation-only BibTeX download at `assets/bibliography/publications-download.bib`.
+
 1. Install Ruby and Bundler.
 2. Install dependencies:
 
@@ -146,6 +148,8 @@ git push -u origin <your-branch-name>
 ```bash
 node scripts/sync-publications.mjs
 ```
+
+该命令也会重新生成仅包含引用字段的下载文件 `assets/bibliography/publications-download.bib`。
 
 1. 安装 Ruby 和 Bundler。
 2. 安装依赖：

@@ -4,6 +4,7 @@ import path from "node:path";
 const root = process.cwd();
 const bibPath = path.join(root, "assets/bibliography/publications.bib");
 const outputPath = path.join(root, "_data/publications.json");
+const downloadBibPath = path.join(root, "assets/bibliography/publications-download.bib");
 
 function normalizeSpace(value) {
   return String(value || "").replace(/\s+/g, " ").trim();
@@ -205,7 +206,6 @@ function buildCitationBibtex(entry) {
     ["title", title],
     ["journal", normalizeSpace(fields.journal || fields.booktitle || "")],
     ["volume", normalizeSpace(fields.volume || "")],
-    ["number", normalizeSpace(fields.number || "")],
     ["pages", normalizeSpace(fields.pages || "")],
     ["year", normalizeSpace(fields.year || "")],
     ["doi", normalizeDoi(fields.doi || "")],
@@ -254,4 +254,6 @@ const publications = extractEntryBlocks(bibText)
   .sort((a, b) => b.year - a.year || a.order - b.order);
 
 fs.writeFileSync(outputPath, `${JSON.stringify(publications, null, 2)}\n`);
+fs.writeFileSync(downloadBibPath, `${publications.map((publication) => publication.bibtex).join("\n\n")}\n`);
 console.log(`Wrote ${publications.length} publications to ${path.relative(root, outputPath)}`);
+console.log(`Wrote citation-only BibTeX to ${path.relative(root, downloadBibPath)}`);

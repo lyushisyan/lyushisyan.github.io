@@ -43,7 +43,7 @@ extra_css:
     <a class="publication-resource-link publication-resource-link-primary" href="{{ site.data.site_stats.scholar_url }}" target="_blank" rel="noopener noreferrer">
       Google Scholar <span aria-hidden="true">↗</span>
     </a>
-    <a class="publication-resource-link" href="{{ '/assets/bibliography/publications.bib' | relative_url }}" download>
+    <a class="publication-resource-link" href="{{ '/assets/bibliography/publications-download.bib' | relative_url }}" download="publications.bib">
       Download BibTeX <span aria-hidden="true">↓</span>
     </a>
   </div>
