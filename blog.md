@@ -9,7 +9,6 @@ extra_css:
   - /assets/css/components/blog.css
 ---
 {% assign blog_posts = site.posts | where_exp: "post", "post.lang != 'zh'" %}
-{% assign featured_posts = blog_posts | where: "featured", true %}
 {% assign tags_csv = "" %}
 {% for post in blog_posts %}
   {% for tag in post.tags %}
@@ -22,16 +21,10 @@ extra_css:
 <section class="listing-hero blog-hero" aria-labelledby="blog-heading">
   <p class="listing-hero-eyebrow">Research notes</p>
   <h1 id="blog-heading">Blog</h1>
-  <p class="listing-hero-summary">Physics-first essays on phonon transport, nonequilibrium heat flow, and computational materials science.</p>
-  <div class="blog-hero-bottom">
-    <div class="listing-hero-meta" aria-label="Blog summary">
-      <span><strong>{{ blog_posts.size }}</strong> essays</span>
-      <span><strong>{{ featured_posts.size }}</strong> featured</span>
-    </div>
-    <div class="blog-language-switch" role="group" aria-label="Blog language switch">
-      <a class="pub-btn is-active" href="{{ '/blog/' | relative_url }}">EN</a>
-      <a class="pub-btn" href="{{ '/zh/blog/' | relative_url }}">中文</a>
-    </div>
+  <p class="listing-hero-summary">Study notes and reflections from my research.</p>
+  <div class="blog-language-switch" role="group" aria-label="Blog language switch">
+    <a class="pub-btn is-active" href="{{ '/blog/' | relative_url }}">EN</a>
+    <a class="pub-btn" href="{{ '/zh/blog/' | relative_url }}">中文</a>
   </div>
 </section>
 

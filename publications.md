@@ -14,10 +14,7 @@ extra_css:
 <section class="publication-hero" aria-labelledby="publications-heading">
   <p class="publication-hero-eyebrow">Research output</p>
   <h1 id="publications-heading">Publications</h1>
-  <p class="publication-hero-summary">
-    Peer-reviewed research on phonon transport, nanoscale thermophysics, and computational materials physics.
-    Complete metadata and abstracts are rendered directly on this page for reliable access and indexing.
-  </p>
+  <p class="publication-hero-summary">Browse published papers and citation data.</p>
 
   <div class="publication-stat-grid" aria-label="Publication summary">
     <div class="publication-stat">

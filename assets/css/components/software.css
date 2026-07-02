@@ -74,7 +74,7 @@
 .software-mark strong {
   position: relative;
   z-index: 1;
-  font-family: var(--font-sans, sans-serif);
+  font-family: var(--font-family-sans);
   font-size: clamp(2.2rem, 5vw, 3.25rem);
   font-weight: 700;
   letter-spacing: -0.06em;

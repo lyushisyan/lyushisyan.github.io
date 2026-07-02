@@ -7,21 +7,11 @@ extra_css:
   - /assets/css/components/listing.css
   - /assets/css/components/teaching.css
 ---
-{% assign lecture_count = 0 %}
-{% for course in site.data.teaching %}
-  {% assign lecture_count = lecture_count | plus: course.topics.size %}
-{% endfor %}
-
 <section class="listing-hero teaching-hero" aria-labelledby="teaching-heading">
   <p class="listing-hero-eyebrow">Courses & materials</p>
   <h1 id="teaching-heading">Teaching</h1>
-  <p class="listing-hero-summary">Course outlines, lecture materials, and schedules for scientific computing and nanoscale thermal physics.</p>
+  <p class="listing-hero-summary">Course outlines, lecture materials, and schedules.</p>
   <div class="teaching-hero-bottom">
-    <div class="listing-hero-meta" aria-label="Teaching summary">
-      <span><strong>{{ site.data.teaching.size }}</strong> courses</span>
-      <span><strong>{{ lecture_count }}</strong> lectures</span>
-      <span><strong>EN · RU</strong> bilingual materials</span>
-    </div>
     <div id="teaching-lang-toggle" class="teaching-lang-toggle" role="group" aria-label="Language switcher">
       <button type="button" class="pub-btn teaching-lang-btn" data-lang="ru" aria-pressed="false">RU</button>
       <button type="button" class="pub-btn teaching-lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>

@@ -17,9 +17,8 @@
   --on-accent: #ffffff;
 
   /* Typography */
-  --heading-font: Georgia, "Times New Roman", serif;
-  --body-font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-sans: var(--body-font);
+  --font-family-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 
   /* Shape, motion, and layout */
   --radius-sm: 6px;
@@ -40,10 +39,27 @@
 
 body {
   margin: 0;
-  font-family: var(--body-font);
+  font-family: var(--font-family-sans);
   color: var(--text);
   background: var(--bg);
   line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-family-mono);
 }
 
 .skip-link {
@@ -95,7 +111,7 @@ body {
 }
 
 .site-title {
-  font-family: var(--heading-font);
+  font-family: var(--font-family-sans);
   font-weight: 700;
   letter-spacing: 0.02em;
   text-decoration: none;
@@ -132,7 +148,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: var(--heading-font);
+  font-family: var(--font-family-sans);
   line-height: 1.25;
   letter-spacing: -0.015em;
 }

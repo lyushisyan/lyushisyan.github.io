@@ -5,10 +5,12 @@
   grid-template-columns: 220px 1fr;
   gap: 1.5rem;
   align-items: center;
-  padding: 1.5rem;
-  background:
-    radial-gradient(circle at 12% 18%, rgba(23, 63, 111, 0.1), transparent 36%),
-    linear-gradient(135deg, var(--card) 0%, #f8fbff 100%);
+  padding: 1.25rem 0 1.75rem;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .about-hero-media {
@@ -92,6 +94,11 @@
 
 .about-panel {
   padding: 1.2rem 1.3rem;
+}
+
+.about-panel > h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.55rem;
 }
 
 .about-timeline {
@@ -253,7 +260,7 @@
 
 .snapshot-item strong {
   color: var(--accent-strong);
-  font-family: var(--heading-font);
+  font-family: var(--font-family-sans);
   font-size: 1.7rem;
   line-height: 1;
 }
@@ -283,17 +290,8 @@
 }
 
 .section-heading-row h2 {
-  margin: 0.1rem 0 0;
-  font-size: 1.55rem;
-}
-
-.section-eyebrow {
   margin: 0;
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
+  font-size: 1.55rem;
 }
 
 .featured-method-list {
@@ -436,6 +434,7 @@
   .about-hero {
     grid-template-columns: 1fr;
     gap: 0.75rem;
+    padding: 0.75rem 0 1.35rem;
   }
 
   .about-avatar {

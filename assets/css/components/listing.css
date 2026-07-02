@@ -2,15 +2,10 @@
 
 .listing-hero {
   position: relative;
-  overflow: hidden;
   margin: 0 0 1.35rem;
-  padding: clamp(1.4rem, 3vw, 2.15rem);
-  border: 1px solid rgba(23, 92, 144, 0.15);
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 94% 6%, rgba(44, 128, 179, 0.15), transparent 34%),
-    linear-gradient(135deg, rgba(240, 248, 252, 0.98), rgba(255, 255, 255, 0.98) 64%);
-  box-shadow: 0 14px 38px rgba(30, 71, 101, 0.07);
+  padding: clamp(1.15rem, 3vw, 1.9rem) 0 1.5rem;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
 }
 
 .listing-hero-eyebrow {
@@ -59,8 +54,7 @@
 
 @media (max-width: 640px) {
 .listing-hero {
-    padding: 1.3rem 1.05rem;
-    border-radius: 14px;
+    padding: 0.8rem 0 1.25rem;
   }
 
 .listing-hero h1 {

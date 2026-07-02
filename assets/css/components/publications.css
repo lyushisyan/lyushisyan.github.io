@@ -12,15 +12,10 @@
 
 .publication-hero {
   position: relative;
-  overflow: hidden;
   margin: 0 0 1.2rem;
-  padding: clamp(1.35rem, 3vw, 2.25rem);
-  border: 1px solid rgba(23, 92, 144, 0.16);
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 92% 8%, rgba(44, 128, 179, 0.16), transparent 36%),
-    linear-gradient(135deg, rgba(240, 248, 252, 0.98), rgba(255, 255, 255, 0.98) 62%);
-  box-shadow: 0 14px 38px rgba(30, 71, 101, 0.08);
+  padding: clamp(1.15rem, 3vw, 1.9rem) 0 1.5rem;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
 }
 
 .publication-hero-eyebrow {
@@ -71,7 +66,7 @@
 
 .publication-stat-value {
   color: var(--heading);
-  font-family: var(--body-font);
+  font-family: var(--font-family-sans);
   font-size: clamp(1.08rem, 2vw, 1.35rem);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
@@ -87,7 +82,7 @@
 
 .publication-stat-arrow {
   color: var(--accent);
-  font-family: var(--body-font);
+  font-family: var(--font-family-sans);
   font-size: 0.72em;
   font-weight: 700;
 }
@@ -417,8 +412,7 @@
   }
 
 .publication-hero {
-    padding: 1.3rem 1.05rem;
-    border-radius: 14px;
+    padding: 0.8rem 0 1.25rem;
   }
 
 .publication-hero h1 {

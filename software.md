@@ -10,11 +10,7 @@ extra_css:
 <section class="listing-hero software-hero" aria-labelledby="software-heading">
   <p class="listing-hero-eyebrow">Scientific computing</p>
   <h1 id="software-heading">Software</h1>
-  <p class="listing-hero-summary">Open-source tools and reproducible workflows for phonon transport, lattice thermal conductivity, and computational materials research.</p>
-  <div class="listing-hero-meta" aria-label="Software summary">
-    <span><strong>{{ site.data.software.size }}</strong> open-source project{% if site.data.software.size != 1 %}s{% endif %}</span>
-    <span><strong>Code · Docs · Paper</strong> research-ready resources</span>
-  </div>
+  <p class="listing-hero-summary">Open-source tools and reproducible workflows.</p>
 </section>
 
 <div class="software-grid">

@@ -9,7 +9,6 @@ extra_css:
   - /assets/css/components/blog.css
 ---
 {% assign blog_posts = site.posts | where: "lang", "zh" %}
-{% assign featured_posts = blog_posts | where: "featured", true %}
 {% assign tags_csv = "" %}
 {% for post in blog_posts %}
   {% for tag in post.tags %}
@@ -22,16 +21,10 @@ extra_css:
 <section class="listing-hero blog-hero" aria-labelledby="blog-heading">
   <p class="listing-hero-eyebrow">研究随笔</p>
   <h1 id="blog-heading">博客</h1>
-  <p class="listing-hero-summary">从物理图像出发，讨论声子输运、非平衡热流与计算材料科学。</p>
-  <div class="blog-hero-bottom">
-    <div class="listing-hero-meta" aria-label="博客概览">
-      <span><strong>{{ blog_posts.size }}</strong> 篇文章</span>
-      <span><strong>{{ featured_posts.size }}</strong> 篇精选</span>
-    </div>
-    <div class="blog-language-switch" role="group" aria-label="Blog language switch">
-      <a class="pub-btn" href="{{ '/blog/' | relative_url }}">EN</a>
-      <a class="pub-btn is-active" href="{{ '/zh/blog/' | relative_url }}">中文</a>
-    </div>
+  <p class="listing-hero-summary">学习笔记和研究中的一些思考。</p>
+  <div class="blog-language-switch" role="group" aria-label="Blog language switch">
+    <a class="pub-btn" href="{{ '/blog/' | relative_url }}">EN</a>
+    <a class="pub-btn is-active" href="{{ '/zh/blog/' | relative_url }}">中文</a>
   </div>
 </section>
 

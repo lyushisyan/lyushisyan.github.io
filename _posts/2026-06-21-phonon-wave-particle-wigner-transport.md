@@ -4,7 +4,7 @@ title: "Particle and Wave Nature of Phonon Transport: A Wigner-Equation View"
 lang: en
 translation_key: phonon-wave-particle-wigner-transport
 permalink: /blog/2026/06/21/phonon-wave-particle-wigner-transport/
-date: 2026-06-21 12:00:00
+date: 2026-05-20 12:00:00
 last_updated: 2026-06-21
 reading_time: "13 min"
 description: "How phonon populations and intermode coherences encode particle-like and wave-like heat transport, and how the Wigner equation unifies both contributions."

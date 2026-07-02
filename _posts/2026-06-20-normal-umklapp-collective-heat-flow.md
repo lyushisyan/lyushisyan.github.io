@@ -4,7 +4,7 @@ title: "Do Phonon Collisions Always Create Thermal Resistance? Normal vs Umklapp
 lang: en
 translation_key: normal-umklapp-collective-heat-flow
 permalink: /blog/2026/06/20/normal-umklapp-collective-heat-flow/
-date: 2026-06-20 13:00:00
+date: 2026-04-25 12:00:00
 last_updated: 2026-06-20
 reading_time: "15 min"
 description: "Why Normal phonon scattering does not simply behave as thermal resistance, how Umklapp relaxes crystal momentum, and when phonons develop collective hydrodynamic flow."

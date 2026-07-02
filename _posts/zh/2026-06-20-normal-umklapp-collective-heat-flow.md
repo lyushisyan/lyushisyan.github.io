@@ -4,7 +4,7 @@ title: "声子碰撞一定产生热阻吗？Normal 与 Umklapp"
 lang: zh
 translation_key: normal-umklapp-collective-heat-flow
 permalink: /zh/blog/2026/06/20/normal-umklapp-collective-heat-flow/
-date: 2026-06-20 13:00:00
+date: 2026-04-25 12:00:00
 last_updated: 2026-06-20
 description: "解释 Normal 声子散射为何不能简单等同于热阻、Umklapp 如何弛豫晶格动量，以及声子何时形成集体流体动力学输运。"
 tags: theory phonon thermal-transport
