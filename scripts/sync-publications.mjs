@@ -209,6 +209,10 @@ function buildCitationBibtex(entry) {
     ["pages", normalizeSpace(fields.pages || "")],
     ["year", normalizeSpace(fields.year || "")],
     ["doi", normalizeDoi(fields.doi || "")],
+    ["eprint", normalizeSpace(fields.eprint || "")],
+    ["archivePrefix", normalizeSpace(fields.archiveprefix || "")],
+    ["primaryClass", normalizeSpace(fields.primaryclass || "")],
+    ["url", normalizeSpace(fields.url || "")],
   ].filter(([, value]) => value);
 
   const lines = citationFields.map(([key, value], index) => {
