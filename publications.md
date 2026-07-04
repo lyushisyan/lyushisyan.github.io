@@ -46,12 +46,18 @@ extra_css:
   </div>
 </section>
 
+<div class="publication-filter" role="group" aria-label="Filter publications by author role">
+  <span class="publication-filter-label">Show</span>
+  <button class="publication-filter-button is-active" type="button" data-publication-filter="all" aria-pressed="true">All</button>
+  <button class="publication-filter-button" type="button" data-publication-filter="lead" aria-pressed="false">Only First or co-first / corresponding</button>
+</div>
+
 <nav class="publication-year-toc" aria-label="Publication years">
   <p class="publication-year-toc-title">Browse by year</p>
   <div class="publication-year-toc-links">
     {% for group in publication_groups %}
-      <a class="publication-year-link" href="#publications-{{ group.name }}">
-        {{ group.name }} <span>{{ group.items.size }}</span>
+      <a class="publication-year-link" href="#publications-{{ group.name }}" data-publication-year="{{ group.name }}">
+        {{ group.name }} <span class="publication-year-link-count">{{ group.items.size }}</span>
       </a>
     {% endfor %}
   </div>
@@ -70,3 +76,47 @@ extra_css:
     </section>
   {% endfor %}
 </div>
+
+<script>
+  (() => {
+    const filterButtons = document.querySelectorAll('[data-publication-filter]');
+    const yearGroups = document.querySelectorAll('.publication-year-group');
+
+    if (!filterButtons.length || !yearGroups.length) return;
+
+    const applyFilter = (filter) => {
+      filterButtons.forEach((button) => {
+        const isActive = button.dataset.publicationFilter === filter;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+
+      yearGroups.forEach((group) => {
+        const cards = group.querySelectorAll('.publication-card');
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const isVisible = filter === 'all' || card.dataset.authorRole === 'lead';
+          card.hidden = !isVisible;
+          if (isVisible) visibleCount += 1;
+        });
+
+        group.hidden = visibleCount === 0;
+        const count = group.querySelector('.publication-year-count');
+        if (count) count.textContent = `${visibleCount} ${visibleCount === 1 ? 'paper' : 'papers'}`;
+
+        const year = group.id.replace('publications-', '');
+        const yearLink = document.querySelector(`[data-publication-year="${year}"]`);
+        if (yearLink) {
+          yearLink.hidden = visibleCount === 0;
+          const yearLinkCount = yearLink.querySelector('.publication-year-link-count');
+          if (yearLinkCount) yearLinkCount.textContent = visibleCount;
+        }
+      });
+    };
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => applyFilter(button.dataset.publicationFilter));
+    });
+  })();
+</script>

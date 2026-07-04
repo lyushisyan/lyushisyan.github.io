@@ -1,6 +1,6 @@
 {% assign publication = include.publication %}
 {% assign research_highlight = site.data.research_highlights | where: "publication_key", publication.key | first %}
-<article id="publication-{{ publication.key }}" class="card publication-card">
+<article id="publication-{{ publication.key }}" class="card publication-card" data-author-role="{% if publication.self_first_or_cofirst or publication.self_corresponding %}lead{% else %}other{% endif %}">
   <img class="publication-preview"
     src="{{ publication.preview | relative_url }}"
     alt="Visual preview for {{ publication.title }}"

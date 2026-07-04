@@ -1,5 +1,10 @@
 /* Software component */
 
+.software-grid {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+}
+
 .software-card {
   display: grid;
   grid-template-columns: minmax(190px, 0.72fr) minmax(0, 1.8fr);

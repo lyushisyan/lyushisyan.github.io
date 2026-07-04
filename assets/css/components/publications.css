@@ -151,6 +151,60 @@
   color: var(--on-accent);
 }
 
+.publication-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.8rem;
+}
+
+.publication-filter-label {
+  margin-right: 0.1rem;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.publication-filter-button {
+  min-height: 2.15rem;
+  padding: 0.38rem 0.78rem;
+  border: 1px solid var(--border-interactive);
+  border-radius: var(--radius-pill);
+  background: #f8fbff;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.publication-filter-button:hover {
+  border-color: var(--accent);
+  box-shadow: 0 3px 10px rgba(30, 71, 101, 0.09);
+}
+
+.publication-filter-button:focus-visible {
+  outline: 3px solid rgba(23, 92, 144, 0.2);
+  outline-offset: 2px;
+}
+
+.publication-filter-button.is-active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.publication-card[hidden],
+.publication-year-group[hidden],
+.publication-year-link[hidden] {
+  display: none;
+}
+
 .publication-year-toc {
   margin: 0 0 1.2rem;
   position: sticky;
