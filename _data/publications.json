@@ -1,7 +1,31 @@
 [
   {
-    "key": "zong2026alloy",
+    "key": "yin2026cove",
     "order": 0,
+    "type": "misc",
+    "title": "Cove-edge-induced vibrational confinement and weakened collective phonon transport in graphene nanoribbons",
+    "authors_html": "Fei Yin<sup title=\"Equal contribution\">#</sup>, Gang Wang<sup title=\"Equal contribution\">#</sup>, Alexander A. Barinov, <strong class=\"publication-self\">Shixian Liu</strong><sup title=\"Corresponding author\">*</sup>, Ke Xu<sup title=\"Corresponding author\">*</sup>",
+    "journal": "SSRN preprint",
+    "abbreviation": "SSRN",
+    "year": 2026,
+    "volume": "",
+    "number": "",
+    "pages": "",
+    "abstract": "Periodic cove edges alter heat conduction in graphene nanoribbons in ways that are not fully captured by geometric boundary scattering. We investigate this effect using a graphene-nanoribbon-specific neuroevolution potential together with molecular dynamics, phonon Monte Carlo simulations, lattice dynamics, and full linearized phonon Boltzmann transport calculations. Cove-edged graphene nanoribbons exhibit lower thermal conductivity than pristine armchair nanoribbons over the length and width ranges considered. The conductivity reduction obtained from molecular dynamics is larger than that predicted by the semiclassical Monte Carlo model. The residual fraction is greatest at short lengths and small widths, whereas the Monte Carlo boundary contribution becomes relatively more important as either dimension increases. Participation ratios and real-space eigenvectors identify partially confined and strongly edge-confined modes in the low- and intermediate-frequency ranges. The cove-edged ribbons also show a smaller full-LBTE correction to the relaxation-time approximation and a lower transport-weighted Normal-to-Umklapp scattering-rate ratio. These results indicate that cove-edge patterning changes both the vibrational eigenstates and the intrinsic scattering balance, thereby reducing the mode-coupling correction beyond the independent-mode approximation.",
+    "preview": "/assets/img/publication_preview/cove_gnr_2026.png",
+    "pdf": "/assets/pdf/papers/ssrn-7068738.pdf",
+    "doi": "10.2139/ssrn.7068738",
+    "link": "https://doi.org/10.2139/ssrn.7068738",
+    "impact_factor": "",
+    "scopus": "",
+    "selected": false,
+    "self_first_or_cofirst": false,
+    "self_corresponding": true,
+    "bibtex": "@misc{yin2026cove,\n  author={Yin, Fei and Wang, Gang and Barinov, Alexander A. and Liu, Shixian and Xu, Ke},\n  title={Cove-edge-induced vibrational confinement and weakened collective phonon transport in graphene nanoribbons},\n  journal={SSRN preprint},\n  year={2026},\n  doi={10.2139/ssrn.7068738},\n  url={https://doi.org/10.2139/ssrn.7068738}\n}"
+  },
+  {
+    "key": "zong2026alloy",
+    "order": 1,
     "type": "misc",
     "title": "The substitutional atomic distance model for predicting lattice thermal conductivity in alloys",
     "authors_html": "Zhicheng Zong, Tianhao Li, <strong class=\"publication-self\">Shixian Liu</strong>, Haisheng Fang, Nuo Yang<sup title=\"Corresponding author\">*</sup>",
@@ -25,7 +49,7 @@
   },
   {
     "key": "liu2026phonomc",
-    "order": 1,
+    "order": 2,
     "type": "misc",
     "title": "PhonoMC: A Full-Band Local-Deviational Monte Carlo Framework for Phonon Thermal Transport",
     "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong><sup title=\"Corresponding author\">*</sup>, Fei Yin, Bin Liu, Ge Zhang, Ke Xu<sup title=\"Corresponding author\">*</sup>, Alexander A. Barinov<sup title=\"Corresponding author\">*</sup>",
@@ -49,7 +73,7 @@
   },
   {
     "key": "he2026hotspot",
-    "order": 2,
+    "order": 3,
     "type": "misc",
     "title": "Non-uniform Thermal Conductivity in Nanoscale Multiple Hotspot Systems",
     "authors_html": "Yu He, Zhihao Zhou, <strong class=\"publication-self\">Shixian Liu</strong>, Jingtao Lv, Lina Yang<sup title=\"Corresponding author\">*</sup>, Nuo Yang<sup title=\"Corresponding author\">*</sup>",
@@ -73,7 +97,7 @@
   },
   {
     "key": "fei2026jap",
-    "order": 3,
+    "order": 4,
     "type": "article",
     "title": "Accelerated phonon transport calculations for nanostructures: Combining neuroevolution potentials and compressed sensing",
     "authors_html": "Fei Yin, <strong class=\"publication-self\">Shixian Liu</strong><sup title=\"Corresponding author\">*</sup>, Yiming Dong, A.A. Barinov, Ke Xu<sup title=\"Corresponding author\">*</sup>, V.I. Khvesyuk<sup title=\"Corresponding author\">*</sup>",
@@ -97,7 +121,7 @@
   },
   {
     "key": "zhihao2025hbm",
-    "order": 4,
+    "order": 5,
     "type": "article",
     "title": "Effect of Non-Fourier Heat Transport on Temperature Distribution in High Bandwidth Memory",
     "authors_html": "Zhihao Zhou, Yu He, <strong class=\"publication-self\">Shixian Liu</strong>, Lina Yang<sup title=\"Corresponding author\">*</sup>, Nuo Yang<sup title=\"Corresponding author\">*</sup>",
@@ -121,7 +145,7 @@
   },
   {
     "key": "shixian2025jap",
-    "order": 5,
+    "order": 6,
     "type": "article",
     "title": "Temperature Dependence of Specific Heat Capacity of Nanostructures via Neuroevolution Machine-learned Potential",
     "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong>, Ge Zhang, Fei Yin, A.A. Barinov, V.I. Khvesyuk<sup title=\"Corresponding author\">*</sup>, Nuo Yang<sup title=\"Corresponding author\">*</sup>",
@@ -145,7 +169,7 @@
   },
   {
     "key": "yin2025pb",
-    "order": 6,
+    "order": 7,
     "type": "article",
     "title": "An Enhanced Framework for Wave Reflection from a Periodically Rough Boundary",
     "authors_html": "Fei Yin, <strong class=\"publication-self\">Shixian Liu</strong>, A.A. Barinov, V.I. Khvesyuk<sup title=\"Corresponding author\">*</sup>",
@@ -169,7 +193,7 @@
   },
   {
     "key": "shixian2025wave",
-    "order": 7,
+    "order": 8,
     "type": "article",
     "title": "Quantifying Particle and Wave Effects in Phonon Transport of Pillared Graphene Nanoribbons",
     "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong><sup title=\"Equal contribution\">#</sup>, Zhicheng Zong<sup title=\"Equal contribution\">#</sup>, Fei Yin, V.I. Khvesyuk<sup title=\"Corresponding author\">*</sup>, Nuo Yang<sup title=\"Corresponding author\">*</sup>",
@@ -193,7 +217,7 @@
   },
   {
     "key": "shixian2025fluctuation",
-    "order": 8,
+    "order": 9,
     "type": "article",
     "title": "Temperature Fluctuations in Quantum Dots: Insights from a \\(T^{3/2}\\) Heat Capacity Model",
     "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong>, V.I. Khvesyuk<sup title=\"Corresponding author\">*</sup>",
@@ -217,7 +241,7 @@
   },
   {
     "key": "shixian2025graphene",
-    "order": 9,
+    "order": 10,
     "type": "article",
     "title": "Investigating Anisotropic Three-Phonon Interactions in Graphene's Thermal Conductivity Using Monte Carlo Method",
     "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong>, Fei Yin, V.I. Khvesyuk<sup title=\"Corresponding author\">*</sup>",
@@ -241,7 +265,7 @@
   },
   {
     "key": "shixian2024determination",
-    "order": 10,
+    "order": 11,
     "type": "article",
     "title": "Determination of Thermal Properties of Unsmooth Si Nanowires",
     "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong>, A.A. Barinov<sup title=\"Corresponding author\">*</sup>, Fei Yin, V.I. Khvesyuk",
@@ -265,7 +289,7 @@
   },
   {
     "key": "liu2022validation",
-    "order": 11,
+    "order": 12,
     "type": "article",
     "title": "Validation of the STEG code using experiments on two-phase flow across horizontal tube bundles",
     "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong>, Fei Yin, V.I. Melikhov<sup title=\"Corresponding author\">*</sup>, O.I. Melikhov",
