@@ -45,7 +45,7 @@
 
 .publication-stat-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.7rem;
   margin-top: 1.25rem;
   padding-top: 1rem;
@@ -106,49 +106,6 @@
   margin: 0.48rem 0 0;
   color: var(--muted);
   font-size: 0.7rem;
-}
-
-.publication-resource-links {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  margin-top: 1.1rem;
-}
-
-.publication-resource-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  min-height: 2.35rem;
-  padding: 0.48rem 0.85rem;
-  border: 1px solid rgba(23, 92, 144, 0.25);
-  border-radius: 9px;
-  background: rgba(255, 255, 255, 0.82);
-  color: var(--accent);
-  font-size: 0.84rem;
-  font-weight: 750;
-  text-decoration: none;
-  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
-}
-
-.publication-resource-link:hover {
-  transform: translateY(-1px);
-  background: var(--card);
-  box-shadow: 0 6px 16px rgba(30, 71, 101, 0.1);
-}
-
-.publication-resource-link-primary {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--on-accent);
-}
-
-.publication-resource-link-primary:hover {
-  background: #0f4f7a;
-  color: var(--on-accent);
 }
 
 .publication-filter {
@@ -482,10 +439,6 @@
 .publication-stat {
     min-height: 5rem;
     padding: 0.7rem 0.72rem;
-  }
-
-.publication-resource-link {
-    flex: 1 1 10rem;
   }
 
 .publication-card {

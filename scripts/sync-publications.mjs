@@ -252,6 +252,7 @@ const publications = extractEntryBlocks(bibText)
       selected: /^(true|1|yes|y)$/i.test(cleanDisplay(fields.selected || "")),
       self_first_or_cofirst: selfRoles.firstOrCofirst,
       self_corresponding: selfRoles.corresponding,
+      self_lead: selfRoles.firstOrCofirst || selfRoles.corresponding,
       bibtex: buildCitationBibtex(entry),
     };
   })

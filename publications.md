@@ -8,8 +8,7 @@ extra_css:
   - /assets/css/components/publications.css
 ---
 {% assign publication_groups = site.data.publications | group_by: "year" %}
-{% assign first_or_cofirst_publications = site.data.publications | where: "self_first_or_cofirst", true %}
-{% assign corresponding_publications = site.data.publications | where: "self_corresponding", true %}
+{% assign lead_publications = site.data.publications | where: "self_lead", true %}
 
 <section class="publication-hero" aria-labelledby="publications-heading">
   <p class="publication-hero-eyebrow">Research output</p>
@@ -22,8 +21,8 @@ extra_css:
       <span class="publication-stat-label">Papers</span>
     </div>
     <div class="publication-stat">
-      <span class="publication-stat-value">{{ first_or_cofirst_publications.size }} / {{ corresponding_publications.size }}</span>
-      <span class="publication-stat-label">First or co-first / corresponding</span>
+      <span class="publication-stat-value">{{ lead_publications.size }}</span>
+      <span class="publication-stat-label">First / Corresponding</span>
     </div>
     <a class="publication-stat publication-stat-link" href="{{ site.data.site_stats.scholar_url }}" target="_blank" rel="noopener noreferrer" aria-label="View current citations on Google Scholar">
       <span class="publication-stat-value">{{ site.data.site_stats.citations }} <span class="publication-stat-arrow" aria-hidden="true">↗</span></span>
@@ -33,23 +32,18 @@ extra_css:
       <span class="publication-stat-value">{{ site.data.site_stats.h_index }} <span class="publication-stat-arrow" aria-hidden="true">↗</span></span>
       <span class="publication-stat-label">H-index</span>
     </a>
+    <a class="publication-stat publication-stat-link" href="{{ '/assets/bibliography/publications-download.bib' | relative_url }}" download="publications.bib" aria-label="Download publications as BibTeX">
+      <span class="publication-stat-value">BibTeX <span class="publication-stat-arrow" aria-hidden="true">↓</span></span>
+      <span class="publication-stat-label">Download</span>
+    </a>
   </div>
   <p class="publication-stats-updated">Google Scholar metrics updated {{ site.data.site_stats.updated | date: "%B %d, %Y" }}.</p>
-
-  <div class="publication-resource-links">
-    <a class="publication-resource-link publication-resource-link-primary" href="{{ site.data.site_stats.scholar_url }}" target="_blank" rel="noopener noreferrer">
-      Google Scholar <span aria-hidden="true">↗</span>
-    </a>
-    <a class="publication-resource-link" href="{{ '/assets/bibliography/publications-download.bib' | relative_url }}" download="publications.bib">
-      Download BibTeX <span aria-hidden="true">↓</span>
-    </a>
-  </div>
 </section>
 
 <div class="publication-filter" role="group" aria-label="Filter publications by author role">
   <span class="publication-filter-label">Show</span>
   <button class="publication-filter-button is-active" type="button" data-publication-filter="all" aria-pressed="true">All</button>
-  <button class="publication-filter-button" type="button" data-publication-filter="lead" aria-pressed="false">Only First or co-first / corresponding</button>
+  <button class="publication-filter-button" type="button" data-publication-filter="lead" aria-pressed="false">Only First / Corresponding</button>
 </div>
 
 <nav class="publication-year-toc" aria-label="Publication years">
