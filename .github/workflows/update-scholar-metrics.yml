@@ -1,0 +1,44 @@
+name: Update Google Scholar metrics
+
+on:
+  schedule:
+    # Every Monday at 09:15 in Asia/Shanghai (01:15 UTC).
+    - cron: "15 1 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-google-scholar-metrics
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+
+      - name: Fetch Google Scholar metrics
+        env:
+          SERPAPI_API_KEY: ${{ secrets.SERPAPI_API_KEY }}
+          GOOGLE_SCHOLAR_AUTHOR_ID: bLVSRuUAAAAJ
+        run: node scripts/update-scholar-metrics.mjs
+
+      - name: Commit updated metrics
+        run: |
+          if git diff --quiet -- _data/site_stats.yml; then
+            echo "Google Scholar metrics are already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _data/site_stats.yml
+          git commit -m "Update Google Scholar metrics"
+          git push
