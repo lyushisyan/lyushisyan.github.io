@@ -1,4 +1,10 @@
 
+- date: "2026-08-23"
+  type: "Award"
+  title: "Our paper “Quantifying particle and wave effects in phonon transport of pillared graphene nanoribbons,” co-authored with Vladimir I. Khvesyuk, won third place in Bauman Moscow State Technical University’s competition for the best scientific work in physics published in 2025."
+  detail: "https://fn.bmstu.ru/faculty-basic-sciences/news-and-events-fs/item/1246-results-of-competitions-for-the-best-scientific-papers-in-mathematics-and-physics-published-in-2025"
+  link_label: "View competition results"
+
 - date: "2026-07-18"
   type: "Award"
   title: "Received the Best Poster Award for “Phonon Monte Carlo Simulation for Thermal Management in Nanostructures” at the joint conference of PTES 2026 and the 10th Workshop on Thermal Transport (WTT), held in Harbin, China."
