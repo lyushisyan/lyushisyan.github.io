@@ -5,7 +5,7 @@ lang: en
 translation_key: microscopic-energy-transport-fourier-law
 permalink: /blog/2026/06/20/from-energy-transport-to-fourier-law/
 date: 2026-03-13 12:00:00
-last_updated: 2026-06-20
+last_modified_at: 2026-06-20
 reading_time: "12 min"
 description: "A microscopic account of Fourier's law as a local constitutive relation, the scale separations it requires, and practical criteria for recognizing its breakdown."
 tags: theory thermal-transport nonequilibrium

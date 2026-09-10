@@ -5,7 +5,7 @@ lang: zh
 translation_key: phonon-wave-particle-wigner-transport
 permalink: /zh/blog/2026/06/21/phonon-wave-particle-wigner-transport/
 date: 2026-05-20 12:00:00
-last_updated: 2026-06-21
+last_modified_at: 2026-06-21
 reading_time: "16 min"
 description: "从声子布居与模式相干出发，解释粒子图像何时有效、何时需要 Wigner 输运方程，以及热导率如何分解为布居与相干贡献。"
 tags: theory phonon wigner-transport

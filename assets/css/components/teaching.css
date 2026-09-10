@@ -253,6 +253,10 @@
 }
 
 .teaching-card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem 1rem;
   margin-top: 0.85rem;
   text-align: right;
 }

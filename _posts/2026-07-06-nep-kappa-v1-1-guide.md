@@ -5,7 +5,7 @@ lang: en
 translation_key: nep-kappa-v1-1-guide
 permalink: /blog/2026/07/06/nep-kappa-v1-1-guide/
 date: 2026-07-06 12:00:00
-last_updated: 2026-07-06
+last_modified_at: 2026-07-06
 reading_time: "13 min"
 description: "A practical guide to NEP-kappa v1.1: install the CLI, configure YAML input, and run relaxation, force constants, thermal conductivity, and plotting stages."
 tags: NEP-kappa tutorial phonon thermal-transport

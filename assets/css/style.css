@@ -272,7 +272,7 @@ h1 {
 
 @media (max-width: 640px) {
   :root {
-    --sticky-offset: 58px;
+    --sticky-offset: 7rem;
   }
 
   .header-inner {

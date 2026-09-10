@@ -5,7 +5,7 @@ lang: en
 translation_key: rough-boundaries-phonon-transport
 permalink: /blog/2026/06/22/rough-boundaries-phonon-transport/
 date: 2026-06-22 12:00:00
-last_updated: 2026-06-22
+last_modified_at: 2026-06-22
 reading_time: "11 min"
 description: "How roughness amplitude, correlation length, and spatial spectrum selectively scatter phonons—and when a single specularity parameter ceases to describe the boundary."
 tags: phonon boundary-scattering nanostructure roughness

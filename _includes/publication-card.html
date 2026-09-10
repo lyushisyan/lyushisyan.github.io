@@ -15,18 +15,18 @@
     </p>
 
     <div class="publication-controls" aria-label="Publication links and metrics">
-      {% if publication.impact_factor %}
+      {% if publication.impact_factor != "" %}
         <span class="publication-tag"><span class="publication-tag-label">IF</span><span class="publication-tag-value">{{ publication.impact_factor }}</span></span>
       {% endif %}
-      {% if publication.scopus %}
+      {% if publication.scopus != "" %}
         <span class="publication-tag"><span class="publication-tag-label">Scopus</span><span class="publication-tag-value">{{ publication.scopus }}</span></span>
       {% endif %}
-      {% if publication.doi %}
+      {% if publication.doi != "" %}
         <a class="pub-btn" href="https://doi.org/{{ publication.doi }}" target="_blank" rel="noopener noreferrer">DOI</a>
-      {% elsif publication.link %}
+      {% elsif publication.link != "" %}
         <a class="pub-btn" href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">Article</a>
       {% endif %}
-      {% if publication.pdf %}
+      {% if publication.pdf != "" %}
         <a class="pub-btn" href="{{ publication.pdf | relative_url }}" target="_blank" rel="noopener noreferrer">PDF</a>
       {% endif %}
       {% if research_highlight %}

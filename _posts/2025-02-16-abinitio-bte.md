@@ -5,7 +5,7 @@ lang: en
 translation_key: abinitio-bte
 permalink: /blog/2025/02/16/abinitio-bte/
 date: 2025-02-16 06:36:10
-last_updated: 2026-06-21
+last_modified_at: 2026-06-21
 reading_time: "18 min"
 description: "A physically grounded guide to first-principles phonon Boltzmann transport, connecting DFT, interatomic force constants, collision operators, numerical convergence, and lattice thermal conductivity."
 tags: method phonon thermal-transport

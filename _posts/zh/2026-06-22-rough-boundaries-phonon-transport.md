@@ -5,7 +5,7 @@ lang: zh
 translation_key: rough-boundaries-phonon-transport
 permalink: /zh/blog/2026/06/22/rough-boundaries-phonon-transport/
 date: 2026-06-22 12:00:00
-last_updated: 2026-06-22
+last_modified_at: 2026-06-22
 reading_time: "12 min"
 description: "从边界受限平均自由程出发，解释粗糙度振幅、相关长度与空间频谱如何选择性散射声子，以及何时必须超越单一镜面反射系数。"
 tags: phonon boundary-scattering nanostructure roughness

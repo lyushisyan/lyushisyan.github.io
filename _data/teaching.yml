@@ -16,18 +16,21 @@
     - num: 1
       topic: "Python-Based Computing"
       topic_ru: "Вычисления на основе Python"
+      description: "Introduction to the Python ecosystem for science, including NumPy, SciPy, and Matplotlib."
       materials:
         - name: "Lecture 1 (Slides)"
           url: "/assets/teaching/python/Lecture_1_Python_v2.pdf"
     - num: 2
       topic: "Introduction to Machine Learning"
       topic_ru: "Введение в машинное обучение"
+      description: "Introduction to core machine-learning concepts, algorithms, and training workflows."
       materials:
         - name: "Lecture 2 (Slides)"
           url: "/assets/teaching/python/Lecture_2_Learning_v2.pdf"
     - num: 3
       topic: "Machine Learning Applications"
       topic_ru: "Применение машинного обучения"
+      description: "Applications of numerical methods and machine learning to thermophysics problems."
       materials:
         - name: "Lecture 3 (Slides)"
           url: "/assets/teaching/python/Lecture_3_Application_v2.pdf"
@@ -43,37 +46,42 @@
   location_ru: "Кафедра теплофизики"
   time: "Thursdays, 15:50–17:25"
   time_ru: "Четверг, 15:50–17:25"
-  repository: "https://github.com/lyushisyan"
+  repository: "https://github.com/lyushisyan/nano-thermal-physics"
   overview: "A systematic exploration of thermal physics at the nanoscale. Integrates classical continuum theories with atomistic simulations to explain heat transport mechanisms in solids."
   overview_ru: "Систематический курс по теплофизике на наноуровне. Объединяет классические континуальные теории и атомистическое моделирование для объяснения механизмов теплопереноса в твердых телах."
   topics:
     - num: 1
       topic: "Introduction to Nanothermophysics"
       topic_ru: "Введение в нанотеплофизику"
+      description: "Basic definitions and an introduction to nanothermophysics."
       materials:
         - name: "Lecture 1 (Slides)"
           url: "/assets/teaching/nanoheat/Lecture1_introduction.pdf"
     - num: 2
       topic: "Fundamentals of Crystal Structure"
       topic_ru: "Основы кристаллической структуры"
+      description: "Bravais lattices, primitive and conventional cells, Wigner–Seitz cells, reciprocal lattices, and the Brillouin zone."
       materials:
         - name: "Lecture 2 (Slides)"
           url: "/assets/teaching/nanoheat/Lecture2_structure.pdf"
     - num: 3
       topic: "Theory of Elastic Waves"
       topic_ru: "Теория упругих волн"
+      description: "Deformation, stress, Hooke's law, wave equations, reflection of elastic waves, and Kapitza conductance."
       materials:
         - name: "Lecture 3 (Slides)"
           url: "/assets/teaching/nanoheat/Lecture3_elasticity.pdf"
     - num: 4
       topic: "Lattice Vibration Theory"
       topic_ru: "Теория колебаний решетки"
+      description: "Lattice dynamics, the harmonic approximation, and phonon density of states."
       materials:
         - name: "Lecture 4 (Slides)"
           url: "/assets/teaching/nanoheat/Lecture4_LD_DOS.pdf"
     - num: 5
       topic: "Thermophysical properties"
       topic_ru: "Теплофизические свойства"
+      description: "Classical heat capacity, the Einstein and Debye models, and modern refinements."
       materials:
         - name: "Lecture 5 (Slides)"
           url: "/assets/teaching/nanoheat/Lecture5_property.pdf"
@@ -81,4 +89,5 @@
     - num: 1
       title: "Homework 1"
       title_ru: "Домашнее задание 1"
+      description: "Course assignment."
       url: "/assets/teaching/nanoheat/Homework-1.pdf"

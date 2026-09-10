@@ -54,10 +54,10 @@ layout: default
         {% if current_lang == 'zh' %}发布{% else %}Published{% endif %}
         <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
       </span>
-      {% if page.last_updated %}
+      {% if page.last_modified_at %}
         <span>
           {% if current_lang == 'zh' %}更新{% else %}Updated{% endif %}
-          <time datetime="{{ page.last_updated }}">{{ page.last_updated | date: "%Y-%m-%d" }}</time>
+          <time datetime="{{ page.last_modified_at }}">{{ page.last_modified_at | date: "%Y-%m-%d" }}</time>
         </span>
       {% endif %}
       {% if page.reading_time %}

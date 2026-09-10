@@ -74,8 +74,11 @@ extra_css:
         </div>
       {% endif %}
 
-      {% if course.repository %}
-        <footer class="teaching-card-footer"><a href="{{ course.repository }}" target="_blank" rel="noopener noreferrer"><span class="teaching-lang-en">Course repository</span><span class="teaching-lang-ru">Репозиторий курса</span> <span aria-hidden="true">↗</span></a></footer>
+      {% if course.url or course.repository %}
+        <footer class="teaching-card-footer">
+          {% if course.url %}<a href="{{ course.url | relative_url }}"><span class="teaching-lang-en">Course details</span><span class="teaching-lang-ru">Подробнее о курсе</span> <span aria-hidden="true">→</span></a>{% endif %}
+          {% if course.repository %}<a href="{{ course.repository }}" target="_blank" rel="noopener noreferrer"><span class="teaching-lang-en">Course repository</span><span class="teaching-lang-ru">Репозиторий курса</span> <span aria-hidden="true">↗</span></a>{% endif %}
+        </footer>
       {% endif %}
     </article>
   {% endfor %}

@@ -1,46 +1,55 @@
 ---
 layout: default
 ---
+{% assign course = site.data.teaching | where: "url", page.url | first %}
+{% assign course_subtitle = course.subtitle | default: page.subtitle %}
+{% assign course_year = course.year | default: page.year %}
+{% assign course_term = course.term | default: page.term %}
+{% assign course_time = course.time | default: page.time %}
+{% assign course_location = course.location | default: page.location %}
+{% assign course_repository = course.repository | default: page.repository %}
+{% assign course_topics = course.topics | default: page.schedule %}
+{% assign course_homeworks = course.homeworks | default: page.homeworks %}
 <article class="page">
   <div class="teaching-back">
     <a href="{{ '/teaching/' | relative_url }}">← Back to Teaching</a>
   </div>
 
   <h1>{{ page.title }}</h1>
-  {% if page.subtitle %}
-    <p class="teaching-subtitle">{{ page.subtitle }}</p>
+  {% if course_subtitle %}
+    <p class="teaching-subtitle">{{ course_subtitle }}</p>
   {% endif %}
 
   <div class="teaching-meta-grid">
-    {% if page.year %}
+    {% if course_year %}
     <div class="teaching-meta-item">
       <span class="teaching-meta-label">Year</span>
-      <span class="teaching-meta-value">{{ page.year }}</span>
+      <span class="teaching-meta-value">{{ course_year }}</span>
     </div>
     {% endif %}
-    {% if page.term %}
+    {% if course_term %}
     <div class="teaching-meta-item">
       <span class="teaching-meta-label">Semester</span>
-      <span class="teaching-meta-value">{{ page.term }}</span>
+      <span class="teaching-meta-value">{{ course_term }}</span>
     </div>
     {% endif %}
-    {% if page.time %}
+    {% if course_time %}
     <div class="teaching-meta-item">
       <span class="teaching-meta-label">Time</span>
-      <span class="teaching-meta-value">{{ page.time }}</span>
+      <span class="teaching-meta-value">{{ course_time }}</span>
     </div>
     {% endif %}
-    {% if page.location %}
+    {% if course_location %}
     <div class="teaching-meta-item">
       <span class="teaching-meta-label">Location</span>
-      <span class="teaching-meta-value">{{ page.location }}</span>
+      <span class="teaching-meta-value">{{ course_location }}</span>
     </div>
     {% endif %}
   </div>
 
-  {% if page.repository %}
+  {% if course_repository %}
     <div class="teaching-repo">
-      <a class="pub-btn" href="{{ page.repository }}" target="_blank" rel="noopener noreferrer">
+      <a class="pub-btn" href="{{ course_repository }}" target="_blank" rel="noopener noreferrer">
         ⌨ Repository
       </a>
     </div>
@@ -48,25 +57,43 @@ layout: default
 
   {{ content }}
 
-  {% if page.schedule %}
+  {% if course_topics or course_homeworks %}
   <h2 class="teaching-schedule-heading">Schedule</h2>
   <div class="teaching-schedule">
-    {% for lecture in page.schedule %}
+    {% for lecture in course_topics %}
     <div class="teaching-lecture-item card">
       <div class="teaching-lecture-header">
         <span class="teaching-lecture-num">{{ lecture.num }}</span>
         <div>
           <span class="teaching-lecture-topic">{{ lecture.topic }}</span>
-          <p class="teaching-lecture-desc">{{ lecture.description }}</p>
+          {% if lecture.description %}<p class="teaching-lecture-desc">{{ lecture.description }}</p>{% endif %}
         </div>
       </div>
       {% if lecture.materials %}
       <div class="teaching-lecture-materials">
         {% for mat in lecture.materials %}
-          <a class="pub-btn" href="{{ mat.url | relative_url }}" {% if mat.url == "#" %}aria-disabled="true"{% else %}target="_blank" rel="noopener noreferrer"{% endif %}>
-            {% if mat.url == "#" %}🔒{% else %}📄{% endif%} {{ mat.name }}
-          </a>
+          {% if mat.url and mat.url != "#" %}
+            <a class="pub-btn" href="{{ mat.url | relative_url }}" target="_blank" rel="noopener noreferrer">📄 {{ mat.name }}</a>
+          {% else %}
+            <span class="pub-btn is-disabled" aria-disabled="true">🔒 {{ mat.name }}</span>
+          {% endif %}
         {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+    {% for homework in course_homeworks %}
+    <div class="teaching-lecture-item card">
+      <div class="teaching-lecture-header">
+        <span class="teaching-lecture-num">HW</span>
+        <div>
+          <span class="teaching-lecture-topic">{{ homework.title | default: "Homework" }}</span>
+          {% if homework.description %}<p class="teaching-lecture-desc">{{ homework.description }}</p>{% endif %}
+        </div>
+      </div>
+      {% if homework.url and homework.url != "#" %}
+      <div class="teaching-lecture-materials">
+        <a class="pub-btn" href="{{ homework.url | relative_url }}" target="_blank" rel="noopener noreferrer">📄 {{ homework.title | default: "Homework" }} (PDF)</a>
       </div>
       {% endif %}
     </div>

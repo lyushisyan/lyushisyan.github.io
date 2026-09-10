@@ -199,13 +199,13 @@ function buildCitationBibtex(entry) {
   const author = normalizeSpace(fields.author || "")
     .replace(/\$\^#\$|\^#|†/g, "")
     .replace(/\*/g, "");
-  const title = cleanMathText(fields.title || "")
-    .replace(/\\\(|\\\)/g, "");
+  const title = cleanMathText(fields.title || "");
   const citationFields = [
     ["author", author],
     ["title", title],
     ["journal", normalizeSpace(fields.journal || fields.booktitle || "")],
     ["volume", normalizeSpace(fields.volume || "")],
+    ["number", normalizeSpace(fields.number || "")],
     ["pages", normalizeSpace(fields.pages || "")],
     ["year", normalizeSpace(fields.year || "")],
     ["doi", normalizeDoi(fields.doi || "")],

@@ -5,7 +5,7 @@ lang: zh
 translation_key: abinitio-bte
 permalink: /zh/blog/2025/02/16/abinitio-bte/
 date: 2025-02-16 06:36:10
-last_updated: 2026-06-21
+last_modified_at: 2026-06-21
 reading_time: "22 min"
 description: "从物理角度系统介绍第一性原理声子玻尔兹曼输运方法，连接 DFT、原子间力常数、碰撞算符、数值收敛与晶格热导率。"
 tags: method phonon thermal-transport

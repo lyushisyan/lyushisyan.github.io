@@ -5,7 +5,7 @@ lang: zh
 translation_key: nep-kappa-v1-1-guide
 permalink: /zh/blog/2026/07/06/nep-kappa-v1-1-guide/
 date: 2026-07-06 12:00:00
-last_updated: 2026-07-06
+last_modified_at: 2026-07-06
 reading_time: "14 min"
 description: "NEP-kappa v1.1 入门教程：安装命令行工具、编写 YAML 配置，并分阶段完成结构弛豫、力常数、热导率和绘图计算。"
 tags: NEP-kappa tutorial phonon thermal-transport

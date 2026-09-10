@@ -18,6 +18,11 @@ function collectHtmlFiles(directory, files = []) {
 }
 
 function resolveLocalTarget(htmlFile, rawUrl) {
+  if (!rawUrl.trim()) return { error: "empty URL" };
+  if (rawUrl.trim() === "#") return { error: "placeholder URL: #" };
+  if (/^https?:\/\/(?:dx\.)?doi\.org\/?$/i.test(rawUrl.trim())) {
+    return { error: `incomplete DOI URL: ${rawUrl}` };
+  }
   if (/^(?:[a-z]+:)?\/\//i.test(rawUrl)) return null;
   if (/^(?:mailto|tel|data|javascript):/i.test(rawUrl)) return null;
   if (rawUrl.startsWith("#")) return null;
@@ -56,7 +61,7 @@ const htmlFiles = collectHtmlFiles(siteRoot);
 
 for (const htmlFile of htmlFiles) {
   const html = fs.readFileSync(htmlFile, "utf8");
-  for (const match of html.matchAll(/(?:href|src)=["']([^"']+)["']/gi)) {
+  for (const match of html.matchAll(/(?:href|src)=["']([^"']*)["']/gi)) {
     const result = resolveLocalTarget(htmlFile, match[1]);
     if (result) {
       failures.push(`${path.relative(siteRoot, htmlFile)}: ${result.error}`);
