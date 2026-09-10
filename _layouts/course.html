@@ -3,10 +3,6 @@ layout: default
 ---
 {% assign course = site.data.teaching | where: "url", page.url | first %}
 {% assign course_subtitle = course.subtitle | default: page.subtitle %}
-{% assign course_year = course.year | default: page.year %}
-{% assign course_term = course.term | default: page.term %}
-{% assign course_time = course.time | default: page.time %}
-{% assign course_location = course.location | default: page.location %}
 {% assign course_repository = course.repository | default: page.repository %}
 {% assign course_topics = course.topics | default: page.schedule %}
 {% assign course_homeworks = course.homeworks | default: page.homeworks %}
@@ -19,33 +15,6 @@ layout: default
   {% if course_subtitle %}
     <p class="teaching-subtitle">{{ course_subtitle }}</p>
   {% endif %}
-
-  <div class="teaching-meta-grid">
-    {% if course_year %}
-    <div class="teaching-meta-item">
-      <span class="teaching-meta-label">Year</span>
-      <span class="teaching-meta-value">{{ course_year }}</span>
-    </div>
-    {% endif %}
-    {% if course_term %}
-    <div class="teaching-meta-item">
-      <span class="teaching-meta-label">Semester</span>
-      <span class="teaching-meta-value">{{ course_term }}</span>
-    </div>
-    {% endif %}
-    {% if course_time %}
-    <div class="teaching-meta-item">
-      <span class="teaching-meta-label">Time</span>
-      <span class="teaching-meta-value">{{ course_time }}</span>
-    </div>
-    {% endif %}
-    {% if course_location %}
-    <div class="teaching-meta-item">
-      <span class="teaching-meta-label">Location</span>
-      <span class="teaching-meta-value">{{ course_location }}</span>
-    </div>
-    {% endif %}
-  </div>
 
   {% if course_repository %}
     <div class="teaching-repo">

@@ -1,6 +1,6 @@
 ---
 title: Teaching
-description: "Course materials and schedules for numerical simulation methods and nanoscale thermal physics taught by Shixian Liu."
+description: "Course outlines and lecture materials for numerical simulation methods and nanoscale thermal physics taught by Shixian Liu."
 permalink: /teaching/
 hide_title: true
 extra_css:
@@ -10,7 +10,7 @@ extra_css:
 <section class="listing-hero teaching-hero" aria-labelledby="teaching-heading">
   <p class="listing-hero-eyebrow">Courses & materials</p>
   <h1 id="teaching-heading">Teaching</h1>
-  <p class="listing-hero-summary">Course outlines, lecture materials, and schedules.</p>
+  <p class="listing-hero-summary">Course outlines and lecture materials.</p>
   <div class="teaching-hero-bottom">
     <div id="teaching-lang-toggle" class="teaching-lang-toggle" role="group" aria-label="Language switcher">
       <button type="button" class="pub-btn teaching-lang-btn" data-lang="ru" aria-pressed="false">RU</button>
@@ -33,24 +33,12 @@ extra_css:
             <span class="teaching-lang-ru">{{ course.title_ru | default: course.subtitle | default: course.title }}</span>
           </h2>
         </div>
-        {% if course.term or course.term_ru %}
-          <span class="teaching-term-badge">
-            <span class="teaching-lang-en">{{ course.term }}</span>
-            <span class="teaching-lang-ru">{{ course.term_ru | default: course.term }}</span>
-          </span>
-        {% endif %}
       </header>
 
       <p class="teaching-course-overview">
         <span class="teaching-lang-en">{{ course.overview }}</span>
         <span class="teaching-lang-ru">{{ course.overview_ru | default: course.overview }}</span>
       </p>
-
-      <div class="teaching-card-meta">
-        {% if course.year %}<span><strong><span class="teaching-lang-en">Year</span><span class="teaching-lang-ru">Год</span></strong>{{ course.year }}</span>{% endif %}
-        {% if course.time or course.time_ru %}<span><strong><span class="teaching-lang-en">Time</span><span class="teaching-lang-ru">Время</span></strong><span class="teaching-lang-en">{{ course.time }}</span><span class="teaching-lang-ru">{{ course.time_ru | default: course.time }}</span></span>{% endif %}
-        {% if course.location or course.location_ru %}<span><strong><span class="teaching-lang-en">Location</span><span class="teaching-lang-ru">Место</span></strong><span class="teaching-lang-en">{{ course.location }}</span><span class="teaching-lang-ru">{{ course.location_ru | default: course.location }}</span></span>{% endif %}
-      </div>
 
       {% if course.topics %}
         <div class="teaching-syllabus">
