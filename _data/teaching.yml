@@ -10,30 +10,65 @@
   time: "Thursdays, 14:00–15:35"
   time_ru: "Четверг, 14:00–15:35"
   repository: "https://github.com/lyushisyan/python-ml-course"
-  overview: "A fast-paced introduction to scientific computing using Python. Covers essential tools for modern research in thermophysics, from basic numerical analysis with NumPy and SciPy to introductory Machine Learning techniques."
-  overview_ru: "Интенсивный курс по научным вычислениям на Python. Охватывает ключевые инструменты для современных исследований в теплофизике: от базового численного анализа с NumPy и SciPy до вводных методов машинного обучения."
+  overview: "An eight-lecture course on scientific computing for thermophysics, progressing from Python and Linux through deterministic numerical methods, Monte Carlo transport, machine learning, PINNs, and machine-learned interatomic potentials."
+  overview_ru: "Курс из восьми лекций по научным вычислениям для теплофизики: от Python и Linux до детерминированных численных методов, моделирования Монте-Карло, машинного обучения, PINN и машинно-обученных межатомных потенциалов."
   topics:
     - num: 1
-      topic: "Python-Based Computing"
-      topic_ru: "Вычисления на основе Python"
-      description: "Introduction to the Python ecosystem for science, including NumPy, SciPy, and Matplotlib."
+      topic: "Python for Scientific Computing"
+      topic_ru: "Python для научных вычислений"
+      description: "Python language fundamentals, NumPy, and data visualization with Matplotlib."
       materials:
         - name: "Lecture 1 (Slides)"
-          url: "/assets/teaching/python/Lecture_1_Python_v2.pdf"
+          url: "/assets/teaching/python/01_python.pdf"
     - num: 2
-      topic: "Introduction to Machine Learning"
-      topic_ru: "Введение в машинное обучение"
-      description: "Introduction to core machine-learning concepts, algorithms, and training workflows."
+      topic: "Linux and WSL for Scientific Computing"
+      topic_ru: "Linux и WSL для научных вычислений"
+      description: "Scientific workflows from a local computer to Linux servers and HPC systems."
       materials:
         - name: "Lecture 2 (Slides)"
-          url: "/assets/teaching/python/Lecture_2_Learning_v2.pdf"
+          url: "/assets/teaching/python/02_linux_wsl.pdf"
     - num: 3
-      topic: "Machine Learning Applications"
-      topic_ru: "Применение машинного обучения"
-      description: "Applications of numerical methods and machine learning to thermophysics problems."
+      topic: "Core Numerical Methods"
+      topic_ru: "Основные численные методы"
+      description: "Numerical errors, root finding, linear systems, interpolation, differentiation, and integration."
       materials:
         - name: "Lecture 3 (Slides)"
-          url: "/assets/teaching/python/Lecture_3_Application_v2.pdf"
+          url: "/assets/teaching/python/03_numerical_methods.pdf"
+    - num: 4
+      topic: "Numerical Solution of Differential Equations"
+      topic_ru: "Численное решение дифференциальных уравнений"
+      description: "Ordinary and partial differential equations, Euler and Runge–Kutta methods, and finite differences."
+      materials:
+        - name: "Lecture 4 (Slides)"
+          url: "/assets/teaching/python/04_differential_equations.pdf"
+    - num: 5
+      topic: "Fundamentals of the Monte Carlo Method"
+      topic_ru: "Основы метода Монте-Карло"
+      description: "Random sampling, Monte Carlo integration, random walks, and diffusion."
+      materials:
+        - name: "Lecture 5 (Slides)"
+          url: "/assets/teaching/python/05_monte_carlo_basics.pdf"
+    - num: 6
+      topic: "Monte Carlo Method in Transport Problems"
+      topic_ru: "Метод Монте-Карло в задачах переноса"
+      description: "From random walks to the Boltzmann equation and phonon transport."
+      materials:
+        - name: "Lecture 6 (Slides)"
+          url: "/assets/teaching/python/06_monte_carlo_transport.pdf"
+    - num: 7
+      topic: "Introduction to Machine Learning"
+      topic_ru: "Введение в машинное обучение"
+      description: "Perceptrons, neural networks, multilayer architectures, and model training."
+      materials:
+        - name: "Lecture 7 (Slides)"
+          url: "/assets/teaching/python/07_machine_learning.pdf"
+    - num: 8
+      topic: "Modern Methods in Computational Physics"
+      topic_ru: "Современные методы вычислительной физики"
+      description: "Surrogate models, physics-informed neural networks, and machine-learned interatomic potentials."
+      materials:
+        - name: "Lecture 8 (Slides)"
+          url: "/assets/teaching/python/08_modern_computational_physics.pdf"
 
 - title: "Thermal Physics of Nanosystems"
   title_ru: "Теплофизика наносистем"
