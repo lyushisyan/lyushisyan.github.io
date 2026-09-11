@@ -4,8 +4,8 @@ title: "声子的粒子性与波动性：Wigner 输运方程如何统一两种�
 lang: zh
 translation_key: phonon-wave-particle-wigner-transport
 permalink: /zh/blog/2026/06/21/phonon-wave-particle-wigner-transport/
-date: 2026-05-20 12:00:00
-last_modified_at: 2026-06-21
+date: 2026-06-21 12:00:00
+last_modified_at: 2026-09-11
 reading_time: "16 min"
 description: "从声子布居与模式相干出发，解释粒子图像何时有效、何时需要 Wigner 输运方程，以及热导率如何分解为布居与相干贡献。"
 tags: theory phonon wigner-transport
@@ -57,19 +57,20 @@ $$
 
 若两个模式的频率相差很大，它们之间的相对相位会快速旋转，长时间平均后非对角贡献通常相互抵消。此时每个模式都可以被清楚区分，布居和寿命构成有效的动力学变量。
 
-问题出现在频率间隔与线宽可比时。用
+问题出现在频率间隔与线宽可比时。令 $\Gamma_s$ 表示模式 $s$ 的散射率，即寿命的倒数。对于一对模式，相关的半宽为
 
 $$
 \Delta\omega_{ss'}
 =|\omega_s-\omega_{s'}|,
 \qquad
-\Gamma_{ss'}=\Gamma_s+\Gamma_{s'},
+\overline{\Gamma}_{ss'}
+=\frac{\Gamma_s+\Gamma_{s'}}{2},
 $$
 
-分别表示模式间隔和总展宽，一个常用的定性判据是
+一个常用的定性判据是
 
 $$
-\Delta\omega_{ss'}\lesssim\Gamma_{ss'}.
+\Delta\omega_{ss'}\lesssim\overline{\Gamma}_{ss'}.
 $$
 
 此时“这是模式 $s$ 的声子还是模式 $s'$ 的声子”不再能在散射时间内被清楚分辨。复杂晶胞会产生密集声子支，局域共振会形成平坦或近简并模，强非谐性会增大线宽，无序则会进一步削弱传播模的独立性；这些因素都可能使模式相干进入热流。

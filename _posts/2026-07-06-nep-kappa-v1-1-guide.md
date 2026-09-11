@@ -5,7 +5,7 @@ lang: en
 translation_key: nep-kappa-v1-1-guide
 permalink: /blog/2026/07/06/nep-kappa-v1-1-guide/
 date: 2026-07-06 12:00:00
-last_modified_at: 2026-07-06
+last_modified_at: 2026-09-11
 reading_time: "13 min"
 description: "A practical guide to NEP-kappa v1.1: install the CLI, configure YAML input, and run relaxation, force constants, thermal conductivity, and plotting stages."
 tags: NEP-kappa tutorial phonon thermal-transport
@@ -37,15 +37,16 @@ but the more important changes are clearer parameter organization, reproducible 
 
 ## What changed in v1.1?
 
-The new release uses the `nepkappa` command throughout and provides seven main entry points:
+The current v1.1.0 interface uses the `nepkappa` command throughout and provides eight main entry points:
 
 ```text
 info      validate and display the resolved configuration
 relax     relax the input structure
-fc        generate second- and third-order force constants
+fc2       generate second-order force constants
+fc2fc3    generate second- and third-order force constants
 kappa     solve for lattice thermal conductivity
 plot      process results and create figures
-run       execute relax, fc, and kappa in sequence
+run       execute relax, fc2fc3, and kappa in sequence
 compare   compare DFT and NEP results
 ```
 
@@ -243,12 +244,12 @@ The complete workflow can be written explicitly as:
 ```bash
 nepkappa info input.yaml
 nepkappa relax input.yaml
-nepkappa fc input.yaml
+nepkappa fc2fc3 input.yaml
 nepkappa kappa input.yaml
 nepkappa plot input.yaml
 ```
 
-When `relaxation.enabled: true`, a standalone `fc` step reads `POSCAR_relaxed` from the result directory, so `relax` must be completed first. Use `nepkappa run input.yaml` when you do not want to manage this dependency manually.
+When `relaxation.enabled: true`, a standalone `fc2` or `fc2fc3` step reads `POSCAR_relaxed` from the result directory, so `relax` must be completed first. Use `nepkappa run input.yaml` when you do not want to manage this dependency manually.
 
 The advantage of separate stages is avoiding repeated work. Existing force constants can be reused for a new `kappa` calculation, while existing HDF5 results can be replotted after changing temperature, components, layout, or DPI.
 
@@ -340,8 +341,8 @@ Run the bundled example first, change one class of parameters at a time, and per
 
 If you use NEP-kappa in research, please cite:
 
-F. Yin et al., “Accelerated phonon transport calculations for nanostructures: Combining neuroevolution potentials and compressed sensing,” *Journal of Applied Physics* **139**, 135103 (2026).
+F. Yin et al., “Accelerated phonon transport calculations for nanostructures: Combining neuroevolution potentials and compressed sensing,” *Journal of Applied Physics* **139**, 135103 (2026), doi: [10.1063/5.0324012](https://doi.org/10.1063/5.0324012).
 
 If you use the silicon-nanowire NEP potential distributed with the project, please also cite:
 
-K. Xu et al., “Critical Size Transitions in Silicon Nanowires: Amorphization, Phonon Hydrodynamics, and Thermal Conductivity,” *The Journal of Physical Chemistry Letters* **16**, 8580–8587 (2025).
+K. Xu et al., “Critical Size Transitions in Silicon Nanowires: Amorphization, Phonon Hydrodynamics, and Thermal Conductivity,” *The Journal of Physical Chemistry Letters* **16**, 8580–8587 (2025), doi: [10.1021/acs.jpclett.5c01802](https://doi.org/10.1021/acs.jpclett.5c01802).

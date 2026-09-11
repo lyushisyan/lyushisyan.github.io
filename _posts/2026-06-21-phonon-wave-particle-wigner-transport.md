@@ -4,8 +4,8 @@ title: "Particle and Wave Nature of Phonon Transport: A Wigner-Equation View"
 lang: en
 translation_key: phonon-wave-particle-wigner-transport
 permalink: /blog/2026/06/21/phonon-wave-particle-wigner-transport/
-date: 2026-05-20 12:00:00
-last_modified_at: 2026-06-21
+date: 2026-06-21 12:00:00
+last_modified_at: 2026-09-11
 reading_time: "13 min"
 description: "How phonon populations and intermode coherences encode particle-like and wave-like heat transport, and how the Wigner equation unifies both contributions."
 tags: theory phonon wigner-transport
@@ -57,19 +57,20 @@ The useful question is not whether a phonon “really is” a particle or a wave
 
 Two modes with widely separated frequencies accumulate relative phase rapidly. Their off-diagonal contribution usually averages away over transport times, leaving distinguishable modes whose populations and lifetimes are effective kinetic variables.
 
-The separation becomes ambiguous when the mode spacing is comparable to the linewidth. Define
+The separation becomes ambiguous when the mode spacing is comparable to the linewidth. Let $\Gamma_s$ denote the scattering rate, or inverse lifetime, of mode $s$. The half-width relevant to a pair of modes is
 
 $$
 \Delta\omega_{ss'}
 =|\omega_s-\omega_{s'}|,
 \qquad
-\Gamma_{ss'}=\Gamma_s+\Gamma_{s'}.
+\overline{\Gamma}_{ss'}
+=\frac{\Gamma_s+\Gamma_{s'}}{2}.
 $$
 
 A useful qualitative warning sign is
 
 $$
-\Delta\omega_{ss'}\lesssim\Gamma_{ss'}.
+\Delta\omega_{ss'}\lesssim\overline{\Gamma}_{ss'}.
 $$
 
 Within one scattering time, the system can no longer sharply resolve whether the excitation belongs to branch $s$ or $s'$. Large unit cells create dense phonon manifolds, local resonances produce flat or nearly degenerate bands, strong anharmonicity broadens the modes, and disorder weakens the identity of propagating quasiparticles. Each route can make coherence relevant to heat flow.

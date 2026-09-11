@@ -5,7 +5,7 @@ lang: en
 translation_key: rough-boundaries-phonon-transport
 permalink: /blog/2026/06/22/rough-boundaries-phonon-transport/
 date: 2026-06-22 12:00:00
-last_modified_at: 2026-06-22
+last_modified_at: 2026-09-11
 reading_time: "11 min"
 description: "How roughness amplitude, correlation length, and spatial spectrum selectively scatter phonons—and when a single specularity parameter ceases to describe the boundary."
 tags: phonon boundary-scattering nanostructure roughness
@@ -80,7 +80,7 @@ $$
 
 The expression conveys two important ideas: long-wavelength phonons average over small features more effectively, and grazing incidence tends to remain more specular. Yet it retains only roughness amplitude explicitly; it does not fully encode correlation length, periodicity, or the angular distribution after reflection. Replacing the entire real surface by a constant $p$ removes even the wavelength and incidence-angle selectivity.
 
-In our work on unsmooth silicon nanowires, a Soffer specularity parameter within a Fuchs–Sondheimer framework was used to examine how diameter, temperature, and technologically realistic surface roughness jointly affect conductivity. A subsequent reflection model for a periodically rough boundary included both phase loss and angular deviation and showed that the high-frequency specularity need not vary monotonically with frequency. The lesson is not simply that one complicated formula should replace a simpler one. It is that **once a boundary has definite spatial structure, reflection is jointly controlled by wavelength, amplitude, period, and incidence angle.**
+In our work on rough silicon nanowires, a Soffer specularity parameter within a Fuchs–Sondheimer framework was used to examine how diameter, temperature, and technologically realistic surface roughness jointly affect conductivity. A subsequent reflection model for a periodically rough boundary included both phase loss and angular deviation and showed that the high-frequency specularity need not vary monotonically with frequency. The lesson is not simply that one complicated formula should replace a simpler one. It is that **once a boundary has definite spatial structure, reflection is jointly controlled by wavelength, amplitude, period, and incidence angle.**
 
 ## From diffuse reflection to multiple scattering, interference, and localization
 

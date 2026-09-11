@@ -4,8 +4,8 @@ title: "从微观输运到傅里叶定律：何时成立，何时失效？"
 lang: zh
 translation_key: microscopic-energy-transport-fourier-law
 permalink: /zh/blog/2026/06/20/from-energy-transport-to-fourier-law/
-date: 2026-03-13 12:00:00
-last_modified_at: 2026-06-20
+date: 2026-06-20 12:00:00
+last_modified_at: 2026-09-11
 reading_time: "17 min"
 description: "从微观载流子输运出发，理解傅里叶定律作为局域构成关系如何在长时间、长长度尺度下出现，并用尺度判据识别它何时失效。"
 tags: theory thermal-transport nonequilibrium

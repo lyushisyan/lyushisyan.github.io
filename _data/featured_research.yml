@@ -16,7 +16,7 @@
 
 - publication_key: "shixian2024determination"
   label: "Roughness-dependent size effects"
-  summary: "Examines how diameter, surface roughness, and quantum size effects jointly govern heat capacity and thermal conductivity in unsmooth silicon nanowires."
+  summary: "Examines how diameter, surface roughness, and quantum size effects jointly govern heat capacity and thermal conductivity in rough silicon nanowires."
   methods:
     - "Surface roughness"
     - "Fuchs-Sondheimer"

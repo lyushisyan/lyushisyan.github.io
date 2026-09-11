@@ -5,7 +5,7 @@ lang: zh
 translation_key: abinitio-bte
 permalink: /zh/blog/2025/02/16/abinitio-bte/
 date: 2025-02-16 06:36:10
-last_modified_at: 2026-06-21
+last_modified_at: 2026-09-11
 reading_time: "22 min"
 description: "从物理角度系统介绍第一性原理声子玻尔兹曼输运方法，连接 DFT、原子间力常数、碰撞算符、数值收敛与晶格热导率。"
 tags: method phonon thermal-transport
@@ -24,7 +24,7 @@ toc:
 2. **晶格动力学**将这些导数转化为声子频率、本征矢、群速度和相互作用矩阵元；
 3. **线性化 PBTE**确定非平衡声子分布以及晶格热导率张量。
 
-这一方法的优势在于，它不仅给出一个拟合的体材料数值，还能揭示微观输运机制。但它并非绝对意义上的精确或“无参数”方法。预测结果依赖电子结构近似、数值收敛、非谐展开的截断阶数，以及声子准粒子图像是否成立。
+这一方法的优势在于，它不仅给出体材料的晶格热导率，还能揭示微观输运机制。但它并非绝对意义上的精确或“无参数”方法。预测结果依赖电子结构近似、数值收敛、非谐展开的截断阶数，以及声子准粒子图像是否成立。
 
 本文承接前面关于[傅里叶定律如何从微观输运中出现]({{ '/zh/blog/2026/06/20/from-energy-transport-to-fourier-law/' | relative_url }})以及[Normal 与 Umklapp 散射]({{ '/zh/blog/2026/06/20/normal-umklapp-collective-heat-flow/' | relative_url }})的讨论。这里关注的是方法本身：一个原子结构究竟怎样变成对 $\boldsymbol\kappa$ 的预测？
 

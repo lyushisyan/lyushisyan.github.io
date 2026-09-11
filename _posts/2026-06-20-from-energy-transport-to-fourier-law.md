@@ -4,8 +4,8 @@ title: "From Microscopic Transport to Fourier's Law: When Does It Work—or Fail
 lang: en
 translation_key: microscopic-energy-transport-fourier-law
 permalink: /blog/2026/06/20/from-energy-transport-to-fourier-law/
-date: 2026-03-13 12:00:00
-last_modified_at: 2026-06-20
+date: 2026-06-20 12:00:00
+last_modified_at: 2026-09-11
 reading_time: "12 min"
 description: "A microscopic account of Fourier's law as a local constitutive relation, the scale separations it requires, and practical criteria for recognizing its breakdown."
 tags: theory thermal-transport nonequilibrium
@@ -186,9 +186,7 @@ First, **collective crystal momentum** can relax much more slowly than local ene
 
 Second, **intermode coherence** may survive on the transport time scale. A population-only BTE may then need a density-matrix or Wigner extension. The point needed here is narrower: whether Fourier's law emerges macroscopically and which microscopic variables are required to compute its conductivity are distinct questions.
 
-Spatial nonlocality becomes especially visible near an interface, where incident carriers from the two sides generally have different non-equilibrium distributions.
-
-At an interface, incident carriers from the two materials can have different non-equilibrium distributions. A temperature discontinuity may appear even in steady state:
+Spatial nonlocality becomes especially visible near an interface, where incident carriers from the two materials generally have different non-equilibrium distributions. A temperature discontinuity may appear even in steady state:
 
 $$
 \Delta T=R_K q_n,

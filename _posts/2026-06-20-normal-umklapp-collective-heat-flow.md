@@ -4,8 +4,8 @@ title: "Do Phonon Collisions Always Create Thermal Resistance? Normal vs Umklapp
 lang: en
 translation_key: normal-umklapp-collective-heat-flow
 permalink: /blog/2026/06/20/normal-umklapp-collective-heat-flow/
-date: 2026-04-25 12:00:00
-last_modified_at: 2026-06-20
+date: 2026-06-20 12:00:00
+last_modified_at: 2026-09-11
 reading_time: "15 min"
 description: "Why Normal phonon scattering does not simply behave as thermal resistance, how Umklapp relaxes crystal momentum, and when phonons develop collective hydrodynamic flow."
 tags: theory phonon thermal-transport
@@ -62,7 +62,7 @@ $$
 \hbar\boldsymbol q_\lambda n_\lambda.
 $$
 
-It is a conserved quantity associated with discrete translational symmetry. It should not be confused with the mechanical momentum of the entire crystal, which also includes the motion of the lattice and its center of mass.
+This crystal-momentum moment is conserved by Normal processes in an ideal periodic crystal. Umklapp scattering, defects, boundaries, and coupling to other subsystems can relax it. It should not be confused with the mechanical momentum of the entire crystal, which also includes the motion of the lattice and its center of mass.
 
 The heat current is a different moment of the distribution:
 
@@ -140,8 +140,6 @@ This expression contains the essential physics. The eigenvectors of $\boldsymbol
 The single-mode relaxation-time approximation replaces $\boldsymbol\Omega$ by a diagonal matrix. It assigns each phonon an independent lifetime and therefore loses much of the repopulation and collective-drift physics created by off-diagonal couplings. This approximation can be adequate when resistive scattering dominates, but it may substantially underestimate conductivity when N scattering is strong.
 
 The iterative BTE solution is not merely a numerical refinement. It restores the coupled response between modes.
-
-The Callaway picture compresses this operator structure into two distinct relaxation tendencies.
 
 The Callaway picture separates two tendencies:
 

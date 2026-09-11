@@ -5,7 +5,7 @@ lang: zh
 translation_key: nep-kappa-v1-1-guide
 permalink: /zh/blog/2026/07/06/nep-kappa-v1-1-guide/
 date: 2026-07-06 12:00:00
-last_modified_at: 2026-07-06
+last_modified_at: 2026-09-11
 reading_time: "14 min"
 description: "NEP-kappa v1.1 入门教程：安装命令行工具、编写 YAML 配置，并分阶段完成结构弛豫、力常数、热导率和绘图计算。"
 tags: NEP-kappa tutorial phonon thermal-transport
@@ -37,15 +37,16 @@ nepkappa run input.yaml
 
 ## v1.1 改变了什么？
 
-新版统一使用 `nepkappa` 命令，并提供七个主要入口：
+当前 v1.1.0 接口统一使用 `nepkappa` 命令，并提供八个主要入口：
 
 ```text
 info      检查并显示最终采用的配置
 relax     弛豫输入结构
-fc        生成二阶和三阶力常数
+fc2       生成二阶力常数
+fc2fc3    生成二阶和三阶力常数
 kappa     求解晶格热导率
 plot      处理数据并绘图
-run       依次运行 relax、fc 和 kappa
+run       依次运行 relax、fc2fc3 和 kappa
 compare   对比 DFT 与 NEP 结果
 ```
 
@@ -243,12 +244,12 @@ structure:
 ```bash
 nepkappa info input.yaml
 nepkappa relax input.yaml
-nepkappa fc input.yaml
+nepkappa fc2fc3 input.yaml
 nepkappa kappa input.yaml
 nepkappa plot input.yaml
 ```
 
-当 `relaxation.enabled: true` 时，单独执行 `fc` 会读取结果目录中的 `POSCAR_relaxed`，所以必须先完成 `relax`。如果不想手动处理依赖，直接使用 `nepkappa run input.yaml` 更安全。
+当 `relaxation.enabled: true` 时，单独执行 `fc2` 或 `fc2fc3` 会读取结果目录中的 `POSCAR_relaxed`，所以必须先完成 `relax`。如果不想手动处理依赖，直接使用 `nepkappa run input.yaml` 更安全。
 
 分阶段运行的价值在于避免重复计算：已有力常数时可单独重算 `kappa`；已有 HDF5 结果时，可以修改绘图温度、分量、布局或 DPI 后只执行 `plot`。
 
@@ -340,8 +341,8 @@ nepkappa plot examples/1-bulk-nep-rta.yaml
 
 如果在研究中使用 NEP-kappa，请引用：
 
-F. Yin et al., “Accelerated phonon transport calculations for nanostructures: Combining neuroevolution potentials and compressed sensing,” *Journal of Applied Physics* **139**, 135103 (2026).
+F. Yin et al., “Accelerated phonon transport calculations for nanostructures: Combining neuroevolution potentials and compressed sensing,” *Journal of Applied Physics* **139**, 135103 (2026), doi: [10.1063/5.0324012](https://doi.org/10.1063/5.0324012).
 
 如果使用项目提供的硅纳米线 NEP 势函数，也建议引用：
 
-K. Xu et al., “Critical Size Transitions in Silicon Nanowires: Amorphization, Phonon Hydrodynamics, and Thermal Conductivity,” *The Journal of Physical Chemistry Letters* **16**, 8580–8587 (2025).
+K. Xu et al., “Critical Size Transitions in Silicon Nanowires: Amorphization, Phonon Hydrodynamics, and Thermal Conductivity,” *The Journal of Physical Chemistry Letters* **16**, 8580–8587 (2025), doi: [10.1021/acs.jpclett.5c01802](https://doi.org/10.1021/acs.jpclett.5c01802).
