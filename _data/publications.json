@@ -1,7 +1,32 @@
 [
   {
-    "key": "liang2026cpb",
+    "key": "li2026bas",
     "order": 0,
+    "type": "article",
+    "title": "Higher-Order-Phonon Scattering Governs Targeted Control of Heat Conduction in Bulk Boron Arsenide",
+    "authors_html": "Tianhao Li, Yangjun Qin, Dongkai Pan, <strong class=\"publication-self\">Shixian Liu</strong>, Han Meng, Nuo Yang<sup title=\"Corresponding author\">*</sup>",
+    "journal": "Materials Today Physics",
+    "abbreviation": "Mater. Today Phys.",
+    "year": 2026,
+    "volume": "",
+    "number": "",
+    "pages": "102236",
+    "abstract": "Conventional approaches for modulating thermal conductivity usually rely on structural modifications and therefore cannot achieve reversible in situ regulation. Targeted phonon excitation has recently emerged as a promising strategy for dynamically tuning thermal transport, but its applicability has so far been demonstrated mainly in two-dimensional systems. Here, we extend this strategy to a three-dimensional bulk material by taking boron arsenide (BAs) as a representative example. Based on first-principles calculations and phonon Boltzmann transport analysis, we show that targeted phonon excitation modulates the thermal conductivity of bulk BAs in a strongly frequency-dependent manner. Within the three-phonon-only framework, the modulation at 300 K is weak but clearly bidirectional. However, once four-phonon scattering is included, the modulation changes qualitatively to a predominantly suppressive behavior. In the combined three-phonon plus four-phonon (3ph+4ph) framework, the strongest suppression occurs at 20.5 THz, where the relative thermal conductivity decreases to 0.828 and 0.415 for excitation intensities of 5 and 25, respectively. By comparing the 3ph-only and 3ph+4ph results, we show that four-phonon scattering plays a decisive role in determining the net modulation effect by raising the intrinsic scattering background and promoting a more systematic excitation-induced increase in the scattering of low-frequency heat-carrying phonons.",
+    "preview": "/assets/img/publication_preview/mtp_bas_2026.png",
+    "pdf": "https://arxiv.org/pdf/2510.07934",
+    "doi": "10.1016/j.mtphys.2026.102236",
+    "link": "https://www.sciencedirect.com/science/article/abs/pii/S2542529326002270",
+    "impact_factor": "",
+    "scopus": "",
+    "selected": false,
+    "self_first_or_cofirst": false,
+    "self_corresponding": false,
+    "self_lead": false,
+    "bibtex": "@article{li2026bas,\n  author={Li, Tianhao and Qin, Yangjun and Pan, Dongkai and Liu, Shixian and Meng, Han and Yang, Nuo},\n  title={Higher-Order-Phonon Scattering Governs Targeted Control of Heat Conduction in Bulk Boron Arsenide},\n  journal={Materials Today Physics},\n  pages={102236},\n  year={2026},\n  doi={10.1016/j.mtphys.2026.102236},\n  eprint={2510.07934},\n  archivePrefix={arXiv},\n  primaryClass={cond-mat.mtrl-sci},\n  url={https://www.sciencedirect.com/science/article/abs/pii/S2542529326002270}\n}"
+  },
+  {
+    "key": "liang2026cpb",
+    "order": 1,
     "type": "article",
     "title": "Quantitatively analyzing microscopic mechanism of phonon coupling in nanostructured diamond",
     "authors_html": "Wu Liang, <strong class=\"publication-self\">Shixian Liu</strong>, Han Meng, Nuo Yang<sup title=\"Corresponding author\">*</sup>",
@@ -26,7 +51,7 @@
   },
   {
     "key": "liu2026excitation",
-    "order": 1,
+    "order": 2,
     "type": "misc",
     "title": "Knudsen-Controlled Switching of Thermal Conductivity Response by Targeted Phonon Excitation",
     "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong>, Tianhao Li, Fei Yin, Yu He, Alexander A. Barinov, Han Meng, Nuo Yang",
@@ -51,7 +76,7 @@
   },
   {
     "key": "yin2026cove",
-    "order": 2,
+    "order": 3,
     "type": "misc",
     "title": "Cove-edge-induced vibrational confinement and weakened collective phonon transport in graphene nanoribbons",
     "authors_html": "Fei Yin<sup title=\"Equal contribution\">#</sup>, Gang Wang<sup title=\"Equal contribution\">#</sup>, Alexander A. Barinov, <strong class=\"publication-self\">Shixian Liu</strong><sup title=\"Corresponding author\">*</sup>, Ke Xu<sup title=\"Corresponding author\">*</sup>",
@@ -76,7 +101,7 @@
   },
   {
     "key": "zong2026alloy",
-    "order": 3,
+    "order": 4,
     "type": "misc",
     "title": "The substitutional atomic distance model for predicting lattice thermal conductivity in alloys",
     "authors_html": "Zhicheng Zong, Tianhao Li, <strong class=\"publication-self\">Shixian Liu</strong>, Haisheng Fang, Nuo Yang<sup title=\"Corresponding author\">*</sup>",
@@ -101,7 +126,7 @@
   },
   {
     "key": "liu2026phonomc",
-    "order": 4,
+    "order": 5,
     "type": "misc",
     "title": "PhonoMC: A Full-Band Local-Deviational Monte Carlo Framework for Phonon Thermal Transport",
     "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong><sup title=\"Corresponding author\">*</sup>, Fei Yin, Bin Liu, Ge Zhang, Ke Xu<sup title=\"Corresponding author\">*</sup>, Alexander A. Barinov<sup title=\"Corresponding author\">*</sup>",
@@ -126,7 +151,7 @@
   },
   {
     "key": "he2026hotspot",
-    "order": 5,
+    "order": 6,
     "type": "article",
     "title": "Non-uniform Thermal Conductivity in Nanoscale Multiple Hotspot Systems",
     "authors_html": "Yu He, Zhihao Zhou, <strong class=\"publication-self\">Shixian Liu</strong>, Jing-Tao Lü, Lina Yang<sup title=\"Corresponding author\">*</sup>, Nuo Yang<sup title=\"Corresponding author\">*</sup>",
@@ -151,7 +176,7 @@
   },
   {
     "key": "fei2026jap",
-    "order": 6,
+    "order": 7,
     "type": "article",
     "title": "Accelerated phonon transport calculations for nanostructures: Combining neuroevolution potentials and compressed sensing",
     "authors_html": "Fei Yin, <strong class=\"publication-self\">Shixian Liu</strong><sup title=\"Corresponding author\">*</sup>, Yiming Dong, A.A. Barinov, Ke Xu<sup title=\"Corresponding author\">*</sup>, V.I. Khvesyuk<sup title=\"Corresponding author\">*</sup>",
@@ -176,7 +201,7 @@
   },
   {
     "key": "zhihao2025hbm",
-    "order": 7,
+    "order": 8,
     "type": "article",
     "title": "Effect of Non-Fourier Heat Transport on Temperature Distribution in High Bandwidth Memory",
     "authors_html": "Zhihao Zhou, Yu He, <strong class=\"publication-self\">Shixian Liu</strong>, Lina Yang<sup title=\"Corresponding author\">*</sup>, Nuo Yang<sup title=\"Corresponding author\">*</sup>",
@@ -201,7 +226,7 @@
   },
   {
     "key": "shixian2025jap",
-    "order": 8,
+    "order": 9,
     "type": "article",
     "title": "Temperature Dependence of Specific Heat Capacity of Nanostructures via Neuroevolution Machine-learned Potential",
     "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong>, Ge Zhang, Fei Yin, A.A. Barinov, V.I. Khvesyuk<sup title=\"Corresponding author\">*</sup>, Nuo Yang<sup title=\"Corresponding author\">*</sup>",
@@ -226,7 +251,7 @@
   },
   {
     "key": "yin2025pb",
-    "order": 9,
+    "order": 10,
     "type": "article",
     "title": "An Enhanced Framework for Wave Reflection from a Periodically Rough Boundary",
     "authors_html": "Fei Yin, <strong class=\"publication-self\">Shixian Liu</strong>, A.A. Barinov, V.I. Khvesyuk<sup title=\"Corresponding author\">*</sup>",
@@ -251,7 +276,7 @@
   },
   {
     "key": "shixian2025wave",
-    "order": 10,
+    "order": 11,
     "type": "article",
     "title": "Quantifying Particle and Wave Effects in Phonon Transport of Pillared Graphene Nanoribbons",
     "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong><sup title=\"Equal contribution\">#</sup>, Zhicheng Zong<sup title=\"Equal contribution\">#</sup>, Fei Yin, V.I. Khvesyuk<sup title=\"Corresponding author\">*</sup>, Nuo Yang<sup title=\"Corresponding author\">*</sup>",
@@ -276,7 +301,7 @@
   },
   {
     "key": "shixian2025fluctuation",
-    "order": 11,
+    "order": 12,
     "type": "article",
     "title": "Temperature Fluctuations in Quantum Dots: Insights from a \\(T^{3/2}\\) Heat Capacity Model",
     "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong>, V.I. Khvesyuk<sup title=\"Corresponding author\">*</sup>",
@@ -301,7 +326,7 @@
   },
   {
     "key": "shixian2025graphene",
-    "order": 12,
+    "order": 13,
     "type": "article",
     "title": "Investigating Anisotropic Three-Phonon Interactions in Graphene's Thermal Conductivity Using Monte Carlo Method",
     "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong>, Fei Yin, V.I. Khvesyuk<sup title=\"Corresponding author\">*</sup>",
@@ -326,7 +351,7 @@
   },
   {
     "key": "shixian2024determination",
-    "order": 13,
+    "order": 14,
     "type": "article",
     "title": "Determination of Thermal Properties of Unsmooth Si Nanowires",
     "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong>, A.A. Barinov<sup title=\"Corresponding author\">*</sup>, Fei Yin, V.I. Khvesyuk",
@@ -351,7 +376,7 @@
   },
   {
     "key": "liu2022validation",
-    "order": 14,
+    "order": 15,
     "type": "article",
     "title": "Validation of the STEG code using experiments on two-phase flow across horizontal tube bundles",
     "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong>, Fei Yin, V.I. Melikhov<sup title=\"Corresponding author\">*</sup>, O.I. Melikhov",
