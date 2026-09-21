@@ -84,14 +84,20 @@
 }
 
 @Misc{liu2026phonomc,
-  abbr={Research Square},
+  abbr={arXiv},
   bibtex_show={true},
-  title={PhonoMC: A Full-Band Local-Deviational Monte Carlo Framework for Phonon Thermal Transport},
-  author={Liu*, Shixian and Yin, Fei and Liu, Bin and Zhang, Ge and Xu*, Ke and Barinov*, Alexander A.},
-  abstract={Predictive thermal simulation of nanoscale semiconductor devices requires a Monte Carlo transport framework that can transfer mode-resolved phonon information from materials calculations to device-scale heat transport under complex confinement, localized heating, and spatially nonuniform temperature fields. Here we present PhonoMC, a full-band local-deviational phonon Monte Carlo framework that solves the phonon Boltzmann transport equation using locally updated equilibrium backgrounds and temperature-dependent modal properties. This formulation retains full-Brillouin-zone phonon information and reduces the statistical variance associated with full-population sampling in strongly nonuniform temperature fields. PhonoMC reproduces full-population Monte Carlo results with substantially lower noise, captures size-dependent thermal-conductivity suppression in silicon thin films, and resolves localized self-heating in a three-dimensional FinFET structure. Compared with Fourier-based finite-element calculations, PhonoMC predicts larger hotspot temperatures, revealing the contribution of nonlocal phonon transport to device thermal resistance. A PhonoMC-to-FEM bridging conductivity is further extracted from the single-device temperature field and transferred to a larger FinFET-array continuum model, demonstrating a scale-transfer route from phonon-resolved transport to continuum device-level simulation. These results establish PhonoMC as a computational framework for bridging materials-level phonon physics and larger-scale thermal response in nanoscale semiconductor devices.},
-  journal={Research Square preprint},
+  title={PhonoMC: Occupation-based deviational Monte Carlo for phonon transport with temperature-dependent scattering},
+  author={Liu*, Shixian and Yin, Fei and Wang, Gang and Liu, Bin and Zhang, Ge and Barinov*, Alexander A. and Xu*, Ke},
+  abstract={Nanoscale self-heating involves phonon transport across confined geometries, material interfaces, and temperature fields over which the scattering rates can vary substantially. We develop PhonoMC, an occupation-based deviational Monte Carlo method for solving the phonon Boltzmann transport equation within the relaxation-time approximation. A fixed equilibrium state is retained as the deviational reference, while the local temperature reconstructed from the represented energy is used to evaluate mode-dependent scattering rates. Collisions are updated with a separately determined relaxation temperature to conserve energy over each time step, and prescribed lattice heating is introduced by changing carrier occupations rather than continuously adding computational particles. For cross-plane transport through a 100-nm Si film, the deviational formulation reproduces the full-population heat flux while reducing its standard deviation by a factor of approximately 3.3 at $\Delta T=100$ K with $10^5$ carriers. In contrast, keeping the scattering rates fixed at 300 K overestimates the heat flux by 23.7% at $\Delta T=250$ K. Calculations of Si thin films distinguish finite-length effects from surface-scattering suppression, and Si/3C-SiC bilayers are used to examine interfacial thermal resistance. The method is further applied to localized heating in FinFET-like structures, where replacing the lower Si substrate with higher-conductivity 3C-SiC leads to a higher hotspot temperature because of the additional resistance associated with the confined Si region and the Si/SiC interface. These results show that a fixed deviational reference can be combined with local temperature-dependent scattering and sustained heat deposition in a mode-resolved Monte Carlo description of nanoscale thermal transport.},
+  journal={arXiv preprint},
   year={2026},
   preview={phonomc.png},
+  pdf={https://arxiv.org/pdf/2609.21884v1},
+  doi={10.48550/arXiv.2609.21884},
+  eprint={2609.21884},
+  archivePrefix={arXiv},
+  primaryClass={cond-mat.mtrl-sci},
+  url={https://arxiv.org/abs/2609.21884},
 }
 
 @Article{he2026hotspot,
