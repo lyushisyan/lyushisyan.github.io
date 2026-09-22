@@ -53,15 +53,15 @@
     "key": "li2026bas",
     "order": 2,
     "type": "article",
-    "title": "Higher-Order-Phonon Scattering Governs Targeted Control of Heat Conduction in Bulk Boron Arsenide",
+    "title": "Higher-order-phonon scattering governs targeted control of heat conduction in bulk boron arsenide",
     "authors_html": "Tianhao Li, Yangjun Qin, Dongkai Pan, <strong class=\"publication-self\">Shixian Liu</strong>, Han Meng, Nuo Yang<sup title=\"Corresponding author\">*</sup>",
     "journal": "Materials Today Physics",
     "abbreviation": "Mater. Today Phys.",
     "year": 2026,
-    "volume": "",
+    "volume": "68",
     "number": "",
     "pages": "102236",
-    "abstract": "Conventional approaches for modulating thermal conductivity usually rely on structural modifications and therefore cannot achieve reversible in situ regulation. Targeted phonon excitation has recently emerged as a promising strategy for dynamically tuning thermal transport, but its applicability has so far been demonstrated mainly in two-dimensional systems. Here, we extend this strategy to a three-dimensional bulk material by taking boron arsenide (BAs) as a representative example. Based on first-principles calculations and phonon Boltzmann transport analysis, we show that targeted phonon excitation modulates the thermal conductivity of bulk BAs in a strongly frequency-dependent manner. Within the three-phonon-only framework, the modulation at 300 K is weak but clearly bidirectional. However, once four-phonon scattering is included, the modulation changes qualitatively to a predominantly suppressive behavior. In the combined three-phonon plus four-phonon (3ph+4ph) framework, the strongest suppression occurs at 20.5 THz, where the relative thermal conductivity decreases to 0.828 and 0.415 for excitation intensities of 5 and 25, respectively. By comparing the 3ph-only and 3ph+4ph results, we show that four-phonon scattering plays a decisive role in determining the net modulation effect by raising the intrinsic scattering background and promoting a more systematic excitation-induced increase in the scattering of low-frequency heat-carrying phonons.",
+    "abstract": "Using boron arsenide as a physically motivated case study, we reveal the role of higher-order phonon scattering in thermal conductivity modulation through targeted phonon excitation. Using first-principles calculations and phonon Boltzmann transport analysis, it is found that targeted phonon excitation induces strongly frequency-dependent thermal-conductivity responses in bulk boron arsenide. Within the three-phonon-only framework, the modulation effect at 300 K is weak, with only marginal enhancement tendencies observed when exciting phonons in a narrower frequency range of 6.4–7.0 THz. However, in the combined three- and four-phonon scattering framework, the response changes toward suppressive modulation. The strongest suppression occurs at 20.5 THz, with relative thermal conductivity dropping to 0.828 and 0.415 for occupation multipliers of 5 and 25, respectively. The scattering-rate analysis reveals that four-phonon scattering elevates the intrinsic scattering background and enhances population-modification-induced scattering of low-frequency heat-carrying phonons. Furthermore, comparing 300 K and 100 K shows that lowering temperature weakens the contribution of four-phonon scattering and partially restores three-phonon-like modulation features. These findings provide mechanistic insight into the role of higher-order phonon scattering in targeted phonon-population control of bulk boron arsenide and advance the understanding of phonon-based thermal modulation in bulk anharmonic materials.",
     "preview": "/assets/img/publication_preview/mtp_bas_2026.png",
     "pdf": "https://arxiv.org/pdf/2510.07934",
     "doi": "10.1016/j.mtphys.2026.102236",
@@ -72,7 +72,7 @@
     "self_first_or_cofirst": false,
     "self_corresponding": false,
     "self_lead": false,
-    "bibtex": "@article{li2026bas,\n  author={Li, Tianhao and Qin, Yangjun and Pan, Dongkai and Liu, Shixian and Meng, Han and Yang, Nuo},\n  title={Higher-Order-Phonon Scattering Governs Targeted Control of Heat Conduction in Bulk Boron Arsenide},\n  journal={Materials Today Physics},\n  pages={102236},\n  year={2026},\n  doi={10.1016/j.mtphys.2026.102236},\n  eprint={2510.07934},\n  archivePrefix={arXiv},\n  primaryClass={cond-mat.mtrl-sci},\n  url={https://www.sciencedirect.com/science/article/abs/pii/S2542529326002270}\n}"
+    "bibtex": "@article{li2026bas,\n  author={Li, Tianhao and Qin, Yangjun and Pan, Dongkai and Liu, Shixian and Meng, Han and Yang, Nuo},\n  title={Higher-order-phonon scattering governs targeted control of heat conduction in bulk boron arsenide},\n  journal={Materials Today Physics},\n  volume={68},\n  pages={102236},\n  year={2026},\n  month={nov},\n  doi={10.1016/j.mtphys.2026.102236},\n  eprint={2510.07934},\n  archivePrefix={arXiv},\n  primaryClass={cond-mat.mtrl-sci},\n  url={https://www.sciencedirect.com/science/article/abs/pii/S2542529326002270}\n}"
   },
   {
     "key": "liang2026cpb",

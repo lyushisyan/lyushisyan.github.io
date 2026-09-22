@@ -208,6 +208,7 @@ function buildCitationBibtex(entry) {
     ["number", normalizeSpace(fields.number || "")],
     ["pages", normalizeSpace(fields.pages || "")],
     ["year", normalizeSpace(fields.year || "")],
+    ["month", normalizeSpace(fields.month || "")],
     ["doi", normalizeDoi(fields.doi || "")],
     ["eprint", normalizeSpace(fields.eprint || "")],
     ["archivePrefix", normalizeSpace(fields.archiveprefix || "")],
