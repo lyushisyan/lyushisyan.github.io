@@ -261,8 +261,24 @@
   align-items: start;
 }
 
-.publication-preview {
+.publication-preview-block {
   width: 185px;
+  margin: 0;
+}
+
+.publication-preview-label {
+  display: block;
+  margin: 0 0 0.35rem;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+.publication-preview {
+  display: block;
+  width: 100%;
   height: auto;
   aspect-ratio: 3 / 2;
   object-fit: contain;
@@ -445,8 +461,11 @@
     grid-template-columns: 1fr;
   }
 
-.publication-preview {
+.publication-preview-block {
     width: 100%;
+  }
+
+.publication-preview {
     height: auto;
     aspect-ratio: 3 / 2;
     object-fit: contain;

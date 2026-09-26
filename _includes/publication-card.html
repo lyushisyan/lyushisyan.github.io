@@ -1,12 +1,15 @@
 {% assign publication = include.publication %}
 {% assign research_highlight = site.data.research_highlights | where: "publication_key", publication.key | first %}
 <article id="publication-{{ publication.key }}" class="card publication-card" data-author-role="{% if publication.self_lead %}lead{% else %}other{% endif %}">
-  <img class="publication-preview"
-    src="{{ publication.preview | relative_url }}"
-    alt="Visual preview for {{ publication.title }}"
-    width="750"
-    height="500"
-    loading="lazy">
+  <figure class="publication-preview-block">
+    <figcaption class="publication-preview-label">{{ publication.abbreviation }}</figcaption>
+    <img class="publication-preview"
+      src="{{ publication.preview | relative_url }}"
+      alt="Visual preview for {{ publication.title }}"
+      width="750"
+      height="500"
+      loading="lazy">
+  </figure>
   <div class="publication-body">
     <h3 class="publication-title">{{ publication.title }}</h3>
     <p class="publication-authors">{{ publication.authors_html }}</p>
