@@ -30,7 +30,7 @@
     "order": 1,
     "type": "misc",
     "title": "Knudsen-Controlled Switching of Thermal Conductivity Response by Targeted Phonon Excitation",
-    "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong>, Tianhao Li, Fei Yin, Yu He, Alexander A. Barinov, Han Meng, Nuo Yang",
+    "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong>, Tianhao Li, Fei Yin, Yu He, Alexander A. Barinov, Han Meng, Nuo Yang<sup title=\"Corresponding author\">*</sup>",
     "journal": "arXiv preprint",
     "abbreviation": "arXiv",
     "year": 2026,
@@ -49,7 +49,7 @@
     "self_first_or_cofirst": true,
     "self_corresponding": false,
     "self_lead": true,
-    "bibtex": "@misc{liu2026excitation,\n  author={Shixian Liu and Tianhao Li and Fei Yin and Yu He and Alexander A. Barinov and Han Meng and Nuo Yang},\n  title={Knudsen-Controlled Switching of Thermal Conductivity Response by Targeted Phonon Excitation},\n  journal={arXiv preprint},\n  year={2026},\n  doi={10.48550/arXiv.2607.28905},\n  eprint={2607.28905},\n  archivePrefix={arXiv},\n  primaryClass={cond-mat.mtrl-sci},\n  url={https://arxiv.org/abs/2607.28905}\n}"
+    "bibtex": "@misc{liu2026excitation,\n  author={Shixian Liu and Tianhao Li and Fei Yin and Yu He and Alexander A. Barinov and Han Meng and Yang, Nuo},\n  title={Knudsen-Controlled Switching of Thermal Conductivity Response by Targeted Phonon Excitation},\n  journal={arXiv preprint},\n  year={2026},\n  doi={10.48550/arXiv.2607.28905},\n  eprint={2607.28905},\n  archivePrefix={arXiv},\n  primaryClass={cond-mat.mtrl-sci},\n  url={https://arxiv.org/abs/2607.28905}\n}"
   },
   {
     "key": "li2026bas",
