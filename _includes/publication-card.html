@@ -21,6 +21,9 @@
       {% if publication.impact_factor != "" %}
         <span class="publication-tag"><span class="publication-tag-label">IF</span><span class="publication-tag-value">{{ publication.impact_factor }}</span></span>
       {% endif %}
+      {% if publication.jcr != "" %}
+        <span class="publication-tag"><span class="publication-tag-label">JCR</span><span class="publication-tag-value">{{ publication.jcr }}</span></span>
+      {% endif %}
       {% if publication.scopus != "" %}
         <span class="publication-tag"><span class="publication-tag-label">Scopus</span><span class="publication-tag-value">{{ publication.scopus }}</span></span>
       {% endif %}

@@ -249,6 +249,7 @@ const publications = extractEntryBlocks(bibText)
       doi,
       link: fields.html || fields.link || fields.url || (doi ? `https://doi.org/${doi}` : ""),
       impact_factor: cleanDisplay(fields.if || fields.impact_factor || fields.jif || ""),
+      jcr: cleanDisplay(fields.jcr || fields.jcr_quartile || ""),
       scopus: cleanDisplay(fields.scopus || fields.scopus_quartile || fields.quartile || fields.q || ""),
       selected: /^(true|1|yes|y)$/i.test(cleanDisplay(fields.selected || "")),
       self_first_or_cofirst: selfRoles.firstOrCofirst,
