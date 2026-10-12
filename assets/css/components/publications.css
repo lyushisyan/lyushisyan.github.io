@@ -305,6 +305,29 @@
   color: var(--on-accent);
 }
 
+.publication-source-link {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.publication-source-link:hover {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+}
+
+.publication-file-link {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  color: #475569;
+}
+
+.publication-file-link:hover {
+  border-color: var(--accent);
+  background: #eef6fc;
+  color: var(--accent);
+}
+
 .publication-title {
   margin: 0;
   font-size: 1.08rem;
@@ -326,11 +349,27 @@
 }
 
 .publication-controls {
+  margin-top: 0.65rem;
+}
+
+.publication-metadata,
+.publication-actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.45rem;
-  margin-top: 0.55rem;
+}
+
+.publication-metadata {
+  margin-bottom: 0.5rem;
+}
+
+.publication-actions .pub-btn,
+.publication-actions .publication-native-detail summary {
+  min-height: 2rem;
+  padding: 0.34rem 0.68rem;
+  font-weight: 650;
+  white-space: nowrap;
 }
 
 .publication-native-detail {
@@ -357,6 +396,18 @@
 
 .publication-native-detail summary::-webkit-details-marker {
   display: none;
+}
+
+.publication-native-detail summary::after {
+  content: "+";
+  margin-left: 0.38rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.publication-native-detail[open] summary::after {
+  content: "−";
 }
 
 .publication-native-detail summary:hover,
