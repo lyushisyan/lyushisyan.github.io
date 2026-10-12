@@ -33,7 +33,12 @@
         <a class="pub-btn" href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">Article</a>
       {% endif %}
       {% if publication.pdf != "" %}
-        <a class="pub-btn" href="{{ publication.pdf | relative_url }}" target="_blank" rel="noopener noreferrer">PDF</a>
+        {% if publication.pdf contains "arxiv.org" %}
+          {% assign pdf_label = "Preprint" %}
+        {% else %}
+          {% assign pdf_label = "Accepted Manuscript" %}
+        {% endif %}
+        <a class="pub-btn" href="{{ publication.pdf | relative_url }}" target="_blank" rel="noopener noreferrer">{{ pdf_label }}</a>
       {% endif %}
       {% if research_highlight %}
         <a class="pub-btn publication-highlight-link" href="{{ research_highlight.url }}" target="_blank" rel="noopener noreferrer">{{ research_highlight.short_label }} <span aria-hidden="true">↗</span></a>
