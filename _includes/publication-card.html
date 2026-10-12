@@ -51,10 +51,12 @@
       {% if publication.pdf != "" %}
         {% if publication.pdf contains "arxiv.org" %}
           {% assign pdf_label = "Preprint" %}
+          {% assign pdf_full_label = "Preprint" %}
         {% else %}
-          {% assign pdf_label = "Accepted Manuscript" %}
+          {% assign pdf_label = "AAM" %}
+          {% assign pdf_full_label = "Accepted Author Manuscript" %}
         {% endif %}
-        <a class="pub-btn" href="{{ publication.pdf | relative_url }}" target="_blank" rel="noopener noreferrer">{{ pdf_label }}</a>
+        <a class="pub-btn" href="{{ publication.pdf | relative_url }}" target="_blank" rel="noopener noreferrer" title="{{ pdf_full_label }}" aria-label="Open {{ pdf_full_label }} for {{ publication.title }}">{{ pdf_label }}</a>
       {% endif %}
       {% if scholar_citation %}
         <a class="publication-scholar-badge" href="{{ scholar_citation.url | default: site.data.site_stats.scholar_url }}" target="_blank" rel="noopener noreferrer" aria-label="View citations for {{ publication.title }} on Google Scholar">
