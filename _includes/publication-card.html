@@ -28,14 +28,6 @@
       {% if publication.scopus != "" %}
         <span class="publication-tag"><span class="publication-tag-label">Scopus</span><span class="publication-tag-value">{{ publication.scopus }}</span></span>
       {% endif %}
-      {% if scholar_citation %}
-        <a class="publication-scholar-badge" href="{{ scholar_citation.url | default: site.data.site_stats.scholar_url }}" target="_blank" rel="noopener noreferrer" aria-label="View citations for {{ publication.title }} on Google Scholar">
-          <img src="https://img.shields.io/badge/scholar-{{ scholar_citation.count }}-4285F4?logo=googlescholar&amp;labelColor=beige"
-            alt="Google Scholar citations: {{ scholar_citation.count }}"
-            height="20"
-            loading="lazy">
-        </a>
-      {% endif %}
       {% if publication.doi != "" %}
         <a class="pub-btn" href="https://doi.org/{{ publication.doi }}" target="_blank" rel="noopener noreferrer">DOI</a>
       {% elsif publication.link != "" %}
@@ -63,6 +55,14 @@
           {% assign pdf_label = "Accepted Manuscript" %}
         {% endif %}
         <a class="pub-btn" href="{{ publication.pdf | relative_url }}" target="_blank" rel="noopener noreferrer">{{ pdf_label }}</a>
+      {% endif %}
+      {% if scholar_citation %}
+        <a class="publication-scholar-badge" href="{{ scholar_citation.url | default: site.data.site_stats.scholar_url }}" target="_blank" rel="noopener noreferrer" aria-label="View citations for {{ publication.title }} on Google Scholar">
+          <img src="https://img.shields.io/badge/scholar-{{ scholar_citation.count }}-4285F4?logo=googlescholar&amp;labelColor=beige"
+            alt="Google Scholar citations: {{ scholar_citation.count }}"
+            height="20"
+            loading="lazy">
+        </a>
       {% endif %}
     </div>
   </div>
