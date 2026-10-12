@@ -407,24 +407,22 @@
   font-weight: 600;
 }
 
-.publication-citation-tag {
-  padding: 0.16rem 0.46rem;
-  border: 1px solid rgba(23, 92, 144, 0.14);
-  background: #f7fbfe;
-  font-size: 0.74rem;
+.publication-scholar-badge {
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
-  transition: border-color 160ms ease, background 160ms ease;
+  transition: opacity 160ms ease;
 }
 
-.publication-citation-tag:hover {
-  border-color: rgba(23, 92, 144, 0.34);
-  background: #eef6fc;
+.publication-scholar-badge:hover {
+  opacity: 0.82;
   text-decoration: none;
 }
 
-.publication-citation-tag .publication-tag-label,
-.publication-citation-tag .publication-tag-value {
-  color: var(--accent);
+.publication-scholar-badge img {
+  display: block;
+  width: auto;
+  height: 20px;
 }
 
 .publication-detail {
