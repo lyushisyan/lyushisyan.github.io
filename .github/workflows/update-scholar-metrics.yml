@@ -1,6 +1,12 @@
 name: Update Google Scholar metrics
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/update-scholar-metrics.yml"
+      - "scripts/update-scholar-metrics.mjs"
   schedule:
     # Every Monday at 09:15 in Asia/Shanghai (01:15 UTC).
     - cron: "15 1 * * 1"
