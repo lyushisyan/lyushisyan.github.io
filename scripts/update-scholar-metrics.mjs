@@ -53,10 +53,11 @@ function titleSimilarity(left, right) {
 function citationCount(article) {
   const value = article?.cited_by?.value;
   if (value === undefined) return 0;
-  if (!Number.isSafeInteger(value) || value < 0) {
+  const numericValue = typeof value === "string" && /^\d+$/.test(value) ? Number(value) : value;
+  if (!Number.isSafeInteger(numericValue) || numericValue < 0) {
     throw new Error(`Invalid citation count for Google Scholar article: ${article?.title || "unknown"}.`);
   }
-  return value;
+  return numericValue;
 }
 
 function matchArticles(publications, articles) {
