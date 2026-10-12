@@ -3,6 +3,8 @@ import path from "node:path";
 
 const root = process.cwd();
 const statsPath = process.env.SITE_STATS_PATH || path.join(root, "_data/site_stats.yml");
+const publicationsPath = process.env.PUBLICATIONS_PATH || path.join(root, "_data/publications.json");
+const citationsPath = process.env.SCHOLAR_CITATIONS_PATH || path.join(root, "_data/scholar_citations.json");
 const apiKey = process.env.SERPAPI_API_KEY;
 const authorId = process.env.GOOGLE_SCHOLAR_AUTHOR_ID || "bLVSRuUAAAAJ";
 const fixturePath = process.env.SCHOLAR_METRICS_FIXTURE;
@@ -19,6 +21,79 @@ function replaceYamlInteger(source, key, value) {
   const pattern = new RegExp(`^${key}:\\s*\\d+\\s*$`, "m");
   if (!pattern.test(source)) throw new Error(`Missing integer field ${key} in _data/site_stats.yml.`);
   return source.replace(pattern, `${key}: ${value}`);
+}
+
+function normalizeTitle(title) {
+  return String(title || "")
+    .normalize("NFKD")
+    .replace(/\p{M}/gu, "")
+    .toLocaleLowerCase("en")
+    .replace(/[^\p{L}\p{N}]+/gu, "");
+}
+
+function titleTokens(title) {
+  return new Set(
+    String(title || "")
+      .normalize("NFKD")
+      .replace(/\p{M}/gu, "")
+      .toLocaleLowerCase("en")
+      .match(/[\p{L}\p{N}]+/gu) || [],
+  );
+}
+
+function titleSimilarity(left, right) {
+  const leftTokens = titleTokens(left);
+  const rightTokens = titleTokens(right);
+  if (!leftTokens.size || !rightTokens.size) return 0;
+  let overlap = 0;
+  for (const token of leftTokens) if (rightTokens.has(token)) overlap += 1;
+  return (2 * overlap) / (leftTokens.size + rightTokens.size);
+}
+
+function citationCount(article) {
+  const value = article?.cited_by?.value;
+  if (value === undefined) return 0;
+  if (!Number.isSafeInteger(value) || value < 0) {
+    throw new Error(`Invalid citation count for Google Scholar article: ${article?.title || "unknown"}.`);
+  }
+  return value;
+}
+
+function matchArticles(publications, articles) {
+  const matches = new Map();
+  const usedArticleIndexes = new Set();
+  const exactIndexes = new Map();
+
+  articles.forEach((article, index) => {
+    const normalized = normalizeTitle(article?.title);
+    if (!normalized) return;
+    const existingIndex = exactIndexes.get(normalized);
+    if (existingIndex === undefined || citationCount(article) > citationCount(articles[existingIndex])) {
+      exactIndexes.set(normalized, index);
+    }
+  });
+
+  for (const publication of publications) {
+    const articleIndex = exactIndexes.get(normalizeTitle(publication.title));
+    if (articleIndex === undefined || usedArticleIndexes.has(articleIndex)) continue;
+    matches.set(publication.key, articles[articleIndex]);
+    usedArticleIndexes.add(articleIndex);
+  }
+
+  for (const publication of publications) {
+    if (matches.has(publication.key)) continue;
+    const candidates = articles
+      .map((article, index) => ({ article, index, score: titleSimilarity(publication.title, article?.title) }))
+      .filter(({ index }) => !usedArticleIndexes.has(index))
+      .sort((a, b) => b.score - a.score);
+    const best = candidates[0];
+    const runnerUp = candidates[1];
+    if (!best || best.score < 0.86 || (runnerUp && best.score - runnerUp.score < 0.08)) continue;
+    matches.set(publication.key, best.article);
+    usedArticleIndexes.add(best.index);
+  }
+
+  return matches;
 }
 
 function shanghaiDate() {
@@ -41,6 +116,7 @@ async function getScholarData() {
     engine: "google_scholar_author",
     author_id: authorId,
     hl: "en",
+    num: "100",
     api_key: apiKey,
   });
 
@@ -54,6 +130,7 @@ async function getScholarData() {
 const data = await getScholarData();
 const table = data?.cited_by?.table;
 if (!Array.isArray(table)) throw new Error("Google Scholar response is missing cited_by.table.");
+if (!Array.isArray(data?.articles)) throw new Error("Google Scholar response is missing articles.");
 
 const citations = metricFromTable(table, "citations");
 const hIndex = metricFromTable(table, "h_index");
@@ -65,4 +142,28 @@ if (!updatedPattern.test(stats)) throw new Error("Missing date field updated in 
 stats = stats.replace(updatedPattern, `updated: "${shanghaiDate()}"`);
 fs.writeFileSync(statsPath, stats);
 
-console.log(`Updated Google Scholar metrics: ${citations} citations, h-index ${hIndex}.`);
+const publications = JSON.parse(fs.readFileSync(publicationsPath, "utf8"));
+if (!Array.isArray(publications)) throw new Error("_data/publications.json must contain an array.");
+const matches = matchArticles(publications, data.articles);
+const scholarUrl = `https://scholar.google.com/citations?user=${encodeURIComponent(authorId)}&hl=en`;
+const perPublication = Object.fromEntries(
+  publications.map((publication) => {
+    const article = matches.get(publication.key);
+    return [
+      publication.key,
+      {
+        count: article ? citationCount(article) : 0,
+        url: article?.cited_by?.link || article?.link || scholarUrl,
+      },
+    ];
+  }),
+);
+fs.writeFileSync(citationsPath, `${JSON.stringify(perPublication, null, 2)}\n`);
+
+const unmatched = publications.filter((publication) => !matches.has(publication.key));
+console.log(
+  `Updated Google Scholar metrics: ${citations} citations, h-index ${hIndex}; matched ${matches.size}/${publications.length} publications.`,
+);
+if (unmatched.length) {
+  console.warn(`No Google Scholar profile match (shown as Cited by 0): ${unmatched.map(({ key }) => key).join(", ")}`);
+}

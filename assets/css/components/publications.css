@@ -407,6 +407,26 @@
   font-weight: 600;
 }
 
+.publication-citation-tag {
+  padding: 0.16rem 0.46rem;
+  border: 1px solid rgba(23, 92, 144, 0.14);
+  background: #f7fbfe;
+  font-size: 0.74rem;
+  text-decoration: none;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.publication-citation-tag:hover {
+  border-color: rgba(23, 92, 144, 0.34);
+  background: #eef6fc;
+  text-decoration: none;
+}
+
+.publication-citation-tag .publication-tag-label,
+.publication-citation-tag .publication-tag-value {
+  color: var(--accent);
+}
+
 .publication-detail {
   display: none;
   margin-top: 0.55rem;

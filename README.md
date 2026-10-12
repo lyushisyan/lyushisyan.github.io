@@ -91,8 +91,8 @@ bundle exec jekyll serve
 
 ### Automatic Google Scholar metrics
 
-The `Update Google Scholar metrics` workflow refreshes the citation count and
-h-index every Monday. Add a repository Actions secret named `SERPAPI_API_KEY`
+The `Update Google Scholar metrics` workflow refreshes the total citation count,
+h-index, and per-publication `Cited by` labels every Monday. Add a repository Actions secret named `SERPAPI_API_KEY`
 containing a [SerpApi](https://serpapi.com/) API key, then run the workflow once
 from the Actions tab to verify the setup. If the API response is unavailable or
 invalid, the workflow fails without replacing the existing metrics.
@@ -203,7 +203,7 @@ bundle exec jekyll serve
 
 ### 自动更新 Google Scholar 指标
 
-`Update Google Scholar metrics` 工作流会在每周一自动更新引用数和 H-index。
+`Update Google Scholar metrics` 工作流会在每周一自动更新总引用数、H-index 和每篇论文的 `Cited by` 标签。
 请在仓库的 Actions secrets 中添加名为 `SERPAPI_API_KEY` 的
 [SerpApi](https://serpapi.com/) API Key，然后在 Actions 页面手动运行一次该工作流进行验证。
 如果接口返回异常或数据无效，工作流会失败并保留当前指标。

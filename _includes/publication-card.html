@@ -1,5 +1,6 @@
 {% assign publication = include.publication %}
 {% assign research_highlight = site.data.research_highlights | where: "publication_key", publication.key | first %}
+{% assign scholar_citation = site.data.scholar_citations[publication.key] %}
 <article id="publication-{{ publication.key }}" class="card publication-card" data-author-role="{% if publication.self_lead %}lead{% else %}other{% endif %}">
   <figure class="publication-preview-block">
     <figcaption class="publication-preview-label">{{ publication.abbreviation }}</figcaption>
@@ -26,6 +27,11 @@
       {% endif %}
       {% if publication.scopus != "" %}
         <span class="publication-tag"><span class="publication-tag-label">Scopus</span><span class="publication-tag-value">{{ publication.scopus }}</span></span>
+      {% endif %}
+      {% if scholar_citation %}
+        <a class="publication-tag publication-citation-tag" href="{{ scholar_citation.url | default: site.data.site_stats.scholar_url }}" target="_blank" rel="noopener noreferrer" aria-label="View citations for {{ publication.title }} on Google Scholar">
+          <span class="publication-tag-label">Cited by</span><span class="publication-tag-value">{{ scholar_citation.count }}</span>
+        </a>
       {% endif %}
       {% if publication.doi != "" %}
         <a class="pub-btn" href="https://doi.org/{{ publication.doi }}" target="_blank" rel="noopener noreferrer">DOI</a>
