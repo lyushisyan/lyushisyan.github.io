@@ -100,9 +100,9 @@ function matchArticles(publications, articles) {
   return matches;
 }
 
-function shanghaiDate() {
+function localDate() {
   const parts = new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Asia/Shanghai",
+    timeZone: "Europe/Moscow",
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
@@ -143,7 +143,7 @@ stats = replaceYamlInteger(stats, "citations", citations);
 stats = replaceYamlInteger(stats, "h_index", hIndex);
 const updatedPattern = /^updated:\s*["']?\d{4}-\d{2}-\d{2}["']?\s*$/m;
 if (!updatedPattern.test(stats)) throw new Error("Missing date field updated in _data/site_stats.yml.");
-stats = stats.replace(updatedPattern, `updated: "${shanghaiDate()}"`);
+stats = stats.replace(updatedPattern, `updated: "${localDate()}"`);
 fs.writeFileSync(statsPath, stats);
 
 const publications = JSON.parse(fs.readFileSync(publicationsPath, "utf8"));
