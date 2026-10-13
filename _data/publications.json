@@ -117,7 +117,7 @@
     "pages": "156303",
     "abstract": "Nanoscale hotspot thermal transport is critical for thermal management of electronic devices. Here, the thermal transport in nanoscale multiple hotspots is investigated by solving the phonon Boltzmann transport equation. To address the limitations of the conventional black-box treatment, a formal local thermal conductivity is proposed, which extends the classical framework to nanoscale nondiffusive regimes. The results reveal a highly nonuniform local thermal transport capability with up to a 13-fold variation across the system. A substantial heat flux deflection is also observed, which significantly deviates from the direction predicted by Fourier's law. Furthermore, closely spaced nanoscale hotspots are found to enhance heat flux by up to 40%. This enhancement arises from a mechanism in which diffuse boundary scattering at hotspot spacing regions can enhance rather than impede thermal transport. This Letter challenges the long-standing black-box treatment of nanoscale thermal transport and offers fundamental insights for the thermal management of high-power-density integrated circuits.",
     "preview": "/assets/img/publication_preview/prl_2026_hotspots.png",
-    "pdf": "",
+    "pdf": "/assets/pdf/papers/PRL_2026_He.pdf",
     "doi": "10.1103/g549-tkdc",
     "link": "https://doi.org/10.1103/g549-tkdc",
     "impact_factor": "9.4",
