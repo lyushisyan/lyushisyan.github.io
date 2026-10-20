@@ -30,7 +30,7 @@
     "order": 0,
     "type": "misc",
     "title": "NEP-kappa 2.0: A unified framework for phonon transport and nonequilibrium thermalization with machine-learning interatomic potentials",
-    "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong>, Bin Liu, Fei Yin, Gang Wang, Yiming Dong, Yangjun Qin, Alexandra V. Kosyakova, Qiang Xian, Alexander A. Barinov, Ke Xu, Gang Zhang",
+    "authors_html": "<strong class=\"publication-self\">Shixian Liu</strong><sup title=\"Equal contribution\">#</sup>, Bin Liu<sup title=\"Equal contribution\">#</sup>, Fei Yin, Gang Wang, Yiming Dong, Yangjun Qin, Alexandra V. Kosyakova, Qiang Xian, Alexander A. Barinov<sup title=\"Corresponding author\">*</sup>, Ke Xu<sup title=\"Corresponding author\">*</sup>, Gang Zhang<sup title=\"Corresponding author\">*</sup>",
     "journal": "arXiv preprint",
     "abbreviation": "arXiv",
     "year": 2026,
