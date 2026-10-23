@@ -27,10 +27,8 @@
 }
 
 .software-papers-back,
-.software-paper-title,
 .software-paper-doi,
 .software-papers-back:hover,
-.software-paper-title:hover,
 .software-paper-doi:hover {
   color: inherit;
 }

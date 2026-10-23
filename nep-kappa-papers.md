@@ -37,7 +37,7 @@ extra_css:
         {% if citation_title %}
           <li{% if item.publication_key %} id="{{ item.publication_key }}"{% endif %}>
             {{ citation_authors }}.
-            <a class="software-paper-title" href="https://doi.org/{{ citation_doi }}" target="_blank" rel="noopener noreferrer">{{ citation_title }}</a>.
+            <strong>{{ citation_title }}</strong>.
             <em>{{ citation_journal }}</em>{% if citation_volume != "" %} <strong>{{ citation_volume }}</strong>{% endif %}{% if citation_pages != "" %}, {{ citation_pages }}{% endif %} ({{ citation_year }}).
             <a class="software-paper-doi" href="https://doi.org/{{ citation_doi }}" target="_blank" rel="noopener noreferrer">https://doi.org/{{ citation_doi }}</a>
           </li>
