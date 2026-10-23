@@ -10,7 +10,7 @@ extra_css:
 <section class="listing-hero software-hero" aria-labelledby="software-heading">
   <p class="listing-hero-eyebrow">Scientific computing</p>
   <h1 id="software-heading">Software</h1>
-  <p class="listing-hero-summary">Open-source tools and reproducible workflows.</p>
+  <p class="listing-hero-summary">Open-source tools for predictive phonon transport, from atomistic force models to device-scale heat flow.</p>
 </section>
 
 <div class="software-grid">
@@ -30,12 +30,43 @@ extra_css:
     <div class="software-body">
       <div class="software-heading-row">
         <div>
-          <p class="software-kicker">Research workflow</p>
+          <p class="software-kicker">{{ project.category | default: "Research software" }}</p>
           <h2 class="software-name">{{ project.name }}</h2>
         </div>
         {% if project.status %}<span class="software-status">{{ project.status }}</span>{% endif %}
       </div>
+      {% if project.tagline %}<p class="software-tagline">{{ project.tagline }}</p>{% endif %}
+      {% if project.version or project.language %}
+        <div class="software-meta" aria-label="Software details">
+          {% if project.version %}<span>{{ project.version }}</span>{% endif %}
+          {% if project.language %}<span>{{ project.language }}</span>{% endif %}
+        </div>
+      {% endif %}
       <p class="software-description">{{ project.description }}</p>
+      {% if project.capabilities %}
+        <section class="software-capabilities" aria-labelledby="{{ project.name | slugify }}-capabilities">
+          <h3 id="{{ project.name | slugify }}-capabilities">Core capabilities</h3>
+          <ul>
+            {% for capability in project.capabilities %}<li>{{ capability }}</li>{% endfor %}
+          </ul>
+        </section>
+      {% endif %}
+      {% if project.best_for or project.quick_start %}
+        <div class="software-facts">
+          {% if project.best_for %}
+            <div>
+              <h3>Best suited for</h3>
+              <p>{{ project.best_for }}</p>
+            </div>
+          {% endif %}
+          {% if project.quick_start %}
+            <div>
+              <h3>Command-line entry</h3>
+              <code>{{ project.quick_start }}</code>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
       {% if project.tags %}
         <div class="software-tags" aria-label="Project topics">
           {% for tag in project.tags %}<span>{{ tag }}</span>{% endfor %}
@@ -48,9 +79,9 @@ extra_css:
         {% if project.docs %}
           <a class="software-link" href="{{ project.docs }}" target="_blank" rel="noopener noreferrer">Documentation <span aria-hidden="true">↗</span></a>
         {% endif %}
-        {% if project.paper %}
-          <a class="software-link" href="{{ project.paper }}" target="_blank" rel="noopener noreferrer">Paper <span aria-hidden="true">↗</span></a>
-        {% endif %}
+        {% for paper in project.papers %}
+          <a class="software-link" href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.label | default: "Paper" }} <span aria-hidden="true">↗</span></a>
+        {% endfor %}
       </div>
     </div>
   </article>

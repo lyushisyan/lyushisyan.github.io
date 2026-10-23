@@ -92,11 +92,11 @@
       <img class="about-software-logo" src="{{ project.logo | relative_url }}" alt="{{ project.name }} logo" width="240" height="240" loading="lazy">
       <div>
         <h3 class="about-software-name">{{ project.name }}</h3>
-        <p class="about-software-desc">{{ project.description }}</p>
+        <p class="about-software-desc">{{ project.summary | default: project.description }}</p>
         <div class="about-software-links">
           {% if project.link %}<a class="pub-btn" href="{{ project.link }}" target="_blank" rel="noopener noreferrer">Repository</a>{% endif %}
           {% if project.docs %}<a class="pub-btn" href="{{ project.docs }}" target="_blank" rel="noopener noreferrer">Documentation</a>{% endif %}
-          {% if project.paper %}<a class="pub-btn" href="{{ project.paper }}" target="_blank" rel="noopener noreferrer">Paper</a>{% endif %}
+          {% for paper in project.papers %}<a class="pub-btn" href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.label | default: "Paper" }}</a>{% endfor %}
         </div>
       </div>
     </article>

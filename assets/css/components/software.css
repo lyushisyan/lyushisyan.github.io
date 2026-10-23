@@ -136,6 +136,29 @@
   font-size: clamp(1.45rem, 3vw, 1.85rem);
 }
 
+.software-tagline {
+  margin: 0.45rem 0 0;
+  color: var(--heading);
+  font-size: clamp(1rem, 2vw, 1.12rem);
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.software-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+}
+
+.software-meta span {
+  border-left: 2px solid rgba(23, 92, 144, 0.32);
+  color: #526273;
+  padding-left: 0.45rem;
+  font-size: 0.76rem;
+  font-weight: 650;
+}
+
 .software-status {
   flex: none;
   border-radius: var(--radius-pill);
@@ -147,9 +170,81 @@
 }
 
 .software-description {
-  margin: 0.65rem 0 0;
+  margin: 0.75rem 0 0;
   color: var(--muted);
   line-height: 1.68;
+}
+
+.software-capabilities {
+  margin-top: 1rem;
+}
+
+.software-capabilities h3,
+.software-facts h3 {
+  margin: 0;
+  color: var(--heading);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.software-capabilities ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.48rem 1.2rem;
+  margin: 0.55rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.software-capabilities li {
+  position: relative;
+  color: #425466;
+  padding-left: 1rem;
+  font-size: 0.86rem;
+  line-height: 1.52;
+}
+
+.software-capabilities li::before {
+  position: absolute;
+  top: 0.58em;
+  left: 0;
+  width: 0.34rem;
+  height: 0.34rem;
+  border-radius: 50%;
+  background: var(--accent);
+  content: "";
+}
+
+.software-facts {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(12rem, 0.85fr);
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.software-facts > div {
+  border: 1px solid rgba(23, 92, 144, 0.1);
+  border-radius: 9px;
+  background: #f8fafc;
+  padding: 0.7rem 0.8rem;
+}
+
+.software-facts p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.83rem;
+  line-height: 1.5;
+}
+
+.software-facts code {
+  display: block;
+  overflow-x: auto;
+  margin-top: 0.4rem;
+  color: #174d70;
+  font-size: 0.78rem;
+  white-space: nowrap;
 }
 
 .software-tags {
@@ -204,24 +299,28 @@
 }
 
 @media (max-width: 640px) {
-.software-card {
+  .software-card {
     grid-template-columns: 1fr;
   }
 
-.software-logo-wrap {
+  .software-logo-wrap {
     min-height: 170px;
   }
 
-.software-logo {
+  .software-logo {
     max-width: 190px;
   }
 
-.software-heading-row {
+  .software-heading-row {
     align-items: flex-start;
   }
 
-.software-link {
-    flex: 1 1 9rem;
+  .software-capabilities ul,
+  .software-facts {
+    grid-template-columns: 1fr;
   }
 
+  .software-link {
+    flex: 1 1 9rem;
+  }
 }
