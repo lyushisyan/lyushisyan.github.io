@@ -1,23 +1,7 @@
 software:
   - publication_key: "liu2026nepkappa"
-    label: "Software paper"
-    note: >-
-      Introduces NEP-kappa 2.0 as a unified framework for equilibrium phonon transport,
-      finite-temperature lattice dynamics, and nonequilibrium thermalization.
-
   - publication_key: "fei2026jap"
-    label: "Method paper"
-    note: >-
-      Establishes the accelerated workflow that combines neuroevolution potentials with
-      compressed sensing for anharmonic force constants and phonon transport.
 
 applications:
   - publication_key: "yin2026cove"
-    note: >-
-      Applies the NEP-based lattice-dynamics and phonon-transport workflow to cove-edged
-      graphene nanoribbons.
-
   - publication_key: "shixian2025jap"
-    note: >-
-      Uses NEP-based lattice dynamics to study the temperature- and size-dependent heat
-      capacity of silicon nanostructures.
