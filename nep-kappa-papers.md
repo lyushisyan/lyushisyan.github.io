@@ -21,8 +21,8 @@ extra_css:
       <h2 id="paper-group-{{ group_name }}-heading">Research using NEP-kappa</h2>
     {% endif %}
 
-    <ol class="software-paper-list">
-      {% for item in paper_items %}
+    <ol class="software-paper-list" reversed>
+      {% for item in paper_items reversed %}
         {% assign paper = nil %}
         {% if item.publication_key %}
           {% assign paper = site.data.publications | where: "key", item.publication_key | first %}
