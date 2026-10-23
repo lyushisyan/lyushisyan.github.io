@@ -136,29 +136,6 @@
   font-size: clamp(1.45rem, 3vw, 1.85rem);
 }
 
-.software-tagline {
-  margin: 0.45rem 0 0;
-  color: var(--heading);
-  font-size: clamp(1rem, 2vw, 1.12rem);
-  font-weight: 650;
-  line-height: 1.45;
-}
-
-.software-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.65rem;
-}
-
-.software-meta span {
-  border-left: 2px solid rgba(23, 92, 144, 0.32);
-  color: #526273;
-  padding-left: 0.45rem;
-  font-size: 0.76rem;
-  font-weight: 650;
-}
-
 .software-status {
   flex: none;
   border-radius: var(--radius-pill);

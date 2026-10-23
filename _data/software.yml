@@ -1,9 +1,6 @@
 - name: "NEP-kappa"
   category: "Phonon workflow"
-  version: "v2.0.1"
-  language: "Python 3.10+"
   logo: "/assets/img/software/NEP-kappa-logo-880x740.png"
-  tagline: "From atomic forces to equilibrium and nonequilibrium phonon transport."
   summary: >-
     A YAML-driven framework that links first-principles and machine-learning force models
     to finite-temperature phonons, lattice thermal transport, and nonequilibrium dynamics.
@@ -24,9 +21,7 @@
 
 - name: "PhonoMC"
   category: "Monte Carlo solver"
-  language: "C++17 / OpenMP"
   logo: "/assets/img/software/PhonoMC-logo.png"
-  tagline: "Mode-resolved Monte Carlo simulation of nanoscale heat transport."
   summary: >-
     A C++17 deviational phonon Monte Carlo solver for thin films, interfaces, and device
     geometries with fixed or locally temperature-dependent scattering.
