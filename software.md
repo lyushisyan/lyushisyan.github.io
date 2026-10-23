@@ -43,30 +43,6 @@ extra_css:
         </div>
       {% endif %}
       <p class="software-description">{{ project.description }}</p>
-      {% if project.capabilities %}
-        <section class="software-capabilities" aria-labelledby="{{ project.name | slugify }}-capabilities">
-          <h3 id="{{ project.name | slugify }}-capabilities">Core capabilities</h3>
-          <ul>
-            {% for capability in project.capabilities %}<li>{{ capability }}</li>{% endfor %}
-          </ul>
-        </section>
-      {% endif %}
-      {% if project.best_for or project.quick_start %}
-        <div class="software-facts">
-          {% if project.best_for %}
-            <div>
-              <h3>Best suited for</h3>
-              <p>{{ project.best_for }}</p>
-            </div>
-          {% endif %}
-          {% if project.quick_start %}
-            <div>
-              <h3>Command-line entry</h3>
-              <code>{{ project.quick_start }}</code>
-            </div>
-          {% endif %}
-        </div>
-      {% endif %}
       {% if project.tags %}
         <div class="software-tags" aria-label="Project topics">
           {% for tag in project.tags %}<span>{{ tag }}</span>{% endfor %}

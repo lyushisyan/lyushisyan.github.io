@@ -12,15 +12,6 @@
     for force constants, phonon properties, thermal-conductivity calculations, and
     time-dependent phonon simulations. The same input structure can organize calculations
     from harmonic lattice dynamics to temperature-renormalized and higher-order transport.
-  capabilities:
-    - "Harmonic phonons and force constants from first-principles or machine-learning potentials"
-    - "Quasi-harmonic and stochastic self-consistent phonon treatments at finite temperature"
-    - "Three- and four-phonon transport with RTA, LBTE, and Wigner formulations"
-    - "Mode-resolved time-dependent BTE simulations of nonequilibrium thermalization"
-  best_for: >-
-    Reproducible lattice-thermal-transport studies, force-model comparisons, finite-temperature
-    phonon renormalization, and mode-resolved relaxation dynamics.
-  quick_start: "nepkappa run input.yaml"
   status: "Open source"
   tags:
     - "NEP / VASP / MACE"
@@ -48,15 +39,6 @@
     nanoscale structures. It supports full-distribution and deviational formulations, local
     temperature reconstruction, energy-conserving collision updates, spectrum-selective heating,
     and heat flow across boundaries and material interfaces.
-  capabilities:
-    - "Cross-plane, finite in-plane, and periodic-gradient transport in thin films"
-    - "RTA and Callaway collisions with fixed or locally evaluated scattering rates"
-    - "Box, STL, and OBJ geometries with rough, periodic, and thermal-reservoir boundaries"
-    - "DMM, AMM, and mixed interfaces plus localized and frequency-selective heat sources"
-  best_for: >-
-    Nondiffusive heat transport in semiconductor films and devices, hotspot simulations,
-    interfacial transport, and targeted phonon-excitation studies.
-  quick_start: "./build/PhonoMC path/to/input.toml"
   status: "Open source"
   tags:
     - "Deviational Monte Carlo"
