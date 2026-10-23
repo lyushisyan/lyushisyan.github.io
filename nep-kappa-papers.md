@@ -13,7 +13,7 @@ extra_css:
 
 {% assign paper_groups = "software,applications" | split: "," %}
 {% for group_name in paper_groups %}
-  {% assign paper_items = site.data.nepkappa_papers[group_name] %}
+  {% assign paper_items = site.data.nepkappa_papers[group_name] | sort: "number" | reverse %}
   <section class="software-paper-section" aria-labelledby="paper-group-{{ group_name }}-heading">
     {% if group_name == "software" %}
       <h2 id="paper-group-{{ group_name }}-heading">Software and method papers</h2>
@@ -22,7 +22,7 @@ extra_css:
     {% endif %}
 
     <ol class="software-paper-list" reversed>
-      {% for item in paper_items reversed %}
+      {% for item in paper_items %}
         {% assign paper = nil %}
         {% if item.publication_key %}
           {% assign paper = site.data.publications | where: "key", item.publication_key | first %}
@@ -35,7 +35,7 @@ extra_css:
         {% assign citation_year = item.year | default: paper.year %}
         {% assign citation_doi = item.doi | default: paper.doi %}
         {% if citation_title %}
-          <li{% if item.publication_key %} id="{{ item.publication_key }}"{% endif %}>
+          <li value="{{ item.number }}"{% if item.publication_key %} id="{{ item.publication_key }}"{% endif %}>
             {{ citation_authors }}.
             <strong>{{ citation_title }}</strong>.
             <em>{{ citation_journal }}</em>{% if citation_volume != "" %} <strong>{{ citation_volume }}</strong>{% endif %}{% if citation_pages != "" %}, {{ citation_pages }}{% endif %} ({{ citation_year }}).
