@@ -20,11 +20,7 @@
     - "TD-BTE"
   link: "https://github.com/lyushisyan/NEP-kappa"
   docs: "https://nep-kappa.readthedocs.io"
-  papers:
-    - label: "NEP-kappa 2.0 paper"
-      url: "https://doi.org/10.48550/arXiv.2610.25477"
-    - label: "Method paper"
-      url: "https://doi.org/10.1063/5.0324012"
+  papers_page: "/software/nep-kappa-papers/"
 
 - name: "PhonoMC"
   category: "Monte Carlo solver"

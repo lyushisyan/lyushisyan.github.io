@@ -96,7 +96,11 @@
         <div class="about-software-links">
           {% if project.link %}<a class="pub-btn" href="{{ project.link }}" target="_blank" rel="noopener noreferrer">Repository</a>{% endif %}
           {% if project.docs %}<a class="pub-btn" href="{{ project.docs }}" target="_blank" rel="noopener noreferrer">Documentation</a>{% endif %}
-          {% for paper in project.papers %}<a class="pub-btn" href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.label | default: "Paper" }}</a>{% endfor %}
+          {% if project.papers_page %}
+            <a class="pub-btn" href="{{ project.papers_page | relative_url }}">Papers</a>
+          {% else %}
+            {% for paper in project.papers %}<a class="pub-btn" href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.label | default: "Paper" }}</a>{% endfor %}
+          {% endif %}
         </div>
       </div>
     </article>

@@ -55,9 +55,13 @@ extra_css:
         {% if project.docs %}
           <a class="software-link" href="{{ project.docs }}" target="_blank" rel="noopener noreferrer">Documentation <span aria-hidden="true">↗</span></a>
         {% endif %}
-        {% for paper in project.papers %}
-          <a class="software-link" href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.label | default: "Paper" }} <span aria-hidden="true">↗</span></a>
-        {% endfor %}
+        {% if project.papers_page %}
+          <a class="software-link" href="{{ project.papers_page | relative_url }}">Papers <span aria-hidden="true">→</span></a>
+        {% else %}
+          {% for paper in project.papers %}
+            <a class="software-link" href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.label | default: "Paper" }} <span aria-hidden="true">↗</span></a>
+          {% endfor %}
+        {% endif %}
       </div>
     </div>
   </article>
