@@ -1,7 +1,16 @@
 software:
   - publication_key: "liu2026nepkappa"
+    authors_html: '<strong class="publication-self">Shixian Liu</strong>, Bin Liu, Fei Yin, Gang Wang, Yiming Dong, Yangjun Qin, Alexandra V. Kosyakova, Qiang Xian, Alexander A. Barinov, Ke Xu, Gang Zhang'
   - publication_key: "fei2026jap"
+    authors_html: 'Fei Yin, <strong class="publication-self">Shixian Liu</strong>, Yiming Dong, A.A. Barinov, Ke Xu, V.I. Khvesyuk'
 
 applications:
   - publication_key: "yin2026cove"
-  - publication_key: "shixian2025jap"
+    authors_html: 'Fei Yin, Gang Wang, Alexander A. Barinov, <strong class="publication-self">Shixian Liu</strong>, Ke Xu'
+  - title: "Effects of point defects and tensile strain on the lattice thermal conductivity of θ-TaN: A machine-learned molecular dynamics study"
+    authors_html: "Chenyang Cao, Yifei Ning, Yongbo Shi, Yu Bao, Hongfei Li, Panpan Gao, Shuo Cao, Ping Qian"
+    journal: "Physical Review B"
+    volume: "114"
+    pages: "204304"
+    year: 2026
+    doi: "10.1103/pqy5-87gr"

@@ -23,13 +23,23 @@ extra_css:
 
     <ol class="software-paper-list">
       {% for item in paper_items %}
-        {% assign paper = site.data.publications | where: "key", item.publication_key | first %}
-        {% if paper %}
-          <li id="{{ paper.key }}">
-            {{ paper.authors_html }}.
-            <a class="software-paper-title" href="https://doi.org/{{ paper.doi }}" target="_blank" rel="noopener noreferrer">{{ paper.title }}</a>.
-            <em>{{ paper.journal }}</em>{% if paper.volume != "" %} <strong>{{ paper.volume }}</strong>{% endif %}{% if paper.pages != "" %}, {{ paper.pages }}{% endif %} ({{ paper.year }}).
-            <a class="software-paper-doi" href="https://doi.org/{{ paper.doi }}" target="_blank" rel="noopener noreferrer">https://doi.org/{{ paper.doi }}</a>
+        {% assign paper = nil %}
+        {% if item.publication_key %}
+          {% assign paper = site.data.publications | where: "key", item.publication_key | first %}
+        {% endif %}
+        {% assign citation_authors = item.authors_html | default: paper.authors_html %}
+        {% assign citation_title = item.title | default: paper.title %}
+        {% assign citation_journal = item.journal | default: paper.journal %}
+        {% assign citation_volume = item.volume | default: paper.volume %}
+        {% assign citation_pages = item.pages | default: paper.pages %}
+        {% assign citation_year = item.year | default: paper.year %}
+        {% assign citation_doi = item.doi | default: paper.doi %}
+        {% if citation_title %}
+          <li{% if item.publication_key %} id="{{ item.publication_key }}"{% endif %}>
+            {{ citation_authors }}.
+            <a class="software-paper-title" href="https://doi.org/{{ citation_doi }}" target="_blank" rel="noopener noreferrer">{{ citation_title }}</a>.
+            <em>{{ citation_journal }}</em>{% if citation_volume != "" %} <strong>{{ citation_volume }}</strong>{% endif %}{% if citation_pages != "" %}, {{ citation_pages }}{% endif %} ({{ citation_year }}).
+            <a class="software-paper-doi" href="https://doi.org/{{ citation_doi }}" target="_blank" rel="noopener noreferrer">https://doi.org/{{ citation_doi }}</a>
           </li>
         {% endif %}
       {% endfor %}
