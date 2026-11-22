@@ -7,8 +7,7 @@
   description: >-
     NEP-kappa 2.0 connects NEP, VASP, MACE, and ASE calculators to a reproducible workflow
     for force constants, phonon properties, thermal-conductivity calculations, and
-    time-dependent phonon simulations. The same input structure can organize calculations
-    from harmonic lattice dynamics to temperature-renormalized and higher-order transport.
+    time-dependent phonon simulations.
   status: "Open source"
   tags:
     - "NEP / VASP / MACE"
@@ -27,9 +26,8 @@
     geometries with fixed or locally temperature-dependent scattering.
   description: >-
     PhonoMC imports full-Brillouin-zone phonon data and follows computational carriers through
-    nanoscale structures. It supports full-distribution and deviational formulations, local
-    temperature reconstruction, energy-conserving collision updates, spectrum-selective heating,
-    and heat flow across boundaries and material interfaces.
+    nanoscale structures. It supports local temperature reconstruction, spectrum-selective
+    heating, and heat flow across interfaces.
   status: "Open source"
   tags:
     - "Deviational Monte Carlo"

@@ -8,7 +8,6 @@
 }
 
 .software-papers-back {
-  display: inline-block;
   margin-bottom: 1rem;
 }
 
@@ -23,13 +22,6 @@
 .software-paper-list li {
   margin-bottom: 1rem;
   line-height: 1.7;
-}
-
-.software-papers-back,
-.software-paper-doi,
-.software-papers-back:hover,
-.software-paper-doi:hover {
-  color: inherit;
 }
 
 .software-paper-doi {

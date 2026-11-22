@@ -1,108 +1,25 @@
 {% assign about = site.data.about %}
-
-<section class="card about-hero">
-  <div class="about-hero-media">
-    <img class="about-avatar" src="{{ about.hero.avatar | relative_url }}" alt="Portrait of {{ about.hero.name }}" width="640" height="640" fetchpriority="high">
-  </div>
-  <div class="about-hero-content">
-    <p class="about-role">{{ about.hero.role }}</p>
-    <h1 class="about-name">{{ about.hero.name }}</h1>
-    <p class="about-tagline">{{ about.hero.tagline }}</p>
-    {% for paragraph in about.hero.paragraphs %}
-      <p>{{ paragraph }}</p>
-    {% endfor %}
-    <div class="about-action-links">
-      <a class="pub-btn pub-btn-primary" href="{{ '/publications/' | relative_url }}">View Publications</a>
-      {% if about.hero.cv_url %}
-        <a class="pub-btn" href="{{ about.hero.cv_url | relative_url }}" target="_blank" rel="noopener noreferrer">{{ about.hero.cv_label | default: "Download CV" }}</a>
-      {% endif %}
-      {% for item in about.hero.social_links %}
-        <a class="pub-btn" href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.value | default: item.label }}</a>
-      {% endfor %}
-    </div>
-  </div>
+<section class="profile-introduction" aria-labelledby="profile-heading">
+  <h1 id="profile-heading">{{ about.hero.name }}</h1>
+  <p class="profile-subtitle">{{ about.hero.tagline }}</p>
+  {% for paragraph in about.hero.paragraphs %}<p>{{ paragraph }}</p>{% endfor %}
+  <p class="profile-contact"><a class="text-link" href="{{ '/cv/' | relative_url }}">Curriculum vitae</a><a class="download-link" href="{{ about.hero.cv_url | relative_url }}" target="_blank" rel="noopener noreferrer">{% include link-icon.html name='download' %} CV</a></p>
 </section>
 
-<section class="card about-panel">
-  <h2>Professional Experience</h2>
-  <ul class="about-timeline">
-    {% for item in about.experience %}
-      <li>
-        <div class="about-time">{{ item.time }}</div>
-        <div class="about-detail">{{ item.detail }}</div>
-      </li>
+<section class="profile-section" aria-labelledby="profile-news-heading">
+  <div class="section-heading-row"><h2 id="profile-news-heading">News</h2><a class="text-link" href="{{ '/news/' | relative_url }}">All news</a></div>
+  {% assign recent_news = site.data.news | sort: "date" | reverse %}
+  <ul class="profile-news-list">
+    {% for item in recent_news limit: 3 %}
+      <li><time datetime="{{ item.date }}">{{ item.date | date: "%b %Y" }}</time><span>{{ item.summary | default: item.text | default: item.title }}</span></li>
     {% endfor %}
   </ul>
 </section>
 
-<section class="card about-panel">
-  <h2>Education</h2>
-  <ul class="about-timeline">
-    {% for item in about.education %}
-      <li>
-        <div class="about-time">{{ item.time }}</div>
-        <div class="about-detail">{{ item.detail }}</div>
-      </li>
-    {% endfor %}
-  </ul>
-</section>
-
-<section class="card about-panel featured-research-section">
-  <div class="section-heading-row">
-    <h2>Featured Research</h2>
-    <a class="elegant-link" href="{{ '/publications/' | relative_url }}">All publications</a>
-  </div>
-  <div class="featured-research-grid">
-    {% for feature in site.data.featured_research %}
-      {% assign featured_publication = site.data.publications | where: "key", feature.publication_key | first %}
-      {% assign research_highlight = site.data.research_highlights | where: "publication_key", feature.publication_key | first %}
-      {% if featured_publication %}
-        <article class="featured-research-card">
-          <a class="featured-research-image-link" href="https://doi.org/{{ featured_publication.doi }}" target="_blank" rel="noopener noreferrer" aria-label="Read {{ featured_publication.title }}">
-            <img class="featured-research-image" src="{{ featured_publication.preview | relative_url }}" alt="Research preview for {{ featured_publication.title }}" width="750" height="500" loading="lazy">
-          </a>
-          <div class="featured-research-content">
-            <p class="featured-research-label">{{ feature.label }}</p>
-            <h3>{{ featured_publication.title }}</h3>
-            <p>{{ feature.summary }}</p>
-            <ul class="featured-method-list" aria-label="Research methods">
-              {% for method in feature.methods %}<li>{{ method }}</li>{% endfor %}
-            </ul>
-            {% if research_highlight %}
-              <a class="research-highlight-badge" href="{{ research_highlight.url }}" target="_blank" rel="noopener noreferrer">
-                {{ research_highlight.label }} <span aria-hidden="true">↗</span>
-              </a>
-            {% endif %}
-            <div class="featured-research-meta">
-              <span>{{ featured_publication.journal }}</span>
-              <span>{{ featured_publication.year }}</span>
-            </div>
-            <a class="elegant-link" href="https://doi.org/{{ featured_publication.doi }}" target="_blank" rel="noopener noreferrer">View paper</a>
-          </div>
-        </article>
-      {% endif %}
-    {% endfor %}
-  </div>
-</section>
-
-<section class="card about-panel">
-  <h2>Software</h2>
-  {% for project in site.data.software %}
-    <article class="about-software-item">
-      <img class="about-software-logo" src="{{ project.logo | relative_url }}" alt="{{ project.name }} logo" width="240" height="240" loading="lazy">
-      <div>
-        <h3 class="about-software-name">{{ project.name }}</h3>
-        <p class="about-software-desc">{{ project.summary | default: project.description }}</p>
-        <div class="about-software-links">
-          {% if project.link %}<a class="pub-btn" href="{{ project.link }}" target="_blank" rel="noopener noreferrer">Repository</a>{% endif %}
-          {% if project.docs %}<a class="pub-btn" href="{{ project.docs }}" target="_blank" rel="noopener noreferrer">Documentation</a>{% endif %}
-          {% if project.papers_page %}
-            <a class="pub-btn" href="{{ project.papers_page | relative_url }}">Papers</a>
-          {% else %}
-            {% for paper in project.papers %}<a class="pub-btn" href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.label | default: "Paper" }}</a>{% endfor %}
-          {% endif %}
-        </div>
-      </div>
-    </article>
+<section class="profile-section selected-publications" aria-labelledby="selected-publications-heading">
+  <div class="section-heading-row"><h2 id="selected-publications-heading">Selected publications</h2><a class="text-link" href="{{ '/publications/' | relative_url }}">All publications</a></div>
+  {% for feature in site.data.featured_research %}
+    {% assign publication = site.data.publications | where: "key", feature.publication_key | first %}
+    {% if publication %}{% include publication-card.html publication=publication %}{% endif %}
   {% endfor %}
 </section>

@@ -7,7 +7,7 @@ extra_css:
   - /assets/css/components/software-papers.css
 ---
 <header class="software-papers-header">
-  <a class="software-papers-back" href="{{ '/software/' | relative_url }}"><span aria-hidden="true">←</span> Software</a>
+  <a class="software-papers-back text-link" href="{{ '/software/' | relative_url }}">Software</a>
   <h1>NEP-kappa Papers</h1>
 </header>
 

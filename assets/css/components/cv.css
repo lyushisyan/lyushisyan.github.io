@@ -1,0 +1,9 @@
+.cv-section { margin: 2rem 0; }
+.cv-section h2 { margin: 0 0 1.2rem; }
+.cv-records { margin: 0; }
+.cv-records > div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.25rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+.cv-records dt { color: var(--muted); font-size: var(--font-size-content); font-variant-numeric: tabular-nums; }
+.cv-records dd { margin: 0; font-size: var(--font-size-body); line-height: var(--line-height-reading); }
+.cv-section ul { padding-left: 1.2rem; font-size: var(--font-size-body); line-height: var(--line-height-reading); }
+.cv-more { margin-top: 2rem; color: var(--muted); font-size: var(--font-size-content); }
+@media (max-width: 480px) { .cv-records > div { grid-template-columns: 1fr; gap: 0.3rem; } }

@@ -19,7 +19,6 @@ extra_css:
 
 <div class="blog-page-narrow">
 <section class="listing-hero blog-hero" aria-labelledby="blog-heading">
-  <p class="listing-hero-eyebrow">研究随笔</p>
   <h1 id="blog-heading">博客</h1>
   <p class="listing-hero-summary">学习笔记和研究中的一些思考。</p>
   <div class="blog-language-switch" role="group" aria-label="Blog language switch">

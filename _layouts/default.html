@@ -1,29 +1,17 @@
 <!doctype html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+<html data-theme="light" lang="{{ page.lang | default: site.lang | default: 'en' }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% seo %}
-    {% if page.translation_key %}
-      {% for translated_page in site.posts %}
-        {% if translated_page.translation_key == page.translation_key %}
-          <link rel="alternate" hreflang="{{ translated_page.lang | default: 'en' }}" href="{{ translated_page.url | absolute_url }}">
-          {% unless translated_page.lang == 'zh' %}<link rel="alternate" hreflang="x-default" href="{{ translated_page.url | absolute_url }}">{% endunless %}
-        {% endif %}
-      {% endfor %}
-    {% elsif page.url == '/blog/' %}
-      <link rel="alternate" hreflang="en" href="{{ '/blog/' | absolute_url }}">
-      <link rel="alternate" hreflang="zh" href="{{ '/zh/blog/' | absolute_url }}">
-      <link rel="alternate" hreflang="x-default" href="{{ '/blog/' | absolute_url }}">
-    {% elsif page.url == '/zh/blog/' %}
-      <link rel="alternate" hreflang="en" href="{{ '/blog/' | absolute_url }}">
-      <link rel="alternate" hreflang="zh" href="{{ '/zh/blog/' | absolute_url }}">
-      <link rel="alternate" hreflang="x-default" href="{{ '/blog/' | absolute_url }}">
-    {% endif %}
+    <script>
+      try {
+        if (localStorage.getItem('site-theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+      } catch (_) {}
+    </script>
     <link rel="icon" type="image/png" href="{{ '/assets/img/profile/favicon.png' | relative_url }}">
     <link rel="apple-touch-icon" href="{{ '/assets/img/profile/favicon.png' | relative_url }}">
-    <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+    <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     {% if page.extra_css %}
       {% for css_path in page.extra_css %}
         <link rel="stylesheet" href="{{ css_path | relative_url }}?v={{ site.time | date: '%s' }}">
@@ -32,35 +20,19 @@
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-        <nav class="site-nav" aria-label="Main navigation">
-          {% for item in site.nav %}
-            {% assign is_current = false %}
-            {% if page.url == item.url %}
-              {% assign is_current = true %}
-            {% endif %}
-            {% if item.url == '/blog/' %}
-              {% if page.url contains '/blog/' or page.url contains '/zh/blog/' %}
-                {% assign is_current = true %}
-              {% endif %}
-            {% endif %}
-            <a class="nav-link{% if is_current %} is-active{% endif %}" href="{{ item.url | relative_url }}"{% if is_current %} aria-current="page"{% endif %}>{{ item.title }}</a>
-          {% endfor %}
-        </nav>
-      </div>
-    </header>
-
-    <main id="main-content" class="container content">
-      {{ content }}
-    </main>
-
-    <footer class="site-footer">
-      <div class="container">
-        <p>© {{ 'now' | date: '%Y' }} {{ site.title }}. Powered by Jekyll and GitHub Pages.</p>
-      </div>
-    </footer>
+    {% include site-sidebar.html %}
+    <div class="site-body">
+      <header class="site-toolbar" aria-label="Display settings">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" hidden>Dark mode</button>
+      </header>
+      <main id="main-content" class="container content">
+        {{ content }}
+      </main>
+      <footer class="site-footer">
+        <div class="container"><p>© {{ 'now' | date: '%Y' }} {{ site.title }}.</p></div>
+      </footer>
+    </div>
+    <script src="{{ '/assets/js/site-theme.js' | relative_url }}" defer></script>
     {% if page.math %}
     <script>
       window.MathJax = {

@@ -1,5 +1,6 @@
 ---
 layout: course
+published: false
 title: "Numerical Simulation Methods"
 permalink: /teaching/numerical-simulation-methods/
 extra_css:

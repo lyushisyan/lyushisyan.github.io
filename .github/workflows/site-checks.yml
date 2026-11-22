@@ -42,3 +42,6 @@ jobs:
 
       - name: Check local links
         run: node scripts/check-site-links.mjs
+
+      - name: Check stylesheet integrity
+        run: node scripts/check-site-styles.mjs

@@ -10,7 +10,6 @@ extra_css:
 {% assign sorted_news = site.data.news | sort: "date" | reverse %}
 
 <section class="listing-hero news-hero" aria-labelledby="news-heading">
-  <p class="listing-hero-eyebrow">Academic activity</p>
   <h1 id="news-heading">News</h1>
   <p class="listing-hero-summary">Selected awards, invited talks, seminars, and research activities.</p>
 </section>
@@ -25,7 +24,6 @@ extra_css:
     {% assign news_link_label = item.link_label | default: "View detail" %}
     <li class="news-timeline-item{% if research_highlight %} is-highlight{% endif %}">
       <time class="news-timeline-date" datetime="{{ item.date }}">{{ item.date | date: "%b %d, %Y" }}</time>
-      <span class="news-timeline-marker" aria-hidden="true"></span>
       <article class="news-card">
         {% if item.type %}
           <header class="news-card-header">
@@ -34,14 +32,14 @@ extra_css:
         {% endif %}
         <p class="news-card-title">{{ news_text }}</p>
         {% if research_highlight %}
-          <a class="news-card-link" href="{{ research_highlight.url }}" target="_blank" rel="noopener noreferrer">{{ news_link_label }} <span aria-hidden="true">↗</span></a>
+          <a class="news-card-link text-link" href="{{ research_highlight.url }}" target="_blank" rel="noopener noreferrer">{{ news_link_label }}</a>
         {% elsif item.detail %}
-          <a class="news-card-link" href="{{ item.detail | relative_url }}" target="_blank" rel="noopener noreferrer">{{ news_link_label }} <span aria-hidden="true">↗</span></a>
+          <a class="news-card-link text-link" href="{{ item.detail | relative_url }}" target="_blank" rel="noopener noreferrer">{{ news_link_label }}</a>
         {% elsif item.link %}
           {% if item.link contains '://' %}
-            <a class="news-card-link" href="{{ item.link }}" target="_blank" rel="noopener noreferrer">{{ news_link_label }} <span aria-hidden="true">↗</span></a>
+            <a class="news-card-link text-link" href="{{ item.link }}" target="_blank" rel="noopener noreferrer">{{ news_link_label }}</a>
           {% else %}
-            <a class="news-card-link" href="{{ item.link | relative_url }}" target="_blank" rel="noopener noreferrer">{{ news_link_label }} <span aria-hidden="true">↗</span></a>
+            <a class="news-card-link text-link" href="{{ item.link | relative_url }}" target="_blank" rel="noopener noreferrer">{{ news_link_label }}</a>
           {% endif %}
         {% endif %}
       </article>

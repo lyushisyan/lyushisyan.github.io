@@ -8,9 +8,8 @@ extra_css:
   - /assets/css/components/software.css
 ---
 <section class="listing-hero software-hero" aria-labelledby="software-heading">
-  <p class="listing-hero-eyebrow">Scientific computing</p>
   <h1 id="software-heading">Software</h1>
-  <p class="listing-hero-summary">Open-source tools for predictive phonon transport, from atomistic force models to device-scale heat flow.</p>
+  <p class="listing-hero-summary">Open-source software for phonon calculations and thermal transport simulations.</p>
 </section>
 
 <div class="software-grid">
@@ -50,16 +49,16 @@ extra_css:
       {% endif %}
       <div class="software-links">
         {% if project.link %}
-          <a class="software-link software-link-primary" href="{{ project.link }}" target="_blank" rel="noopener noreferrer">Repository <span aria-hidden="true">↗</span></a>
+          <a class="software-link resource-link" href="{{ project.link }}" target="_blank" rel="noopener noreferrer">{% include link-icon.html name='code' %} Repository</a>
         {% endif %}
         {% if project.docs %}
-          <a class="software-link" href="{{ project.docs }}" target="_blank" rel="noopener noreferrer">Documentation <span aria-hidden="true">↗</span></a>
+          <a class="software-link resource-link" href="{{ project.docs }}" target="_blank" rel="noopener noreferrer">{% include link-icon.html name='book' %} Documentation</a>
         {% endif %}
         {% if project.papers_page %}
-          <a class="software-link" href="{{ project.papers_page | relative_url }}">Papers <span aria-hidden="true">→</span></a>
+          <a class="software-link text-link" href="{{ project.papers_page | relative_url }}">Papers</a>
         {% else %}
           {% for paper in project.papers %}
-            <a class="software-link" href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.label | default: "Paper" }} <span aria-hidden="true">↗</span></a>
+            <a class="software-link text-link" href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.label | default: "Paper" }}</a>
           {% endfor %}
         {% endif %}
       </div>

@@ -1,0 +1,21 @@
+{% assign profile = site.data.about.hero %}
+<aside class="site-sidebar" aria-label="Profile and navigation">
+  <div class="sidebar-profile">
+    <a class="sidebar-portrait-link" href="{{ '/' | relative_url }}" aria-label="{{ profile.name }} — home">
+      <img class="sidebar-portrait" src="{{ profile.avatar | relative_url }}" alt="Portrait of {{ profile.name }}" width="176" height="176" fetchpriority="high">
+    </a>
+    <a class="site-title" href="{{ '/' | relative_url }}">{{ profile.name }}</a>
+    <p class="sidebar-role">{{ profile.role }}</p>
+    <p class="sidebar-affiliation">{{ profile.affiliation }}<br> {{ profile.location }}</p>
+  </div>
+  <div class="desktop-navigation">{% include site-navigation.html %}</div>
+  <details class="mobile-navigation">
+    <summary>Navigation</summary>
+    {% include site-navigation.html label="Mobile navigation" %}
+  </details>
+  <div class="sidebar-social" aria-label="Academic profiles and contact">
+    {% for item in profile.social_links %}
+      <a href="{{ item.url }}"{% unless item.url contains 'mailto:' %} target="_blank" rel="noopener noreferrer"{% endunless %}>{{ item.value | default: item.label }}</a>
+    {% endfor %}
+  </div>
+</aside>

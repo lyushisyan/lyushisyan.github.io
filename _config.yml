@@ -26,42 +26,38 @@ logo: "/assets/img/profile/favicon.png"
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-feed
 
 sass:
   style: compressed
   sass_dir: _sass
-permalink: /blog/:year/:month/:day/:title/
 
 nav:
   - title: About
-    url: /about/
+    url: /
   - title: News
     url: /news/
-  - title: Blog
-    url: /blog/
   - title: Publications
     url: /publications/
   - title: Software
     url: /software/
   - title: Teaching
     url: /teaching/
+  - title: CV
+    url: /cv/
+
+# Retain blog sources for reference without publishing them.
+exclude:
+  - _posts
+  - blog.md
+  - zh-blog.md
+  - assets/css/components/blog.css
+  - assets/css/components/post.css
+  - tmp
+  - assets/teaching/python/Lecture_01_ZH.pdf
+  - assets/teaching/python/Lecture_02_ZH.pdf
+  - assets/teaching/python/Lecture_03_ZH.pdf
 
 defaults:
-  - scope:
-      path: "_posts/zh"
-      type: "posts"
-    values:
-      lang: zh
-      permalink: /zh/blog/:year/:month/:day/:title/
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: post
-      math: true
-      extra_css:
-        - /assets/css/components/post.css
   - scope:
       path: ""
     values:

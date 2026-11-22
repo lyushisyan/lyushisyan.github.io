@@ -4,9 +4,11 @@ description: "Biography, research interests, education, experience, selected res
 image: "/assets/img/profile/lsx_900.webp"
 permalink: /about/
 hide_title: true
+math: true
 seo:
   type: Person
 extra_css:
   - /assets/css/about.css
+  - /assets/css/components/publications.css
 ---
 {% include profile-content.html %}

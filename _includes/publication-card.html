@@ -18,23 +18,22 @@
       <em>{{ publication.journal }}</em>{% if publication.year %}, {{ publication.year }}{% endif %}{% if publication.volume != "" %}, Vol. {{ publication.volume }}{% endif %}{% if publication.number != "" %}, No. {{ publication.number }}{% endif %}{% if publication.pages != "" %}, {{ publication.pages }}{% endif %}
     </p>
 
-    <div class="publication-controls" aria-label="Publication links and metrics">
-      {% if publication.impact_factor != "" %}
-        <span class="publication-tag"><span class="publication-tag-label">IF</span><span class="publication-tag-value">{{ publication.impact_factor }}</span></span>
-      {% endif %}
-      {% if publication.jcr != "" %}
-        <span class="publication-tag"><span class="publication-tag-label">JCR</span><span class="publication-tag-value">{{ publication.jcr }}</span></span>
-      {% endif %}
-      {% if publication.scopus != "" %}
-        <span class="publication-tag"><span class="publication-tag-label">Scopus</span><span class="publication-tag-value">{{ publication.scopus }}</span></span>
-      {% endif %}
+    {% capture journal_metrics %}
+      {% if publication.impact_factor and publication.impact_factor != "" %}<li><span>IF</span> <strong>{{ publication.impact_factor }}</strong></li>{% endif %}
+      {% if publication.jcr and publication.jcr != "" %}<li><span>JCR</span> <strong>{{ publication.jcr }}</strong></li>{% endif %}
+      {% if publication.scopus and publication.scopus != "" %}<li><span>Scopus</span> <strong>{{ publication.scopus }}</strong></li>{% endif %}
+    {% endcapture %}
+    {% assign journal_metrics = journal_metrics | strip %}
+    {% if journal_metrics != "" %}<ul class="publication-journal-metrics" aria-label="Journal metrics">{{ journal_metrics }}</ul>{% endif %}
+
+    <div class="publication-controls" aria-label="Publication links">
       {% if publication.doi != "" %}
         <a class="pub-btn" href="https://doi.org/{{ publication.doi }}" target="_blank" rel="noopener noreferrer">DOI</a>
       {% elsif publication.link != "" %}
         <a class="pub-btn" href="{{ publication.link }}" target="_blank" rel="noopener noreferrer">Article</a>
       {% endif %}
       {% if research_highlight %}
-        <a class="pub-btn publication-highlight-link" href="{{ research_highlight.url }}" target="_blank" rel="noopener noreferrer">{{ research_highlight.short_label }} <span aria-hidden="true">↗</span></a>
+        <a class="pub-btn" href="{{ research_highlight.url }}" target="_blank" rel="noopener noreferrer">{{ research_highlight.short_label }}</a>
       {% endif %}
       {% if publication.abstract %}
         <details class="publication-native-detail">
@@ -56,7 +55,7 @@
           {% assign pdf_label = "AAM" %}
           {% assign pdf_full_label = "Accepted Author Manuscript" %}
         {% endif %}
-        <a class="pub-btn" href="{{ publication.pdf | relative_url }}" target="_blank" rel="noopener noreferrer" title="{{ pdf_full_label }}" aria-label="Open {{ pdf_full_label }} for {{ publication.title }}">{{ pdf_label }}</a>
+        <a class="download-link" href="{{ publication.pdf | relative_url }}" target="_blank" rel="noopener noreferrer" title="{{ pdf_full_label }}" aria-label="Open {{ pdf_full_label }} for {{ publication.title | escape }}">{% include link-icon.html name='download' %} {{ pdf_label }}</a>
       {% endif %}
       {% if scholar_citation %}
         <a class="publication-scholar-badge" href="{{ scholar_citation.url | default: site.data.site_stats.scholar_url }}" target="_blank" rel="noopener noreferrer" aria-label="View citations for {{ publication.title }} on Google Scholar">

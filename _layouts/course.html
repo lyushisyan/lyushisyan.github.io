@@ -8,7 +8,7 @@ layout: default
 {% assign course_homeworks = course.homeworks | default: page.homeworks %}
 <article class="page">
   <div class="teaching-back">
-    <a href="{{ '/teaching/' | relative_url }}">← Back to Teaching</a>
+    <a class="text-link" href="{{ '/teaching/' | relative_url }}">Back to Teaching</a>
   </div>
 
   <h1>{{ page.title }}</h1>
@@ -18,8 +18,8 @@ layout: default
 
   {% if course_repository %}
     <div class="teaching-repo">
-      <a class="pub-btn" href="{{ course_repository }}" target="_blank" rel="noopener noreferrer">
-        ⌨ Repository
+      <a class="resource-link" href="{{ course_repository }}" target="_blank" rel="noopener noreferrer">
+        {% include link-icon.html name='code' %} Repository
       </a>
     </div>
   {% endif %}
@@ -42,9 +42,9 @@ layout: default
       <div class="teaching-lecture-materials">
         {% for mat in lecture.materials %}
           {% if mat.url and mat.url != "#" %}
-            <a class="pub-btn" href="{{ mat.url | relative_url }}" target="_blank" rel="noopener noreferrer">📄 {{ mat.name }}</a>
+            <a class="download-link" href="{{ mat.url | relative_url }}" target="_blank" rel="noopener noreferrer">{% include link-icon.html name='download' %} {{ mat.name }}</a>
           {% else %}
-            <span class="pub-btn is-disabled" aria-disabled="true">🔒 {{ mat.name }}</span>
+            <span class="pub-btn is-disabled" aria-disabled="true">{{ mat.name }}</span>
           {% endif %}
         {% endfor %}
       </div>
@@ -62,7 +62,7 @@ layout: default
       </div>
       {% if homework.url and homework.url != "#" %}
       <div class="teaching-lecture-materials">
-        <a class="pub-btn" href="{{ homework.url | relative_url }}" target="_blank" rel="noopener noreferrer">📄 {{ homework.title | default: "Homework" }} (PDF)</a>
+        <a class="download-link" href="{{ homework.url | relative_url }}" target="_blank" rel="noopener noreferrer">{% include link-icon.html name='download' %} {{ homework.title | default: "Homework" }} <span class="file-type">PDF</span></a>
       </div>
       {% endif %}
     </div>

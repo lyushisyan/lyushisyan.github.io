@@ -3,112 +3,39 @@
   subtitle: "Численные методы моделирования"
   url: /teaching/numerical-simulation-methods/
   repository: "https://github.com/lyushisyan/python-ml-course"
-  overview: "An eight-lecture course on scientific computing for thermophysics, progressing from Python and Linux through deterministic numerical methods, Monte Carlo transport, machine learning, PINNs, and machine-learned interatomic potentials."
-  overview_ru: "Курс из восьми лекций по научным вычислениям для теплофизики: от Python и Linux до детерминированных численных методов, моделирования Монте-Карло, машинного обучения, PINN и машинно-обученных межатомных потенциалов."
+  overview: "Three lectures on numerical simulation methods for thermophysics, with Russian Beamer slides and Jupyter notebooks."
+  overview_ru: "Три лекции по численным методам моделирования в теплофизике с презентациями Beamer на русском языке и блокнотами Jupyter."
   topics:
     - num: 1
       topic: "Python for Scientific Computing"
       topic_ru: "Python для научных вычислений"
-      description: "Python language fundamentals, NumPy, and data visualization with Matplotlib."
       materials:
-        - name: "Lecture 1 (Slides)"
-          url: "/assets/teaching/python/01_python.pdf"
+        - name: "Beamer (RU)"
+          language: ru
+          kind: slides
+          url: "/assets/teaching/python/Lecture_01_RU.pdf"
+        - name: "Jupyter Notebook"
+          kind: notebook
+          url:
     - num: 2
-      topic: "Linux and WSL for Scientific Computing"
-      topic_ru: "Linux и WSL для научных вычислений"
-      description: "Scientific workflows from a local computer to Linux servers and HPC systems."
-      materials:
-        - name: "Lecture 2 (Slides)"
-          url: "/assets/teaching/python/02_linux_wsl.pdf"
-    - num: 3
-      topic: "Core Numerical Methods"
-      topic_ru: "Основные численные методы"
-      description: "Numerical errors, root finding, linear systems, interpolation, differentiation, and integration."
-      materials:
-        - name: "Lecture 3 (Slides)"
-          url: "/assets/teaching/python/03_numerical_methods.pdf"
-    - num: 4
-      topic: "Numerical Solution of Differential Equations"
-      topic_ru: "Численное решение дифференциальных уравнений"
-      description: "Ordinary and partial differential equations, Euler and Runge–Kutta methods, and finite differences."
-      materials:
-        - name: "Lecture 4 (Slides)"
-          url: "/assets/teaching/python/04_differential_equations.pdf"
-    - num: 5
       topic: "Fundamentals of the Monte Carlo Method"
       topic_ru: "Основы метода Монте-Карло"
-      description: "Random sampling, Monte Carlo integration, random walks, and diffusion."
       materials:
-        - name: "Lecture 5 (Slides)"
-          url: "/assets/teaching/python/05_monte_carlo_basics.pdf"
-    - num: 6
-      topic: "Monte Carlo Method in Transport Problems"
-      topic_ru: "Метод Монте-Карло в задачах переноса"
-      description: "From random walks to the Boltzmann equation and phonon transport."
-      materials:
-        - name: "Lecture 6 (Slides)"
-          url: "/assets/teaching/python/06_monte_carlo_transport.pdf"
-    - num: 7
-      topic: "Introduction to Machine Learning"
-      topic_ru: "Введение в машинное обучение"
-      description: "Perceptrons, neural networks, multilayer architectures, and model training."
-      materials:
-        - name: "Lecture 7 (Slides)"
-          url: "/assets/teaching/python/07_machine_learning.pdf"
-    - num: 8
-      topic: "Modern Methods in Computational Physics"
-      topic_ru: "Современные методы вычислительной физики"
-      description: "Surrogate models, physics-informed neural networks, and machine-learned interatomic potentials."
-      materials:
-        - name: "Lecture 8 (Slides)"
-          url: "/assets/teaching/python/08_modern_computational_physics.pdf"
-
-- title: "Thermal Physics of Nanosystems"
-  title_ru: "Теплофизика наносистем"
-  subtitle: "Теплофизика наносистем"
-  url: /teaching/thermal-physics-nanosystems/
-  repository: "https://github.com/lyushisyan/nano-thermal-physics"
-  overview: "A systematic exploration of thermal physics at the nanoscale. Integrates classical continuum theories with atomistic simulations to explain heat transport mechanisms in solids."
-  overview_ru: "Систематический курс по теплофизике на наноуровне. Объединяет классические континуальные теории и атомистическое моделирование для объяснения механизмов теплопереноса в твердых телах."
-  topics:
-    - num: 1
-      topic: "Introduction to Nanothermophysics"
-      topic_ru: "Введение в нанотеплофизику"
-      description: "Basic definitions and an introduction to nanothermophysics."
-      materials:
-        - name: "Lecture 1 (Slides)"
-          url: "/assets/teaching/nanoheat/Lecture1_introduction.pdf"
-    - num: 2
-      topic: "Fundamentals of Crystal Structure"
-      topic_ru: "Основы кристаллической структуры"
-      description: "Bravais lattices, primitive and conventional cells, Wigner–Seitz cells, reciprocal lattices, and the Brillouin zone."
-      materials:
-        - name: "Lecture 2 (Slides)"
-          url: "/assets/teaching/nanoheat/Lecture2_structure.pdf"
+        - name: "Beamer (RU)"
+          language: ru
+          kind: slides
+          url: "/assets/teaching/python/Lecture_02_RU.pdf"
+        - name: "Jupyter Notebook"
+          kind: notebook
+          url:
     - num: 3
-      topic: "Theory of Elastic Waves"
-      topic_ru: "Теория упругих волн"
-      description: "Deformation, stress, Hooke's law, wave equations, reflection of elastic waves, and Kapitza conductance."
+      topic: "Machine Learning in Computational Physics"
+      topic_ru: "Машинное обучение в вычислительной физике"
       materials:
-        - name: "Lecture 3 (Slides)"
-          url: "/assets/teaching/nanoheat/Lecture3_elasticity.pdf"
-    - num: 4
-      topic: "Lattice Vibration Theory"
-      topic_ru: "Теория колебаний решетки"
-      description: "Lattice dynamics, the harmonic approximation, and phonon density of states."
-      materials:
-        - name: "Lecture 4 (Slides)"
-          url: "/assets/teaching/nanoheat/Lecture4_LD_DOS.pdf"
-    - num: 5
-      topic: "Thermophysical properties"
-      topic_ru: "Теплофизические свойства"
-      description: "Classical heat capacity, the Einstein and Debye models, and modern refinements."
-      materials:
-        - name: "Lecture 5 (Slides)"
-          url: "/assets/teaching/nanoheat/Lecture5_property.pdf"
-  homeworks:
-    - num: 1
-      title: "Homework 1"
-      title_ru: "Домашнее задание 1"
-      description: "Course assignment."
-      url: "/assets/teaching/nanoheat/Homework-1.pdf"
+        - name: "Beamer (RU)"
+          language: ru
+          kind: slides
+          url: "/assets/teaching/python/Lecture_03_RU.pdf"
+        - name: "Jupyter Notebook"
+          kind: notebook
+          url:

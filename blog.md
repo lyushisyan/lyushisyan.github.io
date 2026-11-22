@@ -19,7 +19,6 @@ extra_css:
 
 <div class="blog-page-narrow">
 <section class="listing-hero blog-hero" aria-labelledby="blog-heading">
-  <p class="listing-hero-eyebrow">Research notes</p>
   <h1 id="blog-heading">Blog</h1>
   <p class="listing-hero-summary">Study notes and reflections from my research.</p>
   <div class="blog-language-switch" role="group" aria-label="Blog language switch">
