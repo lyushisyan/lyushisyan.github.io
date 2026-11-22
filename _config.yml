@@ -45,8 +45,10 @@ nav:
   - title: CV
     url: /cv/
 
-# Retain blog sources for reference without publishing them.
+# Exclude build dependencies and unpublished sources from the site.
 exclude:
+  - vendor
+  - .bundle
   - _posts
   - blog.md
   - zh-blog.md
