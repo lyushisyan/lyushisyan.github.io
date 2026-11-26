@@ -13,7 +13,7 @@
         - name: "Beamer (RU)"
           language: ru
           kind: slides
-          url: "/assets/teaching/python/Lecture_01_RU.pdf"
+          url: "/assets/teaching/python/Lecture_01.pdf"
         - name: "Jupyter Notebook"
           kind: notebook
           url:
@@ -24,7 +24,7 @@
         - name: "Beamer (RU)"
           language: ru
           kind: slides
-          url: "/assets/teaching/python/Lecture_02_RU.pdf"
+          url: "/assets/teaching/python/Lecture_02.pdf"
         - name: "Jupyter Notebook"
           kind: notebook
           url:
@@ -35,7 +35,7 @@
         - name: "Beamer (RU)"
           language: ru
           kind: slides
-          url: "/assets/teaching/python/Lecture_03_RU.pdf"
+          url: "/assets/teaching/python/Lecture_03.pdf"
         - name: "Jupyter Notebook"
           kind: notebook
           url:
